@@ -68,7 +68,22 @@
         </div>
       </div>
 
-      <div class="row mt-1 mb-4" id="containerSendToSms">
+      <div class="row my-1" id="containerName">
+        <div class="col-md-4 offset-md-4">
+          <div class="mb-1">
+            <div class="row">
+              <div class="col">
+                <div class="form-floating">
+                  <input type="text" class="form-control" name="name" id="recipientname" placeholder="Recipient's name">
+                  <label for="name">Recipient's name</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-0 mb-4" id="containerSendToSms">
         <div class="col-md-4 offset-md-4">
           <div class="form-floating">
             <input type="tel" pattern="[0-9]*" class="form-control" name="sendto_sms" id="sendto_sms" placeholder="Mobile phone number">
@@ -88,36 +103,13 @@
 
       <div class="row mt-1 mb-4 d-none" id="containerSendToQRCode">
         <div class="col-md-4 offset-md-4">
-          <div class="text-center" id="qrcode">
+          <div class="text-center my-5" id="qrcode">
             [ INSERT QR CODE HERE ]
           </div>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-4 offset-md-4">
-          <div class="col text-center">
-            <strong>Recipient's name:</strong>
-          </div>
-        </div>
-      </div>
-
-      <div class="row mt-1 mb-4">
-        <div class="col-md-4 offset-md-4">
-          <div class="mb-3">
-            <div class="row">
-              <div class="col">
-                <div class="form-floating">
-                  <input type="text" class="form-control" name="name" id="recipientname" placeholder="Name">
-                  <label for="name">Name</label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row mb-2">
+      <div class="row mb-2" id="containerTagWithLocation">
         <div class="col-md-4 offset-md-4 text-center">
           <div class="d-inline-block">
             <div class="form-check">
@@ -132,7 +124,7 @@
 
       <br>
 
-      <div class="row">
+      <div class="row mt-2 mb-5">
         <div class="col-md-4 offset-md-4 text-center">
           <a href="#" class="btn btn-primary btn-lg" id="btnSendInvite">SEND INVITE</a>
         </div>
