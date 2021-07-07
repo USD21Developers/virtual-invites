@@ -46,10 +46,6 @@
     });
   }
 
-  function setEventListeners() {
-    document.querySelectorAll("input[type=radio][name='sendvia']").forEach(item => onSendViaChanged(item));
-  }
-
   function loadDummyEvents() {
     const events = [
       {
@@ -75,22 +71,47 @@
     return JSON.stringify(events);
   }
 
+  function eventDetails() {
+    const event = document.querySelector("#events_dropdown");
+    const meetingdetails = document.querySelector("#meetingdetails");
+    const selectedEvent = event.selectedOptions[0];
+    const eventDay = selectedEvent.getAttribute("data-day");
+    const eventTime = selectedEvent.getAttribute("data-time");
+    const eventLocation = selectedEvent.getAttribute("data-location");
+    const eventAddress = selectedEvent.getAttribute("data-address");
+
+    if (selectedEvent.value === "") return meetingdetails.classList.add("d-none");
+    meetingdetails_timedate.innerHTML = `${eventDay} @ ${eventTime}`;
+    meetingdetails_location.innerHTML = `${eventLocation} ${eventAddress.length && "<br>"} ${eventAddress}`;
+    meetingdetails.classList.remove("d-none");
+  }
+
   async function loadEvents() {
     const events_dropdown = document.querySelector("#events_dropdown");
+    const meetingdetails = document.querySelector("#meetingdetails");
+    const meetingdetails_timedate = document.querySelector("#meetingdetails_timedate");
+    const meetingdetails_location = document.querySelector("#meetingdetails_location");
     const events_stored = localStorage.getItem("events")  || loadDummyEvents();
     const events = JSON.parse(events_stored);
     const events_default = localStorage.getItem("events_default") || 1;
     let options = `<option value="">(Select)</option>`;
 
     events.forEach(event => {
-      const { id, name } = event;
-      options += `<option value="${id}">${name}</option>`;
+      const { id, name, day, time, location, address } = event;
+      options += `<option value="${id}" data-day="${day}" data-time="${time}" data-location="${location}" data-address="${address}">${name}</option>`;
     });
 
     events_dropdown.innerHTML = options;
     events_dropdown.options[events_default].selected = true;
+    eventDetails();
+    meetingdetails.classList.remove("d-none");
 
     // TODO:  fetch events from API for user, store the result to localStorage, then refresh the UI with it 
+  }
+
+  function setEventListeners() {
+    document.querySelectorAll("input[type=radio][name='sendvia']").forEach(item => onSendViaChanged(item));
+    document.querySelector("#events_dropdown").addEventListener("change", eventDetails);
   }
 
   function init() {
