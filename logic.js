@@ -109,6 +109,16 @@
     // TODO:  fetch events from API for user, store the result to localStorage, then refresh the UI with it 
   }
 
+  function intlTelInput() {
+    const input = document.querySelector("#sendto_sms");
+    const initialCountry = localStorage.getItem("countryIso") || "us";
+    window.intlTelInput(input, {
+      initialCountry: initialCountry,
+      separateDialCode: true,
+      utilsScript: "js/intl-tel-input-17.0.0/js/utils.js"
+    });
+  }
+
   function setEventListeners() {
     document.querySelectorAll("input[type=radio][name='sendvia']").forEach(item => onSendViaChanged(item));
     document.querySelector("#events_dropdown").addEventListener("change", eventDetails);
@@ -116,6 +126,7 @@
 
   function init() {
     loadEvents();
+    intlTelInput();
     setEventListeners();
   }
 

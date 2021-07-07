@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Virtual Invites</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="js/intl-tel-input-17.0.0/css/intlTelInput.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -79,10 +81,7 @@
           <div class="mb-1">
             <div class="row">
               <div class="col">
-                <div class="form-floating">
-                  <input type="text" class="form-control" name="name" id="recipientname" placeholder="Recipient's name">
-                  <label for="name">Recipient's name</label>
-                </div>
+                <input type="text" class="form-control" name="name" id="recipientname" placeholder="Recipient's name">
               </div>
             </div>
           </div>
@@ -91,10 +90,7 @@
 
       <div class="row mt-0 mb-4" id="containerSendToSms">
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
-          <div class="form-floating">
-            <input type="tel" pattern="[0-9]*" class="form-control" name="sendto_sms" id="sendto_sms" placeholder="Mobile phone number">
-            <label for="sendto_sms">Mobile phone number</label>
-          </div>
+          <input type="tel" pattern="[0-9]*" class="form-control" name="sendto_sms" id="sendto_sms" placeholder="Mobile phone number">
         </div>
       </div>
 
@@ -115,7 +111,7 @@
         </div>
       </div>
 
-      <div class="row mb-2" id="containerTagWithLocation">
+      <div class="row mt-5 mb-2" id="containerTagWithLocation">
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3 text-center">
           <div class="d-inline-block">
             <div class="form-check">
@@ -138,8 +134,9 @@
 
     </div>
 
-    <script type="text/javascript" src="js/global.js"></script>
-    <script type="text/javascript" src="logic.js"></script>
+    <script src="js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
+    <script src="js/global.js"></script>
+    <script src="logic.js"></script>
     
   </body>
 </html>
