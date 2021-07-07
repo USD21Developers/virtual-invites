@@ -50,7 +50,51 @@
     document.querySelectorAll("input[type=radio][name='sendvia']").forEach(item => onSendViaChanged(item));
   }
 
+  function loadDummyEvents() {
+    const events = [
+      {
+        id: 1,
+        type: "Bible Talk",
+        name: "Bible Talk",
+        day: "Fridays",
+        time: "7:30 PM",
+        location: "Starbucks",
+        address: "555 Main Street, Phoenix, AZ, 99999"
+      },
+      {
+        id: 2,
+        type: "Sunday Service",
+        name: "Sunday Service",
+        day: "Sundays",
+        time: "10:00 AM",
+        location: "SDA",
+        address: "5555 Camelback Road, Scottsdale, AZ, 99999"
+      }
+    ];
+
+    return JSON.stringify(events);
+  }
+
+  async function loadEvents() {
+    const events_dropdown = document.querySelector("#events_dropdown");
+    const events_stored = localStorage.getItem("events")  || loadDummyEvents();
+    const events = JSON.parse(events_stored);
+    const events_default = localStorage.getItem("events_default") || 1;
+    let options = `<option value="">(Select)</option>`;
+
+    events.forEach(event => {
+      const { id, name } = event;
+      options += `<option value="${id}">${name}</option>`;
+    });
+
+    events_dropdown.innerHTML = options;
+    events_dropdown.options[events_default].selected = true;
+
+    // TODO:  fetch events from API for user, store the result to localStorage, then refresh the UI with it 
+  }
+
   function init() {
+    loadEvents();
     setEventListeners();
   }
 

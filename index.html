@@ -28,10 +28,16 @@
 
       <div class="row mb-3">
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
-          <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-            <option selected value="bibletalk">Bible Talk</option>
-            <option value="church">Sunday Service</option>
-          </select>
+          <select id="events_dropdown" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"></select>
+
+          <div class="container" id="meetingdetails">
+            <div class="row">
+              <div class="col">
+                <div id="meetingdetails_timedate"></div>
+                <div id="meetingdetails_location"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -132,7 +138,8 @@
 
     </div>
 
-    <script type="text/javascript" src="./js/_index/logic.js"></script>
+    <script type="text/javascript" src="js/global.js"></script>
+    <script type="text/javascript" src="logic.js"></script>
     
   </body>
 </html>
