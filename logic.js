@@ -33,6 +33,7 @@ function selectSendVia() {
       break;
     case "qrcode":
       containerQRCode.classList.remove("d-none");
+      populateQrCode();
       break;
   }
 }
@@ -157,7 +158,6 @@ function setEventListeners() {
 function init() {
   loadEvents();
   initIntlTelInput();
-  populateQrCode();
   setEventListeners();
 }
 
