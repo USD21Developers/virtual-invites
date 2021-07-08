@@ -11,3 +11,8 @@
     background-image: url("js/intl-tel-input-17.0.0/img/flags@2x.png");
   }
 }
+
+#sendto_sms {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
