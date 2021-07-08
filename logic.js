@@ -146,7 +146,7 @@ function populateQrCode() {
   if (selectedEvent.length) url += `/${selectedEvent}`;
   const qr = new QRious({
     element: document.getElementById('qr'),
-    value: selectedEvent,
+    value: url,
     size: width
   });
 }
