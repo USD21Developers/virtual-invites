@@ -1,135 +1,133 @@
-(() => {
+function selectSendVia() {
+  const sendToLabel = document.querySelector("#sendToLabel");
+  const containerName = document.querySelector("#containerName");
+  const containerSms = document.querySelector("#containerSendToSms");
+  const containerEmail = document.querySelector("#containerSendToEmail");
+  const containerQRCode = document.querySelector("#containerSendToQRCode");
+  const containerTagWithLocation = document.querySelector("#containerTagWithLocation");
+  const sendvia = getSendVia();
 
-  function selectSendVia() {
-    const sendToLabel = document.querySelector("#sendToLabel");
-    const containerName = document.querySelector("#containerName");
-    const containerSms = document.querySelector("#containerSendToSms");
-    const containerEmail = document.querySelector("#containerSendToEmail");
-    const containerQRCode = document.querySelector("#containerSendToQRCode");
-    const containerTagWithLocation = document.querySelector("#containerTagWithLocation");
-    const sendvia = getSendVia();
+  sendToLabel.classList.add("d-none");
+  containerSms.classList.add("d-none");
+  containerEmail.classList.add("d-none");
+  containerQRCode.classList.add("d-none");
+  containerName.classList.add("d-none");
+  containerTagWithLocation.classList.add("d-none");
 
-    sendToLabel.classList.add("d-none");
-    containerSms.classList.add("d-none");
-    containerEmail.classList.add("d-none");
-    containerQRCode.classList.add("d-none");
-    containerName.classList.add("d-none");
-    containerTagWithLocation.classList.add("d-none");
+  switch(sendvia) {
+    case "sms":
+      sendToLabel.classList.remove("d-none");
+      containerSms.classList.remove("d-none");
+      containerName.classList.remove("d-none");
+      containerTagWithLocation.classList.remove("d-none");
+      break;
+    case "email":
+      sendToLabel.classList.remove("d-none");
+      containerEmail.classList.remove("d-none");
+      containerName.classList.remove("d-none");
+      containerTagWithLocation.classList.remove("d-none");
+      break;
+    case "qrcode":
+      containerQRCode.classList.remove("d-none");
+      break;
+  }
+}
 
-    switch(sendvia) {
-      case "sms":
-        sendToLabel.classList.remove("d-none");
-        containerSms.classList.remove("d-none");
-        containerName.classList.remove("d-none");
-        containerTagWithLocation.classList.remove("d-none");
-        break;
-      case "email":
-        sendToLabel.classList.remove("d-none");
-        containerEmail.classList.remove("d-none");
-        containerName.classList.remove("d-none");
-        containerTagWithLocation.classList.remove("d-none");
-        break;
-      case "qrcode":
-        containerQRCode.classList.remove("d-none");
-        break;
+function getSendVia() {
+  const value = document.querySelector("input[type=radio][name='sendvia']:checked").value;
+  return value;
+}
+
+function onSendViaChanged(item) {
+  item.addEventListener("change", (evt) => {
+    selectSendVia();
+  });
+}
+
+function loadDummyEvents() {
+  const events = [
+    {
+      id: 1,
+      type: "Bible Talk",
+      name: "Bible Talk",
+      day: "Fridays",
+      time: "7:30 PM",
+      location: "Starbucks",
+      address: "555 Main Street, Phoenix, AZ, 99999"
+    },
+    {
+      id: 2,
+      type: "Sunday Service",
+      name: "Sunday Service",
+      day: "Sundays",
+      time: "10:00 AM",
+      location: "SDA",
+      address: "5555 Camelback Road, Scottsdale, AZ, 99999"
     }
-  }
+  ];
 
-  function getSendVia() {
-    const value = document.querySelector("input[type=radio][name='sendvia']:checked").value;
-    return value;
-  }
+  return JSON.stringify(events);
+}
 
-  function onSendViaChanged(item) {
-    item.addEventListener("change", (evt) => {
-      selectSendVia();
-    });
-  }
+function eventDetails() {
+  const event = document.querySelector("#events_dropdown");
+  const meetingdetails = document.querySelector("#meetingdetails");
+  const selectedEvent = event.selectedOptions[0];
+  const eventDay = selectedEvent.getAttribute("data-day");
+  const eventTime = selectedEvent.getAttribute("data-time");
+  const eventLocation = selectedEvent.getAttribute("data-location");
+  const eventAddress = selectedEvent.getAttribute("data-address");
+  const meetingdetails_timedate = document.querySelector("#meetingdetails_timedate");
+  const meetingdetails_location = document.querySelector("#meetingdetails_location");
 
-  function loadDummyEvents() {
-    const events = [
-      {
-        id: 1,
-        type: "Bible Talk",
-        name: "Bible Talk",
-        day: "Fridays",
-        time: "7:30 PM",
-        location: "Starbucks",
-        address: "555 Main Street, Phoenix, AZ, 99999"
-      },
-      {
-        id: 2,
-        type: "Sunday Service",
-        name: "Sunday Service",
-        day: "Sundays",
-        time: "10:00 AM",
-        location: "SDA",
-        address: "5555 Camelback Road, Scottsdale, AZ, 99999"
-      }
-    ];
+  if (selectedEvent.value === "") return meetingdetails.classList.add("d-none");
+  meetingdetails_timedate.innerHTML = `${eventDay} @ ${eventTime}`;
+  meetingdetails_location.innerHTML = `${eventLocation} ${eventAddress.length && "<br>"} ${eventAddress}`;
+  meetingdetails.classList.remove("d-none");
+}
 
-    return JSON.stringify(events);
-  }
+async function loadEvents() {
+  const events_dropdown = document.querySelector("#events_dropdown");
+  const meetingdetails = document.querySelector("#meetingdetails");
+  const events_stored = localStorage.getItem("events")  || loadDummyEvents();
+  const events = JSON.parse(events_stored);
+  const events_default = localStorage.getItem("events_default") || 1;
+  let options = `<option value="">(Select)</option>`;
 
-  function eventDetails() {
-    const event = document.querySelector("#events_dropdown");
-    const meetingdetails = document.querySelector("#meetingdetails");
-    const selectedEvent = event.selectedOptions[0];
-    const eventDay = selectedEvent.getAttribute("data-day");
-    const eventTime = selectedEvent.getAttribute("data-time");
-    const eventLocation = selectedEvent.getAttribute("data-location");
-    const eventAddress = selectedEvent.getAttribute("data-address");
+  events.forEach(event => {
+    const { id, name, day, time, location, address } = event;
+    options += `<option value="${id}" data-day="${day}" data-time="${time}" data-location="${location}" data-address="${address}">${name}</option>`;
+  });
 
-    if (selectedEvent.value === "") return meetingdetails.classList.add("d-none");
-    meetingdetails_timedate.innerHTML = `${eventDay} @ ${eventTime}`;
-    meetingdetails_location.innerHTML = `${eventLocation} ${eventAddress.length && "<br>"} ${eventAddress}`;
-    meetingdetails.classList.remove("d-none");
-  }
+  events_dropdown.innerHTML = options;
+  events_dropdown.options[events_default].selected = true;
+  eventDetails();
+  meetingdetails.classList.remove("d-none");
 
-  async function loadEvents() {
-    const events_dropdown = document.querySelector("#events_dropdown");
-    const meetingdetails = document.querySelector("#meetingdetails");
-    const meetingdetails_timedate = document.querySelector("#meetingdetails_timedate");
-    const meetingdetails_location = document.querySelector("#meetingdetails_location");
-    const events_stored = localStorage.getItem("events")  || loadDummyEvents();
-    const events = JSON.parse(events_stored);
-    const events_default = localStorage.getItem("events_default") || 1;
-    let options = `<option value="">(Select)</option>`;
+  // TODO:  fetch events from API for user, store the result to localStorage, then refresh the UI with it 
+}
 
-    events.forEach(event => {
-      const { id, name, day, time, location, address } = event;
-      options += `<option value="${id}" data-day="${day}" data-time="${time}" data-location="${location}" data-address="${address}">${name}</option>`;
-    });
+let iti;
 
-    events_dropdown.innerHTML = options;
-    events_dropdown.options[events_default].selected = true;
-    eventDetails();
-    meetingdetails.classList.remove("d-none");
+function initIntlTelInput() {
+  const input = document.querySelector("#sendto_sms");
+  const initialCountry = localStorage.getItem("countryIso") || "us";
+  window.intlTelInput(input, {
+    initialCountry: initialCountry,
+    utilsScript: "js/intl-tel-input-17.0.0/js/utils.js"
+  });
+  iti = intlTelInput(input);
+}
 
-    // TODO:  fetch events from API for user, store the result to localStorage, then refresh the UI with it 
-  }
+function setEventListeners() {
+  document.querySelectorAll("input[type=radio][name='sendvia']").forEach(item => onSendViaChanged(item));
+  document.querySelector("#events_dropdown").addEventListener("change", eventDetails);
+}
 
-  function intlTelInput() {
-    const input = document.querySelector("#sendto_sms");
-    const initialCountry = localStorage.getItem("countryIso") || "us";
-    window.intlTelInput(input, {
-      initialCountry: initialCountry,
-      separateDialCode: true,
-      utilsScript: "js/intl-tel-input-17.0.0/js/utils.js"
-    });
-  }
+function init() {
+  loadEvents();
+  initIntlTelInput();
+  setEventListeners();
+}
 
-  function setEventListeners() {
-    document.querySelectorAll("input[type=radio][name='sendvia']").forEach(item => onSendViaChanged(item));
-    document.querySelector("#events_dropdown").addEventListener("change", eventDetails);
-  }
-
-  function init() {
-    loadEvents();
-    intlTelInput();
-    setEventListeners();
-  }
-
-  init();
-
-})();
+init();
