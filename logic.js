@@ -128,8 +128,9 @@ function populateQrCode() {
   const userid = localStorage.getItem("userid") || 0;
   const env = document.location.hostname || "localhost";
   const selectedEvent = document.querySelector("#events_dropdown").selectedOptions[0].value || "";
-  const maxWidth = document.querySelector("#qrcode").clientWidth || 250;
-  const width = (maxWidth > 300) ? 300 : maxWidth;
+  const availableWidth = document.querySelector("#qrcode").clientWidth;
+  const maxWidth = 250;
+  const width = (availableWidth > maxWidth) ? maxWidth : availableWidth;
   let url;
   switch(env) {
     case "localhost":
