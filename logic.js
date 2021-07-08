@@ -85,6 +85,8 @@ function eventDetails() {
   const meetingdetails_timedate = document.querySelector("#meetingdetails_timedate");
   const meetingdetails_location = document.querySelector("#meetingdetails_location");
 
+  populateQrCode();
+
   if (selectedEvent.value === "") return meetingdetails.classList.add("d-none");
   meetingdetails_timedate.innerHTML = `${eventDay} @ ${eventTime}`;
   meetingdetails_location.innerHTML = `${eventLocation} ${eventAddress.length && "<br>"} ${eventAddress}`;
