@@ -144,6 +144,9 @@ function populateQrCode() {
       break;
   }
   if (selectedEvent.length) url += `/${selectedEvent}`;
+
+  // TODO:  Generate link from link shortener instead of using raw URL
+
   const qr = new QRious({
     element: document.getElementById('qr'),
     value: url,
