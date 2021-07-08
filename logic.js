@@ -5,6 +5,7 @@ function selectSendVia() {
   const containerEmail = document.querySelector("#containerSendToEmail");
   const containerQRCode = document.querySelector("#containerSendToQRCode");
   const containerTagWithLocation = document.querySelector("#containerTagWithLocation");
+  const containerSendInvite = document.querySelector("#containerSendInvite");
   const sendvia = getSendVia();
 
   sendToLabel.classList.add("d-none");
@@ -13,6 +14,7 @@ function selectSendVia() {
   containerQRCode.classList.add("d-none");
   containerName.classList.add("d-none");
   containerTagWithLocation.classList.add("d-none");
+  containerSendInvite.classList.add("d-none");
 
   switch(sendvia) {
     case "sms":
@@ -20,12 +22,14 @@ function selectSendVia() {
       containerSms.classList.remove("d-none");
       containerName.classList.remove("d-none");
       containerTagWithLocation.classList.remove("d-none");
+      containerSendInvite.classList.remove("d-none");
       break;
     case "email":
       sendToLabel.classList.remove("d-none");
       containerEmail.classList.remove("d-none");
       containerName.classList.remove("d-none");
       containerTagWithLocation.classList.remove("d-none");
+      containerSendInvite.classList.remove("d-none");
       break;
     case "qrcode":
       containerQRCode.classList.remove("d-none");
@@ -119,6 +123,32 @@ function initIntlTelInput() {
   iti = intlTelInput(input);
 }
 
+function populateQrCode() {
+  const userid = localStorage.getItem("userid") || 0;
+  const env = document.location.hostname || "localhost";
+  const selectedEvent = document.querySelector("#events_dropdown").selectedOptions[0].value || "";
+  const maxWidth = document.querySelector("#qrcode").clientWidth || 250;
+  const width = (maxWidth > 300) ? 300 : maxWidth;
+  let url;
+  switch(env) {
+    case "localhost":
+      url = `${getApiHost()}/${userid}`;
+      break;
+    case "staging.invites.usd21.org":
+      url = `${getApiHost()}/${userid}`;
+      break;
+    case "invites.usd21.org":
+      url = `${getApiHost()}/${userid}`;
+      break;
+  }
+  if (selectedEvent.length) url += `/${selectedEvent}`;
+  const qr = new QRious({
+    element: document.getElementById('qr'),
+    value: selectedEvent,
+    size: width
+  });
+}
+
 function setEventListeners() {
   document.querySelectorAll("input[type=radio][name='sendvia']").forEach(item => onSendViaChanged(item));
   document.querySelector("#events_dropdown").addEventListener("change", eventDetails);
@@ -127,6 +157,7 @@ function setEventListeners() {
 function init() {
   loadEvents();
   initIntlTelInput();
+  populateQrCode();
   setEventListeners();
 }
 
