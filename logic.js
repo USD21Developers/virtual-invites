@@ -217,7 +217,10 @@ function getSendBody() {
       }
       break;
     case "email":
-      sendBody = `${inviteToText}:\n${rootURL}\n\n${emailBodyText}`
+      sendBody = `${inviteToText}:\n${rootURL}`;
+      if (emailBodyText.length) {
+        sendBody += `\n\n${emailBodyText}`;
+      }
       break;
     default:
       return;
