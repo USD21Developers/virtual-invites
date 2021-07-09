@@ -30,7 +30,7 @@
 
       <div class="row mb-4">
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
-          <select id="events_dropdown" class="form-select form-select-lg" aria-label=".form-select-lg example"></select>
+          <select id="events_dropdown" class="form-select form-select-lg" aria-label=".form-select-lg example" tabindex="1"></select>
 
           <div class="container px-3 d-none" id="meetingdetails">
             <div class="row">
@@ -54,15 +54,15 @@
       <div class="row mt-1 mb-4">
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3 text-center">
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="sendvia" id="sendvia_sms" value="sms" checked>
+            <input class="form-check-input" type="radio" name="sendvia" id="sendvia_sms" value="sms" checked tabindex="2">
             <label class="form-check-label" for="sendvia_sms">SMS</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="sendvia" id="sendvia_email" value="email">
+            <input class="form-check-input" type="radio" name="sendvia" id="sendvia_email" value="email" tabindex="3">
             <label class="form-check-label" for="sendvia_email">E-mail</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="sendvia" id="sendvia_qrcode" value="qrcode">
+            <input class="form-check-input" type="radio" name="sendvia" id="sendvia_qrcode" value="qrcode" tabindex="4">
             <label class="form-check-label" for="sendvia_qrcode">QR Code</label>
           </div>
         </div>
@@ -82,7 +82,7 @@
             <div class="row">
               <div class="col">
                 <div class="form-floating">
-                  <input type="text" class="form-control" name="name" id="recipientname" placeholder="Recipient's name">
+                  <input type="text" class="form-control" name="name" id="recipientname" placeholder="Recipient's name" tabindex="5">
                   <label for="sendto_email">Recipient's name</label>
                 </div>
               </div>
@@ -93,14 +93,14 @@
 
       <div class="row mt-0 mb-4" id="containerSendToSms">
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
-          <input type="tel" pattern="[0-9]*" class="form-control" name="sendto_sms" id="sendto_sms" placeholder="Mobile phone number">
+          <input type="tel" pattern="[0-9]*" class="form-control" name="sendto_sms" id="sendto_sms" placeholder="Mobile phone number" tabindex="6">
         </div>
       </div>
 
       <div class="row mt-1 mb-4 d-none" id="containerSendToEmail">
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
           <div class="form-floating">
-            <input type="email" class="form-control" name="sendto_email" id="sendto_email" placeholder="E-mail address">
+            <input type="email" class="form-control" name="sendto_email" id="sendto_email" placeholder="E-mail address" tabindex="7">
             <label for="sendto_email">E-mail address</label>
           </div>
         </div>
@@ -118,7 +118,7 @@
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3 text-center">
           <div class="d-inline-block">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="tagwithlocation" checked>
+              <input class="form-check-input" type="checkbox" value="" id="tagwithlocation" checked tabindex="8">
               <label class="form-check-label" for="tagwithlocation">
                 Tag invite with my current location
               </label>
@@ -131,7 +131,7 @@
 
       <div class="row mt-2 mb-5" id="containerSendInvite">
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3 text-center">
-          <a href="#" class="btn btn-primary btn-lg" id="btnSendInvite">SEND INVITE</a>
+          <a href="#" class="btn btn-primary btn-lg" id="btnSendInvite" tabindex="9">SEND INVITE</a>
         </div>
       </div>
 
