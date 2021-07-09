@@ -239,10 +239,10 @@ function onSubmit(e) {
 
   switch(sendVia) {
     case "sms":
-      btnSendInvite.setAttribute("href", `sms://${getSendTo()}?body=${encodeURI(getSendBody())}`);
+      btnSendInvite.setAttribute("href", `sms://${encodeURIComponent(getSendTo())}?body=${encodeURI(getSendBody())}`);
       break;
     case "email":
-      btnSendInvite.setAttribute("href", `mailto:${getSendTo()}?subject=${encodeURI(getEmailSubjectLine())}&body=${encodeURI(getSendBody())}`);
+      btnSendInvite.setAttribute("href", `mailto:${encodeURIComponent(getSendTo())}?subject=${encodeURI(getEmailSubjectLine())}&body=${encodeURI(getSendBody())}`);
       break;
     default:
       e.preventDefault();
