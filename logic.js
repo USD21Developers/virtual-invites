@@ -35,12 +35,14 @@ function selectSendVia() {
       break;
     case "qrcode":
       containerQRCode.classList.remove("d-none");
-      try {
-        document.querySelector("#sendViaOptions").scrollIntoView({ behavior: smooth });
-      } catch(e) {
-        document.querySelector("#sendViaOptions").scrollIntoView();
-      }
       populateQrCode();
+      setTimeout(() => {
+        try {
+          document.querySelector("#sendViaOptions").scrollIntoView({ behavior: smooth });
+        } catch(e) {
+          document.querySelector("#sendViaOptions").scrollIntoView();
+        }  
+      }, 300));
       break;
   }
 }
@@ -68,7 +70,7 @@ function getSendTo() {
       sendTo = iti.getNumber();
       break;
     case "email":
-      sendTo = document.querySelector("#sendto_email").value.trim();
+      sendTo = document.querySelector("#sendto_email").value.trim().toLowerCase();
       break;
     default:
       break;
@@ -167,13 +169,13 @@ function populateQrCode() {
   let url;
   switch(env) {
     case "localhost":
-      url = `${getApiHost()}/${userid}`;
+      url = `${window.location.origin}/e/#/${btoa(getInviteToId())}`;
       break;
     case "staging.invites.usd21.org":
-      url = `${getApiHost()}/${userid}`;
+      url = `${window.location.origin}/e/#/${btoa(getInviteToId())}`;
       break;
     case "invites.usd21.org":
-      url = `${getApiHost()}/${userid}`;
+      url = `${window.location.origin}/e/#/${btoa(getInviteToId())}`;
       break;
   }
   if (selectedEvent.length) url += `/${selectedEvent}`;
