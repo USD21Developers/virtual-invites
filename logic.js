@@ -158,9 +158,7 @@ function initIntlTelInput() {
 }
 
 function populateQrCode() {
-  const userid = localStorage.getItem("userid") || 0;
   const env = document.location.hostname || "localhost";
-  const selectedEvent = document.querySelector("#events_dropdown").selectedOptions[0].value || "";
   const availableWidth = document.querySelector("#qrcode").clientWidth;
   const maxWidth = 250;
   const width = (availableWidth > maxWidth) ? maxWidth : availableWidth;
@@ -176,7 +174,6 @@ function populateQrCode() {
       url = `${window.location.origin}/e/#/${btoa(getInviteToId())}`;
       break;
   }
-  if (selectedEvent.length) url += `/${selectedEvent}`;
 
   // TODO:  Generate link from link shortener instead of using raw URL
 
