@@ -184,7 +184,7 @@ function populateQrCode() {
 }
 
 function getRootURL() {
-  return `${window.location.origin}/i/#${getInviteToId()}`;
+  return `${window.location.origin}/i/#/${getInviteToId()}`;
 }
 
 function getSmsBodyText() {
