@@ -35,7 +35,11 @@ function selectSendVia() {
       break;
     case "qrcode":
       containerQRCode.classList.remove("d-none");
-      document.querySelector("#sendvia_label").scrollIntoView();
+      try {
+        document.querySelector("#sendViaOptions").scrollIntoView({ behavior: smooth });
+      } catch(e) {
+        document.querySelector("#sendViaOptions").scrollIntoView();
+      }
       populateQrCode();
       break;
   }
