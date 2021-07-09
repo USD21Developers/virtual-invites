@@ -219,7 +219,7 @@ function getSendBody() {
     case "email":
       sendBody = `${inviteToText}:\n${rootURL}`;
       if (emailBodyText.length) {
-        sendBody += `\n\n${emailBodyText}`;
+        sendBody += `\n\n${emailBodyText}\n\n`;
       }
       break;
     default:
@@ -238,7 +238,7 @@ function onSubmit(e) {
       btnSendInvite.setAttribute("href", `sms://${getSendTo()}?body=${encodeURI(getSendBody())}`);
       break;
     case "email":
-      btnSendInvite.setAttribute("href", `mailto://${getSendTo()}?subject=${encodeURI(getEmailSubjectLine())}&body=${encodeURI(getSendBody())}`);
+      btnSendInvite.setAttribute("href", `mailto:${getSendTo()}?subject=${encodeURI(getEmailSubjectLine())}&body=${encodeURI(getSendBody())}`);
       break;
     default:
       e.preventDefault();
