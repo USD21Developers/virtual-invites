@@ -202,15 +202,22 @@ function getEmailSubjectLine() {
 }
 
 function getSendBody() {
-  const sendVia = getSendVia();
-  let sendBody;
+  const sendVia = getSendVia() || "";
+  const rootURL = getRootURL() || "";
+  const inviteToText = getInviteToText() || "";
+  const smsBodyText = getSmsBodyText() || "";
+  const emailBodyText = getEmailBodyText() || "";
+  let sendBody = "";
 
   switch(sendVia) {
     case "sms":
-      sendBody = `${getInviteToText()}:\n${getRootURL()}\n\n${getSmsBodyText()}`;
+      sendBody = `${getInviteToText()}:\n${rootURL}`;
+      if (smsBodyText.length) {
+        sendBody += `\n\n${smsBodyText}`;
+      }
       break;
     case "email":
-      sendBody = `${getInviteToText()}:\n${getRootURL()}\n\n${getEmailBodyText()}`
+      sendBody = `${inviteToText}:\n${rootURL}\n\n${emailBodyText}`
       break;
     default:
       return;
