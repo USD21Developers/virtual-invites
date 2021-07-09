@@ -242,7 +242,7 @@ function onSubmit(e) {
 
   switch(sendVia) {
     case "sms":
-      btnSendInvite.setAttribute("href", `sms:${sendTo}&body=${sendBody}`);
+      btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
       break;
     case "email":
       btnSendInvite.setAttribute("href", `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`);
