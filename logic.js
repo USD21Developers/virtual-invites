@@ -194,15 +194,18 @@ function getRootURL() {
 }
 
 function getSmsBodyText() {
-  return localStorage.getItem("bodyTextSms") || "";
+  const text = localStorage.getItem("bodyTextSms") || "";
+  return text;
 }
 
 function getEmailBodyText() {
-  return localStorage.getItem("bodyTextEmail") || "";
+  const text = localStorage.getItem("bodyTextEmail") || "";
+  return text;
 }
 
 function getEmailSubjectLine() {
-  return localStorage.getItem("subjectLineEmail") || "Invitation";
+  const text = localStorage.getItem("subjectLineEmail") || "Invitation";
+  return encodeURI(text);
 }
 
 function getSendBody() {
@@ -230,19 +233,22 @@ function getSendBody() {
       return;
   }
 
-  return sendBody;
+  return encodeURIComponent(sendBody);
 }
 
 function onSubmit(e) {
   const sendVia = getSendVia();
   const btnSendInvite = document.querySelector("#btnSendInvite");
+  const sendTo = getSendTo();
+  const sendBody = getSendBody();
+  const emailSubjectLine = getEmailSubjectLine();
 
   switch(sendVia) {
     case "sms":
-      btnSendInvite.setAttribute("href", `sms://${encodeURIComponent(getSendTo())}?body=${encodeURI(getSendBody())}`);
+      btnSendInvite.setAttribute("href", `sms://${sendTo}?body=${sendBody}`);
       break;
     case "email":
-      btnSendInvite.setAttribute("href", `mailto:${encodeURIComponent(getSendTo())}?subject=${encodeURI(getEmailSubjectLine())}&body=${encodeURI(getSendBody())}`);
+      btnSendInvite.setAttribute("href", `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`);
       break;
     default:
       e.preventDefault();
