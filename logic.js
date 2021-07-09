@@ -184,7 +184,7 @@ function populateQrCode() {
 }
 
 function getRootURL() {
-  const finalUrl = `${window.location.origin}/i/?event=${getInviteToId()}`;
+  const finalUrl = `${window.location.origin}/i/?e=${getInviteToId()}`;
   // TODO: shorten finalUrl with a URL shortener (short.io).
   return finalUrl;
 }
