@@ -1,3 +1,5 @@
+let iti;
+
 function selectSendVia() {
   const sendToLabel = document.querySelector("#sendToLabel");
   const containerName = document.querySelector("#containerName");
@@ -42,6 +44,32 @@ function selectSendVia() {
 function getSendVia() {
   const value = document.querySelector("input[type=radio][name='sendvia']:checked").value;
   return value;
+}
+
+function getInviteToText() {
+  const inviteTo = document.querySelector("#events_dropdown").selectedOptions[0].innerText;
+  return inviteTo;
+}
+
+function getInviteToId() {
+  const inviteTo = document.querySelector("#events_dropdown").selectedOptions[0].value;
+  return inviteTo;
+}
+
+function getSendTo() {
+  const sendVia = getSendVia();
+  let sendTo;
+  switch(sendVia) {
+    case "sms":
+      sendTo = iti.getNumber();
+      break;
+    case "email":
+      sendTo = document.querySelector("#sendto_email").value.trim();
+      break;
+    default:
+      break;
+  }
+  return sendTo;
 }
 
 function onSendViaChanged(item) {
@@ -115,8 +143,6 @@ async function loadEvents() {
   // TODO:  fetch events from API for user, store the result to localStorage, then refresh the UI with it 
 }
 
-let iti;
-
 function initIntlTelInput() {
   const input = document.querySelector("#sendto_sms");
   const initialCountry = localStorage.getItem("countryIso") || "us";
@@ -157,9 +183,60 @@ function populateQrCode() {
   });
 }
 
+function getRootURL() {
+  return `${window.location.origin}/i/#${getInviteToId()}`;
+}
+
+function getSmsBodyText() {
+  return localStorage.getItem("bodyTextSms") || "";
+}
+
+function getEmailBodyText() {
+  return localStorage.getItem("bodyTextEmail") || "";
+}
+
+function getEmailSubjectLine() {
+  return localStorage.getItem("subjectLineEmail") || "Invitation";
+}
+
+function getSendBody() {
+  const sendVia = getSendVia();
+  let sendBody;
+
+  switch(sendVia) {
+    case "sms":
+      sendBody = `${getInviteToText()}:\n${getRootURL()}\n\n${getSmsBodyText()}`;
+      break;
+    case "email":
+      sendBody = `${getInviteToText()}:\n${getRootURL()}\n\n${getEmailBodyText()}`
+      break;
+    default:
+      return;
+  }
+
+  return sendBody;
+}
+
+function onSubmit(e) {
+  const sendVia = getSendVia();
+  const btnSendInvite = document.querySelector("#btnSendInvite");
+
+  switch(sendVia) {
+    case "sms":
+      btnSendInvite.setAttribute("href", `sms://${getSendTo()}?body=${encodeURI(getSendBody())}`);
+      break;
+    case "email":
+      btnSendInvite.setAttribute("href", `mailto://${getSendTo()}?subject=${encodeURI(getEmailSubjectLine())}&body=${encodeURI(getSendBody())}`);
+      break;
+    default:
+      e.preventDefault();
+  }
+}
+
 function setEventListeners() {
   document.querySelectorAll("input[type=radio][name='sendvia']").forEach(item => onSendViaChanged(item));
   document.querySelector("#events_dropdown").addEventListener("change", eventDetails);
+  document.querySelector("#btnSendInvite").addEventListener("click", onSubmit);
 }
 
 function init() {
