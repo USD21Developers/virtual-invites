@@ -42,7 +42,7 @@ function selectSendVia() {
         } catch(e) {
           document.querySelector("#sendViaOptions").scrollIntoView();
         }  
-      }, 300));
+      }, 300);
       break;
   }
 }
