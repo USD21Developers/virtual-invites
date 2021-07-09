@@ -33,7 +33,7 @@ function selectSendVia() {
       break;
     case "qrcode":
       containerQRCode.classList.remove("d-none");
-      containerQRCode.scrollIntoView({ behavior: 'smooth'});
+      containerQRCode.scrollIntoView();
       populateQrCode();
       break;
   }
