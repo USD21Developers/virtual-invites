@@ -187,7 +187,7 @@ function populateQrCode() {
   });
 }
 
-function getRootURL() {
+function getFinalURL() {
   const finalUrl = `${window.location.origin}/i/#${getInviteToId()}`;
   // TODO: shorten finalUrl with a URL shortener (short.io).
   return finalUrl;
@@ -210,7 +210,7 @@ function getEmailSubjectLine() {
 
 function getSendBody() {
   const sendVia = getSendVia() || "";
-  const rootURL = getRootURL() || "";
+  const finalURL = getFinalURL() || "";
   const inviteToText = getInviteToText() || "";
   const smsBodyText = getSmsBodyText() || "";
   const emailBodyText = getEmailBodyText() || "";
@@ -218,13 +218,13 @@ function getSendBody() {
 
   switch(sendVia) {
     case "sms":
-      sendBody = `${getInviteToText()}:\n${rootURL}`;
+      sendBody = `${getInviteToText()}:\n${finalURL}`;
       if (smsBodyText.length) {
         sendBody += `\n\n${smsBodyText}`;
       }
       break;
     case "email":
-      sendBody = `${inviteToText}:\n${rootURL}`;
+      sendBody = `${inviteToText}:\n${finalURL}`;
       if (emailBodyText.length) {
         sendBody += `\n\n${emailBodyText}\n\n`;
       }
