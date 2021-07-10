@@ -18,7 +18,7 @@ function selectSendVia() {
   containerTagWithLocation.classList.add("d-none");
   containerSendInvite.classList.add("d-none");
 
-  switch(sendvia) {
+  switch (sendvia) {
     case "sms":
       sendToLabel.classList.remove("d-none");
       containerSms.classList.remove("d-none");
@@ -38,7 +38,7 @@ function selectSendVia() {
       populateQrCode();
       try {
         document.querySelector("#sendViaOptions").scrollIntoView({ behavior: smooth });
-      } catch(e) {
+      } catch (e) {
         document.querySelector("#sendViaOptions").scrollIntoView();
       }
       break;
@@ -63,7 +63,7 @@ function getInviteToId() {
 function getSendTo() {
   const sendVia = getSendVia();
   let sendTo;
-  switch(sendVia) {
+  switch (sendVia) {
     case "sms":
       sendTo = iti.getNumber();
       break;
@@ -129,7 +129,7 @@ function eventDetails() {
 async function loadEvents() {
   const events_dropdown = document.querySelector("#events_dropdown");
   const meetingdetails = document.querySelector("#meetingdetails");
-  const events_stored = localStorage.getItem("events")  || loadDummyEvents();
+  const events_stored = localStorage.getItem("events") || loadDummyEvents();
   const events = JSON.parse(events_stored);
   const events_default = localStorage.getItem("events_default") || 1;
   let options = `<option value="">(Select)</option>`;
@@ -152,10 +152,23 @@ function initIntlTelInput() {
   const initialCountry = localStorage.getItem("countryIso") || "us";
   window.intlTelInput(input, {
     initialCountry: initialCountry,
+    preferredCountries: ["us"],
     utilsScript: "js/intl-tel-input-17.0.0/js/utils.js"
   });
   iti = intlTelInput(input);
+  iti.promise.then(onAfterIntlInputInitialized);
 }
+
+function onAfterIntlInputInitialized() {
+  const sendto_sms = document.querySelector("#sendto_sms");
+  const container = sendto_sms.parentElement;
+  const label = document.createElement("label");
+  label.setAttribute("for", "sendto_sms");
+  label.appendChild(document.createTextNode(sendto_sms.getAttribute("placeholder")));
+  container.classList.add("form-floating");
+  container.appendChild(label);
+}
+
 
 function populateQrCode() {
   const env = document.location.hostname || "localhost";
@@ -163,7 +176,7 @@ function populateQrCode() {
   const maxWidth = 250;
   const width = (availableWidth > maxWidth) ? maxWidth : availableWidth;
   let url;
-  switch(env) {
+  switch (env) {
     case "localhost":
       url = `${window.location.origin}/e/#/${btoa(getInviteToId())}`;
       break;
@@ -213,7 +226,7 @@ function getSendBody() {
   const emailBodyText = getEmailBodyText() || "";
   let sendBody = "";
 
-  switch(sendVia) {
+  switch (sendVia) {
     case "sms":
       sendBody = `${getInviteToText()}:\n${finalURL}`;
       if (smsBodyText.length) {
@@ -240,7 +253,7 @@ function onSubmit(e) {
   const sendBody = getSendBody();
   const emailSubjectLine = getEmailSubjectLine();
 
-  switch(sendVia) {
+  switch (sendVia) {
     case "sms":
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
       break;

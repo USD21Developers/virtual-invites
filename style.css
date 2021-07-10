@@ -13,6 +13,11 @@
 }
 
 #sendto_sms {
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-top: 22px;
+  padding-bottom: 2px;
+  padding-left: 62px;
+}
+
+label[for="sendto_sms"] {
+  margin-left: 50px;
 }

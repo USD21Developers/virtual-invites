@@ -1,19 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Virtual Invites</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="js/intl-tel-input-17.0.0/css/intlTelInput.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      href="js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
+      rel="stylesheet"
+    />
+    <link href="style.css" rel="stylesheet" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-
     <div class="container my-4">
-      
       <div class="row mb-4">
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
           <h2 class="text-center">Send an Invite</h2>
@@ -30,7 +40,12 @@
 
       <div class="row mb-4">
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
-          <select id="events_dropdown" class="form-select form-select-lg" aria-label=".form-select-lg example" tabindex="1"></select>
+          <select
+            id="events_dropdown"
+            class="form-select form-select-lg"
+            aria-label=".form-select-lg example"
+            tabindex="1"
+          ></select>
 
           <div class="container px-3 d-none" id="meetingdetails">
             <div class="row">
@@ -54,15 +69,37 @@
       <div class="row mt-1 mb-4" id="sendViaOptions">
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3 text-center">
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="sendvia" id="sendvia_sms" value="sms" checked tabindex="2">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="sendvia"
+              id="sendvia_sms"
+              value="sms"
+              checked
+              tabindex="2"
+            />
             <label class="form-check-label" for="sendvia_sms">SMS</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="sendvia" id="sendvia_email" value="email" tabindex="3">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="sendvia"
+              id="sendvia_email"
+              value="email"
+              tabindex="3"
+            />
             <label class="form-check-label" for="sendvia_email">E-mail</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="sendvia" id="sendvia_qrcode" value="qrcode" tabindex="4">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="sendvia"
+              id="sendvia_qrcode"
+              value="qrcode"
+              tabindex="4"
+            />
             <label class="form-check-label" for="sendvia_qrcode">QR Code</label>
           </div>
         </div>
@@ -82,7 +119,14 @@
             <div class="row">
               <div class="col">
                 <div class="form-floating">
-                  <input type="text" class="form-control" name="name" id="recipientname" placeholder="Recipient's name" tabindex="5">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    id="recipientname"
+                    placeholder="Recipient's name"
+                    tabindex="5"
+                  />
                   <label for="sendto_email">Recipient's name</label>
                 </div>
               </div>
@@ -93,14 +137,31 @@
 
       <div class="row mt-0 mb-4" id="containerSendToSms">
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
-          <input type="tel" pattern="[0-9]*" class="form-control" name="sendto_sms" id="sendto_sms" placeholder="Mobile phone number" tabindex="6">
+          <div class="form-floating">
+            <input
+              type="tel"
+              pattern="[0-9]*"
+              class="form-control"
+              name="sendto_sms"
+              id="sendto_sms"
+              placeholder="Mobile phone number"
+              tabindex="6"
+            />
+          </div>
         </div>
       </div>
 
       <div class="row mt-1 mb-4 d-none" id="containerSendToEmail">
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
           <div class="form-floating">
-            <input type="email" class="form-control" name="sendto_email" id="sendto_email" placeholder="E-mail address" tabindex="7">
+            <input
+              type="email"
+              class="form-control"
+              name="sendto_email"
+              id="sendto_email"
+              placeholder="E-mail address"
+              tabindex="7"
+            />
             <label for="sendto_email">E-mail address</label>
           </div>
         </div>
@@ -110,22 +171,41 @@
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
           <div class="text-center my-3" id="qrcode">
             <canvas id="qr"></canvas>
-            <p align="justify" class="text-muted mt-4"><strong>Instructions:</strong> Ask the person you're inviting to open the camera app on their cell phone. Have them point their camera at this barcode (without taking a picture). A prompt should appear on their screen. By pressing a button in that prompt, the invite will open in their Web browser.</p>
+            <p align="justify" class="text-muted mt-4">
+              <strong>Instructions:</strong> Ask the person you're inviting to
+              open the camera app on their cell phone. Have them point their
+              camera at this barcode (without taking a picture). A prompt should
+              appear on their screen. By pressing a button in that prompt, the
+              invite will open in their Web browser.
+            </p>
           </div>
         </div>
       </div>
 
       <div class="row my-5" id="containerSendInvite">
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3 text-center">
-          <a href="#" class="btn btn-primary btn-lg" id="btnSendInvite" tabindex="9">SEND INVITE</a>
+          <a
+            href="#"
+            class="btn btn-primary btn-lg"
+            id="btnSendInvite"
+            tabindex="9"
+            >SEND INVITE</a
+          >
         </div>
       </div>
 
-      <div class="row mb-3 " id="containerTagWithLocation">
+      <div class="row mb-3" id="containerTagWithLocation">
         <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3 text-center">
           <div class="d-inline-block">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="tagwithlocation" checked tabindex="8">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="tagwithlocation"
+                checked
+                tabindex="8"
+              />
               <label class="form-check-label text-muted" for="tagwithlocation">
                 Tag invite with my current location
               </label>
@@ -133,13 +213,11 @@
           </div>
         </div>
       </div>
-
     </div>
 
     <script src="js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
     <script src="js/qrious/qrious.min.js"></script>
     <script src="js/global.js"></script>
     <script src="logic.js"></script>
-    
   </body>
 </html>
