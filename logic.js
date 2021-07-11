@@ -1,6 +1,6 @@
 let iti;
 
-function selectSendVia() {
+function selectSendVia(method) {
   const sendToLabel = document.querySelector("#sendToLabel");
   const containerName = document.querySelector("#containerName");
   const containerSms = document.querySelector("#containerSendToSms");
@@ -8,7 +8,7 @@ function selectSendVia() {
   const containerQRCode = document.querySelector("#containerSendToQRCode");
   const containerTagWithLocation = document.querySelector("#containerTagWithLocation");
   const containerSendInvite = document.querySelector("#containerSendInvite");
-  const sendvia = getSendVia();
+  const sendvia = method ? method : getSendVia();
 
   sendToLabel.classList.add("d-none");
   containerSms.classList.add("d-none");
@@ -20,6 +20,7 @@ function selectSendVia() {
 
   switch (sendvia) {
     case "sms":
+      localStorage.setItem("lastSendMethodSelected", "sms");
       sendToLabel.classList.remove("d-none");
       containerSms.classList.remove("d-none");
       containerName.classList.remove("d-none");
@@ -27,6 +28,7 @@ function selectSendVia() {
       containerSendInvite.classList.remove("d-none");
       break;
     case "email":
+      localStorage.setItem("lastSendMethodSelected", "email");
       sendToLabel.classList.remove("d-none");
       containerEmail.classList.remove("d-none");
       containerName.classList.remove("d-none");
@@ -34,12 +36,15 @@ function selectSendVia() {
       containerSendInvite.classList.remove("d-none");
       break;
     case "qrcode":
+      localStorage.setItem("lastSendMethodSelected", "qrcode");
       containerQRCode.classList.remove("d-none");
       populateQrCode();
-      try {
-        document.querySelector("#sendViaOptions").scrollIntoView({ behavior: smooth });
-      } catch (e) {
-        document.querySelector("#sendViaOptions").scrollIntoView();
+      if (!method) {
+        try {
+          document.querySelector("#sendViaOptions").scrollIntoView({ behavior: smooth });
+        } catch (e) {
+          document.querySelector("#sendViaOptions").scrollIntoView();
+        }
       }
       break;
   }
@@ -265,6 +270,19 @@ function onSubmit(e) {
   }
 }
 
+function setDefaultSendMethod() {
+  const defaultSendMethod = localStorage.getItem("defaultSendMethod") || "";
+  const lastSendMethodSelected = localStorage.getItem("lastSendMethodSelected") || "";
+
+  if (defaultSendMethod.length) {
+    document.querySelector(`input[name='sendvia'][value='${defaultSendMethod}']`).checked = true;
+    selectSendVia(defaultSendMethod);
+  } else if (lastSendMethodSelected.length) {
+    document.querySelector(`input[name='sendvia'][value='${lastSendMethodSelected}']`).checked = true;
+    selectSendVia(lastSendMethodSelected);
+  }
+}
+
 function setEventListeners() {
   document.querySelectorAll("input[type=radio][name='sendvia']").forEach(item => onSendViaChanged(item));
   document.querySelector("#events_dropdown").addEventListener("change", eventDetails);
@@ -273,6 +291,7 @@ function setEventListeners() {
 
 function init() {
   loadEvents();
+  setDefaultSendMethod();
   initIntlTelInput();
   setEventListeners();
 }
