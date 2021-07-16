@@ -176,7 +176,7 @@ function populateQrCode() {
   const availableWidth = document.querySelector("#qrcode").clientWidth;
   const maxWidth = 200;
   const width = (availableWidth > maxWidth) ? maxWidth : availableWidth;
-  const url = `${window.location.origin}/e/#/${getInviteToId() / getRecipientId()}`;
+  const url = `${window.location.origin}/e/#/${getInviteToId()}/${getRecipientId()}`;
 
   // TODO:  Generate link from link shortener instead of using raw URL
 
@@ -188,7 +188,7 @@ function populateQrCode() {
 }
 
 function getFinalURL() {
-  const finalUrl = `${window.location.origin}/e/#/${getInviteToId() / getRecipientId()}`;
+  const finalUrl = `${window.location.origin}/e/#/${getInviteToId()}/${getRecipientId()}`;
   // TODO: shorten finalUrl with a URL shortener (short.io).
   return finalUrl;
 }
