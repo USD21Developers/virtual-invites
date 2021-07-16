@@ -174,7 +174,7 @@ function onAfterIntlInputInitialized() {
 function populateQrCode() {
   const env = document.location.hostname || "localhost";
   const availableWidth = document.querySelector("#qrcode").clientWidth;
-  const maxWidth = 250;
+  const maxWidth = 200;
   const width = (availableWidth > maxWidth) ? maxWidth : availableWidth;
   let url;
   switch (env) {
