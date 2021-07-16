@@ -176,18 +176,7 @@ function populateQrCode() {
   const availableWidth = document.querySelector("#qrcode").clientWidth;
   const maxWidth = 200;
   const width = (availableWidth > maxWidth) ? maxWidth : availableWidth;
-  let url;
-  switch (env) {
-    case "localhost":
-      url = `${window.location.origin}/e/#/${btoa(getInviteToId())}`;
-      break;
-    case "staging.invites.usd21.org":
-      url = `${window.location.origin}/e/#/${btoa(getInviteToId())}`;
-      break;
-    case "invites.usd21.org":
-      url = `${window.location.origin}/e/#/${btoa(getInviteToId())}`;
-      break;
-  }
+  const url = `${window.location.origin}/e/#/${getInviteToId() / getRecipientId()}`;
 
   // TODO:  Generate link from link shortener instead of using raw URL
 
@@ -199,7 +188,7 @@ function populateQrCode() {
 }
 
 function getFinalURL() {
-  const finalUrl = `${window.location.origin}/e/#/${btoa(getInviteToId())}`;
+  const finalUrl = `${window.location.origin}/e/#/${getInviteToId() / getRecipientId()}`;
   // TODO: shorten finalUrl with a URL shortener (short.io).
   return finalUrl;
 }
@@ -277,6 +266,10 @@ function setDefaultSendMethod() {
     document.querySelector(`input[name='sendvia'][value='${lastSendMethodSelected}']`).checked = true;
     selectSendVia(lastSendMethodSelected);
   }
+}
+
+function getRecipientId() {
+  return 221;
 }
 
 function setEventListeners() {
