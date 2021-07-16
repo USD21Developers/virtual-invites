@@ -1,39 +1,35 @@
 let iti;
 
 function selectSendVia(method) {
-  const sendToLabel = document.querySelector("#sendToLabel");
-  const containerName = document.querySelector("#containerName");
   const containerSms = document.querySelector("#containerSendToSms");
   const containerEmail = document.querySelector("#containerSendToEmail");
   const containerQRCode = document.querySelector("#containerSendToQRCode");
   const containerTagWithLocation = document.querySelector("#containerTagWithLocation");
   const containerSendInvite = document.querySelector("#containerSendInvite");
+  const sendInviteSeparator = document.querySelector("#sendInviteSeparator");
   const sendvia = method ? method : getSendVia();
 
-  sendToLabel.classList.add("d-none");
   containerSms.classList.add("d-none");
   containerEmail.classList.add("d-none");
   containerQRCode.classList.add("d-none");
-  containerName.classList.add("d-none");
   containerTagWithLocation.classList.add("d-none");
   containerSendInvite.classList.add("d-none");
+  sendInviteSeparator.classList.add("d-none");
 
   switch (sendvia) {
     case "sms":
       localStorage.setItem("lastSendMethodSelected", "sms");
-      sendToLabel.classList.remove("d-none");
       containerSms.classList.remove("d-none");
-      containerName.classList.remove("d-none");
       containerTagWithLocation.classList.remove("d-none");
       containerSendInvite.classList.remove("d-none");
+      sendInviteSeparator.classList.remove("d-none");
       break;
     case "email":
       localStorage.setItem("lastSendMethodSelected", "email");
-      sendToLabel.classList.remove("d-none");
       containerEmail.classList.remove("d-none");
-      containerName.classList.remove("d-none");
       containerTagWithLocation.classList.remove("d-none");
       containerSendInvite.classList.remove("d-none");
+      sendInviteSeparator.classList.remove("d-none");
       break;
     case "qrcode":
       localStorage.setItem("lastSendMethodSelected", "qrcode");

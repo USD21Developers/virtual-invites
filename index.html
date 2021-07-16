@@ -25,28 +25,22 @@
   <body>
     <div class="container my-4">
       <div class="row mb-4">
-        <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
+        <div class="col col-md-6 offset-xs-4 offset-md-3">
           <h2 class="text-center">Send an Invite</h2>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
-          <div class="col text-center">
-            <strong class="lead fw-bold">Invite to:</strong>
-          </div>
-        </div>
-      </div>
-
       <div class="row mb-4">
-        <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
+        <div class="col-2 col-md-1 offset-md-3 text-end">
+          <strong class="lead fw-bold" style="line-height: 50px">For:</strong>
+        </div>
+        <div class="col-10 col-md-5">
           <select
             id="events_dropdown"
             class="form-select form-select-lg"
             aria-label=".form-select-lg example"
             tabindex="1"
           ></select>
-
           <div class="container px-3 d-none" id="meetingdetails">
             <div class="row">
               <div class="col">
@@ -58,85 +52,78 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
-          <div class="col text-center">
-            <strong class="lead fw-bold">Send invite via:</strong>
-          </div>
+      <div class="row mb-4">
+        <div class="col-2 col-md-1 offset-md-3 text-end">
+          <strong class="lead fw-bold">Via:</strong>
         </div>
-      </div>
-
-      <div class="row mt-1 mb-4" id="sendViaOptions">
-        <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3 text-center">
+        <div
+          class="col-10 col-md-5"
+          id="sendViaOptions"
+          style="padding-top: 5px"
+        >
           <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="sendvia"
-              id="sendvia_sms"
-              value="sms"
-              checked
-              tabindex="2"
-            />
-            <label class="form-check-label" for="sendvia_sms">SMS</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="sendvia"
-              id="sendvia_email"
-              value="email"
-              tabindex="3"
-            />
-            <label class="form-check-label" for="sendvia_email">E-mail</label>
+            <label class="form-check-label" for="sendvia_sms">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="sendvia"
+                id="sendvia_sms"
+                value="sms"
+                checked
+                tabindex="2"
+              />
+              SMS
+            </label>
           </div>
           <div class="form-check form-check-inline">
+            <label class="form-check-label" for="sendvia_email">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="sendvia"
+                id="sendvia_email"
+                value="email"
+                tabindex="3"
+              />
+              E-mail
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label" for="sendvia_qrcode">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="sendvia"
+                id="sendvia_qrcode"
+                value="qrcode"
+                tabindex="4"
+              />
+              QR Code
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-2 col-md-1 offset-md-3 text-end">
+          <strong class="lead fw-bold" style="line-height: 50px">To:</strong>
+        </div>
+        <div class="col-10 col-md-5" id="containerName">
+          <div class="form-floating">
             <input
-              class="form-check-input"
-              type="radio"
-              name="sendvia"
-              id="sendvia_qrcode"
-              value="qrcode"
-              tabindex="4"
+              type="text"
+              class="form-control"
+              name="name"
+              id="recipientname"
+              placeholder="Recipient's name"
+              tabindex="5"
             />
-            <label class="form-check-label" for="sendvia_qrcode">QR Code</label>
+            <label for="sendto_email">Recipient's name</label>
           </div>
         </div>
       </div>
-
-      <div class="row" id="sendToLabel">
-        <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
-          <div class="col text-center">
-            <strong class="lead fw-bold">Send to:</strong>
-          </div>
-        </div>
-      </div>
-
-      <div class="row my-1" id="containerName">
-        <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
-          <div class="mb-1">
-            <div class="row">
-              <div class="col">
-                <div class="form-floating">
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="name"
-                    id="recipientname"
-                    placeholder="Recipient's name"
-                    tabindex="5"
-                  />
-                  <label for="sendto_email">Recipient's name</label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row mt-0 mb-4" id="containerSendToSms">
-        <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
+      <div class="row" id="containerSendToSms">
+        <div class="col-10 offset-2 col-md-5 offset-md-4">
           <div class="form-floating">
             <input
               type="tel"
@@ -150,9 +137,8 @@
           </div>
         </div>
       </div>
-
-      <div class="row mt-1 mb-4 d-none" id="containerSendToEmail">
-        <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
+      <div class="row d-none" id="containerSendToEmail">
+        <div class="col-10 offset-2 col-md-5 offset-md-4">
           <div class="form-floating">
             <input
               type="email"
@@ -166,12 +152,11 @@
           </div>
         </div>
       </div>
-
-      <div class="row mt-1 d-none" id="containerSendToQRCode">
-        <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3">
-          <div class="text-center my-3" id="qrcode">
-            <canvas id="qr"></canvas>
-            <p align="justify" class="text-muted mt-4">
+      <div class="row d-none" id="containerSendToQRCode">
+        <div class="col-10 offset-2 col-md-5 offset-md-4">
+          <div class="text-center mt-2 mb-3" id="qrcode">
+            <canvas id="qr" style="max-width: 100%"></canvas>
+            <p align="justify" class="text-muted mt-4 mb-5">
               <strong>Instructions:</strong> Ask the person you're inviting to
               open the camera app on their cell phone. Have them point their
               camera at this barcode (without taking a picture). A prompt should
@@ -182,8 +167,14 @@
         </div>
       </div>
 
-      <div class="row my-5" id="containerSendInvite">
-        <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3 text-center">
+      <div class="row my-4" id="sendInviteSeparator">
+        <div class="col col-md-6 offset-md-3">
+          <hr />
+        </div>
+      </div>
+
+      <div class="row my-4" id="containerSendInvite">
+        <div class="col col-md-6 offset-xs-4 offset-md-3 text-center">
           <a
             href="#"
             class="btn btn-primary btn-lg"
@@ -195,7 +186,7 @@
       </div>
 
       <div class="row mb-3" id="containerTagWithLocation">
-        <div class="col-sm-4 col-md-6 offset-sm-4 offset-md-3 text-center">
+        <div class="col-12 col-md-6 offset-md-3 text-center">
           <div class="d-inline-block">
             <div class="form-check">
               <input
