@@ -86,7 +86,9 @@ function loadDummyEvents() {
       day: "Fridays",
       time: "7:30 PM",
       location: "Starbucks",
-      address: "555 Main Street, Phoenix, AZ, 99999"
+      address1: "555 Main Street",
+      address2: "",
+      address3: "Phoenix, AZ, 99999"
     },
     {
       id: 2,
@@ -95,7 +97,9 @@ function loadDummyEvents() {
       day: "Sundays",
       time: "10:00 AM",
       location: "SDA",
-      address: "5555 Camelback Road, Scottsdale, AZ, 99999"
+      address1: "5555 Camelback Road",
+      address2: "Suite 5",
+      address3: "Scottsdale, AZ, 99999"
     }
   ];
 
@@ -109,7 +113,9 @@ function eventDetails() {
   const eventDay = selectedEvent.getAttribute("data-day");
   const eventTime = selectedEvent.getAttribute("data-time");
   const eventLocation = selectedEvent.getAttribute("data-location");
-  const eventAddress = selectedEvent.getAttribute("data-address");
+  const address1 = selectedEvent.getAttribute("data-address1");
+  const address2 = selectedEvent.getAttribute("data-address2");
+  const address3 = selectedEvent.getAttribute("data-address3");
   const meetingdetails_timedate = document.querySelector("#meetingdetails_timedate");
   const meetingdetails_location = document.querySelector("#meetingdetails_location");
 
@@ -117,7 +123,12 @@ function eventDetails() {
 
   if (selectedEvent.value === "") return meetingdetails.classList.add("d-none");
   meetingdetails_timedate.innerHTML = `${eventDay} @ ${eventTime}`;
-  meetingdetails_location.innerHTML = `${eventLocation} ${eventAddress.length && "<br>"} ${eventAddress}`;
+  meetingdetails_location.innerHTML = `
+    ${eventLocation}
+    ${address1.length ? "<br>" + address1 : ""}
+    ${address2.length ? "<br>" + address2 : ""}
+    ${address3.length ? "<br>" + address3 : ""}
+  `;
   meetingdetails.classList.remove("d-none");
 }
 
@@ -130,8 +141,8 @@ async function loadEvents() {
   let options = `<option value="">(Select)</option>`;
 
   events.forEach(event => {
-    const { id, name, day, time, location, address } = event;
-    options += `<option value="${id}" data-day="${day}" data-time="${time}" data-location="${location}" data-address="${address}">${name}</option>`;
+    const { id, name, day, time, location, address1, address2, address3 } = event;
+    options += `<option value="${id}" data-day="${day}" data-time="${time}" data-location="${location}" data-address1="${address1}" data-address2="${address2}" data-address3="${address3}">${name}</option>`;
   });
 
   events_dropdown.innerHTML = options;
