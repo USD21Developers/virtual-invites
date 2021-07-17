@@ -88,7 +88,7 @@ function loadDummyEvents() {
       location: "Starbucks",
       address1: "555 Main Street",
       address2: "",
-      address3: "Phoenix, AZ, 99999"
+      address3: "Phoenix, AZ 99999"
     },
     {
       id: 2,
@@ -99,7 +99,7 @@ function loadDummyEvents() {
       location: "SDA",
       address1: "5555 Camelback Road",
       address2: "Suite 5",
-      address3: "Scottsdale, AZ, 99999"
+      address3: "Scottsdale, AZ 99999"
     }
   ];
 
