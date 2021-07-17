@@ -53,3 +53,31 @@ h6 {
 .btn-primary {
   background-color: var(--primary);
 }
+
+.btn-secondary {
+  background-color: var(--secondary);
+}
+
+.btn-success {
+  background-color: var(--success);
+}
+
+.btn-info {
+  background-color: var(--info);
+}
+
+.btn-warning {
+  background-color: var(--warning);
+}
+
+.btn-danger {
+  background-color: var(--danger);
+}
+
+.btn-light {
+  background-color: var(--light);
+}
+
+.btn-dark {
+  background-color: var(--dark);
+}
