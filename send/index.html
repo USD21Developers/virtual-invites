@@ -37,126 +37,143 @@
         </div>
       </div>
 
-      <div class="form-group row mb-4">
-        <div class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right">
-          <h4 class="text-uppercase">For:</h4>
-        </div>
-        <div class="col-9 col-md-5">
-          <select
-            id="events_dropdown"
-            class="form-control"
-            tabindex="1"
-          ></select>
-          <div class="mt-1 d-none" id="meetingdetails">
-            <div class="row">
-              <div class="col">
-                <div class="fs-6 text-muted" id="meetingdetails_timedate"></div>
-                <div class="fs-6 text-muted" id="meetingdetails_location"></div>
+      <form id="form_send_invite">
+        <div class="form-group row mb-4">
+          <div
+            class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right"
+          >
+            <h4 class="text-uppercase">For:</h4>
+          </div>
+          <div class="col-9 col-md-5">
+            <select
+              id="events_dropdown"
+              class="form-control"
+              tabindex="1"
+            ></select>
+            <div class="mt-1 d-none" id="meetingdetails">
+              <div class="row">
+                <div class="col">
+                  <div
+                    class="fs-6 text-muted"
+                    id="meetingdetails_timedate"
+                  ></div>
+                  <div
+                    class="fs-6 text-muted"
+                    id="meetingdetails_location"
+                  ></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="form-group row mb-4">
-        <div class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right">
-          <h4 class="text-uppercase">Via:</h4>
-        </div>
-        <div class="col-9 col-md-5" id="sendViaOptions">
-          <select name="sendvia" id="sendvia" class="form-control">
-            <option value="sms">SMS</option>
-            <option value="email">E-mail</option>
-            <option value="qrcode">QR Code</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-group row mb-3">
-        <div class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right">
-          <h4 class="text-uppercase">To:</h4>
-        </div>
-        <div class="col-9 col-md-5" id="containerName">
-          <input
-            type="text"
-            class="form-control"
-            name="name"
-            id="recipientname"
-            placeholder="Recipient's name"
-            tabindex="5"
-          />
-        </div>
-      </div>
-      <div class="row" id="containerSendToSms">
-        <div class="col-9 offset-3 col-md-5 offset-md-4">
-          <input
-            type="tel"
-            pattern="[0-9]*"
-            class="form-control"
-            name="sendto_sms"
-            id="sendto_sms"
-            placeholder="Mobile phone number"
-            tabindex="6"
-          />
-        </div>
-      </div>
-      <div class="row d-none" id="containerSendToEmail">
-        <div class="col-9 offset-3 col-md-5 offset-md-4">
-          <input
-            type="email"
-            class="form-control"
-            name="sendto_email"
-            id="sendto_email"
-            placeholder="E-mail address"
-            tabindex="7"
-          />
-        </div>
-      </div>
-      <div class="row d-none" id="containerSendToQRCode">
-        <div class="col-8 offset-3 col-md-5 offset-md-4">
-          <div class="text-center mt-2 mb-3" id="qrcode">
-            <canvas id="qr" style="max-width: 100%"></canvas>
-            <p align="justify" class="text-muted mt-3 mb-4">
-              <strong>Instructions:</strong> Ask the person you're inviting to
-              open the camera app on their cell phone. Have them point their
-              camera at this barcode (without taking a picture). A prompt should
-              appear on their screen. By pressing a button in that prompt, the
-              invite will open in their Web browser.
-            </p>
+        <div class="form-group row mb-4">
+          <div
+            class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right"
+          >
+            <h4 class="text-uppercase">Via:</h4>
+          </div>
+          <div class="col-9 col-md-5" id="sendViaOptions">
+            <select name="sendvia" id="sendvia" class="form-control">
+              <option value="sms">SMS</option>
+              <option value="email">E-mail</option>
+              <option value="qrcode">QR Code</option>
+            </select>
           </div>
         </div>
-      </div>
 
-      <div class="row my-5" id="containerSendInvite">
-        <div class="col col-md-6 offset-xs-4 offset-md-3 text-center">
-          <a
-            href="#"
-            class="btn btn-primary btn-lg"
-            id="btnSendInvite"
-            tabindex="9"
-            data-defaulttext="SEND INVITE"
-            >SEND INVITE</a
+        <div class="form-group row mb-3">
+          <div
+            class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right"
           >
+            <h4 class="text-uppercase">To:</h4>
+          </div>
+          <div class="col-9 col-md-5" id="containerName">
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              id="recipientname"
+              placeholder="Recipient's name"
+              tabindex="5"
+            />
+          </div>
         </div>
-      </div>
-
-      <div class="row mb-5" id="containerTagWithLocation">
-        <div class="col-12 col-md-6 offset-md-3 text-center">
-          <div class="d-inline-block">
-            <div class="form-check">
-              <label class="form-check-label text-muted" for="tagwithlocation">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="tagwithlocation"
-                  checked
-                  tabindex="8"
-                />&nbsp;Tag invite with my current location
-              </label>
+        <div class="row" id="containerSendToSms">
+          <div class="col-9 offset-3 col-md-5 offset-md-4">
+            <input
+              type="tel"
+              pattern="[0-9]*"
+              class="form-control"
+              name="sendto_sms"
+              id="sendto_sms"
+              placeholder="Mobile phone number"
+              tabindex="6"
+            />
+          </div>
+        </div>
+        <div class="row d-none" id="containerSendToEmail">
+          <div class="col-9 offset-3 col-md-5 offset-md-4">
+            <input
+              type="email"
+              class="form-control"
+              name="sendto_email"
+              id="sendto_email"
+              placeholder="E-mail address"
+              tabindex="7"
+            />
+          </div>
+        </div>
+        <div class="row d-none" id="containerSendToQRCode">
+          <div class="col-8 offset-3 col-md-5 offset-md-4">
+            <div class="text-center mt-2 mb-3" id="qrcode">
+              <canvas id="qr" style="max-width: 100%"></canvas>
+              <p align="justify" class="text-muted mt-3 mb-4">
+                <strong>Instructions:</strong> Ask the person you're inviting to
+                open the camera app on their cell phone. Have them point their
+                camera at this barcode (without taking a picture). A prompt
+                should appear on their screen. By pressing a button in that
+                prompt, the invite will open in their Web browser.
+              </p>
             </div>
           </div>
         </div>
-      </div>
+
+        <div class="row my-5" id="containerSendInvite">
+          <div class="col col-md-6 offset-xs-4 offset-md-3 text-center">
+            <a
+              href="#"
+              class="btn btn-primary btn-lg"
+              id="btnSendInvite"
+              tabindex="9"
+              data-defaulttext="SEND INVITE"
+              >SEND INVITE</a
+            >
+          </div>
+        </div>
+
+        <div class="row mb-5" id="containerTagWithLocation">
+          <div class="col-12 col-md-6 offset-md-3 text-center">
+            <div class="d-inline-block">
+              <div class="form-check">
+                <label
+                  class="form-check-label text-muted"
+                  for="tagwithlocation"
+                >
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="tagwithlocation"
+                    checked
+                    tabindex="8"
+                  />&nbsp;Tag invite with my current location
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
