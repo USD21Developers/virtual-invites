@@ -154,10 +154,10 @@ function initIntlTelInput() {
   window.intlTelInput(input, {
     initialCountry: initialCountry,
     preferredCountries: ["us"],
-    utilsScript: "js/intl-tel-input-17.0.0/js/utils.js"
+    utilsScript: "../js/intl-tel-input-17.0.0/js/utils.js"
   });
   iti = intlTelInput(input);
-  iti.promise.then(onAfterIntlInputInitialized);
+  // iti.promise.then(onAfterIntlInputInitialized);
 }
 
 function onAfterIntlInputInitialized() {
@@ -176,9 +176,7 @@ function populateQrCode() {
   const availableWidth = document.querySelector("#qrcode").clientWidth;
   const maxWidth = 200;
   const width = (availableWidth > maxWidth) ? maxWidth : availableWidth;
-  const url = `${window.location.origin}/e/#/${getInviteToId()}/${getRecipientId()}`;
-
-  // TODO:  Generate link from link shortener instead of using raw URL
+  const url = getFinalURL();
 
   const qr = new QRious({
     element: document.getElementById('qr'),
@@ -188,8 +186,7 @@ function populateQrCode() {
 }
 
 function getFinalURL() {
-  const finalUrl = `${window.location.origin}/e/#/${getInviteToId()}/${getRecipientId()}`;
-  // TODO: shorten finalUrl with a URL shortener (short.io).
+  const finalUrl = `${window.location.origin}/i/#/${getInviteToId()}/${getRecipientId()}/${getSenderId()}`;
   return finalUrl;
 }
 
@@ -270,6 +267,10 @@ function setDefaultSendMethod() {
 
 function getRecipientId() {
   return 221;
+}
+
+function getSenderId() {
+  return 185;
 }
 
 function setEventListeners() {
