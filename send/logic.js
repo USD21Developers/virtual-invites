@@ -233,18 +233,23 @@ function showForwardingMessage(sendvia) {
   if (!["sms", "email"].includes(sendvia)) return;
   const btnSendInvite = document.querySelector("#btnSendInvite");
   btnSendInvite.classList.remove("btn-primary");
-  btnSendInvite.classList.add("btn-warning");
+  btnSendInvite.classList.add("btn-info");
+  btnSendInvite.setAttribute("disabled", true);
 
-  if (sendvia === "sms") {
-    btnSendInvite.innerText = "Opening SMS...";
-  } else if (sendvia === "email") {
-    btnSendInvite.innerText = "Opening e-mail...";
+  switch (sendvia) {
+    case "sms":
+      btnSendInvite.innerText = "Opening SMS...";
+      break;
+    case "email":
+      btnSendInvite.innerText = "Opening e-mail...";
+      break;
   }
 
   setTimeout(() => {
-    btnSendInvite.classList.remove("btn-warning");
+    btnSendInvite.classList.remove("btn-info");
     btnSendInvite.classList.add("btn-primary");
     btnSendInvite.innerText = btnSendInvite.getAttribute("data-defaulttext");
+    btnSendInvite.removeAttribute("disabled");
   }, 5000);
 }
 
