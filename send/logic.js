@@ -47,7 +47,7 @@ function selectSendVia(method) {
 }
 
 function getSendVia() {
-  const value = document.querySelector("input[type=radio][name='sendvia']:checked").value;
+  const value = document.querySelector("#sendvia").selectedOptions[0].value;
   return value;
 }
 
@@ -77,10 +77,8 @@ function getSendTo() {
   return sendTo;
 }
 
-function onSendViaChanged(item) {
-  item.addEventListener("change", (evt) => {
-    selectSendVia();
-  });
+function onSendViaChanged() {
+  selectSendVia();
 }
 
 function loadDummyEvents() {
@@ -257,10 +255,10 @@ function setDefaultSendMethod() {
   const lastSendMethodSelected = localStorage.getItem("lastSendMethodSelected") || "";
 
   if (defaultSendMethod.length) {
-    document.querySelector(`input[name='sendvia'][value='${defaultSendMethod}']`).checked = true;
+    document.querySelector("#sendvia").value = defaultSendMethod;
     selectSendVia(defaultSendMethod);
   } else if (lastSendMethodSelected.length) {
-    document.querySelector(`input[name='sendvia'][value='${lastSendMethodSelected}']`).checked = true;
+    document.querySelector("#sendvia").value = lastSendMethodSelected;
     selectSendVia(lastSendMethodSelected);
   }
 }
@@ -274,7 +272,7 @@ function getSenderId() {
 }
 
 function setEventListeners() {
-  document.querySelectorAll("input[type=radio][name='sendvia']").forEach(item => onSendViaChanged(item));
+  document.querySelector("#sendvia").addEventListener("change", onSendViaChanged);
   document.querySelector("#events_dropdown").addEventListener("change", eventDetails);
   document.querySelector("#btnSendInvite").addEventListener("click", onSubmit);
 }

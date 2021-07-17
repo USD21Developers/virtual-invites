@@ -1,0 +1,55 @@
+body,
+td {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Oswald", sans-serif;
+}
+
+h1 {
+  font-size: 32px;
+}
+h2 {
+  font-size: 28px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 20px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+
+:root {
+  --primary: #0d6efd;
+  --secondary: #6c757d;
+  --success: #198754;
+  --info: #0dcaf0;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #212529;
+}
+
+.form-control:focus,
+.custom-select:focus,
+.form-control-file:focus {
+  border-color: var(--secondary);
+  box-shadow: inset 0 -2px 0 -1px var(--secondary);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+}

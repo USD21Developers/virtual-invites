@@ -3,8 +3,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      content="initial-scale=1, shrink-to-fit=no, width=device-width"
+      name="viewport"
+    />
     <title>Virtual Invites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Oswald"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="../css/material-4.1.1-dist/css/material.min.css"
@@ -13,23 +26,22 @@
       href="../js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
       rel="stylesheet"
     />
+    <link href="../css/global.css" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
   </head>
   <body>
     <div class="container my-4">
       <div class="row mb-4">
         <div class="col col-md-6 offset-xs-4 offset-md-3">
-          <h3 class="text-center">Send an Invite</h3>
+          <h2 class="text-center text-uppercase">Send an Invite</h2>
         </div>
       </div>
 
-      <div class="row mb-4">
-        <div class="col-2 col-md-1 offset-md-3 text-right">
-          <strong class="typography-title" style="line-height: 36px"
-            >For:</strong
-          >
+      <div class="form-group row mb-4">
+        <div class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right">
+          <h4 class="text-uppercase">For:</h4>
         </div>
-        <div class="col-10 col-md-5">
+        <div class="col-9 col-md-5">
           <select
             id="events_dropdown"
             class="form-control"
@@ -46,63 +58,24 @@
         </div>
       </div>
 
-      <div class="row mb-4">
-        <div class="col-2 col-md-1 offset-md-3 text-right">
-          <strong class="typography-title">Via:</strong>
+      <div class="form-group row mb-4">
+        <div class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right">
+          <h4 class="text-uppercase">Via:</h4>
         </div>
-        <div
-          class="col-10 col-md-5"
-          id="sendViaOptions"
-          style="padding-top: 5px"
-        >
-          <div class="form-check form-check-inline">
-            <label class="form-check-label" for="sendvia_sms">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="sendvia"
-                id="sendvia_sms"
-                value="sms"
-                checked
-                tabindex="2"
-              />
-              SMS
-            </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <label class="form-check-label" for="sendvia_email">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="sendvia"
-                id="sendvia_email"
-                value="email"
-                tabindex="3"
-              />
-              E-mail
-            </label>
-          </div>
-          <div class="form-check form-check-inline">
-            <label class="form-check-label" for="sendvia_qrcode">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="sendvia"
-                id="sendvia_qrcode"
-                value="qrcode"
-                tabindex="4"
-              />
-              QR Code
-            </label>
-          </div>
+        <div class="col-9 col-md-5" id="sendViaOptions">
+          <select name="sendvia" id="sendvia" class="form-control">
+            <option value="sms">SMS</option>
+            <option value="email">E-mail</option>
+            <option value="qrcode">QR Code</option>
+          </select>
         </div>
       </div>
 
-      <div class="row mb-3">
-        <div class="col-2 col-md-1 offset-md-3 text-right">
-          <strong class="typography-title">To:</strong>
+      <div class="form-group row mb-3">
+        <div class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right">
+          <h4 class="text-uppercase">To:</h4>
         </div>
-        <div class="col-10 col-md-5" id="containerName">
+        <div class="col-9 col-md-5" id="containerName">
           <input
             type="text"
             class="form-control"
@@ -114,7 +87,7 @@
         </div>
       </div>
       <div class="row" id="containerSendToSms">
-        <div class="col-10 offset-2 col-md-5 offset-md-4">
+        <div class="col-9 offset-3 col-md-5 offset-md-4">
           <input
             type="tel"
             pattern="[0-9]*"
@@ -127,7 +100,7 @@
         </div>
       </div>
       <div class="row d-none" id="containerSendToEmail">
-        <div class="col-10 offset-2 col-md-5 offset-md-4">
+        <div class="col-9 offset-3 col-md-5 offset-md-4">
           <input
             type="email"
             class="form-control"
@@ -139,7 +112,7 @@
         </div>
       </div>
       <div class="row d-none" id="containerSendToQRCode">
-        <div class="col-9 offset-2 col-md-5 offset-md-4">
+        <div class="col-9 offset-3 col-md-5 offset-md-4">
           <div class="text-center mt-2 mb-3" id="qrcode">
             <canvas id="qr" style="max-width: 100%"></canvas>
             <p align="justify" class="text-muted mt-3 mb-4">
