@@ -243,9 +243,11 @@ function getSendBody() {
 function showForwardingMessage(sendvia) {
   if (!["sms", "email"].includes(sendvia)) return;
   const btnSendInvite = document.querySelector("#btnSendInvite");
+  btnSendInvite.classList.add("d-none");
   btnSendInvite.classList.remove("btn-primary");
   btnSendInvite.classList.add("btn-info");
   btnSendInvite.setAttribute("disabled", true);
+  btnSendInvite.classList.remove("d-none");
 
   switch (sendvia) {
     case "sms":
@@ -257,10 +259,12 @@ function showForwardingMessage(sendvia) {
   }
 
   setTimeout(() => {
+    btnSendInvite.classList.add("d-none");
     btnSendInvite.classList.remove("btn-info");
     btnSendInvite.classList.add("btn-primary");
     btnSendInvite.innerText = btnSendInvite.getAttribute("data-defaulttext");
     btnSendInvite.removeAttribute("disabled");
+    btnSendInvite.classList.remove("d-none");
   }, 5000);
 }
 
