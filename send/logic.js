@@ -33,9 +33,9 @@ function selectSendVia(method) {
       populateQrCode();
       if (!method) {
         try {
-          document.querySelector("#sendViaOptions").scrollIntoView({ behavior: smooth });
+          document.querySelector("#containerSendToQRCode").scrollIntoView({ behavior: smooth });
         } catch (e) {
-          document.querySelector("#sendViaOptions").scrollIntoView();
+          document.querySelector("#containerSendToQRCode").scrollIntoView();
         }
       }
       break;
