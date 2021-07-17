@@ -6,6 +6,8 @@ function selectSendVia(method) {
   const containerQRCode = document.querySelector("#containerSendToQRCode");
   const containerTagWithLocation = document.querySelector("#containerTagWithLocation");
   const containerSendInvite = document.querySelector("#containerSendInvite");
+  const smsField = document.querySelector("#sendto_sms");
+  const emailField = document.querySelector("#sendto_email");
   const sendvia = method ? method : getSendVia();
 
   containerSms.classList.add("d-none");
@@ -13,15 +15,19 @@ function selectSendVia(method) {
   containerQRCode.classList.add("d-none");
   containerTagWithLocation.classList.add("d-none");
   containerSendInvite.classList.add("d-none");
+  smsField.removeAttribute("required");
+  emailField.removeAttribute("required");
 
   switch (sendvia) {
     case "sms":
+      smsField.setAttribute("required", "");
       localStorage.setItem("lastSendMethodSelected", "sms");
       containerSms.classList.remove("d-none");
       containerTagWithLocation.classList.remove("d-none");
       containerSendInvite.classList.remove("d-none");
       break;
     case "email":
+      emailField.setAttribute("required", "");
       localStorage.setItem("lastSendMethodSelected", "email");
       containerEmail.classList.remove("d-none");
       containerTagWithLocation.classList.remove("d-none");
@@ -138,7 +144,7 @@ async function loadEvents() {
   const events_stored = localStorage.getItem("events") || loadDummyEvents();
   const events = JSON.parse(events_stored);
   const events_default = localStorage.getItem("events_default") || 1;
-  let options = `<option value="">(Select)</option>`;
+  let options;
 
   events.forEach(event => {
     const { id, name, day, time, location, address1, address2, address3 } = event;
