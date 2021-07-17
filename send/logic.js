@@ -209,13 +209,13 @@ function getSendBody() {
 
   switch (sendVia) {
     case "sms":
-      sendBody = `${getInviteToText()}:\n${finalURL}`;
+      sendBody = `${getInviteToText()}:\n\n${finalURL}`;
       if (smsBodyText.length) {
         sendBody += `\n\n${smsBodyText}`;
       }
       break;
     case "email":
-      sendBody = `${inviteToText}:\n${finalURL}`;
+      sendBody = `${inviteToText}:\n\n${finalURL}`;
       if (emailBodyText.length) {
         sendBody += `\n\n${emailBodyText}\n\n`;
       }
@@ -225,6 +225,27 @@ function getSendBody() {
   }
 
   return encodeURIComponent(sendBody);
+}
+
+
+
+function showForwardingMessage(sendvia) {
+  if (!["sms", "email"].includes(sendvia)) return;
+  const btnSendInvite = document.querySelector("#btnSendInvite");
+  btnSendInvite.classList.remove("btn-primary");
+  btnSendInvite.classList.add("btn-warning");
+
+  if (sendvia === "sms") {
+    btnSendInvite.innerText = "Opening SMS...";
+  } else if (sendvia === "email") {
+    btnSendInvite.innerText = "Opening e-mail...";
+  }
+
+  setTimeout(() => {
+    btnSendInvite.classList.remove("btn-warning");
+    btnSendInvite.classList.add("btn-primary");
+    btnSendInvite.innerText = btnSendInvite.getAttribute("data-defaulttext");
+  }, 5000);
 }
 
 function onSubmit(e) {
@@ -237,9 +258,11 @@ function onSubmit(e) {
   switch (sendVia) {
     case "sms":
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
+      showForwardingMessage("sms");
       break;
     case "email":
       btnSendInvite.setAttribute("href", `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`);
+      showForwardingMessage("email");
       break;
     default:
       e.preventDefault();
