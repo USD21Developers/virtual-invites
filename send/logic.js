@@ -1,4 +1,5 @@
 let iti;
+let coordinates;
 
 function selectSendVia(method) {
   const containerSms = document.querySelector("#containerSendToSms");
@@ -9,6 +10,7 @@ function selectSendVia(method) {
   const smsField = document.querySelector("#sendto_sms");
   const emailField = document.querySelector("#sendto_email");
   const sendvia = method ? method : getSendVia();
+  const isMobile = isMobileDevice();
 
   containerSms.classList.add("d-none");
   containerEmail.classList.add("d-none");
@@ -23,14 +25,14 @@ function selectSendVia(method) {
       smsField.setAttribute("required", "");
       localStorage.setItem("lastSendMethodSelected", "sms");
       containerSms.classList.remove("d-none");
-      containerTagWithLocation.classList.remove("d-none");
+      isMobile && containerTagWithLocation.classList.remove("d-none");
       containerSendInvite.classList.remove("d-none");
       break;
     case "email":
       emailField.setAttribute("required", "");
       localStorage.setItem("lastSendMethodSelected", "email");
       containerEmail.classList.remove("d-none");
-      containerTagWithLocation.classList.remove("d-none");
+      isMobile && containerTagWithLocation.classList.remove("d-none");
       containerSendInvite.classList.remove("d-none");
       break;
     case "qrcode":
@@ -128,6 +130,7 @@ function eventDetails() {
   populateQrCode();
 
   if (selectedEvent.value === "") return meetingdetails.classList.add("d-none");
+  localStorage.setItem("lastEventSelected", selectedEvent.value);
   meetingdetails_timedate.innerHTML = `${eventDay} @ ${eventTime}`;
   meetingdetails_location.innerHTML = `
     ${eventLocation}
@@ -144,15 +147,20 @@ async function loadEvents() {
   const events_stored = localStorage.getItem("events") || loadDummyEvents();
   const events = JSON.parse(events_stored);
   const events_default = localStorage.getItem("events_default") || 1;
+  const lastEventSelected = localStorage.getItem("lastEventSelected") || "";
+  let optionsContainLastEventSelected = false;
   let options;
 
   events.forEach(event => {
     const { id, name, day, time, location, address1, address2, address3 } = event;
+    if (id == lastEventSelected) optionsContainLastEventSelected = true;
     options += `<option value="${id}" data-day="${day}" data-time="${time}" data-location="${location}" data-address1="${address1}" data-address2="${address2}" data-address3="${address3}">${name}</option>`;
   });
 
   events_dropdown.innerHTML = options;
   events_dropdown.options[events_default].selected = true;
+  if (lastEventSelected.length && optionsContainLastEventSelected) events_dropdown.value = lastEventSelected;
+
   eventDetails();
   meetingdetails.classList.remove("d-none");
 
@@ -307,9 +315,45 @@ function getSenderId() {
   return 185;
 }
 
+function onGeoLocationSuccess(pos) {
+  const { latitude, longitude } = pos.coords;
+
+  coordinates = {
+    lat: latitude,
+    long: longitude,
+    timestamp: pos.timestamp
+  };
+}
+
+function onGeoLocationError(err) {
+  console.log(err);
+}
+
+function onTagWithLocation(e) {
+  const isChecked = e.target.checked || false;
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  }
+
+  if (isChecked && navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(onGeoLocationSuccess, onGeoLocationError, options);
+  }
+}
+
+function showTagInviteWithLocation() {
+  const isMobile = isMobileDevice();
+  if (isMobile) {
+    const containerTagWithLocation = document.querySelector("#containerTagWithLocation");
+    containerTagWithLocation.classList.remove("d-none");
+  }
+}
+
 function setEventListeners() {
   document.querySelector("#sendvia").addEventListener("change", onSendViaChanged);
   document.querySelector("#events_dropdown").addEventListener("change", eventDetails);
+  document.querySelector("#tagwithlocation").addEventListener("click", onTagWithLocation);
   document.querySelector("#btnSendInvite").addEventListener("click", onSubmit);
 }
 
@@ -318,6 +362,7 @@ function init() {
   setDefaultSendMethod();
   initIntlTelInput();
   setEventListeners();
+  showTagInviteWithLocation();
 }
 
 init();
