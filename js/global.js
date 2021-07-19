@@ -17,7 +17,9 @@ function getApiHost() {
 }
 
 function isMobileDevice() {
-  return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+  const result = (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+  showToast(`Is mobile: ${result}`);
+  return result;
 };
 
 function showToast(message, duration = 5000) {
