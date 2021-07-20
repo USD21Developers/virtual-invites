@@ -220,7 +220,8 @@ function getEmailBodyText() {
 }
 
 function getEmailSubjectLine() {
-  const text = localStorage.getItem("subjectLineEmail") || "Invitation";
+  const eventName = getInviteToText();
+  const text = localStorage.getItem("subjectLineEmail") || `Invitation to ${eventName}`;
   return encodeURI(text);
 }
 
