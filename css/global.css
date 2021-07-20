@@ -89,3 +89,7 @@ h6 {
 .btn-dark.active {
   background-color: var(--dark) !important;
 }
+
+.btn.font-weight-bold {
+  font-weight: 600;
+}
