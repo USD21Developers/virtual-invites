@@ -270,7 +270,7 @@ function showForwardingMessage(sendvia) {
   setTimeout(() => {
     btnSendInvite.innerText = btnSendInvite.getAttribute("data-defaulttext");
     btnSendInvite.removeAttribute("disabled");
-  }, 5000);
+  }, 8000);
 }
 
 function onSubmit(e) {
