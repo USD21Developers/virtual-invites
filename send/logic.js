@@ -337,7 +337,7 @@ function onGeoLocationSuccess(pos) {
     timestamp: pos.timestamp
   };
 
-  showToast(`${latitude},${longitude}`);
+  showToast(`<a href="https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}">${latitude}, ${longitude}</a>`);
 }
 
 function onGeoLocationError(err) {
