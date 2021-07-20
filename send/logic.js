@@ -268,9 +268,14 @@ function showForwardingMessage(sendvia) {
   btnSendInvite.setAttribute("disabled", true);
 
   setTimeout(() => {
-    btnSendInvite.innerText = btnSendInvite.getAttribute("data-defaulttext");
-    btnSendInvite.removeAttribute("disabled");
-  }, 8000);
+    setInterval(() => {
+      try {
+        window.location.reload();
+      } catch (e) {
+        console.error(e);
+      }
+    }, 500);
+  }, 5000);
 }
 
 function onSubmit(e) {
@@ -375,11 +380,18 @@ async function getCoordinatesOnLoad() {
   }
 }
 
+function onFormSubmit(e) {
+  console.log(e);
+  e.preventDefault();
+  onSubmit();
+}
+
 function setEventListeners() {
   document.querySelector("#sendvia").addEventListener("change", onSendViaChanged);
   document.querySelector("#events_dropdown").addEventListener("change", eventDetails);
   document.querySelector("#tagwithlocation").addEventListener("click", onTagWithLocation);
   document.querySelector("#btnSendInvite").addEventListener("click", onSubmit);
+  document.querySelector("#formsendinvite").addEventListener("submit", onFormSubmit);
 }
 
 function init() {

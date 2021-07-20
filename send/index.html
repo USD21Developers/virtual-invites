@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <form id="form_send_invite">
+      <form name="formsendinvite" id="formsendinvite" method="post" action="./">
         <div class="form-group row mb-4">
           <div
             class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right"
@@ -47,6 +47,7 @@
           <div class="col-9 col-md-5">
             <select
               id="events_dropdown"
+              name="events_dropdown"
               class="form-control"
               tabindex="1"
             ></select>
@@ -171,6 +172,7 @@
               >SEND INVITE</a
             >
             <br /><br />
+            <input type="submit" style="display: none" />
           </div>
         </div>
       </form>
