@@ -334,7 +334,19 @@ function onGeoLocationSuccess(pos) {
 }
 
 function onGeoLocationError(err) {
-  console.log(err);
+  switch (err) {
+    case 1:
+      showToast("Geocoordinates: permission denied");
+      break;
+    case 2:
+      showToast("Geocoordinates: position unavailable");
+      break;
+    case 3:
+      showToast("Geocoordinates: timed out");
+      break;
+    default:
+      showToast(`Geocoordinates: error code ${err}`);
+  }
 }
 
 function onTagWithLocation(e) {
@@ -354,13 +366,12 @@ function showTagInviteWithLocation() {
 }
 
 async function getCoordinatesOnLoad() {
-  let hasApprovedGeolocation = false;
   if (navigator.permissions) {
-    hasApprovedGeolocation = await navigator.permissions.query({ name: 'geolocation' }).then((response) => response.state === 'granted');
-  }
-
-  if (hasApprovedGeolocation) {
-    navigator.geolocation.getCurrentPosition(onGeoLocationSuccess, onGeoLocationError, geoLocationOptions);
+    await navigator.permissions.query({ name: 'geolocation' }).then((response) => {
+      if (response.state && response.state == 'granted') {
+        navigator.geolocation.getCurrentPosition(onGeoLocationSuccess, onGeoLocationError, geoLocationOptions);
+      }
+    });
   }
 }
 
