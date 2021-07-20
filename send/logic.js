@@ -269,6 +269,7 @@ function showForwardingMessage(sendvia) {
   btnSendInvite.setAttribute("disabled", true);
 
   setTimeout(() => {
+    window.scrollTo(0, 0);
     setInterval(() => {
       try {
         window.location.reload();
@@ -382,7 +383,6 @@ async function getCoordinatesOnLoad() {
 }
 
 function onFormSubmit(e) {
-  console.log(e);
   e.preventDefault();
   onSubmit();
 }
