@@ -315,6 +315,12 @@ function getSenderId() {
   return 185;
 }
 
+const geoLocationOptions = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+}
+
 function onGeoLocationSuccess(pos) {
   const { latitude, longitude } = pos.coords;
 
@@ -323,6 +329,8 @@ function onGeoLocationSuccess(pos) {
     long: longitude,
     timestamp: pos.timestamp
   };
+
+  showToast(`${latitude},${longitude}`);
 }
 
 function onGeoLocationError(err) {
@@ -331,14 +339,9 @@ function onGeoLocationError(err) {
 
 function onTagWithLocation(e) {
   const isChecked = e.target.checked || false;
-  const options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  }
 
   if (isChecked && navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(onGeoLocationSuccess, onGeoLocationError, options);
+    navigator.geolocation.getCurrentPosition(onGeoLocationSuccess, onGeoLocationError, geoLocationOptions);
   }
 }
 
@@ -347,6 +350,17 @@ function showTagInviteWithLocation() {
   if (isMobile) {
     const containerTagWithLocation = document.querySelector("#containerTagWithLocation");
     containerTagWithLocation.classList.remove("d-none");
+  }
+}
+
+async function getCoordinatesOnLoad() {
+  let hasApprovedGeolocation = false;
+  if (navigator.permissions) {
+    hasApprovedGeolocation = await navigator.permissions.query({ name: 'geolocation' }).then((response) => response.state === 'granted');
+  }
+
+  if (hasApprovedGeolocation) {
+    navigator.geolocation.getCurrentPosition(onGeoLocationSuccess, onGeoLocationError, geoLocationOptions);
   }
 }
 
@@ -362,6 +376,7 @@ function init() {
   setDefaultSendMethod();
   initIntlTelInput();
   setEventListeners();
+  getCoordinatesOnLoad();
   showTagInviteWithLocation();
 }
 
