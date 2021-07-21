@@ -5,6 +5,7 @@ function selectSendVia(method) {
   const containerSms = document.querySelector("#containerSendToSms");
   const containerEmail = document.querySelector("#containerSendToEmail");
   const containerQRCode = document.querySelector("#containerSendToQRCode");
+  const containerQRCodeInstructions = document.querySelector("#containerQRCodeInstructions");
   const containerTagWithLocation = document.querySelector("#containerTagWithLocation");
   const btnSendInvite = document.querySelector("#btnSendInvite");
   const smsField = document.querySelector("#sendto_sms");
@@ -15,6 +16,7 @@ function selectSendVia(method) {
   containerSms.classList.add("d-none");
   containerEmail.classList.add("d-none");
   containerQRCode.classList.add("d-none");
+  containerQRCodeInstructions.classList.add("d-none");
   containerTagWithLocation.classList.add("d-none");
   smsField.removeAttribute("required");
   emailField.removeAttribute("required");
@@ -37,6 +39,7 @@ function selectSendVia(method) {
     case "qrcode":
       localStorage.setItem("lastSendMethodSelected", "qrcode");
       containerQRCode.classList.remove("d-none");
+      containerQRCodeInstructions.classList.remove("d-none");
       btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-qrcodetext");
       isMobile && containerTagWithLocation.classList.remove("d-none");
       populateQrCode();
