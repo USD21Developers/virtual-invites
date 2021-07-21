@@ -38,6 +38,7 @@ function selectSendVia(method) {
       localStorage.setItem("lastSendMethodSelected", "qrcode");
       containerQRCode.classList.remove("d-none");
       btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-qrcodetext");
+      isMobile && containerTagWithLocation.classList.remove("d-none");
       populateQrCode();
       if (!method) {
         try {
