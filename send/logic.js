@@ -6,7 +6,7 @@ function selectSendVia(method) {
   const containerEmail = document.querySelector("#containerSendToEmail");
   const containerQRCode = document.querySelector("#containerSendToQRCode");
   const containerTagWithLocation = document.querySelector("#containerTagWithLocation");
-  const containerSendInvite = document.querySelector("#containerSendInvite");
+  const btnSendInvite = document.querySelector("#btnSendInvite");
   const smsField = document.querySelector("#sendto_sms");
   const emailField = document.querySelector("#sendto_email");
   const sendvia = method ? method : getSendVia();
@@ -16,7 +16,6 @@ function selectSendVia(method) {
   containerEmail.classList.add("d-none");
   containerQRCode.classList.add("d-none");
   containerTagWithLocation.classList.add("d-none");
-  containerSendInvite.classList.add("d-none");
   smsField.removeAttribute("required");
   emailField.removeAttribute("required");
 
@@ -26,18 +25,19 @@ function selectSendVia(method) {
       localStorage.setItem("lastSendMethodSelected", "sms");
       containerSms.classList.remove("d-none");
       isMobile && containerTagWithLocation.classList.remove("d-none");
-      containerSendInvite.classList.remove("d-none");
+      btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-defaulttext");
       break;
     case "email":
       emailField.setAttribute("required", "");
       localStorage.setItem("lastSendMethodSelected", "email");
       containerEmail.classList.remove("d-none");
       isMobile && containerTagWithLocation.classList.remove("d-none");
-      containerSendInvite.classList.remove("d-none");
+      btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-defaulttext");
       break;
     case "qrcode":
       localStorage.setItem("lastSendMethodSelected", "qrcode");
       containerQRCode.classList.remove("d-none");
+      btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-qrcodetext");
       populateQrCode();
       if (!method) {
         try {
@@ -315,10 +315,12 @@ function setDefaultSendMethod() {
 }
 
 function getRecipientId() {
+  // TODO: make this return an actual recipient ID
   return 221;
 }
 
 function getSenderId() {
+  // TODO: make this return the actual sender ID
   return 185;
 }
 
@@ -337,7 +339,7 @@ function onGeoLocationSuccess(pos) {
     timestamp: pos.timestamp
   };
 
-  showToast(`<a href="https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}">${latitude}, ${longitude}</a>`);
+  // showToast(`<a href="https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}">${latitude}, ${longitude}</a>`);
 }
 
 function onGeoLocationError(err) {
