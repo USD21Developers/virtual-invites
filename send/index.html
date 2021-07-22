@@ -95,6 +95,24 @@
       </div>
 
       <form name="formsendinvite" id="formsendinvite" method="post" action="./">
+        <div class="form-group row mb-3">
+          <div
+            class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right"
+          >
+            <h4 class="text-uppercase">To:</h4>
+          </div>
+          <div class="col-9 col-md-5" id="containerName">
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              id="recipientname"
+              placeholder="Recipient's name"
+              tabindex="5"
+            />
+          </div>
+        </div>
+
         <div class="form-group row mb-4">
           <div
             class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right"
@@ -160,25 +178,13 @@
           </div>
         </div>
 
-        <div class="form-group row mb-3">
+        <div class="form-group row mb-5" id="containerSendToSms">
           <div
             class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right"
           >
-            <h4 class="text-uppercase">To:</h4>
+            <h4 class="text-uppercase">At:</h4>
           </div>
-          <div class="col-9 col-md-5" id="containerName">
-            <input
-              type="text"
-              class="form-control"
-              name="name"
-              id="recipientname"
-              placeholder="Recipient's name"
-              tabindex="5"
-            />
-          </div>
-        </div>
-        <div class="row mb-5" id="containerSendToSms">
-          <div class="col-9 offset-3 col-md-5 offset-md-4">
+          <div class="col-9 col-md-5">
             <input
               type="tel"
               pattern="[0-9]*"
@@ -190,8 +196,14 @@
             />
           </div>
         </div>
-        <div class="row mb-5 d-none" id="containerSendToEmail">
-          <div class="col-9 offset-3 col-md-5 offset-md-4">
+
+        <div class="form-group row mb-5 d-none" id="containerSendToEmail">
+          <div
+            class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right"
+          >
+            <h4 class="text-uppercase">At:</h4>
+          </div>
+          <div class="col-9 col-md-5">
             <input
               type="email"
               class="form-control"
