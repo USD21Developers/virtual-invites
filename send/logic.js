@@ -333,10 +333,11 @@ function selectSendVia(method) {
       populateQrCode();
       if (!method) {
         try {
-          document.querySelector("#containerSendToQRCode").scrollIntoView({ behavior: "smooth", block: "start" });
+          containerQRCode.scrollIntoView({ behavior: "smooth" });
         } catch (e) {
-          document.querySelector("#containerSendToQRCode").scrollIntoView();
+          containerQRCode.scrollIntoView();
         }
+        containerQRCode.scrollTop -= 32;
       }
       break;
   }
