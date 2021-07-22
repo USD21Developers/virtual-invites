@@ -34,7 +34,7 @@
     <link href="style.css" rel="stylesheet" />
   </head>
   <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light bg-light sticky-top">
       <a class="navbar-brand" href="#">Navbar</a>
       <button
         class="navbar-toggler"
@@ -47,44 +47,45 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div
-        aria-hidden="true"
-        class="navdrawer navdrawer-right"
-        id="navdrawerDefault"
-        tabindex="-1"
-      >
-        <div class="navdrawer-content">
-          <div class="navdrawer-header">
-            <a class="navbar-brand px-0" href="#">Navdrawer header</a>
-          </div>
-          <nav class="navdrawer-nav">
-            <a class="nav-item nav-link active" href="#">Active</a>
-            <a class="nav-item nav-link disabled" href="#">Disabled</a>
-            <a class="nav-item nav-link" href="#">Link</a>
-          </nav>
-          <div class="navdrawer-divider"></div>
-          <p class="navdrawer-subheader">Navdrawer subheader</p>
-          <ul class="navdrawer-nav">
-            <li class="nav-item">
-              <a class="nav-link active" href="#"
-                ><i class="material-icons mr-3">alarm_on</i> Active with icon</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#"
-                ><i class="material-icons mr-3">alarm_off</i> Disabled with
-                icon</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"
-                ><i class="material-icons mr-3">link</i> Link with icon</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
     </nav>
+
+    <div
+      aria-hidden="true"
+      class="navdrawer navdrawer-right"
+      id="navdrawerDefault"
+      tabindex="-1"
+    >
+      <div class="navdrawer-content">
+        <div class="navdrawer-header">
+          <a class="navbar-brand px-0" href="#">Navdrawer header</a>
+        </div>
+        <nav class="navdrawer-nav">
+          <a class="nav-item nav-link active" href="#">Active</a>
+          <a class="nav-item nav-link disabled" href="#">Disabled</a>
+          <a class="nav-item nav-link" href="#">Link</a>
+        </nav>
+        <div class="navdrawer-divider"></div>
+        <p class="navdrawer-subheader">Navdrawer subheader</p>
+        <ul class="navdrawer-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="#"
+              ><i class="material-icons mr-3">alarm_on</i> Active with icon</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#"
+              ><i class="material-icons mr-3">alarm_off</i> Disabled with
+              icon</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"
+              ><i class="material-icons mr-3">link</i> Link with icon</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <div class="container my-4">
       <div class="row mt-5 mb-4">
