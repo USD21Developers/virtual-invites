@@ -84,15 +84,15 @@ function getSendBody() {
 
   switch (sendVia) {
     case "sms":
-      sendBody = `${getInviteToText()}:\n\n${finalURL}`;
+      sendBody = `${getInviteToText()}:\r\n\r\n${finalURL}`;
       if (smsBodyText.length) {
-        sendBody += `\n\n${smsBodyText}`;
+        sendBody += `\r\n\r\n${smsBodyText}`;
       }
       break;
     case "email":
-      sendBody = `${inviteToText}:\n\n${finalURL}`;
+      sendBody = `${inviteToText}:\r\n\r\n${finalURL}`;
       if (emailBodyText.length) {
-        sendBody += `\n\n${emailBodyText}\n\n`;
+        sendBody += `\r\n\r\n${emailBodyText}\r\n\r\n`;
       }
       break;
     default:
