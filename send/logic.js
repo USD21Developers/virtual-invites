@@ -333,7 +333,7 @@ function selectSendVia(method) {
       populateQrCode();
       if (!method) {
         try {
-          document.querySelector("#containerSendToQRCode").scrollIntoView({ behavior: smooth });
+          document.querySelector("#containerSendToQRCode").scrollIntoView({ behavior: "smooth", block: "start" });
         } catch (e) {
           document.querySelector("#containerSendToQRCode").scrollIntoView();
         }
