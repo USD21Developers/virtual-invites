@@ -332,12 +332,8 @@ function selectSendVia(method) {
       isMobile && containerTagWithLocation.classList.remove("d-none");
       populateQrCode();
       if (!method) {
-        try {
-          containerQRCode.scrollIntoView({ behavior: "smooth" });
-        } catch (e) {
-          containerQRCode.scrollIntoView();
-        }
-        containerQRCode.scrollTop -= 32;
+        const qrCodeContainerOffset = document.getElementById("containerSendToQRCode").offsetTop - 64;
+        window.scroll({ top: qrCodeContainerOffset, behavior: "smooth" });
       }
       break;
   }
