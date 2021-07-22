@@ -108,7 +108,7 @@
               name="name"
               id="recipientname"
               placeholder="Recipient's name"
-              tabindex="5"
+              tabindex="1"
             />
           </div>
         </div>
@@ -124,7 +124,7 @@
               id="events_dropdown"
               name="events_dropdown"
               class="form-control"
-              tabindex="1"
+              tabindex="2"
             ></select>
             <div class="mt-1 d-none" id="meetingdetails">
               <div class="row">
@@ -150,7 +150,12 @@
             <h4 class="text-uppercase">Via:</h4>
           </div>
           <div class="col-9 col-md-5" id="sendViaOptions">
-            <select name="sendvia" id="sendvia" class="form-control">
+            <select
+              tabindex="3"
+              name="sendvia"
+              id="sendvia"
+              class="form-control"
+            >
               <option value="sms">SMS</option>
               <option value="email">E-mail</option>
               <option value="qrcode">QR Code</option>
@@ -192,7 +197,7 @@
               name="sendto_sms"
               id="sendto_sms"
               placeholder="Mobile phone number"
-              tabindex="6"
+              tabindex="4"
             />
           </div>
         </div>
@@ -210,7 +215,7 @@
               name="sendto_email"
               id="sendto_email"
               placeholder="E-mail address"
-              tabindex="7"
+              tabindex="5"
             />
           </div>
         </div>
@@ -227,7 +232,7 @@
                     type="checkbox"
                     value=""
                     id="tagwithlocation"
-                    tabindex="8"
+                    tabindex="6"
                   />&nbsp;Tag invite with my current location
                 </label>
               </div>
@@ -243,7 +248,7 @@
               href="#"
               class="btn btn-primary btn-lg font-weight-bold"
               id="btnSendInvite"
-              tabindex="9"
+              tabindex="7"
               data-defaulttext="SEND INVITE"
               data-qrcodetext="SAVE INVITE"
               >SEND INVITE</a
