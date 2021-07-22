@@ -136,12 +136,11 @@ function getSmsBodyText() {
 function initIntlTelInput() {
   const input = document.querySelector("#sendto_sms");
   const initialCountry = localStorage.getItem("countryIso") || "us";
-  window.intlTelInput(input, {
+  iti = window.intlTelInput(input, {
     initialCountry: initialCountry,
-    preferredCountries: ["us"],
+    preferredCountries: [initialCountry],
     utilsScript: "../js/intl-tel-input-17.0.0/js/utils.js"
   });
-  iti = intlTelInput(input);
   // iti.promise.then(onAfterIntlInputInitialized);
 }
 
