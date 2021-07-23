@@ -139,9 +139,10 @@ function initIntlTelInput() {
   iti = window.intlTelInput(input, {
     initialCountry: initialCountry,
     preferredCountries: [initialCountry],
+    showOnly: [initialCountry],
     utilsScript: "../js/intl-tel-input-17.0.0/js/utils.js"
   });
-  // iti.promise.then(onAfterIntlInputInitialized);
+  iti.promise.then(onAfterIntlInputInitialized);
 }
 
 function loadDummyEvents() {
