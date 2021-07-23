@@ -387,7 +387,7 @@ function setEventListeners() {
 function init() {
   loadEvents();
   setDefaultSendMethod();
-  //initIntlTelInput();
+  initIntlTelInput();
   setEventListeners();
   getCoordinatesOnLoad();
   showTagInviteWithLocation();
