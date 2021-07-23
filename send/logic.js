@@ -142,7 +142,6 @@ function initIntlTelInput() {
     showOnly: [initialCountry],
     utilsScript: "../js/intl-tel-input-17.0.0/js/utils.js"
   });
-  iti.promise.then(onAfterIntlInputInitialized);
 }
 
 function loadDummyEvents() {
@@ -199,17 +198,6 @@ async function loadEvents() {
 
   // TODO:  fetch events from API for user, store the result to localStorage, then refresh the UI with it 
 }
-
-function onAfterIntlInputInitialized() {
-  const sendto_sms = document.querySelector("#sendto_sms");
-  const container = sendto_sms.parentElement;
-  const label = document.createElement("label");
-  label.setAttribute("for", "sendto_sms");
-  label.appendChild(document.createTextNode(sendto_sms.getAttribute("placeholder")));
-  container.classList.add("form-floating");
-  container.appendChild(label);
-}
-
 
 function onFormSubmit(e) {
   e.preventDefault();
