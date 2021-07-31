@@ -33,7 +33,6 @@ function showToast(message, duration = 5000) {
 }
 
 function showMaterialIcons() {
-  console.log("showMaterialIcons()");
   document.querySelectorAll(".material-icons").forEach(item => item.style.opacity = "1");
 }
 
