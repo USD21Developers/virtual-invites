@@ -9,6 +9,10 @@ td {
   font-weight: 200;
 }
 
+.nav-item.nav-link.active {
+  display: none;
+}
+
 h1,
 h2,
 h3,
