@@ -9,8 +9,12 @@ td {
   font-weight: 200;
 }
 
-.nav-item.nav-link.active {
+.nav-link.active {
   display: none;
+}
+
+.navbar-toggler::before {
+  background-color: unset;
 }
 
 h1,
