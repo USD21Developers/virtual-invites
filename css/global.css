@@ -21,6 +21,11 @@ td {
   opacity: 0;
 }
 
+.invalid-feedback {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
 h1,
 h2,
 h3,
