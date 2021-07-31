@@ -55,7 +55,9 @@ function getEmailSubjectLine() {
 }
 
 function getFinalURL() {
-  const finalUrl = `${window.location.origin}/i/#/${getInviteToId()}/${getRecipientId()}/${getSenderId()}`;
+  const recipientId = getRecipientId().toString(16);
+  const eventId = getInviteToId().toString(16);
+  const finalUrl = `${window.location.origin}/i/#/${recipientId}/${eventId}/}`;
   return finalUrl;
 }
 
