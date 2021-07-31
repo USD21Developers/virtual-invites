@@ -31,3 +31,14 @@ function showToast(message, duration = 5000) {
     snackbar.classList.remove("show");
   }, duration);
 }
+
+function showMaterialIcons() {
+  console.log("showMaterialIcons()");
+  document.querySelectorAll(".material-icons").forEach(item => item.style.opacity = "1");
+}
+
+function init() {
+  showMaterialIcons();
+}
+
+init();
