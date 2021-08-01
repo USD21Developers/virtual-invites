@@ -65,6 +65,18 @@ h6 {
   --dark: #212529;
 }
 
+.floating-label.is-focused label {
+  color: var(--secondary);
+}
+
+a {
+  color: var(--primary);
+}
+
+a:hover {
+  color: var(--primary);
+}
+
 .form-control:focus,
 .custom-select:focus,
 .form-control-file:focus {
