@@ -65,8 +65,14 @@ h6 {
   --dark: #212529;
 }
 
-.floating-label.is-focused label {
-  color: var(--secondary);
+.floating-label.is-focused label,
+.floating-label.has-value label {
+  color: var(--primary);
+  filter: brightness(75%);
+  font-family: Oswald, sans-serif;
+  font-size: 1.3rem;
+  margin-top: -0.5rem;
+  text-transform: uppercase;
 }
 
 a {
