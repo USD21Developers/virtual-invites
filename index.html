@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="initial-scale=1, shrink-to-fit=no, width=device-width"
+      name="viewport"
+    />
+    <title>Virtual Invites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Oswald"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="../css/material-4.1.1-dist/css/material.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="../js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
+      rel="stylesheet"
+    />
+    <link href="../css/global.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light sticky-top border-bottom">
+      <a class="navbar-brand" href="/">Virtual Invites</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="navdrawer"
+        data-target="#navdrawerDefault"
+        aria-controls="navdrawerDefault"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+
+    <div
+      aria-hidden="true"
+      class="navdrawer navdrawer-right"
+      id="navdrawerDefault"
+      tabindex="-1"
+    >
+      <div class="navdrawer-content">
+        <div class="navdrawer-header">
+          <div class="row">
+            <div class="col-9 d-flex justify-content-start">
+              <a class="navbar-brand px-0" href="../">Virtual Invites</a>
+            </div>
+            <div class="col-3 d-flex justify-content-end align-items-center">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="navdrawer"
+                data-target="#navdrawerDefault"
+                aria-controls="navdrawerDefault"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="material-icons mmaterial-icons-outlined">
+                  close
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <nav class="navdrawer-nav">
+          <a class="nav-item nav-link active" href="../">
+            <span class="material-icons mr-3 material-icons-outlined">
+              home
+            </span>
+            Home
+          </a>
+          <a class="nav-item nav-link" href="../send/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              card_giftcard
+            </span>
+            Send an Invite
+          </a>
+          <a class="nav-item nav-link" href="../invited/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              people
+            </span>
+            People I've Invited
+          </a>
+          <a class="nav-item nav-link" href="../events/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              event
+            </span>
+            Events I'm Sharing
+          </a>
+          <a class="nav-item nav-link" href="../maps/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              place
+            </span>
+            Maps
+          </a>
+          <a class="nav-item nav-link" href="../settings/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              settings
+            </span>
+            Settings
+          </a>
+          <div class="navdrawer-divider"></div>
+          <a class="nav-item nav-link" href="../profile/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              account_circle
+            </span>
+            My Profile
+          </a>
+          <a class="nav-item nav-link" href="../support/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              contact_support
+            </span>
+            Support
+          </a>
+          <a class="nav-item nav-link" href="../logout/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              logout
+            </span>
+            Log Out
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col col-sm-4 offset-sm-4">
+          <h2 class="text-center text-uppercase my-4">Virtual Invites</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-sm-4 offset-sm-4">
+          <div class="list-group">
+            <a href="send/" class="list-group-item list-group-item-action"
+              >Send an Invite</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="snackbar">
+        <div class="snackbar-body"></div>
+      </div>
+    </div>
+
+    <br /><br /><br /><br />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
+    <script src="../js/qrious/qrious.min.js"></script>
+    <script src="../js/global.js"></script>
+    <script src="logic.js"></script>
+  </body>
+</html>
