@@ -26,6 +26,7 @@ function onCountryChange(e) {
 
   if (countryCode === "") {
     churchContainer.classList.add("d-none");
+    unlistedchurchcontainer.classList.add("d-none");
     return;
   }
 
@@ -56,8 +57,7 @@ function onCountryChange(e) {
 async function populateCountries() {
   const countryDropdown = document.querySelector("#country");
   const emptyOption = document.createElement("option");
-  emptyOption.value = "";
-  emptyOption.innerHTML = "(Select)";
+  emptyOption.label = " ";
   countryDropdown.appendChild(emptyOption);
   fetch("../data/json/countries.json")
     .then(res => res.json())
@@ -69,21 +69,21 @@ async function populateCountries() {
         countryOption.innerHTML = name;
         countryDropdown.appendChild(countryOption);
       });
+      $('.floating-label .custom-select, .floating-label .form-control').floatinglabel();
     });
 }
 
 async function populateChurches() {
   const churchDropdown = document.querySelector("#church");
   const emptyOption = document.createElement("option");
-  emptyOption.value = "";
-  emptyOption.innerHTML = "(Select)";
+  emptyOption.label = " ";
   churchDropdown.appendChild(emptyOption);
   const nonMemberOption = document.createElement("option");
   nonMemberOption.value = "-1";
-  nonMemberOption.innerText = "I am not a member of the ICC";
+  nonMemberOption.innerText = "Not an ICC member";
   const notListedOption = document.createElement("option");
   notListedOption.value = "0";
-  notListedOption.innerText = "My ICC church is not listed here";
+  notListedOption.innerText = "My church is not listed";
   const noneOfTheAboveOptgroup = document.createElement("optgroup");
   noneOfTheAboveOptgroup.label = "None of the above:";
   fetch("../data/json/churches.json")
@@ -116,10 +116,11 @@ async function populateChurches() {
           noneOfTheAboveOptgroup.appendChild(notListedOption);
         });
       });
+      $('.floating-label .custom-select, .floating-label .form-control').floatinglabel();
     });
 }
 
-function addListeners() {
+function attachListeners() {
   document.querySelector("#country").addEventListener("change", onCountryChange);
   document.querySelector("#church").addEventListener("change", onChurchChange);
 }
@@ -127,8 +128,7 @@ function addListeners() {
 function init() {
   populateCountries();
   populateChurches();
-  addListeners();
-  enableTooltips();
+  attachListeners();
 }
 
 init();

@@ -110,57 +110,77 @@
       >
         <div class="row">
           <div class="col-md-6 offset-md-3">
-            <div class="form-group row">
-              <label for="username" class="col-sm-2 col-form-label">
-                <strong>Username:</strong>
-              </label>
-              <div class="col-sm-10">
+            <div class="form-group mt-3 mb-5">
+              <div class="floating-label">
+                <label for="username">
+                  <strong>Username</strong>
+                </label>
                 <input
                   autocapitalize="off"
                   type="text"
                   class="form-control"
                   id="username"
-                  placeholder="Username"
                 />
               </div>
             </div>
 
-            <div class="form-group row">
-              <label for="password" class="col-sm-2 col-form-label">
-                <strong>Password:</strong>
-              </label>
-              <div class="col-sm-10">
+            <div class="form-group my-5">
+              <div class="floating-label">
+                <label for="password">
+                  <strong>Password</strong>
+                </label>
+
                 <input
                   autocomplete="new-password"
                   autocapitalize="off"
                   type="password"
                   class="form-control"
                   id="password"
-                  placeholder="Password"
                 />
               </div>
             </div>
 
-            <div class="form-group row">
-              <label for="email" class="col-sm-2 col-form-label">
-                <strong>E-mail:</strong>
-              </label>
-              <div class="col-sm-10">
+            <div class="form-group my-5">
+              <div class="floating-label">
+                <label for="email">
+                  <strong>E-mail</strong>
+                </label>
+
                 <input
                   autocapitalize="off"
                   type="email"
                   class="form-control"
                   id="email"
-                  placeholder="E-mail address"
                 />
               </div>
             </div>
 
-            <div class="form-group row">
-              <label for="country" class="col-sm-2 col-form-label">
-                <strong>Country where I attend church:</strong>
-              </label>
-              <div class="col-sm-10">
+            <div class="form-group my-5">
+              <div class="floating-label">
+                <label for="firstname">
+                  <strong>First name</strong>
+                </label>
+
+                <input type="text" class="form-control" id="firstname" />
+              </div>
+            </div>
+
+            <div class="form-group my-5">
+              <div class="floating-label">
+                <label for="lastname">
+                  <strong>Last name</strong>
+                </label>
+
+                <input type="text" class="form-control" id="lastaname" />
+              </div>
+            </div>
+
+            <div class="form-group my-5">
+              <div class="floating-label">
+                <label for="country"
+                  ><strong>Country where I attend church</strong></label
+                >
+
                 <select
                   name="country"
                   id="country"
@@ -169,38 +189,22 @@
               </div>
             </div>
 
-            <div class="form-group row d-none" id="churchcontainer">
-              <label for="country" class="col-sm-2 col-form-label">
-                <strong
-                  >My
-                  <span
-                    data-toggle="tooltip"
-                    data-placement="right"
-                    title="ICC = International Christian Church"
-                    >ICC</span
-                  >
-                  church:</strong
-                >
-              </label>
-              <div class="col-sm-10">
+            <div class="form-group my-5 d-none" id="churchcontainer">
+              <div class="floating-label">
+                <label for="country">
+                  <strong>My ICC church</strong>
+                </label>
+
                 <select name="church" id="church" class="form-control"></select>
               </div>
             </div>
 
-            <div class="form-group row d-none" id="unlistedchurchcontainer">
-              <label for="unlistedchurch" class="col-sm-2 col-form-label">
-                <strong
-                  >City of my
-                  <span
-                    data-toggle="tooltip"
-                    data-placement="right"
-                    title="ICC = International Christian Church"
-                    >ICC</span
-                  >
-                  church:</strong
-                >
-              </label>
-              <div class="col-sm-10">
+            <div class="form-group my-5 d-none" id="unlistedchurchcontainer">
+              <div class="floating-label">
+                <label for="unlistedchurch">
+                  <strong>City of my ICC church</strong>
+                </label>
+
                 <input
                   type="text"
                   name="unlistedchurch"

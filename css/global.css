@@ -72,9 +72,14 @@ h6 {
   color: var(--primary);
   filter: brightness(75%);
   font-family: Lato, sans-serif;
-  font-size: 1.3rem;
-  margin-top: -0.5rem;
+  font-size: 1.1rem;
+  margin-top: -0.25rem;
   text-transform: uppercase;
+}
+
+.floating-label.is-focused label:after,
+.floating-label.has-value label:after {
+  content: ":";
 }
 
 a {
