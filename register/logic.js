@@ -11,10 +11,16 @@ function onCountryChange(e) {
     return;
   }
 
-  churchContainer.querySelectorAll("optgroup").forEach(item => item.classList.add("d-none"));
+  churchContainer.querySelectorAll("optgroup").forEach(item => {
+    item.classList.add("d-none");
+  });
 
   churchContainer.querySelectorAll("optgroup").forEach(item => {
     const churchCountryCode = item.getAttribute("data-country");
+    const optgroupLabel = item.getAttribute("label");
+    if (optgroupLabel === "None of these:") {
+      item.classList.remove("d-none");
+    }
     if (countryCode === churchCountryCode) {
       countryHasChurches = true;
       item.classList.remove("d-none");
