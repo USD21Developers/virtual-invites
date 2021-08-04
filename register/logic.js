@@ -1,18 +1,28 @@
 function onCountryChange(e) {
   const countryCode = e.target.value;
+  const church = document.querySelector("#church");
   const churchContainer = document.querySelector("#churchcontainer");
+  let countryHasChurches = false;
 
-  document.querySelectorAll("optgroup").forEach(item => {
+  church.value = "";
+
+  if (countryCode === "") {
+    churchContainer.classList.add("d-none");
+    return;
+  }
+
+  churchContainer.querySelectorAll("optgroup").forEach(item => item.classList.add("d-none"));
+
+  churchContainer.querySelectorAll("optgroup").forEach(item => {
     const churchCountryCode = item.getAttribute("data-country");
-    item.classList.add("d-none");
-    if (churchCountryCode === countryCode) {
+    if (countryCode === churchCountryCode) {
+      countryHasChurches = true;
       item.classList.remove("d-none");
     }
   });
 
-  if (e.target.value === "") {
-    churchContainer.classList.add("d-none");
-  } else {
+  if (!countryHasChurches) {
+    churchContainer.querySelectorAll("optgroup").forEach(item => item.classList.remove("d-none"));
     churchContainer.classList.remove("d-none");
   }
 }
@@ -42,6 +52,17 @@ async function populateChurches() {
   emptyOption.value = "";
   emptyOption.innerHTML = "(Select)";
   churchDropdown.appendChild(emptyOption);
+  const nonMemberOption = document.createElement("option");
+  nonMemberOption.value = "-1";
+  nonMemberOption.innerText = "I am not a member of the ICC";
+  const notListedOption = document.createElement("option");
+  notListedOption.value = "0";
+  notListedOption.innerText = "My ICC church is not listed below";
+  const noneOfTheseOptgroup = document.createElement("optgroup");
+  noneOfTheseOptgroup.label = "None of these:";
+  churchDropdown.appendChild(noneOfTheseOptgroup);
+  noneOfTheseOptgroup.appendChild(nonMemberOption);
+  noneOfTheseOptgroup.appendChild(notListedOption);
   fetch("../data/json/churches.json")
     .then(res => res.json())
     .then(countries => {
