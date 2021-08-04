@@ -1,3 +1,7 @@
+function enableTooltips() {
+  $('[data-toggle="tooltip"]').tooltip();
+}
+
 function getApiHost() {
   let host;
 
@@ -21,6 +25,10 @@ function isMobileDevice() {
   return result;
 };
 
+function showMaterialIcons() {
+  document.querySelectorAll(".material-icons").forEach(item => item.style.opacity = "1");
+}
+
 function showToast(message, duration = 5000) {
   const snackbar = document.querySelector(".snackbar");
   const body = document.querySelector(".snackbar-body");
@@ -30,10 +38,6 @@ function showToast(message, duration = 5000) {
   setTimeout(() => {
     snackbar.classList.remove("show");
   }, duration);
-}
-
-function showMaterialIcons() {
-  document.querySelectorAll(".material-icons").forEach(item => item.style.opacity = "1");
 }
 
 function init() {

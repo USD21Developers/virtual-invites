@@ -128,6 +128,8 @@ function init() {
   populateCountries();
   populateChurches();
   addListeners();
+  enableTooltips();
+  showToast();
 }
 
 init();
