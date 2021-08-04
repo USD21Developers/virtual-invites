@@ -1,0 +1,273 @@
+[
+  {
+    "country": {
+      "alpha2": "us",
+      "name": "United States"
+    },
+    "churches": [
+      {
+        "id": 1,
+        "city": "Phoenix",
+        "state": "AZ"
+      },
+      {
+        "id": 2,
+        "city": "Los Angeles",
+        "state": "CA"
+      },
+      {
+        "id": 3,
+        "city": "Sacramento",
+        "state": "CA"
+      },
+      {
+        "id": 4,
+        "city": "San Diego",
+        "state": "CA"
+      },
+      {
+        "id": 5,
+        "city": "San Francisco",
+        "state": "CA"
+      },
+      {
+        "id": 6,
+        "city": "Denver",
+        "state": "CO"
+      },
+      {
+        "id": 7,
+        "city": "New Haven",
+        "state": "CT"
+      },
+      {
+        "id": 8,
+        "city": "Washington",
+        "state": "DC"
+      },
+      {
+        "id": 9,
+        "city": "Gainesville",
+        "state": "FL"
+      },
+      {
+        "id": 10,
+        "city": "Miami",
+        "state": "FL"
+      },
+      {
+        "id": 11,
+        "city": "Orlando",
+        "state": "FL"
+      },
+      {
+        "id": 12,
+        "city": "Tampa Bay",
+        "state": "FL"
+      },
+      {
+        "id": 13,
+        "city": "Atlanta",
+        "state": "GA"
+      },
+      {
+        "id": 32,
+        "territory": "Guam"
+      },
+      {
+        "id": 14,
+        "city": "Hilo",
+        "state": "HI"
+      },
+      {
+        "id": 15,
+        "city": "Honolulu",
+        "state": "HI"
+      },
+      {
+        "id": 16,
+        "city": "Kona",
+        "state": "HI"
+      },
+      {
+        "id": 17,
+        "city": "Chicago",
+        "state": "IL"
+      },
+      {
+        "id": 18,
+        "city": "Indianapolis",
+        "state": "IN"
+      },
+      {
+        "id": 19,
+        "city": "Boston",
+        "state": "MA"
+      },
+      {
+        "id": 20,
+        "city": "Charlotte",
+        "state": "NC"
+      },
+      {
+        "id": 21,
+        "city": "Albuquerque",
+        "state": "NM"
+      },
+      {
+        "id": 22,
+        "city": "Las Vegas",
+        "state": "NV"
+      },
+      {
+        "id": 23,
+        "city": "New York City",
+        "state": "NY"
+      },
+      {
+        "id": 24,
+        "city": "Syracuse",
+        "state": "NY"
+      },
+      {
+        "id": 25,
+        "city": "Columbus",
+        "state": "OH"
+      },
+      {
+        "id": 26,
+        "city": "Eugene",
+        "state": "OR"
+      },
+      {
+        "id": 27,
+        "city": "Portland",
+        "state": "OR"
+      },
+      {
+        "id": 28,
+        "city": "Dallas/Ft. Worth",
+        "state": "TX"
+      },
+      {
+        "id": 29,
+        "city": "Houston",
+        "state": "TX"
+      },
+      {
+        "id": 30,
+        "city": "Seattle",
+        "state": "WA"
+      },
+      {
+        "id": 31,
+        "city": "Milwaukee",
+        "state": "WI"
+      }
+    ]
+  },
+  {
+    "country": {
+      "alpha2": "br",
+      "name": "Brazil"
+    },
+    "churches": [
+      {
+        "id": 39,
+        "city": "Rio de Janeiro"
+      },
+      {
+        "id": 40,
+        "city": "São Paulo"
+      }
+    ]
+  },
+  {
+    "country": {
+      "alpha2": "ca",
+      "name": "Canada"
+    },
+    "churches": [
+      {
+        "id": 33,
+        "city": "Toronto"
+      }
+    ]
+  },
+  {
+    "country": {
+      "alpha2": "cl",
+      "name": "Chile"
+    },
+    "churches": [
+      {
+        "id": 41,
+        "city": "Santiago"
+      }
+    ]
+  },
+  {
+    "country": {
+      "alpha2": "co",
+      "name": "Columbia"
+    },
+    "churches": [
+      {
+        "id": 34,
+        "city": "Bogotá"
+      }
+    ]
+  },
+  {
+    "country": {
+      "alpha2": "ec",
+      "name": "Ecuador"
+    },
+    "churches": [
+      {
+        "id": 38,
+        "city": "Quito"
+      }
+    ]
+  },
+  {
+    "country": {
+      "alpha2": "mx",
+      "name": "Mexico"
+    },
+    "churches": [
+      {
+        "id": 36,
+        "city": "Mexico City"
+      },
+      {
+        "id": 37,
+        "city": "Monterrey"
+      }
+    ]
+  },
+  {
+    "country": {
+      "alpha2": "pe",
+      "name": "Peru"
+    },
+    "churches": [
+      {
+        "id": 36,
+        "city": "Lima"
+      }
+    ]
+  },
+  {
+    "country": {
+      "alpha2": "ve",
+      "name": "Venezuela"
+    },
+    "churches": [
+      {
+        "id": 35,
+        "city": "Estado Miranda"
+      }
+    ]
+  }
+]
