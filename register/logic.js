@@ -129,7 +129,6 @@ function init() {
   populateChurches();
   addListeners();
   enableTooltips();
-  showToast();
 }
 
 init();
