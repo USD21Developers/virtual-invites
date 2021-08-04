@@ -1,10 +1,28 @@
+function onChurchChange(e) {
+  const churchid = e.target.value;
+  const unlistedchurch = document.querySelector("#unlistedchurch");
+  const unlistedchurchcontainer = document.querySelector("#unlistedchurchcontainer");
+
+  unlistedchurch.value = "";
+
+  if (churchid == 0) {
+    unlistedchurchcontainer.classList.remove("d-none");
+  } else {
+    unlistedchurchcontainer.classList.add("d-none");
+  }
+}
+
 function onCountryChange(e) {
   const countryCode = e.target.value;
   const church = document.querySelector("#church");
   const churchContainer = document.querySelector("#churchcontainer");
+  const unlistedchurch = document.querySelector("#unlistedchurch");
+  const unlistedchurchcontainer = document.querySelector("#unlistedchurchcontainer");
   let countryHasChurches = false;
 
   church.value = "";
+  unlistedchurch.value = "";
+  unlistedchurchcontainer.classList.add("d-none");
 
   if (countryCode === "") {
     churchContainer.classList.add("d-none");
@@ -15,15 +33,17 @@ function onCountryChange(e) {
     item.classList.add("d-none");
   });
 
+
   churchContainer.querySelectorAll("optgroup").forEach(item => {
     const churchCountryCode = item.getAttribute("data-country");
     const optgroupLabel = item.getAttribute("label");
-    if (optgroupLabel === "None of these:") {
+    if (optgroupLabel === "None of the above:") {
       item.classList.remove("d-none");
     }
     if (countryCode === churchCountryCode) {
       countryHasChurches = true;
       item.classList.remove("d-none");
+      churchContainer.classList.remove("d-none");
     }
   });
 
@@ -63,12 +83,9 @@ async function populateChurches() {
   nonMemberOption.innerText = "I am not a member of the ICC";
   const notListedOption = document.createElement("option");
   notListedOption.value = "0";
-  notListedOption.innerText = "My ICC church is not listed below";
-  const noneOfTheseOptgroup = document.createElement("optgroup");
-  noneOfTheseOptgroup.label = "None of these:";
-  churchDropdown.appendChild(noneOfTheseOptgroup);
-  noneOfTheseOptgroup.appendChild(nonMemberOption);
-  noneOfTheseOptgroup.appendChild(notListedOption);
+  notListedOption.innerText = "My ICC church is not listed here";
+  const noneOfTheAboveOptgroup = document.createElement("optgroup");
+  noneOfTheAboveOptgroup.label = "None of the above:";
   fetch("../data/json/churches.json")
     .then(res => res.json())
     .then(countries => {
@@ -93,6 +110,10 @@ async function populateChurches() {
           option.innerText = text;
           optgroup.appendChild(option);
           optgroup.setAttribute("data-country", countryCode);
+
+          churchDropdown.appendChild(noneOfTheAboveOptgroup);
+          noneOfTheAboveOptgroup.appendChild(nonMemberOption);
+          noneOfTheAboveOptgroup.appendChild(notListedOption);
         });
       });
     });
@@ -100,6 +121,7 @@ async function populateChurches() {
 
 function addListeners() {
   document.querySelector("#country").addEventListener("change", onCountryChange);
+  document.querySelector("#church").addEventListener("change", onChurchChange);
 }
 
 function init() {
