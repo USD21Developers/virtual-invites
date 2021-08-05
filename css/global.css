@@ -1,6 +1,6 @@
 :root {
   --primary: #0d6efd;
-  --primary-dark: #c3c9d3;
+  --primary-dark: #083d8d;
   --primary-light: #0d6efd;
   --secondary: #6c757d;
   --secondary-dark: #6c757d;
@@ -73,6 +73,7 @@ h6 {
   filter: brightness(75%);
   font-family: Lato, sans-serif;
   font-size: 1.1rem;
+  font-weight: 600;
   margin-top: -0.25rem;
   text-transform: uppercase;
 }
@@ -82,7 +83,7 @@ h6 {
   content: ":";
   font-family: Lato, sans-serif;
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 a {
