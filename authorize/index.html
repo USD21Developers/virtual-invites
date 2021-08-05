@@ -7,14 +7,13 @@
       content="initial-scale=1, shrink-to-fit=no, width=device-width"
       name="viewport"
     />
-    <title>Virtual Invites</title>
+    <title>Authorize a New User</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400&display=swap"
       rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
       rel="stylesheet"
@@ -27,12 +26,7 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <link
-      href="../js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
-      rel="stylesheet"
-    />
     <link href="../css/global.css" rel="stylesheet" />
-    <link href="index.css" rel="stylesheet" />
   </head>
   <body>
     <nav class="navbar navbar-light bg-light sticky-top border-bottom">
@@ -80,7 +74,7 @@
           </div>
         </div>
         <nav class="navdrawer-nav">
-          <a class="nav-item nav-link active" href="../">
+          <a class="nav-item nav-link" href="../">
             <span class="material-icons mr-3 material-icons-outlined">
               home
             </span>
@@ -110,13 +104,19 @@
             </span>
             Maps
           </a>
+          <a class="nav-item nav-link active" href="../authorize/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              approval
+            </span>
+            Authorize a New User
+          </a>
+          <div class="navdrawer-divider"></div>
           <a class="nav-item nav-link" href="../settings/">
             <span class="material-icons mr-3 material-icons-outlined">
               settings
             </span>
             Settings
           </a>
-          <div class="navdrawer-divider"></div>
           <a class="nav-item nav-link" href="../profile/">
             <span class="material-icons mr-3 material-icons-outlined">
               account_circle
@@ -141,25 +141,40 @@
 
     <div class="container">
       <div class="row">
-        <div class="col col-sm-4 offset-sm-4">
-          <h2 class="text-center text-uppercase my-4">Virtual Invites</h2>
+        <div class="col col-md-6 offset-md-3">
+          <h2 class="text-center text-uppercase my-4">Authorize a New User</h2>
+          <p>
+            To use this app according to its intended purpose, all registered
+            users must be members in good standing with the International
+            Christian Churches (ICC). To achieve this, all users must be
+            authorized. We have pre-authorized all users who successfully
+            registered with a "<strong>usd21.org</strong>" e-mail address, and
+            we give these users the ability to grant access to all other
+            registrants.
+          </p>
+
+          <p align="center">You have a "usd21.org" e-mail address.</p>
+
+          <p>
+            To grant access to a new registrant, please first verify that they
+            are a member in good standing with the ICC. Then complete the form
+            below.
+          </p>
         </div>
       </div>
-      <div class="row">
-        <div class="col col-sm-4 offset-sm-4">
-          <div class="list-group">
-            <a href="register/" class="list-group-item list-group-item-action">
-              Register
-            </a>
-            <a href="authorize/" class="list-group-item list-group-item-action">
-              Authorize a New User
-            </a>
-            <a href="send/" class="list-group-item list-group-item-action">
-              Send an Invite
-            </a>
-          </div>
+      <div class="row my-5">
+        <div class="col col-md-6 offset-md-3 text-center">
+          [ INSERT FORM HERE ]
         </div>
       </div>
+
+      <form
+        name="formauthorize"
+        id="formlogin"
+        method="post"
+        action="./"
+        novalidate
+      ></form>
 
       <div class="snackbar">
         <div class="snackbar-body"></div>
@@ -172,9 +187,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
-    <script src="../js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
-    <script src="../js/qrious/qrious.min.js"></script>
     <script src="../js/global.js"></script>
-    <script src="index.js"></script>
+    <script src="logic.js"></script>
   </body>
 </html>
