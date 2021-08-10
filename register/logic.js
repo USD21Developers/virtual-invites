@@ -14,13 +14,13 @@ function onChurchChange(e) {
 
 function onCountryChange(e) {
   const countryCode = e.target.value;
-  const church = document.querySelector("#church");
+  const churchid = document.querySelector("#churchid");
   const churchContainer = document.querySelector("#churchcontainer");
   const unlistedchurch = document.querySelector("#unlistedchurch");
   const unlistedchurchcontainer = document.querySelector("#unlistedchurchcontainer");
   let countryHasChurches = false;
 
-  church.value = "";
+  churchid.value = "";
   unlistedchurch.value = "";
   unlistedchurchcontainer.classList.add("d-none");
 
@@ -54,6 +54,39 @@ function onCountryChange(e) {
   }
 }
 
+function onSubmit(e) {
+  e.preventDefault();
+  const username = document.querySelector("#username").value.trim().toLowerCase() || "";
+  const password = document.querySelector("#password").value.trim() || "";
+  const email = document.querySelector("#email").value.trim().toLowerCase() || "";
+  const firstname = document.querySelector("#firstname").value.trim() || "";
+  const lastname = document.querySelector("#lastname").value.trim() || "";
+  const country = document.querySelector("#country").value.trim() || "";
+  const churchid = document.querySelector("#churchid").value.trim() || "";
+  const unlistedchurch = document.querySelector("#unlistedchurch").value.trim() || "";
+  const lang = getLang();
+  const endpoint = `${getApiHost()}/register`;
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "POST",
+    body: JSON.stringify({
+      username: username,
+      password: password,
+      email: email,
+      firstname: firstname,
+      lastname: lastname,
+      country: country,
+      churchid: churchid,
+      unlistedchurch: unlistedchurch,
+      lang: lang
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json"
+    })
+  }).then(res => res.json()).then(data => console.log(data));
+}
+
 async function populateCountries() {
   const countryDropdown = document.querySelector("#country");
   const emptyOption = document.createElement("option");
@@ -74,7 +107,7 @@ async function populateCountries() {
 }
 
 async function populateChurches() {
-  const churchDropdown = document.querySelector("#church");
+  const churchDropdown = document.querySelector("#churchid");
   const emptyOption = document.createElement("option");
   emptyOption.label = " ";
   churchDropdown.appendChild(emptyOption);
@@ -122,7 +155,8 @@ async function populateChurches() {
 
 function attachListeners() {
   document.querySelector("#country").addEventListener("change", onCountryChange);
-  document.querySelector("#church").addEventListener("change", onChurchChange);
+  document.querySelector("#churchid").addEventListener("change", onChurchChange);
+  document.querySelector("#formlogin").addEventListener("submit", onSubmit);
 }
 
 function init() {

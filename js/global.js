@@ -7,7 +7,7 @@ function getApiHost() {
 
   switch (window.location.hostname) {
     case "localhost":
-      host = `${window.location.origin}/api`;
+      host = `http://${window.location.hostname}:4000/invites`;
       break;
     case "staging.invites.usd21.org":
       host = "https://api.usd21.org/invites/staging/api";
@@ -18,6 +18,12 @@ function getApiHost() {
   }
 
   return host;
+}
+
+function getLang() {
+  const path = window.location.pathname.split("/");
+  const langFromPath = path.find(frag => frag === "lang") ? path[2] : "en";
+  return langFromPath;
 }
 
 function isMobileDevice() {
