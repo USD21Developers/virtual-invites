@@ -16,7 +16,7 @@ function formError(selector, message = "") {
   feedback.innerHTML = message;
   element.classList.add("is-invalid");
   window.scrollTo({ top: offsetPosition, behavior: "smooth", block: "center" });
-  element.focus();
+  if (!isMobileDevice()) element.focus();
 }
 
 function formErrorsReset() {
