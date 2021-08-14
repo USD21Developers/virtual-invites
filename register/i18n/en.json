@@ -1,0 +1,140 @@
+{
+  "metadata": {
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "register-headline",
+      "original": "Register!",
+      "translated": "Register!"
+    },
+    {
+      "key": "register-headline",
+      "original": "Register!",
+      "translated": "Register!"
+    },
+    {
+      "key": "register-byline",
+      "original": "For access to this app, please register by completing the form below.",
+      "translated": "For access to this app, please register by completing the form below."
+    },
+    {
+      "key": "label-username",
+      "original": "Username",
+      "translated": "Username"
+    },
+    {
+      "key": "label-password",
+      "original": "Password",
+      "translated": "Password"
+    },
+    {
+      "key": "label-email",
+      "original": "E-mail",
+      "translated": "E-mail"
+    },
+    {
+      "key": "label-first-name",
+      "original": "First name",
+      "translated": "First name"
+    },
+    {
+      "key": "label-last-name",
+      "original": "Last name",
+      "translated": "Last name"
+    },
+    {
+      "key": "label-country",
+      "original": "Country",
+      "translated": "Country"
+    },
+    {
+      "key": "label-my-icc-church",
+      "original": "My ICC church",
+      "translated": "My ICC church"
+    },
+    {
+      "key": "label-unlisted-church",
+      "original": "City of my ICC church",
+      "translated": "City of my ICC church"
+    },
+    {
+      "key": "register-button",
+      "original": "REGISTER",
+      "translated": "REGISTER"
+    },
+    {
+      "key": "login-link",
+      "original": "Log In",
+      "translated": "Log In"
+    },
+    {
+      "key": "nonMemberOption",
+      "original": "Not an ICC member",
+      "translated": "Not an ICC member"
+    },
+    {
+      "key": "notListedOption",
+      "original": "My church is not listed",
+      "translated": "My church is not listed"
+    },
+    {
+      "key": "noneOfTheAboveOptgroup",
+      "original": "None of the above:",
+      "translated": "None of the above:"
+    },
+    {
+      "key": "emailSenderText",
+      "original": "Invites",
+      "translated": "Invites"
+    },
+    {
+      "key": "emailSubject",
+      "original": "Confirm your registration",
+      "translated": "Confirm your registration"
+    },
+    {
+      "key": "emailParagraph1",
+      "original": "This message is for ${fullname}. In order to complete your registration, please click on the link below:",
+      "translated": "This message is for ${fullname}. In order to complete your registration, please click on the link below:"
+    },
+    {
+      "key": "emailLinkText",
+      "original": "Confirm my registration",
+      "translated": "Confirm my registration"
+    },
+    {
+      "key": "emailSignature",
+      "original": "The Cyberministry",
+      "translated": "The Cyberministry"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

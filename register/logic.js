@@ -38,7 +38,8 @@ function onCountryChange(e) {
   churchContainer.querySelectorAll("optgroup").forEach(item => {
     const churchCountryCode = item.getAttribute("data-country");
     const optgroupLabel = item.getAttribute("label");
-    if (optgroupLabel === "None of the above:") {
+    const optgroupText = getPhrase("noneOfTheAboveOptgroup");
+    if (optgroupLabel === optgroupText) {
       item.classList.remove("d-none");
     }
     if (countryCode === churchCountryCode) {
@@ -64,8 +65,15 @@ function onSubmit(e) {
   const country = document.querySelector("#country").value.trim() || "";
   const churchid = document.querySelector("#churchid").value.trim() || "";
   const unlistedchurch = document.querySelector("#unlistedchurch").value.trim() || "";
+  const emailSenderText = getPhrase("emailSenderText");
+  const emailSubject = getPhrase("emailSubject");
+  let emailParagraph1 = getPhrase("emailParagraph1");
+  const emailLinkText = getPhrase("emailLinkText");
+  const emailSignature = getPhrase("emailSignature");
   const lang = getLang();
   const endpoint = `${getApiHost()}/register`;
+
+  emailParagraph1 = emailParagraph1.replaceAll("${fullname}", `${firstname} ${lastname}`);
 
   fetch(endpoint, {
     mode: "cors",
@@ -79,7 +87,12 @@ function onSubmit(e) {
       country: country,
       churchid: churchid,
       unlistedchurch: unlistedchurch,
-      lang: lang
+      lang: lang,
+      emailSenderText: emailSenderText,
+      emailSubject: emailSubject,
+      emailParagraph1: emailParagraph1,
+      emailLinkText: emailLinkText,
+      emailSignature: emailSignature,
     }),
     headers: new Headers({
       "Content-Type": "application/json"
@@ -87,70 +100,84 @@ function onSubmit(e) {
   }).then(res => res.json()).then(data => console.log(data));
 }
 
-async function populateCountries() {
-  const countryDropdown = document.querySelector("#country");
-  const emptyOption = document.createElement("option");
-  emptyOption.label = " ";
-  countryDropdown.appendChild(emptyOption);
-  fetch("../data/json/countries.json")
-    .then(res => res.json())
-    .then(data => {
-      data.forEach(item => {
-        const { alpha2, name } = item;
-        const countryOption = document.createElement("option");
-        countryOption.value = alpha2;
-        countryOption.innerHTML = name;
-        countryDropdown.appendChild(countryOption);
+function populateChurches() {
+  return new Promise((resolve, reject) => {
+    const churchDropdown = document.querySelector("#churchid");
+    const emptyOption = document.createElement("option");
+    emptyOption.label = " ";
+    churchDropdown.appendChild(emptyOption);
+    const nonMemberOption = document.createElement("option");
+    nonMemberOption.value = "-1";
+    nonMemberOption.innerText = getPhrase("nonMemberOption");
+    const notListedOption = document.createElement("option");
+    notListedOption.value = "0";
+    notListedOption.innerText = getPhrase("notListedOption");
+    const noneOfTheAboveOptgroup = document.createElement("optgroup");
+    noneOfTheAboveOptgroup.label = getPhrase("noneOfTheAboveOptgroup");
+    const lang = getLang();
+    fetch(`../data/json/lang/${lang}/churches.json`)
+      .then(res => res.json())
+      .then(countries => {
+        countries.forEach(item => {
+          const { name: countryName, alpha2: countryCode } = item.country;
+          const optgroup = document.createElement("optgroup");
+          optgroup.label = `${countryName}:`;
+          churchDropdown.appendChild(optgroup);
+          item.churches.forEach(church => {
+            let text = "";
+            if (church.hasOwnProperty("city")) text = church.city;
+            if (church.hasOwnProperty("state")) text += `, ${church.state}`;
+            if (church.hasOwnProperty("territory")) {
+              if (church.hasOwnProperty("city")) {
+                text += `, ${church.territory}`;
+              } else {
+                text = church.territory;
+              }
+            }
+            const option = document.createElement("option");
+            option.value = church.id;
+            option.innerText = text;
+            optgroup.appendChild(option);
+            optgroup.setAttribute("data-country", countryCode);
+
+            churchDropdown.appendChild(noneOfTheAboveOptgroup);
+            noneOfTheAboveOptgroup.appendChild(nonMemberOption);
+            noneOfTheAboveOptgroup.appendChild(notListedOption);
+          });
+        });
+        $('.floating-label .custom-select, .floating-label .form-control').floatinglabel();
+        resolve();
+      })
+      .catch(err => {
+        reject(err);
       });
-      $('.floating-label .custom-select, .floating-label .form-control').floatinglabel();
-    });
+  });
 }
 
-async function populateChurches() {
-  const churchDropdown = document.querySelector("#churchid");
-  const emptyOption = document.createElement("option");
-  emptyOption.label = " ";
-  churchDropdown.appendChild(emptyOption);
-  const nonMemberOption = document.createElement("option");
-  nonMemberOption.value = "-1";
-  nonMemberOption.innerText = "Not an ICC member";
-  const notListedOption = document.createElement("option");
-  notListedOption.value = "0";
-  notListedOption.innerText = "My church is not listed";
-  const noneOfTheAboveOptgroup = document.createElement("optgroup");
-  noneOfTheAboveOptgroup.label = "None of the above:";
-  fetch("../data/json/churches.json")
-    .then(res => res.json())
-    .then(countries => {
-      countries.forEach(item => {
-        const { name: countryName, alpha2: countryCode } = item.country;
-        const optgroup = document.createElement("optgroup");
-        optgroup.label = `${countryName}:`;
-        churchDropdown.appendChild(optgroup);
-        item.churches.forEach(church => {
-          let text = "";
-          if (church.hasOwnProperty("city")) text = church.city;
-          if (church.hasOwnProperty("state")) text += `, ${church.state}`;
-          if (church.hasOwnProperty("territory")) {
-            if (church.hasOwnProperty("city")) {
-              text += `, ${church.territory}`;
-            } else {
-              text = church.territory;
-            }
-          }
-          const option = document.createElement("option");
-          option.value = church.id;
-          option.innerText = text;
-          optgroup.appendChild(option);
-          optgroup.setAttribute("data-country", countryCode);
-
-          churchDropdown.appendChild(noneOfTheAboveOptgroup);
-          noneOfTheAboveOptgroup.appendChild(nonMemberOption);
-          noneOfTheAboveOptgroup.appendChild(notListedOption);
+function populateCountries() {
+  return new Promise((resolve, reject) => {
+    const countryDropdown = document.querySelector("#country");
+    const emptyOption = document.createElement("option");
+    const lang = getLang();
+    emptyOption.label = " ";
+    countryDropdown.appendChild(emptyOption);
+    fetch(`../data/json/lang/${lang}/countries.json`)
+      .then(res => res.json())
+      .then(data => {
+        data.forEach(item => {
+          const { alpha2, name } = item;
+          const countryOption = document.createElement("option");
+          countryOption.value = alpha2;
+          countryOption.innerHTML = name;
+          countryDropdown.appendChild(countryOption);
         });
+        $('.floating-label .custom-select, .floating-label .form-control').floatinglabel();
+        resolve();
+      })
+      .catch(err => {
+        reject(err);
       });
-      $('.floating-label .custom-select, .floating-label .form-control').floatinglabel();
-    });
+  })
 }
 
 function attachListeners() {
@@ -159,10 +186,13 @@ function attachListeners() {
   document.querySelector("#formlogin").addEventListener("submit", onSubmit);
 }
 
-function init() {
-  populateCountries();
-  populateChurches();
-  attachListeners();
+async function init() {
+  await populateContent();
+  const churches = populateChurches();
+  const countries = populateCountries();
+  Promise.all([churches, countries]).then(() => {
+    attachListeners();
+  });
 }
 
 init();
