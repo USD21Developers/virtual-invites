@@ -75,6 +75,10 @@ function onSubmit(e) {
 
   emailParagraph1 = emailParagraph1.replaceAll("${fullname}", `${firstname} ${lastname}`);
 
+  formErrorsReset();
+  const isvalid = validate();
+  if (!isvalid) return;
+
   fetch(endpoint, {
     mode: "cors",
     method: "POST",
@@ -178,6 +182,30 @@ function populateCountries() {
         reject(err);
       });
   })
+}
+
+function validate() {
+  let isValid = true;
+
+  const username = document.querySelector("#username").value.trim().toLowerCase() || "";
+  const password = document.querySelector("#password").value.trim() || "";
+  const email = document.querySelector("#email").value.trim().toLowerCase() || "";
+  const firstname = document.querySelector("#firstname").value.trim() || "";
+  const lastname = document.querySelector("#lastname").value.trim() || "";
+  const country = document.querySelector("#country").value.trim() || "";
+  const churchid = document.querySelector("#churchid").value.trim() || "";
+  const unlistedchurch = document.querySelector("#unlistedchurch").value.trim() || "";
+
+  if (!username.length) return formError("#username", getPhrase("usernamerequired"));
+  if (!password.length) return formError("#password", getPhrase("passwordrequired"));
+  if (!email.length) return formError("#email", getPhrase("emailrequired"));
+  if (!firstname.length) return formError("#firstname", getPhrase("firstnamerequired"));
+  if (!lastname.length) return formError("#lastname", getPhrase("lastnamerequired"));
+  if (!country.length) return formError("#country", getPhrase("countryrequired"));
+  if (!churchid.length) return formError("#churchid", getPhrase("churchrequired"));
+  if (churchid == 0 && !unlistedchurch.length) return formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
+
+  return isValid;
 }
 
 function attachListeners() {

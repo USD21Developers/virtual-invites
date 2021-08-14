@@ -4,6 +4,25 @@ function enableTooltips() {
   $('[data-toggle="tooltip"]').tooltip();
 }
 
+function formError(selector, message = "") {
+  const element = document.querySelector(selector);
+  const feedback = document.querySelector(`${selector} + .invalid-feedback`);
+  const offset = 94;
+  const bodyRect = document.body.getBoundingClientRect().top;
+  const elementRect = element.getBoundingClientRect().top;
+  const elementPosition = elementRect - bodyRect;
+  const offsetPosition = elementPosition - offset;
+
+  feedback.innerHTML = message;
+  element.classList.add("is-invalid");
+  window.scrollTo({ top: offsetPosition, behavior: "smooth", block: "center" });
+  element.focus();
+}
+
+function formErrorsReset() {
+  document.querySelectorAll(".is-invalid").forEach(item => item.classList.remove("is-invalid"));
+}
+
 function getApiHost() {
   let host;
 

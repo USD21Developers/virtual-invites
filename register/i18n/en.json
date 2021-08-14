@@ -110,6 +110,46 @@
       "key": "emailSignature",
       "original": "The Cyberministry",
       "translated": "The Cyberministry"
+    },
+    {
+      "key": "usernamerequired",
+      "original": "Username is required",
+      "translated": "Username is required"
+    },
+    {
+      "key": "passwordrequired",
+      "original": "Password is required",
+      "translated": "Password is required"
+    },
+    {
+      "key": "emailrequired",
+      "original": "E-mail address is required",
+      "translated": "E-mail address is required"
+    },
+    {
+      "key": "firstnamerequired",
+      "original": "First name is required",
+      "translated": "First name is required"
+    },
+    {
+      "key": "lastnamerequired",
+      "original": "Last name is required",
+      "translated": "Last name is required"
+    },
+    {
+      "key": "countryrequired",
+      "original": "Country is required",
+      "translated": "Country is required"
+    },
+    {
+      "key": "churchrequired",
+      "original": "Church is required",
+      "translated": "Church is required"
+    },
+    {
+      "key": "unlistedchurchrequired",
+      "original": "City of your ICC church is required",
+      "translated": "City of your ICC church is required"
     }
   ],
 
