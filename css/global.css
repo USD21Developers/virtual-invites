@@ -67,6 +67,10 @@ h6 {
   font-size: 12px;
 }
 
+.modal-title {
+  font-size: 1.5rem;
+}
+
 .floating-label.is-focused label,
 .floating-label.has-value label {
   color: var(--primary);
