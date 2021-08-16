@@ -101,7 +101,91 @@ function onSubmit(e) {
     headers: new Headers({
       "Content-Type": "application/json"
     })
-  }).then(res => res.json()).then(data => console.log(data));
+  })
+    .then(res => res.json())
+    .then(data => {
+      switch (data.msg) {
+        case "username missing":
+          formError("#username", getPhrase("usernamerequired"));
+          break;
+        case "password missing":
+          formError("#password", getPhrase("passwordrequired"));
+          break;
+        case "e-mail missing":
+          formError("#email", getPhrase("emailrequired"));
+          break;
+        case "invalid e-mail":
+          formError("#email", getPhrase("invalidemail"));
+          break;
+        case "first name missing":
+          formError("#firstname", getPhrase("firstnamerequired"));
+          break;
+        case "last name missing":
+          formError("#lastname", getPhrase("lastnamerequired"));
+          break;
+        case "language missing":
+          showModal(getPhrase("glitch"));
+          break;
+        case "country missing":
+          formError("#country", getPhrase("countryrequired"));
+          break;
+        case "churchid missing":
+          formError("#churchid", getPhrase("churchrequired"));
+          break;
+        case "unlisted church missing":
+          formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
+          break;
+        case "unable to query for duplicate username":
+          showModal(getPhrase("glitch"));
+          break;
+        case "username already exists":
+          formError("#username", getPhrase("duplicateusername"));
+          break;
+        case "unable to query for duplicate e-mail address":
+          showModal(getPhrase("glitch"));
+          break;
+        case "e-mail already exists":
+          formError("#username", getPhrase("duplicateemail"));
+          break;
+        case "password not complex enough":
+          formError("#password", getPhrase("passwordNotComplexEnough"));
+          const modalMessage = `
+            <p>${getPhrase("passwordNotComplexEnoughLine1")}</p>
+            <p>${getPhrase("passwordNotComplexEnoughLine2")}</p>
+          `;
+          showModal(modalMessage, getPhrase("invalidpassword"));
+          break;
+        case "unable to generate password hash":
+          showModal(getPhrase("glitch"));
+          break;
+        case "unable to generate key pair":
+          showModal(getPhrase("glitch"));
+          break;
+        case "unable to insert new record":
+          showModal(getPhrase("glitch"));
+          break;
+        case "unable to insert registration token":
+          showModal(getPhrase("glitch"));
+          break;
+        case "confirmation e-mail could not be sent":
+          showModal(getPhrase("glitch"));
+          break;
+        case "confirmation e-mail sent":
+          const contentdefault = document.querySelector("#contentdefault");
+          const contentdone = document.querySelector("#contentdone");
+
+          localStorage.setItem("userid", data.userid);
+          localStorage.setItem("publickey", data.publicKey);
+          localStorage.setItem("privatekey", data.privateKey);
+
+          contentdefault.classList.add("d-none");
+          contentdone.classList.remove("d-none");
+          break;
+        default:
+          showModal(getPhrase("glitch"));
+          break;
+      }
+    });
 }
 
 function populateChurches() {

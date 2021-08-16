@@ -150,6 +150,68 @@
       "key": "unlistedchurchrequired",
       "original": "City of your ICC church is required",
       "translated": "City of your ICC church is required"
+    },
+    {
+      "key": "invalidemail",
+      "original": "Please check your e-mail address for accuracy and proper formatting.",
+      "translated": "Please check your e-mail address for accuracy and proper formatting."
+    },
+    {
+      "key": "glitch",
+      "original": "There was a glitch preventing your registration from being processed.  Please wait a moment then try again.",
+      "translated": "There was a glitch preventing your registration from being processed.  Please wait a moment then try again."
+    },
+    {
+      "key": "duplicateusername",
+      "original": "Username is already taken.",
+      "translated": "Username is already taken."
+    },
+    {
+      "key": "duplicateemail",
+      "original": "E-mail address is already taken.",
+      "translated": "E-mail address is already taken."
+    },
+    {
+      "key": "invalidpassword",
+      "original": "Invalid Password",
+      "translated": "Invalid Password"
+    },
+    {
+      "key": "passwordNotComplexEnough",
+      "original": "Password is not complex enough.",
+      "translated": "Password is not complex enough."
+    },
+    {
+      "key": "passwordNotComplexEnoughLine1",
+      "original": "Please revise your password.  For your protection, we require that it must have a minimum level of unpredictability in order to prevent potential hackers from guessing it.",
+      "translated": "Please revise your password.  For your protection, we require that it must have a minimum level of unpredictability in order to prevent potential hackers from guessing it."
+    },
+    {
+      "key": "passwordNotComplexEnoughLine2",
+      "original": "A minimum length of 8 characters is required.  Using a phrase (rather than a single word) is encouraged, because phrases are less predictable.",
+      "translated": "A minimum length of 8 characters is required.  Using a phrase (rather than a single word) is encouraged, because phrases are less predictable."
+    },
+    {
+      "key": "checkyouremailtitle",
+      "original": "Check your e-mail",
+      "translated": "Check your e-mail"
+    },
+    {
+      "key": "checkyouremailtext",
+      "original": "Please check your e-mail.  We have sent you a message containing a special link. In order to confirm your registration, you must click on that link.",
+      "translated": "Please check your e-mail.  We have sent you a message containing a special link. In order to confirm your registration, you must click on that link.",
+      "changes": [
+        {
+          "original": "Please check your e-mail.",
+          "translated": "Please check your e-mail.",
+          "bold": true
+        },
+        {
+          "original": "you must click on that link.",
+          "translated": "you must click on that link.",
+          "italic": true
+        }
+      ]
     }
   ],
 
