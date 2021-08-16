@@ -72,12 +72,17 @@ function onSubmit(e) {
   const emailSignature = getPhrase("emailSignature");
   const lang = getLang();
   const endpoint = `${getApiHost()}/register`;
+  const submitButton = document.querySelector("#formsubmit");
+  const progressBar = document.querySelector("#progressbar");
 
   emailParagraph1 = emailParagraph1.replaceAll("${fullname}", `${firstname} ${lastname}`);
 
   formErrorsReset();
   const isvalid = validate();
   if (!isvalid) return;
+
+  submitButton.classList.add("d-none");
+  progressBar.classList.remove("d-none");
 
   fetch(endpoint, {
     mode: "cors",
@@ -104,6 +109,9 @@ function onSubmit(e) {
   })
     .then(res => res.json())
     .then(data => {
+      submitButton.classList.remove("d-none");
+      progressBar.classList.add("d-none");
+
       switch (data.msg) {
         case "username missing":
           formError("#username", getPhrase("usernamerequired"));
