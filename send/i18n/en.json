@@ -1,0 +1,147 @@
+{
+  "metadata": {
+    "description": "Send an Invite",
+    "path": "/send/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Send an Invite",
+      "translated": "Send an Invite"
+    },
+    {
+      "key": "headlineto",
+      "original": "To:",
+      "translated": "To:"
+    },
+    {
+      "key": "recipientsName",
+      "original": "Recipient's name",
+      "translated": "Recipient's name"
+    },
+    {
+      "key": "headlinefor",
+      "original": "For:",
+      "translated": "For:"
+    },
+    {
+      "key": "headlinevia",
+      "original": "Via:",
+      "translated": "Via:"
+    },
+    {
+      "key": "viasms",
+      "original": "SMS",
+      "translated": "SMS"
+    },
+    {
+      "key": "viaemail",
+      "original": "E-mail",
+      "translated": "E-mail"
+    },
+    {
+      "key": "viaqrcode",
+      "original": "QR Code",
+      "translated": "QR Code"
+    },
+    {
+      "key": "instructions",
+      "original": "Instructions:",
+      "translated": "Instructions:"
+    },
+    {
+      "key": "instrustionstext",
+      "original": "Ask the person you're inviting to open the camera app on their cell phone. Have them point their camera at this barcode (without taking a picture). A prompt should appear on their screen. By pressing a button in that prompt, the invite will open in their Web browser. Lastly, click 'Save Invite' below.",
+      "translated": "Ask the person you're inviting to open the camera app on their cell phone. Have them point their camera at this barcode (without taking a picture). A prompt should appear on their screen. By pressing a button in that prompt, the invite will open in their Web browser. Lastly, click 'Save Invite' below."
+    },
+    {
+      "key": "mobilephonenumber",
+      "original": "Mobile phone number",
+      "translated": "Mobile phone number"
+    },
+    {
+      "key": "emailaddress",
+      "original": "E-mail address",
+      "translated": "E-mail address"
+    },
+    {
+      "key": "taginvitetext",
+      "original": "Tag invite with my current location",
+      "translated": "Tag invite with my current location"
+    },
+    {
+      "key": "buttonsendinvite",
+      "original": "SEND INVITE",
+      "translated": "SEND INVITE"
+    },
+    {
+      "key": "buttonsaveinvite",
+      "original": "SAVE INVITE",
+      "translated": "SAVE INVITE"
+    },
+    {
+      "key": "openingsms",
+      "original": "Opening SMS...",
+      "translated": "Opening SMS..."
+    },
+    {
+      "key": "openingemail",
+      "original": "Opening e-mail...",
+      "translated": "Opening e-mail..."
+    },
+    {
+      "key": "geocoordinatesPermissionDenied",
+      "original": "Geocoordinates: permission denied",
+      "translated": "Geocoordinates: permission denied"
+    },
+    {
+      "key": "geocoordinatesPermissionUnavailable",
+      "original": "Geocoordinates: position unavailable",
+      "translated": "Geocoordinates: position unavailable"
+    },
+    {
+      "key": "geocoordinatesPermissionTimedOut",
+      "original": "Geocoordinates: timed out",
+      "translated": "Geocoordinates: timed out"
+    },
+    {
+      "key": "geocoordinatesErrorCode",
+      "original": "Geocoordinates: error code",
+      "translated": "Geocoordinates: error code"
+    },
+    {
+      "key": "invitationto",
+      "original": "Invitation to",
+      "translated": "Invitation to"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

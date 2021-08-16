@@ -50,7 +50,7 @@ function getEmailBodyText() {
 
 function getEmailSubjectLine() {
   const eventName = getInviteToText();
-  const text = localStorage.getItem("subjectLineEmail") || `Invitation to ${eventName}`;
+  const text = localStorage.getItem("subjectLineEmail") || `${getPhrase("invitationto")} ${eventName}`;
   return encodeURI(text);
 }
 
@@ -209,16 +209,16 @@ function onFormSubmit(e) {
 function onGeoLocationError(err) {
   switch (err) {
     case 1:
-      showToast("Geocoordinates: permission denied");
+      showToast(getPhrase("geocoordinatesPermissionDenied"));
       break;
     case 2:
-      showToast("Geocoordinates: position unavailable");
+      showToast(getPhrase("geocoordinatesPermissionUnavailable"));
       break;
     case 3:
-      showToast("Geocoordinates: timed out");
+      showToast(getPhrase("geocoordinatesPermissionTimedOut"));
       break;
     default:
-      showToast(`Geocoordinates: error code ${err}`);
+      showToast(`${getPhrase("geocoordinatesErrorCode")} ${err}`);
   }
 }
 
@@ -278,6 +278,12 @@ function populateQrCode() {
     value: url,
     size: width
   });
+}
+
+function populateSaveButtonData() {
+  const btnSendInvite = document.querySelector("#btnSendInvite");
+  btnSendInvite.setAttribute("data-defaulttext", getPhrase("buttonsendinvite"));
+  btnSendInvite.setAttribute("data-qrcodetext", getPhrase("buttonsaveinvite"));
 }
 
 function selectSendVia(method) {
@@ -349,10 +355,10 @@ function showForwardingMessage(sendvia) {
 
   switch (sendvia) {
     case "sms":
-      btnSendInvite.innerText = "Opening SMS...";
+      btnSendInvite.innerText = getPhrase("openingsms");
       break;
     case "email":
-      btnSendInvite.innerText = "Opening e-mail...";
+      btnSendInvite.innerText = getPhrase("openingemail");
       break;
   }
 
@@ -386,7 +392,9 @@ function setEventListeners() {
   document.querySelector("#formsendinvite").addEventListener("submit", onFormSubmit);
 }
 
-function init() {
+async function init() {
+  await populateContent();
+  populateSaveButtonData();
   loadEvents();
   setDefaultSendMethod();
   initIntlTelInput();

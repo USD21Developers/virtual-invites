@@ -7,7 +7,7 @@
       content="initial-scale=1, shrink-to-fit=no, width=device-width"
       name="viewport"
     />
-    <title>Virtual Invites</title>
+    <title data-i18n="pagetitle"></title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -147,7 +147,10 @@
     <div class="container">
       <div class="row">
         <div class="col col-sm-8 offset-sm-3 col-md-5 offset-md-4">
-          <h2 class="text-center text-uppercase my-4">Send an Invite</h2>
+          <h2
+            class="text-center text-uppercase my-4"
+            data-i18n="pagetitle"
+          ></h2>
         </div>
       </div>
 
@@ -156,7 +159,7 @@
           <div
             class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right"
           >
-            <h4 class="text-uppercase">To:</h4>
+            <h4 class="text-uppercase" data-i18n="headlineto"></h4>
           </div>
           <div class="col-9 col-md-5" id="containerName">
             <input
@@ -164,8 +167,9 @@
               class="form-control"
               name="name"
               id="recipientname"
-              placeholder="Recipient's name"
+              placeholder=""
               tabindex="1"
+              data-i18n-placeholder="recipientsName"
             />
           </div>
         </div>
@@ -174,7 +178,7 @@
           <div
             class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right"
           >
-            <h4 class="text-uppercase">For:</h4>
+            <h4 class="text-uppercase" data-i18n="headlinefor"></h4>
           </div>
           <div class="col-9 col-md-5">
             <select
@@ -204,7 +208,7 @@
           <div
             class="col-3 col-md-1 offset-md-3 col-form-label py-1 text-right"
           >
-            <h4 class="text-uppercase">Via:</h4>
+            <h4 class="text-uppercase" data-i18n="headlinevia"></h4>
           </div>
           <div class="col-9 col-md-5" id="sendViaOptions">
             <select
@@ -213,9 +217,9 @@
               id="sendvia"
               class="form-control"
             >
-              <option value="sms">SMS</option>
-              <option value="email">E-mail</option>
-              <option value="qrcode">QR Code</option>
+              <option value="sms" data-i18n="viasms"></option>
+              <option value="email" data-i18n="viaemail"></option>
+              <option value="qrcode" data-i18n="viaqrcode"></option>
             </select>
           </div>
         </div>
@@ -231,12 +235,8 @@
         <div class="row d-none" id="containerQRCodeInstructions">
           <div class="col col-sm-8 offset-sm-3 col-md-5 offset-md-4">
             <p align="left" class="text-dark mt-3 mb-4">
-              <strong>Instructions:</strong> Ask the person you're inviting to
-              open the camera app on their cell phone. Have them point their
-              camera at this barcode (without taking a picture). A prompt should
-              appear on their screen. By pressing a button in that prompt, the
-              invite will open in their Web browser. Lastly, click "Save Invite"
-              below.
+              <strong data-i18n="instructions"></strong>
+              <span data-i18n="instrustionstext"></span>
             </p>
           </div>
         </div>
@@ -253,9 +253,10 @@
               class="form-control"
               name="sendto_sms"
               id="sendto_sms"
-              placeholder="Mobile phone number"
+              placeholder=""
               tabindex="4"
               pattern="[0-9]*"
+              data-i18n-placeholder="mobilephonenumber"
             />
           </div>
         </div>
@@ -272,8 +273,9 @@
               class="form-control"
               name="sendto_email"
               id="sendto_email"
-              placeholder="E-mail address"
+              placeholder=""
               tabindex="5"
+              data-i18n-placeholder="emailaddress"
             />
           </div>
         </div>
@@ -291,7 +293,7 @@
                     value=""
                     id="tagwithlocation"
                     tabindex="6"
-                  />&nbsp;Tag invite with my current location
+                  />&nbsp;<span data-i18n="taginvitetext"></span>
                 </label>
               </div>
             </div>
@@ -307,10 +309,10 @@
               class="btn btn-primary btn-lg font-weight-bold"
               id="btnSendInvite"
               tabindex="7"
-              data-defaulttext="SEND INVITE"
-              data-qrcodetext="SAVE INVITE"
-              >SEND INVITE</a
-            >
+              data-defaulttext=""
+              data-qrcodetext=""
+              data-i18n="buttonsendinvite"
+            ></a>
             <br /><br />
             <input type="submit" style="display: none" />
           </div>

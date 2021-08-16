@@ -1,0 +1,52 @@
+{
+  "metadata": {
+    "description": "Dashboard",
+    "path": "/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Virtual Invites",
+      "translated": "Virtual Invites"
+    },
+    {
+      "key": "registerlink",
+      "original": "Register",
+      "translated": "Register"
+    },
+    {
+      "key": "invitelink",
+      "original": "Send an Invite",
+      "translated": "Send an Invite"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

@@ -29,7 +29,8 @@ function attachListeners() {
   document.querySelector("#formlogin").addEventListener("submit", onSubmit);
 }
 
-function init() {
+async function init() {
+  await populateContent();
   attachListeners();
 }
 

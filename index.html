@@ -7,7 +7,7 @@
       content="initial-scale=1, shrink-to-fit=no, width=device-width"
       name="viewport"
     />
-    <title>Virtual Invites</title>
+    <title data-i18n="pagetitle"></title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -142,20 +142,26 @@
     <div class="container">
       <div class="row">
         <div class="col col-sm-4 offset-sm-4">
-          <h2 class="text-center text-uppercase my-4">Virtual Invites</h2>
+          <h2
+            class="text-center text-uppercase my-4"
+            data-i18n="pagetitle"
+          ></h2>
         </div>
       </div>
       <div class="row">
         <div class="col col-sm-4 offset-sm-4">
           <div class="list-group">
-            <a href="register/" class="list-group-item list-group-item-action">
-              Register
+            <a
+              href="register/"
+              class="list-group-item list-group-item-action"
+              data-i18n="registerlink"
+            >
             </a>
-            <a href="authorize/" class="list-group-item list-group-item-action">
-              Authorize a New User
-            </a>
-            <a href="send/" class="list-group-item list-group-item-action">
-              Send an Invite
+            <a
+              href="send/"
+              class="list-group-item list-group-item-action"
+              data-i18n="invitelink"
+            >
             </a>
           </div>
         </div>

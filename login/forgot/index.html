@@ -7,7 +7,7 @@
       content="initial-scale=1, shrink-to-fit=no, width=device-width"
       name="viewport"
     />
-    <title>Forgotten Passwords</title>
+    <title data-i18n="pagetitle"></title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -93,25 +93,21 @@
     <div class="container">
       <div class="row">
         <div class="col col-md-6 offset-md-3">
-          <h2 class="text-center text-uppercase my-4">Forgotten Passwords</h2>
+          <h2
+            class="text-center text-uppercase my-4"
+            data-i18n="pagetitle"
+          ></h2>
         </div>
       </div>
 
       <form name="formlogin" id="formlogin" method="post" action="./">
         <div class="row">
           <div class="col-md-6 offset-md-3">
-            <p>
-              Have you forgotten your password? No problem! You can reset it.
-            </p>
-
-            <p>
-              Simply input your e-mail address below. We will send you a message
-              containing a special link. In order to reset your password, you
-              must click on that link.
-            </p>
+            <p data-i18n="paragraph1"></p>
+            <p data-i18n="paragraph2"></p>
             <div class="form-group mt-4">
               <div class="floating-label">
-                <label for="email">E-mail address</label>
+                <label for="email" data-i18n="labelemailaddress"></label>
                 <input
                   type="email"
                   class="form-control"
@@ -126,12 +122,11 @@
                 type="submit"
                 id="formsubmit"
                 class="btn btn-primary btn-lg font-weight-bold"
-              >
-                RESET PASSWORD
-              </button>
+                data-i18n="buttonresetpassword"
+              ></button>
             </div>
             <div class="text-center mt-5">
-              <a href="../">Log In</a>
+              <a href="../" data-i18n="loginlink"></a>
             </div>
           </div>
         </div>

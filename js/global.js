@@ -143,6 +143,11 @@ function populateContent() {
           const matchedcontent = contentitems.find(contentitem => contentitem.key == key).content;
           if (matchedcontent) item.innerHTML = matchedcontent;
         });
+        document.querySelectorAll("[data-i18n-placeholder]").forEach(item => {
+          const key = item.getAttribute("data-i18n-placeholder");
+          const matchedcontent = contentitems.find(contentitem => contentitem.key == key).content;
+          if (matchedcontent) item.setAttribute("placeholder", matchedcontent);
+        });
         resolve();
       })
       .catch((err) => {

@@ -1,5 +1,7 @@
 {
   "metadata": {
+    "description": "Registration",
+    "path": "/register/",
     "lang": {
       "original": "en",
       "translated": "en"

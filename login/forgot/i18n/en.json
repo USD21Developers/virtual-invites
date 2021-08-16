@@ -1,0 +1,67 @@
+{
+  "metadata": {
+    "description": "Forgotten Password",
+    "path": "/login/forgot/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Forgotten Password",
+      "translated": "Forgotten Password"
+    },
+    {
+      "key": "paragraph1",
+      "original": "Have you forgotten your password? No problem! You can reset it.",
+      "translated": "Have you forgotten your password? No problem! You can reset it."
+    },
+    {
+      "key": "paragraph2",
+      "original": "Simply input your e-mail address below. We will send you a message containing a special link. In order to reset your password, you must click on that link.",
+      "translated": "Simply input your e-mail address below. We will send you a message containing a special link. In order to reset your password, you must click on that link."
+    },
+    {
+      "key": "labelemailaddress",
+      "original": "E-mail address",
+      "translated": "E-mail address"
+    },
+    {
+      "key": "buttonresetpassword",
+      "original": "RESET PASSWORD",
+      "translated": "RESET PASSWORD"
+    },
+    {
+      "key": "loginlink",
+      "original": "Log In",
+      "translated": "Log In"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

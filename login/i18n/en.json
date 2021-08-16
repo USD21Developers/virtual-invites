@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "description": "Log In",
+    "path": "/login/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Log In",
+      "translated": "Log In"
+    },
+    {
+      "key": "username",
+      "original": "Username",
+      "translated": "Username"
+    },
+    {
+      "key": "password",
+      "original": "Password",
+      "translated": "Password"
+    },
+    {
+      "key": "buttonlogin",
+      "original": "LOG IN",
+      "translated": "LOG IN"
+    },
+    {
+      "key": "forgotpasswordlink",
+      "original": "Forgot Password",
+      "translated": "Forgot Password"
+    },
+    {
+      "key": "noaccount",
+      "original": "No Account?",
+      "translated": "No Account?"
+    },
+    {
+      "key": "registerlink",
+      "original": "Register",
+      "translated": "Register"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
