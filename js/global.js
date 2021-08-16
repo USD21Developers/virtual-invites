@@ -27,14 +27,20 @@ function getApiHost() {
   let host;
 
   switch (window.location.hostname) {
-    case "localhost":
-      host = `http://${window.location.hostname}:4000/invites`;
+    case "staging.invites.mobi":
+      host = "https://api.usd21.org/invites";
       break;
     case "staging.invites.usd21.org":
-      host = "https://api.usd21.org/invites/staging/api";
+      host = "https://api.usd21.org/invites";
+      break;
+    case "invites.mobi":
+      host = "https://api.usd21.org/invites";
       break;
     case "invites.usd21.org":
-      host = "https://api.usd21.org/invites/api";
+      host = "https://api.usd21.org/invites";
+      break;
+    default:
+      host = `http://${window.location.hostname}:4000/invites`;
       break;
   }
 
