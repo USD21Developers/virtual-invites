@@ -173,8 +173,8 @@
     },
     {
       "key": "passwordNotComplexEnough",
-      "original": "Password is not complex enough.",
-      "translated": "Password is not complex enough."
+      "original": "Password is not unpredictable enough.",
+      "translated": "Password is not unpredictable enough."
     },
     {
       "key": "passwordNotComplexEnoughLine1",
