@@ -8,13 +8,8 @@
   "phrases": [
     {
       "key": "register-headline",
-      "original": "Register!",
-      "translated": "Register!"
-    },
-    {
-      "key": "register-headline",
-      "original": "Register!",
-      "translated": "Register!"
+      "original": "Register",
+      "translated": "Register"
     },
     {
       "key": "register-byline",
