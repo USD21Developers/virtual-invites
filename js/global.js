@@ -129,11 +129,12 @@ async function populateContent() {
           let content = translated;
           if (hasChanges) {
             changes.forEach(change => {
-              const { original, translated, bold, italic, link } = change;
+              const { original, translated, bold, italic, link, code } = change;
               let changed = translated;
               if (bold) changed = `<strong>${changed}</strong>`;
               if (italic) changed = `<em>${changed}</em>`;
               if (link) changed = `<a href="${link}">${changed}</a>`;
+              if (code) changed = `<code>${changed}</code>`;
               content = content.replaceAll(original, changed);
             });
           }
@@ -173,11 +174,12 @@ function populateGlobalContent() {
           let content = translated;
           if (hasChanges) {
             changes.forEach(change => {
-              const { original, translated, bold, italic, link } = change;
+              const { original, translated, bold, italic, link, code } = change;
               let changed = translated;
               if (bold) changed = `<strong>${changed}</strong>`;
               if (italic) changed = `<em>${changed}</em>`;
               if (link) changed = `<a href="${link}">${changed}</a>`;
+              if (code) changed = `<code>${changed}</code>`;
               content = content.replaceAll(original, changed);
             });
           }
