@@ -1,9 +1,5 @@
-function attachListeners() {
-  //
-}
-
-function init() {
-  //
+async function init() {
+  await populateContent();
 }
 
 init();
