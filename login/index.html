@@ -30,7 +30,7 @@
   </head>
   <body>
     <nav class="navbar navbar-light bg-light sticky-top border-bottom">
-      <a class="navbar-brand" href="/">Virtual Invites</a>
+      <a class="navbar-brand" href="/" data-i18n-global="apptitle"></a>
       <button
         class="navbar-toggler"
         type="button"
@@ -38,7 +38,8 @@
         data-target="#navdrawerDefault"
         aria-controls="navdrawerDefault"
         aria-expanded="false"
-        aria-label="Toggle navigation"
+        aria-label=""
+        data-i18n-global-aria-label="toggleNavigation"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -54,7 +55,11 @@
         <div class="navdrawer-header">
           <div class="row">
             <div class="col-9 d-flex justify-content-start">
-              <a class="navbar-brand px-0" href="../">Virtual Invites</a>
+              <a
+                class="navbar-brand px-0"
+                href="../"
+                data-i18n-global="apptitle"
+              ></a>
             </div>
             <div class="col-3 d-flex justify-content-end align-items-center">
               <button
@@ -64,7 +69,8 @@
                 data-target="#navdrawerDefault"
                 aria-controls="navdrawerDefault"
                 aria-expanded="false"
-                aria-label="Toggle navigation"
+                aria-label=""
+                data-i18n-global-aria-label="toggleNavigation"
               >
                 <span class="material-icons mmaterial-icons-outlined">
                   close
@@ -78,13 +84,13 @@
             <span class="material-icons mr-3 material-icons-outlined">
               home
             </span>
-            Home
+            <span data-i18n-global="menuHome"></span>
           </a>
           <a class="nav-item nav-link" href="../support/">
             <span class="material-icons mr-3 material-icons-outlined">
               contact_support
             </span>
-            Support
+            <span data-i18n-global="menuSupport"></span>
           </a>
         </nav>
       </div>
@@ -124,7 +130,7 @@
             </div>
             <div class="form-group mt-4 mb-5">
               <div class="floating-label">
-                <label for="password" data-i18n="password">Password</label>
+                <label for="password" data-i18n="password"></label>
                 <input
                   type="password"
                   class="form-control"

@@ -1,0 +1,97 @@
+{
+  "metadata": {
+    "description": "Global",
+    "path": "/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "apptitle",
+      "original": "Virtual Invites",
+      "translated": "Virtual Invites"
+    },
+    {
+      "key": "menuHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "menuSendInvite",
+      "original": "Send an Invite",
+      "translated": "Send an Invite"
+    },
+    {
+      "key": "menuPeopleIveInvited",
+      "original": "People I've Invited",
+      "translated": "People I've Invited"
+    },
+    {
+      "key": "menuEventsImSharing",
+      "original": "Events I'm Sharing",
+      "translated": "Events I'm Sharing"
+    },
+    {
+      "key": "menuMaps",
+      "original": "Maps",
+      "translated": "Maps"
+    },
+    {
+      "key": "menuSettings",
+      "original": "Settings",
+      "translated": "Settings"
+    },
+    {
+      "key": "menuMyProfile",
+      "original": "My Profile",
+      "translated": "My Profile"
+    },
+    {
+      "key": "menuSupport",
+      "original": "Support",
+      "translated": "Support"
+    },
+    {
+      "key": "menuLogOut",
+      "original": "Log Out",
+      "translated": "Log Out"
+    },
+    {
+      "key": "toggleNavigation",
+      "original": "Toggle navigation",
+      "translated": "Toggle navigation"
+    },
+    {
+      "key": "menuAuthorizeUser",
+      "original": "Authorize a New User",
+      "translated": "Authorize a New User"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

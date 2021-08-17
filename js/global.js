@@ -1,3 +1,4 @@
+let globalContent = "";
 let pageContent = "";
 
 function enableTooltips() {
@@ -113,13 +114,13 @@ function showModal(body = "", title = "", closeButtonText = "") {
   $("#modal").modal();
 }
 
-function populateContent() {
+async function populateContent() {
   return new Promise((resolve, reject) => {
     const lang = localStorage.getItem("lang") || "en";
     const endpoint = `i18n/${lang}.json`;
     fetch(endpoint)
       .then(res => res.json())
-      .then(data => {
+      .then(async (data) => {
         pageContent = data;
         const contentitems = [];
         data.phrases.forEach(phrase => {
@@ -140,17 +141,62 @@ function populateContent() {
         });
         document.querySelectorAll("[data-i18n]").forEach(item => {
           const key = item.getAttribute("data-i18n");
-          const matchedcontent = contentitems.find(contentitem => contentitem.key == key).content;
+          const matchedcontent = contentitems.find(contentitem => contentitem.key == key)?.content;
           if (matchedcontent) item.innerHTML = matchedcontent;
         });
         document.querySelectorAll("[data-i18n-placeholder]").forEach(item => {
           const key = item.getAttribute("data-i18n-placeholder");
-          const matchedcontent = contentitems.find(contentitem => contentitem.key == key).content;
+          const matchedcontent = contentitems.find(contentitem => contentitem.key == key)?.content;
           if (matchedcontent) item.setAttribute("placeholder", matchedcontent);
+        });
+        await populateGlobalContent();
+        resolve();
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+}
+
+function populateGlobalContent() {
+  return new Promise((resolve, reject) => {
+    const lang = localStorage.getItem("lang") || "en";
+    const endpoint = `/i18n-global/${lang}.json`;
+    fetch(endpoint)
+      .then(res => res.json())
+      .then(data => {
+        globalContent = data;
+        const contentitems = [];
+        data.phrases.forEach(phrase => {
+          const { key, translated, changes } = phrase;
+          const hasChanges = Array.isArray(changes);
+          let content = translated;
+          if (hasChanges) {
+            changes.forEach(change => {
+              const { original, translated, bold, italic, link } = change;
+              let changed = translated;
+              if (bold) changed = `<strong>${changed}</strong>`;
+              if (italic) changed = `<em>${changed}</em>`;
+              if (link) changed = `<a href="${link}">${changed}</a>`;
+              content = content.replaceAll(original, changed);
+            });
+          }
+          contentitems.push({ key: key, content: content });
+        });
+        document.querySelectorAll("[data-i18n-global]").forEach(item => {
+          const key = item.getAttribute("data-i18n-global");
+          const matchedcontent = contentitems.find(contentitem => contentitem.key == key)?.content;
+          if (matchedcontent) item.innerHTML = matchedcontent;
+        });
+        document.querySelectorAll("[data-i18n-global-aria-label]").forEach(item => {
+          const key = item.getAttribute("data-i18n-global-aria-label");
+          const matchedcontent = contentitems.find(contentitem => contentitem.key == key)?.content;
+          if (matchedcontent) item.setAttribute("aria-label", matchedcontent);
         });
         resolve();
       })
-      .catch((err) => {
+      .catch(err => {
+        console.error(err);
         reject(err);
       });
   });
