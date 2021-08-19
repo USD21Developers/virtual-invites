@@ -135,9 +135,6 @@ async function onSubmit(e) {
         case "last name missing":
           formError("#lastname", getPhrase("lastnamerequired"));
           break;
-        case "language missing":
-          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
-          break;
         case "country missing":
           formError("#country", getPhrase("countryrequired"));
           break;
@@ -147,14 +144,8 @@ async function onSubmit(e) {
         case "unlisted church missing":
           formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
           break;
-        case "unable to query for duplicate username":
-          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
-          break;
         case "username already exists":
           formError("#username", getPhrase("duplicateusername"));
-          break;
-        case "unable to query for duplicate e-mail address":
-          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
           break;
         case "e-mail already exists":
           formError("#username", getPhrase("duplicateemail"));
@@ -167,28 +158,9 @@ async function onSubmit(e) {
           `;
           showModal(modalMessage, getPhrase("invalidpassword"));
           break;
-        case "unable to generate password hash":
-          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
-          break;
-        case "unable to generate key pair":
-          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
-          break;
-        case "unable to insert new record":
-          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
-          break;
-        case "unable to insert registration token":
-          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
-          break;
-        case "confirmation e-mail could not be sent":
-          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
-          break;
         case "confirmation e-mail sent":
           const contentdefault = document.querySelector("#contentdefault");
           const contentdone = document.querySelector("#contentdone");
-
-          localStorage.setItem("userid", data.userid);
-          localStorage.setItem("publickey", data.publicKey);
-          localStorage.setItem("privatekey", data.privateKey);
 
           contentdefault.classList.add("d-none");
           contentdone.classList.remove("d-none");
