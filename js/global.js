@@ -2,6 +2,15 @@ let globalContent = "";
 let pageContent = "";
 
 const crypto = {
+  decrypt: (serializedKey, encryptionObject) => {
+    const key = deserialize(serializedKey);
+    const { iv: serializedIV, ciphertext: serializedCiphertext } = encryptionObject;
+    const iv = crypto.deserialize(serializedIV);
+    const ciphertext = crypto.deserialize(serializedCiphertext);
+    const plainText = crypto.decryptMessage(key, iv, ciphertext);
+    return plainText;
+  },
+
   decryptMessage: async (key, iv, ciphertext) => {
     const decrypted = await window.crypto.subtle.decrypt(
       {
@@ -20,6 +29,25 @@ const crypto = {
     const array = serializedString.split(",");
     const buffer = Uint8Array.from(array);
     return buffer;
+  },
+
+  encrypt: async (serializedKey, message) => {
+    if (typeof serializedKey !== "string" || serializedKey.length === 0) return new Error("key must be a string");
+    let key;
+    try {
+      key = await crypto.importSecretKey(crypto.deserialize(serializedKey));
+    }
+    catch (err) {
+      return new Error(err);
+    }
+    const iv = crypto.generateIV();
+    const ciphertext = await crypto.encryptMessage(key, iv, message);
+    const encryptionObject = {
+      iv: crypto.serialize(iv),
+      ciphertext: crypto.serialize(ciphertext)
+    };
+
+    return encryptionObject;
   },
 
   encryptMessage: async (key, iv, message) => {
@@ -63,7 +91,7 @@ const crypto = {
       ).then(key => {
         resolve(key);
       }).catch(err => {
-        reject(err);
+        reject(new Error(err));
       });
     })
   },
