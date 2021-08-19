@@ -1,6 +1,94 @@
 let globalContent = "";
 let pageContent = "";
 
+const crypto = {
+  decryptMessage: async (key, iv, ciphertext) => {
+    const decrypted = await window.crypto.subtle.decrypt(
+      {
+        name: "AES-GCM",
+        iv: iv
+      },
+      key,
+      ciphertext
+    );
+
+    const dec = new TextDecoder();
+    return dec.decode(decrypted);
+  },
+
+  deserialize: (serializedString) => {
+    const array = serializedString.split(",");
+    const buffer = Uint8Array.from(array);
+    return buffer;
+  },
+
+  encryptMessage: async (key, iv, message) => {
+    const encoded = crypto.getMessageEncoding(message);
+    const ciphertext = await window.crypto.subtle.encrypt(
+      {
+        name: "AES-GCM",
+        iv: iv
+      },
+      key,
+      encoded
+    );
+
+    const buffer = new Uint8Array(ciphertext, 0, 5);
+    return ciphertext;
+  },
+
+  exportCryptoKey: async (key) => {
+    const exported = await window.crypto.subtle.exportKey(
+      "raw",
+      key
+    );
+    const exportedKeyBuffer = new Uint8Array(exported);
+
+    return exportedKeyBuffer;
+  },
+
+  generateIV: () => {
+    const iv = window.crypto.getRandomValues(new Uint8Array(12));
+    return iv;
+  },
+
+  generateKey: () => {
+    return new Promise((resolve, reject) => {
+      window.crypto.subtle.generateKey(
+        {
+          name: "AES-GCM",
+          length: 256,
+        },
+        true,
+        ["encrypt", "decrypt"]
+      ).then(key => {
+        resolve(key);
+      }).catch(err => {
+        reject(err);
+      });
+    })
+  },
+
+  getMessageEncoding: (message) => {
+    const enc = new TextEncoder();
+    return enc.encode(message);
+  },
+
+  importSecretKey: (rawKey) => {
+    return window.crypto.subtle.importKey(
+      "raw",
+      rawKey,
+      "AES-GCM",
+      true,
+      ["encrypt", "decrypt"]
+    );
+  },
+
+  serialize: (buffer) => {
+    return buffer.toString();
+  }
+}
+
 function enableTooltips() {
   $('[data-toggle="tooltip"]').tooltip();
 }
