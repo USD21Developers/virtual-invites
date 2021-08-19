@@ -33,7 +33,6 @@ const crypto = {
       encoded
     );
 
-    const buffer = new Uint8Array(ciphertext, 0, 5);
     return ciphertext;
   },
 
