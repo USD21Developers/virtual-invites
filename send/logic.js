@@ -1,5 +1,6 @@
 let coordinates;
 let iti;
+let recipientIdGlobal = "";
 const geoLocationOptions = {
   enableHighAccuracy: true,
   timeout: 5000,
@@ -55,10 +56,12 @@ function getEmailSubjectLine() {
 }
 
 function getFinalURL() {
+  const eventId = getInviteToId();
   const userId = getUserId();
   const recipientId = getRecipientId();
-  const eventId = getInviteToId();
   const finalUrl = `${window.location.origin}/i/#/${eventId}/${userId}/${recipientId}`;
+
+  recipientIdGlobal = recipientId;
   return finalUrl;
 }
 
