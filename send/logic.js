@@ -55,9 +55,10 @@ function getEmailSubjectLine() {
 }
 
 function getFinalURL() {
+  const userId = getUserId();
   const recipientId = getRecipientId();
   const eventId = getInviteToId();
-  const finalUrl = `${window.location.origin}/i/#/${recipientId}/${eventId}/`;
+  const finalUrl = `${window.location.origin}/i/#/${eventId}/${userId}/${recipientId}`;
   return finalUrl;
 }
 
@@ -71,9 +72,19 @@ function getInviteToText() {
   return inviteTo;
 }
 
-function getRecipientId() {
-  // TODO: make this return an actual recipient ID
-  return 221;
+function getRecipientId(numChars = 5) {
+  const chars =
+    '1234567890' +
+    'abcdefghijklmnopqrstuvwxyz' +
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    ;
+  const charsLen = chars.length;
+  const id = [];
+  for (let i = 0; i < numChars; i++) {
+    id.push(chars[(Math.round(Math.random() * 100)) % charsLen]);
+  }
+  const recipientId = id.join('');
+  return recipientId;
 }
 
 function getSendBody() {
@@ -133,6 +144,11 @@ function getSendVia() {
 function getSmsBodyText() {
   const text = localStorage.getItem("bodyTextSms") || "";
   return text;
+}
+
+function getUserId() {
+  const userid = localStorage.getItem("userid") || 0;
+  return userid;
 }
 
 function initIntlTelInput() {
