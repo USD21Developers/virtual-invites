@@ -148,7 +148,7 @@ async function onSubmit(e) {
           formError("#username", getPhrase("duplicateusername"));
           break;
         case "e-mail already exists":
-          formError("#username", getPhrase("duplicateemail"));
+          formError("#email", getPhrase("duplicateemail"));
           break;
         case "password not complex enough":
           formError("#password", getPhrase("passwordNotComplexEnough"));
