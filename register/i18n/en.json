@@ -159,6 +159,11 @@
       "translated": "There was a glitch preventing your registration from being processed.  Please wait a moment then try again."
     },
     {
+      "key": "glitchHeadline",
+      "original": "Registration Failed",
+      "translated": "Registration Failed"
+    },
+    {
       "key": "duplicateusername",
       "original": "Username is already taken.",
       "translated": "Username is already taken."
