@@ -55,7 +55,7 @@ function onCountryChange(e) {
   }
 }
 
-function onSubmit(e) {
+async function onSubmit(e) {
   e.preventDefault();
   const username = document.querySelector("#username").value.trim().toLowerCase() || "";
   const password = document.querySelector("#password").value.trim() || "";
@@ -74,6 +74,8 @@ function onSubmit(e) {
   const endpoint = `${getApiHost()}/register`;
   const submitButton = document.querySelector("#formsubmit");
   const progressBar = document.querySelector("#progressbar");
+  const dataKey = await crypto.generateKey();
+  const serializedDataKey = crypto.serializedDataKey(dataKey);
 
   emailParagraph1 = emailParagraph1.replaceAll("${fullname}", `${firstname} ${lastname}`);
 
@@ -102,6 +104,7 @@ function onSubmit(e) {
       emailParagraph1: emailParagraph1,
       emailLinkText: emailLinkText,
       emailSignature: emailSignature,
+      dataKey: serializedDataKey
     }),
     headers: new Headers({
       "Content-Type": "application/json"
