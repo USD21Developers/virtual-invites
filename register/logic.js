@@ -75,7 +75,8 @@ async function onSubmit(e) {
   const submitButton = document.querySelector("#formsubmit");
   const progressBar = document.querySelector("#progressbar");
   const dataKey = await crypto.generateKey();
-  const serializedDataKey = crypto.serializedDataKey(dataKey);
+  const exportedDataKey = await crypto.exportCryptoKey(dataKey);
+  const serializedDataKey = crypto.serialize(exportedDataKey);
 
   emailParagraph1 = emailParagraph1.replaceAll("${fullname}", `${firstname} ${lastname}`);
 
@@ -135,7 +136,7 @@ async function onSubmit(e) {
           formError("#lastname", getPhrase("lastnamerequired"));
           break;
         case "language missing":
-          showModal(getPhrase("glitch"));
+          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
           break;
         case "country missing":
           formError("#country", getPhrase("countryrequired"));
@@ -147,13 +148,13 @@ async function onSubmit(e) {
           formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
           break;
         case "unable to query for duplicate username":
-          showModal(getPhrase("glitch"));
+          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
           break;
         case "username already exists":
           formError("#username", getPhrase("duplicateusername"));
           break;
         case "unable to query for duplicate e-mail address":
-          showModal(getPhrase("glitch"));
+          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
           break;
         case "e-mail already exists":
           formError("#username", getPhrase("duplicateemail"));
@@ -167,19 +168,19 @@ async function onSubmit(e) {
           showModal(modalMessage, getPhrase("invalidpassword"));
           break;
         case "unable to generate password hash":
-          showModal(getPhrase("glitch"));
+          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
           break;
         case "unable to generate key pair":
-          showModal(getPhrase("glitch"));
+          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
           break;
         case "unable to insert new record":
-          showModal(getPhrase("glitch"));
+          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
           break;
         case "unable to insert registration token":
-          showModal(getPhrase("glitch"));
+          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
           break;
         case "confirmation e-mail could not be sent":
-          showModal(getPhrase("glitch"));
+          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
           break;
         case "confirmation e-mail sent":
           const contentdefault = document.querySelector("#contentdefault");
@@ -193,7 +194,7 @@ async function onSubmit(e) {
           contentdone.classList.remove("d-none");
           break;
         default:
-          showModal(getPhrase("glitch"));
+          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
           break;
       }
     });
