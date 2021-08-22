@@ -1,6 +1,6 @@
 function checkConfirmationToken() {
   const hash = document.location.hash.substring(1, document.location.hash.length) || "";
-  const endpoint = `${getApiHost()}/invites/register-confirm`;
+  const endpoint = `${getApiHost()}/register-confirm`;
 
   fetch(endpoint, {
     mode: "cors",
