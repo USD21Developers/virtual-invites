@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="initial-scale=1, shrink-to-fit=no, width=device-width"
+      name="viewport"
+    />
+    <title data-i18n="verifyingHeadline"></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="../css/material-4.1.1-dist/css/material.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link href="../css/global.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light sticky-top border-bottom">
+      <a class="navbar-brand" href="/" data-i18n-global="apptitle"></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="navdrawer"
+        data-target="#navdrawerDefault"
+        aria-controls="navdrawerDefault"
+        aria-expanded="false"
+        aria-label=""
+        data-i18n-global-aria-label="toggleNavigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+
+    <div
+      aria-hidden="true"
+      class="navdrawer navdrawer-right"
+      id="navdrawerDefault"
+      tabindex="-1"
+    >
+      <div class="navdrawer-content">
+        <div class="navdrawer-header">
+          <div class="row">
+            <div class="col-9 d-flex justify-content-start">
+              <a
+                class="navbar-brand px-0"
+                href="../"
+                data-i18n-global="apptitle"
+              ></a>
+            </div>
+            <div class="col-3 d-flex justify-content-end align-items-center">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="navdrawer"
+                data-target="#navdrawerDefault"
+                aria-controls="navdrawerDefault"
+                aria-expanded="false"
+                aria-label=""
+                data-i18n-global-aria-label="toggleNavigation"
+              >
+                <span class="material-icons mmaterial-icons-outlined">
+                  close
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <nav class="navdrawer-nav">
+          <a class="nav-item nav-link" href="../">
+            <span class="material-icons mr-3 material-icons-outlined">
+              home
+            </span>
+            <span data-i18n-global="menuHome"></span>
+          </a>
+          <a class="nav-item nav-link" href="../support/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              contact_support
+            </span>
+            <span data-i18n-global="menuSupport"></span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="verifying" class="contentcontainer">
+        <div class="row">
+          <div class="col col-md-6 offset-md-3">
+            <h2
+              class="text-center text-uppercase my-4"
+              data-i18n="verifyingHeadline"
+            ></h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-md-6 offset-md-3">
+          <div class="text-center mb-4" data-i18n="verifyingPleaseWait"></div>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col col-md-6 offset-md-3">
+          <div class="progress">
+            <div
+              class="progress-bar progress-bar-indeterminate"
+              role="progressbar"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="notrecognized" class="contentcontainer d-none">
+        <div class="row">
+          <div class="col col-md-6 offset-md-3">
+            <h2
+              class="text-center text-uppercase my-4"
+              data-i18n="confirmationFailedHeadline"
+            ></h2>
+          </div>
+        </div>
+        <div data-i18n="linkNotRecognized"></div>
+      </div>
+
+      <div id="expired" class="contentcontainer d-none">
+        <div class="row">
+          <div class="col col-md-6 offset-md-3">
+            <h2
+              class="text-center text-uppercase my-4"
+              data-i18n="confirmationFailedHeadline"
+            ></h2>
+          </div>
+        </div>
+        <div data-i18n="linkExpired"></div>
+      </div>
+
+      <div id="glitch" class="contentcontainer d-none">
+        <div class="row">
+          <div class="col col-md-6 offset-md-3">
+            <h2
+              class="text-center text-uppercase my-4"
+              data-i18n="glitchHeadline"
+            ></h2>
+          </div>
+        </div>
+        <div data-i18n="glitch"></div>
+      </div>
+
+      <div id="confirmed" class="contentcontainer d-none">
+        <div class="row">
+          <div class="col col-md-6 offset-md-3">
+            <h2
+              class="text-center text-uppercase my-4"
+              data-i18n="loginConfirmedHeadline"
+            ></h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-md-6 offset-md-3">
+            <div id="confirmedimage" class="text-center mb-5">
+              <img
+                src="../_assets/img/animated_checkmark.gif"
+                width="164"
+                height="164"
+                alt=""
+                style="margin-left: -30px; max-width: 100%"
+              />
+            </div>
+          </div>
+        </div>
+        <p class="text-center" data-i18n="loginConfirmed"></p>
+        <p class="text-center my-3">
+          <a href="../" class="btn btn-primary" data-i18n="buttonContinue"></a>
+        </p>
+      </div>
+
+      <div class="snackbar">
+        <div class="snackbar-body"></div>
+      </div>
+    </div>
+
+    <br /><br /><br /><br />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../js/global.js"></script>
+    <script src="logic.js"></script>
+  </body>
+</html>

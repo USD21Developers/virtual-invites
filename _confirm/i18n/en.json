@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "description": "Confirm Registration",
+    "path": "/_confirm/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "verifyingHeadline",
+      "original": "Verifying...",
+      "translated": "Verifying..."
+    },
+    {
+      "key": "loginConfirmedHeadline",
+      "original": "Login Confirmed",
+      "translated": "Login Confirmed"
+    },
+    {
+      "key": "confirmationFailedHeadline",
+      "original": "Confirmation Failed",
+      "translated": "Confirmation Failed"
+    },
+    {
+      "key": "verifyingPleaseWait",
+      "original": "We are verifying your confirmation link.  Please wait...",
+      "translated": "We are verifying your confirmation link.  Please wait..."
+    },
+    {
+      "key": "linkExpired",
+      "original": "Your confirmation link has expired.  Please register again.  When you receive the confirmation e-mail, click on the link within 24 hours of registering.",
+      "translated": "Your confirmation link has expired.  Please register again.  When you receive the confirmation e-mail, click on the link within 24 hours of registering.",
+      "changes": [
+        {
+          "original": "register again",
+          "translated": "register again",
+          "bold": true,
+          "italic": false,
+          "link": "/register/"
+        }
+      ]
+    },
+    {
+      "key": "linkNotRecognized",
+      "original": "Your confirmation link was not recognized.  Please either check the link for accuracy, or register again.",
+      "translated": "Your confirmation link was not recognized.  Please either check the link for accuracy, or register again.",
+      "changes": [
+        {
+          "original": "register again",
+          "translated": "",
+          "bold": true,
+          "italic": false,
+          "link": "/register/"
+        }
+      ]
+    },
+    {
+      "key": "loginConfirmed",
+      "original": "Your login is now confirmed.",
+      "translated": "Your login is now confirmed."
+    },
+    {
+      "key": "buttonContinue",
+      "original": "Continue",
+      "translated": "Continue"
+    },
+    {
+      "key": "glitchHeadline",
+      "original": "Database is Down",
+      "translated": "Database is Down"
+    },
+    {
+      "key": "glitch",
+      "original": "There was a technical glitch which prevented your login from being verified. Please reload the page.",
+      "translated": "There was a technical glitch which prevented your login from being verified. Please reload the page.",
+      "changes": [
+        {
+          "original": "reload the page",
+          "translated": "reload the page",
+          "bold": true,
+          "italic": false,
+          "link": "javascript:window.location.reload()"
+        }
+      ]
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
