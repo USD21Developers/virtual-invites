@@ -14,6 +14,7 @@ function checkConfirmationToken() {
   })
     .then(res => res.json())
     .then(data => {
+      const { accessToken = "", refreshToken = "" } = data;
       const notrecognized = document.querySelector("#notrecognized");
       const expired = document.querySelector("#expired");
       const glitch = document.querySelector("#glitch");
@@ -32,7 +33,6 @@ function checkConfirmationToken() {
           notrecognized.classList.remove("d-none");
           break;
         case "token already claimed":
-          const { accessToken, refreshToken } = data;
           confirmed.classList.remove("d-none");
           onConfirmed(refreshToken, accessToken);
           break;
@@ -43,7 +43,6 @@ function checkConfirmationToken() {
           notrecognized.classList.remove("d-none");
           break;
         case "registration confirmed":
-          const { accessToken, refreshToken } = data;
           confirmed.classList.remove("d-none");
           onConfirmed(refreshToken, accessToken);
           break;
