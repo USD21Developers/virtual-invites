@@ -20,13 +20,13 @@
     />
     <link
       rel="stylesheet"
-      href="../css/material-4.1.1-dist/css/material.min.css"
+      href="../../css/material-4.1.1-dist/css/material.min.css"
     />
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <link href="../css/global.css" rel="stylesheet" />
+    <link href="../../css/global.css" rel="stylesheet" />
   </head>
   <body>
     <nav class="navbar navbar-light bg-light sticky-top border-bottom">
@@ -106,19 +106,19 @@
             ></h2>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col col-md-6 offset-md-3">
-          <div class="text-center mb-4" data-i18n="verifyingPleaseWait"></div>
+        <div class="row">
+          <div class="col col-md-6 offset-md-3">
+            <div class="text-center mb-4" data-i18n="verifyingPleaseWait"></div>
+          </div>
         </div>
-      </div>
-      <div class="row my-2">
-        <div class="col col-md-6 offset-md-3">
-          <div class="progress">
-            <div
-              class="progress-bar progress-bar-indeterminate"
-              role="progressbar"
-            ></div>
+        <div class="row my-2">
+          <div class="col col-md-6 offset-md-3">
+            <div class="progress">
+              <div
+                class="progress-bar progress-bar-indeterminate"
+                role="progressbar"
+              ></div>
+            </div>
           </div>
         </div>
       </div>
@@ -132,7 +132,11 @@
             ></h2>
           </div>
         </div>
-        <div data-i18n="linkNotRecognized"></div>
+        <div class="row">
+          <div class="col col-md-6 offset-md-3">
+            <div data-i18n="linkNotRecognized"></div>
+          </div>
+        </div>
       </div>
 
       <div id="expired" class="contentcontainer d-none">
@@ -144,7 +148,11 @@
             ></h2>
           </div>
         </div>
-        <div data-i18n="linkExpired"></div>
+        <div class="row">
+          <div class="col col-md-6 offset-md-3">
+            <div data-i18n="linkExpired"></div>
+          </div>
+        </div>
       </div>
 
       <div id="glitch" class="contentcontainer d-none">
@@ -156,7 +164,11 @@
             ></h2>
           </div>
         </div>
-        <div data-i18n="glitch"></div>
+        <div class="row">
+          <div class="col col-md-6 offset-md-3">
+            <div data-i18n="glitch"></div>
+          </div>
+        </div>
       </div>
 
       <div id="confirmed" class="contentcontainer d-none">
@@ -172,7 +184,7 @@
           <div class="col col-md-6 offset-md-3">
             <div id="confirmedimage" class="text-center mb-5">
               <img
-                src="../_assets/img/animated_checkmark.gif"
+                src="../../_assets/img/animated_checkmark.gif"
                 width="164"
                 height="164"
                 alt=""
@@ -181,10 +193,18 @@
             </div>
           </div>
         </div>
-        <p class="text-center" data-i18n="loginConfirmed"></p>
-        <p class="text-center my-3">
-          <a href="../" class="btn btn-primary" data-i18n="buttonContinue"></a>
-        </p>
+        <div class="row">
+          <div class="col col-md-6 offset-md-3">
+            <p class="text-center" data-i18n="loginConfirmed"></p>
+            <p class="text-center my-3">
+              <a
+                href="../../"
+                class="btn btn-primary"
+                data-i18n="buttonContinue"
+              ></a>
+            </p>
+          </div>
+        </div>
       </div>
 
       <div class="snackbar">
@@ -197,8 +217,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
-    <script src="../js/global.js"></script>
+    <script src="../../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../../js/global.js"></script>
     <script src="logic.js"></script>
   </body>
 </html>
