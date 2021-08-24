@@ -58,8 +58,8 @@
     },
     {
       "key": "loginConfirmed",
-      "original": "Your login is now confirmed.",
-      "translated": "Your login is now confirmed."
+      "original": "Your login is confirmed. You can now delete the e-mail.",
+      "translated": "Your login is confirmed. You can now delete the e-mail."
     },
     {
       "key": "buttonContinue",
