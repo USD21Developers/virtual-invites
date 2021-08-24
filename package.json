@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/USD21Developers/virtual-invites/issues"
   },
-  "homepage": "https://invites.usd21.org/",
+  "homepage": "https://invites.mobi/",
   "devDependencies": {
     "serve": "^12.0.0"
   }
