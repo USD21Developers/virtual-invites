@@ -56,7 +56,7 @@ function onSubmit(e) {
 
 function showAlert(show = true, content = "") {
   const alert = document.querySelector("#alert");
-  const contentEl = alert.querySelector("#alert > .alert");
+  const contentEl = alert.querySelector("#alert .alert");
   const alertOffset = alert.offsetTop - 64;
 
   contentEl.innerHTML = content;
