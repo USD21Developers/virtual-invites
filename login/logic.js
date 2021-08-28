@@ -35,6 +35,9 @@ function onSubmit(e) {
     body: JSON.stringify({
       username: username,
       password: password
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json"
     })
   })
     .then(res => res.json())
