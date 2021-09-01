@@ -57,6 +57,8 @@ function onCountryChange(e) {
 
 async function onSubmit(e) {
   e.preventDefault();
+  const spinner = document.querySelector("#progressbar");
+  const submitButton = document.querySelector("#formsubmit");
   const username = document.querySelector("#username").value.trim().toLowerCase() || "";
   const password = document.querySelector("#password").value.trim() || "";
   const email = document.querySelector("#email").value.trim().toLowerCase() || "";
@@ -72,11 +74,11 @@ async function onSubmit(e) {
   const emailSignature = getPhrase("emailSignature");
   const lang = getLang();
   const endpoint = `${getApiHost()}/register`;
-  const submitButton = document.querySelector("#formsubmit");
-  const progressBar = document.querySelector("#progressbar");
   const dataKey = await crypto.generateKey();
   const exportedDataKey = await crypto.exportCryptoKey(dataKey);
   const serializedDataKey = crypto.serialize(exportedDataKey);
+  const controller = new AbortController();
+  const signal = controller.signal;
 
   emailParagraph1 = emailParagraph1.replaceAll("${fullname}", `${firstname} ${lastname}`);
 
@@ -84,8 +86,8 @@ async function onSubmit(e) {
   const isvalid = validate();
   if (!isvalid) return;
 
-  submitButton.classList.add("d-none");
-  progressBar.classList.remove("d-none");
+  hide(submitButton);
+  show(spinner);
 
   fetch(endpoint, {
     mode: "cors",
@@ -109,12 +111,13 @@ async function onSubmit(e) {
     }),
     headers: new Headers({
       "Content-Type": "application/json"
-    })
+    }),
+    signal: signal
   })
     .then(res => res.json())
     .then(data => {
-      submitButton.classList.remove("d-none");
-      progressBar.classList.add("d-none");
+      show(submitButton);
+      hide(spinner);
 
       switch (data.msg) {
         case "username missing":
@@ -159,17 +162,23 @@ async function onSubmit(e) {
           showModal(modalMessage, getPhrase("invalidpassword"));
           break;
         case "confirmation e-mail sent":
-          const contentdefault = document.querySelector("#contentdefault");
-          const contentdone = document.querySelector("#contentdone");
+          const defaultContent = document.querySelector("#contentdefault");
+          const doneContent = document.querySelector("#contentdone");
 
-          contentdefault.classList.add("d-none");
-          contentdone.classList.remove("d-none");
+          hide(defaultContent);
+          show(doneContent);
           break;
         default:
           showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
           break;
       }
     });
+
+  setTimeout(() => {
+    controller.abort();
+    hide(spinner);
+    show(submitButton);
+  }, 5000);
 }
 
 function populateChurches() {

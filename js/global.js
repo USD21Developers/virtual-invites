@@ -1,6 +1,15 @@
 let globalContent = "";
 let pageContent = "";
 
+function showAlert(selector, message) {
+  const offset = selector.offsetTop - 64;
+  const contentEl = selector.querySelector(".alert");
+
+  contentEl.innerHTML = message;
+  selector.classList.remove("d-none");
+  window.scroll({ top: offset, behavior: "smooth" });
+}
+
 const crypto = {
   decrypt: (serializedKey, encryptionObject) => {
     const key = deserialize(serializedKey);
@@ -26,8 +35,7 @@ const crypto = {
   },
 
   deserialize: (serializedString) => {
-    const array = serializedString.split(",");
-    const buffer = Uint8Array.from(array);
+    const buffer = atob(serializedString);
     return buffer;
   },
 
@@ -112,7 +120,7 @@ const crypto = {
   },
 
   serialize: (buffer) => {
-    return buffer.toString();
+    return btoa(buffer);
   }
 }
 
@@ -247,6 +255,10 @@ function getPhrase(key) {
   }
 }
 
+function hide(selector) {
+  selector.classList.add("d-none");
+}
+
 function isMobileDevice() {
   const result = (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
   return result;
@@ -371,6 +383,10 @@ function populateGlobalContent() {
         reject(err);
       });
   });
+}
+
+function show(selector) {
+  selector.classList.remove("d-none");
 }
 
 function showMaterialIcons() {

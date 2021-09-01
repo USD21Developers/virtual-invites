@@ -2,13 +2,18 @@
 function onSubmit(e) {
   e.preventDefault();
   console.log("onSubmit");
+  const spinner = document.querySelector("#progressbar");
+  const submitButton = document.querySelector("#formsubmit");
+  const alert = document.querySelector("#alert");
   const username = e.target.username.value.trim().toLowerCase();
   const password = e.target.password.value.trim();
   const usernameEl = document.querySelector("#username");
   const passwordEl = document.querySelector("#password");
   const usernameError = document.querySelector(".username.invalid-feedback");
   const passwordError = document.querySelector(".password.invalid-feedback");
-  const endpoint = `${getApiHost()}/login`
+  const endpoint = `${getApiHost()}/login`;
+  const controller = new AbortController();
+  const signal = controller.signal;
 
   document.querySelectorAll(".is-invalid").forEach(item => item.classList.remove("is-invalid"));
 
@@ -26,8 +31,9 @@ function onSubmit(e) {
     return;
   }
 
-  showSpinner(true);
-  showAlert(false);
+  show(spinner);
+  hide(submitButton);
+  hide(alert);
 
   fetch(endpoint, {
     mode: "cors",
@@ -38,14 +44,16 @@ function onSubmit(e) {
     }),
     headers: new Headers({
       "Content-Type": "application/json"
-    })
+    }),
+    signal: signal
   })
     .then(res => res.json())
     .then(data => {
       switch (data.msg) {
         case "invalid login":
-          showSpinner(false);
-          showAlert(true, data.msg);
+          hide(spinner);
+          show(submitButton);
+          showAlert(alert, data.msg);
           break;
       }
       // TODO
@@ -53,35 +61,15 @@ function onSubmit(e) {
     })
     .catch(err => {
       console.error(err);
-      showSpinner(false);
+      hide(spinner);
+      show(submitButton);
     });
-}
 
-function showAlert(show = true, content = "") {
-  const alert = document.querySelector("#alert");
-  const contentEl = alert.querySelector("#alert .alert");
-  const alertOffset = alert.offsetTop - 64;
-
-  contentEl.innerHTML = content;
-  if (!show) {
-    alert.classList.add("d-none");
-  } else {
-    alert.classList.remove("d-none");
-    window.scroll({ top: alertOffset, behavior: "smooth" });
-  }
-}
-
-function showSpinner(show = true) {
-  const submitButton = document.querySelector("#formsubmit");
-  const progressBar = document.querySelector("#progressbar");
-
-  if (show) {
-    submitButton.classList.add("d-none");
-    progressBar.classList.remove("d-none");
-  } else {
-    submitButton.classList.remove("d-none");
-    progressBar.classList.add("d-none");
-  }
+  setTimeout(() => {
+    controller.abort();
+    hide(spinner);
+    show(submitButton);
+  }, 5000);
 }
 
 function attachListeners() {
