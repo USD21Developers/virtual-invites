@@ -55,9 +55,19 @@ function onSubmit(e) {
           show(submitButton);
           showAlert(alert, data.msg);
           break;
+        case "user authenticated":
+          localStorage.setItem("datakey", data.datakey);
+          localStorage.setItem("refreshToken", data.refreshToken);
+          sessionStorage.setItem("accessToken", data.accessToken);
+          window.location.href = "../";
+          break;
+        default:
+          const glitchMessage = getPhrase("glitchMessage");
+          hide(spinner);
+          show(submitButton);
+          showAlert(alert, glitchMessage);
+          break;
       }
-      // TODO
-      console.log(data);
     })
     .catch(err => {
       console.error(err);
@@ -67,9 +77,11 @@ function onSubmit(e) {
 
   setTimeout(() => {
     controller.abort();
+    const alertMessage = getPhrase("timedout");
     hide(spinner);
     show(submitButton);
-  }, 5000);
+    showAlert(alert, alertMessage);
+  }, 30000);
 }
 
 function attachListeners() {
