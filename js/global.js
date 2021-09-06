@@ -264,37 +264,6 @@ function isMobileDevice() {
   return result;
 };
 
-function setCountry(country) {
-  localStorage.setItem("country", country);
-}
-
-function showModal(body = "", title = "", closeButtonText = "") {
-  const modal = document.querySelector("#modal");
-  const modalTitle = document.querySelector("#modaltitle");
-
-  if (title === "") {
-    modalTitle.innerHTML = "";
-    modalTitle.classList.add("d-none");
-  } else {
-    modalTitle.innerHTML = title;
-    modalTitle.classList.remove("d-none");
-  }
-
-  modal.querySelector(".modal-body").innerHTML = body;
-
-  if (closeButtonText === "") {
-    modal.querySelector(".modal-header button[class=close]").setAttribute("aria-label", "");
-    modal.querySelector(".modal-footer button[data-dismiss=modal]").innerHTML = "";
-    modal.querySelector(".modal-footer button[data-dismiss=modal]").classList.add("d-none");
-  } else {
-    modal.querySelector(".modal-header button[class=close]").setAttribute("aria-label", closeButtonText);
-    modal.querySelector(".modal-footer button[data-dismiss=modal]").innerHTML = closeButtonText;
-    modal.querySelector(".modal-footer button[data-dismiss=modal]").classList.remove("d-none");
-  }
-
-  $("#modal").modal();
-}
-
 async function populateContent() {
   return new Promise((resolve, reject) => {
     const lang = localStorage.getItem("lang") || "en";
@@ -385,12 +354,43 @@ function populateGlobalContent() {
   });
 }
 
+function setCountry(country) {
+  localStorage.setItem("country", country);
+}
+
 function show(selector) {
   selector.classList.remove("d-none");
 }
 
 function showMaterialIcons() {
   document.querySelectorAll(".material-icons").forEach(item => item.style.opacity = "1");
+}
+
+function showModal(body = "", title = "", closeButtonText = "") {
+  const modal = document.querySelector("#modal");
+  const modalTitle = document.querySelector("#modaltitle");
+
+  if (title === "") {
+    modalTitle.innerHTML = "";
+    modalTitle.classList.add("d-none");
+  } else {
+    modalTitle.innerHTML = title;
+    modalTitle.classList.remove("d-none");
+  }
+
+  modal.querySelector(".modal-body").innerHTML = body;
+
+  if (closeButtonText === "") {
+    modal.querySelector(".modal-header button[class=close]").setAttribute("aria-label", "");
+    modal.querySelector(".modal-footer button[data-dismiss=modal]").innerHTML = "";
+    modal.querySelector(".modal-footer button[data-dismiss=modal]").classList.add("d-none");
+  } else {
+    modal.querySelector(".modal-header button[class=close]").setAttribute("aria-label", closeButtonText);
+    modal.querySelector(".modal-footer button[data-dismiss=modal]").innerHTML = closeButtonText;
+    modal.querySelector(".modal-footer button[data-dismiss=modal]").classList.remove("d-none");
+  }
+
+  $("#modal").modal();
 }
 
 function showToast(message, duration = 5000) {
@@ -404,8 +404,8 @@ function showToast(message, duration = 5000) {
   }, duration);
 }
 
-function init() {
+function initGlobal() {
   showMaterialIcons();
 }
 
-init();
+initGlobal();
