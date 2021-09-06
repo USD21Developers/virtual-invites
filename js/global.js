@@ -1,15 +1,6 @@
 let globalContent = "";
 let pageContent = "";
 
-function showAlert(selector, message) {
-  const offset = selector.offsetTop - 64;
-  const contentEl = selector.querySelector(".alert");
-
-  contentEl.innerHTML = message;
-  selector.classList.remove("d-none");
-  window.scroll({ top: offset, behavior: "smooth" });
-}
-
 const crypto = {
   decrypt: (serializedKey, encryptionObject) => {
     const key = deserialize(serializedKey);
@@ -360,6 +351,15 @@ function setCountry(country) {
 
 function show(selector) {
   selector.classList.remove("d-none");
+}
+
+function showAlert(selector, message) {
+  const offset = selector.offsetTop - 64;
+  const contentEl = selector.querySelector(".alert");
+
+  contentEl.innerHTML = message;
+  selector.classList.remove("d-none");
+  window.scroll({ top: offset, behavior: "smooth" });
 }
 
 function showMaterialIcons() {
