@@ -52,6 +52,11 @@
       "key": "timedout",
       "original": "Your login timed out. Please ensure that you have a stable internet connection, then try again.",
       "translated": "Your login timed out. Please ensure that you have a stable internet connection, then try again."
+    },
+    {
+      "key": "invalid login",
+      "original": "Your username and/or password do not match our records. Please try again.",
+      "translated": "Your username and/or password do not match our records. Please try again."
     }
   ],
 

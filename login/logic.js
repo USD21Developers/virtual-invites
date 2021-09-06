@@ -52,10 +52,11 @@ function onSubmit(e) {
     .then(data => {
       switch (data.msg) {
         case "invalid login":
+          const phrase = getPhrase("invalid login");
           state = "before";
           hide(spinner);
           show(submitButton);
-          showAlert(alert, data.msg);
+          showAlert(alert, phrase);
           break;
         case "user authenticated":
           state = "after";
