@@ -353,11 +353,12 @@ function show(selector) {
   selector.classList.remove("d-none");
 }
 
-function showAlert(selector, message) {
+function showAlert(selector, message, headline) {
   const offset = selector.offsetTop - 64;
   const contentEl = selector.querySelector(".alert");
+  const html = headline.length ? `<h3>${headline}</h3>${message}` : message;
 
-  contentEl.innerHTML = message;
+  contentEl.innerHTML = html;
   selector.classList.remove("d-none");
   window.scroll({ top: offset, behavior: "smooth" });
 }

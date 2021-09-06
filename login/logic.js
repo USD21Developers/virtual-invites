@@ -53,10 +53,11 @@ function onSubmit(e) {
       switch (data.msg) {
         case "invalid login":
           const phrase = getPhrase("invalid login");
+          const headline = getPhrase("invalid login headline");
           state = "before";
           hide(spinner);
           show(submitButton);
-          showAlert(alert, phrase);
+          showAlert(alert, phrase, headline);
           break;
         case "user authenticated":
           state = "after";

@@ -57,6 +57,11 @@
       "key": "invalid login",
       "original": "Your username and/or password do not match our records. Please try again.",
       "translated": "Your username and/or password do not match our records. Please try again."
+    },
+    {
+      "key": "invalid login headline",
+      "original": "Login Not Recognized",
+      "translated": "Login Not Recognized"
     }
   ],
 
