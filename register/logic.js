@@ -217,11 +217,9 @@ async function populateChurches() {
       .then((res) => res.json())
       .then((churchesInCountries) => {
         churchesInCountries.forEach((item) => {
-          const {
-            iso: countryCode,
-            name: countryName,
-            churches,
-          } = item.country;
+          const { iso: countryCode, name, churches } = item.country;
+          let countryName = name;
+          if (countryCode === "us") countryName = "United States";
           const optgroup = document.createElement("optgroup");
           optgroup.label = `${countryName}:`;
           churchDropdown.appendChild(optgroup);
@@ -326,8 +324,6 @@ async function init() {
   await populateContent();
   const churches = populateChurches();
   const countries = populateCountries();
-  console.log(`typeof churches: ${typeof churches}`);
-  console.log(`typeof countries: ${countries}`);
   Promise.all([churches, countries]).then(() => {
     attachListeners();
   });
