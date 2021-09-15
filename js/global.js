@@ -4,7 +4,8 @@ let pageContent = "";
 const crypto = {
   decrypt: (serializedKey, encryptionObject) => {
     const key = deserialize(serializedKey);
-    const { iv: serializedIV, ciphertext: serializedCiphertext } = encryptionObject;
+    const { iv: serializedIV, ciphertext: serializedCiphertext } =
+      encryptionObject;
     const iv = crypto.deserialize(serializedIV);
     const ciphertext = crypto.deserialize(serializedCiphertext);
     const plainText = crypto.decryptMessage(key, iv, ciphertext);
@@ -15,7 +16,7 @@ const crypto = {
     const decrypted = await window.crypto.subtle.decrypt(
       {
         name: "AES-GCM",
-        iv: iv
+        iv: iv,
       },
       key,
       ciphertext
@@ -31,19 +32,19 @@ const crypto = {
   },
 
   encrypt: async (serializedKey, message) => {
-    if (typeof serializedKey !== "string" || serializedKey.length === 0) return new Error("key must be a string");
+    if (typeof serializedKey !== "string" || serializedKey.length === 0)
+      return new Error("key must be a string");
     let key;
     try {
       key = await crypto.importSecretKey(crypto.deserialize(serializedKey));
-    }
-    catch (err) {
+    } catch (err) {
       return new Error(err);
     }
     const iv = crypto.generateIV();
     const ciphertext = await crypto.encryptMessage(key, iv, message);
     const encryptionObject = {
       iv: crypto.serialize(iv),
-      ciphertext: crypto.serialize(ciphertext)
+      ciphertext: crypto.serialize(ciphertext),
     };
 
     return encryptionObject;
@@ -54,7 +55,7 @@ const crypto = {
     const ciphertext = await window.crypto.subtle.encrypt(
       {
         name: "AES-GCM",
-        iv: iv
+        iv: iv,
       },
       key,
       encoded
@@ -64,10 +65,7 @@ const crypto = {
   },
 
   exportCryptoKey: async (key) => {
-    const exported = await window.crypto.subtle.exportKey(
-      "raw",
-      key
-    );
+    const exported = await window.crypto.subtle.exportKey("raw", key);
     const exportedKeyBuffer = new Uint8Array(exported);
 
     return exportedKeyBuffer;
@@ -80,19 +78,22 @@ const crypto = {
 
   generateKey: () => {
     return new Promise((resolve, reject) => {
-      window.crypto.subtle.generateKey(
-        {
-          name: "AES-GCM",
-          length: 256,
-        },
-        true,
-        ["encrypt", "decrypt"]
-      ).then(key => {
-        resolve(key);
-      }).catch(err => {
-        reject(new Error(err));
-      });
-    })
+      window.crypto.subtle
+        .generateKey(
+          {
+            name: "AES-GCM",
+            length: 256,
+          },
+          true,
+          ["encrypt", "decrypt"]
+        )
+        .then((key) => {
+          resolve(key);
+        })
+        .catch((err) => {
+          reject(new Error(err));
+        });
+    });
   },
 
   getMessageEncoding: (message) => {
@@ -101,19 +102,16 @@ const crypto = {
   },
 
   importSecretKey: (rawKey) => {
-    return window.crypto.subtle.importKey(
-      "raw",
-      rawKey,
-      "AES-GCM",
-      true,
-      ["encrypt", "decrypt"]
-    );
+    return window.crypto.subtle.importKey("raw", rawKey, "AES-GCM", true, [
+      "encrypt",
+      "decrypt",
+    ]);
   },
 
   serialize: (buffer) => {
     return btoa(buffer);
-  }
-}
+  },
+};
 
 function enableTooltips() {
   $('[data-toggle="tooltip"]').tooltip();
@@ -135,7 +133,9 @@ function formError(selector, message = "") {
 }
 
 function formErrorsReset() {
-  document.querySelectorAll(".is-invalid").forEach(item => item.classList.remove("is-invalid"));
+  document
+    .querySelectorAll(".is-invalid")
+    .forEach((item) => item.classList.remove("is-invalid"));
 }
 
 function getAccessToken() {
@@ -173,7 +173,8 @@ function getAccessToken() {
             const { accessToken, refreshToken } = data;
             localStorage.setItem("refreshToken", refreshToken);
             sessionStorage.setItem("accessToken", accessToken);
-            const country = JSON.parse(atob(accessToken.split(".")[1])).country || "us";
+            const country =
+              JSON.parse(atob(accessToken.split(".")[1])).country || "us";
             setCountry(country);
             resolve(accessToken);
             break;
@@ -212,9 +213,33 @@ function getApiHost() {
   return host;
 }
 
+function getApiServicesHost() {
+  let host;
+
+  switch (window.location.hostname) {
+    case "staging.invites.mobi":
+      host = "https://api.usd21.org/services";
+      break;
+    case "staging.invites.usd21.org":
+      host = "https://api.usd21.org/services";
+      break;
+    case "invites.mobi":
+      host = "https://api.usd21.org/services";
+      break;
+    case "invites.usd21.org":
+      host = "https://api.usd21.org/services";
+      break;
+    default:
+      host = `http://${window.location.hostname}:4000/services`;
+      break;
+  }
+
+  return host;
+}
+
 function getLang() {
   const path = window.location.pathname.split("/");
-  const langFromPath = path.find(frag => frag === "lang") ? path[2] : "en";
+  const langFromPath = path.find((frag) => frag === "lang") ? path[2] : "en";
   return langFromPath;
 }
 
@@ -224,12 +249,12 @@ function getPhrase(key) {
   if (!key) throw errorMessage;
   if (!pageContent.hasOwnProperty("phrases")) throw errorMessage;
   if (!Array.isArray(pageContent.phrases)) throw errorMessage;
-  const phrase = pageContent.phrases.find(item => item.key == key);
+  const phrase = pageContent.phrases.find((item) => item.key == key);
   if (!phrase) throw errorMessage;
   content = phrase.translated || "";
   const hasChanges = Array.isArray(phrase.changes);
   if (hasChanges) {
-    phrase.changes.forEach(change => {
+    phrase.changes.forEach((change) => {
       const { original, translated, bold, italic, link } = change;
       let changed = translated;
       if (bold) changed = `<strong>${changed}</strong>`;
@@ -251,25 +276,27 @@ function hide(selector) {
 }
 
 function isMobileDevice() {
-  const result = (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+  const result =
+    typeof window.orientation !== "undefined" ||
+    navigator.userAgent.indexOf("IEMobile") !== -1;
   return result;
-};
+}
 
 async function populateContent() {
   return new Promise((resolve, reject) => {
     const lang = localStorage.getItem("lang") || "en";
     const endpoint = `i18n/${lang}.json`;
     fetch(endpoint)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(async (data) => {
         pageContent = data;
         const contentitems = [];
-        data.phrases.forEach(phrase => {
+        data.phrases.forEach((phrase) => {
           const { key, translated, changes } = phrase;
           const hasChanges = Array.isArray(changes);
           let content = translated;
           if (hasChanges) {
-            changes.forEach(change => {
+            changes.forEach((change) => {
               const { original, translated, bold, italic, link, code } = change;
               let changed = translated;
               if (bold) changed = `<strong>${changed}</strong>`;
@@ -281,20 +308,24 @@ async function populateContent() {
           }
           contentitems.push({ key: key, content: content });
         });
-        document.querySelectorAll("[data-i18n]").forEach(item => {
+        document.querySelectorAll("[data-i18n]").forEach((item) => {
           const key = item.getAttribute("data-i18n");
-          const matchedcontent = contentitems.find(contentitem => contentitem.key == key)?.content;
+          const matchedcontent = contentitems.find(
+            (contentitem) => contentitem.key == key
+          )?.content;
           if (matchedcontent) item.innerHTML = matchedcontent;
         });
-        document.querySelectorAll("[data-i18n-placeholder]").forEach(item => {
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((item) => {
           const key = item.getAttribute("data-i18n-placeholder");
-          const matchedcontent = contentitems.find(contentitem => contentitem.key == key)?.content;
+          const matchedcontent = contentitems.find(
+            (contentitem) => contentitem.key == key
+          )?.content;
           if (matchedcontent) item.setAttribute("placeholder", matchedcontent);
         });
         await populateGlobalContent();
         resolve();
       })
-      .catch(err => {
+      .catch((err) => {
         reject(err);
       });
   });
@@ -305,16 +336,16 @@ function populateGlobalContent() {
     const lang = localStorage.getItem("lang") || "en";
     const endpoint = `/i18n-global/${lang}.json`;
     fetch(endpoint)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         globalContent = data;
         const contentitems = [];
-        data.phrases.forEach(phrase => {
+        data.phrases.forEach((phrase) => {
           const { key, translated, changes } = phrase;
           const hasChanges = Array.isArray(changes);
           let content = translated;
           if (hasChanges) {
-            changes.forEach(change => {
+            changes.forEach((change) => {
               const { original, translated, bold, italic, link, code } = change;
               let changed = translated;
               if (bold) changed = `<strong>${changed}</strong>`;
@@ -326,19 +357,25 @@ function populateGlobalContent() {
           }
           contentitems.push({ key: key, content: content });
         });
-        document.querySelectorAll("[data-i18n-global]").forEach(item => {
+        document.querySelectorAll("[data-i18n-global]").forEach((item) => {
           const key = item.getAttribute("data-i18n-global");
-          const matchedcontent = contentitems.find(contentitem => contentitem.key == key)?.content;
+          const matchedcontent = contentitems.find(
+            (contentitem) => contentitem.key == key
+          )?.content;
           if (matchedcontent) item.innerHTML = matchedcontent;
         });
-        document.querySelectorAll("[data-i18n-global-aria-label]").forEach(item => {
-          const key = item.getAttribute("data-i18n-global-aria-label");
-          const matchedcontent = contentitems.find(contentitem => contentitem.key == key)?.content;
-          if (matchedcontent) item.setAttribute("aria-label", matchedcontent);
-        });
+        document
+          .querySelectorAll("[data-i18n-global-aria-label]")
+          .forEach((item) => {
+            const key = item.getAttribute("data-i18n-global-aria-label");
+            const matchedcontent = contentitems.find(
+              (contentitem) => contentitem.key == key
+            )?.content;
+            if (matchedcontent) item.setAttribute("aria-label", matchedcontent);
+          });
         resolve();
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err);
         reject(err);
       });
@@ -364,7 +401,9 @@ function showAlert(selector, message, headline) {
 }
 
 function showMaterialIcons() {
-  document.querySelectorAll(".material-icons").forEach(item => item.style.opacity = "1");
+  document
+    .querySelectorAll(".material-icons")
+    .forEach((item) => (item.style.opacity = "1"));
 }
 
 function showModal(body = "", title = "", closeButtonText = "") {
@@ -382,13 +421,23 @@ function showModal(body = "", title = "", closeButtonText = "") {
   modal.querySelector(".modal-body").innerHTML = body;
 
   if (closeButtonText === "") {
-    modal.querySelector(".modal-header button[class=close]").setAttribute("aria-label", "");
-    modal.querySelector(".modal-footer button[data-dismiss=modal]").innerHTML = "";
-    modal.querySelector(".modal-footer button[data-dismiss=modal]").classList.add("d-none");
+    modal
+      .querySelector(".modal-header button[class=close]")
+      .setAttribute("aria-label", "");
+    modal.querySelector(".modal-footer button[data-dismiss=modal]").innerHTML =
+      "";
+    modal
+      .querySelector(".modal-footer button[data-dismiss=modal]")
+      .classList.add("d-none");
   } else {
-    modal.querySelector(".modal-header button[class=close]").setAttribute("aria-label", closeButtonText);
-    modal.querySelector(".modal-footer button[data-dismiss=modal]").innerHTML = closeButtonText;
-    modal.querySelector(".modal-footer button[data-dismiss=modal]").classList.remove("d-none");
+    modal
+      .querySelector(".modal-header button[class=close]")
+      .setAttribute("aria-label", closeButtonText);
+    modal.querySelector(".modal-footer button[data-dismiss=modal]").innerHTML =
+      closeButtonText;
+    modal
+      .querySelector(".modal-footer button[data-dismiss=modal]")
+      .classList.remove("d-none");
   }
 
   $("#modal").modal();
