@@ -1,7 +1,11 @@
+let churches = [];
+
 function onChurchChange(e) {
   const churchid = e.target.value;
   const unlistedchurch = document.querySelector("#unlistedchurch");
-  const unlistedchurchcontainer = document.querySelector("#unlistedchurchcontainer");
+  const unlistedchurchcontainer = document.querySelector(
+    "#unlistedchurchcontainer"
+  );
 
   unlistedchurch.value = "";
 
@@ -13,11 +17,14 @@ function onChurchChange(e) {
 }
 
 function onCountryChange(e) {
+  console.log("onCountryChange");
   const countryCode = e.target.value;
   const churchid = document.querySelector("#churchid");
   const churchContainer = document.querySelector("#churchcontainer");
   const unlistedchurch = document.querySelector("#unlistedchurch");
-  const unlistedchurchcontainer = document.querySelector("#unlistedchurchcontainer");
+  const unlistedchurchcontainer = document.querySelector(
+    "#unlistedchurchcontainer"
+  );
   let countryHasChurches = false;
 
   churchid.value = "";
@@ -30,12 +37,11 @@ function onCountryChange(e) {
     return;
   }
 
-  churchContainer.querySelectorAll("optgroup").forEach(item => {
+  churchContainer.querySelectorAll("optgroup").forEach((item) => {
     item.classList.add("d-none");
   });
 
-
-  churchContainer.querySelectorAll("optgroup").forEach(item => {
+  churchContainer.querySelectorAll("optgroup").forEach((item) => {
     const churchCountryCode = item.getAttribute("data-country");
     const optgroupLabel = item.getAttribute("label");
     const optgroupText = getPhrase("noneOfTheAboveOptgroup");
@@ -50,7 +56,9 @@ function onCountryChange(e) {
   });
 
   if (!countryHasChurches) {
-    churchContainer.querySelectorAll("optgroup").forEach(item => item.classList.remove("d-none"));
+    churchContainer
+      .querySelectorAll("optgroup")
+      .forEach((item) => item.classList.remove("d-none"));
     churchContainer.classList.remove("d-none");
   }
 }
@@ -59,14 +67,17 @@ async function onSubmit(e) {
   e.preventDefault();
   const spinner = document.querySelector("#progressbar");
   const submitButton = document.querySelector("#formsubmit");
-  const username = document.querySelector("#username").value.trim().toLowerCase() || "";
+  const username =
+    document.querySelector("#username").value.trim().toLowerCase() || "";
   const password = document.querySelector("#password").value.trim() || "";
-  const email = document.querySelector("#email").value.trim().toLowerCase() || "";
+  const email =
+    document.querySelector("#email").value.trim().toLowerCase() || "";
   const firstname = document.querySelector("#firstname").value.trim() || "";
   const lastname = document.querySelector("#lastname").value.trim() || "";
   const country = document.querySelector("#country").value.trim() || "";
   const churchid = document.querySelector("#churchid").value.trim() || "";
-  const unlistedchurch = document.querySelector("#unlistedchurch").value.trim() || "";
+  const unlistedchurch =
+    document.querySelector("#unlistedchurch").value.trim() || "";
   const emailSenderText = getPhrase("emailSenderText");
   const emailSubject = getPhrase("emailSubject");
   let emailParagraph1 = getPhrase("emailParagraph1");
@@ -80,7 +91,10 @@ async function onSubmit(e) {
   const controller = new AbortController();
   const signal = controller.signal;
 
-  emailParagraph1 = emailParagraph1.replaceAll("${fullname}", `${firstname} ${lastname}`);
+  emailParagraph1 = emailParagraph1.replaceAll(
+    "${fullname}",
+    `${firstname} ${lastname}`
+  );
 
   formErrorsReset();
   const isvalid = validate();
@@ -107,15 +121,15 @@ async function onSubmit(e) {
       emailParagraph1: emailParagraph1,
       emailLinkText: emailLinkText,
       emailSignature: emailSignature,
-      dataKey: serializedDataKey
+      dataKey: serializedDataKey,
     }),
     headers: new Headers({
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     }),
-    signal: signal
+    signal: signal,
   })
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       show(submitButton);
       hide(spinner);
 
@@ -181,7 +195,7 @@ async function onSubmit(e) {
   }, 5000);
 }
 
-function populateChurches() {
+async function populateChurches() {
   return new Promise((resolve, reject) => {
     const churchDropdown = document.querySelector("#churchid");
     const emptyOption = document.createElement("option");
@@ -195,29 +209,27 @@ function populateChurches() {
     notListedOption.innerText = getPhrase("notListedOption");
     const noneOfTheAboveOptgroup = document.createElement("optgroup");
     noneOfTheAboveOptgroup.label = getPhrase("noneOfTheAboveOptgroup");
-    const lang = getLang();
-    fetch(`../data/json/lang/${lang}/churches.json`)
-      .then(res => res.json())
-      .then(countries => {
-        countries.forEach(item => {
-          const { name: countryName, alpha2: countryCode } = item.country;
+
+    const host = getApiServicesHost();
+    const endpoint = `${host}/churches`;
+
+    fetch(endpoint)
+      .then((res) => res.json())
+      .then((churchesInCountries) => {
+        churchesInCountries.forEach((item) => {
+          const {
+            iso: countryCode,
+            name: countryName,
+            churches,
+          } = item.country;
           const optgroup = document.createElement("optgroup");
           optgroup.label = `${countryName}:`;
           churchDropdown.appendChild(optgroup);
-          item.churches.forEach(church => {
-            let text = "";
-            if (church.hasOwnProperty("city")) text = church.city;
-            if (church.hasOwnProperty("state")) text += `, ${church.state}`;
-            if (church.hasOwnProperty("territory")) {
-              if (church.hasOwnProperty("city")) {
-                text += `, ${church.territory}`;
-              } else {
-                text = church.territory;
-              }
-            }
+          churches.forEach((church) => {
+            const { id, place } = church;
             const option = document.createElement("option");
-            option.value = church.id;
-            option.innerText = text;
+            option.value = id;
+            option.innerText = place;
             optgroup.appendChild(option);
             optgroup.setAttribute("data-country", countryCode);
 
@@ -226,10 +238,13 @@ function populateChurches() {
             noneOfTheAboveOptgroup.appendChild(notListedOption);
           });
         });
-        $('.floating-label .custom-select, .floating-label .form-control').floatinglabel();
+        $(
+          ".floating-label .custom-select, .floating-label .form-control"
+        ).floatinglabel();
         resolve();
       })
-      .catch(err => {
+      .catch((err) => {
+        console.error(err);
         reject(err);
       });
   });
@@ -243,51 +258,67 @@ function populateCountries() {
     emptyOption.label = " ";
     countryDropdown.appendChild(emptyOption);
     fetch(`../data/json/lang/${lang}/countries.json`)
-      .then(res => res.json())
-      .then(data => {
-        data.forEach(item => {
+      .then((res) => res.json())
+      .then((data) => {
+        data.forEach((item) => {
           const { alpha2, name } = item;
           const countryOption = document.createElement("option");
           countryOption.value = alpha2;
           countryOption.innerHTML = name;
           countryDropdown.appendChild(countryOption);
         });
-        $('.floating-label .custom-select, .floating-label .form-control').floatinglabel();
+        /* $(
+          ".floating-label .custom-select, .floating-label .form-control"
+        ).floatinglabel(); */
         resolve();
       })
-      .catch(err => {
+      .catch((err) => {
         reject(err);
       });
-  })
+  });
 }
 
 function validate() {
   let isValid = true;
 
-  const username = document.querySelector("#username").value.trim().toLowerCase() || "";
+  const username =
+    document.querySelector("#username").value.trim().toLowerCase() || "";
   const password = document.querySelector("#password").value.trim() || "";
-  const email = document.querySelector("#email").value.trim().toLowerCase() || "";
+  const email =
+    document.querySelector("#email").value.trim().toLowerCase() || "";
   const firstname = document.querySelector("#firstname").value.trim() || "";
   const lastname = document.querySelector("#lastname").value.trim() || "";
   const country = document.querySelector("#country").value.trim() || "";
   const churchid = document.querySelector("#churchid").value.trim() || "";
-  const unlistedchurch = document.querySelector("#unlistedchurch").value.trim() || "";
+  const unlistedchurch =
+    document.querySelector("#unlistedchurch").value.trim() || "";
 
-  if (!username.length) return formError("#username", getPhrase("usernamerequired"));
-  if (!password.length) return formError("#password", getPhrase("passwordrequired"));
+  if (!username.length)
+    return formError("#username", getPhrase("usernamerequired"));
+  if (!password.length)
+    return formError("#password", getPhrase("passwordrequired"));
   if (!email.length) return formError("#email", getPhrase("emailrequired"));
-  if (!firstname.length) return formError("#firstname", getPhrase("firstnamerequired"));
-  if (!lastname.length) return formError("#lastname", getPhrase("lastnamerequired"));
-  if (!country.length) return formError("#country", getPhrase("countryrequired"));
-  if (!churchid.length) return formError("#churchid", getPhrase("churchrequired"));
-  if (churchid == 0 && !unlistedchurch.length) return formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
+  if (!firstname.length)
+    return formError("#firstname", getPhrase("firstnamerequired"));
+  if (!lastname.length)
+    return formError("#lastname", getPhrase("lastnamerequired"));
+  if (!country.length)
+    return formError("#country", getPhrase("countryrequired"));
+  if (!churchid.length)
+    return formError("#churchid", getPhrase("churchrequired"));
+  if (churchid == 0 && !unlistedchurch.length)
+    return formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
 
   return isValid;
 }
 
 function attachListeners() {
-  document.querySelector("#country").addEventListener("change", onCountryChange);
-  document.querySelector("#churchid").addEventListener("change", onChurchChange);
+  document
+    .querySelector("#country")
+    .addEventListener("change", onCountryChange);
+  document
+    .querySelector("#churchid")
+    .addEventListener("change", onChurchChange);
   document.querySelector("#formlogin").addEventListener("submit", onSubmit);
 }
 
@@ -295,6 +326,8 @@ async function init() {
   await populateContent();
   const churches = populateChurches();
   const countries = populateCountries();
+  console.log(`typeof churches: ${typeof churches}`);
+  console.log(`typeof countries: ${countries}`);
   Promise.all([churches, countries]).then(() => {
     attachListeners();
   });
