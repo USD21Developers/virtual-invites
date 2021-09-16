@@ -97,7 +97,7 @@
     </div>
 
     <div class="container">
-      <div class="row">
+      <div class="row" id="mainheadline">
         <div class="col col-md-6 offset-md-3">
           <h2
             class="text-center text-uppercase my-4"
@@ -106,7 +106,39 @@
         </div>
       </div>
 
-      <form name="formlogin" id="formlogin" method="post" action="./">
+      <div id="alert" class="d-none row mb-2">
+        <div class="col col-md-6 offset-md-3">
+          <div
+            class="alert alert-danger border border-danger"
+            role="alert"
+          ></div>
+        </div>
+      </div>
+
+      <div class="container d-none" id="contentdone">
+        <div class="row">
+          <div class="col col-md-6 offset-md-3">
+            <h2
+              class="text-center text-uppercase my-4"
+              data-i18n="checkyouremailtitle"
+            ></h2>
+          </div>
+        </div>
+        <div class="row">
+          <div
+            class="col-md-6 offset-md-3"
+            data-i18n="checkyouremailtext"
+          ></div>
+        </div>
+      </div>
+
+      <form
+        name="formforgot"
+        id="formforgot"
+        method="post"
+        action="./"
+        novalidate
+      >
         <div class="row">
           <div class="col-md-6 offset-md-3">
             <p data-i18n="paragraph1"></p>
@@ -124,6 +156,12 @@
               </div>
             </div>
             <div class="text-center mt-5 mb-4">
+              <div id="progressbar" class="progress d-none">
+                <div
+                  class="progress-bar progress-bar-indeterminate"
+                  role="progressbar"
+                ></div>
+              </div>
               <button
                 type="submit"
                 id="formsubmit"

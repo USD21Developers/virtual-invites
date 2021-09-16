@@ -37,6 +37,83 @@
       "key": "loginlink",
       "original": "Log In",
       "translated": "Log In"
+    },
+    {
+      "key": "emailError",
+      "original": "Please check your e-mail address for accuracy and proper formatting.",
+      "translated": "Please check your e-mail address for accuracy and proper formatting."
+    },
+    {
+      "key": "emailErrorHeadline",
+      "original": "Invalid E-mail",
+      "translated": "Invalid E-mail"
+    },
+    {
+      "key": "emailSenderText",
+      "original": "Virtual Invites",
+      "translated": "Virtual Invites"
+    },
+    {
+      "key": "emailSubject",
+      "original": "Reset your password",
+      "translated": "Reset your password"
+    },
+    {
+      "key": "emailParagraph1",
+      "original": "This message is for ${firstname} ${lastname}. We just received your request to reset your password.  To do so, please click on the link below within 20 minutes of your request.",
+      "translated": "This message is for ${firstname} ${lastname}. We just received your request to reset your password.  To do so, please click on the link below within 20 minutes of your request."
+    },
+    {
+      "key": "emailParagraph2",
+      "original": "Reset my password",
+      "translated": "Reset my password"
+    },
+    {
+      "key": "emailParagraph3",
+      "original": "The Cyberministry",
+      "translated": "The Cyberministry"
+    },
+    {
+      "key": "checkyouremailtitle",
+      "original": "Check Your E-mail",
+      "translated": "Check Your E-mail"
+    },
+    {
+      "key": "checkyouremailtext",
+      "original": "Please check your e-mail.  We have sent you a message containing a special link.  In order to reset your password, you must click on that link.",
+      "translated": "Please check your e-mail.  We have sent you a message containing a special link.  In order to reset your password, you must click on that link.",
+      "changes": [
+        {
+          "original": "Please check your e-mail.",
+          "translated": "Please check your e-mail.",
+          "bold": true
+        },
+        {
+          "original": "you must click on that link.",
+          "translated": "you must click on that link.",
+          "italic": true
+        }
+      ]
+    },
+    {
+      "key": "emailNotFound",
+      "original": "We have no record of this e-mail address. Did you use a different one when you registered?",
+      "translated": "We have no record of this e-mail address. Did you use a different one when you registered?"
+    },
+    {
+      "key": "emailNotFoundHeadline",
+      "original": "E-mail not found",
+      "translated": "E-mail not found"
+    },
+    {
+      "key": "glitch",
+      "original": "There was a technical glitch preventing us from processing your request.  Please make sure that you are connected to the internet, then try again.",
+      "translated": "There was a technical glitch preventing us from processing your request.  Please make sure that you are connected to the internet, then try again."
+    },
+    {
+      "key": "glitchHeadline",
+      "original": "Unable to Reset Password",
+      "translated": "Unable to Reset Password"
     }
   ],
 
