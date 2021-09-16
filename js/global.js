@@ -393,7 +393,9 @@ function show(selector) {
 function showAlert(selector, message, headline) {
   const offset = selector.offsetTop - 64;
   const contentEl = selector.querySelector(".alert");
-  const html = headline.length ? `<h3>${headline}</h3>${message}` : message;
+  const html = headline.length
+    ? `<h3 class="alert-heading">${headline}</h3>${message}`
+    : message;
 
   contentEl.innerHTML = html;
   selector.classList.remove("d-none");
@@ -452,6 +454,12 @@ function showToast(message, duration = 5000) {
   setTimeout(() => {
     snackbar.classList.remove("show");
   }, duration);
+}
+
+function validateEmail(email) {
+  const re =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
 }
 
 function initGlobal() {
