@@ -148,3 +148,7 @@ a:hover {
 .btn.font-weight-bold {
   font-weight: 600;
 }
+
+.alert .alert-link {
+  text-decoration: underline;
+}

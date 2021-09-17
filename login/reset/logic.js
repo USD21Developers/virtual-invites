@@ -1,8 +1,11 @@
 async function onSubmit(e) {
   e.preventDefault();
   formErrorsReset();
-  const hash =
-    document.location.hash.substring(1, document.location.hash.length) || "";
+  const hash = getHash() || "";
+  const mainHeadline = document.querySelector("#mainheadline");
+  const form = document.querySelector("#formResetPassword");
+  const done = document.querySelector("#contentdone");
+  const alert = document.querySelector("#alert");
   const submitButton = document.querySelector("#formsubmit");
   const progressBar = document.querySelector("#progressbar");
   const passwordrequired = getPhrase("passwordrequired");
@@ -23,7 +26,7 @@ async function onSubmit(e) {
   const signal = controller.signal;
 
   if (!newPassword.length) {
-    formError("#newpassword", passwordrequired);
+    return formError("#newpassword", passwordrequired);
   }
 
   hide(submitButton);
@@ -44,14 +47,23 @@ async function onSubmit(e) {
   })
     .then((res) => res.json())
     .then((data) => {
+      hide(progressBar);
+      show(submitButton);
       switch (data.msg) {
-        case "unable to query for token":
-          break;
         case "token not found":
+          showAlert(
+            alert,
+            getPhrase("tokenNotFound"),
+            getPhrase("invalidHash")
+          );
+          hide(form);
           break;
         case "token is expired":
+          showAlert(alert, getPhrase("tokenExpired"), getPhrase("invalidHash"));
+          hide(form);
           break;
         case "password is missing":
+          formError("#newpassword", getPhrase("passwordrequired"));
           break;
         case "new password lacks sufficient complexity":
           formError("#newpassword", passwordNotComplexEnough);
@@ -61,13 +73,13 @@ async function onSubmit(e) {
           `;
           showModal(modalMessage, invalidpassword);
           break;
-        case "unable to generate password hash":
-          break;
-        case "unable to store hashed password":
-          break;
-        case "unable to designate token as claimed":
-          break;
         case "password updated":
+          hide(mainHeadline);
+          hide(form);
+          show(done);
+          break;
+        default:
+          showAlert(alert, getPhrase("glitch"), getPhrase("glitchHeadline"));
           break;
       }
     })

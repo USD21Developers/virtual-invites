@@ -237,6 +237,12 @@ function getApiServicesHost() {
   return host;
 }
 
+function getHash() {
+  return (
+    document.location.hash.substring(1, document.location.hash.length) || ""
+  );
+}
+
 function getLang() {
   const path = window.location.pathname.split("/");
   const langFromPath = path.find((frag) => frag === "lang") ? path[2] : "en";
@@ -259,7 +265,7 @@ function getPhrase(key) {
       let changed = translated;
       if (bold) changed = `<strong>${changed}</strong>`;
       if (italic) changed = `<em>${changed}</em>`;
-      if (link) changed = `<a href="${link}">${changed}</a>`;
+      if (link) changed = `<a href="${link}" class="alert-link">${changed}</a>`;
       content = content.replaceAll(original, changed);
     });
   }
@@ -390,15 +396,15 @@ function show(selector) {
   selector.classList.remove("d-none");
 }
 
-function showAlert(selector, message, headline) {
-  const offset = selector.offsetTop - 64;
-  const contentEl = selector.querySelector(".alert");
+function showAlert(selectorObject, message, headline = "") {
+  const offset = selectorObject.offsetTop - 64;
+  const contentEl = selectorObject.querySelector(".alert");
   const html = headline.length
     ? `<h3 class="alert-heading">${headline}</h3>${message}`
     : message;
 
   contentEl.innerHTML = html;
-  selector.classList.remove("d-none");
+  selectorObject.classList.remove("d-none");
   window.scroll({ top: offset, behavior: "smooth" });
 }
 

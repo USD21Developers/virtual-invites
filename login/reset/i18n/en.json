@@ -57,6 +57,62 @@
       "key": "passwordNotComplexEnoughLine2",
       "original": "A minimum length of 8 characters is required.  Using a phrase (rather than a single word) is encouraged, because phrases are less predictable.",
       "translated": "A minimum length of 8 characters is required.  Using a phrase (rather than a single word) is encouraged, because phrases are less predictable."
+    },
+    {
+      "key": "glitch",
+      "original": "There was a technical glitch preventing us from processing your request.  Please make sure that you are connected to the internet, then try again.",
+      "translated": "There was a technical glitch preventing us from processing your request.  Please make sure that you are connected to the internet, then try again."
+    },
+    {
+      "key": "glitchHeadline",
+      "original": "Unable to Reset Password",
+      "translated": "Unable to Reset Password"
+    },
+    {
+      "key": "invalidHash",
+      "original": "Invalid link",
+      "translated": "Invalid link"
+    },
+    {
+      "key": "tokenNotFound",
+      "original": "The link to reset your password is not accurate.  You will need to start the process again.",
+      "translated": "The link to reset your password is not accurate.  You will need to start the process again.",
+      "changes": [
+        {
+          "original": "start the process again",
+          "translated": "start the process again",
+          "bold": true,
+          "link": "../forgot/"
+        }
+      ]
+    },
+    {
+      "key": "tokenExpired",
+      "original": "The time to reset your password has expired.  Please delete the e-mail that you received, then start the process again.",
+      "translated": "The time to reset your password has expired.  Please delete the e-mail that you received, then start the process again.",
+      "changes": [
+        {
+          "original": "start the process again",
+          "translated": "start the process again",
+          "bold": true,
+          "link": "../forgot/"
+        }
+      ]
+    },
+    {
+      "key": "passwordUpdatedText",
+      "original": "Your password was reset succesfully.  You can now delete the e-mail that you received.",
+      "translated": "Your password was reset succesfully.  You can now delete the e-mail that you received."
+    },
+    {
+      "key": "passwordUpdatedTitle",
+      "original": "Password Updated",
+      "translated": "Password Updated"
+    },
+    {
+      "key": "loginButton",
+      "original": "LOG IN",
+      "translated": "LOG IN"
     }
   ],
 
