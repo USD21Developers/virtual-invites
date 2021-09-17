@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="initial-scale=1, shrink-to-fit=no, width=device-width"
+      name="viewport"
+    />
+    <title data-i18n="pagetitle"></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="../../css/material-4.1.1-dist/css/material.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link href="../../css/global.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light sticky-top border-bottom">
+      <a class="navbar-brand" href="../../" data-i18n-global="apptitle"></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="navdrawer"
+        data-target="#navdrawerDefault"
+        aria-controls="navdrawerDefault"
+        aria-expanded="false"
+        aria-label=""
+        data-i18n-global-aria-label="toggleNavigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+
+    <div
+      aria-hidden="true"
+      class="navdrawer navdrawer-right"
+      id="navdrawerDefault"
+      tabindex="-1"
+    >
+      <div class="navdrawer-content">
+        <div class="navdrawer-header">
+          <div class="row">
+            <div class="col-9 d-flex justify-content-start">
+              <a
+                class="navbar-brand px-0"
+                href="../../"
+                data-i18n-global="apptitle"
+              ></a>
+            </div>
+            <div class="col-3 d-flex justify-content-end align-items-center">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="navdrawer"
+                data-target="#navdrawerDefault"
+                aria-controls="navdrawerDefault"
+                aria-expanded="false"
+                aria-label=""
+                data-i18n-global-aria-label="toggleNavigation"
+              >
+                <span class="material-icons mmaterial-icons-outlined">
+                  close
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <nav class="navdrawer-nav">
+          <a class="nav-item nav-link" href="../../">
+            <span class="material-icons mr-3 material-icons-outlined">
+              home
+            </span>
+            <span data-i18n-global="menuHome"></span>
+          </a>
+          <a class="nav-item nav-link" href="../../support/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              contact_support
+            </span>
+            <span data-i18n-global="menuSupport"></span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row" id="mainheadline">
+        <div class="col col-md-6 offset-md-3">
+          <h2
+            class="text-center text-uppercase my-4"
+            data-i18n="pagetitle"
+          ></h2>
+        </div>
+      </div>
+
+      <div id="alert" class="d-none row mb-2">
+        <div class="col-md-6 offset-md-3">
+          <div
+            class="alert alert-danger border border-danger"
+            role="alert"
+          ></div>
+        </div>
+      </div>
+
+      <div class="container d-none" id="contentdone">
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <h2
+              class="text-center text-uppercase my-4"
+              data-i18n="passwordUpdatedTitle"
+            ></h2>
+          </div>
+        </div>
+        <div class="row">
+          <div
+            class="col-md-6 offset-md-3"
+            data-i18n="passwordUpdatedText"
+          ></div>
+        </div>
+      </div>
+
+      <form id="formResetPassword" novalidate>
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <p class="text-center" data-i18n="pleaseChooseNewPassword"></p>
+            <div class="form-group mt-4">
+              <div class="floating-label">
+                <label for="newpassword" data-i18n="labelNewPassword"></label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="newpassword"
+                  autocomplete="new-password"
+                  autocapitalize="off"
+                />
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+            <div class="text-center mt-5 mb-4">
+              <div id="progressbar" class="progress d-none">
+                <div
+                  class="progress-bar progress-bar-indeterminate"
+                  role="progressbar"
+                ></div>
+              </div>
+              <button
+                type="submit"
+                id="formsubmit"
+                class="btn btn-primary btn-lg font-weight-bold"
+                data-i18n="buttonUpdatePassword"
+              ></button>
+            </div>
+            <div class="text-center mt-5">
+              <a href="../" data-i18n="loginlink"></a>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="snackbar">
+        <div class="snackbar-body"></div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modaltitle"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br /><br /><br /><br />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="../../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../../js/global.js"></script>
+    <script src="logic.js"></script>
+  </body>
+</html>

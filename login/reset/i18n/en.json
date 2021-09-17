@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "description": "Password Reset",
+    "path": "/login/reset/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Choose a New Password",
+      "translated": "Choose a New Password"
+    },
+    {
+      "key": "pleaseChooseNewPassword",
+      "original": "Please choose a new password below.",
+      "translated": "Please choose a new password below."
+    },
+    {
+      "key": "labelNewPassword",
+      "original": "New Password",
+      "translated": "New Password"
+    },
+    {
+      "key": "buttonUpdatePassword",
+      "original": "UPDATE",
+      "translated": "UPDATE"
+    },
+    {
+      "key": "loginlink",
+      "original": "Log In",
+      "translated": "Log In"
+    },
+    {
+      "key": "passwordrequired",
+      "original": "Password is required",
+      "translated": "Password is required"
+    },
+    {
+      "key": "invalidpassword",
+      "original": "Invalid Password",
+      "translated": "Invalid Password"
+    },
+    {
+      "key": "passwordNotComplexEnough",
+      "original": "Password is not unpredictable enough.",
+      "translated": "Password is not unpredictable enough."
+    },
+    {
+      "key": "passwordNotComplexEnoughLine1",
+      "original": "Please revise your password.  For your protection, we require that it must have a minimum level of unpredictability in order to prevent potential hackers from guessing it.",
+      "translated": "Please revise your password.  For your protection, we require that it must have a minimum level of unpredictability in order to prevent potential hackers from guessing it."
+    },
+    {
+      "key": "passwordNotComplexEnoughLine2",
+      "original": "A minimum length of 8 characters is required.  Using a phrase (rather than a single word) is encouraged, because phrases are less predictable.",
+      "translated": "A minimum length of 8 characters is required.  Using a phrase (rather than a single word) is encouraged, because phrases are less predictable."
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
