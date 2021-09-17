@@ -4,8 +4,8 @@ let recipientIdGlobal = "";
 const geoLocationOptions = {
   enableHighAccuracy: true,
   timeout: 5000,
-  maximumAge: 0
-}
+  maximumAge: 0,
+};
 
 function eventDetails() {
   const event = document.querySelector("#events_dropdown");
@@ -17,8 +17,12 @@ function eventDetails() {
   const address1 = selectedEvent.getAttribute("data-address1");
   const address2 = selectedEvent.getAttribute("data-address2");
   const address3 = selectedEvent.getAttribute("data-address3");
-  const meetingdetails_timedate = document.querySelector("#meetingdetails_timedate");
-  const meetingdetails_location = document.querySelector("#meetingdetails_location");
+  const meetingdetails_timedate = document.querySelector(
+    "#meetingdetails_timedate"
+  );
+  const meetingdetails_location = document.querySelector(
+    "#meetingdetails_location"
+  );
 
   populateQrCode();
 
@@ -36,11 +40,17 @@ function eventDetails() {
 
 async function getCoordinatesOnLoad() {
   if (navigator.permissions) {
-    await navigator.permissions.query({ name: 'geolocation' }).then((response) => {
-      if (response.state && response.state == 'granted') {
-        navigator.geolocation.getCurrentPosition(onGeoLocationSuccess, onGeoLocationError, geoLocationOptions);
-      }
-    });
+    await navigator.permissions
+      .query({ name: "geolocation" })
+      .then((response) => {
+        if (response.state && response.state == "granted") {
+          navigator.geolocation.getCurrentPosition(
+            onGeoLocationSuccess,
+            onGeoLocationError,
+            geoLocationOptions
+          );
+        }
+      });
   }
 }
 
@@ -51,7 +61,9 @@ function getEmailBodyText() {
 
 function getEmailSubjectLine() {
   const eventName = getInviteToText();
-  const text = localStorage.getItem("subjectLineEmail") || `${getPhrase("invitationto")} ${eventName}`;
+  const text =
+    localStorage.getItem("subjectLineEmail") ||
+    `${getPhrase("invitationto")} ${eventName}`;
   return encodeURI(text);
 }
 
@@ -66,27 +78,26 @@ function getFinalURL() {
 }
 
 function getInviteToId() {
-  const inviteTo = document.querySelector("#events_dropdown").selectedOptions[0].value;
+  const inviteTo =
+    document.querySelector("#events_dropdown").selectedOptions[0].value;
   return inviteTo;
 }
 
 function getInviteToText() {
-  const inviteTo = document.querySelector("#events_dropdown").selectedOptions[0].innerText;
+  const inviteTo =
+    document.querySelector("#events_dropdown").selectedOptions[0].innerText;
   return inviteTo;
 }
 
 function getRecipientId(numChars = 5) {
   const chars =
-    '1234567890' +
-    'abcdefghijklmnopqrstuvwxyz' +
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    ;
+    "1234567890" + "abcdefghijklmnopqrstuvwxyz" + "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const charsLen = chars.length;
   const id = [];
   for (let i = 0; i < numChars; i++) {
-    id.push(chars[(Math.round(Math.random() * 100)) % charsLen]);
+    id.push(chars[Math.round(Math.random() * 100) % charsLen]);
   }
-  const recipientId = id.join('');
+  const recipientId = id.join("");
   return recipientId;
 }
 
@@ -118,11 +129,6 @@ function getSendBody() {
   return encodeURIComponent(sendBody);
 }
 
-function getSenderId() {
-  // TODO: make this return the actual sender ID
-  return 185;
-}
-
 function getSendTo() {
   const sendVia = getSendVia();
   let sendTo;
@@ -131,7 +137,10 @@ function getSendTo() {
       sendTo = iti.getNumber();
       break;
     case "email":
-      sendTo = document.querySelector("#sendto_email").value.trim().toLowerCase();
+      sendTo = document
+        .querySelector("#sendto_email")
+        .value.trim()
+        .toLowerCase();
       break;
     default:
       break;
@@ -150,8 +159,10 @@ function getSmsBodyText() {
 }
 
 function getUserId() {
-  const userid = localStorage.getItem("userid") || 0;
-  return userid;
+  const userId =
+    JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1]))
+      .userid || "";
+  return userId;
 }
 
 function initIntlTelInput() {
@@ -161,7 +172,7 @@ function initIntlTelInput() {
     initialCountry: initialCountry,
     preferredCountries: [initialCountry],
     showOnly: [initialCountry],
-    utilsScript: "../js/intl-tel-input-17.0.0/js/utils.js"
+    utilsScript: "../js/intl-tel-input-17.0.0/js/utils.js",
   });
 }
 
@@ -176,7 +187,7 @@ function loadDummyEvents() {
       location: "Starbucks",
       address1: "555 Main Street",
       address2: "",
-      address3: "Phoenix, AZ 99999"
+      address3: "Phoenix, AZ 99999",
     },
     {
       id: 2,
@@ -187,8 +198,8 @@ function loadDummyEvents() {
       location: "SDA",
       address1: "5555 Camelback Road",
       address2: "Suite 5",
-      address3: "Scottsdale, AZ 99999"
-    }
+      address3: "Scottsdale, AZ 99999",
+    },
   ];
 
   return JSON.stringify(events);
@@ -204,20 +215,22 @@ async function loadEvents() {
   let optionsContainLastEventSelected = false;
   let options;
 
-  events.forEach(event => {
-    const { id, name, day, time, location, address1, address2, address3 } = event;
+  events.forEach((event) => {
+    const { id, name, day, time, location, address1, address2, address3 } =
+      event;
     if (id == lastEventSelected) optionsContainLastEventSelected = true;
     options += `<option value="${id}" data-day="${day}" data-time="${time}" data-location="${location}" data-address1="${address1}" data-address2="${address2}" data-address3="${address3}">${name}</option>`;
   });
 
   events_dropdown.innerHTML = options;
   events_dropdown.options[events_default].selected = true;
-  if (lastEventSelected.length && optionsContainLastEventSelected) events_dropdown.value = lastEventSelected;
+  if (lastEventSelected.length && optionsContainLastEventSelected)
+    events_dropdown.value = lastEventSelected;
 
   eventDetails();
   meetingdetails.classList.remove("d-none");
 
-  // TODO:  fetch events from API for user, store the result to localStorage, then refresh the UI with it 
+  // TODO:  fetch events from API for user, store the result to localStorage, then refresh the UI with it
 }
 
 function onFormSubmit(e) {
@@ -247,7 +260,7 @@ function onGeoLocationSuccess(pos) {
   coordinates = {
     lat: latitude,
     long: longitude,
-    timestamp: pos.timestamp
+    timestamp: pos.timestamp,
   };
 
   // showToast(`<a href="https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}">${latitude}, ${longitude}</a>`);
@@ -270,7 +283,10 @@ function onSubmit(e) {
       showForwardingMessage("sms");
       break;
     case "email":
-      btnSendInvite.setAttribute("href", `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`);
+      btnSendInvite.setAttribute(
+        "href",
+        `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`
+      );
       showForwardingMessage("email");
       break;
     default:
@@ -282,20 +298,24 @@ function onTagWithLocation(e) {
   const isChecked = e.target.checked || false;
 
   if (isChecked && navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(onGeoLocationSuccess, onGeoLocationError, geoLocationOptions);
+    navigator.geolocation.getCurrentPosition(
+      onGeoLocationSuccess,
+      onGeoLocationError,
+      geoLocationOptions
+    );
   }
 }
 
 function populateQrCode() {
   const availableWidth = document.querySelector("#qrcode").clientWidth;
   const maxWidth = 200;
-  const width = (availableWidth > maxWidth) ? maxWidth : availableWidth;
+  const width = availableWidth > maxWidth ? maxWidth : availableWidth;
   const url = getFinalURL();
 
   new QRious({
-    element: document.getElementById('qr'),
+    element: document.getElementById("qr"),
     value: url,
-    size: width
+    size: width,
   });
 }
 
@@ -309,8 +329,12 @@ function selectSendVia(method) {
   const containerSms = document.querySelector("#containerSendToSms");
   const containerEmail = document.querySelector("#containerSendToEmail");
   const containerQRCode = document.querySelector("#containerSendToQRCode");
-  const containerQRCodeInstructions = document.querySelector("#containerQRCodeInstructions");
-  const containerTagWithLocation = document.querySelector("#containerTagWithLocation");
+  const containerQRCodeInstructions = document.querySelector(
+    "#containerQRCodeInstructions"
+  );
+  const containerTagWithLocation = document.querySelector(
+    "#containerTagWithLocation"
+  );
   const btnSendInvite = document.querySelector("#btnSendInvite");
   const smsField = document.querySelector("#sendto_sms");
   const emailField = document.querySelector("#sendto_email");
@@ -348,7 +372,8 @@ function selectSendVia(method) {
       isMobile && containerTagWithLocation.classList.remove("d-none");
       populateQrCode();
       if (!method) {
-        const qrCodeContainerOffset = document.getElementById("containerSendToQRCode").offsetTop - 64;
+        const qrCodeContainerOffset =
+          document.getElementById("containerSendToQRCode").offsetTop - 64;
         window.scroll({ top: qrCodeContainerOffset, behavior: "smooth" });
       }
       break;
@@ -357,7 +382,8 @@ function selectSendVia(method) {
 
 function setDefaultSendMethod() {
   const defaultSendMethod = localStorage.getItem("defaultSendMethod") || "";
-  const lastSendMethodSelected = localStorage.getItem("lastSendMethodSelected") || "";
+  const lastSendMethodSelected =
+    localStorage.getItem("lastSendMethodSelected") || "";
 
   if (defaultSendMethod.length) {
     document.querySelector("#sendvia").value = defaultSendMethod;
@@ -398,17 +424,27 @@ function showForwardingMessage(sendvia) {
 function showTagInviteWithLocation() {
   const isMobile = isMobileDevice();
   if (isMobile) {
-    const containerTagWithLocation = document.querySelector("#containerTagWithLocation");
+    const containerTagWithLocation = document.querySelector(
+      "#containerTagWithLocation"
+    );
     containerTagWithLocation.classList.remove("d-none");
   }
 }
 
 function setEventListeners() {
-  document.querySelector("#sendvia").addEventListener("change", onSendViaChanged);
-  document.querySelector("#events_dropdown").addEventListener("change", eventDetails);
-  document.querySelector("#tagwithlocation").addEventListener("click", onTagWithLocation);
+  document
+    .querySelector("#sendvia")
+    .addEventListener("change", onSendViaChanged);
+  document
+    .querySelector("#events_dropdown")
+    .addEventListener("change", eventDetails);
+  document
+    .querySelector("#tagwithlocation")
+    .addEventListener("click", onTagWithLocation);
   document.querySelector("#btnSendInvite").addEventListener("click", onSubmit);
-  document.querySelector("#formsendinvite").addEventListener("submit", onFormSubmit);
+  document
+    .querySelector("#formsendinvite")
+    .addEventListener("submit", onFormSubmit);
 }
 
 async function init() {
