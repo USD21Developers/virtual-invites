@@ -21,7 +21,7 @@ function getAccessToken() {
     const refreshToken = localStorage.getItem("refreshToken") || "";
     if (!refreshToken.length) return reject("refresh token missing");
 
-    const endpoint = `${getAPIHost()}/fp/refresh-token`;
+    const endpoint = `${getAPIHost()}/refresh-token`;
 
     fetch(endpoint, {
       mode: "cors",
@@ -35,13 +35,14 @@ function getAccessToken() {
     })
       .then((res) => res.json())
       .then((data) => {
-        const logoutUrl = `/lang/${getLang()}/account/logout/`;
+        const logoutUrl = `/logout/`;
         switch (data.msg) {
           case "tokens renewed":
             const { accessToken, refreshToken } = data;
             localStorage.setItem("refreshToken", refreshToken);
             sessionStorage.setItem("accessToken", accessToken);
-            const country = JSON.parse(atob(accessToken.split(".")[1])).country || "us";
+            const country =
+              JSON.parse(atob(accessToken.split(".")[1])).country || "us";
             setCountry(country);
             resolve(accessToken);
             break;
@@ -72,7 +73,7 @@ async function isSysadmin() {
   const accessToken = await getAccessToken();
   const claims = JSON.parse(atob(accessToken.split(".")[1]));
   const usertype = claims.usertype || "user";
-  return (usertype === "sysadmin") ? true : false;
+  return usertype === "sysadmin" ? true : false;
 }
 
 function verifyRefreshToken() {
@@ -80,7 +81,7 @@ function verifyRefreshToken() {
   const refreshToken = localStorage.getItem("refreshToken") || "";
   let isAuthorized = true;
 
-  if (!refreshToken.length) return window.location.href = logoutUrl;
+  if (!refreshToken.length) return (window.location.href = logoutUrl);
   try {
     const parsedToken = JSON.parse(atob(refreshToken.split(".")[1]));
     if (Date.now() >= parsedToken.exp * 1000) {
@@ -94,7 +95,7 @@ function verifyRefreshToken() {
 }
 
 function framebuster() {
-  const isFramed = (top.location === self.location) ? false : true;
+  const isFramed = top.location === self.location ? false : true;
 
   if (isFramed) {
     top.location = self.location;
