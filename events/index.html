@@ -2,7 +2,7 @@
 
 <html lang="en">
   <head>
-    <script src="js/enforceaccess.js"></script>
+    <script src="../js/enforceaccess.js"></script>
     <meta charset="utf-8" />
     <meta
       content="initial-scale=1, shrink-to-fit=no, width=device-width"
@@ -22,22 +22,21 @@
     />
     <link
       rel="stylesheet"
-      href="css/material-4.1.1-dist/css/material.min.css"
+      href="../css/material-4.1.1-dist/css/material.min.css"
     />
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
     <link
-      href="js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
+      href="../js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
       rel="stylesheet"
     />
-    <link href="css/global.css" rel="stylesheet" />
-    <link href="index.css" rel="stylesheet" />
+    <link href="../css/global.css" rel="stylesheet" />
   </head>
   <body>
     <nav class="navbar navbar-light bg-light sticky-top border-bottom">
-      <a class="navbar-brand" href="/" data-i18n-global="apptitle"></a>
+      <a class="navbar-brand" href="../" data-i18n-global="apptitle"></a>
       <button
         class="navbar-toggler"
         type="button"
@@ -64,7 +63,7 @@
             <div class="col-9 d-flex justify-content-start">
               <a
                 class="navbar-brand px-0"
-                href="./"
+                href="../"
                 data-i18n-global="apptitle"
               ></a>
             </div>
@@ -87,56 +86,56 @@
           </div>
         </div>
         <nav class="navdrawer-nav">
-          <a class="nav-item nav-link active" href="./">
+          <a class="nav-item nav-link" href="../">
             <span class="material-icons mr-3 material-icons-outlined">
               home
             </span>
             <span data-i18n-global="menuHome"></span>
           </a>
-          <a class="nav-item nav-link" href="send/">
+          <a class="nav-item nav-link" href="../send/">
             <span class="material-icons mr-3 material-icons-outlined">
               card_giftcard
             </span>
             <span data-i18n-global="menuSendInvite"></span>
           </a>
-          <a class="nav-item nav-link" href="invited/">
+          <a class="nav-item nav-link" href="../invited/">
             <span class="material-icons mr-3 material-icons-outlined">
               people
             </span>
             <span data-i18n-global="menuPeopleIveInvited"></span>
           </a>
-          <a class="nav-item nav-link" href="events/">
+          <a class="nav-item nav-link active" href="../events/">
             <span class="material-icons mr-3 material-icons-outlined">
               event
             </span>
             <span data-i18n-global="menuEventsImSharing"></span>
           </a>
-          <a class="nav-item nav-link" href="maps/">
+          <a class="nav-item nav-link" href="../maps/">
             <span class="material-icons mr-3 material-icons-outlined">
               place
             </span>
             <span data-i18n-global="menuMaps"></span>
           </a>
           <div class="navdrawer-divider"></div>
-          <a class="nav-item nav-link" href="settings/">
+          <a class="nav-item nav-link" href="../settings/">
             <span class="material-icons mr-3 material-icons-outlined">
               settings
             </span>
             <span data-i18n-global="menuSettings"></span>
           </a>
-          <a class="nav-item nav-link" href="profile/">
+          <a class="nav-item nav-link" href="../profile/">
             <span class="material-icons mr-3 material-icons-outlined">
               account_circle
             </span>
             <span data-i18n-global="menuMyProfile"></span>
           </a>
-          <a class="nav-item nav-link" href="support/">
+          <a class="nav-item nav-link" href="../support/">
             <span class="material-icons mr-3 material-icons-outlined">
               contact_support
             </span>
             <span data-i18n-global="menuSupport"></span>
           </a>
-          <a class="nav-item nav-link" href="logout/">
+          <a class="nav-item nav-link" href="../logout/">
             <span class="material-icons mr-3 material-icons-outlined">
               logout
             </span>
@@ -146,28 +145,27 @@
       </div>
     </div>
 
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb bg-white my-0">
+        <li class="breadcrumb-item"><a href="../">Home</a></li>
+        <li class="breadcrumb-item active"><a href="./">Events</a></li>
+      </ol>
+    </nav>
+
     <div class="container">
       <div class="row">
-        <div class="col col-sm-4 offset-sm-4">
-          <h2
-            class="text-center text-uppercase my-4"
-            data-i18n="pagetitle"
-          ></h2>
+        <div class="col col-sm-4 offset-sm-4 mt-3 mb-4">
+          <h2 class="text-center text-uppercase m-0" data-i18n="pagetitle"></h2>
         </div>
       </div>
       <div class="row">
         <div class="col col-sm-4 offset-sm-4">
+          <p class="mt-0 mb-4" data-i18n="paragraph1"></p>
           <div class="list-group">
             <a
-              href="send/"
+              href="add/"
               class="list-group-item list-group-item-action"
-              data-i18n="invitelink"
-            >
-            </a>
-            <a
-              href="events/add/"
-              class="list-group-item list-group-item-action"
-              data-i18n="addinvitelink"
+              data-i18n="addevent"
             >
             </a>
           </div>
@@ -184,10 +182,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="css/material-4.1.1-dist/js/material.min.js"></script>
-    <script src="js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
-    <script src="js/qrious/qrious.min.js"></script>
-    <script src="js/global.js"></script>
-    <script src="index.js"></script>
+    <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../js/global.js"></script>
+    <script src="logic.js"></script>
   </body>
 </html>

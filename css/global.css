@@ -82,6 +82,11 @@ h6 {
   text-transform: uppercase;
 }
 
+.textfield-box.floating-label.is-focused label,
+.textfield-box.floating-label.has-value label {
+  margin: 0;
+}
+
 .floating-label.is-focused label:after,
 .floating-label.has-value label:after {
   content: ":";

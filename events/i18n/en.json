@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "description": "Dashboard",
-    "path": "/",
+    "description": "Events",
+    "path": "/events/",
     "lang": {
       "original": "en",
       "translated": "en"
@@ -10,23 +10,18 @@
   "phrases": [
     {
       "key": "pagetitle",
-      "original": "Virtual Invites",
-      "translated": "Virtual Invites"
+      "original": "Events",
+      "translated": "Events"
     },
     {
-      "key": "registerlink",
-      "original": "Register",
-      "translated": "Register"
+      "key": "paragraph1",
+      "original": "Every invite must share a specific event. You can manage the events that you share from here.",
+      "translated": "Every invite must share a specific event. You can manage the events that you share from here."
     },
     {
-      "key": "invitelink",
-      "original": "Send an Invite",
-      "translated": "Send an Invite"
-    },
-    {
-      "key": "addinvitelink",
-      "original": "Add an Invite",
-      "translated": "Add an Invite"
+      "key": "addevent",
+      "original": "Add an Event",
+      "translated": "Add an Event"
     }
   ],
 

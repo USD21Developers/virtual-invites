@@ -1,0 +1,167 @@
+{
+  "metadata": {
+    "description": "Add an Event",
+    "path": "/events/add/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Add an Event",
+      "translated": "Add an Event"
+    },
+    {
+      "key": "labelEventTitle",
+      "original": "Title of Event",
+      "translated": "Title of Event"
+    },
+    {
+      "key": "labelEventType",
+      "original": "Type of Event",
+      "translated": "Type of Event"
+    },
+    {
+      "key": "optionEventTypeBT",
+      "original": "Bible Talk",
+      "translated": "Bible Talk"
+    },
+    {
+      "key": "optionEventTypeSundayService",
+      "original": "Sunday Service",
+      "translated": "Sunday Service"
+    },
+    {
+      "key": "optionEventTypeCustom",
+      "original": "Other",
+      "translated": "Other"
+    },
+    {
+      "key": "labelEventDescription",
+      "original": "Description",
+      "translated": "Description"
+    },
+    {
+      "key": "headlineFrequency",
+      "original": "How often does this event occur?",
+      "translated": "How often does this event occur?"
+    },
+    {
+      "key": "dropdownDefault",
+      "original": "(Select)",
+      "translated": "(Select)"
+    },
+    {
+      "key": "frequencyOneTime",
+      "original": "Once",
+      "translated": "Once"
+    },
+    {
+      "key": "frequencyEverySunday",
+      "original": "Sundays",
+      "translated": "Every Sunday"
+    },
+    {
+      "key": "frequencyEveryMonday",
+      "original": "Every Monday",
+      "translated": "Every Monday"
+    },
+    {
+      "key": "frequencyEveryTuesday",
+      "original": "Every Tuesday",
+      "translated": "Every Tuesday"
+    },
+    {
+      "key": "frequencyEveryWednesday",
+      "original": "Every Wednesday",
+      "translated": "Every Wednesday"
+    },
+    {
+      "key": "frequencyEveryThursday",
+      "original": "Every Thursday",
+      "translated": "Every Thursday"
+    },
+    {
+      "key": "frequencyEveryFriday",
+      "original": "Every Friday",
+      "translated": "Every Friday"
+    },
+    {
+      "key": "frequencyEverySaturday",
+      "original": "Every Saturday",
+      "translated": "Every Saturday"
+    },
+    {
+      "key": "nextOccurrence",
+      "original": "Next Occurrence:",
+      "translated": "Next Occurrence:"
+    },
+    {
+      "key": "labelDate",
+      "original": "Date",
+      "translated": "Date"
+    },
+    {
+      "key": "labelStartTime",
+      "original": "Start time",
+      "translated": "Start time"
+    },
+    {
+      "key": "labelEndingTime",
+      "original": "Ending time",
+      "translated": "Ending time"
+    },
+    {
+      "key": "legendOneTimeEventBegins",
+      "original": "Begins:",
+      "translated": "Begins:"
+    },
+    {
+      "key": "legendOneTimeEventEnds",
+      "original": "Ends:",
+      "translated": "Ends:"
+    },
+    {
+      "key": "headlineDuration",
+      "original": "Duration:",
+      "translated": "Duration:"
+    },
+    {
+      "key": "durationSameDay",
+      "original": "Finishes on the same day",
+      "translated": "Finishes on the same day"
+    },
+    {
+      "key": "durationMultipleDays",
+      "original": "Spans multiple days",
+      "translated": "Spans multiple days"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
