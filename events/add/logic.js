@@ -21,25 +21,31 @@ function onDurationChange(e) {
       show(oneTimeEventEndInfoEl);
       break;
     default:
-      hide(oneTimeEventBeginInfoEl);
-      hide(oneTimeEventEndInfoEl);
       break;
   }
 }
 
 function onFrequencyChange(e) {
   const frequency = e.target.value.trim();
-  const durationEl = document.querySelector("#duration");
+  const duration = document.querySelector("#duration");
+  const durationContainer = document.querySelector("#durationContainer");
   const nextOccurrenceEl = document.querySelector("#nextOccurrence");
+  const oneTimeEventBeginInfoEl = document.querySelector(
+    "#oneTimeEventBeginInfo"
+  );
+  const oneTimeEventEndInfoEl = document.querySelector("#oneTimeEventEndInfo");
 
-  hide(durationEl);
+  hide(durationContainer);
   hide(nextOccurrenceEl);
+  hide(oneTimeEventBeginInfoEl);
+  hide(oneTimeEventEndInfoEl);
+  duration.options[0].selected = true;
 
   switch (frequency) {
     case "":
       break;
     case "Once":
-      show(durationEl);
+      show(durationContainer);
       break;
     default:
       show(nextOccurrenceEl);
