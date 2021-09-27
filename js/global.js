@@ -451,12 +451,37 @@ function showModal(body = "", title = "", closeButtonText = "") {
   $("#modal").modal();
 }
 
-function showToast(message, duration = 5000) {
+function showToast(message, duration = 5000, type = "dark") {
   const snackbar = document.querySelector(".snackbar");
   const body = document.querySelector(".snackbar-body");
 
   body.innerHTML = message;
   snackbar.classList.add("show");
+
+  switch (type) {
+    case "success":
+      snackbar.classList.add("text-white");
+      snackbar.classList.add("bg-success");
+      snackbar.classList.add("border");
+      snackbar.classList.add("border-dark");
+      snackbar.querySelector("a").classList.add("text-white");
+      break;
+    case "danger":
+      snackbar.classList.add("text-white");
+      snackbar.classList.add("bg-danger");
+      snackbar.classList.add("border");
+      snackbar.classList.add("border-dark");
+      snackbar.querySelector("a").classList.add("text-white");
+      break;
+    default:
+      snackbar.classList.add("text-white");
+      snackbar.classList.add("bg-dark");
+      snackbar.classList.add("border");
+      snackbar.classList.add("border-light");
+      snackbar.querySelector("a").classList.add("text-white");
+      break;
+  }
+
   setTimeout(() => {
     snackbar.classList.remove("show");
   }, duration);
