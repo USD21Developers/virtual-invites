@@ -195,8 +195,8 @@
     },
     {
       "key": "coordinatesDetectionExplanation",
-      "original": "If you are physically located at the meeting location now, just click the button below to automatically detect its coordinates with your phone:",
-      "translated": "If you are physically located at the meeting location now, just click the button below to automatically detect its coordinates with your phone:",
+      "original": "If you are now physically located at the meeting location, just click the button below to automatically detect its coordinates with your phone:",
+      "translated": "If you are now physically located at the meeting location, just click the button below to automatically detect its coordinates with your phone:",
       "changes": [
         {
           "original": "physically located",
