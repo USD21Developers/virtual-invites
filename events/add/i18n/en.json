@@ -137,6 +137,103 @@
       "key": "durationMultipleDays",
       "original": "Spans multiple days",
       "translated": "Spans multiple days"
+    },
+    {
+      "key": "headlineLocation",
+      "original": "Location:",
+      "translated": "Location:"
+    },
+    {
+      "key": "labelLocationDescription",
+      "original": "Location Description",
+      "translated": "Location Description"
+    },
+    {
+      "key": "addressHeadline",
+      "original": "Address:",
+      "translated": "Address:"
+    },
+    {
+      "key": "addressLine1",
+      "original": "Line 1",
+      "translated": "Line 1"
+    },
+    {
+      "key": "addressLine2",
+      "original": "Line 2",
+      "translated": "Line 2"
+    },
+    {
+      "key": "addressLine3",
+      "original": "City / State / Postal Code",
+      "translated": "City / State / Postal Code"
+    },
+    {
+      "key": "coordinatesHeadline",
+      "original": "Map Coordinates",
+      "translated": "Map Coordinates"
+    },
+    {
+      "key": "coordinatesOptional",
+      "original": "(optional):",
+      "translated": "(optional):"
+    },
+    {
+      "key": "coordinatesExplanation",
+      "original": "Map coordinates are useful for providing walking directions to a location with no specific address (for example, a picnic table in a large park).",
+      "translated": "Map coordinates are useful for providing walking directions to a location with no specific address (for example, a picnic table in a large park)."
+    },
+    {
+      "key": "latitude",
+      "original": "Latitude",
+      "translated": "Latitude"
+    },
+    {
+      "key": "longitude",
+      "original": "Longitude",
+      "translated": "Longitude"
+    },
+    {
+      "key": "coordinatesDetectionExplanation",
+      "original": "If you are physically located at the meeting location now, just click the button below to automatically detect its coordinates with your phone:",
+      "translated": "If you are physically located at the meeting location now, just click the button below to automatically detect its coordinates with your phone:",
+      "changes": [
+        {
+          "original": "physically located",
+          "translated": "physically located",
+          "italic": true
+        }
+      ]
+    },
+    {
+      "key": "buttonDetectLocation",
+      "original": "Detect My Location",
+      "translated": "Detect My Location"
+    },
+    {
+      "key": "geocoordinatesPermissionDenied",
+      "original": "Geocoordinates: permission denied",
+      "translated": "Geocoordinates: permission denied"
+    },
+    {
+      "key": "geocoordinatesPermissionUnavailable",
+      "original": "Geocoordinates: position unavailable",
+      "translated": "Geocoordinates: position unavailable"
+    },
+    {
+      "key": "geocoordinatesPermissionTimedOut",
+      "original": "Geocoordinates: timed out",
+      "translated": "Geocoordinates: timed out"
+    },
+    {
+      "key": "geocoordinatesErrorCode",
+      "original": "Geocoordinates: error code",
+      "translated": "Geocoordinates: error code"
+    },
+    {
+      "key": "geocoordinatesSuccessMessage",
+      "original": "Coordinates detected!",
+      "translated": "Coordinates detected!"
     }
   ],
 
