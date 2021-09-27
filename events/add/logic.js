@@ -55,7 +55,6 @@ function onClickDetectLocation(e) {
 
 function onDurationChange(e) {
   const duration = e.target.value.trim();
-  const locationContainer = document.querySelector("#locationContainer");
   const nextOccurrenceEl = document.querySelector("#nextOccurrence");
   const oneTimeEventBeginInfoEl = document.querySelector(
     "#oneTimeEventBeginInfo"
@@ -65,19 +64,16 @@ function onDurationChange(e) {
   hide(nextOccurrenceEl);
   hide(oneTimeEventBeginInfoEl);
   hide(oneTimeEventEndInfoEl);
-  hide(locationContainer);
 
   switch (duration) {
     case "":
       break;
     case "same day":
       show(nextOccurrenceEl);
-      show(locationContainer);
       break;
     case "multiple days":
       show(oneTimeEventBeginInfoEl);
       show(oneTimeEventEndInfoEl);
-      show(locationContainer);
       break;
     default:
       break;
@@ -88,7 +84,6 @@ function onFrequencyChange(e) {
   const frequency = e.target.value.trim();
   const duration = document.querySelector("#duration");
   const durationContainer = document.querySelector("#durationContainer");
-  const locationContainer = document.querySelector("#locationContainer");
   const nextOccurrenceEl = document.querySelector("#nextOccurrence");
   const oneTimeEventBeginInfoEl = document.querySelector(
     "#oneTimeEventBeginInfo"
@@ -96,7 +91,6 @@ function onFrequencyChange(e) {
   const oneTimeEventEndInfoEl = document.querySelector("#oneTimeEventEndInfo");
 
   hide(durationContainer);
-  hide(locationContainer);
   hide(nextOccurrenceEl);
   hide(oneTimeEventBeginInfoEl);
   hide(oneTimeEventEndInfoEl);
