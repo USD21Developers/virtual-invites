@@ -129,6 +129,7 @@ function attachListeners() {
 async function init() {
   await populateContent();
   attachListeners();
+  showDetectLocationButton();
 }
 
 init();
