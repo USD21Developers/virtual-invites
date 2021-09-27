@@ -55,6 +55,7 @@ function onClickDetectLocation(e) {
 
 function onDurationChange(e) {
   const duration = e.target.value.trim();
+  const locationContainer = document.querySelector("#locationContainer");
   const nextOccurrenceEl = document.querySelector("#nextOccurrence");
   const oneTimeEventBeginInfoEl = document.querySelector(
     "#oneTimeEventBeginInfo"
@@ -64,16 +65,19 @@ function onDurationChange(e) {
   hide(nextOccurrenceEl);
   hide(oneTimeEventBeginInfoEl);
   hide(oneTimeEventEndInfoEl);
+  hide(locationContainer);
 
   switch (duration) {
     case "":
       break;
     case "same day":
       show(nextOccurrenceEl);
+      show(locationContainer);
       break;
     case "multiple days":
       show(oneTimeEventBeginInfoEl);
       show(oneTimeEventEndInfoEl);
+      show(locationContainer);
       break;
     default:
       break;
