@@ -25,6 +25,9 @@ function onClickDetectLocation(e) {
     latitudeEl.value = latitude;
     longitudeEl.value = longitude;
 
+    latitudeEl.setAttribute("data-timestamp", timestamp);
+    longitudeEl.setAttribute("data-timestamp", timestamp);
+
     latitudeEl.parentElement.classList.add("has-value");
     longitudeEl.parentElement.classList.add("has-value");
 
