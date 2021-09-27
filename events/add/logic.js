@@ -31,7 +31,9 @@ function onClickDetectLocation(e) {
     showToast(
       `<a href="https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}">
         ${getPhrase("geocoordinatesSuccessMessage")}
-      </a>`
+      </a>`,
+      5000,
+      "success"
     );
   };
 
