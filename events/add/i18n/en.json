@@ -14,14 +14,24 @@
       "translated": "Add an Event"
     },
     {
-      "key": "labelEventTitle",
-      "original": "Title of Event",
-      "translated": "Title of Event"
+      "key": "labelLanguage",
+      "original": "Primary language",
+      "translated": "Primary language"
     },
     {
       "key": "labelEventType",
       "original": "Type of Event",
       "translated": "Type of Event"
+    },
+    {
+      "key": "labelEventTitle",
+      "original": "Title",
+      "translated": "Title"
+    },
+    {
+      "key": "labelEventDescription",
+      "original": "Description",
+      "translated": "Description"
     },
     {
       "key": "optionEventTypeBT",
@@ -37,16 +47,6 @@
       "key": "optionEventTypeCustom",
       "original": "Other",
       "translated": "Other"
-    },
-    {
-      "key": "labelLanguage",
-      "original": "Primary language",
-      "translated": "Primary language"
-    },
-    {
-      "key": "labelEventDescription",
-      "original": "Description",
-      "translated": "Description"
     },
     {
       "key": "headlineFrequency",
