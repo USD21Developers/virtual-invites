@@ -1,3 +1,21 @@
+function initIntlTelInput() {
+  const input = document.querySelector("#contactPhone");
+  const initialCountry = localStorage.getItem("countryIso") || "us";
+  iti = window.intlTelInput(input, {
+    autoPlaceholder: "",
+    initialCountry: initialCountry,
+    preferredCountries: [initialCountry],
+    showOnly: [initialCountry],
+    utilsScript: "../../js/intl-tel-input-17.0.0/js/utils.js",
+  });
+
+  if (input.value.trim().length > 0) {
+    document
+      .querySelector("label[for='contactPhone']")
+      .parentElement.classList.add("has-value");
+  }
+}
+
 function onClickDetectLocation(e) {
   e.preventDefault();
 
@@ -133,6 +151,7 @@ async function init() {
   await populateContent();
   attachListeners();
   showDetectLocationButton();
+  initIntlTelInput();
 }
 
 init();

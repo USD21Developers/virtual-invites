@@ -234,6 +234,31 @@
       "key": "geocoordinatesSuccessMessage",
       "original": "Coordinates detected!",
       "translated": "Coordinates detected!"
+    },
+    {
+      "key": "headlineContact",
+      "original": "For more info, contact:",
+      "translated": "For more info, contact:"
+    },
+    {
+      "key": "contactFirstName",
+      "original": "First name",
+      "translated": "First name"
+    },
+    {
+      "key": "contactLastName",
+      "original": "Last name",
+      "translated": "Last name"
+    },
+    {
+      "key": "contactPhone",
+      "original": "Phone number",
+      "translated": "Phone number"
+    },
+    {
+      "key": "contactEmail",
+      "original": "E-mail address",
+      "translated": "E-mail address"
     }
   ],
 

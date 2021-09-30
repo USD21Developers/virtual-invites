@@ -401,6 +401,65 @@
                 </div>
               </div>
             </fieldset>
+
+            <fieldset id="contactContainer" class="my-5">
+              <legend data-i18n="headlineContact"></legend>
+              <div class="form-group">
+                <div class="floating-label mt-3 mb-4">
+                  <label
+                    for="contactFirstName"
+                    data-i18n="contactFirstName"
+                  ></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="contactFirstName"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <div class="floating-label my-5">
+                    <label
+                      for="contactLastName"
+                      data-i18n="contactLastName"
+                    ></label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="contactLastName"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="floating-label my-5">
+                    <label
+                      for="contactPhone"
+                      data-i18n="contactPhone"
+                    ></label>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      id="contactPhone"
+                      pattern="[0-9]*"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="floating-label mt-5 mb-4">
+                    <label
+                      for="contactEmail"
+                      data-i18n="contactEmail"
+                    ></label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="contactEmail"
+                    />
+                  </div>
+                </div>
+            </fieldset>
           </form>
         </div>
       </div>
@@ -415,6 +474,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="../../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../../js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
     <script src="../../css/material-4.1.1-dist/js/material.min.js"></script>
     <script src="../../js/global.js"></script>
     <script src="logic.js"></script>

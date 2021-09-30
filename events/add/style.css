@@ -9,3 +9,16 @@ legend {
   padding: 0 10px;
   width: revert;
 }
+
+.iti {
+  display: block;
+}
+
+label[for="contactPhone"] {
+  margin-left: 55px;
+}
+
+.is-focused > label[for="contactPhone"],
+.has-value > label[for="contactPhone"] {
+  margin-left: 0;
+}
