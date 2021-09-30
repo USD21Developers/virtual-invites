@@ -232,8 +232,8 @@
     },
     {
       "key": "geocoordinatesSuccessMessage",
-      "original": "Coordinates detected!",
-      "translated": "Coordinates detected!"
+      "original": "Coordinates detected successfully!",
+      "translated": "Coordinates detected successfully!"
     },
     {
       "key": "headlineContact",
