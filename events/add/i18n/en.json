@@ -212,28 +212,28 @@
     },
     {
       "key": "geocoordinatesPermissionDenied",
-      "original": "Geocoordinates: permission denied",
-      "translated": "Geocoordinates: permission denied"
+      "original": "Coordinates: permission denied",
+      "translated": "Coordinates: permission denied"
     },
     {
       "key": "geocoordinatesPermissionUnavailable",
-      "original": "Geocoordinates: position unavailable",
-      "translated": "Geocoordinates: position unavailable"
+      "original": "Coordinates: position unavailable",
+      "translated": "Coordinates: position unavailable"
     },
     {
       "key": "geocoordinatesPermissionTimedOut",
-      "original": "Geocoordinates: timed out",
-      "translated": "Geocoordinates: timed out"
+      "original": "Coordinates: timed out",
+      "translated": "Coordinates: timed out"
     },
     {
       "key": "geocoordinatesErrorCode",
-      "original": "Geocoordinates: error code",
-      "translated": "Geocoordinates: error code"
+      "original": "Coordinates: error code",
+      "translated": "Coordinates: error code"
     },
     {
       "key": "geocoordinatesSuccessMessage",
-      "original": "Coordinates detected successfully!",
-      "translated": "Coordinates detected successfully!"
+      "original": "Coordinates detected successfully",
+      "translated": "Coordinates detected successfully"
     },
     {
       "key": "headlineContact",
