@@ -39,6 +39,11 @@
       "translated": "Other"
     },
     {
+      "key": "labelLanguage",
+      "original": "Primary language",
+      "translated": "Primary language"
+    },
+    {
       "key": "labelEventDescription",
       "original": "Description",
       "translated": "Description"
@@ -167,6 +172,11 @@
       "key": "addressLine3",
       "original": "City / State / Postal Code",
       "translated": "City / State / Postal Code"
+    },
+    {
+      "key": "selectCountry",
+      "original": "(Select country)",
+      "translated": "(Select country)"
     },
     {
       "key": "coordinatesHeadline",
