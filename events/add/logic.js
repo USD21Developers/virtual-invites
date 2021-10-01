@@ -20,19 +20,7 @@ function onClickDetectLocation(e) {
   e.preventDefault();
 
   const onGeoLocationError = (err) => {
-    switch (err) {
-      case 1:
-        showToast(getPhrase("geocoordinatesPermissionDenied"));
-        break;
-      case 2:
-        showToast(getPhrase("geocoordinatesPermissionUnavailable"));
-        break;
-      case 3:
-        showToast(getPhrase("geocoordinatesPermissionTimedOut"));
-        break;
-      default:
-        showToast(`${getPhrase("geocoordinatesErrorCode")} ${err}`);
-    }
+    showToast(getPhrase("geocoordinatesErrorMessage"), 5000, "danger");
   };
 
   const onGeoLocationSuccess = (pos) => {

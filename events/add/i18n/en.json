@@ -221,24 +221,9 @@
       "translated": "Detect My Location"
     },
     {
-      "key": "geocoordinatesPermissionDenied",
-      "original": "Coordinates: permission denied",
-      "translated": "Coordinates: permission denied"
-    },
-    {
-      "key": "geocoordinatesPermissionUnavailable",
-      "original": "Coordinates: position unavailable",
-      "translated": "Coordinates: position unavailable"
-    },
-    {
-      "key": "geocoordinatesPermissionTimedOut",
-      "original": "Coordinates: timed out",
-      "translated": "Coordinates: timed out"
-    },
-    {
-      "key": "geocoordinatesErrorCode",
-      "original": "Coordinates: error code",
-      "translated": "Coordinates: error code"
+      "key": "geocoordinatesErrorMessage",
+      "original": "Unable to detect coordinates.",
+      "translated": "Unable to detect coordinates."
     },
     {
       "key": "geocoordinatesSuccessMessage",
