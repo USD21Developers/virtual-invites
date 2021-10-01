@@ -157,12 +157,3 @@ a:hover {
 .alert .alert-link {
   text-decoration: underline;
 }
-
-.snackbar.bg-danger a,
-.snackbar.bg-dark a,
-.snackbar.bg-info a,
-.snackbar.bg-success a,
-.snackbar.bg-warning a {
-  color: text-white;
-  text-decoration: underline;
-}
