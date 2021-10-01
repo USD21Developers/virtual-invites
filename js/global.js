@@ -456,35 +456,47 @@ function showToast(message, duration = 5000, type = "dark") {
   const body = document.querySelector(".snackbar-body");
 
   body.innerHTML = message;
-  snackbar.classList.add("show");
+  snackbar.classList.remove(
+    "bg-danger,bg-dark,bg-info,bg-light,bg-primary,bg-secondary,bg-success,bg-warning,border-danger,border-dark,border-info,border-light,border-primary,border-secondary,border-warning"
+  );
 
   switch (type) {
-    case "success":
-      snackbar.classList.add("text-white");
-      snackbar.classList.add("bg-success");
-      snackbar.classList.add("border");
-      snackbar.classList.add("border-dark");
-      snackbar.querySelector("a").classList.add("text-white");
-      break;
     case "danger":
-      snackbar.classList.add("text-white");
-      snackbar.classList.add("bg-danger");
-      snackbar.classList.add("border");
-      snackbar.classList.add("border-dark");
-      snackbar.querySelector("a").classList.add("text-white");
+      snackbar.classList.add("bg-danger,border,border-dark");
+      break;
+    case "dark":
+      snackbar.classList.add("bg-dark,border,border-light");
+      break;
+    case "info":
+      snackbar.classList.add("bg-info,border,border-dark");
+      break;
+    case "light":
+      snackbar.classList.add("bg-light,border,border-dark");
+      break;
+    case "primary":
+      snackbar.classList.add("bg-primary,border,border-dark");
+      break;
+    case "secondary":
+      snackbar.classList.add("bg-secondary,border,border-dark");
+      break;
+    case "success":
+      snackbar.classList.add("bg-success,border,border-dark");
+      break;
+    case "warning":
+      snackbar.classList.add("bg-warning,border,border-dark");
       break;
     default:
-      snackbar.classList.add("text-white");
-      snackbar.classList.add("bg-dark");
-      snackbar.classList.add("border");
-      snackbar.classList.add("border-light");
-      snackbar.querySelector("a").classList.add("text-white");
+      snackbar.classList.add("bg-dark,border,border-light");
       break;
   }
 
-  setTimeout(() => {
-    snackbar.classList.remove("show");
-  }, duration);
+  snackbar.classList.add("show");
+
+  if (typeof duration === "number") {
+    setTimeout(() => {
+      snackbar.classList.remove("show");
+    }, duration);
+  }
 }
 
 function validateEmail(email) {
