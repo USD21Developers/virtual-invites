@@ -30,12 +30,12 @@
     },
     {
       "key": "explanationOfDescription",
-      "original": "Describe the event below. This is your chance to motivate the recipient to attend! Emphasize the best aspects of the event, and be genuine:",
-      "translated": "Describe the event below. This is your chance to motivate the recipient to attend! Emphasize the best aspects of the event, and be genuine:",
+      "original": "Describe the event. This is your chance to motivate the recipient to attend! Emphasize the best aspects of the event, and be genuine:",
+      "translated": "Describe the event. This is your chance to motivate the recipient to attend! Emphasize the best aspects of the event, and be genuine:",
       "changes": [
         {
-          "original": "Describe the event below.",
-          "translated": "Describe the event below.",
+          "original": "Describe the event.",
+          "translated": "Describe the event.",
           "bold": true
         },
         {
