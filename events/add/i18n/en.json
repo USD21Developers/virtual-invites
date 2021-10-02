@@ -29,9 +29,26 @@
       "translated": "Title"
     },
     {
+      "key": "explanationOfEventDetails",
+      "original": "Describe the event below. This is your chance to motivate the recipient to attend! Emphasize the best aspects of the event, and be genuine:",
+      "translated": "Describe the event below. This is your chance to motivate the recipient to attend! Emphasize the best aspects of the event, and be genuine:",
+      "changes": [
+        {
+          "original": "Describe the event below.",
+          "translated": "Describe the event below.",
+          "bold": true
+        },
+        {
+          "original": "motivate",
+          "translated": "motivate",
+          "italic": true
+        }
+      ]
+    },
+    {
       "key": "labelEventDescription",
-      "original": "Promotional Description",
-      "translated": "Promotional Description"
+      "original": "Event Description",
+      "translated": "Event Description"
     },
     {
       "key": "optionEventTypeBT",
