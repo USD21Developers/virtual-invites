@@ -141,7 +141,6 @@ function populateLanguages() {
   const defaultLangIso =
     JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang ||
     "en";
-  /* const defaultLangIso = "es"; */
   const endpoint = "../../data/json/languages.json";
 
   fetch(endpoint)
@@ -191,10 +190,10 @@ function populateLanguages() {
     });
 }
 
-function showDetectLocationButton() {
+function showCoordinatesContainer() {
   const isMobile = isMobileDevice();
   if (!isMobile) return;
-  const detectCoordinates = document.querySelector("#detectCoordinates");
+  const detectCoordinates = document.querySelector("#coordinatesContainer");
   detectCoordinates.classList.remove("d-none");
 }
 
@@ -217,7 +216,7 @@ async function init() {
   populateCountries();
   populateLanguages();
   attachListeners();
-  showDetectLocationButton();
+  showCoordinatesContainer();
   initIntlTelInput();
 }
 

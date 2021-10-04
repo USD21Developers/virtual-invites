@@ -371,47 +371,49 @@
                     </select>
                   </div>
 
-                  <h4 class="mt-5 mb-0">
-                    <span data-i18n="coordinatesHeadline"></span>
-                    <span
-                      data-i18n="coordinatesOptional"
-                      class="font-weight-light"
-                    ></span>
-                  </h4>
-                  <p class="my-3" data-i18n="coordinatesExplanation"></p>
-                  <div class="row">
-                    <div class="col">
-                      <div class="floating-label">
-                        <label for="latitude" data-i18n="latitude"></label>
-                        <input
-                          id="latitude"
-                          type="number"
-                          class="form-control"
-                        />
+                  <div id="coordinatesContainer" class="d-none">
+                    <h4 class="mt-5 mb-0">
+                      <span data-i18n="coordinatesHeadline"></span>
+                      <span
+                        data-i18n="coordinatesOptional"
+                        class="font-weight-light"
+                      ></span>
+                    </h4>
+                    <p class="my-3" data-i18n="coordinatesExplanation"></p>
+                    <div class="row">
+                      <div class="col">
+                        <div class="floating-label">
+                          <label for="latitude" data-i18n="latitude"></label>
+                          <input
+                            id="latitude"
+                            type="number"
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="floating-label">
+                          <label for="longitude" data-i18n="longitude"></label>
+                          <input
+                            id="longitude"
+                            type="number"
+                            class="form-control"
+                          />
+                        </div>
                       </div>
                     </div>
-                    <div class="col">
-                      <div class="floating-label">
-                        <label for="longitude" data-i18n="longitude"></label>
-                        <input
-                          id="longitude"
-                          type="number"
-                          class="form-control"
-                        />
+                    <div id="detectCoordinates" class="mt-4">
+                      <p data-i18n="coordinatesDetectionExplanation"></p>
+                      <div class="text-center">
+                        <button
+                          class="btn btn-info"
+                          id="detectCoordinatesButton"
+                          data-i18n="buttonDetectLocation"
+                        ></button>
                       </div>
                     </div>
                   </div>
-                  <div id="detectCoordinates" class="mt-4">
-                    <p data-i18n="coordinatesDetectionExplanation"></p>
-                    <div class="text-center">
-                      <button
-                        class="btn btn-info"
-                        id="detectCoordinatesButton"
-                        data-i18n="buttonDetectLocation"
-                      ></button>
-                    </div>
-                  </div>
-                </div>
+                </div> 
               </div>
             </fieldset>
 
