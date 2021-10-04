@@ -67,6 +67,11 @@
       "key": "menuAuthorizeUser",
       "original": "Authorize a New User",
       "translated": "Authorize a New User"
+    },
+    {
+      "key": "close",
+      "original": "Close",
+      "translated": "Close"
     }
   ],
 

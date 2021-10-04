@@ -126,7 +126,7 @@ function formError(selector, message = "") {
   const elementPosition = elementRect - bodyRect;
   const offsetPosition = elementPosition - offset;
 
-  feedback.innerHTML = message;
+  if (feedback) feedback.innerHTML = message;
   element.classList.add("is-invalid");
   window.scrollTo({ top: offsetPosition, behavior: "smooth", block: "center" });
   if (!isMobileDevice()) element.focus();
@@ -256,6 +256,34 @@ function getPhrase(key) {
   if (!pageContent.hasOwnProperty("phrases")) throw errorMessage;
   if (!Array.isArray(pageContent.phrases)) throw errorMessage;
   const phrase = pageContent.phrases.find((item) => item.key == key);
+  if (!phrase) throw errorMessage;
+  content = phrase.translated || "";
+  const hasChanges = Array.isArray(phrase.changes);
+  if (hasChanges) {
+    phrase.changes.forEach((change) => {
+      const { original, translated, bold, italic, link } = change;
+      let changed = translated;
+      if (bold) changed = `<strong>${changed}</strong>`;
+      if (italic) changed = `<em>${changed}</em>`;
+      if (link) changed = `<a href="${link}" class="alert-link">${changed}</a>`;
+      content = content.replaceAll(original, changed);
+    });
+  }
+  try {
+    return content;
+  } catch (err) {
+    console.error(err);
+    return content;
+  }
+}
+
+function getGlobalPhrase(key) {
+  let content = "";
+  const errorMessage = `phrase key "${key}" was not found`;
+  if (!key) throw errorMessage;
+  if (!globalContent.hasOwnProperty("phrases")) throw errorMessage;
+  if (!Array.isArray(globalContent.phrases)) throw errorMessage;
+  const phrase = globalContent.phrases.find((item) => item.key == key);
   if (!phrase) throw errorMessage;
   content = phrase.translated || "";
   const hasChanges = Array.isArray(phrase.changes);
@@ -429,6 +457,9 @@ function showModal(body = "", title = "", closeButtonText = "") {
   modal.querySelector(".modal-body").innerHTML = body;
 
   if (closeButtonText === "") {
+    modal
+      .querySelector("[data-dismiss='modal']")
+      .setAttribute("aria-label", closeButtonText);
     modal
       .querySelector(".modal-header button[class=close]")
       .setAttribute("aria-label", "");

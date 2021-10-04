@@ -141,7 +141,29 @@ function onSubmit(e) {
   const contactPhone = form.contactPhone.value.trim() || "";
   const contactEmail = form.contactEmail.value.toLowerCase().trim() || "";
 
-  // TODO:  Validate form
+  // Validate form
+
+  if (language === "") {
+    return showError(getPhrase("validateLanguage"), "#language");
+  }
+
+  if (eventtype === "") {
+    return showError(getPhrase("validateEventType"), "#eventtype");
+  }
+
+  if (eventtitle === "") {
+    return showError(getPhrase("validateEventTitle"), "#eventtitle");
+  }
+
+  if (eventdescription === "") {
+    return showError(getPhrase("validateDescription"), "#eventdescription");
+  }
+
+  if (frequency === "") {
+    return showError(getPhrase("validateFrequency"), "#frequency");
+  }
+
+  // TODO:  Validate the rest of the form; requires logic branching at this point
 }
 
 function populateCountries() {
@@ -225,6 +247,14 @@ function showCoordinatesContainer() {
   if (!isMobile) return;
   const detectCoordinates = document.querySelector("#coordinatesContainer");
   detectCoordinates.classList.remove("d-none");
+}
+
+function showError(msg, selector) {
+  const formIncomplete = getPhrase("formIncomplete");
+
+  formErrorsReset();
+  selector && formError(selector);
+  showModal(msg, formIncomplete);
 }
 
 function attachListeners() {

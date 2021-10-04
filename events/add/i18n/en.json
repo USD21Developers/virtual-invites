@@ -264,6 +264,41 @@
       "key": "cancelLink",
       "original": "Cancel",
       "translated": "Cancel"
+    },
+    {
+      "key": "formIncomplete",
+      "original": "Form Incomplete",
+      "translated": "Form Incomplete"
+    },
+    {
+      "key": "modalCloseButtonText",
+      "original": "Close",
+      "translated": "Close"
+    },
+    {
+      "key": "validateLanguage",
+      "original": "Please select the primary language of the event.",
+      "translated": "Please select the primary language of the event."
+    },
+    {
+      "key": "validateEventType",
+      "original": "Please select the type of event.",
+      "translated": "Please select the type of event."
+    },
+    {
+      "key": "validateEventTitle",
+      "original": "Please input the title of the event.",
+      "translated": "Please input the title of the event."
+    },
+    {
+      "key": "validateDescription",
+      "original": "Please input the description of the event.",
+      "translated": "Please input the description of the event."
+    },
+    {
+      "key": "validateFrequency",
+      "original": "Please select how often this event occurs.",
+      "translated": "Please select how often this event occurs."
     }
   ],
 
