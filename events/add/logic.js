@@ -114,6 +114,36 @@ function onFrequencyChange(e) {
   }
 }
 
+function onSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const language = form.language.value;
+  const eventtype = form.eventtype.value;
+  const eventtitle = form.eventtitle.value.trim() || "";
+  const eventdescription = form.eventdescription.value.trim() || "";
+  const frequency = form.frequency.value;
+  const duration = form.duration.value;
+  const startdate = form.startdate.value.trim() || "";
+  const starttime = form.starttime.value.trim() || "";
+  const oneTimeEventBeginDate = form.oneTimeEventBeginDate.value.trim() || "";
+  const oneTimeEventBeginTime = form.oneTimeEventBeginTime.value.trim() || "";
+  const oneTimeEventEndDate = form.oneTimeEventEndDate.value.trim() || "";
+  const oneTimeEventEndTime = form.oneTimeEventEndTime.value.trim() || "";
+  const locationDetails = form.locationDetails.value.trim() || "";
+  const addressLine1 = form.addressLine1.value.trim() || "";
+  const addressLine2 = form.addressLine2.value.trim() || "";
+  const addressLine3 = form.addressLine3.value.trim() || "";
+  const country = form.country.value;
+  const latitude = form.latitude.value.trim() || "";
+  const longitude = form.longitude.value.trim() || "";
+  const contactFirstName = form.contactFirstName.value.trim() || "";
+  const contactLastName = form.contactLastName.value.trim() || "";
+  const contactPhone = form.contactPhone.value.trim() || "";
+  const contactEmail = form.contactEmail.value.toLowerCase().trim() || "";
+
+  // TODO:  Validate form
+}
+
 function populateCountries() {
   const country = document.querySelector("#country");
   const lang = localStorage.getItem("lang") || "en";
@@ -209,6 +239,8 @@ function attachListeners() {
   document
     .querySelector("#detectCoordinatesButton")
     .addEventListener("click", onClickDetectLocation);
+
+  document.querySelector("#formAddEvent").addEventListener("submit", onSubmit);
 }
 
 async function init() {

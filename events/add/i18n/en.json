@@ -254,6 +254,16 @@
       "key": "contactEmail",
       "original": "E-mail address",
       "translated": "E-mail address"
+    },
+    {
+      "key": "submitButton",
+      "original": "Add Event",
+      "translated": "Add Event"
+    },
+    {
+      "key": "cancelLink",
+      "original": "Cancel",
+      "translated": "Cancel"
     }
   ],
 

@@ -162,7 +162,7 @@
       </div>
       <div class="row">
         <div class="col col-sm-6 offset-sm-3">
-          <form>
+          <form id="formAddEvent" method="POST">
             <div class="form-group">
               <div class="floating-label mt-2 mb-5">
                 <label for="language" data-i18n="labelLanguage"></label>
@@ -185,7 +185,7 @@
             <div class="form-group">
               <div class="floating-label my-5">
                 <label for="eventtitle" data-i18n="labelEventTitle"></label>
-                <input type="text" class="form-control" id="eventttle" />
+                <input type="text" class="form-control" id="eventtitle" />
               </div>
             </div>
 
@@ -379,7 +379,6 @@
                         class="font-weight-light"
                       ></span>
                     </h4>
-                    <p class="my-3" data-i18n="coordinatesExplanation"></p>
                     <div class="row">
                       <div class="col">
                         <div class="floating-label">
@@ -475,6 +474,9 @@
                   </div>
                 </div>
             </fieldset>
+
+            <button type="submit" class="btn btn-primary" data-i18n="submitButton"></button>
+            <a href="../" data-i18n="cancelLink" class="ml-5"></a>
           </form>
         </div>
       </div>
