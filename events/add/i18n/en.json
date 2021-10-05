@@ -45,8 +45,8 @@
     },
     {
       "key": "noteForTeensCollege",
-      "original": "NOTE: Checking both Teens and College means that members of either group may attend.",
-      "translated": "NOTE: Checking both Teens and College means that members of either group may attend.",
+      "original": "NOTE: Checking both boxes below means that members of either group may attend.",
+      "translated": "NOTE: Checking both boxes below means that members of either group may attend.",
       "changes": [
         {
           "original": "NOTE:",
