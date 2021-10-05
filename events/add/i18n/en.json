@@ -44,6 +44,42 @@
       "translated": "(check all that apply):"
     },
     {
+      "key": "noteForTeensCollege",
+      "original": "NOTE: Checking both Teens and College means that members of either group may attend.",
+      "translated": "NOTE: Checking both Teens and College means that members of either group may attend.",
+      "changes": [
+        {
+          "original": "NOTE:",
+          "translated": "NOTE:",
+          "bold": true
+        },
+        {
+          "original": "either group",
+          "translated": "either group",
+          "bold": true,
+          "italic": true
+        }
+      ]
+    },
+    {
+      "key": "noteForSinglesMarrieds",
+      "original": "NOTE: Checking two boxes below means that only members of both groups may attend.",
+      "translated": "NOTE: Checking two boxes below means that only members of both groups may attend.",
+      "changes": [
+        {
+          "original": "NOTE:",
+          "translated": "NOTE:",
+          "bold": true
+        },
+        {
+          "original": "both groups",
+          "translated": "both groups",
+          "bold": true,
+          "italic": true
+        }
+      ]
+    },
+    {
       "key": "limitedToTeens",
       "original": "Teens",
       "translated": "Teens"
