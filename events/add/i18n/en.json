@@ -34,6 +34,46 @@
       "translated": "Event Description"
     },
     {
+      "key": "labelIsLimitedTo",
+      "original": "Limited to",
+      "translated": "Limited to"
+    },
+    {
+      "key": "checkAllThatApply",
+      "original": "(check all that apply):",
+      "translated": "(check all that apply):"
+    },
+    {
+      "key": "limitedToTeens",
+      "original": "Teens",
+      "translated": "Teens"
+    },
+    {
+      "key": "limitedToCollege",
+      "original": "College",
+      "translated": "College"
+    },
+    {
+      "key": "limitedToSingles",
+      "original": "Singles",
+      "translated": "Singles"
+    },
+    {
+      "key": "limitedToMarrieds",
+      "original": "Marrieds",
+      "translated": "Marrieds"
+    },
+    {
+      "key": "limitedToWomen",
+      "original": "Women",
+      "translated": "Women"
+    },
+    {
+      "key": "limitedToMen",
+      "original": "Men",
+      "translated": "Men"
+    },
+    {
       "key": "optionEventTypeBT",
       "original": "Bible Talk",
       "translated": "Bible Talk"
@@ -256,9 +296,9 @@
       "translated": "E-mail address"
     },
     {
-      "key": "submitButton",
-      "original": "Add Event",
-      "translated": "Add Event"
+      "key": "previewButton",
+      "original": "Preview",
+      "translated": "Preview"
     },
     {
       "key": "cancelLink",
@@ -269,6 +309,11 @@
       "key": "formIncomplete",
       "original": "Form Incomplete",
       "translated": "Form Incomplete"
+    },
+    {
+      "key": "fieldIsRequired",
+      "original": "This field is required.",
+      "translated": "This field is required."
     },
     {
       "key": "modalCloseButtonText",

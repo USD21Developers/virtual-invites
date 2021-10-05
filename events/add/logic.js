@@ -114,6 +114,26 @@ function onFrequencyChange(e) {
   }
 }
 
+function onLimitedToSinglesClicked(e) {
+  const marrieds = document.querySelector("#limitedToMarrieds");
+  marrieds.checked = false;
+}
+
+function onLimitedToMarriedsClicked(e) {
+  const singles = document.querySelector("#limitedToSingles");
+  singles.checked = false;
+}
+
+function onLimitedToWomenClicked(e) {
+  const men = document.querySelector("#limitedToMen");
+  men.checked = false;
+}
+
+function onLimitedToMenClicked(e) {
+  const women = document.querySelector("#limitedToWomen");
+  women.checked = false;
+}
+
 function onSubmit(e) {
   e.preventDefault();
   const form = e.target;
@@ -258,6 +278,18 @@ function showError(msg, selector) {
 }
 
 function attachListeners() {
+  document
+    .querySelector("#limitedToSingles")
+    .addEventListener("click", onLimitedToSinglesClicked);
+  document
+    .querySelector("#limitedToMarrieds")
+    .addEventListener("click", onLimitedToMarriedsClicked);
+  document
+    .querySelector("#limitedToWomen")
+    .addEventListener("click", onLimitedToWomenClicked);
+  document
+    .querySelector("#limitedToMen")
+    .addEventListener("click", onLimitedToMenClicked);
   document
     .querySelector("#frequency")
     .addEventListener("change", onFrequencyChange);

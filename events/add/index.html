@@ -167,6 +167,7 @@
               <div class="floating-label mt-2 mb-5">
                 <label for="language" data-i18n="labelLanguage"></label>
                 <select class="form-control" id="language"></select>
+                <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
               </div>
             </div>
 
@@ -179,6 +180,7 @@
                   <option data-i18n="optionEventTypeSundayService"></option>
                   <option data-i18n="optionEventTypeCustom"></option>
                 </select>
+                <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
               </div>
             </div>
 
@@ -186,6 +188,7 @@
               <div class="floating-label my-5">
                 <label for="eventtitle" data-i18n="labelEventTitle"></label>
                 <input type="text" class="form-control" id="eventtitle" />
+                <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
               </div>
             </div>
 
@@ -200,8 +203,47 @@
                   id="eventdescription"
                   rows="6"
                 ></textarea>
+                <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
               </div>
             </div>
+
+            <fieldset id="labelIsLimitedTo" class="my-5">
+              <legend>
+                <span data-i18n="labelIsLimitedTo"></span>
+                <span data-i18n="checkAllThatApply" class="font-weight-light"></span>
+              </legend>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" id="limitedToTeens">
+                <label class="form-check-label" for="limitedToTeens" data-i18n="limitedToTeens"></label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" id="limitedToCollege">
+                <label class="form-check-label" for="limitedToCollege" data-i18n="limitedToCollege"></label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" id="limitedToSingles">
+                <label class="form-check-label" for="limitedToSingles" data-i18n="limitedToSingles"></label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" id="limitedToMarrieds">
+                <label class="form-check-label" for="limitedToMarrieds" data-i18n="limitedToMarrieds"></label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" id="limitedToWomen">
+                <label class="form-check-label" for="limitedToWomen" data-i18n="limitedToWomen"></label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" id="limitedToMen">
+                <label class="form-check-label" for="limitedToMen" data-i18n="limitedToMen"></label>
+              </div>
+
+            </fieldset>
 
             <h4 class="mt-5 mb-2" data-i18n="headlineFrequency"></h4>
 
@@ -475,7 +517,7 @@
                 </div>
             </fieldset>
 
-            <button type="submit" class="btn btn-primary" data-i18n="submitButton"></button>
+            <button type="submit" class="btn btn-primary" data-i18n="previewButton"></button>
             <a href="../" data-i18n="cancelLink" class="ml-5"></a>
           </form>
         </div>
