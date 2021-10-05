@@ -45,8 +45,8 @@
     },
     {
       "key": "noteForTeensCollege",
-      "original": "NOTE: Checking both boxes below means that attendees may be in either group.",
-      "translated": "NOTE: Checking both boxes below means that attendees may be in either group.",
+      "original": "NOTE: If checking both boxes below, attendees may be in either group.",
+      "translated": "NOTE: If checking both boxes below, attendees may be in either group.",
       "changes": [
         {
           "original": "NOTE:",
@@ -63,8 +63,8 @@
     },
     {
       "key": "noteForSinglesMarrieds",
-      "original": "NOTE: Checking two boxes below means that attendees must be in both groups.",
-      "translated": "NOTE: Checking two boxes below means that attendees must be in both groups.",
+      "original": "NOTE: If checking two boxes below, attendees must be in both groups.",
+      "translated": "NOTE: If checking two boxes below, attendees must be in both groups.",
       "changes": [
         {
           "original": "NOTE:",
