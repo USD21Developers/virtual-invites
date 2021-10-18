@@ -32,9 +32,9 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
+      <div class="row my-3">
         <div class="col col-sm-4 offset-sm-4">
-          <div class="my-5">
+          <div class="bg-white" style="border: 5px double #cc0000">
             <h3 class="text-center lead mt-4 mb-1" data-i18n="youAreInvitedTo">
               You are invited to join us for
             </h3>
@@ -44,53 +44,51 @@
             >
               Bible Talk
             </h1>
-            <p class="text-center">
-              Fridays @ 7:30 PM<br />
+
+            <p class="text-center mt-4 mb-1">
+              <strong>Fridays @ 7:30 PM</strong><br />
               Starbucks<br />
               555 Main Street<br />
               Phoenix, AZ 99999<br />
             </p>
 
-            <p class="text-center">
+            <p class="text-center mt-4">
               <span class="material-icons text-dark"> place </span>
               <a
                 href="https://www.google.com/maps/dir/?api=1&destination=555%20Main%20Street,%20Phoenix,%20AZ,%2099999&sensor=true"
+                class="text-dark"
+                style="text-decoration: underline"
               >
                 Map and Directions
               </a>
             </p>
 
             <div class="text-center my-5">
-              <button class="btn btn-sm">
+              <button class="btn btn-sm" style="color: #cc0000">
                 <span class="material-icons mr-1"> insert_invitation </span>
                 Add to my calendar
               </button>
             </div>
+
+            <div class="mt-4 mb-5 px-4">
+              <p>
+                Hi Joe, I'm <a href="#">John</a>. I invited you last Thursday to
+                Bible Talk. I'm looking forward to joining you there this Friday
+                at 7:30 PM.
+              </p>
+              <p>
+                If you can join, I recommend clicking the button above to add
+                Bible Talk to your calendar.
+              </p>
+              <p>
+                Here's a video about
+                <a href="#">what I get out of the Bible</a>.
+              </p>
+              <p>I hope to see you there! Nice meeting you.</p>
+            </div>
           </div>
-
-          <hr />
         </div>
       </div>
-
-      <div class="row my-3">
-        <div class="col col-sm-4 offset-sm-4">
-          <p>
-            Hi, I'm <a href="#">John</a>. I invited you last Thursday to Bible
-            Talk. I'm looking forward to joining you there this Friday at 7:30
-            PM.
-          </p>
-          <p>
-            If you can join, I recommend clicking the button above to add Bible
-            Talk to your calendar.
-          </p>
-          <p>
-            Here's a video with <a href="#">a little about me</a>, and what I
-            get out of this.
-          </p>
-          <p>I hope to see you there! Nice meeting you.</p>
-        </div>
-      </div>
-      <br /><br /><br />
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
