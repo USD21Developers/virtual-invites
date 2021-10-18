@@ -478,20 +478,20 @@
                   </div>
                 </div>
             </fieldset>
+
+            <div class="row">
+              <div class="col-8 col-md-4 offset-md-3">
+                <button type="submit" class="btn btn-primary btn-block" data-i18n="previewButton"></button>
+              </div>
+              <div class="col-4 col-md-2">
+                <a href="../" data-i18n="cancelLink" class="ml-5"></a>
+              </div>
+            </div>
+
           </form>
-
-          
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-8 col-md-4 offset-md-3">
-          <button type="submit" class="btn btn-primary btn-block" data-i18n="previewButton"></button>
-        </div>
-        <div class="col-4 col-md-2">
-          <a href="../" data-i18n="cancelLink" class="ml-5"></a>
-        </div>
-      </div>
 
       <div class="snackbar">
         <div class="snackbar-body"></div>
@@ -511,6 +511,40 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="modaltitle"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-light text-dark border border-dark"
+              data-dismiss="modal"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Preview -->
+    <div
+      class="modal fade"
+      id="preview"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="previewtitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="previewtitle"></h5>
             <button
               type="button"
               class="close"
