@@ -1,0 +1,17 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Oswald", sans-serif;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+[data-i18n="youAreInvitedTo"] {
+  font-weight: 100;
+  margin: 0;
+}
