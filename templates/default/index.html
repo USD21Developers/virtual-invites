@@ -30,11 +30,11 @@
     <link href="../../css/global.css" rel="stylesheet" />
     <link href="index.css" rel="stylesheet" />
   </head>
-  <body>
+  <body class="theme d-none" data-theme="blue">
     <div class="container">
       <div class="row my-3">
         <div class="col col-sm-4 offset-sm-4">
-          <div class="bg-white" style="border: 5px double #cc0000">
+          <div class="bg-white" id="content">
             <h3 class="text-center lead mt-4 mb-1" data-i18n="youAreInvitedTo">
               You are invited to join us for
             </h3>
@@ -56,7 +56,6 @@
               <span class="material-icons text-dark"> place </span>
               <a
                 href="https://www.google.com/maps/dir/?api=1&destination=555%20Main%20Street,%20Phoenix,%20AZ,%2099999&sensor=true"
-                class="text-dark"
                 style="text-decoration: underline"
               >
                 Map and Directions
@@ -64,7 +63,7 @@
             </p>
 
             <div class="text-center my-5">
-              <button class="btn btn-sm" style="color: #cc0000">
+              <button class="btn">
                 <span class="material-icons mr-1"> insert_invitation </span>
                 Add to my calendar
               </button>

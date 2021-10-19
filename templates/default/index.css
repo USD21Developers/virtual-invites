@@ -1,12 +1,6 @@
 body {
-  background-color: #811515;
-  background-image: url("../img/backgrounds/red/AdobeStock_309304269.jpg");
   background-position: center;
   background-repeat: no-repeat;
-}
-
-a {
-  color: #cc0000;
 }
 
 h1,
@@ -25,4 +19,83 @@ h1 {
 [data-i18n="youAreInvitedTo"] {
   font-weight: 100;
   margin: 0;
+}
+
+a {
+  text-decoration: underline;
+}
+
+/* BLUE THEME */
+
+[data-theme="blue"] {
+  background-color: #0d3c56;
+  background-image: url("../img/backgrounds/blue/AdobeStock_243376759.jpg");
+}
+
+[data-theme="blue"] #content {
+  border: 5px double #0d3c56;
+}
+
+[data-theme="blue"] a {
+  color: #1c78b0;
+}
+
+/* GREEN THEME */
+
+[data-theme="green"] {
+  background-color: #066440;
+  background-image: url("../img/backgrounds/green/AdobeStock_336463377.jpg");
+}
+
+[data-theme="green"] #content {
+  border: 5px double #066440;
+}
+
+[data-theme="green"] a {
+  color: #0aa167;
+}
+
+/* GREY THEME */
+
+[data-theme="grey"] {
+  background-color: #545559;
+  background-image: url("../img/backgrounds/grey/AdobeStock_311360889.jpg");
+}
+
+[data-theme="grey"] #content {
+  border: 5px double #545559;
+}
+
+[data-theme="grey"] a {
+  color: var(--primary);
+}
+
+/* PURPLE THEME */
+
+[data-theme="purple"] {
+  background-color: #28024f;
+  background-image: url("../img/backgrounds/purple/AdobeStock_320397648.jpg");
+}
+
+[data-theme="purple"] #content {
+  border: 5px double #28024f;
+}
+
+[data-theme="purple"] a {
+  color: #4a0493;
+}
+
+/* RED THEME */
+
+[data-theme="red"] {
+  background-color: #791515;
+  background-image: url("../img/backgrounds/red/AdobeStock_309304269.jpg");
+}
+
+[data-theme="red"] #content {
+  border: 5px double #791515;
+}
+
+[data-theme="red"] a {
+  color: #c62323;
 }
