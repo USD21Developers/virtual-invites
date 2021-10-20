@@ -34,7 +34,7 @@
     <div class="container">
       <div class="row my-3">
         <div class="col col-sm-10 offset-sm-1 col-md-6 offset-md-3">
-          <div class="bg-white" id="content">
+          <div class="bg-white px-4" id="content">
             <h3 class="text-center lead mt-4 mb-1" data-i18n="youAreInvitedTo">
               You are invited to join us for
             </h3>
@@ -63,28 +63,66 @@
             </p>
 
             <div class="text-center my-5">
-              <button class="btn">
+              <button class="btn btn-info">
                 <span class="material-icons mr-1"> insert_invitation </span>
                 Add to my calendar
               </button>
             </div>
 
-            <div class="mt-4 mb-5 px-4">
+            <div class="mb-2">
               <p>
                 Hi Joe, I'm <a href="#">John</a>. I invited you last Thursday to
                 Bible Talk. I'm looking forward to joining you there this Friday
                 at 7:30 PM.
               </p>
               <p>
-                If you can join, I recommend clicking the button above to add
-                Bible Talk to your calendar.
+                If you can join, I recommend adding it to your calendar to help
+                you remember.
               </p>
               <p>
                 Here's a video about
-                <a href="#">what I get out of the Bible</a>.
+                <a href="#">why I enjoy Bible Talk</a>.
               </p>
               <p>I hope to see you there! Nice meeting you.</p>
             </div>
+
+            <div class="text-center my-5">
+              <button id="moreinfo" class="btn btn-info">More info</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modaltitle"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-light text-dark border border-dark"
+              data-dismiss="modal"
+            ></button>
           </div>
         </div>
       </div>
