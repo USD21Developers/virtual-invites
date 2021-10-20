@@ -1,6 +1,7 @@
 body {
   background-position: center;
   background-repeat: repeat-y;
+  font-size: 16px;
 }
 
 h1,
@@ -13,10 +14,11 @@ h6 {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 32px;
 }
 
 [data-i18n="youAreInvitedTo"] {
+  font-size: 22px;
   font-weight: 100;
   margin: 0;
 }
