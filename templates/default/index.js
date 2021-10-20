@@ -8,7 +8,6 @@ function setTheme() {
 }
 
 function onMoreInfoClicked(e) {
-  console.log(`onMoreInfoClicked`);
   e.preventDefault();
   const body = `
     <p class="text-center">For more information, contact:</p>
@@ -25,8 +24,12 @@ function onMoreInfoClicked(e) {
               <a href="tel:+12133251382" class="list-group-item list-group-item-action">
                 Phone
               </a>
-              <a href="sms:+12133251382" class="list-group-item list-group-item-action">SMS</a>
-              <a href="mailto:vrtjason@gmail.com" class="list-group-item list-group-item-action">E-mail</a>
+              <a href="sms:+12133251382" class="list-group-item list-group-item-action">
+                SMS
+              </a>
+              <a href="mailto:vrtjason@gmail.com" class="list-group-item list-group-item-action">
+                E-mail
+              </a>
             </div>
           </div>
       </div>
