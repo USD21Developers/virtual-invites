@@ -13,7 +13,7 @@ function onMoreInfoClicked(e) {
     <p class="text-center">For more information, contact:</p>
     <div class="row">
       <div class="col col-sm-6 offset-sm-3 text-center">
-        <h4>Lance Jesterson</h4>
+        <h4 class="mb-4">Lance Jesterson</h4>
       </div>
     </div>
     <div class="row">
@@ -22,10 +22,10 @@ function onMoreInfoClicked(e) {
           <div class="card-body p-0">
             <div class="list-group list-group-flush">
               <a href="tel:+12133251382" class="list-group-item list-group-item-action">
-                Phone
+                Phone call
               </a>
               <a href="sms:+12133251382" class="list-group-item list-group-item-action">
-                SMS
+                Text message
               </a>
               <a href="mailto:vrtjason@gmail.com" class="list-group-item list-group-item-action">
                 E-mail
