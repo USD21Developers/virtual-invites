@@ -10,10 +10,19 @@ function setTheme() {
 function onMoreInfoClicked(e) {
   e.preventDefault();
   const body = `
-    <p class="text-center">For more information, contact:</p>
+    A Bible Talk is a casual, light-hearted discussion group that is open to anyone, regardless of their prior knowledge of the Bible. Typically we meet in a home or restaurant, but sometimes we meet in an open setting like a park.
+    <br />
+    <br />The discussion leader will focus on a Biblical topic and pertinent scriptures, and will engage the attendees with thought-provoking questions designed to get everyone thinking of the scripture on a deeper level. The goal is to try to understand the scripture better through practical application, and to inspire attendees to pursue further Bible study. 
+    <hr />
+    <h3>Questions?</h3>
     <div class="row">
+      <div class="col">
+        If you have any questions or feedback, contact us below:
+      </div>
+    </div>
+    <div class="row my-3">
       <div class="col col-sm-6 offset-sm-3 text-center">
-        <h4 class="mb-4">Lance Jesterson</h4>
+        <h4 class="m-0">Laurence Jesterson</h4>
       </div>
     </div>
     <div class="row">
