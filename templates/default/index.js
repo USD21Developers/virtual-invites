@@ -17,7 +17,7 @@ function onMoreInfoClicked(e) {
     <h3>Questions?</h3>
     <div class="row">
       <div class="col">
-        If you have any questions or feedback, contact us below:
+        If you have any questions or feedback, please reach out below:
       </div>
     </div>
     <div class="row my-3">
@@ -36,7 +36,7 @@ function onMoreInfoClicked(e) {
               <a href="sms:+12133251382" class="list-group-item list-group-item-action">
                 Text message
               </a>
-              <a href="mailto:vrtjason@gmail.com" class="list-group-item list-group-item-action">
+              <a href="mailto:Laurence Jesterson &lt;vrtjason@gmail.com&gt;" class="list-group-item list-group-item-action">
                 E-mail
               </a>
             </div>
