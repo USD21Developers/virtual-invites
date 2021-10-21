@@ -10,7 +10,7 @@ function setTheme() {
 function onMoreInfoClicked(e) {
   e.preventDefault();
   const body = `
-    A Bible Talk is a casual, light-hearted discussion group that is open to anyone, regardless of their prior knowledge of the Bible. Typically we meet in a home or restaurant, but sometimes we meet in an open setting like a park.
+    A Bible Talk is a casual, light-hearted discussion group that is open to anyone, regardless of their beliefs or prior experience with the Bible. We usually meet in a home or restaurant, but sometimes we meet in an open setting like a park.
     <br />
     <br />The discussion leader will focus on a Biblical topic and pertinent scriptures, and will engage the attendees with thought-provoking questions designed to get everyone thinking of the scripture on a deeper level. The goal is to try to understand the scripture better through practical application, and to inspire attendees to pursue further Bible study. 
     <hr />
