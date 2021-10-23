@@ -15,23 +15,23 @@
     },
     {
       "key": "headlineto",
-      "original": "To:",
-      "translated": "To:"
+      "original": "Recipient:",
+      "translated": "Recipient:"
     },
     {
       "key": "recipientsName",
-      "original": "Recipient's name",
-      "translated": "Recipient's name"
+      "original": "Name",
+      "translated": "Name"
     },
     {
       "key": "headlinefor",
-      "original": "For:",
-      "translated": "For:"
+      "original": "Event:",
+      "translated": "Event:"
     },
     {
       "key": "headlinevia",
-      "original": "Via:",
-      "translated": "Via:"
+      "original": "Send Via:",
+      "translated": "Send Via:"
     },
     {
       "key": "viasms",
@@ -60,8 +60,8 @@
     },
     {
       "key": "mobilephonenumber",
-      "original": "Mobile phone number",
-      "translated": "Mobile phone number"
+      "original": "Phone number",
+      "translated": "Phone number"
     },
     {
       "key": "emailaddress",
