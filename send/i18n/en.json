@@ -55,8 +55,8 @@
     },
     {
       "key": "instrustionstext",
-      "original": "Ask the person you're inviting to open the camera app on their cell phone. Have them point their camera at this barcode (without taking a picture). A prompt should appear on their screen. By pressing a button in that prompt, the invite will open in their Web browser. Lastly, click 'Save Invite' below.",
-      "translated": "Ask the person you're inviting to open the camera app on their cell phone. Have them point their camera at this barcode (without taking a picture). A prompt should appear on their screen. By pressing a button in that prompt, the invite will open in their Web browser. Lastly, click 'Save Invite' below."
+      "original": "Ask the person you're inviting to open the camera app on their cell phone. Have them point their camera at this barcode (without taking a picture). A prompt should appear on their screen. By pressing a button in that prompt, the invite will open in their Web browser. (If this doesn't work, have them scan the barcode with a QR Code app). Lastly, click 'Save Invite' below.",
+      "translated": "Ask the person you're inviting to open the camera app on their cell phone. Have them point their camera at this barcode (without taking a picture). A prompt should appear on their screen. By pressing a button in that prompt, the invite will open in their Web browser. (If this doesn't work, have them scan the barcode with a QR Code app). Lastly, click 'Save Invite' below."
     },
     {
       "key": "mobilephonenumber",
