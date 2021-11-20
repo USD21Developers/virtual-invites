@@ -36,7 +36,9 @@
   </head>
   <body>
     <nav class="navbar navbar-light bg-light sticky-top border-bottom">
-      <a class="navbar-brand" href="/" data-i18n-global="apptitle"></a>
+      <div>
+        <a class="navbar-brand" href="/" data-i18n-global="apptitle"></a>
+      </div>
       <button
         class="navbar-toggler"
         type="button"
@@ -162,32 +164,6 @@
       </div>
 
       <form name="formsendinvite" id="formsendinvite" method="post" action="./">
-        <div class="form-group row mb-3">
-          <div
-            class="
-              col-4 col-md-2
-              offset-md-2
-              col-form-label
-              py-1
-              pr-0
-              text-right
-            "
-          >
-            <h4 class="text-uppercase" data-i18n="headlineto"></h4>
-          </div>
-          <div class="col-8 col-md-5" id="containerName">
-            <input
-              type="text"
-              class="form-control"
-              name="name"
-              id="recipientname"
-              placeholder=""
-              tabindex="1"
-              data-i18n-placeholder="recipientsName"
-            />
-          </div>
-        </div>
-
         <div class="form-group row mb-4">
           <div
             class="
@@ -222,6 +198,32 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-3">
+          <div
+            class="
+              col-4 col-md-2
+              offset-md-2
+              col-form-label
+              py-1
+              pr-0
+              text-right
+            "
+          >
+            <h4 class="text-uppercase" data-i18n="headlineto"></h4>
+          </div>
+          <div class="col-8 col-md-5" id="containerName">
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              id="recipientname"
+              placeholder=""
+              tabindex="1"
+              data-i18n-placeholder="recipientsName"
+            />
           </div>
         </div>
 
@@ -363,6 +365,40 @@
 
       <div class="snackbar">
         <div class="snackbar-body"></div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modaltitle"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-0"></div>
+          <div class="modal-footer p-3">
+            <button
+              type="button"
+              class="btn btn-light text-dark border border-dark"
+              data-dismiss="modal"
+            ></button>
+          </div>
+        </div>
       </div>
     </div>
 

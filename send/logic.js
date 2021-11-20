@@ -233,9 +233,19 @@ async function loadEvents() {
   // TODO:  fetch events from API for user, store the result to localStorage, then refresh the UI with it
 }
 
-function onFormSubmit(e) {
-  e.preventDefault();
-  onSubmit();
+function onAfterSubmitted() {
+  showModal(
+    `
+    Your invite has been processed.
+
+    <p class="mt-4">
+      <hr class="my-3" />
+      <strong>Problems?</strong> Re-try using another send method.
+    </p>
+  `,
+    "Invite Sent",
+    "Finish"
+  );
 }
 
 function onGeoLocationError(err) {
@@ -280,6 +290,7 @@ function onSubmit(e) {
   switch (sendVia) {
     case "sms":
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
+      e.preventDefault();
       showForwardingMessage("sms");
       break;
     case "email":
@@ -287,6 +298,7 @@ function onSubmit(e) {
         "href",
         `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`
       );
+      e.preventDefault();
       showForwardingMessage("email");
       break;
     default:
@@ -410,14 +422,7 @@ function showForwardingMessage(sendvia) {
   btnSendInvite.setAttribute("disabled", true);
 
   setTimeout(() => {
-    window.scrollTo(0, 0);
-    setInterval(() => {
-      try {
-        window.location.reload();
-      } catch (e) {
-        console.error(e);
-      }
-    }, 500);
+    onAfterSubmitted();
   }, 5000);
 }
 
@@ -444,7 +449,7 @@ function setEventListeners() {
   document.querySelector("#btnSendInvite").addEventListener("click", onSubmit);
   document
     .querySelector("#formsendinvite")
-    .addEventListener("submit", onFormSubmit);
+    .addEventListener("submit", onSubmit);
 }
 
 async function init() {
