@@ -324,23 +324,9 @@
 
             <fieldset id="locationContainer" class="my-5">
               <legend data-i18n="headlineLocation"></legend>
-              <div class="form-group mt-2 mb-5">
-                <div class="floating-label textfield-box">
-                  <label
-                    for="locationDetails"
-                    data-i18n="labelLocationDetails"
-                  ></label>
-                  <textarea
-                    class="form-control"
-                    id="locationDetails"
-                    rows="3"
-                  ></textarea>
-                </div>
-              </div>
-
               <div id="addressContainer">
                 <h4 data-i18n="addressHeadline" class="mb-0"></h4>
-                <div class="form-group">
+                <div class="form-group mb-5">
                   <div class="mb-3">
                     <label for="addressLine1"></label>
                     <input
@@ -416,7 +402,21 @@
                       </div>
                     </div>
                   </div>
-                </div> 
+                </div>
+                <h4 data-i18n="headlineLocationDetails" class="mb-0"></h4>
+                <div class="form-group mt-2">
+                  <div class="floating-label textfield-box">
+                    <label
+                      for="locationDetails"
+                      data-i18n="labelLocationDetails"
+                    ></label>
+                    <textarea
+                      class="form-control"
+                      id="locationDetails"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>    
               </div>
             </fieldset>
 

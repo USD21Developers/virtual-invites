@@ -149,6 +149,11 @@
       "translated": "Location:"
     },
     {
+      "key": "headlineLocationDetails",
+      "original": "Details:",
+      "translated": "Details:"
+    },
+    {
       "key": "labelLocationDetails",
       "original": "Location Details",
       "translated": "Location Details"

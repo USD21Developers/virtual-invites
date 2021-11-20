@@ -234,13 +234,18 @@ async function loadEvents() {
 }
 
 function onAfterSubmitted() {
+  const sendButton = document.querySelector("#btnSendInvite");
+  const defaultText =
+    sendButton.getAttribute("data-defaulttext") || "SEND INVITE";
+  sendButton.innerText = defaultText;
+
   showModal(
     `
     Your invite has been processed.
 
     <p class="mt-4">
       <hr class="my-3" />
-      <strong>Problems?</strong> Re-try using another send method.
+      <strong>Problems sending?</strong> &nbsp; Re-try using another sending method.
     </p>
   `,
     "Invite Sent",
