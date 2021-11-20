@@ -245,7 +245,7 @@ function populateLanguages() {
 function showCoordinatesContainer() {
   const isMobile = isMobileDevice();
   if (!isMobile) return;
-  const detectCoordinates = document.querySelector("#coordinatesContainer");
+  const detectCoordinates = document.querySelector("#detectCoordinates");
   detectCoordinates.classList.remove("d-none");
 }
 
