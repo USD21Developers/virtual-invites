@@ -234,23 +234,37 @@ async function loadEvents() {
 }
 
 function onAfterSubmitted() {
+  // Reset text of send button
   const sendButton = document.querySelector("#btnSendInvite");
   const defaultText =
-    sendButton.getAttribute("data-defaulttext") || "SEND INVITE";
+    sendButton.getAttribute("data-defaulttext") || getPhrase(buttonsendinvite);
   sendButton.innerText = defaultText;
 
-  showModal(
-    `
-    Your invite has been processed.
-
+  // Set content of modal
+  const modalContent = `
+    ${getPhrase("afterSentParagraph1")}
     <p class="mt-4">
       <hr class="my-3" />
-      <strong>Problems sending?</strong> &nbsp; Re-try using another sending method.
+      <strong>${getPhrase("problemsSending")}</strong> &nbsp; 
+      ${getPhrase("problemsSendingSuggestion")}
     </p>
-  `,
-    "Invite Sent",
-    "Finish"
-  );
+  `;
+
+  // Save to localStorage, try to sync, then show modal
+  const txtInviteRecorded = getPhrase("inviteRecorded");
+  const txtBtnRetry = getPhrase("btnRetry");
+  saveAndSync()
+    .then(() => {
+      showModal(modalContent, txtInviteRecorded, txtBtnRetry);
+    })
+    .catch(() => {
+      // TODO:  Handle failed sync here, if necessary
+      showModal(modalContent, txtInviteRecorded, txtBtnRetry);
+    });
+}
+
+function onFinish() {
+  window.location.href = "../";
 }
 
 function onGeoLocationError(err) {
@@ -286,6 +300,12 @@ function onSendViaChanged() {
 }
 
 function onSubmit(e) {
+  e.preventDefault();
+  const btnSendInvite = document.querySelector("#btnSendInvite");
+  btnSendInvite.click();
+}
+
+function onSubmitButtonClick(e) {
   const sendVia = getSendVia();
   const btnSendInvite = document.querySelector("#btnSendInvite");
   const sendTo = getSendTo();
@@ -295,19 +315,28 @@ function onSubmit(e) {
   switch (sendVia) {
     case "sms":
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
-      e.preventDefault();
       showForwardingMessage("sms");
+      console.log("Setting SMS timer");
+      setTimeout(() => {
+        onAfterSubmitted("sms");
+        console.log("Timer finished");
+      }, 5000);
       break;
     case "email":
       btnSendInvite.setAttribute(
         "href",
         `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`
       );
-      e.preventDefault();
       showForwardingMessage("email");
+      console.log("Setting e-mail timer");
+      setTimeout(() => {
+        onAfterSubmitted("email");
+        console.log("Timer finished");
+      }, 5000);
       break;
     default:
-      e.preventDefault();
+    // onAfterSubmitted("qrcode");
+    // e.preventDefault();
   }
 }
 
@@ -397,6 +426,22 @@ function selectSendVia(method) {
   }
 }
 
+function saveAndSync() {
+  return new Promise((resolve, reject) => {
+    let syncSucceeded = true;
+
+    // TODO:  SAVE ALL INVITE DATA TO LOCAL STORAGE
+    // TODO:  ATTEMPT TO SYNC
+    // TODO:  USE A TIMEOUT ABORT IN CASE SYNCING TAKES TOO LONG
+
+    if (syncSucceeded) {
+      resolve();
+    } else {
+      reject();
+    }
+  });
+}
+
 function setDefaultSendMethod() {
   const defaultSendMethod = localStorage.getItem("defaultSendMethod") || "";
   const lastSendMethodSelected =
@@ -425,10 +470,6 @@ function showForwardingMessage(sendvia) {
   }
 
   btnSendInvite.setAttribute("disabled", true);
-
-  setTimeout(() => {
-    onAfterSubmitted();
-  }, 5000);
 }
 
 function showTagInviteWithLocation() {
@@ -451,10 +492,13 @@ function setEventListeners() {
   document
     .querySelector("#tagwithlocation")
     .addEventListener("click", onTagWithLocation);
-  document.querySelector("#btnSendInvite").addEventListener("click", onSubmit);
+  document
+    .querySelector("#btnSendInvite")
+    .addEventListener("click", onSubmitButtonClick);
   document
     .querySelector("#formsendinvite")
     .addEventListener("submit", onSubmit);
+  document.querySelector("#btnFinish").addEventListener("click", onFinish);
 }
 
 async function init() {

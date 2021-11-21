@@ -117,6 +117,36 @@
       "key": "invitationto",
       "original": "Invitation to",
       "translated": "Invitation to"
+    },
+    {
+      "key": "inviteRecorded",
+      "original": "Invite Recorded",
+      "translated": "Invite Recorded"
+    },
+    {
+      "key": "btnRetry",
+      "original": "Retry",
+      "translated": "Retry"
+    },
+    {
+      "key": "btnFinish",
+      "original": "Finish",
+      "translated": "Finish"
+    },
+    {
+      "key": "afterSentParagraph1",
+      "original": "This invite has been saved to your account, enabling you to follow up with the recipient later.",
+      "translated": "This invite has been saved to your account, enabling you to follow up with the recipient later."
+    },
+    {
+      "key": "problemsSending",
+      "original": "Problems sending?",
+      "translated": "Problems sending?"
+    },
+    {
+      "key": "problemsSendingSuggestion",
+      "original": "Retry using another sending method.",
+      "translated": "Retry using another sending method."
     }
   ],
 

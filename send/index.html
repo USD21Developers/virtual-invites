@@ -182,7 +182,7 @@
               id="events_dropdown"
               name="events_dropdown"
               class="form-control"
-              tabindex="2"
+              tabindex="1"
             ></select>
             <div class="mt-1 d-none" id="meetingdetails">
               <div class="row">
@@ -221,8 +221,9 @@
               name="name"
               id="recipientname"
               placeholder=""
-              tabindex="1"
+              tabindex="2"
               data-i18n-placeholder="recipientsName"
+              required
             />
           </div>
         </div>
@@ -394,8 +395,15 @@
           <div class="modal-footer p-3">
             <button
               type="button"
-              class="btn btn-light text-dark border border-dark"
+              class="btn btn-light text-dark border border-dark mx-2"
               data-dismiss="modal"
+              data-i18n="btnRetry"
+            ></button>
+            <button
+              type="button"
+              class="btn btn-primary text-white border border-dark"
+              data-i18n="btnFinish"
+              id="btnFinish"
             ></button>
           </div>
         </div>
