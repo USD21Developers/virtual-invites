@@ -139,14 +139,19 @@
       "translated": "This invite has been saved to your account, enabling you to follow up with the recipient later."
     },
     {
+      "key": "afterSentParagraph1QRCode",
+      "original": "This invite has been saved to your account.",
+      "translated": "This invite has been saved to your account."
+    },
+    {
       "key": "problemsSending",
       "original": "Problems sending?",
       "translated": "Problems sending?"
     },
     {
       "key": "problemsSendingSuggestion",
-      "original": "Retry, using another sending method.",
-      "translated": "Retry, using another sending method."
+      "original": "Retry, perhaps using another sending method.",
+      "translated": "Retry, perhaps using another sending method."
     }
   ],
 

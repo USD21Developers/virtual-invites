@@ -233,16 +233,14 @@ async function loadEvents() {
   // TODO:  fetch events from API for user, store the result to localStorage, then refresh the UI with it
 }
 
-function onAfterSubmitted() {
+function onAfterSubmitted(sendvia) {
   // Reset text of send button
   const sendButton = document.querySelector("#btnSendInvite");
-  const defaultText =
-    sendButton.getAttribute("data-defaulttext") || getPhrase(buttonsendinvite);
-  sendButton.innerText = defaultText;
+  sendButton.innerText = sendvia === "qrcode" ? getPhrase("buttonsaveinvite") : getPhrase("buttonsendinvite");
 
   // Set content of modal
   const modalContent = `
-    ${getPhrase("afterSentParagraph1")}
+    ${sendvia === "qrcode" ? getPhrase("afterSentParagraph1QRCode") : getPhrase("afterSentParagraph1")}
     <p class="mt-4">
       <hr class="my-3" />
       <strong>${getPhrase("problemsSending")}</strong> &nbsp; 
@@ -328,15 +326,12 @@ function onSubmitButtonClick(e) {
         `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`
       );
       showForwardingMessage("email");
-      console.log("Setting e-mail timer");
       setTimeout(() => {
         onAfterSubmitted("email");
-        console.log("Timer finished");
       }, 5000);
       break;
     default:
-    // onAfterSubmitted("qrcode");
-    // e.preventDefault();
+      onAfterSubmitted("qrcode");
   }
 }
 
