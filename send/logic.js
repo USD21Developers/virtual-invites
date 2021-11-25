@@ -236,17 +236,32 @@ async function loadEvents() {
 function onAfterSubmitted(sendvia) {
   // Reset text of send button
   const sendButton = document.querySelector("#btnSendInvite");
-  sendButton.innerText = sendvia === "qrcode" ? getPhrase("buttonsaveinvite") : getPhrase("buttonsendinvite");
+  sendButton.innerText =
+    sendvia === "qrcode"
+      ? getPhrase("buttonsaveinvite")
+      : getPhrase("buttonsendinvite");
 
   // Set content of modal
-  const modalContent = `
-    ${sendvia === "qrcode" ? getPhrase("afterSentParagraph1QRCode") : getPhrase("afterSentParagraph1")}
-    <p class="mt-4">
-      <hr class="my-3" />
-      <strong>${getPhrase("problemsSending")}</strong> &nbsp; 
-      ${getPhrase("problemsSendingSuggestion")}
-    </p>
-  `;
+  let modalContent;
+  if (sendvia === "qrcode") {
+    modalContent = `
+      ${getPhrase("afterSentParagraph1QRCode")}
+      <p class="mt-4">
+        <hr class="my-3" />
+        <strong>${getPhrase("problemsScanning")}</strong> &nbsp; 
+        ${getPhrase("problemsScanningSuggestion")}
+      </p>
+    `;
+  } else {
+    modalContent = `
+      ${getPhrase("afterSentParagraph1")}
+      <p class="mt-4">
+        <hr class="my-3" />
+        <strong>${getPhrase("problemsSending")}</strong> &nbsp; 
+        ${getPhrase("problemsSendingSuggestion")}
+      </p>
+    `;
+  }
 
   // Save to localStorage, try to sync, then show modal
   const txtInviteRecorded = getPhrase("inviteRecorded");

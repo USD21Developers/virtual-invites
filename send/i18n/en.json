@@ -140,8 +140,8 @@
     },
     {
       "key": "afterSentParagraph1QRCode",
-      "original": "This invite has been saved to your account.",
-      "translated": "This invite has been saved to your account."
+      "original": "This invite has been saved to your account, enabling you to determine later whether the recipient has clicked on the invite.",
+      "translated": "This invite has been saved to your account, enabling you to determine later whether the recipient has clicked on the invite."
     },
     {
       "key": "problemsSending",
@@ -152,6 +152,16 @@
       "key": "problemsSendingSuggestion",
       "original": "Retry, perhaps using another sending method.",
       "translated": "Retry, perhaps using another sending method."
+    },
+    {
+      "key": "problemsScanning",
+      "original": "Problems scanning?",
+      "translated": "Problems scanning?"
+    },
+    {
+      "key": "problemsScanningSuggestion",
+      "original": "Retry, or perhaps use another sending method.",
+      "translated": "Retry, or perhaps use another sending method."
     }
   ],
 
