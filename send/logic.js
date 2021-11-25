@@ -314,8 +314,11 @@ function onSendViaChanged() {
 
 function onSubmit(e) {
   e.preventDefault();
-  const btnSendInvite = document.querySelector("#btnSendInvite");
-  btnSendInvite.click();
+  const sendVia = getSendVia();
+  if (sendVia !== "qrcode") {
+    const btnSendInvite = document.querySelector("#btnSendInvite");
+    btnSendInvite.click();
+  }
 }
 
 function onSubmitButtonClick(e) {
