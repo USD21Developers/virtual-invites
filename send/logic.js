@@ -7,6 +7,19 @@ const geoLocationOptions = {
   maximumAge: 0,
 };
 
+function downloadCanvasAsImage() {
+  let downloadLink = document.createElement("a");
+  downloadLink.setAttribute("download", "CanvasAsImage.png");
+  let canvas = document.getElementById("myCanvas");
+  let dataURL = canvas.toDataURL("image/png");
+  let url = dataURL.replace(
+    /^data:image\/png/,
+    "data:application/octet-stream"
+  );
+  downloadLink.setAttribute("href", url);
+  downloadLink.click();
+}
+
 function eventDetails() {
   const event = document.querySelector("#events_dropdown");
   const meetingdetails = document.querySelector("#meetingdetails");
@@ -367,18 +380,20 @@ function onTagWithLocation(e) {
 }
 
 function populateQrCode() {
-  const availableWidth = document.querySelector("#qrcode").clientWidth;
+  const el = document.querySelector("#qrcode");
+  const availableWidth = el.clientWidth;
   const maxWidth = 200;
   const width = availableWidth > maxWidth ? maxWidth : availableWidth;
   const url = getFinalURL();
 
-  const qr = new QRious({
-    element: document.getElementById("qr"),
-    value: url,
-    size: width,
+  return new Promise((resolve, reject) => {
+    const qr = new QRious({
+      element: document.getElementById("qr"),
+      value: url,
+      size: width,
+    });
+    resolve(qr);
   });
-
-  qr.toDataURL();
 }
 
 function populateSaveButtonData() {
@@ -432,7 +447,18 @@ function selectSendVia(method) {
       containerQRCodeInstructions.classList.remove("d-none");
       btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-qrcodetext");
       isMobile && containerTagWithLocation.classList.remove("d-none");
-      populateQrCode();
+      populateQrCode().then((obj) => {
+        let downloadLink = document.createElement("a");
+        downloadLink.setAttribute("download", "invite.png");
+        const dataURL = obj.toDataURL();
+        const url = dataURL.replace(
+          /^data:image\/png/,
+          "data:application/octet-stream"
+        );
+        downloadLink.setAttribute("href", url);
+        const canvas = document.querySelector("#qr");
+        canvas.addEventListener("click", () => downloadLink.click());
+      });
       if (!method) {
         const qrCodeContainerOffset =
           document.getElementById("containerSendToQRCode").offsetTop - 64;
