@@ -39,7 +39,8 @@ td {
   font-weight: 600;
 }
 
-u {
+u,
+u a {
   text-decoration: underline !important;
 }
 
