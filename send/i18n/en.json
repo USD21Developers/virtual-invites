@@ -135,13 +135,13 @@
     },
     {
       "key": "afterSentParagraph1",
-      "original": "This invite has been saved to your account. This will enable you to follow up, and also track when the recipient clicks on it.",
-      "translated": "This invite has been saved to your account. This will enable you to follow up, and also track when the recipient clicks on it."
+      "original": "This invite has been saved to your account. This will enable you to follow up. You will also be notified by e-mail when the recipient clicks on the URL to the invite.",
+      "translated": "This invite has been saved to your account. This will enable you to follow up. You will also be notified by e-mail when the recipient clicks on the URL to the invite."
     },
     {
       "key": "afterSentParagraph1QRCode",
-      "original": "This invite has been saved to your account. This will enable you to track when the recipient clicks on it.",
-      "translated": "This invite has been saved to your account. This will enable you to track when the recipient clicks on it."
+      "original": "This invite has been saved to your account. You will be notified by e-mail when the recipient clicks on the URL to the invite.",
+      "translated": "This invite has been saved to your account. You will be notified by e-mail when the recipient clicks on the URL to the invite."
     },
     {
       "key": "problemsSending",
