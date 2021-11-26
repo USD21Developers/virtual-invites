@@ -367,14 +367,13 @@ function onTagWithLocation(e) {
 }
 
 function populateQrCode() {
-  const el = document.querySelector("#qrcode");
-  const availableWidth = el.clientWidth;
+  const availableWidth = document.querySelector("#qrcode").clientWidth;
   const maxWidth = 200;
   const width = availableWidth > maxWidth ? maxWidth : availableWidth;
   const url = getFinalURL();
 
   const qr = new QRious({
-    element: el,
+    element: document.getElementById("qr"),
     value: url,
     size: width,
   });
