@@ -55,8 +55,8 @@
     },
     {
       "key": "instructionsShort",
-      "original": "Ask the recipient to scan this barcode. They can then view the invite in their Web browser.",
-      "translated": "Ask the recipient to scan this barcode. They can then view the invite in their Web browser.",
+      "original": "Ask the recipient to scan this barcode. This will open the invite in their Web browser.",
+      "translated": "Ask the recipient to scan this barcode. This will open the invite in their Web browser.",
       "changes": [
         {
           "original": "scan",
