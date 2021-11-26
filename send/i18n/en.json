@@ -135,8 +135,8 @@
     },
     {
       "key": "afterSentParagraph1",
-      "original": "This invite has been saved to your account. This will enable you to follow up. You will also be notified by e-mail when the recipient has viewed the invite.",
-      "translated": "This invite has been saved to your account. This will enable you to follow up. You will also be notified by e-mail when the recipient has viewed the invite."
+      "original": "This invite has been saved to your account, enabling you to follow up. You will be notified by e-mail when the recipient has viewed the invite.",
+      "translated": "This invite has been saved to your account, enabling you to follow up. You will be notified by e-mail when the recipient has viewed the invite."
     },
     {
       "key": "afterSentParagraph1QRCode",
