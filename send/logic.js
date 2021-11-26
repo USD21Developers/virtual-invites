@@ -281,11 +281,11 @@ function onAfterSubmitted(sendvia) {
   const txtBtnRetry = getPhrase("btnRetry");
   saveAndSync()
     .then(() => {
-      showModal(modalContent, txtInviteRecorded, txtBtnRetry);
+      showModal(modalContent, txtInviteRecorded, txtBtnRetry, "static");
     })
     .catch(() => {
       // TODO:  Handle failed sync here, if necessary
-      showModal(modalContent, txtInviteRecorded, txtBtnRetry);
+      showModal(modalContent, txtInviteRecorded, txtBtnRetry, "static");
     });
 }
 

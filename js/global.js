@@ -462,7 +462,12 @@ function showMaterialIcons() {
     .forEach((item) => (item.style.opacity = "1"));
 }
 
-function showModal(body = "", title = "", closeButtonText = "") {
+function showModal(
+  body = "",
+  title = "",
+  closeButtonText = "",
+  backdrop = "true"
+) {
   const modal = document.querySelector("#modal");
   const modalTitle = document.querySelector("#modaltitle");
 
@@ -499,7 +504,9 @@ function showModal(body = "", title = "", closeButtonText = "") {
       .classList.remove("d-none");
   }
 
-  $("#modal").modal();
+  $("#modal").modal({
+    backdrop: backdrop,
+  });
 }
 
 function showToast(message, duration = 5000, type = "dark") {
