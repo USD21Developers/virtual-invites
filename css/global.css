@@ -40,7 +40,7 @@ td {
 }
 
 u {
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 
 h1,
