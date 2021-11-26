@@ -328,6 +328,8 @@ function onSubmitButtonClick(e) {
   const sendBody = getSendBody();
   const emailSubjectLine = getEmailSubjectLine();
 
+  e.preventDefault();
+
   switch (sendVia) {
     case "sms":
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
