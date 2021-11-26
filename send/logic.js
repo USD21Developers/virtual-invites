@@ -367,16 +367,19 @@ function onTagWithLocation(e) {
 }
 
 function populateQrCode() {
-  const availableWidth = document.querySelector("#qrcode").clientWidth;
+  const el = document.querySelector("#qrcode");
+  const availableWidth = el.clientWidth;
   const maxWidth = 200;
   const width = availableWidth > maxWidth ? maxWidth : availableWidth;
   const url = getFinalURL();
 
-  new QRious({
-    element: document.getElementById("qr"),
+  const qr = new QRious({
+    element: el,
     value: url,
     size: width,
   });
+
+  qr.toDataURL();
 }
 
 function populateSaveButtonData() {
