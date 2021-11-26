@@ -49,14 +49,29 @@
       "translated": "QR Code"
     },
     {
-      "key": "instructions",
+      "key": "instructionsLabel",
       "original": "Instructions:",
       "translated": "Instructions:"
     },
     {
-      "key": "instrustionstext",
-      "original": "Ask the person you're inviting to open the camera app on their cell phone. Have them point their camera at this barcode (without taking a picture). A prompt should appear on their screen. By pressing a button in that prompt, the invite will open in their Web browser. (If this doesn't work, have them scan the barcode with a QR Code app). Lastly, click 'Save Invite' below.",
-      "translated": "Ask the person you're inviting to open the camera app on their cell phone. Have them point their camera at this barcode (without taking a picture). A prompt should appear on their screen. By pressing a button in that prompt, the invite will open in their Web browser. (If this doesn't work, have them scan the barcode with a QR Code app). Lastly, click 'Save Invite' below."
+      "key": "instructionsShort",
+      "original": "Ask the recipient to scan this barcode. They can then view the invite in their Web browser.",
+      "translated": "Ask the recipient to scan this barcode. They can then view the invite in their Web browser.",
+      "changes": [
+        {
+          "original": "scan",
+          "translated": "scan",
+          "bold": true,
+          "italic": false,
+          "underline": true,
+          "link": "#howtoscan"
+        }
+      ]
+    },
+    {
+      "key": "instructionsLong",
+      "original": "Have the recipient open the camera app on their cell phone, then point it at this barcode (without taking a picture). A prompt should appear on their screen. By pressing a button in that prompt, the invite will open in their Web browser. (If this doesn't work, have them scan the barcode with a QR Code app).",
+      "translated": "Have the recipient open the camera app on their cell phone, then point it at this barcode (without taking a picture). A prompt should appear on their screen. By pressing a button in that prompt, the invite will open in their Web browser. (If this doesn't work, have them scan the barcode with a QR Code app)."
     },
     {
       "key": "mobilephonenumber",
@@ -184,6 +199,7 @@
           "translated": "",
           "bold": false,
           "italic": false,
+          "underline": false,
           "link": ""
         }
       ]

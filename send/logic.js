@@ -458,6 +458,19 @@ function selectSendVia(method) {
         downloadLink.setAttribute("href", url);
         const canvas = document.querySelector("#qr");
         canvas.addEventListener("click", () => downloadLink.click());
+
+        const linkHowToScan = document.querySelector("a[href='#howtoscan']");
+        linkHowToScan.addEventListener("click", (e) => {
+          e.preventDefault();
+          const instructionsShort = document.querySelector(
+            "[data-i18n='instructionsShort']"
+          );
+          const instructionsLong = document.querySelector(
+            "[data-i18n='instructionsLong']"
+          );
+          instructionsShort.classList.add("d-none");
+          instructionsLong.classList.remove("d-none");
+        });
       });
       if (!method) {
         const qrCodeContainerOffset =

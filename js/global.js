@@ -261,11 +261,12 @@ function getPhrase(key) {
   const hasChanges = Array.isArray(phrase.changes);
   if (hasChanges) {
     phrase.changes.forEach((change) => {
-      const { original, translated, bold, italic, link } = change;
+      const { original, translated, bold, italic, underline, link } = change;
       let changed = translated;
+      if (link) changed = `<a href="${link}" class="alert-link">${changed}</a>`;
       if (bold) changed = `<strong>${changed}</strong>`;
       if (italic) changed = `<em>${changed}</em>`;
-      if (link) changed = `<a href="${link}" class="alert-link">${changed}</a>`;
+      if (underline) changed = `<u>${changed}</u>`;
       content = content.replaceAll(original, changed);
     });
   }
@@ -289,11 +290,12 @@ function getGlobalPhrase(key) {
   const hasChanges = Array.isArray(phrase.changes);
   if (hasChanges) {
     phrase.changes.forEach((change) => {
-      const { original, translated, bold, italic, link } = change;
+      const { original, translated, bold, italic, underline, link } = change;
       let changed = translated;
+      if (link) changed = `<a href="${link}" class="alert-link">${changed}</a>`;
       if (bold) changed = `<strong>${changed}</strong>`;
       if (italic) changed = `<em>${changed}</em>`;
-      if (link) changed = `<a href="${link}" class="alert-link">${changed}</a>`;
+      if (underline) changed = `<u>${changed}</u>`;
       content = content.replaceAll(original, changed);
     });
   }
@@ -331,12 +333,21 @@ async function populateContent() {
           let content = translated;
           if (hasChanges) {
             changes.forEach((change) => {
-              const { original, translated, bold, italic, link, code } = change;
+              const {
+                original,
+                translated,
+                bold,
+                italic,
+                underline,
+                link,
+                code,
+              } = change;
               let changed = translated;
-              if (bold) changed = `<strong>${changed}</strong>`;
-              if (italic) changed = `<em>${changed}</em>`;
               if (link) changed = `<a href="${link}">${changed}</a>`;
               if (code) changed = `<code>${changed}</code>`;
+              if (bold) changed = `<strong>${changed}</strong>`;
+              if (italic) changed = `<em>${changed}</em>`;
+              if (underline) changed = `<u>${changed}</u>`;
               content = content.replaceAll(original, changed);
             });
           }
@@ -380,12 +391,21 @@ function populateGlobalContent() {
           let content = translated;
           if (hasChanges) {
             changes.forEach((change) => {
-              const { original, translated, bold, italic, link, code } = change;
+              const {
+                original,
+                translated,
+                bold,
+                italic,
+                underline,
+                link,
+                code,
+              } = change;
               let changed = translated;
-              if (bold) changed = `<strong>${changed}</strong>`;
-              if (italic) changed = `<em>${changed}</em>`;
               if (link) changed = `<a href="${link}">${changed}</a>`;
               if (code) changed = `<code>${changed}</code>`;
+              if (bold) changed = `<strong>${changed}</strong>`;
+              if (italic) changed = `<em>${changed}</em>`;
+              if (underline) changed = `<u>${changed}</u>`;
               content = content.replaceAll(original, changed);
             });
           }

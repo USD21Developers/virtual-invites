@@ -39,6 +39,10 @@ td {
   font-weight: 600;
 }
 
+u {
+  text-decoration: underline;
+}
+
 h1,
 h2,
 h3,
