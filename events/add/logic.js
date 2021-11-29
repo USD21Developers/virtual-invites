@@ -114,6 +114,34 @@ function onFrequencyChange(e) {
   }
 }
 
+async function onPreview() {
+  const templates = {
+    default: {
+      paths: {
+        html: "../../templates/default/index.html",
+        css: "../../templates/default/index.css",
+        js: "../../templates/default/index.js",
+      },
+    },
+  };
+
+  const html = await fetch(templates.default.paths.html)
+    .then((res) => res.text())
+    .then((unparsed) => {
+      const parser = new DOMParser();
+      const parsed = parser.parseFromString(unparsed, "text/html");
+      const content = parsed.querySelector("#content").innerHTML;
+      return content;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
+  const previewModal = document.querySelector("#preview");
+  previewModal.querySelector(".modal-body").innerHTML = html;
+  $("#preview").modal();
+}
+
 function onSubmit(e) {
   e.preventDefault();
   const form = e.target;
@@ -271,6 +299,8 @@ function attachListeners() {
     .addEventListener("click", onClickDetectLocation);
 
   document.querySelector("#formAddEvent").addEventListener("submit", onSubmit);
+
+  document.querySelector("#previewbutton").addEventListener("click", onPreview);
 }
 
 async function init() {

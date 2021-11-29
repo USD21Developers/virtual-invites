@@ -22,3 +22,7 @@ label[for="contactPhone"] {
 .has-value > label[for="contactPhone"] {
   margin-left: 0;
 }
+
+#preview .material-icons {
+  opacity: 1;
+}
