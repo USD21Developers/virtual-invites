@@ -139,6 +139,7 @@ async function onPreview() {
 
   const previewModal = document.querySelector("#preview");
   previewModal.querySelector(".modal-body").innerHTML = html;
+  document.querySelector("#previewtitle").innerText = getPhrase("previewTitle");
   $("#preview").modal();
 }
 

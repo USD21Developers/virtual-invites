@@ -150,8 +150,8 @@
     },
     {
       "key": "headlineLocationDetails",
-      "original": "Details:",
-      "translated": "Details:"
+      "original": "Other Details:",
+      "translated": "Other Details:"
     },
     {
       "key": "labelLocationDetails",
@@ -264,6 +264,11 @@
       "key": "previewButton",
       "original": "Preview",
       "translated": "Preview"
+    },
+    {
+      "key": "previewTitle",
+      "original": "[ Preview ]",
+      "translated": "[ Preview ]"
     },
     {
       "key": "cancelLink",
