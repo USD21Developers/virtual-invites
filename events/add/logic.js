@@ -138,8 +138,12 @@ async function onPreview() {
     });
 
   const previewModal = document.querySelector("#preview");
+  previewModal
+    .querySelector(".modal-header")
+    .classList.add("bg-light", "border-bottom");
   previewModal.querySelector(".modal-body").innerHTML = html;
-  document.querySelector("#previewtitle").innerHTML = getPhrase("previewTitle");
+  previewModal.querySelector("#previewtitle").innerHTML =
+    getPhrase("previewTitle");
   $("#preview").modal();
 }
 
