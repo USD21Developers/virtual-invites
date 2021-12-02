@@ -262,8 +262,13 @@
     },
     {
       "key": "previewButton",
-      "original": "Preview",
-      "translated": "Preview"
+      "original": "Preview Invite",
+      "translated": "Preview Invite"
+    },
+    {
+      "key": "submitButton",
+      "original": "Add Event",
+      "translated": "Add Event"
     },
     {
       "key": "previewTitle",

@@ -147,6 +147,11 @@ async function onPreview() {
   $("#preview").modal();
 }
 
+function onPreviewClosed(e) {
+  const submitRow = document.querySelector("#submitrow");
+  submitRow.classList.remove("d-none");
+}
+
 function onSubmit(e) {
   e.preventDefault();
   const form = e.target;
@@ -306,6 +311,8 @@ function attachListeners() {
   document.querySelector("#formAddEvent").addEventListener("submit", onSubmit);
 
   document.querySelector("#previewbutton").addEventListener("click", onPreview);
+
+  $("#preview").on("shown.bs.modal", onPreviewClosed);
 }
 
 async function init() {
