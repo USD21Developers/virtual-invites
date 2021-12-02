@@ -1,3 +1,5 @@
+let viewedPreview = false;
+
 function initIntlTelInput() {
   const input = document.querySelector("#contactPhone");
   const initialCountry = localStorage.getItem("countryIso") || "us";
@@ -150,10 +152,15 @@ async function onPreview() {
 function onPreviewClosed(e) {
   const submitRow = document.querySelector("#submitrow");
   submitRow.classList.remove("d-none");
+  viewedPreview = true;
 }
 
 function onSubmit(e) {
   e.preventDefault();
+  if (!viewedPreview) {
+    document.querySelector("#previewbutton").click();
+    return;
+  }
   const form = e.target;
   const language = form.language.value;
   const eventtype = form.eventtype.value;
