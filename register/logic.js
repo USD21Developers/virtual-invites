@@ -74,6 +74,7 @@ async function onSubmit(e) {
     document.querySelector("#email").value.trim().toLowerCase() || "";
   const firstname = document.querySelector("#firstname").value.trim() || "";
   const lastname = document.querySelector("#lastname").value.trim() || "";
+  const gender = document.querySelector("input[name='gender']:checked").value;
   const country = document.querySelector("#country").value.trim() || "";
   const churchid = document.querySelector("#churchid").value.trim() || "";
   const unlistedchurch =
@@ -112,6 +113,7 @@ async function onSubmit(e) {
       email: email,
       firstname: firstname,
       lastname: lastname,
+      gender: gender,
       country: country,
       churchid: churchid,
       unlistedchurch: unlistedchurch,
