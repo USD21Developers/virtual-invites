@@ -65,6 +65,11 @@ function onCountryChange(e) {
 
 async function onSubmit(e) {
   e.preventDefault();
+
+  formErrorsReset();
+  const isvalid = validate();
+  if (!isvalid) return;
+
   const spinner = document.querySelector("#progressbar");
   const submitButton = document.querySelector("#formsubmit");
   const username =
@@ -96,10 +101,6 @@ async function onSubmit(e) {
     "${fullname}",
     `${firstname} ${lastname}`
   );
-
-  formErrorsReset();
-  const isvalid = validate();
-  if (!isvalid) return;
 
   hide(submitButton);
   show(spinner);
@@ -153,6 +154,14 @@ async function onSubmit(e) {
           break;
         case "last name missing":
           formError("#lastname", getPhrase("lastnamerequired"));
+          break;
+        case "gender missing":
+          const invalidFeedbackGender = document.querySelector(
+            ".invalid-feedback-gender"
+          );
+          invalidFeedbackGender.innerText = getPhrase("genderrequired");
+          invalidFeedbackGender.style.display = "block";
+          customScrollTo("#gendercontainer");
           break;
         case "country missing":
           formError("#country", getPhrase("countryrequired"));
@@ -306,11 +315,11 @@ function validate() {
   if (!lastname.length)
     return formError("#lastname", getPhrase("lastnamerequired"));
   if (!gender.length) {
-    const invalidFeedbackContainer = document.querySelector(
+    const invalidFeedbackGender = document.querySelector(
       ".invalid-feedback-gender"
     );
-    invalidFeedbackContainer.innerText = getPhrase("genderrequired");
-    invalidFeedbackContainer.style.display = "block";
+    invalidFeedbackGender.innerText = getPhrase("genderrequired");
+    invalidFeedbackGender.style.display = "block";
     return customScrollTo("#gendercontainer");
   }
   if (!country.length)
