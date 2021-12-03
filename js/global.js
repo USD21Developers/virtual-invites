@@ -136,6 +136,9 @@ function formErrorsReset() {
   document
     .querySelectorAll(".is-invalid")
     .forEach((item) => item.classList.remove("is-invalid"));
+  document
+    .querySelectorAll(".invalid-feedback")
+    .forEach((item) => (item.innerHTML = ""));
 }
 
 function getAccessToken() {
@@ -434,6 +437,18 @@ function populateGlobalContent() {
         reject(err);
       });
   });
+}
+
+function customScrollTo(selector) {
+  const element = document.querySelector(selector);
+  const offset = 94;
+  const bodyRect = document.body.getBoundingClientRect().top;
+  const elementRect = element.getBoundingClientRect().top;
+  const elementPosition = elementRect - bodyRect;
+  const offsetPosition = elementPosition - offset;
+
+  window.scrollTo({ top: offsetPosition, behavior: "smooth", block: "center" });
+  if (!isMobileDevice()) element.focus();
 }
 
 function setCountry(country) {

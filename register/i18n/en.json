@@ -44,6 +44,21 @@
       "translated": "Last name"
     },
     {
+      "key": "label-gender",
+      "original": "Gender:",
+      "translated": "Gender:"
+    },
+    {
+      "key": "label-gender-male",
+      "original": "Male",
+      "translated": "Male"
+    },
+    {
+      "key": "label-gender-female",
+      "original": "Female",
+      "translated": "Female"
+    },
+    {
       "key": "label-country",
       "original": "Country",
       "translated": "Country"
@@ -132,6 +147,11 @@
       "key": "lastnamerequired",
       "original": "Last name is required",
       "translated": "Last name is required"
+    },
+    {
+      "key": "genderrequired",
+      "original": "Gender is required",
+      "translated": "Gender is required"
     },
     {
       "key": "countryrequired",

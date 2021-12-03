@@ -286,6 +286,9 @@ function validate() {
     document.querySelector("#email").value.trim().toLowerCase() || "";
   const firstname = document.querySelector("#firstname").value.trim() || "";
   const lastname = document.querySelector("#lastname").value.trim() || "";
+  const gender = document.querySelector("input[name=gender]:checked")
+    ? document.querySelector("input[name=gender]:checked").value
+    : "";
   const country = document.querySelector("#country").value.trim() || "";
   const churchid = document.querySelector("#churchid").value.trim() || "";
   const unlistedchurch =
@@ -300,6 +303,14 @@ function validate() {
     return formError("#firstname", getPhrase("firstnamerequired"));
   if (!lastname.length)
     return formError("#lastname", getPhrase("lastnamerequired"));
+  if (!gender.length) {
+    const invalidFeedbackContainer = document.querySelector(
+      ".invalid-feedback-gender"
+    );
+    invalidFeedbackContainer.innerText = getPhrase("genderrequired");
+    invalidFeedbackContainer.style.display = "block";
+    return customScrollTo("#gendercontainer");
+  }
   if (!country.length)
     return formError("#country", getPhrase("countryrequired"));
   if (!churchid.length)

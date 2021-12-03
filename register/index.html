@@ -27,6 +27,7 @@
       rel="stylesheet"
     />
     <link href="../css/global.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
   </head>
   <body>
     <nav class="navbar navbar-light bg-light sticky-top border-bottom">
@@ -194,6 +195,39 @@
 
                 <div class="invalid-feedback"></div>
               </div>
+            </div>
+
+            <div class="my-5" id="gendercontainer">
+              <label data-i18n="label-gender"></label>
+              <div class="custom-control custom-radio mt-2">
+                <input
+                  type="radio"
+                  name="gender"
+                  value="male"
+                  class="form-check-input"
+                  id="gender-male"
+                />
+                <label
+                  for="gender-male"
+                  class="form-check-label"
+                  data-i18n="label-gender-male"
+                ></label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input
+                  type="radio"
+                  name="gender"
+                  value="female"
+                  class="form-check-input"
+                  id="gender-female"
+                />
+                <label
+                  for="gender-female"
+                  class="form-check-label"
+                  data-i18n="label-gender-female"
+                ></label>
+              </div>
+              <div class="invalid-feedback invalid-feedback-gender"></div>
             </div>
 
             <div class="form-group my-5">
