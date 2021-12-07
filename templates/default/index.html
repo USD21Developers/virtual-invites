@@ -7,7 +7,7 @@
       content="initial-scale=1, shrink-to-fit=no, width=device-width"
       name="viewport"
     />
-    <title data-i18n="pagetitle">Invitation to Bible Talk</title>
+    <title data-i18n="pagetitle">Invitation to { EVENT_TITLE }</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -29,39 +29,52 @@
     />
     <link href="../../css/global.css" rel="stylesheet" />
     <link href="index.css" rel="stylesheet" />
+    <!--
+      
+      PLACEHOLDERS:
+
+      { EVENT_TITLE }
+      { RECIPIENT_NAME }
+      { SENDER_FIRST_NAME }
+      { INVITED_DATE }
+      { EVENT_TITLE }
+      { EVENT_DATE }
+      { EVENT_TIME }
+
+    -->
   </head>
   <body class="theme d-none" data-theme="blue">
     <div class="container">
       <div class="row my-3">
         <div class="col col-sm-10 offset-sm-1 col-md-6 offset-md-3">
           <div class="bg-white px-4 pb-1" id="content">
-            <h3 class="text-center lead mt-4 mb-1" data-i18n="youAreInvitedTo">
-              You are invited to join us for
-            </h3>
+            <h3 class="text-center lead mt-4 mb-1" data-i18n="you-are-invited-to">You are invited to join us for</h3>
             <h1
               class="text-center text-uppercase mt-0 mb-4"
-              data-i18n="pagetitle"
-            >
-              Bible Talk
-            </h1>
+              id="eventTitle"
+            >Bible Talk</h1>
 
             <p class="text-center mt-4 mb-1">
-              <strong>Fridays @ 7:30 PM</strong><br />
-              Starbucks<br />
-              555 Main Street<br />
-              Phoenix, AZ 99999<br />
+              <strong>
+                <span id="eventDate">Fridays</span> <span data-i18n="event-at">@</span> <span id="eventStartTime">7:30 PM</span>
+              </strong>
+              <div id="eventAddress" class="text-center">
+                Starbucks<br />
+                555 Main Street<br />
+                Phoenix, AZ 99999<br />
+              </div>
             </p>
 
             <p class="text-center mt-4">
               <span class="material-icons material-icons-outlined text-dark">
                 place
               </span>
+
               <a
                 href="https://www.google.com/maps/dir/?api=1&destination=555%20Main%20Street,%20Phoenix,%20AZ,%2099999&sensor=true"
                 style="text-decoration: underline"
-              >
-                Map and Directions
-              </a>
+                data-i18n="map-and-directions"
+              >Map and Directions</a>
             </p>
 
             <div class="text-center my-5">
@@ -69,47 +82,36 @@
                 <span class="material-icons material-icons-outlined mr-2">
                   insert_invitation
                 </span>
-                Add to my calendar
+                <span data-i18n="add-to-my-calendar">Add to my calendar</span>
               </button>
             </div>
 
-            <div class="mb-2">
-              <p>
-                Hi Joe, I'm <a href="#">John</a>. I invited you last Thursday to
-                Bible Talk. I'm looking forward to joining you there this Friday
-                at 7:30 PM.
-              </p>
-              <p>
-                If you can join, I recommend adding it to your calendar (above)
-                to help you remember.
-              </p>
-              <p>
-                Here's a video about
-                <a href="#">why I enjoy Bible Talk</a>.
-              </p>
-              <p>I hope to see you there! Nice meeting you.</p>
+            <div class="mb-2" id="defaultGreeting">
+              <p data-i18n="default-greeting-paragraph-1">Hi { RECIPIENT_NAME }, I'm { SENDER_FIRST_NAME }. I invited you { INVITED_DATE } to { EVENT_TITLE }. I'm looking forward to joining you there { EVENT_DATE } at { EVENT_TIME }.</p>
+              <p data-i18n="default-greeting-paragraph-2">If you can join, I recommend adding it to your calendar (above) to help you remember.</p>
+              <p data-i18n="default-greeting-paragraph-3">I hope to see you there! Nice meeting you.</p>
             </div>
 
             <hr class="mt-5 mb-2" />
 
             <div class="text-center my-4">
-              <h3 data-toggle="collapse">About Bible Talk</h3>
+              <h3 data-toggle="collapse" data-i18n="headline-about-event">About { EVENT_TITLE }</h3>
             </div>
 
             <div class="my-4">
-              A Bible Talk is a casual, light-hearted discussion group that is open to anyone, regardless of their beliefs or prior experience with the Bible. We usually meet in a home or restaurant, but sometimes we meet in an open setting like a park.
-              <br />
-              <br />The discussion leader will focus on a Biblical topic and pertinent scriptures, and will engage the attendees with thought-provoking questions designed to get everyone thinking about those scriptures on a deeper level. The goal is to try to understand the scripture better through practical application, and to inspire attendees to pursue further Bible study. 
+              <div id="eventDescription">
+                A Bible Talk is a casual, light-hearted discussion group that is open to anyone, regardless of their beliefs or prior experience with the Bible. We usually meet in a home or restaurant, but sometimes we meet in an open setting like a park.
+                <br />
+                <br />The discussion leader will focus on a Biblical topic and pertinent scriptures, and will engage the attendees with thought-provoking questions designed to get everyone thinking about those scriptures on a deeper level. The goal is to try to understand the scripture better through practical application, and to inspire attendees to pursue further Bible study.
+              </div>
               <hr />
-              <h3>Questions?</h3>
+              <h3 data-i18n="headline-questions">Questions?</h3>
               <div class="row">
-                <div class="col">
-                  If you have any questions or feedback, please reach out below:
-                </div>
+                <div class="col" data-i18n="questions">If you have any questions or feedback, please reach out below:</div>
               </div>
               <div class="row my-3">
                 <div class="col col-sm-6 offset-sm-3 text-center">
-                  <h4 class="m-0">Laurence Jesterson</h4>
+                  <h4 class="m-0" id="eventContactName">John Q. Disciple</h4>
                 </div>
               </div>
               <div class="row">
@@ -117,15 +119,9 @@
                   <div class="card">
                     <div class="card-body p-0">
                       <div class="list-group list-group-flush">
-                        <a href="tel:+12133251382" class="list-group-item list-group-item-action">
-                          Phone call
-                        </a>
-                        <a href="sms:+12133251382" class="list-group-item list-group-item-action">
-                          Text message
-                        </a>
-                        <a href="mailto:Laurence Jesterson &lt;vrtjason@gmail.com&gt;" class="list-group-item list-group-item-action">
-                          E-mail
-                        </a>
+                        <a href="tel:+12135551212" class="list-group-item list-group-item-action" data-i18n="phone-call">Phone call</a>
+                        <a href="sms:+12135551212" class="list-group-item list-group-item-action" data-i18n="text-message">Text message</a>
+                        <a href="mailto:johnqdisciple@gmail.com" class="list-group-item list-group-item-action" data-i18n="email">E-mail</a>
                       </div>
                     </div>
                 </div>

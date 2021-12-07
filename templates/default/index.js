@@ -7,6 +7,8 @@ function setTheme() {
   theme.classList.remove("d-none");
 }
 
+function addEventListeners() {}
+
 function init() {
   setTheme();
   addEventListeners();
