@@ -319,7 +319,7 @@ function attachListeners() {
 
   document.querySelector("#previewbutton").addEventListener("click", onPreview);
 
-  $("#preview").on("shown.bs.modal", onPreviewClosed);
+  $("#preview").on("hidden.bs.modal", onPreviewClosed);
 }
 
 async function init() {
