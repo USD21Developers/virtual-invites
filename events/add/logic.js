@@ -144,14 +144,14 @@ async function onPreview() {
     .querySelector(".modal-header")
     .classList.add("bg-light", "border-bottom");
   previewModal.querySelector(".modal-body").innerHTML = html;
-  previewModal.querySelector("#previewtitle").innerHTML =
-    getPhrase("previewTitle");
+  await populateContent();
   $("#preview").modal();
 }
 
 function onPreviewClosed(e) {
   const submitRow = document.querySelector("#submitrow");
   submitRow.classList.remove("d-none");
+  submitRow.scrollIntoView({ behavior: "smooth" });
   viewedPreview = true;
 }
 
