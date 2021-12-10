@@ -267,8 +267,8 @@
     },
     {
       "key": "submitButton",
-      "original": "Add Event",
-      "translated": "Add Event"
+      "original": "Save",
+      "translated": "Save"
     },
     {
       "key": "previewTitle",
@@ -319,6 +319,71 @@
       "key": "validateFrequency",
       "original": "Please select how often this event occurs.",
       "translated": "Please select how often this event occurs."
+    },
+    {
+      "key": "you-are-invited-to",
+      "original": "You are invited to join us for",
+      "translated": "You are invited to join us for"
+    },
+    {
+      "key": "event-at",
+      "original": "@",
+      "translated": "@"
+    },
+    {
+      "key": "map-and-directions",
+      "original": "Map and Directions",
+      "translated": "Map and Directions"
+    },
+    {
+      "key": "add-to-my-calendar",
+      "original": "Add to my calendar",
+      "translated": "Add to my calendar"
+    },
+    {
+      "key": "default-greeting-paragraph-1",
+      "original": "Hi {RECIPIENT-NAME}, I'm {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to {EVENT-TITLE}. I'm looking forward to joining you there {EVENT-DATE} at {EVENT-TIME}.",
+      "translated": "Hi {RECIPIENT-NAME}, I'm {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to {EVENT-TITLE}. I'm looking forward to joining you there {EVENT-DATE} at {EVENT-TIME}."
+    },
+    {
+      "key": "default-greeting-paragraph-2",
+      "original": "If you can join, I recommend adding it to your calendar (above) to help you remember.",
+      "translated": "If you can join, I recommend adding it to your calendar (above) to help you remember."
+    },
+    {
+      "key": "default-greeting-paragraph-3",
+      "original": "I hope to see you there! Nice meeting you.",
+      "translated": "I hope to see you there! Nice meeting you."
+    },
+    {
+      "key": "headline-about-event",
+      "original": "About {EVENT-TITLE}",
+      "translated": "About {EVENT-TITLE}"
+    },
+    {
+      "key": "headline-questions",
+      "original": "Questions?",
+      "translated": "Questions?"
+    },
+    {
+      "key": "questions",
+      "original": "If you have any questions or feedback, please reach out below:",
+      "translated": "If you have any questions or feedback, please reach out below:"
+    },
+    {
+      "key": "phone-call",
+      "original": "Phone call",
+      "translated": "Phone call"
+    },
+    {
+      "key": "text-message",
+      "original": "Text message",
+      "translated": "Text message"
+    },
+    {
+      "key": "email",
+      "original": "E-mail",
+      "translated": "E-mail"
     }
   ],
 
