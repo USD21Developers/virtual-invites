@@ -321,10 +321,10 @@ function isMobileDevice() {
   return result;
 }
 
-async function populateContent() {
+async function populateContent(customEndpoint) {
   return new Promise((resolve, reject) => {
     const lang = localStorage.getItem("lang") || "en";
-    const endpoint = `i18n/${lang}.json`;
+    const endpoint = customEndpoint ? customEndpoint : `i18n/${lang}.json`;
     fetch(endpoint)
       .then((res) => res.json())
       .then(async (data) => {

@@ -204,8 +204,8 @@ function loadDummyEvents() {
     },
     {
       id: 2,
-      type: "Sunday Service",
-      name: "Sunday Service",
+      type: "Church",
+      name: "Church",
       day: "Sundays",
       time: "10:00 AM",
       location: "SDA",

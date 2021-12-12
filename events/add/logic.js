@@ -1,5 +1,55 @@
 let viewedPreview = false;
 
+function getDefaultRecipientName(gender) {
+  const maleNames = [
+    "Leandro",
+    "Luis",
+    "Brian",
+    "Drew",
+    "Kairo",
+    "George",
+    "Ryley",
+    "Aaron",
+    "Jose",
+    "Maddox"
+  ];
+
+  const femaleNames = [
+    "Brittany",
+    "Amanda",
+    "Nicole",
+    "Priya",
+    "Kalyani",
+    "Annalisa",
+    "Monica",
+    "Andile",
+    "Phyllis",
+    "Natalia"
+  ];
+
+  const userGender = gender ? gender : JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).gender;
+  let defaultRecipientName;
+
+  if (userGender === "female") {
+    defaultRecipientName = femaleNames[Math.floor(Math.random() * femaleNames.length)];
+  } else {
+    defaultRecipientName = maleNames[Math.floor(Math.random() * maleNames.length)];
+  }
+
+  return defaultRecipientName;
+}
+
+function getDefaultInvitedDate() {
+  let lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
+
+  return getRelativeDate(-7, lang);
+}
+
+function getSenderFirstName() {
+  const firstName = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).firstname || "John";
+  return firstName;
+}
+
 function initIntlTelInput() {
   const input = document.querySelector("#contactPhone");
   const initialCountry = localStorage.getItem("countryIso") || "us";
@@ -144,7 +194,9 @@ async function onPreview() {
     .querySelector(".modal-header")
     .classList.add("bg-light", "border-bottom");
   previewModal.querySelector(".modal-body").innerHTML = html;
-  await populateContent();
+  const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
+  await populateContent(`../../i/i18n/${lang}.json`);
+  populateInterpolatedPhrases();
   $("#preview").modal();
 }
 
@@ -231,6 +283,45 @@ function populateCountries() {
     .catch((err) => {
       console.error(err);
     });
+}
+
+function populateInterpolatedPhrases() {
+  const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
+
+  let recipientName = "";
+  let senderFirstName = "";
+  let invitedDate = "";
+  let eventTitle = "";
+  let eventTitleGeneric = "";
+  let eventDate = "";
+  let eventTime = "";
+
+  const eventDateTime = `${document.querySelector("#startdate").value} ${document.querySelector("#starttime").value}`;
+
+  recipientName = getDefaultRecipientName();
+  senderFirstName = getSenderFirstName();
+  invitedDate = getDefaultInvitedDate();
+  eventTitle = document.querySelector("#eventtitle").value;
+  eventType = document.querySelector("#eventtype").selectedOptions[0].value;
+  eventDate = Intl.DateTimeFormat(lang, {
+    dateStyle: "full"
+  }).format(new Date(eventDateTime));
+  eventTime = Intl.DateTimeFormat(lang, {
+    timeStyle: "short"
+  }).format(new Date(eventDateTime));
+
+  const previewModal = document.querySelector("#preview .modal-body");
+  const currentHTML = previewModal.innerHTML;
+  let newHTML = currentHTML;
+  newHTML = newHTML.replaceAll("{RECIPIENT-NAME}", recipientName);
+  newHTML = newHTML.replaceAll("{SENDER-FIRST-NAME}", senderFirstName);
+  newHTML = newHTML.replaceAll("{INVITED-DATE}", invitedDate);
+  newHTML = newHTML.replaceAll("{EVENT-TITLE}", eventTitle);
+  newHTML = newHTML.replaceAll("{EVENT-TYPE}", eventType);
+  newHTML = newHTML.replaceAll("{EVENT-DATE}", eventDate);
+  newHTML = newHTML.replaceAll("{EVENT-TIME}", eventTime);
+
+  previewModal.innerHTML = newHTML;
 }
 
 function populateLanguages() {

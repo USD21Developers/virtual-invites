@@ -20,7 +20,7 @@ function getRelativeDate(numDays = 0, locale = "en") {
     unitQuantity = Math.floor(numDaysAbsolute / 7);
   } else {
     unitType = "days";
-    unitQuantity = numDays;
+    unitQuantity = numDaysAbsolute;
   }
 
   if (numDays < 0) {
