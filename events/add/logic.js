@@ -197,6 +197,7 @@ async function onPreview() {
   const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
   await populateContent(`../../i/i18n/${lang}.json`);
   populateInterpolatedPhrases();
+  populateFormBasedPhrases();
   $("#preview").modal();
 }
 
@@ -285,6 +286,36 @@ function populateCountries() {
     });
 }
 
+function populateFormBasedPhrases() {
+  const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
+  const form = document.querySelector("#formAddEvent");
+  const preview = document.querySelector("#preview");
+  const eventTitle = form.querySelector("#eventtitle").value;
+  const eventStartDate = form.querySelector("#startdate").value;
+  const eventStartTime = form.querySelector("#starttime").value;
+  const frequency = form.querySelector("#frequency").selectedOptions[0].value;
+  const eventDateTime = `${eventStartDate} ${eventStartTime}`;
+  const previewEventStartDateShort = Intl.DateTimeFormat(lang, { dateStyle: "short" }).format(new Date(eventDateTime));
+  const previewEventStartTimeShort = Intl.DateTimeFormat(lang, { timeStyle: "short" }).format(new Date(eventDateTime));
+  const addressLine1 = form.querySelector("#addressLine1").value || "";
+  const addressLine2 = form.querySelector("#addressLine2").value || "";
+  const addressLine3 = form.querySelector("#addressLine3").value || "";
+  let previewEventAddress = "";
+  if (addressLine1.length) previewEventAddress += `<div>${addressLine1}</div>`;
+  if (addressLine2.length) previewEventAddress += `<div>${addressLine2}</div>`;
+  if (addressLine3.length) previewEventAddress += `<div>${addressLine3}</div>`;
+  preview.querySelector("#eventTitle").innerHTML = eventTitle;
+
+  if (frequency === "Once") {
+    preview.querySelector("#eventDate").innerHTML = previewEventStartDateShort;
+  } else {
+    preview.querySelector("#eventDate").innerHTML = frequency;
+  }
+
+  preview.querySelector("#eventStartTime").innerHTML = previewEventStartTimeShort;
+  preview.querySelector("#eventAddress").innerHTML = previewEventAddress;
+}
+
 function populateInterpolatedPhrases() {
   const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
 
@@ -292,7 +323,7 @@ function populateInterpolatedPhrases() {
   let senderFirstName = "";
   let invitedDate = "";
   let eventTitle = "";
-  let eventTitleGeneric = "";
+  let eventType = "";
   let eventDate = "";
   let eventTime = "";
 
@@ -302,7 +333,7 @@ function populateInterpolatedPhrases() {
   senderFirstName = getSenderFirstName();
   invitedDate = getDefaultInvitedDate();
   eventTitle = document.querySelector("#eventtitle").value;
-  eventType = document.querySelector("#eventtype").selectedOptions[0].value;
+  eventType = eventType === "Other" ? eventTitle : document.querySelector("#eventtype").selectedOptions[0].value;
   eventDate = Intl.DateTimeFormat(lang, {
     dateStyle: "full"
   }).format(new Date(eventDateTime));
@@ -313,13 +344,13 @@ function populateInterpolatedPhrases() {
   const previewModal = document.querySelector("#preview .modal-body");
   const currentHTML = previewModal.innerHTML;
   let newHTML = currentHTML;
-  newHTML = newHTML.replaceAll("{RECIPIENT-NAME}", recipientName);
-  newHTML = newHTML.replaceAll("{SENDER-FIRST-NAME}", senderFirstName);
-  newHTML = newHTML.replaceAll("{INVITED-DATE}", invitedDate);
-  newHTML = newHTML.replaceAll("{EVENT-TITLE}", eventTitle);
-  newHTML = newHTML.replaceAll("{EVENT-TYPE}", eventType);
-  newHTML = newHTML.replaceAll("{EVENT-DATE}", eventDate);
-  newHTML = newHTML.replaceAll("{EVENT-TIME}", eventTime);
+  newHTML = newHTML.replaceAll("{RECIPIENT-NAME}", `<span data-interpolated='RECIPIENT-NAME'>${recipientName}</span>`);
+  newHTML = newHTML.replaceAll("{SENDER-FIRST-NAME}", `<span data-interpolated='SENDER-FIRST-NAME'>${senderFirstName}</span>`);
+  newHTML = newHTML.replaceAll("{INVITED-DATE}", `<span data-interpolated='INVITED-DATE'>${invitedDate}</span>`);
+  newHTML = newHTML.replaceAll("{EVENT-TITLE}", `<span data-interpolated='EVENT-TITLE'>${eventTitle}</span>`);
+  newHTML = newHTML.replaceAll("{EVENT-TYPE}", `<span data-interpolated='EVENT-TYPE'>${eventType}</span>`);
+  newHTML = newHTML.replaceAll("{EVENT-DATE}", `<span data-interpolated='EVENT-DATE'>${eventDate}</span>`);
+  newHTML = newHTML.replaceAll("{EVENT-TIME}", `<span data-interpolated='EVENT-TIME'>${eventTime}</span>`);
 
   previewModal.innerHTML = newHTML;
 }
