@@ -324,11 +324,11 @@ function populateFormBasedPhrases() {
   const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
   const form = document.querySelector("#formAddEvent");
   const preview = document.querySelector("#preview");
-  const eventType = document.querySelector("#eventtype").selectedOptions[0].value;
+  const eventType = form.querySelector("#eventtype").selectedOptions[0].value;
   const eventTitle = form.querySelector("#eventtitle").value;
   const eventStartDate = form.querySelector("#startdate").value;
   const eventStartTime = form.querySelector("#starttime").value;
-  const frequency = form.querySelector("#frequency").selectedOptions[0].value;
+  const frequency = form.querySelector("#frequency").selectedOptions[0].innerText;
   const eventDateTime = `${eventStartDate} ${eventStartTime}`;
   const previewEventStartDateShort = Intl.DateTimeFormat(lang, { dateStyle: "short" }).format(new Date(eventDateTime));
   const previewEventStartTimeShort = Intl.DateTimeFormat(lang, { timeStyle: "short" }).format(new Date(eventDateTime));
@@ -383,7 +383,9 @@ function populateInterpolatedPhrases() {
   eventTitle = document.querySelector("#eventtitle").value;
   eventType = document.querySelector("#eventtype").selectedOptions[0].value;
   eventDate = Intl.DateTimeFormat(lang, {
-    dateStyle: "full"
+    weekday: "long",
+    month: "long",
+    day: "numeric"
   }).format(new Date(eventDateTime));
   eventTime = Intl.DateTimeFormat(lang, {
     timeStyle: "short"
