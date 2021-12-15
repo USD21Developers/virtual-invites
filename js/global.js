@@ -1,5 +1,6 @@
 let globalContent = "";
 let pageContent = "";
+let previewContent = "";
 
 const crypto = {
   decrypt: (serializedKey, encryptionObject) => {
@@ -310,6 +311,35 @@ function getGlobalPhrase(key) {
   }
 }
 
+function getPreviewPhrase(key) {
+  let content = "";
+  const errorMessage = `phrase key "${key}" was not found`;
+  if (!key) throw errorMessage;
+  if (!previewContent.hasOwnProperty("phrases")) throw errorMessage;
+  if (!Array.isArray(previewContent.phrases)) throw errorMessage;
+  const phrase = previewContent.phrases.find((item) => item.key == key);
+  if (!phrase) throw errorMessage;
+  content = phrase.translated || "";
+  const hasChanges = Array.isArray(phrase.changes);
+  if (hasChanges) {
+    phrase.changes.forEach((change) => {
+      const { original, translated, bold, italic, underline, link } = change;
+      let changed = translated;
+      if (link) changed = `<a href="${link}" class="alert-link">${changed}</a>`;
+      if (bold) changed = `<strong>${changed}</strong>`;
+      if (italic) changed = `<em>${changed}</em>`;
+      if (underline) changed = `<u>${changed}</u>`;
+      content = content.replaceAll(original, changed);
+    });
+  }
+  try {
+    return content;
+  } catch (err) {
+    console.error(err);
+    return content;
+  }
+}
+
 function hide(selector) {
   selector.classList.add("d-none");
 }
@@ -321,14 +351,18 @@ function isMobileDevice() {
   return result;
 }
 
-async function populateContent(customEndpoint) {
+async function populateContent(customEndpoint, variable = "pageContent") {
   return new Promise((resolve, reject) => {
     const lang = localStorage.getItem("lang") || "en";
     const endpoint = customEndpoint ? customEndpoint : `i18n/${lang}.json`;
     fetch(endpoint)
       .then((res) => res.json())
       .then(async (data) => {
-        pageContent = data;
+        if (variable === "previewContent") {
+          previewContent = data;
+        } else {
+          pageContent = data;
+        }
         const contentitems = [];
         data.phrases.forEach((phrase) => {
           const { key, translated, changes } = phrase;
@@ -449,6 +483,14 @@ function customScrollTo(selector) {
 
   window.scrollTo({ top: offsetPosition, behavior: "smooth", block: "center" });
   if (!isMobileDevice()) element.focus();
+}
+
+function refreshFloatingInputLabels() {
+  document.querySelectorAll("input, select").forEach(item => {
+    if (item.value === "") {
+      item.parentElement.classList.add("has-value");
+    }
+  });
 }
 
 function setCountry(country) {

@@ -29,7 +29,17 @@
       "translated": "Add to my calendar"
     },
     {
-      "key": "default-greeting-paragraph-1",
+      "key": "default-greeting-paragraph-1-bible-talk",
+      "original": "Hi {RECIPIENT-NAME}, I'm {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to Bible Talk. I'm looking forward to joining you there {EVENT-DATE} at {EVENT-TIME}.",
+      "translated": "Hi {RECIPIENT-NAME}, I'm {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to Bible Talk. I'm looking forward to joining you there {EVENT-DATE} at {EVENT-TIME}."
+    },
+    {
+      "key": "default-greeting-paragraph-1-church",
+      "original": "Hi {RECIPIENT-NAME}, I'm {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to church. I'm looking forward to joining you there {EVENT-DATE} at {EVENT-TIME}.",
+      "translated": "Hi {RECIPIENT-NAME}, I'm {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to church. I'm looking forward to joining you there {EVENT-DATE} at {EVENT-TIME}."
+    },
+    {
+      "key": "default-greeting-paragraph-1-other",
       "original": "Hi {RECIPIENT-NAME}, I'm {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to {EVENT-TITLE}. I'm looking forward to joining you there {EVENT-DATE} at {EVENT-TIME}.",
       "translated": "Hi {RECIPIENT-NAME}, I'm {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to {EVENT-TITLE}. I'm looking forward to joining you there {EVENT-DATE} at {EVENT-TIME}."
     },

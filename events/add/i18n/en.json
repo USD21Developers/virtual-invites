@@ -39,9 +39,14 @@
       "translated": "Bible Talk"
     },
     {
-      "key": "optionEventTypeSundayService",
+      "key": "optionEventTypeChurch",
       "original": "Church",
       "translated": "Church"
+    },
+    {
+      "key": "optionEventTypeSundayService",
+      "original": "Sunday Service",
+      "translated": "Sunday Service"
     },
     {
       "key": "optionEventTypeCustom",

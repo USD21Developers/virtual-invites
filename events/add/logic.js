@@ -195,9 +195,9 @@ async function onPreview() {
     .classList.add("bg-light", "border-bottom");
   previewModal.querySelector(".modal-body").innerHTML = html;
   const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
-  await populateContent(`../../i/i18n/${lang}.json`);
-  populateInterpolatedPhrases();
+  await populateContent(`../../i/i18n/${lang}.json`, "previewContent");
   populateFormBasedPhrases();
+  populateInterpolatedPhrases();
   $("#preview").modal();
 }
 
@@ -286,10 +286,45 @@ function populateCountries() {
     });
 }
 
+function populateDefaultEventTitle() {
+  const eventTitleEl = document.querySelector("#eventtitle");
+  const eventTitle = eventTitleEl.value.trim();
+  const eventType = document.querySelector("#eventtype").value;
+  let defaultEventTitle = "";
+
+  switch (eventType) {
+    case "bible talk":
+      defaultEventTitle = getPhrase("optionEventTypeBT");
+      if ((eventTitle === "") || (eventTitle === getPhrase("optionEventTypeSundayService"))) {
+        eventTitleEl.value = defaultEventTitle;
+        eventTitleEl.parentElement.classList.add("has-value");
+      }
+      break;
+    case "church":
+      defaultEventTitle = getPhrase("optionEventTypeSundayService");
+      if ((eventTitle === "") || (eventTitle === getPhrase("optionEventTypeBT"))) {
+        eventTitleEl.value = defaultEventTitle;
+        eventTitleEl.parentElement.classList.add("has-value");
+      }
+      break;
+    case "other":
+      if ((eventTitle === "") || (eventTitle === getPhrase("optionEventTypeBT")) || (eventTitle === getPhrase("optionEventTypeSundayService"))) {
+        eventTitleEl.value = "";
+        eventTitleEl.parentElement.classList.remove("has-value");
+      }
+      break;
+    default:
+      eventTitleEl.value = "";
+      eventTitleEl.parentElement.classList.remove("has-value");
+      break;
+  }
+}
+
 function populateFormBasedPhrases() {
   const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
   const form = document.querySelector("#formAddEvent");
   const preview = document.querySelector("#preview");
+  const eventType = document.querySelector("#eventtype").selectedOptions[0].value;
   const eventTitle = form.querySelector("#eventtitle").value;
   const eventStartDate = form.querySelector("#startdate").value;
   const eventStartTime = form.querySelector("#starttime").value;
@@ -300,11 +335,24 @@ function populateFormBasedPhrases() {
   const addressLine1 = form.querySelector("#addressLine1").value || "";
   const addressLine2 = form.querySelector("#addressLine2").value || "";
   const addressLine3 = form.querySelector("#addressLine3").value || "";
+
   let previewEventAddress = "";
   if (addressLine1.length) previewEventAddress += `<div>${addressLine1}</div>`;
   if (addressLine2.length) previewEventAddress += `<div>${addressLine2}</div>`;
   if (addressLine3.length) previewEventAddress += `<div>${addressLine3}</div>`;
+
   preview.querySelector("#eventTitle").innerHTML = eventTitle;
+
+  let defaultGreetingParagraph1 = "";
+  if (eventType === "bible talk") {
+    defaultGreetingParagraph1 = getPreviewPhrase("default-greeting-paragraph-1-bible-talk");
+  } else if (eventType === "church") {
+    defaultGreetingParagraph1 = getPreviewPhrase("default-greeting-paragraph-1-church");
+  } else {
+    defaultGreetingParagraph1 = getPreviewPhrase("default-greeting-paragraph-1-other");
+  }
+
+  preview.querySelector("#defaultGreetingParagraph1").innerHTML = defaultGreetingParagraph1;
 
   if (frequency === "Once") {
     preview.querySelector("#eventDate").innerHTML = previewEventStartDateShort;
@@ -333,7 +381,7 @@ function populateInterpolatedPhrases() {
   senderFirstName = getSenderFirstName();
   invitedDate = getDefaultInvitedDate();
   eventTitle = document.querySelector("#eventtitle").value;
-  eventType = eventType === "Other" ? eventTitle : document.querySelector("#eventtype").selectedOptions[0].value;
+  eventType = document.querySelector("#eventtype").selectedOptions[0].value;
   eventDate = Intl.DateTimeFormat(lang, {
     dateStyle: "full"
   }).format(new Date(eventDateTime));
@@ -348,7 +396,6 @@ function populateInterpolatedPhrases() {
   newHTML = newHTML.replaceAll("{SENDER-FIRST-NAME}", `<span data-interpolated='SENDER-FIRST-NAME'>${senderFirstName}</span>`);
   newHTML = newHTML.replaceAll("{INVITED-DATE}", `<span data-interpolated='INVITED-DATE'>${invitedDate}</span>`);
   newHTML = newHTML.replaceAll("{EVENT-TITLE}", `<span data-interpolated='EVENT-TITLE'>${eventTitle}</span>`);
-  newHTML = newHTML.replaceAll("{EVENT-TYPE}", `<span data-interpolated='EVENT-TYPE'>${eventType}</span>`);
   newHTML = newHTML.replaceAll("{EVENT-DATE}", `<span data-interpolated='EVENT-DATE'>${eventDate}</span>`);
   newHTML = newHTML.replaceAll("{EVENT-TIME}", `<span data-interpolated='EVENT-TIME'>${eventTime}</span>`);
 
@@ -425,6 +472,9 @@ function showError(msg, selector) {
 }
 
 function attachListeners() {
+  document.querySelector("#eventtype")
+    .addEventListener("change", () => populateDefaultEventTitle());
+
   document
     .querySelector("#frequency")
     .addEventListener("change", onFrequencyChange);
