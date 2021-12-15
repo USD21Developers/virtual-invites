@@ -89,7 +89,7 @@ function onClickDetectLocation(e) {
     latitudeEl.parentElement.classList.add("has-value");
     longitudeEl.parentElement.classList.add("has-value");
 
-    latitudeEl.scrollIntoView({ behavior: "smooth" });
+    customScrollTo("label[for=latitude]");
 
     showToast(
       `<a href="https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}" class="text-white">
