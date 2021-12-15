@@ -15,7 +15,7 @@ function getRelativeDate(numDays = 0, locale = "en") {
   } else if (numDaysAbsolute >= 60) {
     unitType = "month";
     unitQuantity = Math.floor(numDaysAbsolute / 30);
-  } else if (numDaysAbsolute >= 14) {
+  } else if (numDaysAbsolute >= 7) {
     unitType = "week";
     unitQuantity = Math.floor(numDaysAbsolute / 7);
   } else {
