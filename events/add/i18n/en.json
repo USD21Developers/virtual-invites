@@ -76,32 +76,32 @@
     {
       "key": "frequencyEveryMonday",
       "original": "Every Monday",
-      "translated": "Every Monday"
+      "translated": "Mondays"
     },
     {
       "key": "frequencyEveryTuesday",
       "original": "Every Tuesday",
-      "translated": "Every Tuesday"
+      "translated": "Tuesdays"
     },
     {
       "key": "frequencyEveryWednesday",
       "original": "Every Wednesday",
-      "translated": "Every Wednesday"
+      "translated": "Wednesdays"
     },
     {
       "key": "frequencyEveryThursday",
       "original": "Every Thursday",
-      "translated": "Every Thursday"
+      "translated": "Thursdays"
     },
     {
       "key": "frequencyEveryFriday",
       "original": "Every Friday",
-      "translated": "Every Friday"
+      "translated": "Fridays"
     },
     {
       "key": "frequencyEverySaturday",
       "original": "Every Saturday",
-      "translated": "Every Saturday"
+      "translated": "Saturdays"
     },
     {
       "key": "nextOccurrence",
