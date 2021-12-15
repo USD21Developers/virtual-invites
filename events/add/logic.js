@@ -89,6 +89,8 @@ function onClickDetectLocation(e) {
     latitudeEl.parentElement.classList.add("has-value");
     longitudeEl.parentElement.classList.add("has-value");
 
+    latitudeEl.scrollIntoView({ behavior: "smooth" });
+
     showToast(
       `<a href="https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}" class="text-white">
         ${getPhrase("geocoordinatesSuccessMessage")}
