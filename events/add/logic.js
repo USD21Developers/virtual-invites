@@ -1,4 +1,5 @@
 let viewedPreview = false;
+let mapCoordinates = "";
 
 function getDefaultRecipientName(gender) {
   const maleNames = [
@@ -91,8 +92,10 @@ function onClickDetectLocation(e) {
 
     customScrollTo("label[for=latitude]");
 
+    mapCoordinates = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+
     showToast(
-      `<a href="https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}" class="text-white">
+      `<a href="${mapCoordinates}" class="text-white">
         ${getPhrase("geocoordinatesSuccessMessage")}
       </a>`,
       5000,
@@ -198,6 +201,7 @@ async function onPreview() {
   previewModal.querySelector(".modal-body").innerHTML = html;
   const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
   await populateContent(`../../i/i18n/${lang}.json`, "previewContent");
+  populateDrivingDirections();
   populateFormBasedPhrases();
   populateInterpolatedPhrases();
   $("#preview").modal();
@@ -320,6 +324,48 @@ function populateDefaultEventTitle() {
       eventTitleEl.parentElement.classList.remove("has-value");
       break;
   }
+}
+
+function populateDrivingDirections() {
+  const mapLinkEl = document.querySelector("#preview").querySelector("[data-i18n='map-and-directions']");
+  const form = document.querySelector("#formAddEvent");
+
+  // Use latitude/longitude coordinates if we have them
+  if (mapCoordinates.length > 0) {
+    return mapLinkEl.setAttribute("href", mapCoordinates);
+  }
+
+  // Otherwise, use address info from the form
+  const addressLine1 = form.querySelector("#addressLine1").value || "";
+  const addressLine2 = form.querySelector("#addressLine2").value || "";
+  const addressLine3 = form.querySelector("#addressLine3").value || "";
+  let addressLink = "";
+  if (addressLine1.length) addressLink += addressLine1.trim();
+  if (addressLine2.length) {
+    if (addressLine1.length) addressLink += ", ";
+    addressLink += addressLine2;
+  }
+  if (addressLine3.length) {
+    if (addressLine1.length || addressLine2.length) addressLink += ", ";
+    addressLink += addressLine3;
+  }
+
+  const unsafeCharacters = [
+    { char: "%", replacement: "%25" },
+    { char: " ", replacement: "%20" },
+    { char: '"', replacement: "%22" },
+    { char: "<", replacement: "%3C" },
+    { char: ">", replacement: "%3E" },
+    { char: "#", replacement: "%23" },
+    { char: "|", replacement: "%7C" },
+  ];
+
+  unsafeCharacters.forEach(item => {
+    addressLink = addressLink.replaceAll(item.char, item.replacement);
+  });
+
+  addressLink = `https://www.google.com/maps/dir/?api=1&destination=${addressLink}&sensor=true`;
+  return mapLinkEl.setAttribute("href", addressLink);
 }
 
 function populateFormBasedPhrases() {
