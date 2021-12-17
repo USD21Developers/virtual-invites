@@ -492,13 +492,11 @@ function refreshFloatingLabels() {
         item.parentElement.classList.add("has-value");
       }
     });
-    console.log("Refreshed floating labels");
   }
 }
 
 function refreshFloatingLabelsListener() {
   window.addEventListener("visibilitychange", refreshFloatingLabels);
-  console.log("Listening for changes in window visibility");
 }
 
 function setCountry(country) {
