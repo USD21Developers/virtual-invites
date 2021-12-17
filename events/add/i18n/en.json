@@ -180,8 +180,8 @@
     },
     {
       "key": "addressLine3",
-      "original": "City / State / Postal Code",
-      "translated": "City / State / Postal Code"
+      "original": "Line 3",
+      "translated": "Line 3"
     },
     {
       "key": "selectCountry",
