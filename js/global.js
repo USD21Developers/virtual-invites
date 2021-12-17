@@ -485,12 +485,20 @@ function customScrollTo(selector) {
   if (!isMobileDevice()) element.focus();
 }
 
-function refreshFloatingInputLabels() {
-  document.querySelectorAll("input, select").forEach(item => {
-    if (item.value === "") {
-      item.parentElement.classList.add("has-value");
-    }
-  });
+function refreshFloatingLabels() {
+  if (document.visibilityState === "visible") {
+    document.querySelectorAll("input, select").forEach(item => {
+      if (item.value !== "") {
+        item.parentElement.classList.add("has-value");
+      }
+    });
+    console.log("Refreshed floating labels");
+  }
+}
+
+function refreshFloatingLabelsListener() {
+  window.addEventListener("visibilitychange", refreshFloatingLabels);
+  console.log("Listening for changes in window visibility");
 }
 
 function setCountry(country) {
@@ -654,6 +662,7 @@ function validateEmail(email) {
 
 function initGlobal() {
   showMaterialIcons();
+  refreshFloatingLabelsListener();
 }
 
 initGlobal();
