@@ -247,8 +247,8 @@
     },
     {
       "key": "attendVirtuallyExplanation",
-      "original": "If attendees can attend the event via the Internet (e.g. via Zoom, Google Meet, etc.), input the full and complete connection details below.",
-      "translated": "If attendees can attend the event via the Internet (e.g. via Zoom, Google Meet, etc.), input the full and complete connection details below.",
+      "original": "If attendees can attend the event via the Internet (e.g. via Zoom, Google Meet, etc.), paste the full and complete connection details below.",
+      "translated": "If attendees can attend the event via the Internet (e.g. via Zoom, Google Meet, etc.), paste the full and complete connection details below.",
       "changes": [
         {
           "original": "full and complete",
