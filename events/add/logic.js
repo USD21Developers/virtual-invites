@@ -172,6 +172,9 @@ function onFrequencyChange(e) {
 }
 
 async function onPreview() {
+  const validated = validate();
+  if (!validated) return;
+
   const templates = {
     default: {
       paths: {
@@ -216,10 +219,15 @@ function onPreviewClosed(e) {
 
 function onSubmit(e) {
   e.preventDefault();
+
+  const validated = validate();
+  if (!validated) return;
+
   if (!viewedPreview) {
     document.querySelector("#previewbutton").click();
     return;
   }
+
   const form = e.target;
   const language = form.language.value;
   const eventtype = form.eventtype.value;
@@ -240,34 +248,11 @@ function onSubmit(e) {
   const country = form.country.value;
   const latitude = form.latitude.value.trim() || "";
   const longitude = form.longitude.value.trim() || "";
+  const attendVirtuallyConnectionDetails = form.attendVirtuallyConnectionDetails.value.trim() || "";
   const contactFirstName = form.contactFirstName.value.trim() || "";
   const contactLastName = form.contactLastName.value.trim() || "";
   const contactPhone = form.contactPhone.value.trim() || "";
   const contactEmail = form.contactEmail.value.toLowerCase().trim() || "";
-
-  // Validate form
-
-  if (language === "") {
-    return showError(getPhrase("validateLanguage"), "#language");
-  }
-
-  if (eventtype === "") {
-    return showError(getPhrase("validateEventType"), "#eventtype");
-  }
-
-  if (eventtitle === "") {
-    return showError(getPhrase("validateEventTitle"), "#eventtitle");
-  }
-
-  if (eventdescription === "") {
-    return showError(getPhrase("validateDescription"), "#eventdescription");
-  }
-
-  if (frequency === "") {
-    return showError(getPhrase("validateFrequency"), "#frequency");
-  }
-
-  // TODO:  Validate the rest of the form; requires logic branching at this point
 }
 
 function populateCountries() {
@@ -519,6 +504,170 @@ function showError(msg, selector) {
   formErrorsReset();
   selector && formError(selector);
   showModal(msg, formIncomplete);
+}
+
+function validate() {
+  const form = document.querySelector("#formAddEvent");
+  const now = moment();
+  const language = form.language.value;
+  const eventtype = form.eventtype.value;
+  const eventtitle = form.eventtitle.value.trim() || "";
+  const eventdescription = form.eventdescription.value.trim() || "";
+  const frequency = form.frequency.value;
+  const duration = form.duration.value;
+  const startdate = form.startdate.value.trim() || "";
+  const starttime = form.starttime.value.trim() || "";
+  const oneTimeEventBeginDate = form.oneTimeEventBeginDate.value.trim() || "";
+  const oneTimeEventBeginTime = form.oneTimeEventBeginTime.value.trim() || "";
+  const oneTimeEventEndDate = form.oneTimeEventEndDate.value.trim() || "";
+  const oneTimeEventEndTime = form.oneTimeEventEndTime.value.trim() || "";
+  const addressLine1 = form.addressLine1.value.trim() || "";
+  const addressLine2 = form.addressLine2.value.trim() || "";
+  const addressLine3 = form.addressLine3.value.trim() || "";
+  const country = form.country.value;
+  const latitude = form.latitude.value.trim() || "";
+  const longitude = form.longitude.value.trim() || "";
+  const contactFirstName = form.contactFirstName.value.trim() || "";
+  const contactLastName = form.contactLastName.value.trim() || "";
+  const contactPhone = form.contactPhone.value.trim() || "";
+  const contactEmail = form.contactEmail.value.toLowerCase().trim() || "";
+
+  if (language === "") {
+    showError(getPhrase("validateLanguage"), "#language");
+    return false;
+  }
+
+  if (eventtype === "") {
+    showError(getPhrase("validateEventType"), "#eventtype");
+    return false;
+  }
+
+  if (eventtitle === "") {
+    showError(getPhrase("validateEventTitle"), "#eventtitle");
+    return false;
+  }
+
+  if (eventdescription === "") {
+    showError(getPhrase("validateDescription"), "#eventdescription");
+    return false;
+  }
+
+  if (frequency === "") {
+    showError(getPhrase("validateFrequency"), "#frequency");
+    return false;
+  }
+
+  if (frequency === "once") {
+    if (duration === "") {
+      showError(getPhrase("validateDuration"), "#duration");
+      return false;
+    }
+
+    if (duration === "multiple days") {
+      if (oneTimeEventBeginDate === "") {
+        showError(getPhrase("validateOneTimeEventBeginDate"), "#oneTimeEventBeginDate");
+        return false;
+      }
+
+      if (!moment(oneTimeEventBeginDate).isValid()) {
+        showError(getPhrase("validateInvalidOneTimeEventBeginDate"), "#oneTimeEventBeginDate");
+        return false;
+      }
+
+      if (moment(oneTimeEventBeginDate).diff(now) < 0) {
+        showError(getPhrase("validatePastOneTimeEventBeginDate"), "#oneTimeEventBeginDate");
+        return false;
+      }
+
+      if (oneTimeEventBeginTime === "") {
+        showError(getPhrase("validateOneTimeEventBeginTime"), "#oneTimeEventBeginTime");
+        return false;
+      }
+
+      if (oneTimeEventEndDate === "") {
+        showError(getPhrase("validateOneTimeEventEndDate"), "#oneTimeEventEndDate");
+        return false;
+      }
+
+      if (moment(oneTimeEventEndDate).diff(now) < 0) {
+        showError(getPhrase("validatePastOneTimeEventEndDate"), "#oneTimeEventEndDate");
+        return false;
+      }
+
+      if (oneTimeEventEndTime === "") {
+        showError(getPhrase("validateOneTimeEventEndTime"), "#oneTimeEventEndTime");
+        return false;
+      }
+    } else {
+      if (startdate === "") {
+        showError(getPhrase("validateOneTimeEventBeginDate"), "#startdate");
+        return false;
+      }
+
+      if (moment(oneTimeEventBeginDate).diff(now) < 0) {
+        showError(getPhrase("validatePastOneTimeEventBeginDate"), "#oneTimeEventBeginDate");
+        return false;
+      }
+
+      if (starttime === "") {
+        showError(getPhrase("validateOneTimeEventBeginTime"), "#starttime")
+        return false;
+      }
+    }
+  } else {
+    if (startdate === "") {
+      showError(getPhrase("validateOneTimeEventBeginDate"), "#startdate");
+      return false;
+    }
+
+    if (moment(oneTimeEventBeginDate).diff(now) < 0) {
+      showError(getPhrase("validatePastOneTimeEventBeginDate"), "#oneTimeEventBeginDate");
+      return false;
+    }
+
+    if (starttime === "") {
+      showError(getPhrase("validateOneTimeEventBeginTime"), "#starttime")
+      return false;
+    }
+  }
+
+  let addressPopulated = false;
+  let numAddressLines = 0;
+  const line1Populated = (addressLine1.trim().length > 0);
+  const line2Populated = (addressLine2.trim().length > 0);
+  const line3Populated = (addressLine3.trim().length > 0);
+  const latPopulated = (latitude.value.trim().length > 0);
+  const longPopulated = (longitude.value.trim().length > 0);
+
+  if (line1Populated) numAddressLines += 1;
+  if (line2Populated) numAddressLines += 1;
+  if (line3Populated) numAddressLines += 1;
+
+  if (numAddressLines <= 1) {
+    showError(getPhrase("validateMinimumAddressLines"), "");
+    return false;
+  } else {
+    if (country === "") {
+      showError(getPhrase("validateCountryRequired"), "");
+      return false;
+    }
+  }
+
+  if (addressLine)
+
+    if ((!latPopulated) && (longPopulated)) {
+      showError(getPhrase("validateLatitudeRequired"), "");
+      return false;
+    } else if ((latPopulated) && (!longPopulated)) {
+      showError(getPhrase("validateLongitudeRequired"), "");
+      return false;
+    }
+
+  if ((!latPopulated) && (!longPopulated) && (!addressPopulated)) {
+    showError(getPhrase("validateLocationRequired"), "");
+    return false;
+  }
+
 }
 
 function attachListeners() {

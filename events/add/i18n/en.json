@@ -150,8 +150,8 @@
     },
     {
       "key": "headlineLocation",
-      "original": "Location:",
-      "translated": "Location:"
+      "original": "Physical Location:",
+      "translated": "Physical Location:"
     },
     {
       "key": "headlineLocationDetails",
@@ -241,6 +241,30 @@
       "translated": "Coordinates detected successfully."
     },
     {
+      "key": "headlineAttendVirtually",
+      "original": "Attending Virtually",
+      "translated": "Attending Virtually"
+    },
+    {
+      "key": "attendVirtuallyExplanation",
+      "original": "If attendees can attend the event via the Internet (e.g. via Zoom, Google Meet, etc.), input the full and complete connection details below.",
+      "translated": "If attendees can attend the event via the Internet (e.g. via Zoom, Google Meet, etc.), input the full and complete connection details below.",
+      "changes": [
+        {
+          "original": "full and complete",
+          "translated": "full and complete",
+          "bold": true,
+          "italic": true,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "attendVirtuallyConnectionDetails",
+      "original": "Connection Details",
+      "translated": "Connection Details"
+    },
+    {
       "key": "headlineContact",
       "original": "For more info, contact:",
       "translated": "For more info, contact:"
@@ -324,6 +348,71 @@
       "key": "validateFrequency",
       "original": "Please select how often this event occurs.",
       "translated": "Please select how often this event occurs."
+    },
+    {
+      "key": "validateDuration",
+      "original": "Please select the duration of the event.",
+      "translated": "Please select the duration of the event."
+    },
+    {
+      "key": "validateOneTimeEventBeginDate",
+      "original": "Please input the date when the event begins.",
+      "translated": "Please input the date when the event begins."
+    },
+    {
+      "key": "validateInvalidOneTimeEventBeginDate",
+      "original": "Please input a valid date for when the event begins.",
+      "translated": "Please input a valid date for when the event begins."
+    },
+    {
+      "key": "validatePastOneTimeEventBeginDate",
+      "original": "Please input a date in the future for when the event begins.",
+      "translated": "Please input a date in the future for when the event begins."
+    },
+    {
+      "key": "validateOneTimeEventBeginTime",
+      "original": "Please input the time when the event begins.",
+      "translated": "Please input the time when the event begins."
+    },
+    {
+      "key": "validateOneTimeEventEndDate",
+      "original": "Please input the date when the event ends.",
+      "translated": "Please input the date when the event ends."
+    },
+    {
+      "key": "validatePastOneTimeEventEndDate",
+      "original": "Please input a date in the future for when the event ends.",
+      "translated": "Please input a date in the future for when the event ends."
+    },
+    {
+      "key": "validateOneTimeEventEndTime",
+      "original": "Please input the time when the event ends.",
+      "translated": "Please input the time when the event ends."
+    },
+    {
+      "key": "validateMinimumAddressLines",
+      "original": "The event's address must have at least two lines.",
+      "translated": "The event's address must have at least two lines."
+    },
+    {
+      "key": "validateCountryRequired",
+      "original": "Please select the country.",
+      "translated": "Please select the country."
+    },
+    {
+      "key": "validateLatitudeRequired",
+      "original": "Please input the latitude coordinate.",
+      "translated": "Please input the latitude coordinate."
+    },
+    {
+      "key": "validateLongitudeRequired",
+      "original": "Please input the longitude coordinate.",
+      "translated": "Please input the longitude coordinate."
+    },
+    {
+      "key": "validateLocationRequired",
+      "original": "Please input either the event's address or its map coordinates.",
+      "translated": "Please input either the event's address or its map coordinates."
     }
   ],
 
