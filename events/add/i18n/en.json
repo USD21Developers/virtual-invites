@@ -30,8 +30,8 @@
     },
     {
       "key": "labelEventDescription",
-      "original": "Event Description",
-      "translated": "Event Description"
+      "original": "Event Description:",
+      "translated": "Event Description:"
     },
     {
       "key": "optionEventTypeBT",
@@ -254,15 +254,15 @@
           "original": "full and complete",
           "translated": "full and complete",
           "bold": true,
-          "italic": true,
+          "italic": false,
           "link": ""
         }
       ]
     },
     {
       "key": "attendVirtuallyConnectionDetails",
-      "original": "Connection Details",
-      "translated": "Connection Details"
+      "original": "Connection Details:",
+      "translated": "Connection Details:"
     },
     {
       "key": "headlineContact",

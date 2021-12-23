@@ -371,6 +371,21 @@ function populateFormBasedPhrases() {
   const addressLine1 = form.querySelector("#addressLine1").value || "";
   const addressLine2 = form.querySelector("#addressLine2").value || "";
   const addressLine3 = form.querySelector("#addressLine3").value || "";
+  const attendVirtuallyConnectionDetails = form.querySelector("#attendVirtuallyConnectionDetails").value.trim() || "";
+  const connectingVirtually = preview.querySelector("#connectingVirtually");
+  const connectionContent = preview.querySelector("#connectionContent");
+
+  if (attendVirtuallyConnectionDetails.length >= 1) {
+    let info = attendVirtuallyConnectionDetails;
+    info = urlify(info);
+    info = spacify(info);
+    info = breakify(info);
+    connectionContent.innerHTML = info;
+    connectingVirtually.classList.remove("d-none");
+  } else {
+    connectionContent.innerHTML = "";
+    connectingVirtually.classList.add("d-none");
+  }
 
   let previewEventAddress = "";
   if (addressLine1.length) previewEventAddress += `<div>${addressLine1}</div>`;

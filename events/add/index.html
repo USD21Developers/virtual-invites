@@ -193,11 +193,13 @@
             </div>
 
             <div class="form-group my-5">
-              <div class="floating-label textfield-box">
+              <div class="textfield-box">
                 <label
                   for="eventdescription"
                   data-i18n="labelEventDescription"
+                  class="d-none"
                 ></label>
+                <h4 data-i18n="labelEventDescription"></h4>
                 <textarea
                   class="form-control"
                   id="eventdescription"
@@ -425,10 +427,11 @@
                   ></span>
                 </h4>
                 <div class="form-group mt-2">
-                  <div class="floating-label textfield-box">
+                  <div class="textfield-box">
                     <label
                       for="locationDetails"
                       data-i18n="labelLocationDetails"
+                      class="d-none"
                     ></label>
                     <textarea
                       class="form-control"
@@ -446,10 +449,10 @@
                 <span data-i18n="headlineAttendVirtually"></span>
                 <span data-i18n="optional" class="font-weight-light">(optional):</span>
               </legend>
-              <div id="attendVirtuallyInfo">
+              <div>
                 <p data-i18n="attendVirtuallyExplanation"></p>
                 <div class="form-group mt-2">
-                  <div class="floating-label textfield-box">
+                  <div class="textfield-box">
                     <label
                       for="attendVirtuallyConnectionDetails"
                       data-i18n="attendVirtuallyConnectionDetails"

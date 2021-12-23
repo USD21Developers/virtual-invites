@@ -115,7 +115,7 @@ const crypto = {
 };
 
 function breakify(text) {
-  return text.replace(/(?:\r\n|\r|\n)/g, '<br>');
+  return text.replace(/(?:\r\n|\r|\n)/g, '<br>\n');
 }
 
 function enableTooltips() {

@@ -34,3 +34,8 @@ label[for="contactPhone"] {
   max-height: 20em;
   overflow-y: scroll;
 }
+
+.textfield-box label {
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+}
