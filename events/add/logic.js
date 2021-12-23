@@ -378,7 +378,9 @@ function populateFormBasedPhrases() {
 
   if (attendVirtuallyConnectionDetails.length >= 1) {
     let info = attendVirtuallyConnectionDetails;
-    info = urlify(info);
+    info = linkifyHtml(info, {
+      defaultProtocol: "https"
+    });
     info = spacify(info);
     info = breakify(info);
     connectionContent.innerHTML = info;
@@ -390,7 +392,9 @@ function populateFormBasedPhrases() {
 
   if (eventDescription.length >= 1) {
     let description = eventDescription;
-    description = urlify(description);
+    description = linkifyHtml(description, {
+      defaultProtocol: "https"
+    });
     description = spacify(description);
     description = breakify(description);
     preview.querySelector("#eventDescription").innerHTML = description;
