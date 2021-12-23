@@ -27,6 +27,10 @@ label[for="contactPhone"] {
   opacity: 1;
 }
 
+#eventDescription {
+  word-break: break-word;
+}
+
 .connectionContent {
   word-break: break-word;
   font-size: small;
