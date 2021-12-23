@@ -362,6 +362,7 @@ function populateFormBasedPhrases() {
   const preview = document.querySelector("#preview");
   const eventType = form.querySelector("#eventtype").selectedOptions[0].value;
   const eventTitle = form.querySelector("#eventtitle").value;
+  const eventDescription = form.querySelector("#eventdescription").value.trim() || "";
   const eventStartDate = form.querySelector("#startdate").value;
   const eventStartTime = form.querySelector("#starttime").value;
   const frequency = form.querySelector("#frequency").selectedOptions[0].innerText;
@@ -385,6 +386,16 @@ function populateFormBasedPhrases() {
   } else {
     connectionContent.innerHTML = "";
     connectingVirtually.classList.add("d-none");
+  }
+
+  if (eventDescription.length >= 1) {
+    let description = eventDescription;
+    description = urlify(description);
+    description = spacify(description);
+    description = breakify(description);
+    preview.querySelector("#eventDescription").innerHTML = description;
+  } else {
+    preview.querySelector("#eventDescription").innerHTML = "";
   }
 
   let previewEventAddress = "";

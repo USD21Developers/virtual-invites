@@ -667,6 +667,9 @@ function urlify(text, link_attributes_obj = {}) {
   text = text.replace(/</g, '&lt;');
   text = text.replace(/>/g, '&gt;');
 
+  const emailPattern = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
+  text = text.replace(emailPattern, '<a href="mailto:$1">$1</a>');
+
   let attr = [];
   for (let k in link_attributes_obj) {
     if (k !== 'href') {
