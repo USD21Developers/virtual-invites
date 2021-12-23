@@ -108,3 +108,12 @@ a:not(.list-group-item) {
 [data-theme="red"] a {
   color: #c62323;
 }
+
+.connectionContent {
+  color: black;
+  font-family: Consolas, monospace;
+  font-size: small;
+  max-height: 20em;
+  overflow-y: scroll;
+  word-break: break-word;
+}

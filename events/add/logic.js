@@ -72,8 +72,11 @@ function initIntlTelInput() {
 function onClickDetectLocation(e) {
   e.preventDefault();
 
+  if (!isMobileDevice()) return;
+
   const onGeoLocationError = (err) => {
     showToast(getPhrase("geocoordinatesErrorMessage"), 5000, "danger");
+    console.error(err);
   };
 
   const onGeoLocationSuccess = (pos) => {
@@ -173,7 +176,7 @@ function onFrequencyChange(e) {
 
 async function onPreview() {
   const validated = validate();
-  if (!validated) return;
+  if (!validated) return false;
 
   const templates = {
     default: {
@@ -498,11 +501,17 @@ function showCoordinatesContainer() {
   detectCoordinates.classList.remove("d-none");
 }
 
-function showError(msg, selector) {
+function showError(msg, selector, inlineMsg) {
   const formIncomplete = getPhrase("formIncomplete");
 
   formErrorsReset();
-  selector && formError(selector);
+  if (selector) {
+    if (inlineMsg) {
+      formError(selector, inlineMsg);
+    } else {
+      formError(selector);
+    };
+  }
   showModal(msg, formIncomplete);
 }
 
@@ -533,141 +542,173 @@ function validate() {
   const contactEmail = form.contactEmail.value.toLowerCase().trim() || "";
 
   if (language === "") {
-    showError(getPhrase("validateLanguage"), "#language");
+    showError(getPhrase("validateLanguage"), "#language", getPhrase("fieldIsRequired"));
     return false;
   }
 
   if (eventtype === "") {
-    showError(getPhrase("validateEventType"), "#eventtype");
+    showError(getPhrase("validateEventType"), "#eventtype", getPhrase("fieldIsRequired"));
     return false;
   }
 
   if (eventtitle === "") {
-    showError(getPhrase("validateEventTitle"), "#eventtitle");
+    showError(getPhrase("validateEventTitle"), "#eventtitle", getPhrase("fieldIsRequired"));
     return false;
   }
 
   if (eventdescription === "") {
-    showError(getPhrase("validateDescription"), "#eventdescription");
+    showError(getPhrase("validateDescription"), "#eventdescription", getPhrase("fieldIsRequired"));
     return false;
   }
 
   if (frequency === "") {
-    showError(getPhrase("validateFrequency"), "#frequency");
+    showError(getPhrase("validateFrequency"), "#frequency", getPhrase("fieldIsRequired"));
     return false;
   }
 
   if (frequency === "once") {
     if (duration === "") {
-      showError(getPhrase("validateDuration"), "#duration");
+      showError(getPhrase("validateDuration"), "#duration", getPhrase("fieldIsRequired"));
       return false;
     }
 
     if (duration === "multiple days") {
       if (oneTimeEventBeginDate === "") {
-        showError(getPhrase("validateOneTimeEventBeginDate"), "#oneTimeEventBeginDate");
+        showError(getPhrase("validateOneTimeEventBeginDate"), "#oneTimeEventBeginDate", getPhrase("fieldIsRequired"));
         return false;
       }
 
       if (!moment(oneTimeEventBeginDate).isValid()) {
-        showError(getPhrase("validateInvalidOneTimeEventBeginDate"), "#oneTimeEventBeginDate");
+        showError(getPhrase("validateInvalidOneTimeEventBeginDate"), "#oneTimeEventBeginDate", getPhrase("validDateIsRequired"));
         return false;
       }
 
       if (moment(oneTimeEventBeginDate).diff(now) < 0) {
-        showError(getPhrase("validatePastOneTimeEventBeginDate"), "#oneTimeEventBeginDate");
+        showError(getPhrase("validatePastOneTimeEventBeginDate"), "#oneTimeEventBeginDate", getPhrase("datesInPastAreInvalid"));
         return false;
       }
 
       if (oneTimeEventBeginTime === "") {
-        showError(getPhrase("validateOneTimeEventBeginTime"), "#oneTimeEventBeginTime");
+        showError(getPhrase("validateOneTimeEventBeginTime"), "#oneTimeEventBeginTime", getPhrase("fieldIsRequired"));
         return false;
       }
 
       if (oneTimeEventEndDate === "") {
-        showError(getPhrase("validateOneTimeEventEndDate"), "#oneTimeEventEndDate");
+        showError(getPhrase("validateOneTimeEventEndDate"), "#oneTimeEventEndDate", getPhrase("fieldIsRequired"));
         return false;
       }
 
       if (moment(oneTimeEventEndDate).diff(now) < 0) {
-        showError(getPhrase("validatePastOneTimeEventEndDate"), "#oneTimeEventEndDate");
+        showError(getPhrase("validatePastOneTimeEventEndDate"), "#oneTimeEventEndDate", getPhrase("datesInPastAreInvalid"));
         return false;
       }
 
       if (oneTimeEventEndTime === "") {
-        showError(getPhrase("validateOneTimeEventEndTime"), "#oneTimeEventEndTime");
+        showError(getPhrase("validateOneTimeEventEndTime"), "#oneTimeEventEndTime", getPhrase("fieldIsRequired"));
         return false;
       }
     } else {
       if (startdate === "") {
-        showError(getPhrase("validateOneTimeEventBeginDate"), "#startdate");
+        showError(getPhrase("validateOneTimeEventBeginDate"), "#startdate", getPhrase("fieldIsRequired"));
         return false;
       }
 
       if (moment(oneTimeEventBeginDate).diff(now) < 0) {
-        showError(getPhrase("validatePastOneTimeEventBeginDate"), "#oneTimeEventBeginDate");
+        showError(getPhrase("validatePastOneTimeEventBeginDate"), "#oneTimeEventBeginDate", getPhrase("datesInPastAreInvalid"));
         return false;
       }
 
       if (starttime === "") {
-        showError(getPhrase("validateOneTimeEventBeginTime"), "#starttime")
+        showError(getPhrase("validateOneTimeEventBeginTime"), "#starttime", getPhrase("fieldIsRequired"))
         return false;
       }
     }
   } else {
     if (startdate === "") {
-      showError(getPhrase("validateOneTimeEventBeginDate"), "#startdate");
+      showError(getPhrase("validateOneTimeEventBeginDate"), "#startdate", getPhrase("fieldIsRequired"));
       return false;
     }
 
     if (moment(oneTimeEventBeginDate).diff(now) < 0) {
-      showError(getPhrase("validatePastOneTimeEventBeginDate"), "#oneTimeEventBeginDate");
+      showError(getPhrase("validatePastOneTimeEventBeginDate"), "#oneTimeEventBeginDate", getPhrase("datesInPastAreInvalid"));
       return false;
     }
 
     if (starttime === "") {
-      showError(getPhrase("validateOneTimeEventBeginTime"), "#starttime")
+      showError(getPhrase("validateOneTimeEventBeginTime"), "#starttime", getPhrase("fieldIsRequired"))
       return false;
     }
   }
 
-  let addressPopulated = false;
   let numAddressLines = 0;
-  const line1Populated = (addressLine1.trim().length > 0);
-  const line2Populated = (addressLine2.trim().length > 0);
-  const line3Populated = (addressLine3.trim().length > 0);
-  const latPopulated = (latitude.value.trim().length > 0);
-  const longPopulated = (longitude.value.trim().length > 0);
+  const line1Populated = (addressLine1.length > 0);
+  const line2Populated = (addressLine2.length > 0);
+  const line3Populated = (addressLine3.length > 0);
+  const latPopulated = (latitude.length > 0);
+  const longPopulated = (longitude.length > 0);
 
   if (line1Populated) numAddressLines += 1;
   if (line2Populated) numAddressLines += 1;
   if (line3Populated) numAddressLines += 1;
 
-  if (numAddressLines <= 1) {
-    showError(getPhrase("validateMinimumAddressLines"), "");
+  if (numAddressLines === 1) {
+    if (!addressLine1.length) {
+      showError(getPhrase("validateMinimumAddressLines"), "#addressLine1", getPhrase("fieldIsRequired"));
+    } else if (!addressLine2.length) {
+      showError(getPhrase("validateMinimumAddressLines"), "#addressLine2", getPhrase("fieldIsRequired"));
+    } else if (!addressLine3.length) {
+      showError(getPhrase("validateMinimumAddressLines"), "#addressLine3", getPhrase("fieldIsRequired"));
+    }
     return false;
-  } else {
+  } else if (numAddressLines >= 2) {
     if (country === "") {
-      showError(getPhrase("validateCountryRequired"), "");
+      showError(getPhrase("validateCountryRequired"), "#country", getPhrase("fieldIsRequired"));
       return false;
     }
   }
 
-  if (addressLine)
-
-    if ((!latPopulated) && (longPopulated)) {
-      showError(getPhrase("validateLatitudeRequired"), "");
-      return false;
-    } else if ((latPopulated) && (!longPopulated)) {
-      showError(getPhrase("validateLongitudeRequired"), "");
-      return false;
-    }
-
-  if ((!latPopulated) && (!longPopulated) && (!addressPopulated)) {
-    showError(getPhrase("validateLocationRequired"), "");
+  if ((!latPopulated) && (longPopulated)) {
+    showError(getPhrase("validateLatitudeRequired"), "#latitude", getPhrase("fieldIsRequired"));
+    return false;
+  } else if ((latPopulated) && (!longPopulated)) {
+    showError(getPhrase("validateLongitudeRequired"), "#longitude", getPhrase("fieldIsRequired"));
     return false;
   }
 
+  if ((!latPopulated) && (!longPopulated) && (numAddressLines === 0)) {
+    showError(getPhrase("validateLocationRequired"), "#addressLine1");
+    return false;
+  }
+
+  if (!contactFirstName.length) {
+    showError(getPhrase("validateMissingContactFirstName"), "#contactFirstName", getPhrase("fieldIsRequired"));
+    return false;
+  }
+
+  if ((!contactPhone.length) && (!contactEmail.length)) {
+    showError(getPhrase("validateMissingContactMethod"), "#contactPhone");
+    return false;
+  }
+
+  if (contactPhone.length) {
+    const phoneNumber = iti.getNumber();
+    const countryData = iti.getSelectedCountryData();
+    const isValidPhoneNumber = iti.isValidNumber(phoneNumber, countryData.iso2);
+    if (!isValidPhoneNumber) {
+      showError(getPhrase("validateInvalidPhoneNumber"), "#contactPhone", getPhrase("validPhoneIsRequired"));
+      return false;
+    }
+  }
+
+  if (contactEmail.length) {
+    const isValidEmail = validateEmail(contactEmail);
+    if (!isValidEmail) {
+      showError(getPhrase("validateInvalidEmail"), "#contactEmail", getPhrase("validEmailIsRequired"));
+      return false;
+    }
+  }
+
+  return true;
 }
 
 function attachListeners() {

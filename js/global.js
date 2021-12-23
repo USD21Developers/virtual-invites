@@ -114,6 +114,10 @@ const crypto = {
   },
 };
 
+function breakify(text) {
+  return text.replace(/(?:\r\n|\r|\n)/g, '<br>');
+}
+
 function enableTooltips() {
   $('[data-toggle="tooltip"]').tooltip();
 }
@@ -650,6 +654,35 @@ function showToast(message, duration = 5000, type = "dark") {
       snackbar.classList.remove("show");
     }, duration);
   }
+}
+
+function spacify(text) {
+  return text.split("  ").join("&nbsp;&nbsp;");
+}
+
+function urlify(text, link_attributes_obj = {}) {
+  //link_attributes_obj (optional) object {target:'_blank', class:'myLink'}
+
+  //html to text
+  text = text.replace(/</g, '&lt;');
+  text = text.replace(/>/g, '&gt;');
+
+  let attr = [];
+  for (let k in link_attributes_obj) {
+    if (k !== 'href') {
+      attr.push(k + '="' + link_attributes_obj[k].replaceAll(/"/g, "'") + '"');
+    }
+  }
+
+  //URLs starting with http://, https://, or ftp://
+  let exp = /((?:https?|ftp):\/\/[a-zA-Z0-9][\w+\d+&@\-#\/%?=~_|!:,.;+]*)/gim;
+  text = text.replace(exp, '<a href="$1" ' + attr.join(' ') + '>$1</a>');
+
+  //URLs starting with www.
+  let reg_ww = /(?<!\/)(www\.[a-zA-Z0-9][\w+\d+&@\-#\/%?=~_|!:,.;+]*)/gim;
+  text = text.replace(reg_ww, '<a href="https://$1" ' + attr.join(' ') + '>$1</a>');
+
+  return text;
 }
 
 function validateEmail(email) {

@@ -242,6 +242,7 @@
                   data-i18n="frequencyEverySaturday"
                 ></option>
               </select>
+              <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
             </div>
 
             <div id="durationContainer" class="d-none">
@@ -255,6 +256,7 @@
                     data-i18n="durationMultipleDays"
                   ></option>
                 </select>
+                <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
               </div>
             </div>
 
@@ -263,11 +265,13 @@
               <div class="floating-label mt-2 mb-5">
                 <label for="startdate" data-i18n="labelDate"></label>
                 <input type="date" class="form-control" id="startdate" />
+                <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
               </div>
 
               <div class="floating-label mt-5 mb-4">
                 <label for="starttime" data-i18n="labelStartTime"></label>
                 <input type="time" class="form-control" id="starttime" />
+                <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
               </div>
             </fieldset>
 
@@ -283,6 +287,7 @@
                   class="form-control"
                   id="oneTimeEventBeginDate"
                 />
+                <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
               </div>
 
               <div class="floating-label mt-5 mb-4">
@@ -295,6 +300,7 @@
                   class="form-control"
                   id="oneTimeEventBeginTime"
                 />
+                <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
               </div>
             </fieldset>
 
@@ -307,6 +313,7 @@
                   class="form-control"
                   id="oneTimeEventEndDate"
                 />
+                <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
               </div>
 
               <div class="floating-label mt-5 mb-4">
@@ -319,6 +326,7 @@
                   class="form-control"
                   id="oneTimeEventEndTime"
                 />
+                <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
               </div>
             </fieldset>
 
@@ -335,6 +343,7 @@
                       id="addressLine1"
                       data-i18n-placeholder="addressLine1"
                     />
+                    <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
                   </div>
                   <div class="my-3">
                     <label for="addressLine2"></label>
@@ -344,6 +353,7 @@
                       id="addressLine2"
                       data-i18n-placeholder="addressLine2"
                     />
+                    <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
                   </div>
                   <div class="my-3">
                     <label for="addressLine3"></label>
@@ -353,12 +363,14 @@
                       id="addressLine3"
                       data-i18n-placeholder="addressLine3"
                     />
+                    <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
                   </div>
 
                   <div class="my-4 form-group">
                     <select class="form-control" id="country">
                       <option value="" data-i18n="selectCountry"></option>
                     </select>
+                    <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
                   </div>
 
                   <div id="coordinatesContainer">
@@ -378,6 +390,7 @@
                             type="number"
                             class="form-control"
                           />
+                          <div class="invalid-feedback"></div>
                         </div>
                       </div>
                       <div class="col">
@@ -388,6 +401,7 @@
                             type="number"
                             class="form-control"
                           />
+                          <div class="invalid-feedback"></div>
                         </div>
                       </div>
                     </div>
@@ -421,6 +435,7 @@
                       id="locationDetails"
                       rows="3"
                     ></textarea>
+                    <div class="invalid-feedback"></div>
                   </div>
                 </div>    
               </div>
@@ -462,6 +477,7 @@
                     class="form-control"
                     id="contactFirstName"
                   />
+                  <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
                 </div>
 
                 <div class="form-group">
@@ -490,6 +506,7 @@
                       id="contactPhone"
                       pattern="[0-9]*"
                     />
+                    <div class="invalid-feedback"></div>
                   </div>
                 </div>
 
@@ -504,6 +521,7 @@
                       class="form-control"
                       id="contactEmail"
                     />
+                    <div class="invalid-feedback"></div>
                   </div>
                 </div>
             </fieldset>

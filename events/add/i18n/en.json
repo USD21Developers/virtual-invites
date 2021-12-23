@@ -281,8 +281,8 @@
     },
     {
       "key": "contactPhone",
-      "original": "Phone number",
-      "translated": "Phone number"
+      "original": "Mobile phone number",
+      "translated": "Mobile phone number"
     },
     {
       "key": "contactEmail",
@@ -320,6 +320,31 @@
       "translated": "This field is required."
     },
     {
+      "key": "validDateIsRequired",
+      "original": "A valid date is required.",
+      "translated": "A valid date is required."
+    },
+    {
+      "key": "datesInPastAreInvalid",
+      "original": "Dates in the past are invalid.",
+      "translated": "Dates in the past are invalid."
+    },
+    {
+      "key": "validTimeIsRequired",
+      "original": "A valid time is required.",
+      "translated": "A valid time is required."
+    },
+    {
+      "key": "validPhoneIsRequired",
+      "original": "A valid number is required.",
+      "translated": "A valid number is required."
+    },
+    {
+      "key": "validEmailIsRequired",
+      "original": "A valid e-mail is required.",
+      "translated": "A valid e-mail is required."
+    },
+    {
       "key": "modalCloseButtonText",
       "original": "Close",
       "translated": "Close"
@@ -341,8 +366,8 @@
     },
     {
       "key": "validateDescription",
-      "original": "Please input the description of the event.",
-      "translated": "Please input the description of the event."
+      "original": "Please input a full description of the event.",
+      "translated": "Please input a full description of the event."
     },
     {
       "key": "validateFrequency",
@@ -413,6 +438,26 @@
       "key": "validateLocationRequired",
       "original": "Please input either the event's address or its map coordinates.",
       "translated": "Please input either the event's address or its map coordinates."
+    },
+    {
+      "key": "validateMissingContactFirstName",
+      "original": "Please input the first name of a person who can be contacted about the event.",
+      "translated": "Please input the first name of a person who can be contacted about the event."
+    },
+    {
+      "key": "validateMissingContactMethod",
+      "original": "Please provide at least one method of contact.",
+      "translated": "Please provide at least one method of contact."
+    },
+    {
+      "key": "validateInvalidPhoneNumber",
+      "original": "Please check the mobile phone number for completeness and proper formatting.",
+      "translated": "Please check the mobile phone number for completeness and proper formatting."
+    },
+    {
+      "key": "validateInvalidEmail",
+      "original": "Please check the e-mail address for completeness and proper formatting.",
+      "translated": "Please check the e-mail address for completeness and proper formatting."
     }
   ],
 

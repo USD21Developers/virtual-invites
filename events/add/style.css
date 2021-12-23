@@ -26,3 +26,11 @@ label[for="contactPhone"] {
 #preview .material-icons {
   opacity: 1;
 }
+
+.connectionContent {
+  word-break: break-word;
+  font-size: small;
+  font-family: Consolas, monospace;
+  max-height: 20em;
+  overflow-y: scroll;
+}
