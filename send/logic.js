@@ -7,6 +7,13 @@ const geoLocationOptions = {
   maximumAge: 0,
 };
 
+function clearForm() {
+  window.addEventListener("pageshow", () => {
+    const form = document.querySelector("#formsendinvite");
+    form.reset();
+  });
+}
+
 function downloadCanvasAsImage() {
   let downloadLink = document.createElement("a");
   downloadLink.setAttribute("download", "CanvasAsImage.png");
@@ -218,7 +225,7 @@ function loadDummyEvents() {
   return JSON.stringify(events);
 }
 
-async function loadEvents() {
+async function loadEventsToInvitePeopleTo() {
   const events_dropdown = document.querySelector("#events_dropdown");
   const meetingdetails = document.querySelector("#meetingdetails");
   const events_stored = localStorage.getItem("events") || loadDummyEvents();
@@ -557,9 +564,10 @@ function setEventListeners() {
 }
 
 async function init() {
+  clearForm();
   await populateContent();
   populateSaveButtonData();
-  loadEvents();
+  loadEventsToInvitePeopleTo();
   setDefaultSendMethod();
   initIntlTelInput();
   setEventListeners();
