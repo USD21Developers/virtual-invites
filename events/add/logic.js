@@ -215,9 +215,11 @@ async function onPreview() {
 
 function onPreviewClosed(e) {
   const submitRow = document.querySelector("#submitrow");
-  submitRow.classList.remove("d-none");
-  submitRow.scrollIntoView({ behavior: "smooth" });
+
   viewedPreview = true;
+  history.pushState(null, null, "./");
+  submitRow.classList.remove("d-none");
+  customScrollTo("#submitrow");
 }
 
 function onSubmit(e) {
@@ -759,7 +761,21 @@ function attachListeners() {
 
   document.querySelector("#formAddEvent").addEventListener("submit", onSubmit);
 
-  document.querySelector("#previewbutton").addEventListener("click", onPreview);
+  document.querySelector("#previewbutton").addEventListener("click", () => {
+    window.location.hash = "preview";
+  });
+
+  window.addEventListener("hashchange", (e) => {
+    const hash = window.location.hash;
+    switch (hash) {
+      case "#preview":
+        onPreview();
+        break;
+      case "":
+        $("#preview").modal("hide");
+        onPreviewClosed();
+    }
+  });
 
   $("#preview").on("hidden.bs.modal", onPreviewClosed);
 }
