@@ -1,6 +1,12 @@
 let viewedPreview = false;
 let mapCoordinates = "";
 
+function clearErrorMessages() {
+  document.querySelectorAll(".is-invalid").forEach(item => {
+    item.classList.remove("is-invalid");
+  });
+}
+
 function getDefaultRecipientName(gender) {
   const maleNames = [
     "Leandro",
@@ -175,8 +181,7 @@ function onFrequencyChange(e) {
 }
 
 async function onPreview() {
-  const validated = validate();
-  if (!validated) return false;
+  clearErrorMessages();
 
   const templates = {
     default: {
@@ -762,7 +767,10 @@ function attachListeners() {
   document.querySelector("#formAddEvent").addEventListener("submit", onSubmit);
 
   document.querySelector("#previewbutton").addEventListener("click", () => {
-    window.location.hash = "preview";
+    const validated = validate();
+
+    if (!validated) return false;
+    onPreview();
   });
 
   window.addEventListener("hashchange", (e) => {
