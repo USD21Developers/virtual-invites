@@ -18,6 +18,10 @@ label[for="contactPhone"] {
   margin-left: 55px;
 }
 
+label[for="attendVirtuallyConnectionDetails"] {
+  font-size: 16px;
+}
+
 .is-focused > label[for="contactPhone"],
 .has-value > label[for="contactPhone"] {
   margin-left: 0;
