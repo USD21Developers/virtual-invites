@@ -57,6 +57,16 @@ function getSenderFirstName() {
   return firstName;
 }
 
+function hideAllDateTimes() {
+  const timeAndDateRepeating = document.querySelector("#timeAndDateRepeating");
+  const timeAndDateSingleDay = document.querySelector("#timeAndDateSingleDay");
+  const timeAndDateMultipleDays = document.querySelector("#timeAndDateMultipleDays");
+
+  timeAndDateRepeating.classList.add("d-none");
+  timeAndDateSingleDay.classList.add("d-none");
+  timeAndDateMultipleDays.classList.add("d-none");
+}
+
 function initIntlTelInput() {
   const input = document.querySelector("#contactPhone");
   const initialCountry = localStorage.getItem("countryIso") || "us";
@@ -171,7 +181,7 @@ function onFrequencyChange(e) {
   switch (frequency) {
     case "":
       break;
-    case "Once":
+    case "once":
       show(durationContainer);
       break;
     default:
@@ -370,12 +380,7 @@ function populateFormBasedPhrases() {
   const eventType = form.querySelector("#eventtype").selectedOptions[0].value;
   const eventTitle = form.querySelector("#eventtitle").value;
   const eventDescription = form.querySelector("#eventdescription").value.trim() || "";
-  const eventStartDate = form.querySelector("#startdate").value;
-  const eventStartTime = form.querySelector("#starttime").value;
-  const frequency = form.querySelector("#frequency").selectedOptions[0].innerText;
-  const eventDateTime = `${eventStartDate} ${eventStartTime}`;
-  const previewEventStartDateShort = Intl.DateTimeFormat(lang, { dateStyle: "short" }).format(new Date(eventDateTime));
-  const previewEventStartTimeShort = Intl.DateTimeFormat(lang, { timeStyle: "short" }).format(new Date(eventDateTime));
+  const frequency = document.querySelector("#frequency").value;
   const addressLine1 = form.querySelector("#addressLine1").value || "";
   const addressLine2 = form.querySelector("#addressLine2").value || "";
   const addressLine3 = form.querySelector("#addressLine3").value || "";
@@ -413,6 +418,8 @@ function populateFormBasedPhrases() {
   if (addressLine1.length) previewEventAddress += `<div>${addressLine1}</div>`;
   if (addressLine2.length) previewEventAddress += `<div>${addressLine2}</div>`;
   if (addressLine3.length) previewEventAddress += `<div>${addressLine3}</div>`;
+  preview.querySelector("#eventAddress").innerHTML = previewEventAddress;
+
 
   preview.querySelector("#eventTitle").innerHTML = eventTitle;
 
@@ -427,42 +434,56 @@ function populateFormBasedPhrases() {
 
   preview.querySelector("#defaultGreetingParagraph1").innerHTML = defaultGreetingParagraph1;
 
-  if (frequency === "Once") {
-    preview.querySelector("#eventDate").innerHTML = previewEventStartDateShort;
+  if (frequency === "once") {
+    const duration = document.querySelector("#duration").value;
+    if (duration === "same day") {
+      showSingleDay();
+    } else if (duration === "multiple days") {
+      showMultipleDays();
+    }
   } else {
-    preview.querySelector("#eventDate").innerHTML = frequency;
+    showRepeating(frequency);
   }
-
-  preview.querySelector("#eventStartTime").innerHTML = previewEventStartTimeShort;
-  preview.querySelector("#eventAddress").innerHTML = previewEventAddress;
 }
 
 function populateInterpolatedPhrases() {
   const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
+  const frequency = document.querySelector("#frequency").selectedOptions[0].value;
 
   let recipientName = "";
   let senderFirstName = "";
   let invitedDate = "";
   let eventTitle = "";
-  let eventType = "";
-  let eventDate = "";
-  let eventTime = "";
-
-  const eventDateTime = `${document.querySelector("#startdate").value} ${document.querySelector("#starttime").value}`;
+  let eventStartDate = "";
+  let eventStartTime = "";
+  if (frequency === "once") {
+    const duration = document.querySelector("#duration").selectedOptions[0].value;
+    if (duration === "same day") {
+      eventStartDate = document.querySelector("#startdate").value;
+      eventStartTime = document.querySelector("#starttime").value;
+    } else if (duration === "multiple days") {
+      eventStartDate = document.querySelector("#oneTimeEventBeginDate").value;
+      eventStartTime = document.querySelector("#oneTimeEventBeginTime").value;
+    }
+  } else {
+    eventStartDate = document.querySelector("#startdate").value;
+    eventStartTime = document.querySelector("#starttime").value;
+  }
+  let eventStartDateTime = `${eventStartDate} ${eventStartTime}`;
 
   recipientName = getDefaultRecipientName();
   senderFirstName = getSenderFirstName();
   invitedDate = getDefaultInvitedDate();
   eventTitle = document.querySelector("#eventtitle").value;
   eventType = document.querySelector("#eventtype").selectedOptions[0].value;
-  eventDate = Intl.DateTimeFormat(lang, {
+  eventStartDate = Intl.DateTimeFormat(lang, {
     weekday: "long",
     month: "long",
     day: "numeric"
-  }).format(new Date(eventDateTime));
-  eventTime = Intl.DateTimeFormat(lang, {
+  }).format(new Date(eventStartDateTime));
+  eventStartTime = Intl.DateTimeFormat(lang, {
     timeStyle: "short"
-  }).format(new Date(eventDateTime));
+  }).format(new Date(eventStartDateTime));
 
   const previewModal = document.querySelector("#preview .modal-body");
   const currentHTML = previewModal.innerHTML;
@@ -471,8 +492,8 @@ function populateInterpolatedPhrases() {
   newHTML = newHTML.replaceAll("{SENDER-FIRST-NAME}", `<span data-interpolated='SENDER-FIRST-NAME'>${senderFirstName}</span>`);
   newHTML = newHTML.replaceAll("{INVITED-DATE}", `<span data-interpolated='INVITED-DATE'>${invitedDate}</span>`);
   newHTML = newHTML.replaceAll("{EVENT-TITLE}", `<span data-interpolated='EVENT-TITLE'>${eventTitle}</span>`);
-  newHTML = newHTML.replaceAll("{EVENT-DATE}", `<span data-interpolated='EVENT-DATE'>${eventDate}</span>`);
-  newHTML = newHTML.replaceAll("{EVENT-TIME}", `<span data-interpolated='EVENT-TIME'>${eventTime}</span>`);
+  newHTML = newHTML.replaceAll("{EVENT-START-DATE}", `<span data-interpolated='EVENT-START-DATE'>${eventStartDate}</span>`);
+  newHTML = newHTML.replaceAll("{EVENT-START-TIME}", `<span data-interpolated='EVENT-START-TIME'>${eventStartTime}</span>`);
 
   previewModal.innerHTML = newHTML;
 }
@@ -550,6 +571,79 @@ function showError(msg, selector, inlineMsg) {
     };
   }
   showModal(msg, formIncomplete);
+}
+
+function showSingleDay() {
+  const container = document.querySelector("#timeAndDateSingleDay");
+  const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
+  const eventStartDate = document.querySelector("#startdate").value;
+  const eventStartTime = document.querySelector("#starttime").value;
+  const eventStartDateTime = `${eventStartDate} ${eventStartTime}`;
+  const weekday = Intl.DateTimeFormat(lang, { weekday: "long" }).format(new Date(eventStartDateTime));
+  const weekdayEl = document.querySelector("#singleDayWeekday");
+  const previewEventStartDateShort = Intl.DateTimeFormat(lang, { dateStyle: "short" }).format(new Date(eventStartDateTime));
+  const previewEventStartTimeShort = Intl.DateTimeFormat(lang, { timeStyle: "short" }).format(new Date(eventStartDateTime));
+  const singleDayDateEl = document.querySelector("#singleDayDate");
+  const singleDayStartTimeEl = document.querySelector("#singleDayStartTime");
+
+  weekdayEl.innerHTML = weekday;
+  singleDayDateEl.innerHTML = previewEventStartDateShort;
+  singleDayStartTimeEl.innerHTML = previewEventStartTimeShort;
+  hideAllDateTimes();
+  container.classList.remove("d-none");
+}
+
+function showMultipleDays() {
+  const container = document.querySelector("#timeAndDateMultipleDays");
+  const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
+  const oneTimeEventBeginDate = document.querySelector("#oneTimeEventBeginDate").value;
+  const oneTimeEventBeginTime = document.querySelector("#oneTimeEventBeginTime").value;
+  const oneTimeEventEndDate = document.querySelector("#oneTimeEventEndDate").value;
+  const oneTimeEventEndTime = document.querySelector("#oneTimeEventEndTime").value;
+  const eventStartDateTime = `${oneTimeEventBeginDate} ${oneTimeEventBeginTime}`;
+  const eventEndDateTime = `${oneTimeEventEndDate} ${oneTimeEventEndTime}`;
+  const previewEventStartDateShort = Intl.DateTimeFormat(lang, { dateStyle: "short" }).format(new Date(eventStartDateTime));
+  const previewEventStartTimeShort = Intl.DateTimeFormat(lang, { timeStyle: "short" }).format(new Date(eventStartDateTime));
+  const previewEventEndDateShort = Intl.DateTimeFormat(lang, { dateStyle: "short" }).format(new Date(eventEndDateTime));
+  const previewEventEndTimeShort = Intl.DateTimeFormat(lang, { timeStyle: "short" }).format(new Date(eventEndDateTime));
+  const weekdayStartDate = Intl.DateTimeFormat(lang, { weekday: "long" }).format(new Date(eventStartDateTime));
+  const weekdayEndDate = Intl.DateTimeFormat(lang, { weekday: "long" }).format(new Date(eventEndDateTime));
+  const multiDayStartingWeekdayEl = document.querySelector("#multiDayStartingWeekday");
+  const multiDayStartingDateEl = document.querySelector("#multiDayStartingDate");
+  const multiDayStartingTimeEl = document.querySelector("#multiDayStartingTime");
+  const multiDayEndingWeekdayEl = document.querySelector("#multiDayEndingWeekday");
+  const multiDayEndingDateEl = document.querySelector("#multiDayEndingDate");
+  const multiDayEndingTimeEl = document.querySelector("#multiDayEndingTime");
+
+  multiDayStartingWeekdayEl.innerHTML = weekdayStartDate;
+  multiDayStartingDateEl.innerHTML = previewEventStartDateShort;
+  multiDayStartingTimeEl.innerHTML = previewEventStartTimeShort;
+
+  multiDayEndingWeekdayEl.innerHTML = weekdayEndDate;
+  multiDayEndingDateEl.innerHTML = previewEventEndDateShort;
+  multiDayEndingTimeEl.innerHTML = previewEventEndTimeShort;
+
+  hideAllDateTimes();
+  container.classList.remove("d-none");
+}
+
+function showRepeating(frequency) {
+  if ((!frequency) || (!frequency.length)) return;
+  const container = document.querySelector("#timeAndDateRepeating");
+  const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
+  const frequencyPhrase = document.querySelector("#frequency").selectedOptions[0].getAttribute("data-i18n");
+  const frequencyTranslated = getPhrase(frequencyPhrase);
+  const startDate = document.querySelector("#startdate").value;
+  const startTime = document.querySelector("#starttime").value;
+  const eventStartDateTime = `${startDate} ${startTime}`;
+  const startTimeLocalized = Intl.DateTimeFormat(lang, { timeStyle: "short" }).format(new Date(eventStartDateTime));
+  const repeatingWeekdayEl = document.querySelector("#repeatingWeekday");
+  const repeatingStartTimeEl = document.querySelector("#repeatingStartTime");
+
+  repeatingWeekdayEl.innerHTML = frequencyTranslated;
+  repeatingStartTimeEl.innerHTML = startTimeLocalized;
+  hideAllDateTimes();
+  container.classList.remove("d-none");
 }
 
 function validate() {
@@ -644,7 +738,7 @@ function validate() {
         showError(getPhrase("validateOneTimeEventEndTime"), "#oneTimeEventEndTime", getPhrase("fieldIsRequired"));
         return false;
       }
-    } else {
+    } else if (duration === "same day") {
       if (startdate === "") {
         showError(getPhrase("validateOneTimeEventBeginDate"), "#startdate", getPhrase("fieldIsRequired"));
         return false;
@@ -660,7 +754,7 @@ function validate() {
         return false;
       }
     }
-  } else {
+  } else { // Frequency is not once, but every (e.g. Friday)
     if (startdate === "") {
       showError(getPhrase("validateOneTimeEventBeginDate"), "#startdate", getPhrase("fieldIsRequired"));
       return false;

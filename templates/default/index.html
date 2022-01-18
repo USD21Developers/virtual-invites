@@ -33,8 +33,10 @@
       
       PLACEHOLDERS:
 
-      {EVENT-DATE}        - the date of the event
-      {EVENT-TIME}        - the start time of the event
+      {EVENT-START-DATE}  - the date that the event starts
+      {EVENT-START-TIME}  - the time that the event starts
+      {EVENT-END-DATE}    - the date that the event ends (if it spans multiple days)
+      {EVENT-END-TIME}    - the time that the event ends
       {EVENT-TITLE}       - the title of the event (e.g. "The Northern Lights Bible Talk")
       {INVITED-DATE}      - the date when the recipient was invited
       {RECIPIENT-NAME}    - the name of the recipient (likely first name, unless sender inputs full name of recipient)
@@ -51,18 +53,47 @@
             <h1
               class="text-center text-uppercase mt-0 mb-4"
               id="eventTitle"
-            >Bible Talk</h1>
+            >{EVENT-TITLE}</h1>
 
-            <p class="text-center mt-4 mb-1">
-              <strong>
-                <span id="eventDate">Fridays</span> <span data-i18n="event-at">@</span> <span id="eventStartTime">7:30 PM</span>
-              </strong>
-              <div id="eventAddress" class="text-center">
-                Starbucks<br />
-                555 Main Street<br />
-                Phoenix, AZ 99999<br />
-              </div>
-            </p>
+            <!-- REPEATING DAYS -->
+            <!-- Every Friday @ 7:30 PM -->
+            <div id="timeAndDateRepeating" class="text-center d-none">
+              <strong id="repeatingWeekday">Every Friday</strong> 
+              <strong data-i18n="event-at">@</strong> 
+              <strong id="repeatingStartTime">7:30 PM</strong>
+            </div>
+
+            <!-- SINGLE DAY -->
+            <!-- Friday 3/22/22 @ 7:30 PM -->
+            <div id="timeAndDateSingleDay" class="text-center">
+              <strong id="singleDayWeekday">Friday</strong> 
+              <strong id="singleDayDate">3/22/22</strong> 
+              <strong data-i18n="event-at">@</strong> 
+              <strong id="singleDayStartTime">7:30 PM</strong>
+            </div>
+
+            <!-- MULTIPLE DAYS -->
+            <!-- From Friday 3/22/22 @ 7:30 PM -->
+            <!-- To Sunday 3/25/22 @ 4:30 PM -->
+            <div id="timeAndDateMultipleDays" class="text-center d-none">
+              <span data-i18n="multiDayFromLabel" class="mr-1">From</span>
+              <strong id="multiDayStartingWeekday">Friday</strong> 
+              <strong id="multiDayStartingDate">3/22/22</strong> 
+              <strong data-i18n="event-at">@</strong> 
+              <strong id="multiDayStartingTime">7:30 PM</strong>
+              <br>
+              <span data-i18n="multiDayToLabel" class="mr-1">To</span> 
+              <strong id="multiDayEndingWeekday">Sunday</strong> 
+              <strong id="multiDayEndingDate">3/25/22</strong> 
+              <strong data-i18n="event-at">@</strong> 
+              <strong id="multiDayEndingTime">4:30 PM</strong>
+            </div>
+
+            <div class="text-center mt-1 mb-1" id="eventAddress">
+              Starbucks<br />
+              555 Main Street<br />
+              Phoenix, AZ 99999<br />
+            </div>
 
             <p class="text-center mt-4">
               <span class="material-icons material-icons-outlined text-dark">
@@ -86,7 +117,7 @@
             </div>
 
             <div class="mb-2" id="defaultGreeting">
-              <p id="defaultGreetingParagraph1">Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to Bible Talk. I'm looking forward to joining you there {EVENT-DATE} at {EVENT-TIME}.</p>
+              <p id="defaultGreetingParagraph1">Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to Bible Talk. I'm looking forward to joining you there {EVENT-START-DATE} at {EVENT-START-TIME}.</p>
               <p data-i18n="default-greeting-paragraph-2">If you can join, I recommend adding it to your calendar (above) to help you remember.</p>
               <p data-i18n="default-greeting-paragraph-3">I hope to see you there!</p>
             </div>
