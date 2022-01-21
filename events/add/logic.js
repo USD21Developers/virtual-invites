@@ -444,6 +444,41 @@ function populateFormBasedPhrases() {
   } else {
     showRepeating(frequency);
   }
+
+  const eventContactNameEl = document.querySelector("#eventContactName");
+  const contactFirstName = document.querySelector("#contactFirstName").value.trim() || "";
+  const contactLastName = document.querySelector("#contactLastName").value.trim() || "";
+  let contactFullName = "";
+  if (contactFirstName.length) {
+    if (contactLastName.length) {
+      contactFullName = `${contactFirstName} ${contactLastName}`;
+    } else {
+      contactFullName = contactFirstName;
+    }
+  } else {
+    contactFullName = contactLastName;
+  }
+  eventContactNameEl.innerHTML = contactFullName;
+
+  const contactPhoneEl = document.querySelector("a[data-i18n='phone-call']");
+  const contactSmsEl = document.querySelector("a[data-i18n='text-message']");
+  const contactEmailEl = document.querySelector("a[data-i18n='email']");
+  const contactSms = iti.getNumber() || "";
+  const contactEmail = document.querySelector("#contactEmail").value.trim().toLowerCase() || "";
+
+  if (contactSms !== "") {
+    contactPhoneEl.setAttribute("href", `tel:${contactSms}`);
+    contactSmsEl.setAttribute("href", `sms:${contactSms}`);
+  } else {
+    contactPhoneEl.classList.add("d-none");
+    contactSmsEl.classList.add("d-none");
+  }
+
+  if (contactEmail !== "") {
+    contactEmailEl.setAttribute("href", `mailto:${contactEmail}`);
+  } else {
+    contactEmailEl.classList.add("d-none");
+  }
 }
 
 function populateInterpolatedPhrases() {
