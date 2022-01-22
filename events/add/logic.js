@@ -479,6 +479,15 @@ function populateFormBasedPhrases() {
   } else {
     contactEmailEl.classList.add("d-none");
   }
+
+  const locationDetailsEl = document.querySelector("#additionalLocationDetails");
+  const locationDetails = document.querySelector("#locationDetails").value.trim() || "";
+  if (locationDetails !== "") {
+    locationDetailsEl.innerHTML = locationDetails;
+    locationDetailsEl.classList.remove("d-none");
+  } else {
+    locationDetailsEl.classList.add("d-none");
+  }
 }
 
 function populateInterpolatedPhrases() {

@@ -155,13 +155,33 @@
     },
     {
       "key": "headlineLocationDetails",
-      "original": "Additional Details",
-      "translated": "Additional Details"
+      "original": "Location Details",
+      "translated": "Location Details"
     },
     {
       "key": "labelLocationDetails",
       "original": "Location Details",
       "translated": "Location Details"
+    },
+    {
+      "key": "locationDetailsForExample",
+      "original": "For example:",
+      "translated": "e.g."
+    },
+    {
+      "key": "locationDetailsExample1",
+      "original": "Across from the red building",
+      "translated": "Across from the red building"
+    },
+    {
+      "key": "locationDetailsExample2",
+      "original": "Next to the fountain",
+      "translated": "Next to the fountain"
+    },
+    {
+      "key": "locationDetailsExample3",
+      "original": "Behind the gas station",
+      "translated": "Behind the gas station"
     },
     {
       "key": "addressHeadline",
