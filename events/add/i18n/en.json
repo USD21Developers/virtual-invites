@@ -154,6 +154,16 @@
       "translated": "Physical Location:"
     },
     {
+      "key": "locationName",
+      "original": "Location Name",
+      "translated": "Location Name"
+    },
+    {
+      "key": "locationNameExample",
+      "original": "Example: Starbucks",
+      "translated": "e.g. Starbucks"
+    },
+    {
       "key": "headlineLocationDetails",
       "original": "Location Details",
       "translated": "Location Details"

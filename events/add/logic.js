@@ -480,6 +480,15 @@ function populateFormBasedPhrases() {
     contactEmailEl.classList.add("d-none");
   }
 
+  const previewLocationName = preview.querySelector("#previewLocationName");
+  const locationName = document.querySelector("#locationName").value.trim() || "";
+  if (locationName !== "") {
+    previewLocationName.innerHTML = locationName;
+    previewLocationName.classList.remove("d-none");
+  } else {
+    previewLocationName.classList.add("d-none");
+  }
+
   const locationDetailsEl = document.querySelector("#additionalLocationDetails");
   const locationDetails = document.querySelector("#locationDetails").value.trim() || "";
   if (locationDetails !== "") {
