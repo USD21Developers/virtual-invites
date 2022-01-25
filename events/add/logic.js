@@ -380,8 +380,7 @@ function populateDrivingDirections() {
     if (addressLink.length > 0) {
       addressLink = `https://www.google.com/maps/dir/?api=1&destination=${addressLink}&sensor=true`;
     } else if (mapCoordinates.length > 0) {
-      addressLink = `https://www.google.com/maps/dir//${mapCoordinates}`;
-      addressLink = `https://www.google.com/maps/dir/?api=1&query=${mapCoordinates}&sensor=true`;
+      addressLink = `https://www.google.com/maps/search/?api=1&query=${mapCoordinates}`;
     } else {
       mapLinkEl.classList.add("d-none");
     }
