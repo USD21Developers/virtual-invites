@@ -111,15 +111,9 @@ function onClickDetectLocation(e) {
 
     customScrollTo("label[for=latitude]");
 
-    mapCoordinates = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+    mapCoordinates = `${latitude}%2C${longitude}`;
 
-    showToast(
-      `<a href="${mapCoordinates}" class="text-white">
-        ${getPhrase("geocoordinatesSuccessMessage")}
-      </a>`,
-      5000,
-      "success"
-    );
+    showToast(getPhrase("geocoordinatesSuccessMessage"), 5000, "success");
   };
 
   if (navigator.geolocation) {
@@ -369,6 +363,7 @@ function populateDrivingDirections() {
   });
 
   const operatingSystem = getMobileOperatingSystem();
+  mapLinkEl.classList.remove("d-none");
 
   // Use Apple Maps if we're on iOS. For all other operating systems, use Google Maps.
   if (operatingSystem === "iOS") {
@@ -376,14 +371,19 @@ function populateDrivingDirections() {
     if (addressLink.length > 0) {
       addressLink = `http://maps.apple.com/?daddr={addressLink}&dirflg=d&t=h`;
     } else if (mapCoordinates.length > 0) {
-      addressLink = `http://maps.apple.com/?sll=${mapCoordinates}&z=10&t=s`
+      addressLink = `http://maps.apple.com/?sll=${mapCoordinates}&z=10&t=s`;
+    } else {
+      mapLinkEl.classList.add("d-none");
     }
   } else {
     // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
     if (addressLink.length > 0) {
       addressLink = `https://www.google.com/maps/dir/?api=1&destination=${addressLink}&sensor=true`;
     } else if (mapCoordinates.length > 0) {
-      addressLink = `https://www.google.com/maps/dir/?api=1&destination=${mapCoordinates}&sensor=true`
+      addressLink = `https://www.google.com/maps/dir//${mapCoordinates}`;
+      addressLink = `https://www.google.com/maps/dir/?api=1&query=${mapCoordinates}&sensor=true`;
+    } else {
+      mapLinkEl.classList.add("d-none");
     }
   }
   return mapLinkEl.setAttribute("href", addressLink);
