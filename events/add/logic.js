@@ -234,6 +234,7 @@ function onPreviewClosed(e) {
   viewedPreview = true;
   history.pushState(null, null, "./");
   submitRow.classList.remove("d-none");
+  previewSpinner("hide");
   customScrollTo("#submitrow");
 }
 
@@ -699,6 +700,25 @@ function showRepeating(frequency) {
   container.classList.remove("d-none");
 }
 
+function previewSpinner(action) {
+  const previewButton = document.querySelector("#previewbutton");
+  const previewButtonIcon = previewButton.querySelector(".material-icons");
+  const previewButtonText = previewButton.querySelector("#previewbutton [data-i18n='previewButton'], #previewbutton [data-i18n='previewButton]:hover");
+  const spinnerIcon = previewButton.querySelector(".spinner");
+
+  if (action === "show") {
+    previewButtonIcon.style.opacity = 0;
+    previewButtonText.classList.add("d-none");
+    spinnerIcon.classList.remove("d-none");
+    return;
+  } else if (action === "hide") {
+    previewButtonIcon.style.opacity = 1;
+    previewButtonText.classList.remove("d-none");
+    spinnerIcon.classList.add("d-none");
+    return;
+  }
+}
+
 function validate() {
   const form = document.querySelector("#formAddEvent");
   const now = moment();
@@ -915,6 +935,8 @@ function attachListeners() {
 
   document.querySelector("#previewbutton").addEventListener("click", () => {
     const validated = validate();
+
+    previewSpinner("show");
 
     if (!validated) return false;
     onPreview();
