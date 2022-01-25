@@ -234,8 +234,11 @@ function onPreviewClosed(e) {
   viewedPreview = true;
   history.pushState(null, null, "./");
   submitRow.classList.remove("d-none");
-  previewSpinner("hide");
   customScrollTo("#submitrow");
+}
+
+function onPreviewOpened() {
+  previewSpinner("hide");
 }
 
 function onSubmit(e) {
@@ -953,6 +956,8 @@ function attachListeners() {
         onPreviewClosed();
     }
   });
+
+  $("#preview").on("shown.bs.modal", onPreviewOpened);
 
   $("#preview").on("hidden.bs.modal", onPreviewClosed);
 }
