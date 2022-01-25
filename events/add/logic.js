@@ -339,12 +339,7 @@ function populateDrivingDirections() {
   const mapLinkEl = document.querySelector("#preview").querySelector("[data-i18n='map-and-directions']");
   const form = document.querySelector("#formAddEvent");
 
-  // Use latitude/longitude coordinates if we have them
-  if (mapCoordinates.length > 0) {
-    return mapLinkEl.setAttribute("href", mapCoordinates);
-  }
-
-  // Otherwise, use address info from the form
+  // Use address info from the form if we have it
   const addressLine1 = form.querySelector("#addressLine1").value || "";
   const addressLine2 = form.querySelector("#addressLine2").value || "";
   const addressLine3 = form.querySelector("#addressLine3").value || "";
@@ -373,7 +368,24 @@ function populateDrivingDirections() {
     addressLink = addressLink.replaceAll(item.char, item.replacement);
   });
 
-  addressLink = `https://www.google.com/maps/dir/?api=1&destination=${addressLink}&sensor=true`;
+  const operatingSystem = getMobileOperatingSystem();
+
+  // Use Apple Maps if we're on iOS. For all other operating systems, use Google Maps.
+  if (operatingSystem === "iOS") {
+    // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
+    if (addressLink.length > 0) {
+      addressLink = `http://maps.apple.com/?daddr={addressLink}&dirflg=d&t=h`;
+    } else if (mapCoordinates.length > 0) {
+      addressLink = `http://maps.apple.com/?sll=${mapCoordinates}&z=10&t=s`
+    }
+  } else {
+    // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
+    if (addressLink.length > 0) {
+      addressLink = `https://www.google.com/maps/dir/?api=1&destination=${addressLink}&sensor=true`;
+    } else if (mapCoordinates.length > 0) {
+      addressLink = `https://www.google.com/maps/dir/?api=1&destination=${mapCoordinates}&sensor=true`
+    }
+  }
   return mapLinkEl.setAttribute("href", addressLink);
 }
 
