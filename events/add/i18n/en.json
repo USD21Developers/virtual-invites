@@ -160,8 +160,8 @@
     },
     {
       "key": "locationNameExample",
-      "original": "Example: Starbucks",
-      "translated": "e.g. Starbucks"
+      "original": "Example: Marriott Hotel",
+      "translated": "e.g. Marriott Hotel"
     },
     {
       "key": "headlineLocationDetails",
@@ -190,8 +190,8 @@
     },
     {
       "key": "locationDetailsExample3",
-      "original": "Behind the gas station",
-      "translated": "Behind the gas station"
+      "original": "Second floor, room A",
+      "translated": "Second floor, room A"
     },
     {
       "key": "addressHeadline",
