@@ -111,7 +111,7 @@ function onClickDetectLocation(e) {
 
     customScrollTo("label[for=latitude]");
 
-    mapCoordinates = `${latitude}%2C${longitude}`;
+    mapCoordinates = `${latitude},${longitude}`;
 
     showToast(getPhrase("geocoordinatesSuccessMessage"), 5000, "success");
   };
