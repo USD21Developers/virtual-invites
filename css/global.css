@@ -60,7 +60,7 @@ td {
   margin-top: -10px;
   margin-left: -10px;
   border-radius: 50%;
-  border: 2px solid #ccc;
+  border: 2px solid #fff;
   border-top-color: #000;
   animation: spinner 0.6s linear infinite;
 }

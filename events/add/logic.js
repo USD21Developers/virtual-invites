@@ -952,7 +952,12 @@ function attachListeners() {
 
     previewSpinner("show");
 
-    if (!validated) return false;
+    if (!validated) {
+      previewSpinner("hide");
+      return false;
+    }
+
+    window.location.hash = "#preview";
     onPreview();
   });
 

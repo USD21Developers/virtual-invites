@@ -159,11 +159,6 @@
       "translated": "Location Name"
     },
     {
-      "key": "locationNameExample",
-      "original": "Example: Marriott Hotel",
-      "translated": "e.g. Marriott Hotel"
-    },
-    {
       "key": "headlineLocationDetails",
       "original": "Location Details",
       "translated": "Location Details"
@@ -180,18 +175,18 @@
     },
     {
       "key": "locationDetailsExample1",
+      "original": "Second floor, room A",
+      "translated": "Second floor, room A"
+    },
+    {
+      "key": "locationDetailsExample2",
       "original": "Across from the red building",
       "translated": "Across from the red building"
     },
     {
-      "key": "locationDetailsExample2",
-      "original": "Next to the fountain",
-      "translated": "Next to the fountain"
-    },
-    {
       "key": "locationDetailsExample3",
-      "original": "Second floor, room A",
-      "translated": "Second floor, room A"
+      "original": "Next to the playground",
+      "translated": "Next to the playground"
     },
     {
       "key": "addressHeadline",
