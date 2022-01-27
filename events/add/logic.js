@@ -184,6 +184,17 @@ function onFrequencyChange(e) {
   }
 }
 
+function onLocationDiscreetClicked(e) {
+  const isChecked = e.target.checked;
+  const locationInfo = document.querySelector("#locationInfo");
+
+  if (isChecked) {
+    locationInfo.classList.add("d-none");
+  } else {
+    locationInfo.classList.remove("d-none");
+  }
+}
+
 async function onPreview() {
   clearErrorMessages();
 
@@ -216,6 +227,18 @@ async function onPreview() {
   previewModal.querySelector(".modal-body").innerHTML = html;
   const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
   await populateContent(`../../i/i18n/${lang}.json`, "previewContent");
+
+  const locationIsDiscreet = document.querySelector("#locationIsDiscreet").checked;
+  const locationInfo = previewModal.querySelector("#previewLocationInfo");
+  const requestLocationInfo = previewModal.querySelector("#previewRequestLocationInfo");
+  if (locationIsDiscreet) {
+    locationInfo.classList.add("d-none");
+    requestLocationInfo.classList.remove("d-none");
+  } else {
+    locationInfo.classList.remove("d-none");
+    requestLocationInfo.classList.add("d-none");
+  }
+
   populateDrivingDirections();
   populateFormBasedPhrases();
   populateInterpolatedPhrases();
@@ -748,6 +771,7 @@ function validate() {
   const oneTimeEventBeginTime = form.oneTimeEventBeginTime.value.trim() || "";
   const oneTimeEventEndDate = form.oneTimeEventEndDate.value.trim() || "";
   const oneTimeEventEndTime = form.oneTimeEventEndTime.value.trim() || "";
+  const locationIsDiscreet = form.locationIsDiscreet.checked;
   const addressLine1 = form.addressLine1.value.trim() || "";
   const addressLine2 = form.addressLine2.value.trim() || "";
   const addressLine3 = form.addressLine3.value.trim() || "";
@@ -858,44 +882,46 @@ function validate() {
     }
   }
 
-  let numAddressLines = 0;
-  const line1Populated = (addressLine1.length > 0);
-  const line2Populated = (addressLine2.length > 0);
-  const line3Populated = (addressLine3.length > 0);
-  const latPopulated = (latitude.length > 0);
-  const longPopulated = (longitude.length > 0);
+  if (!locationIsDiscreet) {
+    let numAddressLines = 0;
+    const line1Populated = (addressLine1.length > 0);
+    const line2Populated = (addressLine2.length > 0);
+    const line3Populated = (addressLine3.length > 0);
+    const latPopulated = (latitude.length > 0);
+    const longPopulated = (longitude.length > 0);
 
-  if (line1Populated) numAddressLines += 1;
-  if (line2Populated) numAddressLines += 1;
-  if (line3Populated) numAddressLines += 1;
+    if (line1Populated) numAddressLines += 1;
+    if (line2Populated) numAddressLines += 1;
+    if (line3Populated) numAddressLines += 1;
 
-  if (numAddressLines === 1) {
-    if (!addressLine1.length) {
-      showError(getPhrase("validateMinimumAddressLines"), "#addressLine1", getPhrase("fieldIsRequired"));
-    } else if (!addressLine2.length) {
-      showError(getPhrase("validateMinimumAddressLines"), "#addressLine2", getPhrase("fieldIsRequired"));
-    } else if (!addressLine3.length) {
-      showError(getPhrase("validateMinimumAddressLines"), "#addressLine3", getPhrase("fieldIsRequired"));
+    if (numAddressLines === 1) {
+      if (!addressLine1.length) {
+        showError(getPhrase("validateMinimumAddressLines"), "#addressLine1", getPhrase("fieldIsRequired"));
+      } else if (!addressLine2.length) {
+        showError(getPhrase("validateMinimumAddressLines"), "#addressLine2", getPhrase("fieldIsRequired"));
+      } else if (!addressLine3.length) {
+        showError(getPhrase("validateMinimumAddressLines"), "#addressLine3", getPhrase("fieldIsRequired"));
+      }
+      return false;
+    } else if (numAddressLines >= 2) {
+      if (country === "") {
+        showError(getPhrase("validateCountryRequired"), "#country", getPhrase("fieldIsRequired"));
+        return false;
+      }
     }
-    return false;
-  } else if (numAddressLines >= 2) {
-    if (country === "") {
-      showError(getPhrase("validateCountryRequired"), "#country", getPhrase("fieldIsRequired"));
+
+    if ((!latPopulated) && (longPopulated)) {
+      showError(getPhrase("validateLatitudeRequired"), "#latitude", getPhrase("fieldIsRequired"));
+      return false;
+    } else if ((latPopulated) && (!longPopulated)) {
+      showError(getPhrase("validateLongitudeRequired"), "#longitude", getPhrase("fieldIsRequired"));
       return false;
     }
-  }
 
-  if ((!latPopulated) && (longPopulated)) {
-    showError(getPhrase("validateLatitudeRequired"), "#latitude", getPhrase("fieldIsRequired"));
-    return false;
-  } else if ((latPopulated) && (!longPopulated)) {
-    showError(getPhrase("validateLongitudeRequired"), "#longitude", getPhrase("fieldIsRequired"));
-    return false;
-  }
-
-  if ((!latPopulated) && (!longPopulated) && (numAddressLines === 0)) {
-    showError(getPhrase("validateLocationRequired"), "#addressLine1");
-    return false;
+    if ((!latPopulated) && (!longPopulated) && (numAddressLines === 0)) {
+      showError(getPhrase("validateLocationRequired"), "#addressLine1");
+      return false;
+    }
   }
 
   if (!contactFirstName.length) {
@@ -940,6 +966,8 @@ function attachListeners() {
   document
     .querySelector("#duration")
     .addEventListener("change", onDurationChange);
+
+  document.querySelector("#locationIsDiscreet").addEventListener("click", onLocationDiscreetClicked);
 
   document
     .querySelector("#detectCoordinatesButton")

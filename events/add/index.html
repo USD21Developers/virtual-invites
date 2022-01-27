@@ -334,143 +334,151 @@
 
             <fieldset id="locationContainer" class="my-5">
               <legend data-i18n="headlineLocation"></legend>
-              <div class="mb-5">
-                <h4>
-                  <span data-18n="locationName">Location Name</span> 
-                  <span data-i18n="optional" class="font-weight-light">(optional)</span>
-                </h4>
-                <data class="form-group mb-3">
-                  <input type="text" class="form-control" id="locationName" />
-                </data>
-              </div>
-              <div id="addressContainer">
-                <h4 data-i18n="addressHeadline" class="mb-0"></h4>
-                <div class="form-group mb-5">
-                  <div class="mb-3">
-                    <label for="addressLine1"></label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="addressLine1"
-                      data-i18n-placeholder="addressLine1"
-                    />
-                    <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
-                  </div>
-                  <div class="my-3">
-                    <label for="addressLine2"></label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="addressLine2"
-                      data-i18n-placeholder="addressLine2"
-                    />
-                    <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
-                  </div>
-                  <div class="my-3">
-                    <label for="addressLine3"></label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="addressLine3"
-                      data-i18n-placeholder="addressLine3"
-                    />
-                    <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
-                  </div>
-
-                  <div class="my-4 form-group">
-                    <select class="form-control" id="country">
-                      <option value="" data-i18n="selectCountry"></option>
-                    </select>
-                    <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
-                  </div>
-
-                  <div id="coordinatesContainer">
-                    <h4 class="mt-5 mb-4">
-                      <span data-i18n="coordinatesHeadline"></span>
-                      <span
-                        data-i18n="optional"
-                        class="font-weight-light"
-                      ></span>
-                    </h4>
-                    <div class="row">
-                      <div class="col">
-                        <div class="floating-label">
-                          <label for="latitude" data-i18n="latitude"></label>
-                          <input
-                            id="latitude"
-                            type="number"
-                            class="form-control"
-                          />
-                          <div class="invalid-feedback"></div>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="floating-label">
-                          <label for="longitude" data-i18n="longitude"></label>
-                          <input
-                            id="longitude"
-                            type="number"
-                            class="form-control"
-                          />
-                          <div class="invalid-feedback"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div id="detectCoordinates" class="mt-3 d-none">
-                      <p data-i18n="coordinatesDetectionExplanation" class="my-4"></p>
-                      <div class="text-center my-4">
-                        <button
-                          class="btn btn-info"
-                          id="detectCoordinatesButton"
-                          data-i18n="buttonDetectLocation"
-                        ></button>
-                      </div>
-                    </div>
-                  </div>
+              <div class="mt-4 mb-5">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="true" id="locationIsDiscreet">
+                  <label class="form-check-label" for="locationIsDiscreet" data-i18n="locationIsDiscreet"></label>
                 </div>
-                <h4 class="mb-0">
-                  <span data-i18n="headlineLocationDetails"></span>
-                  <span
-                    data-i18n="optional"
-                    class="font-weight-light"
-                  ></span>
-                </h4>
-                <div class="form-group">
-                  <table class="text-muted mt-1 mb-2" cellpadding="3">
-                    <tbody>
-                      <tr>
-                        <td valign="top" rowspan="4" class="pr-2" data-i18n="locationDetailsForExample">e.g.</td>
-                        <td class="text-muted" data-i18n="locationDetailsExample1">Across from the red building</td>
-                      </tr>
-                      <tr>
-                        <td class="text-muted" data-i18n="locationDetailsExample2">Next to the fountain</td>
-                      </tr>
-                      <tr>
-                        <td class="text-muted" data-i18n="locationDetailsExample3">Behind the gas station</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div class="textfield-box">
-                    <label
-                      for="locationDetails"
-                      data-i18n="labelLocationDetails"
-                      class="d-none"
-                    ></label>
-                    <textarea
-                      class="form-control"
-                      id="locationDetails"
-                      rows="3"
-                    ></textarea>
-                    <div class="invalid-feedback"></div>
+              </div>
+              <div id="locationInfo">
+                <div class="mb-5">
+                  <h4>
+                    <span data-i18n="locationName"></span> 
+                    <span data-i18n="optional" class="font-weight-light"></span>
+                  </h4>
+                  <data class="form-group mb-3">
+                    <input type="text" class="form-control" id="locationName" />
+                  </data>
+                </div>
+                <div id="addressContainer">
+                  <h4 data-i18n="addressHeadline" class="mb-0"></h4>
+                  <div class="form-group mb-5">
+                    <div class="mb-3">
+                      <label for="addressLine1"></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="addressLine1"
+                        data-i18n-placeholder="addressLine1"
+                      />
+                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                    </div>
+                    <div class="my-3">
+                      <label for="addressLine2"></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="addressLine2"
+                        data-i18n-placeholder="addressLine2"
+                      />
+                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                    </div>
+                    <div class="my-3">
+                      <label for="addressLine3"></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="addressLine3"
+                        data-i18n-placeholder="addressLine3"
+                      />
+                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                    </div>
+
+                    <div class="my-4 form-group">
+                      <select class="form-control" id="country">
+                        <option value="" data-i18n="selectCountry"></option>
+                      </select>
+                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                    </div>
+
+                    <div id="coordinatesContainer">
+                      <h4 class="mt-5 mb-4">
+                        <span data-i18n="coordinatesHeadline"></span>
+                        <span
+                          data-i18n="optional"
+                          class="font-weight-light"
+                        ></span>
+                      </h4>
+                      <div class="row">
+                        <div class="col">
+                          <div class="floating-label">
+                            <label for="latitude" data-i18n="latitude"></label>
+                            <input
+                              id="latitude"
+                              type="number"
+                              class="form-control"
+                            />
+                            <div class="invalid-feedback"></div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="floating-label">
+                            <label for="longitude" data-i18n="longitude"></label>
+                            <input
+                              id="longitude"
+                              type="number"
+                              class="form-control"
+                            />
+                            <div class="invalid-feedback"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div id="detectCoordinates" class="mt-3 d-none">
+                        <p data-i18n="coordinatesDetectionExplanation" class="my-4"></p>
+                        <div class="text-center my-4">
+                          <button
+                            class="btn btn-info"
+                            id="detectCoordinatesButton"
+                            data-i18n="buttonDetectLocation"
+                          ></button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>    
+                  <h4 class="mb-0">
+                    <span data-i18n="headlineLocationDetails"></span>
+                    <span
+                      data-i18n="optional"
+                      class="font-weight-light"
+                    ></span>
+                  </h4>
+                  <div class="form-group">
+                    <table class="text-muted mt-1 mb-2" cellpadding="3">
+                      <tbody>
+                        <tr>
+                          <td valign="top" rowspan="4" class="pr-2" data-i18n="locationDetailsForExample"></td>
+                          <td class="text-muted" data-i18n="locationDetailsExample1"></td>
+                        </tr>
+                        <tr>
+                          <td class="text-muted" data-i18n="locationDetailsExample2"></td>
+                        </tr>
+                        <tr>
+                          <td class="text-muted" data-i18n="locationDetailsExample3"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="textfield-box">
+                      <label
+                        for="locationDetails"
+                        data-i18n="labelLocationDetails"
+                        class="d-none"
+                      ></label>
+                      <textarea
+                        class="form-control"
+                        id="locationDetails"
+                        rows="3"
+                      ></textarea>
+                      <div class="invalid-feedback"></div>
+                    </div>
+                  </div>    
+                </div>
               </div>
             </fieldset>
 
             <fieldset id="attendVirtuallyContainer" class="my-5">
               <legend>
                 <span data-i18n="headlineAttendVirtually"></span>
-                <span data-i18n="optional" class="font-weight-light">(optional):</span>
+                <span data-i18n="optional" class="font-weight-light"></span>
               </legend>
               <div>
                 <p data-i18n="attendVirtuallyExplanation"></p>

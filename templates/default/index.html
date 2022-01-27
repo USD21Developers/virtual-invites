@@ -89,30 +89,33 @@
               <strong id="multiDayEndingTime">4:30 PM</strong>
             </div>
 
-            <div id="previewLocationName" class="text-center d-none" data-i18n="locationName">
-              Starbucks
+            <div id="previewLocationInfo">
+              <div id="previewLocationName" class="text-center d-none" data-i18n="locationName">
+                Starbucks
+              </div>
+
+              <div class="text-center mt-0 mb-1" id="eventAddress">
+                555 Main Street<br />
+                Phoenix, AZ 99999<br />
+              </div>
+
+              <div id="additionalLocationDetails" class="d-none text-center font-italic my-4">
+                Across from the red building
+              </div>
+
+              <p class="text-center mt-4">
+                <span class="material-icons material-icons-outlined text-dark">
+                  place
+                </span>
+
+                <a
+                  href="https://www.google.com/maps/dir/?api=1&destination=555%20Main%20Street,%20Phoenix,%20AZ,%2099999&sensor=true"
+                  style="text-decoration: underline"
+                  data-i18n="map-and-directions"
+                >Map and Directions</a>
+              </p>
             </div>
-
-            <div class="text-center mt-0 mb-1" id="eventAddress">
-              555 Main Street<br />
-              Phoenix, AZ 99999<br />
-            </div>
-
-            <div id="additionalLocationDetails" class="d-none text-center font-italic my-4">
-              Across from the red building
-            </div>
-
-            <p class="text-center mt-4">
-              <span class="material-icons material-icons-outlined text-dark">
-                place
-              </span>
-
-              <a
-                href="https://www.google.com/maps/dir/?api=1&destination=555%20Main%20Street,%20Phoenix,%20AZ,%2099999&sensor=true"
-                style="text-decoration: underline"
-                data-i18n="map-and-directions"
-              >Map and Directions</a>
-            </p>
+            <div id="previewRequestLocationInfo" class="d-none text-center mt-1" data-i18n="previewRequestLocationInfo"></div>
 
             <div class="text-center my-5">
               <button class="btn btn-info">
