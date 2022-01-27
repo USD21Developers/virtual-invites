@@ -154,18 +154,14 @@
       "translated": "Physical Location:"
     },
     {
-      "key": "locationIsDiscreet",
-      "original": "Location is discreet; do not display it. The invite recipient should inquire for details.",
-      "translated": "Location is discreet; do not display it. The invite recipient should inquire for details.",
-      "changes": [
-        {
-          "original": "Location is discreet; do not display it.",
-          "translated": "Location is discreet; do not display it.",
-          "bold": true,
-          "italic": false,
-          "link": ""
-        }
-      ]
+      "key": "locationIsDiscreetLine1",
+      "original": "Location is discreet; do not display it.",
+      "translated": "Location is discreet; do not display it."
+    },
+    {
+      "key": "locationIsDiscreetLine2",
+      "original": "The invite recipient should inquire for details.",
+      "translated": "The invite recipient should inquire for details."
     },
     {
       "key": "locationName",
