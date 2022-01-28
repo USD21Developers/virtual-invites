@@ -192,7 +192,7 @@ function onLocationVisibilityChanged(e) {
     locationInfo.classList.add("d-none");
   } else {
     locationInfo.classList.remove("d-none");
-    customScrollTo("#locationInfo");
+    customScrollTo("#locationContainer");
   }
 }
 
