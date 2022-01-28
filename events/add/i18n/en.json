@@ -160,8 +160,8 @@
     },
     {
       "key": "locationIsPublicLine2",
-      "original": "The address and details are safe to display on the invite.",
-      "translated": "The address and details are safe to display on the invite."
+      "original": "The address and other location details are safe to display on the invite.",
+      "translated": "The address and other location details are safe to display on the invite."
     },
     {
       "key": "locationIsDiscreetLine1",
