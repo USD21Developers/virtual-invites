@@ -179,32 +179,32 @@
       "translated": "Location Name"
     },
     {
-      "key": "headlineLocationDetails",
-      "original": "Location Details",
-      "translated": "Location Details"
+      "key": "headlineOtherLocationDetails",
+      "original": "Other Details",
+      "translated": "Other Details"
     },
     {
-      "key": "labelLocationDetails",
-      "original": "Location Details",
-      "translated": "Location Details"
+      "key": "labelOtherLocationDetails",
+      "original": "Other Details",
+      "translated": "Other Details"
     },
     {
-      "key": "locationDetailsForExample",
+      "key": "otherLocationDetailsForExample",
       "original": "For example:",
       "translated": "e.g."
     },
     {
-      "key": "locationDetailsExample1",
+      "key": "otherLocationDetailsExample1",
       "original": "Second floor, room A",
       "translated": "Second floor, room A"
     },
     {
-      "key": "locationDetailsExample2",
+      "key": "otherLocationDetailsExample2",
       "original": "Across from the red building",
       "translated": "Across from the red building"
     },
     {
-      "key": "locationDetailsExample3",
+      "key": "otherLocationDetailsExample3",
       "original": "Next to the playground",
       "translated": "Next to the playground"
     },

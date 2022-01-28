@@ -527,13 +527,14 @@ function populateFormBasedPhrases() {
     previewLocationName.classList.add("d-none");
   }
 
-  const locationDetailsEl = document.querySelector("#additionalLocationDetails");
-  const locationDetails = document.querySelector("#locationDetails").value.trim() || "";
-  if (locationDetails !== "") {
-    locationDetailsEl.innerHTML = locationDetails;
-    locationDetailsEl.classList.remove("d-none");
+  const previewOtherLocationDetails = document.querySelector("#previewOtherLocationDetails");
+  const otherLocationDetails = document.querySelector("#otherLocationDetails").value.trim() || "";
+  if (otherLocationDetails !== "") {
+    previewOtherLocationDetails.innerHTML = otherLocationDetails;
+    previewOtherLocationDetails.classList.remove("d-none");
   } else {
-    locationDetailsEl.classList.add("d-none");
+    previewOtherLocationDetails.innerHTML = "";
+    previewOtherLocationDetails.classList.add("d-none");
   }
 }
 
