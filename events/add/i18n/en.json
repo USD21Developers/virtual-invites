@@ -170,8 +170,8 @@
     },
     {
       "key": "locationIsDiscreetLine2",
-      "original": "The invite recipient should inquire for details.",
-      "translated": "The invite recipient should inquire for details."
+      "original": "The invite recipient should inquire for location details.",
+      "translated": "The invite recipient should inquire for location details."
     },
     {
       "key": "locationName",
