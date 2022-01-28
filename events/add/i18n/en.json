@@ -154,9 +154,19 @@
       "translated": "Physical Location:"
     },
     {
+      "key": "locationIsPublicLine1",
+      "original": "Location is public.",
+      "translated": "Location is public."
+    },
+    {
+      "key": "locationIsPublicLine2",
+      "original": "The address and details are safe to display on the invite.",
+      "translated": "The address and details are safe to display on the invite."
+    },
+    {
       "key": "locationIsDiscreetLine1",
-      "original": "Location is discreet; do not display it.",
-      "translated": "Location is discreet; do not display it."
+      "original": "Location is discreet. Don't display it.",
+      "translated": "Location is discreet. Don't display it."
     },
     {
       "key": "locationIsDiscreetLine2",

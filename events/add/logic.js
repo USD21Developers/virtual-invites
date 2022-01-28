@@ -184,11 +184,11 @@ function onFrequencyChange(e) {
   }
 }
 
-function onLocationDiscreetClicked(e) {
-  const isChecked = e.target.checked;
+function onLocationVisibilityChanged(e) {
+  const isDiscreet = e.target.value === 'discreet' ? true : false;
   const locationInfo = document.querySelector("#locationInfo");
 
-  if (isChecked) {
+  if (isDiscreet) {
     locationInfo.classList.add("d-none");
   } else {
     locationInfo.classList.remove("d-none");
@@ -228,7 +228,7 @@ async function onPreview() {
   const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
   await populateContent(`../../i/i18n/${lang}.json`, "previewContent");
 
-  const locationIsDiscreet = document.querySelector("#locationIsDiscreet").checked;
+  const locationIsDiscreet = document.querySelector("#locationIsDiscreet").checked || false;
   const locationInfo = previewModal.querySelector("#previewLocationInfo");
   const requestLocationInfo = previewModal.querySelector("#previewRequestLocationInfo");
   if (locationIsDiscreet) {
@@ -771,7 +771,7 @@ function validate() {
   const oneTimeEventBeginTime = form.oneTimeEventBeginTime.value.trim() || "";
   const oneTimeEventEndDate = form.oneTimeEventEndDate.value.trim() || "";
   const oneTimeEventEndTime = form.oneTimeEventEndTime.value.trim() || "";
-  const locationIsDiscreet = form.locationIsDiscreet.checked;
+  const locationIsDiscreet = document.querySelector("#locationIsDiscreet").checked || false;
   const addressLine1 = form.addressLine1.value.trim() || "";
   const addressLine2 = form.addressLine2.value.trim() || "";
   const addressLine3 = form.addressLine3.value.trim() || "";
@@ -967,7 +967,8 @@ function attachListeners() {
     .querySelector("#duration")
     .addEventListener("change", onDurationChange);
 
-  document.querySelector("#locationIsDiscreet").addEventListener("click", onLocationDiscreetClicked);
+  document.querySelector("#locationIsPublic").addEventListener("change", onLocationVisibilityChanged);
+  document.querySelector("#locationIsDiscreet").addEventListener("change", onLocationVisibilityChanged);
 
   document
     .querySelector("#detectCoordinatesButton")
