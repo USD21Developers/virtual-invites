@@ -104,11 +104,11 @@ h6 {
 
 .floating-label.is-focused label,
 .floating-label.has-value label {
-  color: var(--primary);
-  filter: brightness(75%);
+  color: var(--secondary);
+  filter: brightness(30%);
   font-family: Lato, sans-serif;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 500;
   margin-top: -0.25rem;
   text-transform: uppercase;
 }
