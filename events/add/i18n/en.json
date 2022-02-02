@@ -336,8 +336,8 @@
     },
     {
       "key": "contactLastName",
-      "original": "Last name",
-      "translated": "Last name"
+      "original": "Last name  (optional)",
+      "translated": "Last name  (optional)"
     },
     {
       "key": "contactPhone",
