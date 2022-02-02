@@ -372,6 +372,7 @@ async function populateContent(customEndpoint, variable = "pageContent") {
           const { key, translated, changes } = phrase;
           const hasChanges = Array.isArray(changes);
           let content = translated;
+          content = content.replaceAll("  ", " &nbsp;");
           if (hasChanges) {
             changes.forEach((change) => {
               const {
@@ -430,6 +431,7 @@ function populateGlobalContent() {
           const { key, translated, changes } = phrase;
           const hasChanges = Array.isArray(changes);
           let content = translated;
+          content = content.replaceAll("  ", " &nbsp;");
           if (hasChanges) {
             changes.forEach((change) => {
               const {
