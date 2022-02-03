@@ -25,13 +25,13 @@
     },
     {
       "key": "menuPeopleIveInvited",
-      "original": "People I've Invited",
-      "translated": "People I've Invited"
+      "original": "Recipients",
+      "translated": "Recipients"
     },
     {
       "key": "menuEventsImSharing",
-      "original": "Events I'm Sharing",
-      "translated": "Events I'm Sharing"
+      "original": "Events",
+      "translated": "Events"
     },
     {
       "key": "menuMaps",
