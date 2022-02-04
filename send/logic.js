@@ -74,6 +74,11 @@ async function getCoordinatesOnLoad() {
   }
 }
 
+function getCopyPasteBodyText() {
+  const text = localStorage.getItem("bodyTextCopyPaste") || "";
+  return text;
+}
+
 function getEmailBodyText() {
   const text = localStorage.getItem("bodyTextEmail") || "";
   return text;
@@ -127,11 +132,12 @@ function getSendBody() {
   const inviteToText = getInviteToText() || "";
   const smsBodyText = getSmsBodyText() || "";
   const emailBodyText = getEmailBodyText() || "";
+  const copyPasteBodyText = getCopyPasteBodyText() || "";
   let sendBody = "";
 
   switch (sendVia) {
     case "sms":
-      sendBody = `${getInviteToText()}:\r\n\r\n${finalURL}`;
+      sendBody = `${inviteToText}:\r\n\r\n${finalURL}`;
       if (smsBodyText.length) {
         sendBody += `\r\n\r\n${smsBodyText}`;
       }
@@ -142,6 +148,16 @@ function getSendBody() {
         sendBody += `\r\n\r\n${emailBodyText}\r\n\r\n`;
       }
       break;
+    case "copypaste":
+      sendBody = `${inviteToText}:
+
+${finalURL}
+
+`;
+      if (copyPasteBodyText.length) {
+        sendBody += copyPasteBodyText;
+      }
+      return sendBody;
     default:
       return;
   }
@@ -256,10 +272,12 @@ async function loadEventsToInvitePeopleTo() {
 function onAfterSubmitted(sendvia) {
   // Reset text of send button
   const sendButton = document.querySelector("#btnSendInvite");
-  sendButton.innerText =
-    sendvia === "qrcode"
-      ? getPhrase("buttonsaveinvite")
-      : getPhrase("buttonsendinvite");
+
+  if ((sendvia === "qrcode") || (sendvia === "copypaste")) {
+    sendButton.innerText = getPhrase("buttonsaveinvite");
+  } else {
+    sendButton.innerText = getPhrase("buttonsendinvite");
+  }
 
   // Set content of modal
   let modalContent;
@@ -326,6 +344,30 @@ function onGeoLocationSuccess(pos) {
   };
 
   // showToast(`<a href="https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}">${latitude}, ${longitude}</a>`);
+}
+
+async function onInviteCopied() {
+  const sendBody = getSendBody();
+  const button = document.querySelector("#btnCopyPaste");
+
+  // Copy the invite to the clipboard
+  await navigator.clipboard.writeText(sendBody);
+
+  // Change appearance of button
+  button.classList.remove("btn-light");
+  button.classList.remove("text-dark");
+  button.classList.add("btn-success");
+  button.classList.add("text-white");
+  button.innerHTML = getPhrase("copied");
+
+  // Reset appearance of button after a few seconds
+  setTimeout(() => {
+    button.classList.remove("btn-success");
+    button.classList.remove("text-white");
+    button.classList.add("btn-light");
+    button.classList.add("text-dark");
+    button.innerHTML = getPhrase("copyinvite");
+  }, 5000);
 }
 
 function onSendViaChanged() {
@@ -407,12 +449,14 @@ function populateSaveButtonData() {
   const btnSendInvite = document.querySelector("#btnSendInvite");
   btnSendInvite.setAttribute("data-defaulttext", getPhrase("buttonsendinvite"));
   btnSendInvite.setAttribute("data-qrcodetext", getPhrase("buttonsaveinvite"));
+  btnSendInvite.setAttribute("data-copypastetext", getPhrase("buttonsaveinvite"));
 }
 
 function selectSendVia(method) {
   const containerSms = document.querySelector("#containerSendToSms");
   const containerEmail = document.querySelector("#containerSendToEmail");
   const containerQRCode = document.querySelector("#containerSendToQRCode");
+  const containerCopyPaste = document.querySelector("#containerCopyPaste");
   const containerQRCodeInstructions = document.querySelector(
     "#containerQRCodeInstructions"
   );
@@ -429,6 +473,7 @@ function selectSendVia(method) {
   containerEmail.classList.add("d-none");
   containerQRCode.classList.add("d-none");
   containerQRCodeInstructions.classList.add("d-none");
+  containerCopyPaste.classList.add("d-none");
   containerTagWithLocation.classList.add("d-none");
   smsField.removeAttribute("required");
   emailField.removeAttribute("required");
@@ -484,6 +529,12 @@ function selectSendVia(method) {
           document.getElementById("containerSendToQRCode").offsetTop - 64;
         window.scroll({ top: qrCodeContainerOffset, behavior: "smooth" });
       }
+      break;
+    case "copypaste":
+      btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-copypastetext");
+      localStorage.setItem("lastSendMethodSelected", "copypaste");
+      containerCopyPaste.classList.remove("d-none");
+      containerTagWithLocation.classList.remove("d-none");
       break;
   }
 }
@@ -554,6 +605,9 @@ function setEventListeners() {
   document
     .querySelector("#tagwithlocation")
     .addEventListener("click", onTagWithLocation);
+  document
+    .querySelector("#btnCopyPaste")
+    .addEventListener("click", onInviteCopied);
   document
     .querySelector("#btnSendInvite")
     .addEventListener("click", onSubmitButtonClick);
