@@ -152,7 +152,6 @@ function getSendBody() {
       sendBody = `${inviteToText}:
 
 ${finalURL}
-
 `;
       if (copyPasteBodyText.length) {
         sendBody += copyPasteBodyText;
