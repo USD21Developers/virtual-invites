@@ -151,8 +151,7 @@ function getSendBody() {
     case "copypaste":
       sendBody = `${inviteToText}:
 
-${finalURL}
-`;
+${finalURL}`;
       if (copyPasteBodyText.length) {
         sendBody += copyPasteBodyText;
       }
