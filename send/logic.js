@@ -348,8 +348,6 @@ async function onInviteCopied() {
   const sendBody = getSendBody();
   const button = document.querySelector("#btnCopyPaste");
 
-  // TODO:  check local storage to prevent copying the same invite to multiple recipients (link must always be unique to the recipient)
-
   // Copy the invite to the clipboard
   await navigator.clipboard.writeText(sendBody);
 
