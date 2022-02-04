@@ -393,6 +393,7 @@ function onSubmitButtonClick(e) {
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
       showForwardingMessage("sms");
       console.log("Setting SMS timer");
+
       setTimeout(() => {
         onAfterSubmitted("sms");
         console.log("Timer finished");
@@ -529,10 +530,10 @@ function selectSendVia(method) {
       }
       break;
     case "copypaste":
-      btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-copypastetext");
       localStorage.setItem("lastSendMethodSelected", "copypaste");
       containerCopyPaste.classList.remove("d-none");
-      containerTagWithLocation.classList.remove("d-none");
+      isMobile && containerTagWithLocation.classList.remove("d-none");
+      btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-copypastetext");
       break;
   }
 }
