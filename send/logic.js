@@ -372,6 +372,7 @@ function onGeoLocationSuccess(pos) {
 }
 
 function onSendViaChanged() {
+  clearErrorMessages();
   selectSendVia();
 }
 
