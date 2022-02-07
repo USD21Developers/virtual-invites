@@ -272,7 +272,7 @@ async function onAfterSubmitted(sendvia) {
   modalFooter.classList.remove("d-none");
 
   const thisRecipient = document.querySelector("#recipientname").value.trim() || "";
-  if (thisRecipient === "") {
+  if ((sendvia === "copypaste") && (thisRecipient === "")) {
     modalFooter.classList.add("d-none");
     return showError(getPhrase("recipientNameRequired"), "#recipientname", getPhrase("fieldRequired"));
   }
