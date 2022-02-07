@@ -205,8 +205,8 @@
     },
     {
       "key": "afterSentBullet1CopyPaste",
-      "original": "Open any messaging app.",
-      "translated": "Open any messaging app."
+      "original": "Open any messaging app that {RECIPIENT-NAME} uses.",
+      "translated": "Open any messaging app that {RECIPIENT-NAME} uses."
     },
     {
       "key": "afterSentBullet2CopyPaste",

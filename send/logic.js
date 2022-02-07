@@ -303,7 +303,7 @@ async function onAfterSubmitted(sendvia) {
     modalContent = `
       <p>${getPhrase("afterSentParagraph1CopyPaste")}</p>
       <ol>
-        <li>${getPhrase("afterSentBullet1CopyPaste")}</li>
+        <li>${getPhrase("afterSentBullet1CopyPaste").replace("{RECIPIENT-NAME}", thisRecipient)}</li>
         <li>${getPhrase("afterSentBullet2CopyPaste").replace("{RECIPIENT-NAME}", thisRecipient)}</li>
         <li>${getPhrase("afterSentBullet3CopyPaste")}</li>
       </ol>
