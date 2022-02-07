@@ -55,8 +55,8 @@
     },
     {
       "key": "clickCopyButton",
-      "original": "Click the Copy Invite button below, then immediately paste the invite into any messaging app:",
-      "translated": "Click the Copy Invite button below, then immediately paste the invite into any messaging app:",
+      "original": "Click 'Copy Invite' below, then immediately paste into any messaging app:",
+      "translated": "Click 'Copy Invite' below, then immediately paste into any messaging app:",
       "changes": [
         {
           "original": "Copy Invite",
