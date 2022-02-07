@@ -874,7 +874,7 @@ function validate() {
     }
 
     if (isDateInPast(startdate)) {
-      showError(getPhrase("validatePastDateGeneric"), "#oneTimeEventBeginDate", getPhrase("datesInPastAreInvalid"));
+      showError(getPhrase("validatePastDateGeneric"), "#startdate", getPhrase("datesInPastAreInvalid"));
       return false;
     }
 
