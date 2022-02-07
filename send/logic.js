@@ -307,8 +307,7 @@ async function onAfterSubmitted(sendvia) {
         <li>${getPhrase("afterSentBullet2CopyPaste").replace("{RECIPIENT-NAME}", thisRecipient)}</li>
         <li>${getPhrase("afterSentBullet3CopyPaste")}</li>
       </ol>
-      <p>${getPhrase("afterSentParagraph2CopyPaste")}</p>
-      <p>${getPhrase("afterSentParagraph3CopyPaste").replaceAll("{RECIPIENT-NAME}", thisRecipient)}</p>
+      <p>${getPhrase("afterSentParagraph2CopyPaste").replaceAll("{RECIPIENT-NAME}", thisRecipient)}</p>
       <p class="mt-4">
         <hr class="my-3" />
         <strong>${getPhrase("problemsSending")}</strong> &nbsp; 

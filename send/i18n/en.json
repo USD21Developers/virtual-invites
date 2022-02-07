@@ -220,11 +220,6 @@
     },
     {
       "key": "afterSentParagraph2CopyPaste",
-      "original": "Do not send this particular invite to any other recipient.",
-      "translated": "Do not send this particular invite to any other recipient."
-    },
-    {
-      "key": "afterSentParagraph3CopyPaste",
       "original": "When {RECIPIENT-NAME} clicks and views the invite that you pasted, you will be notified via e-mail.",
       "translated": "When {RECIPIENT-NAME} clicks and views the invite that you pasted, you will be notified via e-mail."
     },
