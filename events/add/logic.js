@@ -827,7 +827,7 @@ function validate() {
         return false;
       }
 
-      if (moment(oneTimeEventBeginDate).diff(now) < 0) {
+      if (!isDateInPast(oneTimeEventBeginDate)) {
         showError(getPhrase("validatePastOneTimeEventBeginDate"), "#oneTimeEventBeginDate", getPhrase("datesInPastAreInvalid"));
         return false;
       }
@@ -842,7 +842,7 @@ function validate() {
         return false;
       }
 
-      if (moment(oneTimeEventEndDate).diff(now) < 0) {
+      if (isDateInPast(oneTimeEventEndDate, oneTimeEventEndTime)) {
         showError(getPhrase("validatePastOneTimeEventEndDate"), "#oneTimeEventEndDate", getPhrase("datesInPastAreInvalid"));
         return false;
       }
@@ -857,8 +857,8 @@ function validate() {
         return false;
       }
 
-      if (moment(oneTimeEventBeginDate).diff(now) < 0) {
-        showError(getPhrase("validatePastOneTimeEventBeginDate"), "#oneTimeEventBeginDate", getPhrase("datesInPastAreInvalid"));
+      if (isDateInPast(startdate)) {
+        showError(getPhrase("validatePastDateGeneric"), "#startdate", getPhrase("datesInPastAreInvalid"));
         return false;
       }
 
@@ -873,8 +873,8 @@ function validate() {
       return false;
     }
 
-    if (moment(oneTimeEventBeginDate).diff(now) < 0) {
-      showError(getPhrase("validatePastOneTimeEventBeginDate"), "#oneTimeEventBeginDate", getPhrase("datesInPastAreInvalid"));
+    if (isDateInPast(startdate)) {
+      showError(getPhrase("validatePastDateGeneric"), "#oneTimeEventBeginDate", getPhrase("datesInPastAreInvalid"));
       return false;
     }
 

@@ -445,6 +445,11 @@
       "translated": "Please input the date when the event begins."
     },
     {
+      "key": "validatePastDateGeneric",
+      "original": "Please input a date that is not in the past.",
+      "translated": "Please input a date that is not in the past."
+    },
+    {
       "key": "validateInvalidOneTimeEventBeginDate",
       "original": "Please input a valid date for when the event begins.",
       "translated": "Please input a valid date for when the event begins."
