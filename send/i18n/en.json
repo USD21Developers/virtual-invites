@@ -55,12 +55,20 @@
     },
     {
       "key": "clickCopyButton",
-      "original": "Click 'Copy Invite' below, then immediately paste into any messaging app:",
-      "translated": "Click 'Copy Invite' below, then immediately paste into any messaging app:",
+      "original": "(1) Click 'Copy Invite' below, (2) click 'Save Invite,' then immediately (3) paste into any messaging app:",
+      "translated": "(1) Click 'Copy Invite' below, (2) click 'Save Invite,' then immediately (3) paste into any messaging app:",
       "changes": [
         {
           "original": "Copy Invite",
           "translated": "Copy Invite",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        },
+        {
+          "original": "Save Invite",
+          "translated": "Save Invite",
           "bold": true,
           "italic": false,
           "underline": false,
