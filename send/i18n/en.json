@@ -73,6 +73,14 @@
           "italic": false,
           "underline": false,
           "link": ""
+        },
+        {
+          "original": "paste",
+          "translated": "paste",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
         }
       ]
     },
