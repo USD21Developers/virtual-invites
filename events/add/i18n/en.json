@@ -486,8 +486,8 @@
     },
     {
       "key": "datesMustNotBeOnSameDay",
-      "original": "The beginning and ending dates must not be on the same day.",
-      "translated": "The beginning and ending dates must not be on the same day."
+      "original": "For events that span multiple days, the beginning and ending dates must not be on the same day.",
+      "translated": "For events that span multiple days, the beginning and ending dates must not be on the same day."
     },
     {
       "key": "validateMinimumAddressLines",
