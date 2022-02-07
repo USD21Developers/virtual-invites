@@ -267,14 +267,25 @@ async function loadEventsToInvitePeopleTo() {
   // TODO:  fetch events from API for user, store the result to localStorage, then refresh the UI with it
 }
 
-function onAfterSubmitted(sendvia) {
+async function onAfterSubmitted(sendvia) {
+  const modalFooter = document.querySelector(".modal-footer");
+  modalFooter.classList.remove("d-none");
+
+  const thisRecipient = document.querySelector("#recipientname").value.trim() || "";
+  if (thisRecipient === "") {
+    modalFooter.classList.add("d-none");
+    return showError(getPhrase("recipientNameRequired"), "#recipientname", getPhrase("fieldRequired"));
+  }
+
   // Reset text of send button
   const sendButton = document.querySelector("#btnSendInvite");
 
-  if ((sendvia === "qrcode") || (sendvia === "copypaste")) {
+  if (sendvia === "qrcode") {
     sendButton.innerText = getPhrase("buttonsaveinvite");
-  } else {
-    sendButton.innerText = getPhrase("buttonsendinvite");
+  } else if (sendvia === "copypaste") {
+    sendButton.innerText = getPhrase("buttoncopyinvite");
+    const sendBody = getSendBody();
+    await navigator.clipboard.writeText(sendBody);
   }
 
   // Set content of modal
@@ -286,6 +297,22 @@ function onAfterSubmitted(sendvia) {
         <hr class="my-3" />
         <strong>${getPhrase("problemsScanning")}</strong> &nbsp; 
         ${getPhrase("problemsScanningSuggestion")}
+      </p>
+    `;
+  } else if (sendvia === "copypaste") {
+    modalContent = `
+      <p>${getPhrase("afterSentParagraph1CopyPaste")}</p>
+      <ol>
+        <li>${getPhrase("afterSentBullet1CopyPaste")}</li>
+        <li>${getPhrase("afterSentBullet2CopyPaste").replace("{RECIPIENT-NAME}", thisRecipient)}</li>
+        <li>${getPhrase("afterSentBullet3CopyPaste")}</li>
+      </ol>
+      <p>${getPhrase("afterSentParagraph2CopyPaste")}</p>
+      <p>${getPhrase("afterSentParagraph3CopyPaste").replaceAll("{RECIPIENT-NAME}", thisRecipient)}</p>
+      <p class="mt-4">
+        <hr class="my-3" />
+        <strong>${getPhrase("problemsSending")}</strong> &nbsp; 
+        ${getPhrase("problemsSendingSuggestion")}
       </p>
     `;
   } else {
@@ -300,7 +327,7 @@ function onAfterSubmitted(sendvia) {
   }
 
   // Save to localStorage, try to sync, then show modal
-  const txtInviteRecorded = getPhrase("inviteRecorded");
+  const txtInviteRecorded = (sendvia === "copypaste") ? getPhrase("inviteCopied") : getPhrase("inviteRecorded");
   const txtBtnRetry = getPhrase("btnRetry");
   saveAndSync()
     .then(() => {
@@ -344,30 +371,6 @@ function onGeoLocationSuccess(pos) {
   // showToast(`<a href="https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}">${latitude}, ${longitude}</a>`);
 }
 
-async function onInviteCopied() {
-  const sendBody = getSendBody();
-  const button = document.querySelector("#btnCopyPaste");
-
-  // Copy the invite to the clipboard
-  await navigator.clipboard.writeText(sendBody);
-
-  // Change appearance of button
-  button.classList.remove("btn-light");
-  button.classList.remove("text-dark");
-  button.classList.add("btn-success");
-  button.classList.add("text-white");
-  button.innerHTML = getPhrase("copied");
-
-  // Reset appearance of button after a few seconds
-  setTimeout(() => {
-    button.classList.remove("btn-success");
-    button.classList.remove("text-white");
-    button.classList.add("btn-light");
-    button.classList.add("text-dark");
-    button.innerHTML = getPhrase("copyinvite");
-  }, 5000);
-}
-
 function onSendViaChanged() {
   selectSendVia();
 }
@@ -375,6 +378,9 @@ function onSendViaChanged() {
 function onSubmit(e) {
   e.preventDefault();
   const sendVia = getSendVia();
+
+  clearErrorMessages();
+
   if (sendVia !== "qrcode") {
     const btnSendInvite = document.querySelector("#btnSendInvite");
     btnSendInvite.click();
@@ -387,6 +393,8 @@ function onSubmitButtonClick(e) {
   const sendTo = getSendTo();
   const sendBody = getSendBody();
   const emailSubjectLine = getEmailSubjectLine();
+
+  clearErrorMessages();
 
   switch (sendVia) {
     case "sms":
@@ -408,6 +416,10 @@ function onSubmitButtonClick(e) {
       setTimeout(() => {
         onAfterSubmitted("email");
       }, 5000);
+      break;
+    case "copypaste":
+      e.preventDefault();
+      onAfterSubmitted("copypaste");
       break;
     default:
       e.preventDefault();
@@ -448,14 +460,13 @@ function populateSaveButtonData() {
   const btnSendInvite = document.querySelector("#btnSendInvite");
   btnSendInvite.setAttribute("data-defaulttext", getPhrase("buttonsendinvite"));
   btnSendInvite.setAttribute("data-qrcodetext", getPhrase("buttonsaveinvite"));
-  btnSendInvite.setAttribute("data-copypastetext", getPhrase("buttonsaveinvite"));
+  btnSendInvite.setAttribute("data-copypastetext", getPhrase("buttoncopyinvite"));
 }
 
 function selectSendVia(method) {
   const containerSms = document.querySelector("#containerSendToSms");
   const containerEmail = document.querySelector("#containerSendToEmail");
   const containerQRCode = document.querySelector("#containerSendToQRCode");
-  const containerCopyPaste = document.querySelector("#containerCopyPaste");
   const containerQRCodeInstructions = document.querySelector(
     "#containerQRCodeInstructions"
   );
@@ -472,7 +483,6 @@ function selectSendVia(method) {
   containerEmail.classList.add("d-none");
   containerQRCode.classList.add("d-none");
   containerQRCodeInstructions.classList.add("d-none");
-  containerCopyPaste.classList.add("d-none");
   containerTagWithLocation.classList.add("d-none");
   smsField.removeAttribute("required");
   emailField.removeAttribute("required");
@@ -531,7 +541,6 @@ function selectSendVia(method) {
       break;
     case "copypaste":
       localStorage.setItem("lastSendMethodSelected", "copypaste");
-      containerCopyPaste.classList.remove("d-none");
       isMobile && containerTagWithLocation.classList.remove("d-none");
       btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-copypastetext");
       break;
@@ -566,6 +575,20 @@ function setDefaultSendMethod() {
     document.querySelector("#sendvia").value = lastSendMethodSelected;
     selectSendVia(lastSendMethodSelected);
   }
+}
+
+function showError(msg, selector, inlineMsg) {
+  const formIncomplete = getPhrase("formIncomplete");
+
+  formErrorsReset();
+  if (selector) {
+    if (inlineMsg) {
+      formError(selector, inlineMsg);
+    } else {
+      formError(selector);
+    };
+  }
+  showModal(msg, formIncomplete);
 }
 
 function showForwardingMessage(sendvia) {
@@ -604,9 +627,6 @@ function setEventListeners() {
   document
     .querySelector("#tagwithlocation")
     .addEventListener("click", onTagWithLocation);
-  document
-    .querySelector("#btnCopyPaste")
-    .addEventListener("click", onInviteCopied);
   document
     .querySelector("#btnSendInvite")
     .addEventListener("click", onSubmitButtonClick);

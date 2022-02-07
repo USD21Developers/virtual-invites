@@ -118,6 +118,12 @@ function breakify(text) {
   return text.replace(/(?:\r\n|\r|\n)/g, '<br>\n');
 }
 
+function clearErrorMessages() {
+  document.querySelectorAll(".is-invalid").forEach(item => {
+    item.classList.remove("is-invalid");
+  });
+}
+
 function enableTooltips() {
   $('[data-toggle="tooltip"]').tooltip();
 }

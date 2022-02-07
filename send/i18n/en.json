@@ -54,47 +54,6 @@
       "translated": "Copy & Paste"
     },
     {
-      "key": "clickCopyButton",
-      "original": "(1) Click 'Copy Invite' below, (2) click 'Save Invite,' then immediately (3) paste it into any messaging app:",
-      "translated": "(1) Click 'Copy Invite' below, (2) click 'Save Invite,' then immediately (3) paste it into any messaging app:",
-      "changes": [
-        {
-          "original": "Copy Invite",
-          "translated": "Copy Invite",
-          "bold": true,
-          "italic": false,
-          "underline": false,
-          "link": ""
-        },
-        {
-          "original": "Save Invite",
-          "translated": "Save Invite",
-          "bold": true,
-          "italic": false,
-          "underline": false,
-          "link": ""
-        },
-        {
-          "original": "paste it",
-          "translated": "paste it",
-          "bold": true,
-          "italic": false,
-          "underline": false,
-          "link": ""
-        }
-      ]
-    },
-    {
-      "key": "copyinvite",
-      "original": "Copy Invite",
-      "translated": "Copy Invite"
-    },
-    {
-      "key": "copied",
-      "original": "Copied!",
-      "translated": "Copied!"
-    },
-    {
       "key": "instructionsLabel",
       "original": "Instructions:",
       "translated": "Instructions:"
@@ -145,6 +104,26 @@
       "translated": "SAVE INVITE"
     },
     {
+      "key": "buttoncopyinvite",
+      "original": "COPY INVITE",
+      "translated": "COPY INVITE"
+    },
+    {
+      "key": "formIncomplete",
+      "original": "Form Incomplete",
+      "translated": "Form Incomplete"
+    },
+    {
+      "key": "fieldRequired",
+      "original": "This field is required.",
+      "translated": "This field is required."
+    },
+    {
+      "key": "recipientNameRequired",
+      "original": "Please input the recipient's name.",
+      "translated": "Please input the recipient's name."
+    },
+    {
       "key": "openingsms",
       "original": "Opening SMS...",
       "translated": "Opening SMS..."
@@ -185,6 +164,11 @@
       "translated": "Invite Recorded"
     },
     {
+      "key": "inviteCopied",
+      "original": "Invite Copied",
+      "translated": "Invite Copied"
+    },
+    {
       "key": "btnRetry",
       "original": "Retry",
       "translated": "Retry"
@@ -203,6 +187,46 @@
       "key": "afterSentParagraph1QRCode",
       "original": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked and viewed the invite.",
       "translated": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked and viewed the invite."
+    },
+    {
+      "key": "afterSentParagraph1CopyPaste",
+      "original": "Now you must immediately do the following:",
+      "translated": "Now you must immediately do the following:",
+      "changes": [
+        {
+          "original": "immediately",
+          "translated": "immediately",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "afterSentBullet1CopyPaste",
+      "original": "Open any messaging app",
+      "translated": "Open any messaging app"
+    },
+    {
+      "key": "afterSentBullet2CopyPaste",
+      "original": "Create a message addressed to {thisRecipient}",
+      "translated": "Create a message addressed to {RECIPIENT-NAME}"
+    },
+    {
+      "key": "afterSentBullet3CopyPaste",
+      "original": "Paste the invite into the message",
+      "translated": "Paste the invite into the message"
+    },
+    {
+      "key": "afterSentParagraph2CopyPaste",
+      "original": "Do not send this particular invite to any other recipient.",
+      "translated": "Do not send this particular invite to any other recipient."
+    },
+    {
+      "key": "afterSentParagraph3CopyPaste",
+      "original": "When {RECIPIENT-NAME} clicks and views the invite that you pasted, you will be notified via e-mail.",
+      "translated": "When {RECIPIENT-NAME} clicks and views the invite that you pasted, you will be notified via e-mail."
     },
     {
       "key": "problemsSending",

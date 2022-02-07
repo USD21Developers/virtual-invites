@@ -217,6 +217,7 @@
               data-i18n-placeholder="recipientsName"
               required
             />
+            <div class="invalid-feedback"></div>
           </div>
         </div>
 
@@ -298,23 +299,6 @@
           </div>
         </div>
 
-        <div class="form-group row mb-5 d-none" id="containerCopyPaste">
-          <div
-            class="col-4 col-md-2 offset-md-2 col-form-label py-1 pr-0 text-right"
-          >
-            <h4 class="text-uppercase">&nbsp;</h4>
-          </div>
-          <div class="col-8 col-md-5">
-            <div class="text-dark mb-4" data-i18n="clickCopyButton"></div>
-            <button
-              type="button"
-              id="btnCopyPaste"
-              class="btn btn-light text-dark"
-              data-i18n="copyinvite"
-            ></button>
-          </div>
-        </div>
-
         <div class="row my-4 d-none" id="containerTagWithLocation">
           <div
             class="col col-sm-8 offset-sm-3 col-md-5 offset-md-4 text-center"
@@ -346,6 +330,7 @@
               tabindex="7"
               data-defaulttext=""
               data-qrcodetext=""
+              data-copypastetext=""
               data-i18n="buttonsendinvite"
             ></a>
             <br /><br />

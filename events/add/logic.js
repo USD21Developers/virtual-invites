@@ -1,12 +1,6 @@
 let viewedPreview = false;
 let mapCoordinates = "";
 
-function clearErrorMessages() {
-  document.querySelectorAll(".is-invalid").forEach(item => {
-    item.classList.remove("is-invalid");
-  });
-}
-
 function getDefaultRecipientName(gender) {
   const maleNames = [
     "Leandro",
