@@ -205,18 +205,18 @@
     },
     {
       "key": "afterSentBullet1CopyPaste",
-      "original": "Open any messaging app",
-      "translated": "Open any messaging app"
+      "original": "Open any messaging app.",
+      "translated": "Open any messaging app."
     },
     {
       "key": "afterSentBullet2CopyPaste",
-      "original": "Create a message addressed to {thisRecipient}",
-      "translated": "Create a message addressed to {RECIPIENT-NAME}"
+      "original": "Create a message addressed to {RECIPIENT-NAME}.",
+      "translated": "Create a message addressed to {RECIPIENT-NAME}."
     },
     {
       "key": "afterSentBullet3CopyPaste",
-      "original": "Paste the invite into the message",
-      "translated": "Paste the invite into the message"
+      "original": "Paste the invite into the message and send.",
+      "translated": "Paste the invite into the message and send."
     },
     {
       "key": "afterSentParagraph2CopyPaste",
