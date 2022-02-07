@@ -827,7 +827,7 @@ function validate() {
         return false;
       }
 
-      if (!isDateInPast(oneTimeEventBeginDate)) {
+      if (isDateInPast(oneTimeEventBeginDate)) {
         showError(getPhrase("validatePastOneTimeEventBeginDate"), "#oneTimeEventBeginDate", getPhrase("datesInPastAreInvalid"));
         return false;
       }
@@ -849,6 +849,13 @@ function validate() {
 
       if (oneTimeEventEndTime === "") {
         showError(getPhrase("validateOneTimeEventEndTime"), "#oneTimeEventEndTime", getPhrase("fieldIsRequired"));
+        return false;
+      }
+
+      const momentFromDate = moment(`${oneTimeEventBeginDate} ${oneTimeEventBeginTime}`);
+      const momentToDate = moment(`${oneTimeEventEndDate} ${oneTimeEventEndTime}`);
+      if (momentFromDate >= momentToDate) {
+        showError(getPhrase("startDateMustPrecedeEndDate"), "#oneTimeEventBeginDate", getPhrase("validDateIsRequired"));
         return false;
       }
     } else if (duration === "same day") {

@@ -450,6 +450,11 @@
       "translated": "Please input a date that is not in the past."
     },
     {
+      "key": "startDateMustPrecedeEndDate",
+      "original": "The beginning date must be earlier than the ending date.",
+      "translated": "The beginning date must be earlier than the ending date."
+    },
+    {
       "key": "validateInvalidOneTimeEventBeginDate",
       "original": "Please input a valid date for when the event begins.",
       "translated": "Please input a valid date for when the event begins."
