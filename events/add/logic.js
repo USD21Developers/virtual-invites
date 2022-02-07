@@ -858,6 +858,13 @@ function validate() {
         showError(getPhrase("startDateMustPrecedeEndDate"), "#oneTimeEventBeginDate", getPhrase("validDateIsRequired"));
         return false;
       }
+
+      const fromCalDate = momentFromDate.format("YYYY-MM-DD");
+      const toCalDate = momentFromDate.format("YYYY-MM-DD");
+      if (fromCalDate === toCalDate) {
+        showError(getPhrase("datesMustNotBeOnSameDay"), "#oneTimeEventBeginDate", getPhrase("validDateIsRequired"));
+        return false;
+      }
     } else if (duration === "same day") {
       if (startdate === "") {
         showError(getPhrase("validateOneTimeEventBeginDate"), "#startdate", getPhrase("fieldIsRequired"));

@@ -485,6 +485,11 @@
       "translated": "Please input the time when the event ends."
     },
     {
+      "key": "datesMustNotBeOnSameDay",
+      "original": "The beginning and ending dates must not be on the same day.",
+      "translated": "The beginning and ending dates must not be on the same day."
+    },
+    {
       "key": "validateMinimumAddressLines",
       "original": "The event's address must have at least two lines.",
       "translated": "The event's address must have at least two lines."
