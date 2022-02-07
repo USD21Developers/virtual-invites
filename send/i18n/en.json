@@ -191,17 +191,7 @@
     {
       "key": "afterSentParagraph1CopyPaste",
       "original": "Now you must immediately do the following:",
-      "translated": "Now you must immediately do the following:",
-      "changes": [
-        {
-          "original": "immediately",
-          "translated": "immediately",
-          "bold": true,
-          "italic": false,
-          "underline": false,
-          "link": ""
-        }
-      ]
+      "translated": "Now you must immediately do the following:"
     },
     {
       "key": "afterSentBullet1CopyPaste",
