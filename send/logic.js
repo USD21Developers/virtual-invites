@@ -277,16 +277,11 @@ async function onAfterSubmitted(sendvia) {
     return showError(getPhrase("recipientNameRequired"), "#recipientname", getPhrase("fieldRequired"));
   }
 
-  // Reset text of send button
-  const sendButton = document.querySelector("#btnSendInvite");
-
-  if (sendvia === "qrcode") {
-    sendButton.innerText = getPhrase("buttonsaveinvite");
-  } else if (sendvia === "copypaste") {
-    sendButton.innerText = getPhrase("buttoncopyinvite");
-    const sendBody = getSendBody();
+  if (sendvia === "copypaste") {
     await navigator.clipboard.writeText(sendBody);
   }
+
+  resetSendButtonText();
 
   // Set content of modal
   let modalContent;
@@ -461,6 +456,23 @@ function populateSaveButtonData() {
   btnSendInvite.setAttribute("data-defaulttext", getPhrase("buttonsendinvite"));
   btnSendInvite.setAttribute("data-qrcodetext", getPhrase("buttonsaveinvite"));
   btnSendInvite.setAttribute("data-copypastetext", getPhrase("buttoncopyinvite"));
+}
+
+async function resetSendButtonText() {
+  const sendButton = document.querySelector("#btnSendInvite");
+  const sendvia = getSendVia();
+
+  switch (sendvia) {
+    case "qrcode":
+      sendButton.innerText = getPhrase("buttonsaveinvite");
+      break;
+    case "copypaste":
+      sendButton.innerText = getPhrase("buttoncopyinvite");
+      break;
+    default:
+      sendButton.innerText = getPhrase("buttonsendinvite");
+      break;
+  }
 }
 
 function selectSendVia(method) {
