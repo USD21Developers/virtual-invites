@@ -278,6 +278,7 @@ async function onAfterSubmitted(sendvia) {
   }
 
   if (sendvia === "copypaste") {
+    const sendBody = getSendBody();
     await navigator.clipboard.writeText(sendBody);
   }
 
