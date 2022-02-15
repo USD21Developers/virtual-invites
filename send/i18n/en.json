@@ -210,8 +210,8 @@
     },
     {
       "key": "afterSentParagraph2CopyPaste",
-      "original": "When {RECIPIENT-NAME} clicks and views the invite that you pasted, you will be notified via e-mail.",
-      "translated": "When {RECIPIENT-NAME} clicks and views the invite that you pasted, you will be notified via e-mail."
+      "original": "When {RECIPIENT-NAME} clicks and views the invite that you pasted, you will be notified via e-mail and reminded to follow up.",
+      "translated": "When {RECIPIENT-NAME} clicks and views the invite that you pasted, you will be notified via e-mail and reminded to follow up."
     },
     {
       "key": "problemsSending",
