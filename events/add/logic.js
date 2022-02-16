@@ -854,7 +854,7 @@ function validate() {
       }
 
       const fromCalDate = momentFromDate.format("YYYY-MM-DD");
-      const toCalDate = momentFromDate.format("YYYY-MM-DD");
+      const toCalDate = momentToDate.format("YYYY-MM-DD");
       if (fromCalDate === toCalDate) {
         showError(getPhrase("datesMustNotBeOnSameDay"), "#oneTimeEventBeginDate", getPhrase("validDateIsRequired"));
         return false;
