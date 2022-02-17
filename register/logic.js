@@ -91,9 +91,9 @@ async function onSubmit(e) {
   const emailSignature = getPhrase("emailSignature");
   const lang = getLang();
   const endpoint = `${getApiHost()}/register`;
-  const dataKey = await crypto.generateKey();
-  const exportedDataKey = await crypto.exportCryptoKey(dataKey);
-  const serializedDataKey = crypto.serialize(exportedDataKey);
+  const dataKey = await invitesCrypto.generateKey();
+  const exportedDataKey = await invitesCrypto.exportCryptoKey(dataKey);
+  const serializedDataKey = invitesCrypto.serialize(exportedDataKey);
   const controller = new AbortController();
   const signal = controller.signal;
 

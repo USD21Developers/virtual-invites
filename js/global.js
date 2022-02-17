@@ -2,14 +2,14 @@ let globalContent = "";
 let pageContent = "";
 let previewContent = "";
 
-const crypto = {
+const invitesCrypto = {
   decrypt: (serializedKey, encryptionObject) => {
-    const key = deserialize(serializedKey);
+    const key = invitesCrypto.deserialize(serializedKey);
     const { iv: serializedIV, ciphertext: serializedCiphertext } =
       encryptionObject;
-    const iv = crypto.deserialize(serializedIV);
-    const ciphertext = crypto.deserialize(serializedCiphertext);
-    const plainText = crypto.decryptMessage(key, iv, ciphertext);
+    const iv = invitesCrypto.deserialize(serializedIV);
+    const ciphertext = invitesCrypto.deserialize(serializedCiphertext);
+    const plainText = invitesCrypto.decryptMessage(key, iv, ciphertext);
     return plainText;
   },
 
@@ -37,22 +37,22 @@ const crypto = {
       return new Error("key must be a string");
     let key;
     try {
-      key = await crypto.importSecretKey(crypto.deserialize(serializedKey));
+      key = await window.crypto.importSecretKey(invitesCrypto.deserialize(serializedKey));
     } catch (err) {
       return new Error(err);
     }
-    const iv = crypto.generateIV();
-    const ciphertext = await crypto.encryptMessage(key, iv, message);
+    const iv = invitesCrypto.generateIV();
+    const ciphertext = await invitesCrypto.encryptMessage(key, iv, message);
     const encryptionObject = {
-      iv: crypto.serialize(iv),
-      ciphertext: crypto.serialize(ciphertext),
+      iv: invitesCrypto.serialize(iv),
+      ciphertext: invitesCrypto.serialize(ciphertext),
     };
 
     return encryptionObject;
   },
 
   encryptMessage: async (key, iv, message) => {
-    const encoded = crypto.getMessageEncoding(message);
+    const encoded = invitesCrypto.getMessageEncoding(message);
     const ciphertext = await window.crypto.subtle.encrypt(
       {
         name: "AES-GCM",
@@ -100,6 +100,11 @@ const crypto = {
   getMessageEncoding: (message) => {
     const enc = new TextEncoder();
     return enc.encode(message);
+  },
+
+  hash: async (str) => {
+    const buf = await window.crypto.subtle.digest("SHA-256", new TextEncoder("utf-8").encode(str));
+    return Array.prototype.map.call(new Uint8Array(buf), x => (('00' + x.toString(16)).slice(-2))).join('');
   },
 
   importSecretKey: (rawKey) => {
