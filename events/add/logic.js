@@ -643,7 +643,7 @@ function populateTimeZones() {
   const dropdown = document.querySelector("#timezone");
   const guessedTimeZone = moment.tz.guess();
   const timezones = moment.tz.names();
-  let timezoneOptions = defaultOption;
+  let timezoneOptions;
 
   timezones.forEach(item => {
     timezoneOptions += `<option value="${item}">${item}</option>`;
