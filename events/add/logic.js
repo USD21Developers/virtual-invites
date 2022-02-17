@@ -642,6 +642,7 @@ function populateLanguages() {
 function populateTimeZones() {
   const dropdown = document.querySelector("#timezone");
   const guessedTimeZone = moment.tz.guess();
+  const defaultTimeZone = localStorage.getItem("defaultTimeZone") || guessedTimeZone;
   const timezones = moment.tz.names();
   let timezoneOptions;
 
@@ -649,7 +650,13 @@ function populateTimeZones() {
     timezoneOptions += `<option value="${item}">${item}</option>`;
   });
   dropdown.innerHTML = timezoneOptions;
-  dropdown.value = guessedTimeZone;
+
+  try {
+    dropdown.value = defaultTimeZone;
+  } catch (err) {
+    console.error(err);
+    dropdown.value = guessedTimeZone;
+  }
 }
 
 function showCoordinatesContainer() {
