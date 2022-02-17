@@ -639,6 +639,22 @@ function populateLanguages() {
     });
 }
 
+function populateTimeZones() {
+  const dropdown = document.querySelector("#timezone");
+  const guessedTimeZone = moment.tz.guess();
+  const timezones = moment.tz.names();
+  const defaultOption = `<option value="">${getPhrase('dropdownDefault')}</option>`;
+  let timezoneOptions = defaultOption;
+
+  timezones.forEach(item => {
+    timezoneOptions += `<option value="${item}">${item}</option>`;
+  });
+
+  dropdown.innerHTML = timezoneOptions;
+
+  dropdown.value = guessedTimeZone;
+}
+
 function showCoordinatesContainer() {
   const isMobile = isMobileDevice();
   if (!isMobile) return;
@@ -1021,6 +1037,7 @@ async function init() {
   await populateContent();
   populateCountries();
   populateLanguages();
+  populateTimeZones();
   attachListeners();
   showCoordinatesContainer();
   initIntlTelInput();

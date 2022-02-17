@@ -34,6 +34,11 @@
       "translated": "Event Description:"
     },
     {
+      "key": "headlineTimezone",
+      "original": "Event Time Zone:",
+      "translated": "Event Time Zone:"
+    },
+    {
       "key": "optionEventTypeBT",
       "original": "Bible Talk",
       "translated": "Bible Talk"
