@@ -180,14 +180,11 @@ function onFrequencyChange(e) {
 
 function onLocationVisibilityChanged(e) {
   const isDiscreet = e.target.value === 'discreet' ? true : false;
-  const locationInfo = document.querySelector("#locationInfo");
+  const hideIfDiscreet = document.querySelectorAll(".hideIfDiscreetLocation");
 
-  if (isDiscreet) {
-    locationInfo.classList.add("d-none");
-  } else {
-    locationInfo.classList.remove("d-none");
-    customScrollTo("#locationContainer");
-  }
+  hideIfDiscreet.forEach(item => {
+    isDiscreet ? item.classList.add("d-none") : item.classList.remove("d-none");
+  });
 }
 
 async function onPreview() {

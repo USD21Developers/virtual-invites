@@ -357,7 +357,7 @@
                 </div>
               </div>
               <div id="locationInfo">
-                <div class="mb-5">
+                <div class="mb-5 hideIfDiscreetLocation">
                   <h4>
                     <span data-i18n="locationName"></span> 
                     <span data-i18n="optional" class="font-weight-light"></span>
@@ -366,6 +366,7 @@
                     <input type="text" class="form-control" id="locationName" />
                   </data>
                 </div>
+                <p data-i18n="howLocationWillBeUsed" class="my-4"></p>
                 <div id="addressContainer">
                   <h4 class="mb-0">
                     <span data-i18n="addressHeadline"></span>
@@ -457,14 +458,14 @@
                       </div>
                     </div>
                   </div>
-                  <h4 class="mb-0">
+                  <h4 class="mb-0 hideIfDiscreetLocation">
                     <span data-i18n="headlineOtherLocationDetails"></span>
                     <span
                       data-i18n="optional"
                       class="font-weight-light"
                     ></span>
                   </h4>
-                  <div class="form-group">
+                  <div class="form-group hideIfDiscreetLocation">
                     <table class="text-muted mt-1 mb-2" cellpadding="3">
                       <tbody>
                         <tr>

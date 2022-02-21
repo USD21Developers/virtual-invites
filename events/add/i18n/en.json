@@ -175,8 +175,22 @@
     },
     {
       "key": "locationIsDiscreetLine2",
-      "original": "The invite recipient should inquire for location details.",
-      "translated": "The invite recipient should inquire for location details."
+      "original": "The invite recipient must inquire for location details.",
+      "translated": "The invite recipient must inquire for location details."
+    },
+    {
+      "key": "howLocationWillBeUsed",
+      "original": "NOTE: Any location information provided below may be used for listing events that are closest in proximity to the invite recipient. Proximity searches are useful when the sender is evangelizing beyond the usual boundaries of their Bible Talk's local mission field.",
+      "translated": "NOTE: Any location information provided below may be used for listing events that are closest in proximity to the invite recipient. Proximity searches are useful when the sender is evangelizing beyond the usual boundaries of their Bible Talk's local mission field.",
+      "changes": [
+        {
+          "original": "NOTE:",
+          "translated": "NOTE:",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "locationName",
