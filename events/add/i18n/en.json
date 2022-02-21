@@ -175,17 +175,17 @@
     },
     {
       "key": "locationIsDiscreetLine2",
-      "original": "The invite recipient must inquire for location details.",
-      "translated": "The invite recipient must inquire for location details."
+      "original": "The invite recipient must inquire for all location details.",
+      "translated": "The invite recipient must inquire for all location details."
     },
     {
-      "key": "howLocationWillBeUsed",
-      "original": "NOTE: Any location information provided below may be used for listing events that are closest in proximity to the invite recipient. Proximity searches are useful when the sender is evangelizing beyond the usual boundaries of their Bible Talk's local mission field.",
-      "translated": "NOTE: Any location information provided below may be used for listing events that are closest in proximity to the invite recipient. Proximity searches are useful when the sender is evangelizing beyond the usual boundaries of their Bible Talk's local mission field.",
+      "key": "locationIsDiscreetLine3",
+      "original": "For Line 1 of the address, input cross-streets for the discreet location.",
+      "translated": "For Line 1 of the address, input cross-streets for the discreet location.",
       "changes": [
         {
-          "original": "NOTE:",
-          "translated": "NOTE:",
+          "original": "cross-streets",
+          "translated": "cross-streets",
           "bold": true,
           "italic": false,
           "link": ""

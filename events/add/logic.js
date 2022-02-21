@@ -780,11 +780,10 @@ function validate() {
   const duration = form.duration.value;
   const startdate = form.startdate.value.trim() || "";
   const starttime = form.starttime.value.trim() || "";
-  const oneTimeEventBeginDate = form.oneTimeEventBeginDate.value.trim() || "";
-  const oneTimeEventBeginTime = form.oneTimeEventBeginTime.value.trim() || "";
-  const oneTimeEventEndDate = form.oneTimeEventEndDate.value.trim() || "";
-  const oneTimeEventEndTime = form.oneTimeEventEndTime.value.trim() || "";
-  const locationIsDiscreet = document.querySelector("#locationIsDiscreet").checked || false;
+  const multiDayBeginDate = form.oneTimeEventBeginDate.value.trim() || "";
+  const multiDayBeginTime = form.oneTimeEventBeginTime.value.trim() || "";
+  const multiDayEndDate = form.oneTimeEventEndDate.value.trim() || "";
+  const multiDayEndTime = form.oneTimeEventEndTime.value.trim() || "";
   const addressLine1 = form.addressLine1.value.trim() || "";
   const addressLine2 = form.addressLine2.value.trim() || "";
   const addressLine3 = form.addressLine3.value.trim() || "";
@@ -792,7 +791,6 @@ function validate() {
   const latitude = form.latitude.value.trim() || "";
   const longitude = form.longitude.value.trim() || "";
   const contactFirstName = form.contactFirstName.value.trim() || "";
-  const contactLastName = form.contactLastName.value.trim() || "";
   const contactPhone = form.contactPhone.value.trim() || "";
   const contactEmail = form.contactEmail.value.toLowerCase().trim() || "";
 
@@ -828,37 +826,37 @@ function validate() {
     }
 
     if (duration === "multiple days") {
-      if (oneTimeEventBeginDate === "") {
+      if (multiDayBeginDate === "") {
         showError(getPhrase("validateOneTimeEventBeginDate"), "#oneTimeEventBeginDate", getPhrase("fieldIsRequired"));
         return false;
       }
 
-      if (!moment(oneTimeEventBeginDate).isValid()) {
+      if (!moment(multiDayBeginDate).isValid()) {
         showError(getPhrase("validateInvalidOneTimeEventBeginDate"), "#oneTimeEventBeginDate", getPhrase("validDateIsRequired"));
         return false;
       }
 
-      if (isDateInPast(oneTimeEventBeginDate)) {
+      if (isDateInPast(multiDayBeginDate)) {
         showError(getPhrase("validatePastOneTimeEventBeginDate"), "#oneTimeEventBeginDate", getPhrase("datesInPastAreInvalid"));
         return false;
       }
 
-      if (oneTimeEventBeginTime === "") {
+      if (multiDayBeginTime === "") {
         showError(getPhrase("validateOneTimeEventBeginTime"), "#oneTimeEventBeginTime", getPhrase("fieldIsRequired"));
         return false;
       }
 
-      if (oneTimeEventEndDate === "") {
+      if (multiDayEndDate === "") {
         showError(getPhrase("validateOneTimeEventEndDate"), "#oneTimeEventEndDate", getPhrase("fieldIsRequired"));
         return false;
       }
 
-      if (isDateInPast(oneTimeEventEndDate, oneTimeEventEndTime)) {
+      if (isDateInPast(multiDayEndDate, multiDayEndTime)) {
         showError(getPhrase("validatePastOneTimeEventEndDate"), "#oneTimeEventEndDate", getPhrase("datesInPastAreInvalid"));
         return false;
       }
 
-      if (oneTimeEventEndTime === "") {
+      if (multiDayEndTime === "") {
         showError(getPhrase("validateOneTimeEventEndTime"), "#oneTimeEventEndTime", getPhrase("fieldIsRequired"));
         return false;
       }
@@ -909,46 +907,44 @@ function validate() {
     }
   }
 
-  if (!locationIsDiscreet) {
-    let numAddressLines = 0;
-    const line1Populated = (addressLine1.length > 0);
-    const line2Populated = (addressLine2.length > 0);
-    const line3Populated = (addressLine3.length > 0);
-    const latPopulated = (latitude.length > 0);
-    const longPopulated = (longitude.length > 0);
+  let numAddressLines = 0;
+  const line1Populated = (addressLine1.length > 0);
+  const line2Populated = (addressLine2.length > 0);
+  const line3Populated = (addressLine3.length > 0);
+  const latPopulated = (latitude.length > 0);
+  const longPopulated = (longitude.length > 0);
 
-    if (line1Populated) numAddressLines += 1;
-    if (line2Populated) numAddressLines += 1;
-    if (line3Populated) numAddressLines += 1;
+  if (line1Populated) numAddressLines += 1;
+  if (line2Populated) numAddressLines += 1;
+  if (line3Populated) numAddressLines += 1;
 
-    if (numAddressLines === 1) {
-      if (!addressLine1.length) {
-        showError(getPhrase("validateMinimumAddressLines"), "#addressLine1", getPhrase("fieldIsRequired"));
-      } else if (!addressLine2.length) {
-        showError(getPhrase("validateMinimumAddressLines"), "#addressLine2", getPhrase("fieldIsRequired"));
-      } else if (!addressLine3.length) {
-        showError(getPhrase("validateMinimumAddressLines"), "#addressLine3", getPhrase("fieldIsRequired"));
-      }
-      return false;
-    } else if (numAddressLines >= 2) {
-      if (country === "") {
-        showError(getPhrase("validateCountryRequired"), "#country", getPhrase("fieldIsRequired"));
-        return false;
-      }
+  if (numAddressLines === 1) {
+    if (!addressLine1.length) {
+      showError(getPhrase("validateMinimumAddressLines"), "#addressLine1", getPhrase("fieldIsRequired"));
+    } else if (!addressLine2.length) {
+      showError(getPhrase("validateMinimumAddressLines"), "#addressLine2", getPhrase("fieldIsRequired"));
+    } else if (!addressLine3.length) {
+      showError(getPhrase("validateMinimumAddressLines"), "#addressLine3", getPhrase("fieldIsRequired"));
     }
-
-    if ((!latPopulated) && (longPopulated)) {
-      showError(getPhrase("validateLatitudeRequired"), "#latitude", getPhrase("fieldIsRequired"));
-      return false;
-    } else if ((latPopulated) && (!longPopulated)) {
-      showError(getPhrase("validateLongitudeRequired"), "#longitude", getPhrase("fieldIsRequired"));
+    return false;
+  } else if (numAddressLines >= 2) {
+    if (country === "") {
+      showError(getPhrase("validateCountryRequired"), "#country", getPhrase("fieldIsRequired"));
       return false;
     }
+  }
 
-    if ((!latPopulated) && (!longPopulated) && (numAddressLines === 0)) {
-      showError(getPhrase("validateLocationRequired"), "#addressLine1");
-      return false;
-    }
+  if ((!latPopulated) && (longPopulated)) {
+    showError(getPhrase("validateLatitudeRequired"), "#latitude", getPhrase("fieldIsRequired"));
+    return false;
+  } else if ((latPopulated) && (!longPopulated)) {
+    showError(getPhrase("validateLongitudeRequired"), "#longitude", getPhrase("fieldIsRequired"));
+    return false;
+  }
+
+  if ((!latPopulated) && (!longPopulated) && (numAddressLines === 0)) {
+    showError(getPhrase("validateLocationRequired"), "#addressLine1");
+    return false;
   }
 
   if (!contactFirstName.length) {
