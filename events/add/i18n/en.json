@@ -229,8 +229,8 @@
     },
     {
       "key": "addressHeadline",
-      "original": "Address",
-      "translated": "Address"
+      "original": "Address:",
+      "translated": "Address:"
     },
     {
       "key": "addressLine1",
@@ -530,8 +530,8 @@
     },
     {
       "key": "validateLocationRequired",
-      "original": "Please input either the event's address or its map coordinates.",
-      "translated": "Please input either the event's address or its map coordinates."
+      "original": "Please input either the event's address or its map coordinates. This info is needed for proximity searches.",
+      "translated": "Please input either the event's address or its map coordinates. This info is needed for proximity searches."
     },
     {
       "key": "validateMissingContactFirstName",
