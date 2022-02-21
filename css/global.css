@@ -188,3 +188,7 @@ a:hover {
 .alert .alert-link {
   text-decoration: underline;
 }
+
+.large {
+  font-size: large;
+}
