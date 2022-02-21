@@ -180,8 +180,8 @@
     },
     {
       "key": "locationIsDiscreetLine3",
-      "original": "For Line 1 of the discreet address below, input cross-streets.",
-      "translated": "For Line 1 of the discreet address below, input cross-streets.",
+      "original": "For Line 1 of the discreet address below, input nearest cross-streets.",
+      "translated": "For Line 1 of the discreet address below, input nearest cross-streets.",
       "changes": [
         {
           "original": "cross-streets",
