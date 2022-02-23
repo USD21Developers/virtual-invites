@@ -175,22 +175,8 @@
     },
     {
       "key": "locationIsDiscreetLine2",
-      "original": "The invite recipient must inquire for all location details.",
-      "translated": "The invite recipient must inquire for all location details."
-    },
-    {
-      "key": "locationIsDiscreetLine3",
-      "original": "For Line 1 of the address (below), input the nearest cross-streets.",
-      "translated": "For Line 1 of the address (below), input the nearest cross-streets.",
-      "changes": [
-        {
-          "original": "cross-streets",
-          "translated": "cross-streets",
-          "bold": true,
-          "italic": false,
-          "link": ""
-        }
-      ]
+      "original": "The invite recipient must inquire for location details.",
+      "translated": "The invite recipient must inquire for location details."
     },
     {
       "key": "locationName",
