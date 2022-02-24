@@ -17,9 +17,10 @@ td {
   text-decoration: underline;
 }
 
-.navbar-brand {
-  font-family: "Oswald", sans-serif;
-  font-weight: 200;
+.navbar-brand img {
+  border: 0;
+  left: -5px;
+  position: relative;
 }
 
 .nav-link.active {
