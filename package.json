@@ -1,5 +1,5 @@
 {
-  "name": "virtual-invites",
+  "name": "invites",
   "version": "1.0.0",
   "description": "An application to send virtual invites to church functions for the International Christian Churches (SoldOut Discipling Movement)",
   "scripts": {
@@ -23,7 +23,7 @@
     "movement",
     "invites"
   ],
-  "author": "Jason McNeill <vrtjason@gmail.com>",
+  "author": "Jason McNeill <jason.mcneill@usd21.org>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/USD21Developers/virtual-invites/issues"
