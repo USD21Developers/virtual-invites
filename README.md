@@ -1,1 +1,1 @@
-# virtual-invites
+# invites
