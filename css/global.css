@@ -17,10 +17,14 @@ td {
   text-decoration: underline;
 }
 
+.navbar {
+  min-height: 70px;
+}
+
 .navbar-brand img {
   border: 0;
-  left: -5px;
-  position: relative;
+  width: auto;
+  height: 50px;
 }
 
 .nav-link.active {
