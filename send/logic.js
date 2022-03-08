@@ -14,6 +14,14 @@ function clearForm() {
   });
 }
 
+function enableWebShareAPI() {
+  const supportsWebShareAPI = (!!navigator.share) || false;
+
+  if (supportsWebShareAPI) {
+    document.querySelector("#sendvia option[value='anotherapp']").classList.remove("d-none");
+  }
+}
+
 function downloadCanvasAsImage() {
   let downloadLink = document.createElement("a");
   downloadLink.setAttribute("download", "CanvasAsImage.png");
@@ -651,6 +659,7 @@ function setEventListeners() {
 async function init() {
   clearForm();
   await populateContent();
+  enableWebShareAPI();
   populateSaveButtonData();
   loadEventsToInvitePeopleTo();
   setDefaultSendMethod();
