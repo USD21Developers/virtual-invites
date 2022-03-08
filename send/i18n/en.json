@@ -109,6 +109,11 @@
       "translated": "COPY INVITE"
     },
     {
+      "key": "buttoncopyinvite",
+      "original": "COPY INVITE",
+      "translated": "COPY INVITE"
+    },
+    {
       "key": "formIncomplete",
       "original": "Form Incomplete",
       "translated": "Form Incomplete"
@@ -190,8 +195,8 @@
     },
     {
       "key": "afterSentParagraph1AnotherApp",
-      "original": "Now do the following:",
-      "translated": "Now do the following:"
+      "original": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked and viewed the invite.",
+      "translated": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked and viewed the invite."
     },
     {
       "key": "afterSentBullet1AnotherApp",

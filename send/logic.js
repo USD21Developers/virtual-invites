@@ -271,13 +271,6 @@ async function onAfterSubmitted(sendvia) {
   const modalFooter = document.querySelector(".modal-footer");
   modalFooter.classList.remove("d-none");
 
-  const thisRecipient = document.querySelector("#recipientname").value.trim() || "";
-
-  if (sendvia === "anotherapp") {
-    const sendBody = getSendBody();
-    await navigator.clipboard.writeText(sendBody);
-  }
-
   resetSendButtonText();
 
   // Set content of modal
@@ -293,17 +286,11 @@ async function onAfterSubmitted(sendvia) {
     `;
   } else if (sendvia === "anotherapp") {
     modalContent = `
-      <p>${getPhrase("afterSentParagraph1AnotherApp")}</p>
-      <ol>
-        <li>${getPhrase("afterSentBullet1AnotherApp").replace("{RECIPIENT-NAME}", thisRecipient)}</li>
-        <li>${getPhrase("afterSentBullet2AnotherApp").replace("{RECIPIENT-NAME}", thisRecipient)}</li>
-        <li>${getPhrase("afterSentBullet3AnotherApp")}</li>
-      </ol>
-      <p>${getPhrase("afterSentParagraph2AnotherApp").replaceAll("{RECIPIENT-NAME}", thisRecipient)}</p>
+      ${getPhrase("afterSentParagraph1AnotherApp")}
       <p class="mt-4">
         <hr class="my-3" />
-        <strong>${getPhrase("problemsSending")}</strong> &nbsp; 
-        ${getPhrase("problemsSendingSuggestion")}
+        <strong>${getPhrase("problemsScanning")}</strong> &nbsp; 
+        ${getPhrase("problemsScanningSuggestion")}
       </p>
     `;
   } else {
@@ -318,7 +305,7 @@ async function onAfterSubmitted(sendvia) {
   }
 
   // Save to localStorage, try to sync, then show modal
-  const txtInviteRecorded = (sendvia === "anotherapp") ? getPhrase("inviteCopied") : getPhrase("inviteRecorded");
+  const txtInviteRecorded = getPhrase("inviteRecorded");
   const txtBtnRetry = getPhrase("btnRetry");
   saveAndSync()
     .then(() => {
@@ -379,7 +366,7 @@ function onSubmit(e) {
   }
 }
 
-function onSubmitButtonClick(e) {
+async function onSubmitButtonClick(e) {
   const sendVia = getSendVia();
   const btnSendInvite = document.querySelector("#btnSendInvite");
   const sendTo = getSendTo();
@@ -412,16 +399,22 @@ function onSubmitButtonClick(e) {
     case "anotherapp":
       e.preventDefault();
 
-      navigator.share({
-        text: getSmsBodyText(),
-        url: getFinalURL(),
-      })
-        .then(() => {
-          onAfterSubmitted("anotherapp");
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      const bodyText = getSmsBodyText();
+      const url = getFinalURL();
+
+      const shareData = {
+        text: bodyText + '\n',
+        title: bodyText,
+        url: url
+      };
+
+      try {
+        await navigator.share(shareData)
+        onAfterSubmitted("anotherapp");
+      } catch (err) {
+        console.error(err);
+      }
+
       break;
     default:
       e.preventDefault();
@@ -474,7 +467,7 @@ async function resetSendButtonText() {
       sendButton.innerText = getPhrase("buttonsaveinvite");
       break;
     case "anotherapp":
-      sendButton.innerText = getPhrase("buttonshareinvite");
+      sendButton.innerText = getPhrase("buttonsendinvite");
       break;
     default:
       sendButton.innerText = getPhrase("buttonsendinvite");
