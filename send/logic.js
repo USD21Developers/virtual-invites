@@ -400,7 +400,7 @@ async function onSubmitButtonClick(e) {
       const url = getFinalURL();
 
       const shareData = {
-        title: emailSubjectLine,
+        title: decodeURI(emailSubjectLine),
         text: sendBody,
         url: url
       };
