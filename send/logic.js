@@ -149,7 +149,7 @@ function getSendBody() {
       }
       break;
     case "anotherapp":
-      sendBody = `${inviteToText}:\r\n\r\n`;
+      sendBody = `${inviteToText}:\r\n`;
       if (anotherAppBodyText.length) {
         sendBody += anotherAppBodyText;
       }
