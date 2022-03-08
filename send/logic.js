@@ -149,9 +149,7 @@ function getSendBody() {
       }
       break;
     case "anotherapp":
-      sendBody = `${inviteToText}:
-
-${finalURL}`;
+      sendBody = `${inviteToText}:\r\n\r\n`;
       if (anotherAppBodyText.length) {
         sendBody += anotherAppBodyText;
       }
@@ -402,7 +400,8 @@ async function onSubmitButtonClick(e) {
       const url = getFinalURL();
 
       const shareData = {
-        text: sendBody + '\n',
+        title: emailSubjectLine,
+        text: sendBody,
         url: url
       };
 
