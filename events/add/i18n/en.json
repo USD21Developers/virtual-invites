@@ -35,8 +35,8 @@
     },
     {
       "key": "headlineTimezone",
-      "original": "Event Time Zone:",
-      "translated": "Event Time Zone:"
+      "original": "Time Zone:",
+      "translated": "Time Zone:"
     },
     {
       "key": "optionEventTypeBT",
