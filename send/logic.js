@@ -74,8 +74,8 @@ async function getCoordinatesOnLoad() {
   }
 }
 
-function getCopyPasteBodyText() {
-  const text = localStorage.getItem("bodyTextCopyPaste") || "";
+function getAnotherAppBodyText() {
+  const text = localStorage.getItem("bodyTextAnotherApp") || "";
   return text;
 }
 
@@ -132,7 +132,7 @@ function getSendBody() {
   const inviteToText = getInviteToText() || "";
   const smsBodyText = getSmsBodyText() || "";
   const emailBodyText = getEmailBodyText() || "";
-  const copyPasteBodyText = getCopyPasteBodyText() || "";
+  const anotherAppBodyText = getAnotherAppBodyText() || "";
   let sendBody = "";
 
   switch (sendVia) {
@@ -148,12 +148,12 @@ function getSendBody() {
         sendBody += `\r\n\r\n${emailBodyText}\r\n\r\n`;
       }
       break;
-    case "copypaste":
+    case "anotherapp":
       sendBody = `${inviteToText}:
 
 ${finalURL}`;
-      if (copyPasteBodyText.length) {
-        sendBody += copyPasteBodyText;
+      if (anotherAppBodyText.length) {
+        sendBody += anotherAppBodyText;
       }
       return sendBody;
     default:
@@ -272,12 +272,8 @@ async function onAfterSubmitted(sendvia) {
   modalFooter.classList.remove("d-none");
 
   const thisRecipient = document.querySelector("#recipientname").value.trim() || "";
-  if ((sendvia === "copypaste") && (thisRecipient === "")) {
-    modalFooter.classList.add("d-none");
-    return showError(getPhrase("recipientNameRequired"), "#recipientname", getPhrase("fieldRequired"));
-  }
 
-  if (sendvia === "copypaste") {
+  if (sendvia === "anotherapp") {
     const sendBody = getSendBody();
     await navigator.clipboard.writeText(sendBody);
   }
@@ -295,15 +291,15 @@ async function onAfterSubmitted(sendvia) {
         ${getPhrase("problemsScanningSuggestion")}
       </p>
     `;
-  } else if (sendvia === "copypaste") {
+  } else if (sendvia === "anotherapp") {
     modalContent = `
-      <p>${getPhrase("afterSentParagraph1CopyPaste")}</p>
+      <p>${getPhrase("afterSentParagraph1AnotherApp")}</p>
       <ol>
-        <li>${getPhrase("afterSentBullet1CopyPaste").replace("{RECIPIENT-NAME}", thisRecipient)}</li>
-        <li>${getPhrase("afterSentBullet2CopyPaste").replace("{RECIPIENT-NAME}", thisRecipient)}</li>
-        <li>${getPhrase("afterSentBullet3CopyPaste")}</li>
+        <li>${getPhrase("afterSentBullet1AnotherApp").replace("{RECIPIENT-NAME}", thisRecipient)}</li>
+        <li>${getPhrase("afterSentBullet2AnotherApp").replace("{RECIPIENT-NAME}", thisRecipient)}</li>
+        <li>${getPhrase("afterSentBullet3AnotherApp")}</li>
       </ol>
-      <p>${getPhrase("afterSentParagraph2CopyPaste").replaceAll("{RECIPIENT-NAME}", thisRecipient)}</p>
+      <p>${getPhrase("afterSentParagraph2AnotherApp").replaceAll("{RECIPIENT-NAME}", thisRecipient)}</p>
       <p class="mt-4">
         <hr class="my-3" />
         <strong>${getPhrase("problemsSending")}</strong> &nbsp; 
@@ -322,7 +318,7 @@ async function onAfterSubmitted(sendvia) {
   }
 
   // Save to localStorage, try to sync, then show modal
-  const txtInviteRecorded = (sendvia === "copypaste") ? getPhrase("inviteCopied") : getPhrase("inviteRecorded");
+  const txtInviteRecorded = (sendvia === "anotherapp") ? getPhrase("inviteCopied") : getPhrase("inviteRecorded");
   const txtBtnRetry = getPhrase("btnRetry");
   saveAndSync()
     .then(() => {
@@ -413,9 +409,19 @@ function onSubmitButtonClick(e) {
         onAfterSubmitted("email");
       }, 5000);
       break;
-    case "copypaste":
+    case "anotherapp":
       e.preventDefault();
-      onAfterSubmitted("copypaste");
+
+      navigator.share({
+        text: getSmsBodyText(),
+        url: getFinalURL(),
+      })
+        .then(() => {
+          onAfterSubmitted("anotherapp");
+        })
+        .catch((err) => {
+          console.error(err);
+        });
       break;
     default:
       e.preventDefault();
@@ -456,7 +462,7 @@ function populateSaveButtonData() {
   const btnSendInvite = document.querySelector("#btnSendInvite");
   btnSendInvite.setAttribute("data-defaulttext", getPhrase("buttonsendinvite"));
   btnSendInvite.setAttribute("data-qrcodetext", getPhrase("buttonsaveinvite"));
-  btnSendInvite.setAttribute("data-copypastetext", getPhrase("buttoncopyinvite"));
+  btnSendInvite.setAttribute("data-anotherapptext", getPhrase("buttonsendinvite"));
 }
 
 async function resetSendButtonText() {
@@ -467,8 +473,8 @@ async function resetSendButtonText() {
     case "qrcode":
       sendButton.innerText = getPhrase("buttonsaveinvite");
       break;
-    case "copypaste":
-      sendButton.innerText = getPhrase("buttoncopyinvite");
+    case "anotherapp":
+      sendButton.innerText = getPhrase("buttonshareinvite");
       break;
     default:
       sendButton.innerText = getPhrase("buttonsendinvite");
@@ -548,14 +554,14 @@ function selectSendVia(method) {
       });
       if (!method) {
         const qrCodeContainerOffset =
-          document.getElementById("containerSendToQRCode").offsetTop - 64;
+          document.getElementById("containerSendToQRCode").offsetTop - 80;
         window.scroll({ top: qrCodeContainerOffset, behavior: "smooth" });
       }
       break;
-    case "copypaste":
-      localStorage.setItem("lastSendMethodSelected", "copypaste");
+    case "anotherapp":
+      localStorage.setItem("lastSendMethodSelected", "anotherapp");
       isMobile && containerTagWithLocation.classList.remove("d-none");
-      btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-copypastetext");
+      btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-anotherapptext");
       break;
   }
 }

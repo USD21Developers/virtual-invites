@@ -49,9 +49,9 @@
       "translated": "QR Code"
     },
     {
-      "key": "viacopypaste",
-      "original": "Copy & Paste",
-      "translated": "Copy & Paste"
+      "key": "viaanotherapp",
+      "original": "Another App",
+      "translated": "Another App"
     },
     {
       "key": "instructionsLabel",
@@ -189,27 +189,27 @@
       "translated": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked and viewed the invite."
     },
     {
-      "key": "afterSentParagraph1CopyPaste",
+      "key": "afterSentParagraph1AnotherApp",
       "original": "Now do the following:",
       "translated": "Now do the following:"
     },
     {
-      "key": "afterSentBullet1CopyPaste",
+      "key": "afterSentBullet1AnotherApp",
       "original": "Open any messaging app that {RECIPIENT-NAME} uses.",
       "translated": "Open any messaging app that {RECIPIENT-NAME} uses."
     },
     {
-      "key": "afterSentBullet2CopyPaste",
+      "key": "afterSentBullet2AnotherApp",
       "original": "Create a message addressed to {RECIPIENT-NAME}.",
       "translated": "Create a message addressed to {RECIPIENT-NAME}."
     },
     {
-      "key": "afterSentBullet3CopyPaste",
+      "key": "afterSentBullet3AnotherApp",
       "original": "Paste the invite into the message and send.",
       "translated": "Paste the invite into the message and send."
     },
     {
-      "key": "afterSentParagraph2CopyPaste",
+      "key": "afterSentParagraph2AnotherApp",
       "original": "When {RECIPIENT-NAME} clicks and views the invite that you pasted, you will be notified via e-mail and reminded to follow up.",
       "translated": "When {RECIPIENT-NAME} clicks and views the invite that you pasted, you will be notified via e-mail and reminded to follow up."
     },
