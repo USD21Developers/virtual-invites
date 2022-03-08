@@ -399,18 +399,19 @@ async function onSubmitButtonClick(e) {
     case "anotherapp":
       e.preventDefault();
 
-      const bodyText = getSmsBodyText();
       const url = getFinalURL();
 
       const shareData = {
-        text: bodyText + '\n',
-        title: bodyText,
+        text: sendBody + '\n',
         url: url
       };
 
       try {
-        await navigator.share(shareData)
-        onAfterSubmitted("anotherapp");
+        navigator.share(shareData).then(() => {
+          setTimeout(() => {
+            onAfterSubmitted("anotherapp");
+          }, 5000);
+        });
       } catch (err) {
         console.error(err);
       }
