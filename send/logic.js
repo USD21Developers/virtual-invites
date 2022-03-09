@@ -18,7 +18,7 @@ function enableWebShareAPI() {
   const supportsWebShareAPI = (!!navigator.share) || false;
 
   if (supportsWebShareAPI) {
-    document.querySelector("#sendvia option[value='anotherapp']").classList.remove("d-none");
+    document.querySelector("#sendvia option[value='otherapps']").classList.remove("d-none");
   }
 }
 
@@ -82,8 +82,8 @@ async function getCoordinatesOnLoad() {
   }
 }
 
-function getAnotherAppBodyText() {
-  const text = localStorage.getItem("bodyTextAnotherApp") || "";
+function getOtherAppsBodyText() {
+  const text = localStorage.getItem("bodyTextOtherApps") || "";
   return text;
 }
 
@@ -140,7 +140,7 @@ function getSendBody() {
   const inviteToText = getInviteToText() || "";
   const smsBodyText = getSmsBodyText() || "";
   const emailBodyText = getEmailBodyText() || "";
-  const anotherAppBodyText = getAnotherAppBodyText() || "";
+  const otherAppsBodyText = getOtherAppsBodyText() || "";
   let sendBody = "";
 
   switch (sendVia) {
@@ -156,10 +156,10 @@ function getSendBody() {
         sendBody += `\r\n\r\n${emailBodyText}\r\n\r\n`;
       }
       break;
-    case "anotherapp":
+    case "otherapps":
       sendBody = `${inviteToText}:\r\n`;
-      if (anotherAppBodyText.length) {
-        sendBody += anotherAppBodyText;
+      if (otherAppsBodyText.length) {
+        sendBody += otherAppsBodyText;
       }
       return sendBody;
     default:
@@ -290,9 +290,9 @@ async function onAfterSubmitted(sendvia) {
         ${getPhrase("problemsScanningSuggestion")}
       </p>
     `;
-  } else if (sendvia === "anotherapp") {
+  } else if (sendvia === "otherapps") {
     modalContent = `
-      ${getPhrase("afterSentParagraph1AnotherApp")}
+      ${getPhrase("afterSentParagraph1OtherApps")}
       <p class="mt-4">
         <hr class="my-3" />
         <strong>${getPhrase("problemsScanning")}</strong> &nbsp; 
@@ -402,7 +402,7 @@ async function onSubmitButtonClick(e) {
         onAfterSubmitted("email");
       }, 5000);
       break;
-    case "anotherapp":
+    case "otherapps":
       e.preventDefault();
 
       const url = getFinalURL();
@@ -416,7 +416,7 @@ async function onSubmitButtonClick(e) {
       try {
         navigator.share(shareData).then(() => {
           setTimeout(() => {
-            onAfterSubmitted("anotherapp");
+            onAfterSubmitted("otherapps");
           }, 5000);
         });
       } catch (err) {
@@ -463,7 +463,7 @@ function populateSaveButtonData() {
   const btnSendInvite = document.querySelector("#btnSendInvite");
   btnSendInvite.setAttribute("data-defaulttext", getPhrase("buttonsendinvite"));
   btnSendInvite.setAttribute("data-qrcodetext", getPhrase("buttonsaveinvite"));
-  btnSendInvite.setAttribute("data-anotherapptext", getPhrase("buttonsendinvite"));
+  btnSendInvite.setAttribute("data-otherappstext", getPhrase("buttonsendinvite"));
 }
 
 async function resetSendButtonText() {
@@ -474,7 +474,7 @@ async function resetSendButtonText() {
     case "qrcode":
       sendButton.innerText = getPhrase("buttonsaveinvite");
       break;
-    case "anotherapp":
+    case "otherapps":
       sendButton.innerText = getPhrase("buttonsendinvite");
       break;
     default:
@@ -559,10 +559,10 @@ function selectSendVia(method) {
         window.scroll({ top: qrCodeContainerOffset, behavior: "smooth" });
       }
       break;
-    case "anotherapp":
-      localStorage.setItem("lastSendMethodSelected", "anotherapp");
+    case "otherapps":
+      localStorage.setItem("lastSendMethodSelected", "otherapps");
       isMobile && containerTagWithLocation.classList.remove("d-none");
-      btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-anotherapptext");
+      btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-otherappstext");
       break;
   }
 }
