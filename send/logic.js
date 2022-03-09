@@ -104,7 +104,7 @@ function getFinalURL() {
   const eventId = getInviteToId();
   const userId = getUserId();
   const recipientId = getRecipientId();
-  const finalUrl = `${window.location.origin}/i/#/${eventId}/${userId}/${recipientId}`;
+  const finalUrl = `${window.location.origin}/i/${eventId}/${userId}/${recipientId}`;
 
   recipientIdGlobal = recipientId;
   return finalUrl;
