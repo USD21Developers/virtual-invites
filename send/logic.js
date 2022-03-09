@@ -295,8 +295,8 @@ async function onAfterSubmitted(sendvia) {
       ${getPhrase("afterSentParagraph1OtherApps")}
       <p class="mt-4">
         <hr class="my-3" />
-        <strong>${getPhrase("problemsScanning")}</strong> &nbsp; 
-        ${getPhrase("problemsScanningSuggestion")}
+        <strong>${getPhrase("problemsSending")}</strong> &nbsp; 
+        ${getPhrase("problemsSendingSuggestion")}
       </p>
     `;
   } else {
