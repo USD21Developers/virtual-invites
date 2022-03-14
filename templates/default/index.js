@@ -2,7 +2,7 @@ function urlifyConnectionContent() {
   const connectionContentEl = document.querySelector("#connectionContent");
   let newContent = connectionContentEl.innerHTML;
   newContent = spacify(newContent);
-  newContent = urlify(newContent);
+  newContent = linkify(newContent);
   newContent = breakify(newContent);
   connectionContentEl.innerHTML = newContent;
 }

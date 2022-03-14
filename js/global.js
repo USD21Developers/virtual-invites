@@ -673,7 +673,7 @@ function spacify(text) {
   return text.split("  ").join("&nbsp;&nbsp;");
 }
 
-function urlify(text, link_attributes_obj = {}) {
+/* function urlify(text, link_attributes_obj = {}) {
   //link_attributes_obj (optional) object {target:'_blank', class:'myLink'}
 
   //html to text
@@ -699,7 +699,7 @@ function urlify(text, link_attributes_obj = {}) {
   text = text.replace(reg_ww, '<a href="https://$1" ' + attr.join(' ') + '>$1</a>');
 
   return text;
-}
+} */
 
 function validateEmail(email) {
   const re =
