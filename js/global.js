@@ -1,6 +1,7 @@
 let globalContent = "";
 let pageContent = "";
 let previewContent = "";
+var hidden, visibilityChange;
 
 const invitesCrypto = {
   decrypt: (serializedKey, encryptionObject) => {
@@ -503,7 +504,7 @@ function customScrollTo(selector) {
 }
 
 function refreshFloatingLabels() {
-  if (document.visibilityState === "visible") {
+  if (!document[hidden]) {
     document.querySelectorAll("input, select").forEach(item => {
       if (item.value !== "") {
         item.parentElement.classList.add("has-value");
@@ -513,7 +514,17 @@ function refreshFloatingLabels() {
 }
 
 function refreshFloatingLabelsListener() {
-  window.addEventListener("visibilitychange", refreshFloatingLabels);
+  if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
+    hidden = "hidden";
+    visibilityChange = "visibilitychange";
+  } else if (typeof document.msHidden !== "undefined") {
+    hidden = "msHidden";
+    visibilityChange = "msvisibilitychange";
+  } else if (typeof document.webkitHidden !== "undefined") {
+    hidden = "webkitHidden";
+    visibilityChange = "webkitvisibilitychange";
+  }
+  window.addEventListener(visibilitychange, refreshFloatingLabels);
 }
 
 function setCountry(country) {
