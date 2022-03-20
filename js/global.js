@@ -524,7 +524,7 @@ function refreshFloatingLabelsListener() {
     hidden = "webkitHidden";
     visibilityChange = "webkitvisibilitychange";
   }
-  window.addEventListener(visibilitychange, refreshFloatingLabels);
+  window.addEventListener(visibilityChange, refreshFloatingLabels);
 }
 
 function setCountry(country) {
