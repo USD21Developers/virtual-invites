@@ -598,7 +598,7 @@ function setDefaultSendMethod() {
   }
 }
 
-function showError(msg, selector, inlineMsg) {
+function showError(msg, selector, inlineMsg, hideFinishButton = false) {
   const formIncomplete = getPhrase("formIncomplete");
 
   formErrorsReset();
@@ -609,7 +609,11 @@ function showError(msg, selector, inlineMsg) {
       formError(selector);
     };
   }
+
+  const footerEl = document.querySelector(".modal-footer");
+  if (hideFinishButton) footerEl.classList.add("d-none");
   showModal(msg, formIncomplete);
+  footerEl.classList.remove("d-none");
 }
 
 function showForwardingMessage(sendvia) {
@@ -649,7 +653,7 @@ function validate() {
     const msg = getPhrase("recipientNameRequired");
     const msgInline = getPhrase("fieldRequired");
 
-    showError(msg, "#recipientname", msgInline);
+    showError(msg, "#recipientname", msgInline, true);
     return { isValid: false };
   }
 
@@ -661,7 +665,7 @@ function validate() {
       const msg = getPhrase("phoneNumberIsRequired");
       const msgInline = getPhrase("fieldRequired");
 
-      showError(msg, "#sendto_sms", msgInline);
+      showError(msg, "#sendto_sms", msgInline, true);
       return { isValid: false };
     }
 
@@ -669,7 +673,7 @@ function validate() {
       const msg = getPhrase("phoneNumberMustBeValid");
       const msgInline = getPhrase("validPhoneNumberIsRequired");
 
-      showError(msg, "#sendto_sms", msgInline);
+      showError(msg, "#sendto_sms", msgInline, true);
       return { isValid: false };
     }
   }
@@ -682,7 +686,7 @@ function validate() {
       const msg = getPhrase("emailIsRequired");
       const msgInline = getPhrase("fieldIsRequired");
 
-      showError(msg, "#sendto_email", msgInline);
+      showError(msg, "#sendto_email", msgInline, true);
       return { isValid: false };
     }
 
@@ -690,7 +694,7 @@ function validate() {
       const msg = getPhrase("emailMustBeValid");
       const msgInline = getPhrase("validEmailIsRequired");
 
-      showError(msg, "#sendto_email", msgInline);
+      showError(msg, "#sendto_email", msgInline, true);
       return { isValid: false };
     }
   }
