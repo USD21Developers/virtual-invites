@@ -145,7 +145,8 @@ function formError(selector, message = "") {
 
   if (feedback) feedback.innerHTML = message;
   element.classList.add("is-invalid");
-  window.scrollTo({ top: offsetPosition, behavior: "smooth", block: "center" });
+  // window.scrollTo({ top: offsetPosition, behavior: "smooth", block: "center" });
+  customScrollTo(selector);
   if (!isMobileDevice()) element.focus();
 }
 
