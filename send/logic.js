@@ -684,7 +684,7 @@ function validate() {
 
     if (email === "") {
       const msg = getPhrase("emailIsRequired");
-      const msgInline = getPhrase("fieldIsRequired");
+      const msgInline = getPhrase("fieldRequired");
 
       showError(msg, "#sendto_email", msgInline, true);
       return { isValid: false };
