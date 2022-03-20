@@ -222,6 +222,36 @@
       "key": "cancel",
       "original": "Cancel",
       "translated": "Cancel"
+    },
+    {
+      "key": "phoneNumberIsRequired",
+      "original": "Please input the recipient's mobile phone number.",
+      "translated": "Please input the recipient's mobile phone number."
+    },
+    {
+      "key": "phoneNumberMustBeValid",
+      "original": "Please check the recipient's mobile phone number for accuracy and proper formatting.",
+      "translated": "Please check the recipient's mobile phone number for accuracy and proper formatting."
+    },
+    {
+      "key": "validPhoneNumberIsRequired",
+      "original": "A valid phone number is required.",
+      "translated": "A valid phone number is required."
+    },
+    {
+      "key": "emailIsRequired",
+      "original": "Please input the recipient's e-mail address.",
+      "translated": "Please input the recipient's e-mail address."
+    },
+    {
+      "key": "emailMustBeValid",
+      "original": "Please check the recipient's e-mail address for accuracy and proper formatting.",
+      "translated": "Please check the recipient's e-mail address for accuracy and proper formatting."
+    },
+    {
+      "key": "validEmailIsRequired",
+      "original": "A valid e-mail address is required.",
+      "translated": "A valid e-mail address is required."
     }
   ],
 

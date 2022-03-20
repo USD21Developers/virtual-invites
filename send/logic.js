@@ -381,15 +381,16 @@ async function onSubmitButtonClick(e) {
 
   clearErrorMessages();
 
+  let validation = validate() || { isValid: true };
+  if (!validation.isValid) return false;
+
   switch (sendVia) {
     case "sms":
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
       showForwardingMessage("sms");
-      console.log("Setting SMS timer");
 
       setTimeout(() => {
         onAfterSubmitted("sms");
-        console.log("Timer finished");
       }, 5000);
       break;
     case "email":
@@ -634,6 +635,64 @@ function showTagInviteWithLocation() {
       "#containerTagWithLocation"
     );
     containerTagWithLocation.classList.remove("d-none");
+  }
+}
+
+function validate() {
+  const sendvia = getSendVia();
+  const name = document.querySelector("#recipientname").value.trim() || "";
+  const footerEl = document.querySelector(".modal-footer");
+  const restoreModalFooter = () => footerEl.classList.remove("d-none");
+  const removeModalFooter = () => footerEl.classList.add("d-none");
+
+  if (name === "") {
+    const msg = getPhrase("recipientNameRequired");
+    const msgInline = getPhrase("fieldRequired");
+
+    showError(msg, "#recipientname", msgInline);
+    return { isValid: false };
+  }
+
+  if (sendvia === "sms") {
+    const number = iti.getNumber() || "";
+    const isValidSms = iti.isValidNumber();
+
+    if (number === "") {
+      const msg = getPhrase("phoneNumberIsRequired");
+      const msgInline = getPhrase("fieldRequired");
+
+      showError(msg, "#sendto_sms", msgInline);
+      return { isValid: false };
+    }
+
+    if (!isValidSms) {
+      const msg = getPhrase("phoneNumberMustBeValid");
+      const msgInline = getPhrase("validPhoneNumberIsRequired");
+
+      showError(msg, "#sendto_sms", msgInline);
+      return { isValid: false };
+    }
+  }
+
+  if (sendvia === "email") {
+    const email = document.querySelector("#sendto_email").value.trim() || "";
+    const isValidEmail = validateEmail(email);
+
+    if (email === "") {
+      const msg = getPhrase("emailIsRequired");
+      const msgInline = getPhrase("fieldIsRequired");
+
+      showError(msg, "#sendto_email", msgInline);
+      return { isValid: false };
+    }
+
+    if (!isValidEmail) {
+      const msg = getPhrase("emailMustBeValid");
+      const msgInline = getPhrase("validEmailIsRequired");
+
+      showError(msg, "#sendto_email", msgInline);
+      return { isValid: false };
+    }
   }
 }
 
