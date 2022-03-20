@@ -861,8 +861,8 @@ function validate() {
         return false;
       }
 
-      const momentFromDate = moment(`${oneTimeEventBeginDate} ${oneTimeEventBeginTime}`);
-      const momentToDate = moment(`${oneTimeEventEndDate} ${oneTimeEventEndTime}`);
+      const momentFromDate = moment(`${multiDayBeginDate} ${multiDayBeginTime}`);
+      const momentToDate = moment(`${multiDayEndDate} ${multiDayEndTime}`);
       if (momentFromDate >= momentToDate) {
         showError(getPhrase("startDateMustPrecedeEndDate"), "#oneTimeEventBeginDate", getPhrase("validDateIsRequired"));
         return false;
