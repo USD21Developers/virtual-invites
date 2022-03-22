@@ -137,16 +137,12 @@ function enableTooltips() {
 function formError(selector, message = "") {
   const element = document.querySelector(selector);
   const feedback = document.querySelector(`${selector} + .invalid-feedback`);
-  const offset = 94;
-  const bodyRect = document.body.getBoundingClientRect().top;
-  const elementRect = element.getBoundingClientRect().top;
-  const elementPosition = elementRect - bodyRect;
-  const offsetPosition = elementPosition - offset;
 
   if (feedback) feedback.innerHTML = message;
+
   element.classList.add("is-invalid");
-  // window.scrollTo({ top: offsetPosition, behavior: "smooth", block: "center" });
   customScrollTo(selector);
+
   if (!isMobileDevice()) element.focus();
 }
 
@@ -558,10 +554,11 @@ function showModal(
   body = "",
   title = "",
   closeButtonText = "",
-  backdrop = "true"
+  backdrop = "true",
+  selector = "#modal"
 ) {
-  const modal = document.querySelector("#modal");
-  const modalTitle = document.querySelector("#modaltitle");
+  const modal = document.querySelector(selector);
+  const modalTitle = modal.querySelector(".modal-title");
 
   if (title === "") {
     modalTitle.innerHTML = "";
@@ -596,7 +593,7 @@ function showModal(
       .classList.remove("d-none");
   }
 
-  $("#modal").modal({
+  $(selector).modal({
     backdrop: backdrop,
   });
 }

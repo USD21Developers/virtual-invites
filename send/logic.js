@@ -379,6 +379,8 @@ async function onSubmitButtonClick(e) {
   const sendBody = getSendBody();
   const emailSubjectLine = getEmailSubjectLine();
 
+  e.preventDefault();
+
   clearErrorMessages();
 
   let validation = validate() || { isValid: true };
@@ -598,10 +600,11 @@ function setDefaultSendMethod() {
   }
 }
 
-function showError(msg, selector, inlineMsg, hideFinishButton = false) {
+function showError(msg, selector, inlineMsg, modalSelector = "#modalFormErrors") {
   const formIncomplete = getPhrase("formIncomplete");
 
   formErrorsReset();
+
   if (selector) {
     if (inlineMsg) {
       formError(selector, inlineMsg);
@@ -610,10 +613,7 @@ function showError(msg, selector, inlineMsg, hideFinishButton = false) {
     };
   }
 
-  const footerEl = document.querySelector(".modal-footer");
-  if (hideFinishButton) footerEl.classList.add("d-none");
-  showModal(msg, formIncomplete);
-  footerEl.classList.remove("d-none");
+  showModal(msg, formIncomplete, "", "true", modalSelector);
 }
 
 function showForwardingMessage(sendvia) {
@@ -646,14 +646,12 @@ function validate() {
   const sendvia = getSendVia();
   const name = document.querySelector("#recipientname").value.trim() || "";
   const footerEl = document.querySelector(".modal-footer");
-  const restoreModalFooter = () => footerEl.classList.remove("d-none");
-  const removeModalFooter = () => footerEl.classList.add("d-none");
 
   if (name === "") {
     const msg = getPhrase("recipientNameRequired");
     const msgInline = getPhrase("fieldRequired");
 
-    showError(msg, "#recipientname", msgInline, true);
+    showError(msg, "#recipientname", msgInline);
     return { isValid: false };
   }
 
@@ -664,8 +662,13 @@ function validate() {
     if (number === "") {
       const msg = getPhrase("phoneNumberIsRequired");
       const msgInline = getPhrase("fieldRequired");
+      const inputEl = document.querySelector(".iti--allow-dropdown");
+      const errorContainer = document.createElement("div")
+      errorContainer.classList.add("invalid-feedback");
 
-      showError(msg, "#sendto_sms", msgInline, true);
+      inputEl.appendChild(errorContainer);
+
+      showError(msg, "#sendto_sms", msgInline);
       return { isValid: false };
     }
 
@@ -673,7 +676,7 @@ function validate() {
       const msg = getPhrase("phoneNumberMustBeValid");
       const msgInline = getPhrase("validPhoneNumberIsRequired");
 
-      showError(msg, "#sendto_sms", msgInline, true);
+      showError(msg, "#sendto_sms", msgInline);
       return { isValid: false };
     }
   }
@@ -686,7 +689,7 @@ function validate() {
       const msg = getPhrase("emailIsRequired");
       const msgInline = getPhrase("fieldRequired");
 
-      showError(msg, "#sendto_email", msgInline, true);
+      showError(msg, "#sendto_email", msgInline);
       return { isValid: false };
     }
 
@@ -694,7 +697,7 @@ function validate() {
       const msg = getPhrase("emailMustBeValid");
       const msgInline = getPhrase("validEmailIsRequired");
 
-      showError(msg, "#sendto_email", msgInline, true);
+      showError(msg, "#sendto_email", msgInline);
       return { isValid: false };
     }
   }

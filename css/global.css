@@ -197,3 +197,7 @@ a:hover {
 .large {
   font-size: large;
 }
+
+.iti__selected-flag {
+  height: 35px;
+}
