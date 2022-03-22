@@ -379,8 +379,6 @@ async function onSubmitButtonClick(e) {
   const sendBody = getSendBody();
   const emailSubjectLine = getEmailSubjectLine();
 
-  e.preventDefault();
-
   clearErrorMessages();
 
   let validation = validate() || { isValid: true };
@@ -389,25 +387,28 @@ async function onSubmitButtonClick(e) {
   switch (sendVia) {
     case "sms":
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
+
       showForwardingMessage("sms");
 
       setTimeout(() => {
         onAfterSubmitted("sms");
       }, 5000);
+
       break;
     case "email":
       btnSendInvite.setAttribute(
         "href",
         `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`
       );
+
       showForwardingMessage("email");
+
       setTimeout(() => {
         onAfterSubmitted("email");
       }, 5000);
+
       break;
     case "otherapps":
-      e.preventDefault();
-
       const url = getFinalURL();
 
       const shareData = {
@@ -428,7 +429,6 @@ async function onSubmitButtonClick(e) {
 
       break;
     default:
-      e.preventDefault();
       onAfterSubmitted("qrcode");
   }
 }
