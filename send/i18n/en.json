@@ -185,18 +185,18 @@
     },
     {
       "key": "afterSentParagraph1",
-      "original": "This invite has been saved to your account, enabling you to follow up. You will be notified by e-mail when the recipient has clicked and viewed the invite.",
-      "translated": "This invite has been saved to your account, enabling you to follow up. You will be notified by e-mail when the recipient has clicked and viewed the invite."
+      "original": "This invite has been saved to your account, enabling you to follow up. You will be notified by e-mail when the recipient has clicked on and viewed the invite.",
+      "translated": "This invite has been saved to your account, enabling you to follow up. You will be notified by e-mail when the recipient has clicked on and viewed the invite."
     },
     {
       "key": "afterSentParagraph1QRCode",
-      "original": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked and viewed the invite.",
-      "translated": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked and viewed the invite."
+      "original": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked on and viewed the invite.",
+      "translated": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked on and viewed the invite."
     },
     {
       "key": "afterSentParagraph1OtherApps",
-      "original": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked and viewed the invite.",
-      "translated": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked and viewed the invite."
+      "original": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked on and viewed the invite.",
+      "translated": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked on and viewed the invite."
     },
     {
       "key": "problemsSending",
