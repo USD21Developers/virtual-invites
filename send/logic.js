@@ -691,66 +691,6 @@ function showTagInviteWithLocation() {
   }
 }
 
-function validate() {
-  const sendvia = getSendVia();
-  const name = document.querySelector("#recipientname").value.trim() || "";
-
-  if (name === "") {
-    const msg = getPhrase("recipientNameRequired");
-    const msgInline = getPhrase("fieldRequired");
-
-    showError(msg, "#recipientname", msgInline);
-    return { isValid: false };
-  }
-
-  if (sendvia === "sms") {
-    const number = iti.getNumber() || "";
-    const isValidSms = iti.isValidNumber();
-
-    if (number === "") {
-      const msg = getPhrase("phoneNumberIsRequired");
-      const msgInline = getPhrase("fieldRequired");
-      const inputEl = document.querySelector(".iti--allow-dropdown");
-      const errorContainer = document.createElement("div")
-      errorContainer.classList.add("invalid-feedback");
-
-      inputEl.appendChild(errorContainer);
-
-      showError(msg, "#sendto_sms", msgInline);
-      return { isValid: false };
-    }
-
-    if (!isValidSms) {
-      const msg = getPhrase("phoneNumberMustBeValid");
-      const msgInline = getPhrase("validPhoneNumberIsRequired");
-
-      showError(msg, "#sendto_sms", msgInline);
-      return { isValid: false };
-    }
-  }
-
-  if (sendvia === "email") {
-    const email = document.querySelector("#sendto_email").value.trim() || "";
-    const isValidEmail = validateEmail(email);
-
-    if (email === "") {
-      const msg = getPhrase("emailIsRequired");
-      const msgInline = getPhrase("fieldRequired");
-
-      showError(msg, "#sendto_email", msgInline);
-      return { isValid: false };
-    }
-
-    if (!isValidEmail) {
-      const msg = getPhrase("emailMustBeValid");
-      const msgInline = getPhrase("validEmailIsRequired");
-
-      showError(msg, "#sendto_email", msgInline);
-      return { isValid: false };
-    }
-  }
-}
-
 function setEventListeners() {
   document
     .querySelector("#sendvia")
