@@ -465,6 +465,7 @@ async function onSubmitButtonClick(e) {
       };
 
       try {
+        e.preventDefault();
         navigator.share(shareData).then(() => {
           setTimeout(() => {
             onAfterSubmitted("otherapps");
