@@ -272,16 +272,19 @@
             <h4 class="text-uppercase">&nbsp;</h4>
           </div>
           <div class="col-8 col-md-5">
-            <input
-              type="tel"
-              class="form-control"
-              name="sendto_sms"
-              id="sendto_sms"
-              placeholder=""
-              tabindex="4"
-              pattern="[0-9]*"
-              data-i18n-placeholder="mobilephonenumber"
-            />
+            <div>
+              <input
+                type="tel"
+                class="form-control"
+                name="sendto_sms"
+                id="sendto_sms"
+                placeholder=""
+                tabindex="4"
+                pattern="[0-9]*"
+                data-i18n-placeholder="mobilephonenumber"
+              />
+            </div>
+            <div class="invalid-feedback" id="phoneNumberInvalidFeedback"></div>
           </div>
         </div>
 

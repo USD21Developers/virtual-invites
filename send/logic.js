@@ -378,14 +378,41 @@ async function onSubmitButtonClick(e) {
   const sendTo = getSendTo();
   const sendBody = getSendBody();
   const emailSubjectLine = getEmailSubjectLine();
+  const recipientName = document.querySelector("#recipientname").value.trim() || "";
 
   clearErrorMessages();
 
-  let validation = validate() || { isValid: true };
-  if (!validation.isValid) return false;
+  if (recipientName === "") {
+    const msg = getPhrase("recipientNameRequired");
+    const msgInline = getPhrase("fieldRequired");
+    return showError(msg, "#recipientname", msgInline);
+  }
 
   switch (sendVia) {
     case "sms":
+      const phoneNumber = iti.getNumber();
+      const isPhoneNumberValid = iti.isValidNumber();
+
+      if (phoneNumber === "") {
+        const msg = getPhrase("phoneNumberIsRequired");
+        const msgInline = getPhrase("fieldRequired");
+        const inputEl = document.querySelector(".iti--allow-dropdown");
+        const errorContainer = document.createElement("div")
+        errorContainer.classList.add("invalid-feedback");
+        inputEl.appendChild(errorContainer);
+        return showError(msg, "#sendto_sms", msgInline);
+      }
+
+      if (!isPhoneNumberValid) {
+        const msg = getPhrase("phoneNumberMustBeValid");
+        const msgInline = getPhrase("validPhoneNumberIsRequired");
+        const inputEl = document.querySelector(".iti--allow-dropdown");
+        const errorContainer = document.createElement("div")
+        errorContainer.classList.add("invalid-feedback");
+        inputEl.appendChild(errorContainer);
+        return showError(msg, "#sendto_sms", msgInline);
+      }
+
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
 
       showForwardingMessage("sms");
@@ -396,6 +423,21 @@ async function onSubmitButtonClick(e) {
 
       break;
     case "email":
+      const email = document.querySelector("#sendto_email").value.trim() || "";
+      const isValidEmail = validateEmail(email);
+
+      if (email === "") {
+        const msg = getPhrase("emailIsRequired");
+        const msgInline = getPhrase("fieldRequired");
+        return showError(msg, "#sendto_email", msgInline);
+      }
+
+      if (!isValidEmail) {
+        const msg = getPhrase("emailMustBeValid");
+        const msgInline = getPhrase("validEmailIsRequired");
+        return showError(msg, "#sendto_email", msgInline);
+      }
+
       btnSendInvite.setAttribute(
         "href",
         `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`
@@ -431,6 +473,7 @@ async function onSubmitButtonClick(e) {
     default:
       onAfterSubmitted("qrcode");
   }
+
 }
 
 function onTagWithLocation(e) {
@@ -645,7 +688,6 @@ function showTagInviteWithLocation() {
 function validate() {
   const sendvia = getSendVia();
   const name = document.querySelector("#recipientname").value.trim() || "";
-  const footerEl = document.querySelector(".modal-footer");
 
   if (name === "") {
     const msg = getPhrase("recipientNameRequired");
@@ -720,6 +762,12 @@ function setEventListeners() {
     .querySelector("#formsendinvite")
     .addEventListener("submit", onSubmit);
   document.querySelector("#btnFinish").addEventListener("click", onFinish);
+  window.addEventListener("pageshow", (event) => {
+    onSendViaChanged();
+    if (event.persisted) {
+      console.log("Page was restored from the bfcache");
+    }
+  });
 }
 
 async function init() {

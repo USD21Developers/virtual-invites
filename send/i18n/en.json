@@ -235,8 +235,8 @@
     },
     {
       "key": "validPhoneNumberIsRequired",
-      "original": "A valid phone number is required.",
-      "translated": "A valid phone number is required."
+      "original": "Phone number must be valid.",
+      "translated": "Phone number must be valid."
     },
     {
       "key": "emailIsRequired",
@@ -250,8 +250,8 @@
     },
     {
       "key": "validEmailIsRequired",
-      "original": "A valid e-mail address is required.",
-      "translated": "A valid e-mail address is required."
+      "original": "E-mail must be valid.",
+      "translated": "E-mail must be valid."
     }
   ],
 
