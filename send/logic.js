@@ -385,6 +385,7 @@ async function onSubmitButtonClick(e) {
   if (recipientName === "") {
     const msg = getPhrase("recipientNameRequired");
     const msgInline = getPhrase("fieldRequired");
+    e.preventDefault();
     return showError(msg, "#recipientname", msgInline);
   }
 
@@ -400,6 +401,7 @@ async function onSubmitButtonClick(e) {
         const errorContainer = document.createElement("div")
         errorContainer.classList.add("invalid-feedback");
         inputEl.appendChild(errorContainer);
+        e.preventDefault();
         return showError(msg, "#sendto_sms", msgInline);
       }
 
@@ -410,6 +412,7 @@ async function onSubmitButtonClick(e) {
         const errorContainer = document.createElement("div")
         errorContainer.classList.add("invalid-feedback");
         inputEl.appendChild(errorContainer);
+        e.preventDefault();
         return showError(msg, "#sendto_sms", msgInline);
       }
 
@@ -429,12 +432,14 @@ async function onSubmitButtonClick(e) {
       if (email === "") {
         const msg = getPhrase("emailIsRequired");
         const msgInline = getPhrase("fieldRequired");
+        e.preventDefault();
         return showError(msg, "#sendto_email", msgInline);
       }
 
       if (!isValidEmail) {
         const msg = getPhrase("emailMustBeValid");
         const msgInline = getPhrase("validEmailIsRequired");
+        e.preventDefault();
         return showError(msg, "#sendto_email", msgInline);
       }
 
@@ -471,6 +476,7 @@ async function onSubmitButtonClick(e) {
 
       break;
     default:
+      e.preventDefault();
       onAfterSubmitted("qrcode");
   }
 
