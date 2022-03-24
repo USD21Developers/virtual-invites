@@ -315,11 +315,11 @@ async function onAfterSubmitted(sendvia) {
   const txtBtnRetry = getPhrase("btnRetry");
   saveAndSync()
     .then(() => {
-      showModal(modalContent, txtInviteRecorded, txtBtnRetry, "static");
+      showModal(modalContent, txtInviteRecorded);
     })
     .catch(() => {
       // TODO:  Handle failed sync here, if necessary
-      showModal(modalContent, txtInviteRecorded, txtBtnRetry, "static");
+      showModal(modalContent, txtInviteRecorded);
     });
 }
 

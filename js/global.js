@@ -577,11 +577,11 @@ function showModal(
     modal
       .querySelector(".modal-header button[class=close]")
       .setAttribute("aria-label", "");
-    modal.querySelector(".modal-footer button[data-dismiss=modal]").innerHTML =
+    /* modal.querySelector(".modal-footer button[data-dismiss=modal]").innerHTML =
       "";
     modal
       .querySelector(".modal-footer button[data-dismiss=modal]")
-      .classList.add("d-none");
+      .classList.add("d-none"); */
   } else {
     modal
       .querySelector(".modal-header button[class=close]")

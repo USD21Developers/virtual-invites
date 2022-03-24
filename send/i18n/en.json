@@ -174,9 +174,14 @@
       "translated": "Invite Copied!"
     },
     {
+      "key": "btnCustomize",
+      "original": "Customize invite for this recipient",
+      "translated": "Customize invite for this recipient"
+    },
+    {
       "key": "btnRetry",
-      "original": "Retry",
-      "translated": "Retry"
+      "original": "Retry sending",
+      "translated": "Retry sending"
     },
     {
       "key": "btnFinish",
