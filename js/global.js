@@ -553,7 +553,6 @@ function showMaterialIcons() {
 function showModal(
   body = "",
   title = "",
-  closeButtonText = "",
   backdrop = "true",
   selector = "#modal"
 ) {
@@ -569,29 +568,6 @@ function showModal(
   }
 
   modal.querySelector(".modal-body").innerHTML = body;
-
-  if (closeButtonText === "") {
-    modal
-      .querySelector("[data-dismiss='modal']")
-      .setAttribute("aria-label", closeButtonText);
-    modal
-      .querySelector(".modal-header button[class=close]")
-      .setAttribute("aria-label", "");
-    /* modal.querySelector(".modal-footer button[data-dismiss=modal]").innerHTML =
-      "";
-    modal
-      .querySelector(".modal-footer button[data-dismiss=modal]")
-      .classList.add("d-none"); */
-  } else {
-    modal
-      .querySelector(".modal-header button[class=close]")
-      .setAttribute("aria-label", closeButtonText);
-    modal.querySelector(".modal-footer button[data-dismiss=modal]").innerHTML =
-      closeButtonText;
-    modal
-      .querySelector(".modal-footer button[data-dismiss=modal]")
-      .classList.remove("d-none");
-  }
 
   $(selector).modal({
     backdrop: backdrop,
