@@ -180,8 +180,8 @@
     },
     {
       "key": "btnRetry",
-      "original": "Retry sending",
-      "translated": "Retry sending"
+      "original": "Retry",
+      "translated": "Retry"
     },
     {
       "key": "btnFinish",
