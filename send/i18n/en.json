@@ -235,8 +235,8 @@
     },
     {
       "key": "phoneNumberMustBeValid",
-      "original": "Please check the recipient's mobile phone number for accuracy and proper formatting.",
-      "translated": "Please check the recipient's mobile phone number for accuracy and proper formatting."
+      "original": "Please check the recipient's mobile phone number for accuracy.",
+      "translated": "Please check the recipient's mobile phone number for accuracy."
     },
     {
       "key": "validPhoneNumberIsRequired",
@@ -250,8 +250,8 @@
     },
     {
       "key": "emailMustBeValid",
-      "original": "Please check the recipient's e-mail address for accuracy and proper formatting.",
-      "translated": "Please check the recipient's e-mail address for accuracy and proper formatting."
+      "original": "Please check the recipient's e-mail address for accuracy.",
+      "translated": "Please check the recipient's e-mail address for accuracy."
     },
     {
       "key": "validEmailIsRequired",

@@ -663,7 +663,7 @@ function showError(msg, selector, inlineMsg, modalSelector = "#modalFormErrors")
     };
   }
 
-  showModal(msg, formIncomplete, "", "true", modalSelector);
+  showModal(msg, formIncomplete, "true", modalSelector);
 }
 
 function showForwardingMessage(sendvia) {

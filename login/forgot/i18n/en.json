@@ -40,8 +40,8 @@
     },
     {
       "key": "emailError",
-      "original": "Please check your e-mail address for accuracy and proper formatting.",
-      "translated": "Please check your e-mail address for accuracy and proper formatting."
+      "original": "Please check your e-mail address for accuracy.",
+      "translated": "Please check your e-mail address for accuracy."
     },
     {
       "key": "emailErrorHeadline",
