@@ -553,7 +553,7 @@ function showMaterialIcons() {
 function showModal(
   body = "",
   title = "",
-  backdrop = "true",
+  backdrop = "static",
   selector = "#modal"
 ) {
   const modal = document.querySelector(selector);
