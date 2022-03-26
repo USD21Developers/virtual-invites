@@ -3,29 +3,88 @@ let mapCoordinates = "";
 
 function getDefaultRecipientName(gender) {
   const maleNames = [
-    "Leandro",
-    "Luis",
-    "Brian",
-    "Drew",
-    "Kairo",
-    "George",
-    "Ryley",
     "Aaron",
+    "Abolfazi",
+    "Ali",
+    "Amir-Abbas",
+    "Amir-Ali",
+    "Amir-Hossein",
+    "Angelo",
+    "Benjamin",
+    "Brian",
+    "Christian",
+    "Daniel",
+    "Drew",
+    "Elijah",
+    "Gabriel",
+    "George",
+    "Hossein",
+    "Jacob",
+    "James",
+    "John Mark",
     "Jose",
-    "Maddox"
+    "Joshua",
+    "Jožef",
+    "Kairo",
+    "Kerem",
+    "Leandro",
+    "Liam",
+    "Lucas",
+    "Luis",
+    "Luka",
+    "Maddox",
+    "Mohammed",
+    "Nathan",
+    "Nathaniel",
+    "Noah",
+    "Oliver",
+    "Ryley",
+    "Samyar",
+    "Seo-jun",
+    "William",
+    "Yusuf"
   ];
 
   const femaleNames = [
-    "Brittany",
+    "Aadhya",
+    "Abigail",
+    "Alba",
     "Amanda",
-    "Nicole",
-    "Priya",
-    "Kalyani",
-    "Annalisa",
-    "Monica",
     "Andile",
+    "Annalisa",
+    "Antonia",
+    "Aurora",
+    "Ava",
+    "Brittany",
+    "Carla",
+    "Chloe",
+    "Diya",
+    "Emily",
+    "Emine",
+    "Emma",
+    "Esra",
+    "Fatma",
+    "Hannah",
+    "Isabella",
+    "Isidora",
+    "Kalyani",
+    "Leoni",
+    "Lucia",
+    "Marie",
+    "Martina",
+    "Mia",
+    "Monica",
+    "Natalia",
+    "Nicole",
+    "Olivia",
+    "Paula",
     "Phyllis",
-    "Natalia"
+    "Priya",
+    "Ruby",
+    "Saanvi",
+    "Sophia",
+    "Valentina",
+    "Zeynep"
   ];
 
   const userGender = gender ? gender : JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).gender;
@@ -674,7 +733,7 @@ function showError(msg, selector, inlineMsg) {
       formError(selector);
     };
   }
-  showModal(msg, formIncomplete);
+  showModal(msg, formIncomplete, "true", "#modalFormErrors");
 }
 
 function showSingleDay() {
