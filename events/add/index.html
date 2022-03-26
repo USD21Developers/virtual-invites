@@ -211,12 +211,6 @@
               </div>
             </div>
 
-            <h4 class="mt-5 mb-2" data-i18n="headlineTimezone"></h4>
-
-            <div class="form-group mt-2 mb-5">
-              <select class="form-control" id="timezone"></select>
-            </div>
-
             <h4 class="mt-5 mb-2" data-i18n="headlineFrequency"></h4>
 
             <div class="form-group mt-2 mb-5">
@@ -339,6 +333,12 @@
                 <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
               </div>
             </fieldset>
+
+            <h4 class="mt-5 mb-2" data-i18n="headlineTimezone"></h4>
+
+            <div class="form-group mt-2 mb-5">
+              <select class="form-control" id="timezone"></select>
+            </div>
 
             <fieldset id="locationContainer" class="my-5">
               <legend data-i18n="headlineLocation"></legend>
@@ -609,41 +609,7 @@
       </div>
     </div>
 
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="modal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="modaltitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modaltitle"></h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label=""
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body"></div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-light text-dark border border-dark"
-              data-dismiss="modal"
-            ></button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Preview -->
+    <!-- Preview modal -->
     <div
       class="modal fade"
       id="preview"
@@ -666,6 +632,34 @@
             </button>
           </div>
           <div class="modal-body"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Errors modal -->
+    <div
+      class="modal fade"
+      id="modalFormErrors"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitleFormErrors"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modaltitleFormErrors"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer"></div>
         </div>
       </div>
     </div>
