@@ -353,6 +353,10 @@ function getPreviewPhrase(key) {
   }
 }
 
+function randomIntFromInterval(min = 0, max = 500) { // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 function hide(selector) {
   selector.classList.add("d-none");
 }

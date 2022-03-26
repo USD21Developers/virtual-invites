@@ -101,8 +101,8 @@ function getDefaultRecipientName(gender) {
 
 function getDefaultInvitedDate() {
   let lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
-
-  return getRelativeDate(-7, lang);
+  const numDaysAgo = randomIntFromInterval(0, 75) * -1;
+  return getRelativeDate(numDaysAgo, lang);
 }
 
 function getSenderFirstName() {
