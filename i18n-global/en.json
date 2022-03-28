@@ -72,6 +72,11 @@
       "key": "close",
       "original": "Close",
       "translated": "Close"
+    },
+    {
+      "key": "recently",
+      "original": "recently",
+      "translated": "recently"
     }
   ],
 
