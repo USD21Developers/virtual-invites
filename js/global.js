@@ -261,9 +261,7 @@ function getHash() {
 }
 
 function getLang() {
-  const path = window.location.pathname.split("/");
-  const langFromPath = path.find((frag) => frag === "lang") ? path[2] : "en";
-  return langFromPath;
+  return JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
 }
 
 function getPhrase(key) {
