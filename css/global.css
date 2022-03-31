@@ -201,3 +201,21 @@ a:hover {
 .iti__selected-flag {
   height: 35px;
 }
+
+.atcb_icon {
+  color: auto;
+  height: 16px;
+  display: inline-block;
+  margin-bottom: 4px;
+  margin-right: 10px;
+}
+
+.atcb_icon svg {
+  height: 100%;
+  color: rgb(51, 51, 51);
+  width: auto;
+}
+
+.list-atcb .list-group-item {
+  color: rgba(0, 0, 0, 0.87);
+}
