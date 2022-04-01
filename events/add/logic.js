@@ -307,6 +307,31 @@ function onPreviewClosed(e) {
 
 function onPreviewOpened() {
   previewSpinner("hide");
+
+  document.removeEventListener("click", () => {
+    return;
+  });
+
+
+
+  document.addEventListener("click", (event) => {
+    const addToCalendar = document.querySelector("#addToCalendar");
+    const clickedCalendar = addToCalendar.contains(event.target);
+    if (!clickedCalendar) {
+      $(".collapse").collapse("hide");
+    }
+  });
+
+  document.querySelectorAll("#atcbOptions a").forEach(function (item) {
+    item.removeEventListener("click", () => {
+      return;
+    });
+    item.addEventListener("click", function (e) {
+      const link = e.currentTarget.href;
+      e.preventDefault();
+      console.log(link);
+    });
+  });
 }
 
 function onSubmit(e) {
@@ -1087,6 +1112,7 @@ function attachListeners() {
   $("#preview").on("shown.bs.modal", onPreviewOpened);
 
   $("#preview").on("hidden.bs.modal", onPreviewClosed);
+
 }
 
 async function init() {
