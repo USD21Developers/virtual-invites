@@ -649,9 +649,15 @@ function populateInterpolatedPhrases() {
     month: "long",
     day: "numeric"
   }).format(new Date(eventStartDateTime));
-  eventStartTime = Intl.DateTimeFormat(lang, {
+
+  const localizedDate = Intl.DateTimeFormat(lang).format(new Date(eventStartDateTime));
+  const localizedTime = Intl.DateTimeFormat(lang, {
     timeStyle: "short"
   }).format(new Date(eventStartDateTime));
+
+  if (localizedTime !== localizedDate) {
+    eventStartTime = localizedTime;
+  }
 
   const previewModal = document.querySelector("#preview .modal-body");
   const currentHTML = previewModal.innerHTML;
