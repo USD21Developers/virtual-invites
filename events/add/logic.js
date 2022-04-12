@@ -1003,12 +1003,13 @@ function validate() {
   const line3Populated = (addressLine3.length > 0);
   const latPopulated = (latitude.length > 0);
   const longPopulated = (longitude.length > 0);
+  const isJapan = (country === "jp");
 
   if (line1Populated) numAddressLines += 1;
   if (line2Populated) numAddressLines += 1;
   if (line3Populated) numAddressLines += 1;
 
-  if (numAddressLines === 1) {
+  if ((numAddressLines === 1) && (!isJapan)) {
     if (!addressLine1.length) {
       showError(getPhrase("validateMinimumAddressLines"), "#addressLine1", getPhrase("fieldIsRequired"));
     } else if (!addressLine2.length) {
