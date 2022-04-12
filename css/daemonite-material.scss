@@ -1,0 +1,13 @@
+$primary: (
+  color: #0d6efd,
+  dark: darken(#0d6efd, 10%),
+  light: lighten(#0d6efd, 10%),
+);
+
+$secondary: (
+  color: #6c757d,
+  dark: darken(#6c757d, 10%),
+  light: lighten(#6c757d, 10%),
+);
+
+@import "../node_modules/daemonite-material/assets/scss/material.scss";
