@@ -146,7 +146,7 @@ function getSendBody() {
 
   switch (sendVia) {
     case "sms":
-      sendBody = `${inviteToText}\r\n${clickHere}\r\n\r\n${finalURL}`;
+      sendBody = `${inviteToText} ${clickHere}\r\n\r\n${finalURL}`;
       if (smsBodyText.length) {
         sendBody += `\r\n\r\n${smsBodyText}`;
       }
