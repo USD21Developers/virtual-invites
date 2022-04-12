@@ -830,7 +830,8 @@ function showRepeating(frequency) {
   const startDate = document.querySelector("#startdate").value;
   const startTime = document.querySelector("#starttime").value;
   const eventStartDateTime = `${startDate} ${startTime}`;
-  const startTimeLocalized = Intl.DateTimeFormat(lang, { timeStyle: "short" }).format(new Date(eventStartDateTime));
+  const eventStartDateTimeUTC = moment(eventStartDateTime).utc().format();
+  const startTimeLocalized = Intl.DateTimeFormat(lang, { timeStyle: "short" }).format(new Date(eventStartDateTimeUTC));
   const repeatingWeekdayEl = document.querySelector("#repeatingWeekday");
   const repeatingStartTimeEl = document.querySelector("#repeatingStartTime");
 
