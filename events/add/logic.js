@@ -1,5 +1,6 @@
 let viewedPreview = false;
 let mapCoordinates = "";
+let iti;
 
 function getDefaultRecipientName(gender) {
   const maleNames = [
