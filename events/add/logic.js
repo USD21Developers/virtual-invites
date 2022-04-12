@@ -638,6 +638,7 @@ function populateInterpolatedPhrases() {
     eventStartTime = document.querySelector("#starttime").value;
   }
   let eventStartDateTime = `${eventStartDate} ${eventStartTime}`;
+  const eventStartDateTimeUTC = moment(eventStartDateTime).utc().format();
 
   recipientName = getDefaultRecipientName();
   senderFirstName = getSenderFirstName();
@@ -648,12 +649,12 @@ function populateInterpolatedPhrases() {
     weekday: "long",
     month: "long",
     day: "numeric"
-  }).format(new Date(eventStartDateTime));
+  }).format(new Date(eventStartDateTimeUTC));
 
-  const localizedDate = Intl.DateTimeFormat(lang).format(new Date(eventStartDateTime));
+  const localizedDate = Intl.DateTimeFormat(lang).format(new Date(eventStartDateTimeUTC));
   const localizedTime = Intl.DateTimeFormat(lang, {
     timeStyle: "short"
-  }).format(new Date(eventStartDateTime));
+  }).format(new Date(eventStartDateTimeUTC));
 
   if (localizedTime !== localizedDate) {
     eventStartTime = localizedTime;
