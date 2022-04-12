@@ -138,6 +138,7 @@ function getSendBody() {
   const sendVia = getSendVia() || "";
   const finalURL = getFinalURL() || "";
   const inviteToText = getInviteToText() || "";
+  const clickHere = getPhrase("clickHere");
   const smsBodyText = getSmsBodyText() || "";
   const emailBodyText = getEmailBodyText() || "";
   const otherAppsBodyText = getOtherAppsBodyText() || "";
@@ -145,7 +146,7 @@ function getSendBody() {
 
   switch (sendVia) {
     case "sms":
-      sendBody = `${inviteToText}:\r\n\r\n${finalURL}`;
+      sendBody = `${inviteToText}\r\n${clickHere}\r\n\r\n${finalURL}`;
       if (smsBodyText.length) {
         sendBody += `\r\n\r\n${smsBodyText}`;
       }

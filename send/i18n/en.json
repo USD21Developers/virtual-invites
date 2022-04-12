@@ -257,6 +257,11 @@
       "key": "validEmailIsRequired",
       "original": "E-mail must be valid.",
       "translated": "E-mail must be valid."
+    },
+    {
+      "key": "clickHere",
+      "original": "(click here):",
+      "translated": "(click here):"
     }
   ],
 
