@@ -15,8 +15,7 @@ function clearForm() {
 }
 
 function enableWebShareAPI() {
-  // const supportsWebShareAPI = (!!navigator.share) || false;      // TURNING OFF WEB SHARE API FOR NOW
-  const supportsWebShareAPI = false;
+  const supportsWebShareAPI = (!!navigator.share) || false;      // TURNING OFF WEB SHARE API FOR
 
   if (supportsWebShareAPI) {
     document.querySelector("#sendvia option[value='otherapps']").classList.remove("d-none");
@@ -721,7 +720,7 @@ function setEventListeners() {
 async function init() {
   clearForm();
   await populateContent();
-  enableWebShareAPI();
+  // enableWebShareAPI();    // TURNING OFF WEB SHARE API FOR NOW
   populateSaveButtonData();
   loadEventsToInvitePeopleTo();
   setDefaultSendMethod();
