@@ -1,16 +1,7 @@
-:root {
-  --primary: #0d6efd;
-  --primary-dark: #083d8d;
-  --primary-light: #0d6efd;
-  --secondary: #6c757d;
-  --secondary-dark: #6c757d;
-  --secondary-light: #6c757d;
-}
-
 body,
 td {
   font-family: Lato, sans-serif;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .text-underline {
