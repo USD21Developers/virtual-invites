@@ -15,7 +15,8 @@ function clearForm() {
 }
 
 function enableWebShareAPI() {
-  const supportsWebShareAPI = (!!navigator.share) || false;
+  // const supportsWebShareAPI = (!!navigator.share) || false;      // TURNING OFF WEB SHARE API FOR NOW
+  const supportsWebShareAPI = false;
 
   if (supportsWebShareAPI) {
     document.querySelector("#sendvia option[value='otherapps']").classList.remove("d-none");
