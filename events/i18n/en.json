@@ -22,6 +22,16 @@
       "key": "addevent",
       "original": "Add an Event",
       "translated": "Add an Event"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbEvents",
+      "original": "Events",
+      "translated": "Events"
     }
   ],
 

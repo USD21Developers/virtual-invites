@@ -538,6 +538,21 @@
       "key": "validateInvalidEmail",
       "original": "Please check the e-mail address for completeness and proper formatting.",
       "translated": "Please check the e-mail address for completeness and proper formatting."
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbEvents",
+      "original": "Events",
+      "translated": "Events"
+    },
+    {
+      "key": "breadcrumbAdd",
+      "original": "Add",
+      "translated": "Add"
     }
   ],
 
