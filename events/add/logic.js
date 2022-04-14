@@ -309,6 +309,10 @@ function onPreviewClosed(e) {
 function onPreviewOpened() {
   previewSpinner("hide");
 
+  $(".collapse").on("show.bs.collapse", () => {
+    addToCalendar.scrollIntoView({ behavior: "smooth" })
+  });
+
   document.removeEventListener("click", () => {
     return;
   });
@@ -320,6 +324,7 @@ function onPreviewOpened() {
       $(".collapse").collapse("hide");
     }
   });
+
 
   document.querySelectorAll("#atcbOptions a").forEach(function (item) {
     item.removeEventListener("click", () => {
@@ -1236,7 +1241,6 @@ function attachListeners() {
   $("#preview").on("shown.bs.modal", onPreviewOpened);
 
   $("#preview").on("hidden.bs.modal", onPreviewClosed);
-
 }
 
 async function init() {
