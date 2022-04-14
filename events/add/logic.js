@@ -313,8 +313,6 @@ function onPreviewOpened() {
     return;
   });
 
-
-
   document.addEventListener("click", (event) => {
     const addToCalendar = document.querySelector("#addToCalendar");
     const clickedCalendar = addToCalendar.contains(event.target);
@@ -327,10 +325,126 @@ function onPreviewOpened() {
     item.removeEventListener("click", () => {
       return;
     });
+
     item.addEventListener("click", function (e) {
-      const link = e.currentTarget.href;
+      const addToCalButton = document.querySelector("#addToCalendar");
+      const destination = e.currentTarget.getAttribute("data-destination");
+      let config;
+
       e.preventDefault();
-      console.log(link);
+
+      switch (destination) {
+        case "apple":
+          config = {
+            title: 'Happy Hour',
+            location: 'The Bar, New York, NY',
+            description: 'Let\'s blow off some steam with a tall cold one!',
+            start: new Date('2022-07-08T19:00:00'),
+            end: new Date('2022-07-08T23:30:00'),
+            recurrence: {
+              frequency: 'WEEKLY',
+              interval: 2
+            }
+          };
+          const appleCal = new datebook.ICalendar(config);
+          appleCal.download();
+          break;
+        case "google":
+          config = {
+            title: 'Happy Hour',
+            location: 'The Bar, New York, NY',
+            description: 'Let\'s blow off some steam with a tall cold one!',
+            start: new Date('2022-07-08T19:00:00'),
+            end: new Date('2022-07-08T23:30:00'),
+            recurrence: {
+              frequency: 'WEEKLY',
+              interval: 2
+            }
+          };
+          const googleCal = new datebook.GoogleCalendar(config);
+          window.location.href = googleCal.render();
+          break;
+        case "ical":
+          config = {
+            title: 'Happy Hour',
+            location: 'The Bar, New York, NY',
+            description: 'Let\'s blow off some steam with a tall cold one!',
+            start: new Date('2022-07-08T19:00:00'),
+            end: new Date('2022-07-08T23:30:00'),
+            recurrence: {
+              frequency: 'WEEKLY',
+              interval: 2
+            }
+          };
+          const iCal = new datebook.ICalendar(config);
+          iCal.download();
+          break;
+        case "ms365":
+          config = {
+            title: 'Happy Hour',
+            location: 'The Bar, New York, NY',
+            description: 'Let\'s blow off some steam with a tall cold one!',
+            start: new Date('2022-07-08T19:00:00'),
+            end: new Date('2022-07-08T23:30:00'),
+            recurrence: {
+              frequency: 'WEEKLY',
+              interval: 2
+            }
+          };
+          const ms365Cal = new datebook.OutlookCalendar(config);
+          ms365Cal.setHost("office");
+          window.location.href = ms365Cal.render();
+          break;
+        case "msteams":
+          config = {
+            title: 'Happy Hour',
+            location: 'The Bar, New York, NY',
+            description: 'Let\'s blow off some steam with a tall cold one!',
+            start: new Date('2022-07-08T19:00:00'),
+            end: new Date('2022-07-08T23:30:00'),
+            recurrence: {
+              frequency: 'WEEKLY',
+              interval: 2
+            }
+          };
+          const msteamsCal = new datebook.OutlookCalendar(config);
+          msteamsCal.setHost("office");
+          window.location.href = msteamsCal.render();
+          break;
+        case "outlook":
+          config = {
+            title: 'Happy Hour',
+            location: 'The Bar, New York, NY',
+            description: 'Let\'s blow off some steam with a tall cold one!',
+            start: new Date('2022-07-08T19:00:00'),
+            end: new Date('2022-07-08T23:30:00'),
+            recurrence: {
+              frequency: 'WEEKLY',
+              interval: 2
+            }
+          };
+          const outlookCal = new datebook.OutlookCalendar(config);
+          outlookCal.setHost("live");
+          window.location.href = outlookCal.render();
+          break;
+        case "yahoo":
+          config = {
+            title: 'Happy Hour',
+            location: 'The Bar, New York, NY',
+            description: 'Let\'s blow off some steam with a tall cold one!',
+            start: new Date('2022-07-08T19:00:00'),
+            end: new Date('2022-07-08T23:30:00'),
+            recurrence: {
+              frequency: 'WEEKLY',
+              interval: 2
+            }
+          };
+          const yahooCal = new datebook.YahooCalendar(config);
+          window.location.href = yahooCal.render();
+          break;
+      }
+      $("#atcbOptions").collapse("hide");
+      addToCalButton.scrollIntoView({ behavior: "smooth" });
     });
   });
 }
