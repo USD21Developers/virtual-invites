@@ -623,10 +623,10 @@ function populateDrivingDirections() {
   if (operatingSystem === "iOS") {
     // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
     if (addressLink.length > 0) {
-      addressLink = `maps://www.google.com/maps/dir/?api=1&destination=${addressLink}&sensor=true`;
+      addressLink = `maps://maps.google.com/maps?daddr=${addressLink}&amp;ll=`;
       // addressLink = `https://maps.apple.com/?daddr=${addressLink}&dirflg=d&t=h`;
     } else if (mapCoordinates.length > 0) {
-      addressLink = `maps://www.google.com/maps/search/?api=1&query=${mapCoordinates}`;
+      addressLink = `maps://maps.google.com/maps?daddr=${mapCoordinates}&amp;ll=`;
       // addressLink = `https://maps.apple.com/?sll=${mapCoordinates}&z=10&t=s`;
     } else {
       mapLinkEl.classList.add("d-none");
