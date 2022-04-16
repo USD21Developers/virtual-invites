@@ -129,12 +129,12 @@
       "translated": "Ending time"
     },
     {
-      "key": "legendOneTimeEventBegins",
+      "key": "legendMultidayBegins",
       "original": "Begins:",
       "translated": "Begins:"
     },
     {
-      "key": "legendOneTimeEventEnds",
+      "key": "legendMultidayEnds",
       "original": "Ends:",
       "translated": "Ends:"
     },
@@ -445,7 +445,7 @@
       "translated": "Please select the duration of the event."
     },
     {
-      "key": "validateOneTimeEventBeginDate",
+      "key": "validateMultidayBeginDate",
       "original": "Please input the date when the event begins.",
       "translated": "Please input the date when the event begins."
     },
@@ -460,32 +460,32 @@
       "translated": "The beginning date must be earlier than the ending date."
     },
     {
-      "key": "validateInvalidOneTimeEventBeginDate",
+      "key": "validateInvalidMultidayBeginDate",
       "original": "Please input a valid date for when the event begins.",
       "translated": "Please input a valid date for when the event begins."
     },
     {
-      "key": "validatePastOneTimeEventBeginDate",
+      "key": "validatePastMultidayBeginDate",
       "original": "Please input a date in the future for when the event begins.",
       "translated": "Please input a date in the future for when the event begins."
     },
     {
-      "key": "validateOneTimeEventBeginTime",
+      "key": "validateMultidayBeginTime",
       "original": "Please input the time when the event begins.",
       "translated": "Please input the time when the event begins."
     },
     {
-      "key": "validateOneTimeEventEndDate",
+      "key": "validateMultidayEndDate",
       "original": "Please input the date when the event ends.",
       "translated": "Please input the date when the event ends."
     },
     {
-      "key": "validatePastOneTimeEventEndDate",
+      "key": "validatePastMultidayEndDate",
       "original": "Please input a date in the future for when the event ends.",
       "translated": "Please input a date in the future for when the event ends."
     },
     {
-      "key": "validateOneTimeEventEndTime",
+      "key": "validateMultidayEndTime",
       "original": "Please input the time when the event ends.",
       "translated": "Please input the time when the event ends."
     },

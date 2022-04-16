@@ -2,6 +2,41 @@ let viewedPreview = false;
 let mapCoordinates = "";
 let iti;
 
+function getCalendarObject() {
+  const form = document.querySelector("#formAddEvent");
+  const o = {};
+
+  o.language = form.language.value;
+  o.eventtype = form.eventtype.value;
+  o.eventtitle = form.eventtitle.value;
+  o.eventdescription = form.eventdescription.value;
+  o.frequency = form.frequency.value;
+  o.duration = form.duration.value;
+  o.startdate = form.startdate.value;
+  o.starttime = form.starttime.value;
+  o.multidayBeginDate = form.multidayBeginDate.value;
+  o.multidayBeginTime = form.multidayBeginTime.value;
+  o.multidayEndDate = form.multidayEndDate.value;
+  o.multidayEndTime = form.multidayEndTime.value;
+  o.timezone = form.timezone.value;
+  o.locationvisibility = form.locationvisibility.value;
+  o.addressLine1 = form.addressLine1.value;
+  o.addressLine2 = form.addressLine2.value;
+  o.addressLine3 = form.addressLine3.value;
+  o.country = form.country.value;
+  o.latitude = form.latitude.value;
+  o.longitude = form.longitude.value;
+  o.otherLocationDetails = form.otherLocationDetails.value;
+  o.attendVirtuallyConnectionDetails = form.attendVirtuallyConnectionDetails.value;
+  o.contactFirstName = form.contactFirstName.value;
+  o.contactLastName = form.contactLastName.value;
+  o.contactPhone = iti.getNumber();
+  o.contactPhoneCountryData = iti.getSelectedCountryData();
+  o.contactEmail = form.contactEmail.value;
+
+  return o;
+}
+
 function getDefaultRecipientName(gender) {
   const maleNames = [
     "Aaron",
@@ -186,14 +221,14 @@ function onClickDetectLocation(e) {
 function onDurationChange(e) {
   const duration = e.target.value.trim();
   const nextOccurrenceEl = document.querySelector("#nextOccurrence");
-  const oneTimeEventBeginInfoEl = document.querySelector(
-    "#oneTimeEventBeginInfo"
+  const multidayBeginInfoEl = document.querySelector(
+    "#multidayBeginInfo"
   );
-  const oneTimeEventEndInfoEl = document.querySelector("#oneTimeEventEndInfo");
+  const multidayEndInfoEl = document.querySelector("#multidayEndInfo");
 
   hide(nextOccurrenceEl);
-  hide(oneTimeEventBeginInfoEl);
-  hide(oneTimeEventEndInfoEl);
+  hide(multidayBeginInfoEl);
+  hide(multidayEndInfoEl);
 
   switch (duration) {
     case "":
@@ -202,8 +237,8 @@ function onDurationChange(e) {
       show(nextOccurrenceEl);
       break;
     case "multiple days":
-      show(oneTimeEventBeginInfoEl);
-      show(oneTimeEventEndInfoEl);
+      show(multidayBeginInfoEl);
+      show(multidayEndInfoEl);
       break;
     default:
       break;
@@ -215,15 +250,15 @@ function onFrequencyChange(e) {
   const duration = document.querySelector("#duration");
   const durationContainer = document.querySelector("#durationContainer");
   const nextOccurrenceEl = document.querySelector("#nextOccurrence");
-  const oneTimeEventBeginInfoEl = document.querySelector(
-    "#oneTimeEventBeginInfo"
+  const multidayBeginInfoEl = document.querySelector(
+    "#multidayBeginInfo"
   );
-  const oneTimeEventEndInfoEl = document.querySelector("#oneTimeEventEndInfo");
+  const multidayEndInfoEl = document.querySelector("#multidayEndInfo");
 
   hide(durationContainer);
   hide(nextOccurrenceEl);
-  hide(oneTimeEventBeginInfoEl);
-  hide(oneTimeEventEndInfoEl);
+  hide(multidayBeginInfoEl);
+  hide(multidayEndInfoEl);
   duration.options[0].selected = true;
 
   switch (frequency) {
@@ -474,10 +509,10 @@ function onSubmit(e) {
   const duration = form.duration.value;
   const startdate = form.startdate.value.trim() || "";
   const starttime = form.starttime.value.trim() || "";
-  const oneTimeEventBeginDate = form.oneTimeEventBeginDate.value.trim() || "";
-  const oneTimeEventBeginTime = form.oneTimeEventBeginTime.value.trim() || "";
-  const oneTimeEventEndDate = form.oneTimeEventEndDate.value.trim() || "";
-  const oneTimeEventEndTime = form.oneTimeEventEndTime.value.trim() || "";
+  const multidayBeginDate = form.multidayBeginDate.value.trim() || "";
+  const multidayBeginTime = form.multidayBeginTime.value.trim() || "";
+  const multidayEndDate = form.multidayEndDate.value.trim() || "";
+  const multidayEndTime = form.multidayEndTime.value.trim() || "";
   const locationDetails = form.locationDetails.value.trim() || "";
   const addressLine1 = form.addressLine1.value.trim() || "";
   const addressLine2 = form.addressLine2.value.trim() || "";
@@ -750,8 +785,8 @@ function populateInterpolatedPhrases() {
       eventStartDate = document.querySelector("#startdate").value;
       eventStartTime = document.querySelector("#starttime").value;
     } else if (duration === "multiple days") {
-      eventStartDate = document.querySelector("#oneTimeEventBeginDate").value;
-      eventStartTime = document.querySelector("#oneTimeEventBeginTime").value;
+      eventStartDate = document.querySelector("#multidayBeginDate").value;
+      eventStartTime = document.querySelector("#multidayBeginTime").value;
     }
   } else {
     eventStartDate = document.querySelector("#startdate").value;
@@ -911,12 +946,12 @@ function showSingleDay() {
 function showMultipleDays() {
   const container = document.querySelector("#timeAndDateMultipleDays");
   const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
-  const oneTimeEventBeginDate = document.querySelector("#oneTimeEventBeginDate").value;
-  const oneTimeEventBeginTime = document.querySelector("#oneTimeEventBeginTime").value;
-  const oneTimeEventEndDate = document.querySelector("#oneTimeEventEndDate").value;
-  const oneTimeEventEndTime = document.querySelector("#oneTimeEventEndTime").value;
-  const eventStartDateTime = `${oneTimeEventBeginDate} ${oneTimeEventBeginTime}`;
-  const eventEndDateTime = `${oneTimeEventEndDate} ${oneTimeEventEndTime}`;
+  const multidayBeginDate = document.querySelector("#multidayBeginDate").value;
+  const multidayBeginTime = document.querySelector("#multidayBeginTime").value;
+  const multidayEndDate = document.querySelector("#multidayEndDate").value;
+  const multidayEndTime = document.querySelector("#multidayEndTime").value;
+  const eventStartDateTime = `${multidayBeginDate} ${multidayBeginTime}`;
+  const eventEndDateTime = `${multidayEndDate} ${multidayEndTime}`;
   const previewEventStartDateShort = Intl.DateTimeFormat(lang, { dateStyle: "short" }).format(new Date(eventStartDateTime));
   const previewEventStartTimeShort = Intl.DateTimeFormat(lang, { timeStyle: "short" }).format(new Date(eventStartDateTime));
   const previewEventEndDateShort = Intl.DateTimeFormat(lang, { dateStyle: "short" }).format(new Date(eventEndDateTime));
@@ -992,10 +1027,10 @@ function validate() {
   const duration = form.duration.value;
   const startdate = form.startdate.value.trim() || "";
   const starttime = form.starttime.value.trim() || "";
-  const multiDayBeginDate = form.oneTimeEventBeginDate.value.trim() || "";
-  const multiDayBeginTime = form.oneTimeEventBeginTime.value.trim() || "";
-  const multiDayEndDate = form.oneTimeEventEndDate.value.trim() || "";
-  const multiDayEndTime = form.oneTimeEventEndTime.value.trim() || "";
+  const multiDayBeginDate = form.multidayBeginDate.value.trim() || "";
+  const multiDayBeginTime = form.multidayBeginTime.value.trim() || "";
+  const multiDayEndDate = form.multidayEndDate.value.trim() || "";
+  const multiDayEndTime = form.multidayEndTime.value.trim() || "";
   const addressLine1 = form.addressLine1.value.trim() || "";
   const addressLine2 = form.addressLine2.value.trim() || "";
   const addressLine3 = form.addressLine3.value.trim() || "";
@@ -1039,56 +1074,56 @@ function validate() {
 
     if (duration === "multiple days") {
       if (multiDayBeginDate === "") {
-        showError(getPhrase("validateOneTimeEventBeginDate"), "#oneTimeEventBeginDate", getPhrase("fieldIsRequired"));
+        showError(getPhrase("validateMultidayBeginDate"), "#multidayBeginDate", getPhrase("fieldIsRequired"));
         return false;
       }
 
       if (!moment(multiDayBeginDate).isValid()) {
-        showError(getPhrase("validateInvalidOneTimeEventBeginDate"), "#oneTimeEventBeginDate", getPhrase("validDateIsRequired"));
+        showError(getPhrase("validateInvalidMultidayBeginDate"), "#multidayBeginDate", getPhrase("validDateIsRequired"));
         return false;
       }
 
       if (isDateInPast(multiDayBeginDate)) {
-        showError(getPhrase("validatePastOneTimeEventBeginDate"), "#oneTimeEventBeginDate", getPhrase("datesInPastAreInvalid"));
+        showError(getPhrase("validatePastMultidayBeginDate"), "#multidayBeginDate", getPhrase("datesInPastAreInvalid"));
         return false;
       }
 
       if (multiDayBeginTime === "") {
-        showError(getPhrase("validateOneTimeEventBeginTime"), "#oneTimeEventBeginTime", getPhrase("fieldIsRequired"));
+        showError(getPhrase("validateMultidayBeginTime"), "#multidayBeginTime", getPhrase("fieldIsRequired"));
         return false;
       }
 
       if (multiDayEndDate === "") {
-        showError(getPhrase("validateOneTimeEventEndDate"), "#oneTimeEventEndDate", getPhrase("fieldIsRequired"));
+        showError(getPhrase("validateMultidayEndDate"), "#multidayEndDate", getPhrase("fieldIsRequired"));
         return false;
       }
 
       if (isDateInPast(multiDayEndDate, multiDayEndTime)) {
-        showError(getPhrase("validatePastOneTimeEventEndDate"), "#oneTimeEventEndDate", getPhrase("datesInPastAreInvalid"));
+        showError(getPhrase("validatePastMultidayEndDate"), "#multidayEndDate", getPhrase("datesInPastAreInvalid"));
         return false;
       }
 
       if (multiDayEndTime === "") {
-        showError(getPhrase("validateOneTimeEventEndTime"), "#oneTimeEventEndTime", getPhrase("fieldIsRequired"));
+        showError(getPhrase("validateMultidayEndTime"), "#multidayEndTime", getPhrase("fieldIsRequired"));
         return false;
       }
 
       const momentFromDate = moment(`${multiDayBeginDate} ${multiDayBeginTime}`);
       const momentToDate = moment(`${multiDayEndDate} ${multiDayEndTime}`);
       if (momentFromDate >= momentToDate) {
-        showError(getPhrase("startDateMustPrecedeEndDate"), "#oneTimeEventBeginDate", getPhrase("validDateIsRequired"));
+        showError(getPhrase("startDateMustPrecedeEndDate"), "#multidayBeginDate", getPhrase("validDateIsRequired"));
         return false;
       }
 
       const fromCalDate = momentFromDate.format("YYYY-MM-DD");
       const toCalDate = momentToDate.format("YYYY-MM-DD");
       if (fromCalDate === toCalDate) {
-        showError(getPhrase("datesMustNotBeOnSameDay"), "#oneTimeEventBeginDate", getPhrase("validDateIsRequired"));
+        showError(getPhrase("datesMustNotBeOnSameDay"), "#multidayBeginDate", getPhrase("validDateIsRequired"));
         return false;
       }
     } else if (duration === "same day") {
       if (startdate === "") {
-        showError(getPhrase("validateOneTimeEventBeginDate"), "#startdate", getPhrase("fieldIsRequired"));
+        showError(getPhrase("validateMultidayBeginDate"), "#startdate", getPhrase("fieldIsRequired"));
         return false;
       }
 
@@ -1098,13 +1133,13 @@ function validate() {
       }
 
       if (starttime === "") {
-        showError(getPhrase("validateOneTimeEventBeginTime"), "#starttime", getPhrase("fieldIsRequired"))
+        showError(getPhrase("validateMultidayBeginTime"), "#starttime", getPhrase("fieldIsRequired"))
         return false;
       }
     }
   } else { // Frequency is not once, but every (e.g. Friday)
     if (startdate === "") {
-      showError(getPhrase("validateOneTimeEventBeginDate"), "#startdate", getPhrase("fieldIsRequired"));
+      showError(getPhrase("validateMultidayBeginDate"), "#startdate", getPhrase("fieldIsRequired"));
       return false;
     }
 
@@ -1114,7 +1149,7 @@ function validate() {
     }
 
     if (starttime === "") {
-      showError(getPhrase("validateOneTimeEventBeginTime"), "#starttime", getPhrase("fieldIsRequired"))
+      showError(getPhrase("validateMultidayBeginTime"), "#starttime", getPhrase("fieldIsRequired"))
       return false;
     }
   }
