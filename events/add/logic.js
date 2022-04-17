@@ -625,7 +625,7 @@ function populateDrivingDirections() {
     if (addressLink.length > 0) {
       addressLink = `https://maps.apple.com/?daddr=${addressLink}&dirflg=d&t=h`;
     } else if (mapCoordinates.length > 0) {
-      addressLink = `https://maps.apple.com/?sll=${mapCoordinates}&z=10&t=s`;
+      addressLink = `https://maps.apple.com/?daddr=${mapCoordinates}&z=10&t=h`;
     } else {
       mapLinkEl.classList.add("d-none");
     }
