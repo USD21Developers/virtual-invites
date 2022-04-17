@@ -623,9 +623,9 @@ function populateDrivingDirections() {
   if (operatingSystem === "iOS") {
     // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
     if (addressLink.length > 0) {
-      addressLink = `https://maps.apple.com/?daddr=${addressLink}&dirflg=d&t=h`;
+      addressLink = `https://maps.apple.com/?daddr=${addressLink}&dirflg=d&t=m`;
     } else if (mapCoordinates.length > 0) {
-      addressLink = `https://maps.apple.com/?daddr=${mapCoordinates}&z=10&t=h`;
+      addressLink = `https://maps.apple.com/?daddr=${mapCoordinates}&t=m`;
     } else {
       mapLinkEl.classList.add("d-none");
     }
