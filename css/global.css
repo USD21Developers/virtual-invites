@@ -210,3 +210,17 @@ a:hover {
 .list-atcb .list-group-item {
   color: rgba(0, 0, 0, 0.87);
 }
+
+.font-weight-bold,
+strong {
+  font-family: Lato, sans-serif;
+  font-weight: 400;
+}
+
+@supports (font-variation-settings: "wght" 900) {
+  .font-weight-bold,
+  strong {
+    font-family: Lato, sans-serif;
+    font-weight: 900;
+  }
+}
