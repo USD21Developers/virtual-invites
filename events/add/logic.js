@@ -619,6 +619,10 @@ function populateDrivingDirections() {
   const operatingSystem = getMobileOperatingSystem();
   mapLinkEl.classList.remove("d-none");
 
+  const latitude = document.querySelector("#latitude").value;
+  const longitude = document.querySelector("#longitude").value;
+  mapCoordinates = `${latitude},${longitude}`;
+
   // Use Apple Maps if we're on iOS. For all other operating systems, use Google Maps.
   if (operatingSystem === "iOS") {
     // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
