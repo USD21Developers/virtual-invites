@@ -225,22 +225,28 @@ function onDurationChange(e) {
     "#multidayBeginInfo"
   );
   const multidayEndInfoEl = document.querySelector("#multidayEndInfo");
+  const durationInHoursEl = document.querySelector("#durationInHoursContainer");
 
   hide(nextOccurrenceEl);
   hide(multidayBeginInfoEl);
   hide(multidayEndInfoEl);
+  hide(durationInHoursEl);
 
   switch (duration) {
     case "":
       break;
     case "same day":
       show(nextOccurrenceEl);
+      show(durationInHoursEl);
+      populateDurationInHours();
       break;
     case "multiple days":
       show(multidayBeginInfoEl);
       show(multidayEndInfoEl);
       break;
     default:
+      show(durationInHoursEl);
+      populateDurationInHours();
       break;
   }
 }
@@ -254,11 +260,13 @@ function onFrequencyChange(e) {
     "#multidayBeginInfo"
   );
   const multidayEndInfoEl = document.querySelector("#multidayEndInfo");
+  const durationInHoursEl = document.querySelector("#durationInHoursContainer");
 
   hide(durationContainer);
   hide(nextOccurrenceEl);
   hide(multidayBeginInfoEl);
   hide(multidayEndInfoEl);
+  hide(durationInHoursEl);
   duration.options[0].selected = true;
 
   switch (frequency) {
@@ -266,9 +274,12 @@ function onFrequencyChange(e) {
       break;
     case "once":
       show(durationContainer);
+      hide(durationInHoursEl);
       break;
     default:
       show(nextOccurrenceEl);
+      show(durationInHoursEl);
+      populateDurationInHours();
       break;
   }
 }
@@ -601,6 +612,7 @@ function populateDefaultEventTitle() {
 
   switch (eventType) {
     case "bible talk":
+      populateDurationInHours();
       defaultEventTitle = getPhrase("optionEventTypeBT");
       if ((eventTitle === "") || (eventTitle === getPhrase("optionEventTypeSundayService"))) {
         eventTitleEl.value = defaultEventTitle;
@@ -608,6 +620,7 @@ function populateDefaultEventTitle() {
       }
       break;
     case "church":
+      populateDurationInHours();
       defaultEventTitle = getPhrase("optionEventTypeSundayService");
       if ((eventTitle === "") || (eventTitle === getPhrase("optionEventTypeBT"))) {
         eventTitleEl.value = defaultEventTitle;
@@ -688,6 +701,19 @@ function populateDrivingDirections() {
     }
   }
   return mapLinkEl.setAttribute("href", addressLink);
+}
+
+function populateDurationInHours() {
+  const eventtype = document.querySelector("#eventtype").selectedOptions[0].value;
+  const durationinhours = document.querySelector("#durationinhours");
+
+  // if (durationinhours.value.length > 0) return;
+
+  if (eventtype === "church") {
+    durationinhours.value = 2.5;
+  } else if (eventtype === "bible talk") {
+    durationinhours.value = 1.5;
+  }
 }
 
 function populateFormBasedPhrases() {
