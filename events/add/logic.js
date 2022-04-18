@@ -710,9 +710,9 @@ function populateDurationInHours() {
   // if (durationinhours.value.length > 0) return;
 
   if (eventtype === "church") {
-    durationinhours.value = 2.5;
+    durationinhours.value = 3;
   } else if (eventtype === "bible talk") {
-    durationinhours.value = 1.5;
+    durationinhours.value = 2;
   }
 }
 
