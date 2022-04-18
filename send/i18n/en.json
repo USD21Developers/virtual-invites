@@ -262,6 +262,11 @@
       "key": "clickBelow",
       "original": "(click below):",
       "translated": "(click below):"
+    },
+    {
+      "key": "eventDetails",
+      "original": "Details",
+      "translated": "Details"
     }
   ],
 
