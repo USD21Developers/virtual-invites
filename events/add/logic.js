@@ -369,117 +369,161 @@ function onPreviewOpened() {
     item.addEventListener("click", function (e) {
       const addToCalButton = document.querySelector("#addToCalendar");
       const destination = e.currentTarget.getAttribute("data-destination");
+      const o = getCalendarObject();
+      let location = "";
       let config;
 
       e.preventDefault();
 
+      // Populate location
+      if (o.addressLine1.length) {
+        location = o.addressLine1;
+        if (o.addressLine2.length) {
+          location = `${location}, ${o.addressLine2}`;
+          if (o.addressLine3.length) location = `${location}, ${o.addressLine3}`;
+        } else if (o.addressLine3.length) {
+          location = `${location}, ${o.addressLine3}`;
+        }
+      } else if (o.addressLine2.length) {
+        location = o.addressLine2;
+        if (o.addressLine3.length) location = `${location}, ${o.addressLine3}`;
+      } else if (o.addressLine3.length) {
+        location = o.addressLine3;
+      }
+
+      // Populate times
+      let eventStart = "";
+      let eventEnd = "";
+      let isRecurring = false;
+      let recurringWeekday = "";
+
+      if (o.frequency !== "once") {
+        // Recurring event
+        isRecurring = true;
+        if (o.startdate.length) {
+          eventStart = new Date(moment(`${o.startdate} ${o.starttime}`).utc());
+        }
+      } else {
+        if (o.duration === "same day") {
+          // One-day event
+          if (o.startdate.length) {
+            eventStart = new Date(moment(`${o.startdate} ${o.starttime}`).utc());
+          }
+        } else if (o.duration === "multiple days") {
+          // Multiple-day event
+          if (o.multidayBeginDate.length) {
+            eventStart = new Date(moment(`${o.multidayBeginDate} ${o.multidayBeginTime}`).utc());
+          }
+          if (o.multidayEndDate.length) {
+            eventEnd = new Date(moment(`${o.multidayEndDate} ${o.multiDayEndTime}`).utc());
+          }
+        }
+      }
+
+      // Set weekday of recurring event
+      if (isRecurring) {
+        switch (o.frequency) {
+          case "Every Sunday":
+            recurringWeekday = "SU";
+            break;
+          case "Every Monday":
+            recurringWeekday = "MO";
+            break;
+          case "Every Tuesday":
+            recurringWeekday = "TU";
+            break;
+          case "Every Wednesday":
+            recurringWeekday = "WE";
+            break;
+          case "Every Thursday":
+            recurringWeekday = "TH";
+            break;
+          case "Every Friday":
+            recurringWeekday = "FR";
+            break;
+          case "Every Saturday":
+            recurringWeekday = "SA";
+            break;
+        }
+      }
+
+      config = {
+        title: o.eventtitle,
+        location: location,
+        description: o.eventdescription,
+        start: eventStart
+      };
+      if (o.attendVirtuallyConnectionDetails.length) {
+        config.description = `${config.description}\n\n\n\n---\n\n${o.attendVirtuallyConnectionDetails}`;
+      }
+      if (eventEnd.length) {
+        config.end = eventEnd;
+      }
+      if (isRecurring) {
+        config.recurrence = {
+          frequency: 'WEEKLY',
+          interval: 1,
+          weekdays: recurringWeekday,
+          count: 12
+        }
+      }
+
       switch (destination) {
         case "apple":
-          config = {
-            title: 'Happy Hour',
-            location: 'The Bar, New York, NY',
-            description: 'Let\'s blow off some steam with a tall cold one!',
-            start: new Date('2022-07-08T19:00:00'),
-            end: new Date('2022-07-08T23:30:00'),
-            recurrence: {
-              frequency: 'WEEKLY',
-              interval: 2
-            }
-          };
           const appleCal = new datebook.ICalendar(config);
           appleCal.download();
           break;
         case "google":
-          config = {
-            title: 'Happy Hour',
-            location: 'The Bar, New York, NY',
-            description: 'Let\'s blow off some steam with a tall cold one!',
-            start: new Date('2022-07-08T19:00:00'),
-            end: new Date('2022-07-08T23:30:00'),
-            recurrence: {
-              frequency: 'WEEKLY',
-              interval: 2
-            }
-          };
           const googleCal = new datebook.GoogleCalendar(config);
           window.location.href = googleCal.render();
           break;
         case "ical":
-          config = {
-            title: 'Happy Hour',
-            location: 'The Bar, New York, NY',
-            description: 'Let\'s blow off some steam with a tall cold one!',
-            start: new Date('2022-07-08T19:00:00'),
-            end: new Date('2022-07-08T23:30:00'),
-            recurrence: {
-              frequency: 'WEEKLY',
-              interval: 2
-            }
-          };
           const iCal = new datebook.ICalendar(config);
           iCal.download();
           break;
         case "ms365":
-          config = {
-            title: 'Happy Hour',
-            location: 'The Bar, New York, NY',
-            description: 'Let\'s blow off some steam with a tall cold one!',
-            start: new Date('2022-07-08T19:00:00'),
-            end: new Date('2022-07-08T23:30:00'),
-            recurrence: {
-              frequency: 'WEEKLY',
-              interval: 2
-            }
-          };
           const ms365Cal = new datebook.OutlookCalendar(config);
           ms365Cal.setHost("office");
           window.location.href = ms365Cal.render();
           break;
         case "msteams":
-          config = {
-            title: 'Happy Hour',
-            location: 'The Bar, New York, NY',
-            description: 'Let\'s blow off some steam with a tall cold one!',
-            start: new Date('2022-07-08T19:00:00'),
-            end: new Date('2022-07-08T23:30:00'),
-            recurrence: {
-              frequency: 'WEEKLY',
-              interval: 2
-            }
-          };
           const msteamsCal = new datebook.OutlookCalendar(config);
           msteamsCal.setHost("office");
           window.location.href = msteamsCal.render();
           break;
         case "outlook":
-          config = {
-            title: 'Happy Hour',
-            location: 'The Bar, New York, NY',
-            description: 'Let\'s blow off some steam with a tall cold one!',
-            start: new Date('2022-07-08T19:00:00'),
-            end: new Date('2022-07-08T23:30:00'),
-            recurrence: {
-              frequency: 'WEEKLY',
-              interval: 2
-            }
-          };
           const outlookCal = new datebook.OutlookCalendar(config);
           outlookCal.setHost("live");
+          if (o.attendVirtuallyConnectionDetails.length) {
+            outlookCal.setParam("online", "true");
+          }
           window.location.href = outlookCal.render();
           break;
         case "yahoo":
-          config = {
-            title: 'Happy Hour',
-            location: 'The Bar, New York, NY',
-            description: 'Let\'s blow off some steam with a tall cold one!',
-            start: new Date('2022-07-08T19:00:00'),
-            end: new Date('2022-07-08T23:30:00'),
-            recurrence: {
-              frequency: 'WEEKLY',
-              interval: 2
-            }
-          };
           const yahooCal = new datebook.YahooCalendar(config);
+          if (o.addressLine1.length) {
+            if (o.addressLine2.length && o.addressLine3.length) {
+              yahooCal.setParam("in_st", `${o.addressLine1}, ${o.addressLine2}`);
+              yahooCal.setParam("in_csz", o.addressLine3);
+            } else if (o.addressLine2.length) {
+              yahooCal.setParam("in_st", `${o.addressLine1}`);
+              yahooCal.setParam("in_csz", o.addressLine2);
+            } else if (o.addressLine3.length) {
+              yahooCal.setParam("in_st", `${o.addressLine1}`);
+              yahooCal.setParam("in_csz", o.addressLine3);
+            }
+          } else if (o.addressLine2.length) {
+            yahooCal.setParam("in_st", `${o.addressLine2}`);
+            if (o.addressLine3.length) {
+              yahooCal.setParam("in_csz", o.addressLine3);
+            }
+          } else if (o.addressLine3.length) {
+            yahooCal.setParam("in_st", `${o.addressLine3}`);
+            yahooCal.setParam("in_csz", `${o.addressLine3}`);
+          }
+          if (o.contactPhone.length) {
+            yahooCal.setParam("in_ph", o.contactPhone);
+          }
           window.location.href = yahooCal.render();
           break;
       }
