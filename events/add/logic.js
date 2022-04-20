@@ -18,7 +18,7 @@ function getCalendarObject() {
   o.multidayBeginDate = form.multidayBeginDate.value;
   o.multidayBeginTime = form.multidayBeginTime.value;
   o.multidayEndDate = form.multidayEndDate.value;
-  o.multiDayEndTime = form.multidayEndTime.value;
+  o.multidayEndTime = form.multidayEndTime.value;
   o.timezone = form.timezone.value;
   o.locationvisibility = form.locationvisibility.value;
   o.addressLine1 = form.addressLine1.value;
