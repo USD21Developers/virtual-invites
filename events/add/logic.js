@@ -18,7 +18,7 @@ function getCalendarObject() {
   o.multidayBeginDate = form.multidayBeginDate.value;
   o.multidayBeginTime = form.multidayBeginTime.value;
   o.multidayEndDate = form.multidayEndDate.value;
-  o.multidayEndTime = form.multidayEndTime.value;
+  o.multiDayEndTime = form.multidayEndTime.value;
   o.timezone = form.timezone.value;
   o.locationvisibility = form.locationvisibility.value;
   o.addressLine1 = form.addressLine1.value;
@@ -436,7 +436,7 @@ function onPreviewOpened() {
         } else if (o.duration === "multiple days") {
           // Multiple-day event
           momentStart = moment.tz(`${o.multidayBeginDate} ${o.multidayBeginTime}`, o.timezone).format();
-          momentEnd = moment.tz(`${o.multidayEndDate} ${o.multiDayEndTime}`, o.timezone).format();
+          momentEnd = moment.tz(`${o.multidayEndDate} ${o.multidayEndTime}`, o.timezone).format();
           if (o.multidayBeginDate.length) {
             eventStart = new Date(momentStart);
           }
