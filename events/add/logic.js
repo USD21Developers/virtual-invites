@@ -511,57 +511,57 @@ function onPreviewOpened() {
           iCal.download();
           break;
         case "ms365":
-          if (!location.length) config.location = `${o.latitude},${o.longitude}`);
-    const ms365Cal = new datebook.OutlookCalendar(config);
-    ms365Cal.setHost("office");
-    window.location.href = ms365Cal.render();
-    break;
+          if (!location.length) config.location = `${o.latitude},${o.longitude}`;
+          const ms365Cal = new datebook.OutlookCalendar(config);
+          ms365Cal.setHost("office");
+          window.location.href = ms365Cal.render();
+          break;
         case "msteams":
-    if (!location.length) config.location = `${o.latitude},${o.longitude}`);
-  const msteamsCal = new datebook.OutlookCalendar(config);
-  msteamsCal.setHost("office");
-  window.location.href = msteamsCal.render();
-  break;
+          if (!location.length) config.location = `${o.latitude},${o.longitude}`;
+          const msteamsCal = new datebook.OutlookCalendar(config);
+          msteamsCal.setHost("office");
+          window.location.href = msteamsCal.render();
+          break;
         case "outlook":
-  if (!location.length) config.location = `${o.latitude},${o.longitude}`);
-  const outlookCal = new datebook.OutlookCalendar(config);
-  outlookCal.setHost("live");
-  if (o.attendVirtuallyConnectionDetails.length) {
-    outlookCal.setParam("online", "true");
-  }
-  window.location.href = outlookCal.render();
-  break;
+          if (!location.length) config.location = `${o.latitude},${o.longitude}`;
+          const outlookCal = new datebook.OutlookCalendar(config);
+          outlookCal.setHost("live");
+          if (o.attendVirtuallyConnectionDetails.length) {
+            outlookCal.setParam("online", "true");
+          }
+          window.location.href = outlookCal.render();
+          break;
         case "yahoo":
-  if (!location.length) config.location = `${o.latitude},${o.longitude}`);
-  const yahooCal = new datebook.YahooCalendar(config);
-  if (o.addressLine1.length) {
-    if (o.addressLine2.length && o.addressLine3.length) {
-      yahooCal.setParam("in_st", `${o.addressLine1}, ${o.addressLine2}`);
-      yahooCal.setParam("in_csz", o.addressLine3);
-    } else if (o.addressLine2.length) {
-      yahooCal.setParam("in_st", `${o.addressLine1}`);
-      yahooCal.setParam("in_csz", o.addressLine2);
-    } else if (o.addressLine3.length) {
-      yahooCal.setParam("in_st", `${o.addressLine1}`);
-      yahooCal.setParam("in_csz", o.addressLine3);
-    }
-  } else if (o.addressLine2.length) {
-    yahooCal.setParam("in_st", `${o.addressLine2}`);
-    if (o.addressLine3.length) {
-      yahooCal.setParam("in_csz", o.addressLine3);
-    }
-  } else if (o.addressLine3.length) {
-    yahooCal.setParam("in_st", `${o.addressLine3}`);
-    yahooCal.setParam("in_csz", `${o.addressLine3}`);
-  }
-  if (o.contactPhone.length) {
-    yahooCal.setParam("in_ph", o.contactPhone);
-  }
-  window.location.href = yahooCal.render();
-  break;
-}
-$("#atcbOptions").collapse("hide");
-addToCalButton.scrollIntoView({ behavior: "smooth" });
+          if (!location.length) config.location = `${o.latitude},${o.longitude}`;
+          const yahooCal = new datebook.YahooCalendar(config);
+          if (o.addressLine1.length) {
+            if (o.addressLine2.length && o.addressLine3.length) {
+              yahooCal.setParam("in_st", `${o.addressLine1}, ${o.addressLine2}`);
+              yahooCal.setParam("in_csz", o.addressLine3);
+            } else if (o.addressLine2.length) {
+              yahooCal.setParam("in_st", `${o.addressLine1}`);
+              yahooCal.setParam("in_csz", o.addressLine2);
+            } else if (o.addressLine3.length) {
+              yahooCal.setParam("in_st", `${o.addressLine1}`);
+              yahooCal.setParam("in_csz", o.addressLine3);
+            }
+          } else if (o.addressLine2.length) {
+            yahooCal.setParam("in_st", `${o.addressLine2}`);
+            if (o.addressLine3.length) {
+              yahooCal.setParam("in_csz", o.addressLine3);
+            }
+          } else if (o.addressLine3.length) {
+            yahooCal.setParam("in_st", `${o.addressLine3}`);
+            yahooCal.setParam("in_csz", `${o.addressLine3}`);
+          }
+          if (o.contactPhone.length) {
+            yahooCal.setParam("in_ph", o.contactPhone);
+          }
+          window.location.href = yahooCal.render();
+          break;
+      }
+      $("#atcbOptions").collapse("hide");
+      addToCalButton.scrollIntoView({ behavior: "smooth" });
     });
   });
 }
