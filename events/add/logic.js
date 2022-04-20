@@ -392,6 +392,7 @@ function onPreviewOpened() {
       const o = getCalendarObject();
       let location = "";
       let config;
+      let usingCoordinates = false;
 
       e.preventDefault();
 
@@ -409,6 +410,9 @@ function onPreviewOpened() {
         if (o.addressLine3.length) location = `${location}, ${o.addressLine3}`;
       } else if (o.addressLine3.length) {
         location = o.addressLine3;
+      } else if ((o.latitude.length) && (o.longitude.length)) {
+        location = `${o.latitude},${o.longitude}`;
+        usingCoordinates = true;
       }
 
       // Populate times
@@ -495,6 +499,7 @@ function onPreviewOpened() {
       switch (destination) {
         case "apple":
           const appleCal = new datebook.ICalendar(config);
+          if (usingCoordinates) appleCal.setParam("GEO", `${o.latitude};${o.longitude}`);
           appleCal.download();
           break;
         case "google":
@@ -503,6 +508,7 @@ function onPreviewOpened() {
           break;
         case "ical":
           const iCal = new datebook.ICalendar(config);
+          if (usingCoordinates) iCal.setParam("GEO", `${o.latitude};${o.longitude}`);
           iCal.download();
           break;
         case "ms365":
