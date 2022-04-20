@@ -417,7 +417,7 @@ function onPreviewOpened() {
       let isRecurring = false;
       let recurringWeekday = "";
       let momentStart = moment.tz(`${o.startdate} ${o.starttime}`, o.timezone).format();
-      let momentEnd = moment.tz(o.startdate).add(o.durationInHours, "hours").format();
+      let momentEnd = moment.tz(momentStart, o.timezone).add(o.durationInHours, "hours").format();
 
       if (o.frequency !== "once") {
         // Recurring event
@@ -480,7 +480,7 @@ function onPreviewOpened() {
         start: eventStart
       };
       if (o.attendVirtuallyConnectionDetails.length) {
-        config.description = `${config.description}\n\n\n\n---\n\n${o.attendVirtuallyConnectionDetails}`;
+        config.description = `${config.description}\n\n\n\n-- -\n\n${o.attendVirtuallyConnectionDetails}`;
       }
       if (eventEnd.length) {
         config.end = eventEnd;
@@ -600,7 +600,7 @@ function onSubmit(e) {
 function populateCountries() {
   const country = document.querySelector("#country");
   const lang = localStorage.getItem("lang") || "en";
-  const endpoint = `../../data/json/lang/${lang}/countries.json`;
+  const endpoint = `../../ data / json / lang / ${lang} / countries.json`;
 
   fetch(endpoint)
     .then((res) => res.json())
@@ -693,7 +693,7 @@ function populateDrivingDirections() {
 
   const latitude = document.querySelector("#latitude").value;
   const longitude = document.querySelector("#longitude").value;
-  mapCoordinates = `${latitude},${longitude}`;
+  mapCoordinates = `${latitude}, ${longitude}`;
 
   // Use Apple Maps if we're on iOS. For all other operating systems, use Google Maps.
   if (operatingSystem === "iOS") {
