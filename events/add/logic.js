@@ -392,7 +392,6 @@ function onPreviewOpened() {
       const o = getCalendarObject();
       let location = "";
       let config;
-      let usingCoordinates = false;
 
       e.preventDefault();
 
@@ -410,9 +409,6 @@ function onPreviewOpened() {
         if (o.addressLine3.length) location = `${location}, ${o.addressLine3}`;
       } else if (o.addressLine3.length) {
         location = o.addressLine3;
-      } else if ((o.latitude.length) && (o.longitude.length)) {
-        location = `${o.latitude},${o.longitude}`;
-        usingCoordinates = true;
       }
 
       // Populate times
@@ -499,66 +495,85 @@ function onPreviewOpened() {
       switch (destination) {
         case "apple":
           const appleCal = new datebook.ICalendar(config);
-          if (usingCoordinates) appleCal.setParam("GEO", `${o.latitude};${o.longitude}`);
+          if (!location.length) && ((o.latitude.length) && (o.longitude.length)) {
+            appleCal.setParam("GEO", `${o.latitude};${o.longitude}`);
+          }
           appleCal.download();
           break;
         case "google":
+          if (!location.length) && ((o.latitude.length) && (o.longitude.length)) {
+            config.location = `${o.latitude},${o.longitude}`);
+  }
           const googleCal = new datebook.GoogleCalendar(config);
-          window.location.href = googleCal.render();
-          break;
+  window.location.href = googleCal.render();
+  break;
         case "ical":
-          const iCal = new datebook.ICalendar(config);
-          if (usingCoordinates) iCal.setParam("GEO", `${o.latitude};${o.longitude}`);
-          iCal.download();
-          break;
+  const iCal = new datebook.ICalendar(config);
+  if (!location.length) && ((o.latitude.length) && (o.longitude.length)) {
+    iCal.setParam("GEO", `${o.latitude};${o.longitude}`);
+  }
+  iCal.download();
+  break;
         case "ms365":
-          const ms365Cal = new datebook.OutlookCalendar(config);
-          ms365Cal.setHost("office");
-          window.location.href = ms365Cal.render();
-          break;
+  if (!location.length) && ((o.latitude.length) && (o.longitude.length)) {
+    config.location = `${o.latitude},${o.longitude}`);
+  }
+  const ms365Cal = new datebook.OutlookCalendar(config);
+  ms365Cal.setHost("office");
+  window.location.href = ms365Cal.render();
+  break;
         case "msteams":
-          const msteamsCal = new datebook.OutlookCalendar(config);
-          msteamsCal.setHost("office");
-          window.location.href = msteamsCal.render();
-          break;
+  if (!location.length) && ((o.latitude.length) && (o.longitude.length)) {
+    config.location = `${o.latitude},${o.longitude}`);
+  }
+  const msteamsCal = new datebook.OutlookCalendar(config);
+  msteamsCal.setHost("office");
+  window.location.href = msteamsCal.render();
+  break;
         case "outlook":
-          const outlookCal = new datebook.OutlookCalendar(config);
-          outlookCal.setHost("live");
-          if (o.attendVirtuallyConnectionDetails.length) {
-            outlookCal.setParam("online", "true");
-          }
-          window.location.href = outlookCal.render();
-          break;
+  if (!location.length) && ((o.latitude.length) && (o.longitude.length)) {
+    config.location = `${o.latitude},${o.longitude}`);
+  }
+  const outlookCal = new datebook.OutlookCalendar(config);
+  outlookCal.setHost("live");
+  if (o.attendVirtuallyConnectionDetails.length) {
+    outlookCal.setParam("online", "true");
+  }
+  window.location.href = outlookCal.render();
+  break;
         case "yahoo":
-          const yahooCal = new datebook.YahooCalendar(config);
-          if (o.addressLine1.length) {
-            if (o.addressLine2.length && o.addressLine3.length) {
-              yahooCal.setParam("in_st", `${o.addressLine1}, ${o.addressLine2}`);
-              yahooCal.setParam("in_csz", o.addressLine3);
-            } else if (o.addressLine2.length) {
-              yahooCal.setParam("in_st", `${o.addressLine1}`);
-              yahooCal.setParam("in_csz", o.addressLine2);
-            } else if (o.addressLine3.length) {
-              yahooCal.setParam("in_st", `${o.addressLine1}`);
-              yahooCal.setParam("in_csz", o.addressLine3);
-            }
-          } else if (o.addressLine2.length) {
-            yahooCal.setParam("in_st", `${o.addressLine2}`);
-            if (o.addressLine3.length) {
-              yahooCal.setParam("in_csz", o.addressLine3);
-            }
-          } else if (o.addressLine3.length) {
-            yahooCal.setParam("in_st", `${o.addressLine3}`);
-            yahooCal.setParam("in_csz", `${o.addressLine3}`);
-          }
-          if (o.contactPhone.length) {
-            yahooCal.setParam("in_ph", o.contactPhone);
-          }
-          window.location.href = yahooCal.render();
-          break;
-      }
-      $("#atcbOptions").collapse("hide");
-      addToCalButton.scrollIntoView({ behavior: "smooth" });
+  if (!location.length) && ((o.latitude.length) && (o.longitude.length)) {
+    config.location = `${o.latitude},${o.longitude}`);
+  }
+  const yahooCal = new datebook.YahooCalendar(config);
+  if (o.addressLine1.length) {
+    if (o.addressLine2.length && o.addressLine3.length) {
+      yahooCal.setParam("in_st", `${o.addressLine1}, ${o.addressLine2}`);
+      yahooCal.setParam("in_csz", o.addressLine3);
+    } else if (o.addressLine2.length) {
+      yahooCal.setParam("in_st", `${o.addressLine1}`);
+      yahooCal.setParam("in_csz", o.addressLine2);
+    } else if (o.addressLine3.length) {
+      yahooCal.setParam("in_st", `${o.addressLine1}`);
+      yahooCal.setParam("in_csz", o.addressLine3);
+    }
+  } else if (o.addressLine2.length) {
+    yahooCal.setParam("in_st", `${o.addressLine2}`);
+    if (o.addressLine3.length) {
+      yahooCal.setParam("in_csz", o.addressLine3);
+    }
+  } else if (o.addressLine3.length) {
+    yahooCal.setParam("in_st", `${o.addressLine3}`);
+    yahooCal.setParam("in_csz", `${o.addressLine3}`);
+  }
+  if (o.contactPhone.length) {
+    yahooCal.setParam("in_ph", o.contactPhone);
+  }
+  window.location.href = yahooCal.render();
+  break;
+}
+$("#atcbOptions").collapse("hide");
+addToCalButton.scrollIntoView({ behavior: "smooth" });
     });
   });
 }
