@@ -498,6 +498,7 @@ function onPreviewOpened() {
           if (!location.length) {
             appleCal.setParam("GEO", `${o.latitude};${o.longitude}`);
             appleCal.setMeta("GEO", `${o.latitude};${o.longitude}`);
+            appleCal.addProperty("GEO", `${o.latitude};${o.longitude}`);
           }
           appleCal.download();
           break;
@@ -511,6 +512,7 @@ function onPreviewOpened() {
           if (!location.length) {
             iCal.setParam("GEO", `${o.latitude};${o.longitude}`);
             iCal.setMeta("GEO", `${o.latitude};${o.longitude}`);
+            iCal.addProperty("GEO", `${o.latitude};${o.longitude}`);
           }
           iCal.download();
           break;
