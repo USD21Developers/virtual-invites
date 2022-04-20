@@ -482,9 +482,7 @@ function onPreviewOpened() {
       if (o.attendVirtuallyConnectionDetails.length) {
         config.description = `${config.description}\n\n\n\n-- -\n\n${o.attendVirtuallyConnectionDetails}`;
       }
-      if (eventEnd.length) {
-        config.end = eventEnd;
-      }
+      eventEnd && config.end = eventEnd;
       if (isRecurring) {
         config.recurrence = {
           frequency: 'WEEKLY',
