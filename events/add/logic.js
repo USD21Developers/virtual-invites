@@ -497,6 +497,7 @@ function onPreviewOpened() {
           const appleCal = new datebook.ICalendar(config);
           if (!location.length) {
             appleCal.setParam("GEO", `${o.latitude};${o.longitude}`);
+            appleCal.setMeta("GEO", `${o.latitude};${o.longitude}`);
           }
           appleCal.download();
           break;
@@ -507,7 +508,10 @@ function onPreviewOpened() {
           break;
         case "ical":
           const iCal = new datebook.ICalendar(config);
-          if (!location.length) iCal.setParam("GEO", `${o.latitude};${o.longitude}`);
+          if (!location.length) {
+            iCal.setParam("GEO", `${o.latitude};${o.longitude}`);
+            iCal.setMeta("GEO", `${o.latitude};${o.longitude}`);
+          }
           iCal.download();
           break;
         case "ms365":
