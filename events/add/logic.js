@@ -495,45 +495,35 @@ function onPreviewOpened() {
       switch (destination) {
         case "apple":
           const appleCal = new datebook.ICalendar(config);
-          if (!location.length) && ((o.latitude.length) && (o.longitude.length)) {
+          if (!location.length) {
             appleCal.setParam("GEO", `${o.latitude};${o.longitude}`);
           }
           appleCal.download();
           break;
         case "google":
-          if (!location.length) && ((o.latitude.length) && (o.longitude.length)) {
-            config.location = `${o.latitude},${o.longitude}`);
-  }
-          const googleCal = new datebook.GoogleCalendar(config);
-  window.location.href = googleCal.render();
-  break;
+          if (!location.length) config.location = `${o.latitude},${o.longitude}`);
+    const googleCal = new datebook.GoogleCalendar(config);
+    window.location.href = googleCal.render();
+    break;
         case "ical":
-  const iCal = new datebook.ICalendar(config);
-  if (!location.length) && ((o.latitude.length) && (o.longitude.length)) {
-    iCal.setParam("GEO", `${o.latitude};${o.longitude}`);
-  }
-  iCal.download();
-  break;
+    const iCal = new datebook.ICalendar(config);
+    if (!location.length) iCal.setParam("GEO", `${o.latitude};${o.longitude}`);
+    iCal.download();
+    break;
         case "ms365":
-  if (!location.length) && ((o.latitude.length) && (o.longitude.length)) {
-    config.location = `${o.latitude},${o.longitude}`);
-  }
+    if (!location.length) config.location = `${o.latitude},${o.longitude}`);
   const ms365Cal = new datebook.OutlookCalendar(config);
   ms365Cal.setHost("office");
   window.location.href = ms365Cal.render();
   break;
         case "msteams":
-  if (!location.length) && ((o.latitude.length) && (o.longitude.length)) {
-    config.location = `${o.latitude},${o.longitude}`);
-  }
+  if (!location.length) config.location = `${o.latitude},${o.longitude}`);
   const msteamsCal = new datebook.OutlookCalendar(config);
   msteamsCal.setHost("office");
   window.location.href = msteamsCal.render();
   break;
         case "outlook":
-  if (!location.length) && ((o.latitude.length) && (o.longitude.length)) {
-    config.location = `${o.latitude},${o.longitude}`);
-  }
+  if (!location.length) config.location = `${o.latitude},${o.longitude}`);
   const outlookCal = new datebook.OutlookCalendar(config);
   outlookCal.setHost("live");
   if (o.attendVirtuallyConnectionDetails.length) {
@@ -542,9 +532,7 @@ function onPreviewOpened() {
   window.location.href = outlookCal.render();
   break;
         case "yahoo":
-  if (!location.length) && ((o.latitude.length) && (o.longitude.length)) {
-    config.location = `${o.latitude},${o.longitude}`);
-  }
+  if (!location.length) config.location = `${o.latitude},${o.longitude}`);
   const yahooCal = new datebook.YahooCalendar(config);
   if (o.addressLine1.length) {
     if (o.addressLine2.length && o.addressLine3.length) {
