@@ -144,6 +144,16 @@
       "translated": "Duration:"
     },
     {
+      "key": "durationInHours",
+      "original": "Duration (in hours):",
+      "translated": "Duration (in hours):"
+    },
+    {
+      "key": "durationInDays",
+      "original": "Duration (in days):",
+      "translated": "Duration (in days):"
+    },
+    {
       "key": "durationSameDay",
       "original": "Finishes on the same day",
       "translated": "Finishes on the same day"
