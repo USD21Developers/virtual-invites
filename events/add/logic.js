@@ -417,7 +417,7 @@ function onPreviewOpened() {
       let isRecurring = false;
       let recurringWeekday = "";
       let momentStart = moment.tz(`${o.startdate} ${o.starttime}`, o.timezone).format();
-      let momentEnd = moment.tz(momentStart).add(o.durationInHours, "hours").format();
+      let momentEnd = moment.tz(o.startdate).add(o.durationInHours, "hours").format();
 
       if (o.frequency !== "once") {
         // Recurring event
