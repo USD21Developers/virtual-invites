@@ -12,6 +12,7 @@ function getCalendarObject() {
   o.eventdescription = form.eventdescription.value;
   o.frequency = form.frequency.value;
   o.duration = form.duration.value;
+  o.durationInHours = form.durationInHours.value;
   o.startdate = form.startdate.value;
   o.starttime = form.starttime.value;
   o.multidayBeginDate = form.multidayBeginDate.value;
@@ -251,6 +252,14 @@ function onDurationChange(e) {
   }
 }
 
+function onDurationHoursChanged(e) {
+  const durationInHoursEl = document.querySelector("#durationInHours");
+  const durationInHoursDisplayedEl = document.querySelector("#durationInHoursDisplayed");
+  const numHours = durationInHoursEl.value;
+
+  durationInHoursDisplayedEl.innerText = numHours;
+}
+
 function onFrequencyChange(e) {
   const frequency = e.target.value.trim();
   const duration = document.querySelector("#duration");
@@ -407,26 +416,32 @@ function onPreviewOpened() {
       let eventEnd = "";
       let isRecurring = false;
       let recurringWeekday = "";
+      let momentStart = moment.tz(`${o.startdate} ${o.starttime}`, o.timezone).format();
+      let momentEnd = moment.tz(eventStart).add(o.durationInHours, "hours").format();
 
       if (o.frequency !== "once") {
         // Recurring event
         isRecurring = true;
         if (o.startdate.length) {
-          eventStart = new Date(moment(`${o.startdate} ${o.starttime}`).utc());
+          eventStart = new Date(momentStart);
+          eventEnd = new Date(momentEnd);
         }
       } else {
         if (o.duration === "same day") {
           // One-day event
           if (o.startdate.length) {
-            eventStart = new Date(moment(`${o.startdate} ${o.starttime}`).utc());
+            eventStart = new Date(momentStart);
+            eventEnd = new Date(momentEnd);
           }
         } else if (o.duration === "multiple days") {
           // Multiple-day event
+          momentStart = moment.tz(`${o.multidayBeginDate} ${o.multidayBeginTime}`, o.timezone).format();
+          momentEnd = moment.tz(`${o.multidayEndDate} ${o.multiDayEndTime}`, o.timezone).format();
           if (o.multidayBeginDate.length) {
-            eventStart = new Date(moment(`${o.multidayBeginDate} ${o.multidayBeginTime}`).utc());
+            eventStart = new Date(momentStart);
           }
           if (o.multidayEndDate.length) {
-            eventEnd = new Date(moment(`${o.multidayEndDate} ${o.multiDayEndTime}`).utc());
+            eventEnd = new Date(momentEnd);
           }
         }
       }
@@ -705,15 +720,19 @@ function populateDrivingDirections() {
 
 function populateDurationInHours() {
   const eventtype = document.querySelector("#eventtype").selectedOptions[0].value;
-  const durationinhours = document.querySelector("#durationinhours");
-
-  // if (durationinhours.value.length > 0) return;
+  const durationInHours = document.querySelector("#durationInHours");
+  const durationInHoursDisplayedEl = document.querySelector("#durationInHoursDisplayed");
+  let numHours = 2;
 
   if (eventtype === "church") {
-    durationinhours.value = 3;
+    numHours = 2.5;
   } else if (eventtype === "bible talk") {
-    durationinhours.value = 2;
+    numHours = 1.5;
   }
+
+  durationInHours.value = numHours;
+
+  durationInHoursDisplayedEl.innerText = numHours;
 }
 
 function populateFormBasedPhrases() {
@@ -1350,6 +1369,8 @@ function attachListeners() {
   $("#preview").on("shown.bs.modal", onPreviewOpened);
 
   $("#preview").on("hidden.bs.modal", onPreviewClosed);
+
+  $("#durationInHours").on("input", onDurationHoursChanged);
 }
 
 async function init() {
@@ -1357,6 +1378,7 @@ async function init() {
   populateCountries();
   populateLanguages();
   populateTimeZones();
+  populateDurationInHours();
   attachListeners();
   showCoordinatesContainer();
   initIntlTelInput();
