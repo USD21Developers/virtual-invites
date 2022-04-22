@@ -2,6 +2,67 @@ let viewedPreview = false;
 let mapCoordinates = "";
 let iti;
 
+function getAddressForMaps() {
+  const form = document.querySelector("#formAddEvent");
+  // Use address info from the form if we have it
+  const addressLine1 = form.querySelector("#addressLine1").value || "";
+  const addressLine2 = form.querySelector("#addressLine2").value || "";
+  const addressLine3 = form.querySelector("#addressLine3").value || "";
+  let address = "";
+  let addressLink = "";
+  if (addressLine1.length) address += addressLine1.trim();
+  if (addressLine2.length) {
+    if (addressLine1.length) address += ", ";
+    address += addressLine2.trim();
+  }
+  if (addressLine3.length) {
+    if (addressLine1.length || addressLine2.length) address += ", ";
+    address += addressLine3.trim();
+  }
+
+  /* const unsafeCharacters = [
+    { char: "%", replacement: "%25" },
+    { char: " ", replacement: "%20" },
+    { char: '"', replacement: "%22" },
+    { char: "<", replacement: "%3C" },
+    { char: ">", replacement: "%3E" },
+    { char: "#", replacement: "%23" },
+    { char: "|", replacement: "%7C" },
+  ];
+
+  unsafeCharacters.forEach(item => {
+    address = address.replaceAll(item.char, item.replacement);
+  }); */
+
+  const operatingSystem = getMobileOperatingSystem();
+  const latitude = document.querySelector("#latitude").value;
+  const longitude = document.querySelector("#longitude").value;
+
+  // Use Apple Maps if we're on iOS. For all other operating systems, use Google Maps.
+  if (operatingSystem === "iOS") {
+    // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
+    if (address.length > 0) {
+      addressLink = `https://maps.apple.com/?daddr=${addressLink}&dirflg=d&t=m`;
+    } else if (latitude.length > 0 && longitude.length > 0) {
+      addressLink = `https://maps.apple.com/?ll=${latitude},${longitude}&t=m`;
+    }
+  } else {
+    // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
+    if (address.length > 0) {
+      addressLink = `https://www.google.com/maps/dir/?api=1&destination=${addressLink}&sensor=true`;
+    } else if (latitude.length > 0 && longitude.length > 0) {
+      addressLink = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+    }
+  }
+
+  const returnObject = {
+    address: address,
+    addressLink: addressLink
+  }
+
+  return returnObject;
+}
+
 function getCalendarObject() {
   const form = document.querySelector("#formAddEvent");
   const o = {};
@@ -390,26 +451,11 @@ function onPreviewOpened() {
       const addToCalButton = document.querySelector("#addToCalendar");
       const destination = e.currentTarget.getAttribute("data-destination");
       const o = getCalendarObject();
-      let location = "";
+      const locationObject = getAddressForMaps();
+      let location = locationObject.address.length ? locationObject.address : locationObject.addressLink;
       let config;
 
       e.preventDefault();
-
-      // Populate location
-      if (o.addressLine1.length) {
-        location = o.addressLine1;
-        if (o.addressLine2.length) {
-          location = `${location}, ${o.addressLine2}`;
-          if (o.addressLine3.length) location = `${location}, ${o.addressLine3}`;
-        } else if (o.addressLine3.length) {
-          location = `${location}, ${o.addressLine3}`;
-        }
-      } else if (o.addressLine2.length) {
-        location = o.addressLine2;
-        if (o.addressLine3.length) location = `${location}, ${o.addressLine3}`;
-      } else if (o.addressLine3.length) {
-        location = o.addressLine3;
-      }
 
       // Populate times
       let eventStart = "";
@@ -495,41 +541,27 @@ function onPreviewOpened() {
       switch (destination) {
         case "apple":
           const appleCal = new datebook.ICalendar(config);
-          if (!location.length) {
-            appleCal.setParam("GEO", `${o.latitude};${o.longitude}`);
-            appleCal.setMeta("GEO", `${o.latitude};${o.longitude}`);
-            appleCal.addProperty("GEO", `${o.latitude};${o.longitude}`);
-          }
           appleCal.download();
           break;
         case "google":
-          if (!location.length) config.location = `${o.latitude},${o.longitude}`;
           const googleCal = new datebook.GoogleCalendar(config);
           window.location.href = googleCal.render();
           break;
         case "ical":
           const iCal = new datebook.ICalendar(config);
-          if (!location.length) {
-            iCal.setParam("GEO", `${o.latitude};${o.longitude}`);
-            iCal.setMeta("GEO", `${o.latitude};${o.longitude}`);
-            iCal.addProperty("GEO", `${o.latitude};${o.longitude}`);
-          }
           iCal.download();
           break;
         case "ms365":
-          if (!location.length) config.location = `${o.latitude},${o.longitude}`;
           const ms365Cal = new datebook.OutlookCalendar(config);
           ms365Cal.setHost("office");
           window.location.href = ms365Cal.render();
           break;
         case "msteams":
-          if (!location.length) config.location = `${o.latitude},${o.longitude}`;
           const msteamsCal = new datebook.OutlookCalendar(config);
           msteamsCal.setHost("office");
           window.location.href = msteamsCal.render();
           break;
         case "outlook":
-          if (!location.length) config.location = `${o.latitude},${o.longitude}`;
           const outlookCal = new datebook.OutlookCalendar(config);
           outlookCal.setHost("live");
           if (o.attendVirtuallyConnectionDetails.length) {
@@ -538,28 +570,7 @@ function onPreviewOpened() {
           window.location.href = outlookCal.render();
           break;
         case "yahoo":
-          if (!location.length) config.location = `${o.latitude},${o.longitude}`;
           const yahooCal = new datebook.YahooCalendar(config);
-          if (o.addressLine1.length) {
-            if (o.addressLine2.length && o.addressLine3.length) {
-              yahooCal.setParam("in_st", `${o.addressLine1}, ${o.addressLine2}`);
-              yahooCal.setParam("in_csz", o.addressLine3);
-            } else if (o.addressLine2.length) {
-              yahooCal.setParam("in_st", `${o.addressLine1}`);
-              yahooCal.setParam("in_csz", o.addressLine2);
-            } else if (o.addressLine3.length) {
-              yahooCal.setParam("in_st", `${o.addressLine1}`);
-              yahooCal.setParam("in_csz", o.addressLine3);
-            }
-          } else if (o.addressLine2.length) {
-            yahooCal.setParam("in_st", `${o.addressLine2}`);
-            if (o.addressLine3.length) {
-              yahooCal.setParam("in_csz", o.addressLine3);
-            }
-          } else if (o.addressLine3.length) {
-            yahooCal.setParam("in_st", `${o.addressLine3}`);
-            yahooCal.setParam("in_csz", `${o.addressLine3}`);
-          }
           if (o.contactPhone.length) {
             yahooCal.setParam("in_ph", o.contactPhone);
           }
