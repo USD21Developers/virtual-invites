@@ -401,8 +401,8 @@
     },
     {
       "key": "datesInPastAreInvalid",
-      "original": "Dates in the past are invalid.",
-      "translated": "Dates in the past are invalid."
+      "original": "Events in the past are invalid.",
+      "translated": "Events in the past are invalid."
     },
     {
       "key": "validTimeIsRequired",
@@ -461,8 +461,8 @@
     },
     {
       "key": "validatePastDateGeneric",
-      "original": "Please input a date that is not in the past.",
-      "translated": "Please input a date that is not in the past."
+      "original": "Please input a date and time that are not in the past.",
+      "translated": "Please input a date and time that are not in the past."
     },
     {
       "key": "startDateMustPrecedeEndDate",
