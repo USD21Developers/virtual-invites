@@ -1245,13 +1245,13 @@ function validate() {
         return false;
       }
 
-      if (isDateInPast(timeZone, startdate)) {
-        showError(getPhrase("validatePastDateGeneric"), "#startdate", getPhrase("datesInPastAreInvalid"));
+      if (starttime === "") {
+        showError(getPhrase("validateMultidayBeginTime"), "#starttime", getPhrase("fieldIsRequired"))
         return false;
       }
 
-      if (starttime === "") {
-        showError(getPhrase("validateMultidayBeginTime"), "#starttime", getPhrase("fieldIsRequired"))
+      if (isDateInPast(timeZone, startdate, starttime)) {
+        showError(getPhrase("validatePastDateGeneric"), "#startdate", getPhrase("datesInPastAreInvalid"));
         return false;
       }
     }
@@ -1261,13 +1261,13 @@ function validate() {
       return false;
     }
 
-    if (isDateInPast(timeZone, startdate)) {
-      showError(getPhrase("validatePastDateGeneric"), "#startdate", getPhrase("datesInPastAreInvalid"));
+    if (starttime === "") {
+      showError(getPhrase("validateMultidayBeginTime"), "#starttime", getPhrase("fieldIsRequired"))
       return false;
     }
 
-    if (starttime === "") {
-      showError(getPhrase("validateMultidayBeginTime"), "#starttime", getPhrase("fieldIsRequired"))
+    if (isDateInPast(timeZone, startdate, starttime)) {
+      showError(getPhrase("validatePastDateGeneric"), "#startdate", getPhrase("datesInPastAreInvalid"));
       return false;
     }
   }
