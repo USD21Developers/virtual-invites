@@ -1,7 +1,7 @@
-function isDateInPast(date, time) {
+function isDateInPast(timeZone = moment.tz.guess(), date, time) {
   const dateTime = time ? `${date} ${time}` : date;
-  const momentNow = moment();
-  const momentDate = moment(dateTime);
+  const momentNow = moment.tz(moment(), timeZone);
+  const momentDate = moment.tz(dateTime, timeZone);
   const isInThePast = (momentNow > momentDate);
 
   return (isInThePast);

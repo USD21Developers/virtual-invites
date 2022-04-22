@@ -1142,6 +1142,7 @@ function validate() {
   const eventdescription = form.eventdescription.value.trim() || "";
   const frequency = form.frequency.value;
   const duration = form.duration.value;
+  const timeZone = form.timezone.value;
   const startdate = form.startdate.value.trim() || "";
   const starttime = form.starttime.value.trim() || "";
   const multiDayBeginDate = form.multidayBeginDate.value.trim() || "";
@@ -1200,7 +1201,7 @@ function validate() {
         return false;
       }
 
-      if (isDateInPast(multiDayBeginDate)) {
+      if (isDateInPast(timeZone, multiDayBeginDate)) {
         showError(getPhrase("validatePastMultidayBeginDate"), "#multidayBeginDate", getPhrase("datesInPastAreInvalid"));
         return false;
       }
@@ -1215,7 +1216,7 @@ function validate() {
         return false;
       }
 
-      if (isDateInPast(multiDayEndDate, multiDayEndTime)) {
+      if (isDateInPast(timeZone, multiDayEndDate, multiDayEndTime)) {
         showError(getPhrase("validatePastMultidayEndDate"), "#multidayEndDate", getPhrase("datesInPastAreInvalid"));
         return false;
       }
@@ -1244,7 +1245,7 @@ function validate() {
         return false;
       }
 
-      if (isDateInPast(startdate)) {
+      if (isDateInPast(timeZone, startdate)) {
         showError(getPhrase("validatePastDateGeneric"), "#startdate", getPhrase("datesInPastAreInvalid"));
         return false;
       }
@@ -1260,7 +1261,7 @@ function validate() {
       return false;
     }
 
-    if (isDateInPast(startdate)) {
+    if (isDateInPast(timeZone, startdate)) {
       showError(getPhrase("validatePastDateGeneric"), "#startdate", getPhrase("datesInPastAreInvalid"));
       return false;
     }
