@@ -1196,18 +1196,13 @@ function validate() {
         return false;
       }
 
-      if (!moment(multiDayBeginDate).isValid()) {
-        showError(getPhrase("validateInvalidMultidayBeginDate"), "#multidayBeginDate", getPhrase("validDateIsRequired"));
-        return false;
-      }
-
-      if (isDateInPast(timeZone, multiDayBeginDate)) {
-        showError(getPhrase("validatePastMultidayBeginDate"), "#multidayBeginDate", getPhrase("datesInPastAreInvalid"));
-        return false;
-      }
-
       if (multiDayBeginTime === "") {
         showError(getPhrase("validateMultidayBeginTime"), "#multidayBeginTime", getPhrase("fieldIsRequired"));
+        return false;
+      }
+
+      if (!moment(multiDayBeginDate).isValid()) {
+        showError(getPhrase("validateInvalidMultidayBeginDate"), "#multidayBeginDate", getPhrase("validDateIsRequired"));
         return false;
       }
 
@@ -1216,13 +1211,23 @@ function validate() {
         return false;
       }
 
-      if (isDateInPast(timeZone, multiDayEndDate, multiDayEndTime)) {
-        showError(getPhrase("validatePastMultidayEndDate"), "#multidayEndDate", getPhrase("datesInPastAreInvalid"));
+      if (multiDayEndTime === "") {
+        showError(getPhrase("validateMultidayEndTime"), "#multidayEndTime", getPhrase("fieldIsRequired"));
         return false;
       }
 
-      if (multiDayEndTime === "") {
-        showError(getPhrase("validateMultidayEndTime"), "#multidayEndTime", getPhrase("fieldIsRequired"));
+      if (!moment(multiDayEndDate).isValid()) {
+        showError(getPhrase("validateInvalidMultidayEndDate"), "#multidayEndDate", getPhrase("validDateIsRequired"));
+        return false;
+      }
+
+      if (isDateInPast(timeZone, multiDayBeginDate, multiDayBeginTime)) {
+        showError(getPhrase("validatePastMultidayBeginDate"), "#multidayBeginDate", getPhrase("datesInPastAreInvalid"));
+        return false;
+      }
+
+      if (isDateInPast(timeZone, multiDayEndDate, multiDayEndTime)) {
+        showError(getPhrase("validatePastMultidayEndDate"), "#multidayEndDate", getPhrase("datesInPastAreInvalid"));
         return false;
       }
 
@@ -1255,7 +1260,7 @@ function validate() {
         return false;
       }
     }
-  } else { // Frequency is not once, but every (e.g. Friday)
+  } else { // Frequency is recurring
     if (startdate === "") {
       showError(getPhrase("validateMultidayBeginDate"), "#startdate", getPhrase("fieldIsRequired"));
       return false;

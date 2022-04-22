@@ -495,6 +495,11 @@
       "translated": "Please input a date in the future for when the event ends."
     },
     {
+      "key": "validateInvalidMultidayEndDate",
+      "original": "Please input a valid date for when the event ends.",
+      "translated": "Please input a valid date for when the event ends."
+    },
+    {
       "key": "validateMultidayEndTime",
       "original": "Please input the time when the event ends.",
       "translated": "Please input the time when the event ends."
