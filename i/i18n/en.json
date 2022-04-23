@@ -29,6 +29,11 @@
       "translated": "Please inquire below for location details and directions."
     },
     {
+      "key": "previewRequestLocationInfoForCalendar",
+      "original": "Please inquire for location details and directions.",
+      "translated": "Please inquire for location details and directions."
+    },
+    {
       "key": "add-to-my-calendar",
       "original": "Add to my calendar",
       "translated": "Add to my calendar"
