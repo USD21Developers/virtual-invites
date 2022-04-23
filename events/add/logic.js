@@ -20,20 +20,6 @@ function getAddressForMaps() {
     address += addressLine3.trim();
   }
 
-  /* const unsafeCharacters = [
-    { char: "%", replacement: "%25" },
-    { char: " ", replacement: "%20" },
-    { char: '"', replacement: "%22" },
-    { char: "<", replacement: "%3C" },
-    { char: ">", replacement: "%3E" },
-    { char: "#", replacement: "%23" },
-    { char: "|", replacement: "%7C" },
-  ];
-
-  unsafeCharacters.forEach(item => {
-    address = address.replaceAll(item.char, item.replacement);
-  }); */
-
   const operatingSystem = getMobileOperatingSystem();
   const latitude = document.querySelector("#latitude").value;
   const longitude = document.querySelector("#longitude").value;
@@ -451,8 +437,17 @@ function onPreviewOpened() {
       const addToCalButton = document.querySelector("#addToCalendar");
       const destination = e.currentTarget.getAttribute("data-destination");
       const o = getCalendarObject();
-      const locationObject = getAddressForMaps();
-      let location = locationObject.address.length ? locationObject.address : locationObject.addressLink;
+      let location = "";
+
+      if (o.locationvisibility === "public") {
+        const locationObject = getAddressForMaps();
+        if (locationObject.address.length) {
+          location = locationObject.address;
+        } else {
+          location = locationObject.addressLink;
+        }
+      }
+
       let config;
 
       e.preventDefault();
