@@ -1037,10 +1037,11 @@ function showError(msg, selector, inlineMsg) {
 
 function showSingleDay() {
   const container = document.querySelector("#timeAndDateSingleDay");
+  const timeZone = document.querySelector("#timezone").selectedOptions[0].value;
   const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
   const eventStartDate = document.querySelector("#startdate").value;
   const eventStartTime = document.querySelector("#starttime").value;
-  const eventStartDateTime = `${eventStartDate} ${eventStartTime}`;
+  const eventStartDateTime = moment.tz(`${eventStartDate} ${eventStartTime}`, timeZone).format();
   const weekday = Intl.DateTimeFormat(lang, { weekday: "long" }).format(new Date(eventStartDateTime));
   const weekdayEl = document.querySelector("#singleDayWeekday");
   const previewEventStartDateShort = Intl.DateTimeFormat(lang, { dateStyle: "short" }).format(new Date(eventStartDateTime));
@@ -1057,13 +1058,14 @@ function showSingleDay() {
 
 function showMultipleDays() {
   const container = document.querySelector("#timeAndDateMultipleDays");
+  const timeZone = document.querySelector("#timezone").selectedOptions[0].value;
   const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
   const multidayBeginDate = document.querySelector("#multidayBeginDate").value;
   const multidayBeginTime = document.querySelector("#multidayBeginTime").value;
   const multidayEndDate = document.querySelector("#multidayEndDate").value;
   const multidayEndTime = document.querySelector("#multidayEndTime").value;
-  const eventStartDateTime = `${multidayBeginDate} ${multidayBeginTime}`;
-  const eventEndDateTime = `${multidayEndDate} ${multidayEndTime}`;
+  const eventStartDateTime = moment.tz(`${multidayBeginDate} ${multidayBeginTime}`, timeZone).format();
+  const eventEndDateTime = moment.tz(`${multidayEndDate} ${multidayEndTime}`, timeZone).format();
   const previewEventStartDateShort = Intl.DateTimeFormat(lang, { dateStyle: "short" }).format(new Date(eventStartDateTime));
   const previewEventStartTimeShort = Intl.DateTimeFormat(lang, { timeStyle: "short" }).format(new Date(eventStartDateTime));
   const previewEventEndDateShort = Intl.DateTimeFormat(lang, { dateStyle: "short" }).format(new Date(eventEndDateTime));
@@ -1092,13 +1094,14 @@ function showMultipleDays() {
 function showRepeating(frequency) {
   if ((!frequency) || (!frequency.length)) return;
   const container = document.querySelector("#timeAndDateRepeating");
+  const timeZone = document.querySelector("#timezone").selectedOptions[0].value;
   const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
   const frequencyPhrase = document.querySelector("#frequency").selectedOptions[0].getAttribute("data-i18n");
   const frequencyTranslated = getPhrase(frequencyPhrase);
   const startDate = document.querySelector("#startdate").value;
   const startTime = document.querySelector("#starttime").value;
   const eventStartDateTime = `${startDate} ${startTime}`;
-  const eventStartDateTimeUTC = moment(eventStartDateTime).utc().format();
+  const eventStartDateTimeUTC = moment.tz(eventStartDateTime, timeZone).format();
   const startTimeLocalized = Intl.DateTimeFormat(lang, { timeStyle: "short" }).format(new Date(eventStartDateTimeUTC));
   const repeatingWeekdayEl = document.querySelector("#repeatingWeekday");
   const repeatingStartTimeEl = document.querySelector("#repeatingStartTime");
