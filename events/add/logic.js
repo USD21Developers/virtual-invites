@@ -1226,8 +1226,8 @@ function validate() {
         return false;
       }
 
-      const momentFromDate = moment(`${multiDayBeginDate} ${multiDayBeginTime}`);
-      const momentToDate = moment(`${multiDayEndDate} ${multiDayEndTime}`);
+      const momentFromDate = moment.tz(`${multiDayBeginDate} ${multiDayBeginTime}`, timeZone);
+      const momentToDate = moment.tz(`${multiDayEndDate} ${multiDayEndTime}`, timeZone);
       if (momentFromDate >= momentToDate) {
         showError(getPhrase("startDateMustPrecedeEndDate"), "#multidayBeginDate", getPhrase("validDateIsRequired"));
         return false;
