@@ -2,6 +2,39 @@ let viewedPreview = false;
 let mapCoordinates = "";
 let iti;
 
+function buildCalendarDescription(invitePhrases, cal) {
+  const p = {};  // Phrases that are global to all invites
+  const o = getCalendarObject();  // Data from the form
+
+  invitePhrases.phrases.forEach(item => {
+    p[item.key] = item.translated;
+  });
+
+  let description = `
+${p["you-are-invited-to"]}
+${o.eventtitle.toUpperCase()}
+  `;
+
+  return description.trim();
+
+  switch (cal) {
+    case "apple":
+      break;
+    case "google":
+      break;
+    case "ical":
+      break;
+    case "ms365":
+      break;
+    case "msteams":
+      break;
+    case "outlook":
+      break;
+    case "yahoo":
+      break;
+  }
+}
+
 function getAddressForMaps() {
   const form = document.querySelector("#formAddEvent");
   // Use address info from the form if we have it
@@ -402,13 +435,18 @@ async function onPreview() {
 function onPreviewClosed(e) {
   const submitRow = document.querySelector("#submitrow");
 
+  refreshFloatingLabels();
+
   viewedPreview = true;
   history.pushState(null, null, "./");
   submitRow.classList.remove("d-none");
   customScrollTo("#submitrow");
 }
 
-function onPreviewOpened() {
+async function onPreviewOpened() {
+  const lang = getLang();
+  const invitePhrases = await fetch(`../../i/i18n/${lang}.json`).then(res => res.json());
+
   previewSpinner("hide");
 
   $(".collapse").on("show.bs.collapse", () => {
@@ -535,28 +573,34 @@ function onPreviewOpened() {
 
       switch (destination) {
         case "apple":
+          config.description = buildCalendarDescription(invitePhrases, "apple");
           const appleCal = new datebook.ICalendar(config);
           appleCal.download();
           break;
         case "google":
+          config.description = buildCalendarDescription(invitePhrases, "google");
           const googleCal = new datebook.GoogleCalendar(config);
           window.location.href = googleCal.render();
           break;
         case "ical":
+          config.description = buildCalendarDescription(invitePhrases, "ical");
           const iCal = new datebook.ICalendar(config);
           iCal.download();
           break;
         case "ms365":
+          config.description = buildCalendarDescription(invitePhrases, "ms365");
           const ms365Cal = new datebook.OutlookCalendar(config);
           ms365Cal.setHost("office");
           window.location.href = ms365Cal.render();
           break;
         case "msteams":
+          config.description = buildCalendarDescription(invitePhrases, "msteams");
           const msteamsCal = new datebook.OutlookCalendar(config);
           msteamsCal.setHost("office");
           window.location.href = msteamsCal.render();
           break;
         case "outlook":
+          config.description = buildCalendarDescription(invitePhrases, "outlook");
           const outlookCal = new datebook.OutlookCalendar(config);
           outlookCal.setHost("live");
           if (o.attendVirtuallyConnectionDetails.length) {
@@ -565,6 +609,7 @@ function onPreviewOpened() {
           window.location.href = outlookCal.render();
           break;
         case "yahoo":
+          config.description = buildCalendarDescription(invitePhrases, "yahoo");
           const yahooCal = new datebook.YahooCalendar(config);
           if (o.contactPhone.length) {
             yahooCal.setParam("in_ph", o.contactPhone);
@@ -1413,3 +1458,6 @@ async function init() {
 }
 
 init();
+setTimeout(() => {
+  refreshFloatingLabels();
+}, 500);

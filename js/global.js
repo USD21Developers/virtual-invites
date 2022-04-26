@@ -421,6 +421,7 @@ async function populateContent(customEndpoint, variable = "pageContent") {
           if (matchedcontent) item.setAttribute("placeholder", matchedcontent);
         });
         await populateGlobalContent();
+        refreshFloatingLabels();
         resolve();
       })
       .catch((err) => {
