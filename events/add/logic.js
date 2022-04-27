@@ -13,7 +13,19 @@ function buildCalendarDescription(invitePhrases, cal) {
   let description = `
 ${p["you-are-invited-to"]}
 ${o.eventtitle.toUpperCase()}
-  `;
+
+=====
+
+${o.eventdescription}
+
+=====
+
+${o.isDiscreet ? p["previewRequestLocationInfo"] : getPhrase("headlineContact")}
+
+${o.firstName.toUpperCase()} ${o.lastName.length && o.lastName.toUpperCase()}
+
+${o.contactEmail.length ? o.contactEmail + "\n\n" : ""}${o.contactPhone.length ? o.contactPhone + "\n\n" : ""}
+`;
 
   return description.trim();
 
