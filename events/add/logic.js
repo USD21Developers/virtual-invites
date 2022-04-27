@@ -22,7 +22,7 @@ ${o.eventdescription}
 
 ${o.isDiscreet ? p["previewRequestLocationInfo"] : getPhrase("headlineContact")}
 
-${o.firstName.toUpperCase()} ${o.lastName.length && o.lastName.toUpperCase()}
+${o.contactFirstName.toUpperCase()} ${o.contactLastName.length && o.contactLastName.toUpperCase()}
 
 ${o.contactEmail.length ? o.contactEmail + "\n\n" : ""}${o.contactPhone.length ? o.contactPhone + "\n\n" : ""}
 `;
