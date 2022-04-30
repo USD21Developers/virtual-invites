@@ -29,11 +29,6 @@
       "translated": "Please inquire below for location details and directions."
     },
     {
-      "key": "previewRequestLocationInfoForCalendar",
-      "original": "Please inquire for location details and directions.",
-      "translated": "Please inquire for location details and directions."
-    },
-    {
       "key": "add-to-my-calendar",
       "original": "Add to my calendar",
       "translated": "Add to my calendar"
@@ -69,6 +64,26 @@
       "translated": "About {EVENT-TITLE}"
     },
     {
+      "key": "headlineLocationDetails",
+      "original": "Location Details:",
+      "translated": "Location Details:"
+    },
+    {
+      "key": "cant-attend-in-person",
+      "original": "Can't Attend in Person?",
+      "translated": "Can't Attend in Person?"
+    },
+    {
+      "key": "text-connect",
+      "original": "If you can't attend in person (e.g. for health or safety reasons), you can attend virtually.",
+      "translated": "If you can't attend in person (e.g. for health or safety reasons), you can attend virtually."
+    },
+    {
+      "key": "headline-how-to-connect",
+      "original": "Here's how to connect:",
+      "translated": "Here's how to connect:"
+    },
+    {
       "key": "headline-questions",
       "original": "Questions?",
       "translated": "Questions?"
@@ -79,6 +94,11 @@
       "translated": "If you have any questions or feedback, please reach out below:"
     },
     {
+      "key": "questionsPlusLocation",
+      "original": "If you have any questions or feedback, please inquire below.  Also, don't forget to ask about the location of the meeting!",
+      "translated": "If you have any questions or feedback, please inquire below.  Also, don't forget to ask about the location of the meeting!"
+    },
+    {
       "key": "phone-call",
       "original": "Phone call",
       "translated": "Phone call"
@@ -87,6 +107,11 @@
       "key": "text-message",
       "original": "Text message",
       "translated": "Text message"
+    },
+    {
+      "key": "phone-call-or-text-message",
+      "original": "Phone and/or text message:",
+      "translated": "Phone and/or text message:"
     },
     {
       "key": "email",

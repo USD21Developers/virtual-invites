@@ -320,26 +320,6 @@
       ]
     },
     {
-      "key": "attendVirtuallyConnectionDetails",
-      "original": "Connection Details:",
-      "translated": "Connection Details:"
-    },
-    {
-      "key": "headline-cant-attend",
-      "original": "Can't Attend in Person?",
-      "translated": "Can't Attend in Person?"
-    },
-    {
-      "key": "text-cant-attend",
-      "original": "If you can't attend in person (e.g. for health or safety reasons), you can attend virtually.",
-      "translated": "If you can't attend in person (e.g. for health or safety reasons), you can attend virtually."
-    },
-    {
-      "key": "headline-how-to-connect",
-      "original": "Here's how to connect:",
-      "translated": "Here's how to connect:"
-    },
-    {
       "key": "headlineContact",
       "original": "For more info, contact:",
       "translated": "For more info, contact:"

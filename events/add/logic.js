@@ -7,44 +7,101 @@ function buildCalendarDescription(invitePhrases, cal) {
   const o = getCalendarObject();  // Data from the form
 
   invitePhrases.phrases.forEach(item => {
+    0
     p[item.key] = item.translated;
   });
 
   let description = `
 ${p["you-are-invited-to"]}
 ${o.eventtitle.toUpperCase()}
+  `.trim() + "\n\n";
 
-=====
+  // BEGIN MAIN EVENT INFO
+  const headlineAboutEvent = p["headline-about-event"].replaceAll("{EVENT-TITLE}", o.eventtitle);
+
+  description += `=====
+
+${headlineAboutEvent.toUpperCase()}:
 
 ${o.eventdescription}
+  `.trim() + "\n\n";
+  // END MAIN EVENT INFO
 
-=====
 
-${o.isDiscreet ? p["previewRequestLocationInfo"] : getPhrase("headlineContact")}
+  // BEGIN OTHER LOCATION DETAILS
+  if (o.otherLocationDetails.length && o.locationvisibility !== "discreet") {
+    const headlineLocationDetails = p["headlineLocationDetails"];
 
-${o.contactFirstName.toUpperCase()} ${o.contactLastName.length && o.contactLastName.toUpperCase()}
+    description += `=====
 
-${o.contactEmail.length ? o.contactEmail + "\n\n" : ""}${o.contactPhone.length ? o.contactPhone + "\n\n" : ""}
-`;
+${headlineLocationDetails.toUpperCase()}
+
+${o.otherLocationDetails}
+    `.trim() + "\n\n";
+  }
+  // END OTHER LOCATION DETAILS
+
+
+  // BEGIN ATTENTING VIRTUALLY
+  if (o.attendVirtuallyConnectionDetails.length) {
+    const attendOnline_headlineCantAttendInPerson = p["cant-attend-in-person"];
+    const attendOnline_text = p["text-connect"];
+    const attendOnline_headlineHowToConnect = p["headline-how-to-connect"];
+    const calAttendingVirtually = `=====
+
+${attendOnline_headlineCantAttendInPerson.toUpperCase()}
+
+${attendOnline_text}
+
+${attendOnline_headlineHowToConnect.toUpperCase()}
+
+${o.attendVirtuallyConnectionDetails.trim()}
+    `;
+    description += calAttendingVirtually.trim() + "\n\n";
+  }
+  // END ATTENDING VIRTUALLY
+
+
+  // BEGIN CONTACT INFORMATION
+  const headlineQuestions = p["headline-questions"];
+  const textQuestions = (o.locationvisibility === "discreet") ? p["questionsPlusLocation"] : p["questions"];
+  const labelPhoneCallOrTextMessage = p["phone-call-or-text-message"];
+  const labelEmail = p["email"];
+
+  description += `=====
+
+${headlineQuestions.toUpperCase()}
+
+${textQuestions}
+  `.trim() + "\n\n";
+
+  // Contact Name
+  const contactName = `${o.contactFirstName.toUpperCase()} ${o.contactLastName.length && o.contactLastName.toUpperCase()}`;
+  description += contactName + "\n\n";
+
+  // Contact E-mail
+  if (o.contactEmail.length) {
+    const contactEmail = `
+* ${labelEmail}:
+
+${o.contactEmail}
+    `.trim();
+    description += contactEmail + "\n\n";
+  }
+
+  // Contact Phone or Text Message
+  if (o.contactPhoneFormatted.length) {
+    const contactPhoneSection = `
+* ${labelPhoneCallOrTextMessage}
+
+${o.contactPhoneFormatted}
+    `.trim();
+    description += contactPhoneSection + "\n\n";
+  }
+
+  // END CONTACT INFORMATION
 
   return description.trim();
-
-  switch (cal) {
-    case "apple":
-      break;
-    case "google":
-      break;
-    case "ical":
-      break;
-    case "ms365":
-      break;
-    case "msteams":
-      break;
-    case "outlook":
-      break;
-    case "yahoo":
-      break;
-  }
 }
 
 function getAddressForMaps() {
@@ -123,7 +180,8 @@ function getCalendarObject() {
   o.attendVirtuallyConnectionDetails = form.attendVirtuallyConnectionDetails.value;
   o.contactFirstName = form.contactFirstName.value;
   o.contactLastName = form.contactLastName.value;
-  o.contactPhone = iti.getNumber();
+  o.contactPhone = iti.getNumber() || "";
+  o.contactPhoneFormatted = o.contactPhone.length ? iti.getNumber(o.contactPhone) : o.contactPhone;
   o.contactPhoneCountryData = iti.getSelectedCountryData();
   o.contactEmail = form.contactEmail.value;
 
@@ -570,9 +628,9 @@ async function onPreviewOpened() {
         description: o.eventdescription,
         start: eventStart
       };
-      if (o.attendVirtuallyConnectionDetails.length) {
+      /* if (o.attendVirtuallyConnectionDetails.length) {
         config.description = `${config.description}\n\n\n\n-- -\n\n${o.attendVirtuallyConnectionDetails}`;
-      }
+      } */
       if (!!eventEnd) config.end = eventEnd;
       if (isRecurring) {
         config.recurrence = {
@@ -930,7 +988,7 @@ function populateFormBasedPhrases() {
   const previewOtherLocationDetails = document.querySelector("#previewOtherLocationDetails");
   const otherLocationDetails = document.querySelector("#otherLocationDetails").value.trim() || "";
   if (otherLocationDetails !== "") {
-    previewOtherLocationDetails.innerHTML = otherLocationDetails;
+    previewOtherLocationDetails.innerHTML = breakify(otherLocationDetails);
     previewOtherLocationDetails.classList.remove("d-none");
   } else {
     previewOtherLocationDetails.innerHTML = "";
@@ -1470,6 +1528,3 @@ async function init() {
 }
 
 init();
-setTimeout(() => {
-  refreshFloatingLabels();
-}, 500);
