@@ -84,26 +84,21 @@ ${textQuestions}
   description = description + "\n\n";
 
   // Contact Name
-  const contactName = `${o.contactFirstName.toUpperCase()} ${o.contactLastName.length && o.contactLastName.toUpperCase()}`;
-  description += contactName + "\n\n";
-
-  // Contact E-mail
-  if (o.contactEmail.length) {
-    const contactEmail = `* ${labelEmail}:\n${o.contactEmail}`;
-    description = description.trim();
-    description += contactEmail + "\n\n";
-  }
+  description += `${o.contactFirstName.toUpperCase()} ${o.contactLastName.length && o.contactLastName.toUpperCase()}\n\n`;
 
   // Contact Phone or Text Message
   if (o.contactPhoneFormatted.length) {
-    const contactPhoneSection = `* ${labelPhoneCallOrTextMessage}\n${o.contactPhoneFormatted}`;
-    description = description.trim();
-    description += contactPhoneSection + "\n\n";
+    description += `* ${labelPhoneCallOrTextMessage}\n${o.contactPhoneFormatted}\n\n`;
+  }
+
+  // Contact E-mail
+  if (o.contactEmail.length) {
+    description += `* ${labelEmail}:\n${contactEmail}\n\n`;
   }
 
   // END CONTACT INFORMATION
 
-  return description.trim();
+  return description;
 }
 
 function getAddressForMaps() {
