@@ -93,7 +93,7 @@ ${textQuestions}
 
   // Contact E-mail
   if (o.contactEmail.length) {
-    description += `* ${labelEmail}:\n${contactEmail}\n\n`;
+    description += `* ${labelEmail}:\n${o.contactEmail}\n\n`;
   }
 
   // END CONTACT INFORMATION

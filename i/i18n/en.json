@@ -110,8 +110,8 @@
     },
     {
       "key": "phone-call-or-text-message",
-      "original": "Phone and/or text message:",
-      "translated": "Phone and/or text message:"
+      "original": "Phone or text message:",
+      "translated": "Phone or text message:"
     },
     {
       "key": "email",
