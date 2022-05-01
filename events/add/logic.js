@@ -14,7 +14,7 @@ function buildCalendarDescription(invitePhrases, cal) {
   let description = `
 ${p["you-are-invited-to"]}
 ${o.eventtitle.toUpperCase()}
-  `.trim() + "\n\n";
+  `.trim() + "\r\n\r\n";
 
   // BEGIN MAIN EVENT INFO
   const headlineAboutEvent = p["headline-about-event"].replaceAll("{EVENT-TITLE}", o.eventtitle);
@@ -24,7 +24,7 @@ ${o.eventtitle.toUpperCase()}
 ${headlineAboutEvent.toUpperCase()}:
 
 ${o.eventdescription}
-  `.trim() + "\n\n";
+  `.trim() + "\r\n\r\n";
   // END MAIN EVENT INFO
 
 
@@ -37,7 +37,7 @@ ${o.eventdescription}
 ${headlineLocationDetails.toUpperCase()}
 
 ${o.otherLocationDetails}
-    `.trim() + "\n\n";
+    `.trim() + "\r\n\r\n";
   }
   // END OTHER LOCATION DETAILS
 
@@ -57,7 +57,7 @@ ${attendOnline_headlineHowToConnect.toUpperCase()}
 
 ${o.attendVirtuallyConnectionDetails.trim()}
     `;
-    description += calAttendingVirtually.trim() + "\n\n";
+    description += calAttendingVirtually.trim() + "\r\n\r\n";
   }
   // END ATTENDING VIRTUALLY
 
@@ -73,11 +73,11 @@ ${o.attendVirtuallyConnectionDetails.trim()}
 ${headlineQuestions.toUpperCase()}
 
 ${textQuestions}
-  `.trim() + "\n\n";
+  `.trim() + "\r\n\r\n";
 
   // Contact Name
   const contactName = `${o.contactFirstName.toUpperCase()} ${o.contactLastName.length && o.contactLastName.toUpperCase()}`;
-  description += contactName + "\n\n";
+  description += contactName + "\r\n\r\n";
 
   // Contact E-mail
   if (o.contactEmail.length) {
@@ -86,7 +86,7 @@ ${textQuestions}
 
 ${o.contactEmail}
     `.trim();
-    description += contactEmail + "\n\n";
+    description += contactEmail + "\r\n\r\n";
   }
 
   // Contact Phone or Text Message
@@ -96,7 +96,7 @@ ${o.contactEmail}
 
 ${o.contactPhoneFormatted}
     `.trim();
-    description += contactPhoneSection + "\n\n";
+    description += contactPhoneSection + "\r\n\r\n";
   }
 
   // END CONTACT INFORMATION
@@ -656,35 +656,6 @@ async function onPreviewOpened() {
           config.description = buildCalendarDescription(invitePhrases, "ical");
           const iCal = new datebook.ICalendar(config);
           iCal.download();
-          break;
-        case "ms365":
-          config.description = buildCalendarDescription(invitePhrases, "ms365");
-          const ms365Cal = new datebook.OutlookCalendar(config);
-          ms365Cal.setHost("office");
-          window.location.href = ms365Cal.render();
-          break;
-        case "msteams":
-          config.description = buildCalendarDescription(invitePhrases, "msteams");
-          const msteamsCal = new datebook.OutlookCalendar(config);
-          msteamsCal.setHost("office");
-          window.location.href = msteamsCal.render();
-          break;
-        case "outlook":
-          config.description = buildCalendarDescription(invitePhrases, "outlook");
-          const outlookCal = new datebook.OutlookCalendar(config);
-          outlookCal.setHost("live");
-          if (o.attendVirtuallyConnectionDetails.length) {
-            outlookCal.setParam("online", "true");
-          }
-          window.location.href = outlookCal.render();
-          break;
-        case "yahoo":
-          config.description = buildCalendarDescription(invitePhrases, "yahoo");
-          const yahooCal = new datebook.YahooCalendar(config);
-          if (o.contactPhone.length) {
-            yahooCal.setParam("in_ph", o.contactPhone);
-          }
-          window.location.href = yahooCal.render();
           break;
       }
       $("#atcbOptions").collapse("hide");
