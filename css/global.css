@@ -8,6 +8,10 @@ td {
   text-decoration: underline;
 }
 
+.not-bold {
+  font-weight: 100 !important;
+}
+
 .navbar {
   min-height: 70px;
 }
