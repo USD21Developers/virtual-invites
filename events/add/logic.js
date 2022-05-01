@@ -14,7 +14,7 @@ function buildCalendarDescription(invitePhrases, cal) {
   let description = `
 ${p["you-are-invited-to"]}
 ${o.eventtitle.toUpperCase()}
-  `.trim() + "\r\n\r\n";
+  `.trim() + "\n\n";
 
   // BEGIN MAIN EVENT INFO
   const headlineAboutEvent = p["headline-about-event"].replaceAll("{EVENT-TITLE}", o.eventtitle);
@@ -24,7 +24,7 @@ ${o.eventtitle.toUpperCase()}
 ${headlineAboutEvent.toUpperCase()}:
 
 ${o.eventdescription}
-  `.trim() + "\r\n\r\n";
+  `.trim() + "\n\n";
   // END MAIN EVENT INFO
 
 
@@ -37,7 +37,7 @@ ${o.eventdescription}
 ${headlineLocationDetails.toUpperCase()}
 
 ${o.otherLocationDetails}
-    `.trim() + "\r\n\r\n";
+    `.trim() + "\n\n";
   }
   // END OTHER LOCATION DETAILS
 
@@ -57,7 +57,7 @@ ${attendOnline_headlineHowToConnect.toUpperCase()}
 
 ${o.attendVirtuallyConnectionDetails.trim()}
     `;
-    description += calAttendingVirtually.trim() + "\r\n\r\n";
+    description += calAttendingVirtually.trim() + "\n\n";
   }
   // END ATTENDING VIRTUALLY
 
@@ -73,11 +73,11 @@ ${o.attendVirtuallyConnectionDetails.trim()}
 ${headlineQuestions.toUpperCase()}
 
 ${textQuestions}
-  `.trim() + "\r\n\r\n";
+  `.trim() + "\n\n";
 
   // Contact Name
   const contactName = `${o.contactFirstName.toUpperCase()} ${o.contactLastName.length && o.contactLastName.toUpperCase()}`;
-  description += contactName + "\r\n\r\n";
+  description += contactName + "\n\n";
 
   // Contact E-mail
   if (o.contactEmail.length) {
@@ -86,7 +86,7 @@ ${textQuestions}
 
 ${o.contactEmail}
     `.trim();
-    description += contactEmail + "\r\n\r\n";
+    description += contactEmail + "\n\n";
   }
 
   // Contact Phone or Text Message
@@ -96,7 +96,7 @@ ${o.contactEmail}
 
 ${o.contactPhoneFormatted}
     `.trim();
-    description += contactPhoneSection + "\r\n\r\n";
+    description += contactPhoneSection + "\n\n";
   }
 
   // END CONTACT INFORMATION
