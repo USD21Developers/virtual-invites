@@ -89,25 +89,15 @@ ${textQuestions}
 
   // Contact E-mail
   if (o.contactEmail.length) {
-    const contactEmail = `
-* ${labelEmail}:
-
-${o.contactEmail}
-    `;
+    const contactEmail = `* ${labelEmail}:\n${o.contactEmail}`;
     description = description.trim();
-    description = description + "\n\n";
     description += contactEmail + "\n\n";
   }
 
   // Contact Phone or Text Message
   if (o.contactPhoneFormatted.length) {
-    const contactPhoneSection = `
-* ${labelPhoneCallOrTextMessage}
-
-${o.contactPhoneFormatted}
-    `;
+    const contactPhoneSection = `* ${labelPhoneCallOrTextMessage}\n${o.contactPhoneFormatted}`;
     description = description.trim();
-    description = description + "\n\n";
     description += contactPhoneSection + "\n\n";
   }
 
