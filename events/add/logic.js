@@ -24,7 +24,9 @@ ${o.eventtitle.toUpperCase()}
 ${headlineAboutEvent.toUpperCase()}:
 
 ${o.eventdescription}
-  `.trim() + "\n\n";
+  `;
+  description = description.trim();
+  description = description + "\n\n";
   // END MAIN EVENT INFO
 
 
@@ -37,7 +39,9 @@ ${o.eventdescription}
 ${headlineLocationDetails.toUpperCase()}
 
 ${o.otherLocationDetails}
-    `.trim() + "\n\n";
+    `;
+    description = description.trim();
+    description = description + "\n\n";
   }
   // END OTHER LOCATION DETAILS
 
@@ -57,7 +61,9 @@ ${attendOnline_headlineHowToConnect.toUpperCase()}
 
 ${o.attendVirtuallyConnectionDetails.trim()}
     `;
-    description += calAttendingVirtually.trim() + "\n\n";
+    description += calAttendingVirtually;
+    description = description.trim();
+    description = description + "\n\n";
   }
   // END ATTENDING VIRTUALLY
 
@@ -73,7 +79,9 @@ ${o.attendVirtuallyConnectionDetails.trim()}
 ${headlineQuestions.toUpperCase()}
 
 ${textQuestions}
-  `.trim() + "\n\n";
+  `;
+  description = description.trim();
+  description = description + "\n\n";
 
   // Contact Name
   const contactName = `${o.contactFirstName.toUpperCase()} ${o.contactLastName.length && o.contactLastName.toUpperCase()}`;
@@ -85,7 +93,9 @@ ${textQuestions}
 * ${labelEmail}:
 
 ${o.contactEmail}
-    `.trim();
+    `;
+    description = description.trim();
+    description = description + "\n\n";
     description += contactEmail + "\n\n";
   }
 
@@ -95,7 +105,9 @@ ${o.contactEmail}
 * ${labelPhoneCallOrTextMessage}
 
 ${o.contactPhoneFormatted}
-    `.trim();
+    `;
+    description = description.trim();
+    description = description + "\n\n";
     description += contactPhoneSection + "\n\n";
   }
 
