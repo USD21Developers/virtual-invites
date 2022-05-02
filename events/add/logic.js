@@ -32,7 +32,7 @@ ${o.eventdescription}
 
   // BEGIN RECURRING EVENT
   if (o.frequency !== "once") {
-    description += `=====
+    description += `=====\n
 ${p["is-recurring"]}
     `;
     description = description.trim();
