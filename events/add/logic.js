@@ -30,6 +30,17 @@ ${o.eventdescription}
   // END MAIN EVENT INFO
 
 
+  // BEGIN RECURRING EVENT
+  if (o.frequency !== "once") {
+    description += `=====
+${p["is-recurring"]}
+    `;
+    description = description.trim();
+    description = description + "\n\n";
+  }
+  // END RECURRING EVENT
+
+
   // BEGIN OTHER LOCATION DETAILS
   if (o.otherLocationDetails.length && o.locationvisibility !== "discreet") {
     const headlineLocationDetails = p["headlineLocationDetails"];

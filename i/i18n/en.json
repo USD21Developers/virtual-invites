@@ -19,6 +19,11 @@
       "translated": "@"
     },
     {
+      "key": "is-recurring",
+      "original": "NOTE:  This is a recurring event.",
+      "translated": "NOTE:  This is a recurring event."
+    },
+    {
       "key": "map-and-directions",
       "original": "Map and Directions",
       "translated": "Map and Directions"
