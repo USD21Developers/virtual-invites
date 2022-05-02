@@ -20,8 +20,8 @@
     },
     {
       "key": "is-recurring",
-      "original": "This event occurs weekly.",
-      "translated": "This event occurs weekly."
+      "original": "This is a weekly recurring event.",
+      "translated": "This is a weekly recurring event."
     },
     {
       "key": "map-and-directions",
