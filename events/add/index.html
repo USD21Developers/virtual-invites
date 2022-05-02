@@ -156,7 +156,7 @@
       </div>
       <div class="row">
         <div class="col col-sm-6 offset-sm-3">
-          <form id="formAddEvent" method="POST" novalidate>
+          <form id="formAddEvent" method="POST" novalidate autocomplete="off">
             <div class="form-group">
               <div class="floating-label mt-2 mb-5">
                 <label for="language" data-i18n="labelLanguage"></label>
@@ -381,7 +381,6 @@
                         type="text"
                         class="form-control"
                         id="addressLine1"
-                        autocomplete="address-line1"
                         data-i18n-placeholder="addressLine1"
                       />
                       <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
@@ -392,7 +391,6 @@
                         type="text"
                         class="form-control"
                         id="addressLine2"
-                        autocomplete="address-line2"
                         data-i18n-placeholder="addressLine2"
                       />
                       <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
@@ -403,7 +401,6 @@
                         type="text"
                         class="form-control"
                         id="addressLine3"
-                        autocomplete="address-line3"
                         data-i18n-placeholder="addressLine3"
                       />
                       <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
@@ -517,7 +514,6 @@
                       class="form-control"
                       id="attendVirtuallyConnectionDetails"
                       rows="6"
-                      autocomplete="off"
                     ></textarea>
                   </div>
                 </div>
@@ -536,7 +532,6 @@
                     type="text"
                     class="form-control"
                     id="contactFirstName"
-                    autocomplete="given-name"
                   />
                   <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
                 </div>
@@ -551,7 +546,6 @@
                       type="text"
                       class="form-control"
                       id="contactLastName"
-                      autocomplete="family-name"
                     />
                   </div>
                 </div>
@@ -567,7 +561,6 @@
                       class="form-control"
                       id="contactPhone"
                       pattern="[0-9]*"
-                      autocomplete="tel"
                     />
                     <div class="invalid-feedback"></div>
                   </div>
@@ -583,7 +576,6 @@
                       type="email"
                       class="form-control"
                       id="contactEmail"
-                      autocomplete="email"
                     />
                     <div class="invalid-feedback"></div>
                   </div>
