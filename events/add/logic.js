@@ -1367,6 +1367,51 @@ function validate() {
       showError(getPhrase("validatePastDateGeneric"), "#startdate", getPhrase("datesInPastAreInvalid"));
       return false;
     }
+
+    const nextOccuranceDate = moment.tz(timeZone, `${startdate} ${starttime}`);
+    const nextOccuranceWeekday = nextOccuranceDate.format("dddd");
+    let hasWeekdayConflict = false;
+
+    switch (frequency) {
+      case "Every Sunday": {
+        if (nextOccuranceWeekday !== "Sunday") hasWeekdayConflict = true;
+        break;
+      }
+      case "Every Monday": {
+        if (nextOccuranceWeekday !== "Monday") hasWeekdayConflict = true;
+        break;
+      }
+      case "Every Tuesday": {
+        if (nextOccuranceWeekday !== "Tuesday") hasWeekdayConflict = true;
+        break;
+      }
+      case "Every Wednesday": {
+        if (nextOccuranceWeekday !== "Wednesday") hasWeekdayConflict = true;
+        break;
+      }
+      case "Every Thursday": {
+        if (nextOccuranceWeekday !== "Thursday") hasWeekdayConflict = true;
+        break;
+      }
+      case "Every Friday": {
+        if (nextOccuranceWeekday !== "Friday") hasWeekdayConflict = true;
+        break;
+      }
+      case "Every Saturday": {
+        if (nextOccuranceWeekday !== "Saturday") hasWeekdayConflict = true;
+        break;
+      }
+    }
+
+    if (hasWeekdayConflict) {
+      const recurringWeekday = document.querySelector("#frequency").selectedOptions[0].innerText;
+      const errorMessage = getPhrase("nextOccuranceInvalidWeekdayError").replaceAll("{weekday}", `"${recurringWeekday}"`);
+      const errorMessageShort = getPhrase("nextOccuranceInvalidWeekdayInlineError");
+
+      showError(errorMessage, "#startdate", errorMessageShort);
+      customScrollTo("#startdate");
+      return false;
+    }
   }
 
   let numAddressLines = 0;

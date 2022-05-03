@@ -548,6 +548,16 @@
       "key": "breadcrumbAdd",
       "original": "Add",
       "translated": "Add"
+    },
+    {
+      "key": "nextOccuranceInvalidWeekdayError",
+      "original": "You selected {weekday} as the weekday when this event repeats. But this does not match the weekday of the next occurence.",
+      "translated": "You selected {weekday} as the weekday when this event repeats. But this does not match the weekday of the next occurence."
+    },
+    {
+      "key": "nextOccuranceInvalidWeekdayInlineError",
+      "original": "Weekday must match.",
+      "translated": "Weekday must match."
     }
   ],
 
