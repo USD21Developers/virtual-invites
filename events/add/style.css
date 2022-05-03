@@ -76,6 +76,18 @@ input[type="range"]::-webkit-slider-thumb {
   transition: background .3s ease-in-out;
 }
 
+input[type="range"]::-moz-slider-thumb {
+  -webkit-appearance: none;
+  height: 30px;
+  width: 30px;
+  margin-top: -14px;
+  border-radius: 50%;
+  background: #545b62;
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background .3s ease-in-out;
+}
+
 input[type=range]::-webkit-slider-runnable-track  {
   -webkit-appearance: none;
   box-shadow: none;
