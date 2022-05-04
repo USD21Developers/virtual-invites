@@ -551,13 +551,13 @@
     },
     {
       "key": "nextOccuranceInvalidWeekdayError",
-      "original": "You selected {weekday} as the weekday when this event repeats. But this does not match the weekday of the next occurence.",
-      "translated": "You selected {weekday} as the weekday when this event repeats. But this does not match the weekday of the next occurence."
+      "original": "You selected {recurringWeekday} as the weekday when this event repeats. But this does not match the weekday of the next occurence, which is {nextOccuranceWeekday}. The weekdays must match.",
+      "translated": "You selected {recurringWeekday} as the weekday when this event repeats. But this does not match the weekday of the next occurence, which is {nextOccuranceWeekday}. The weekdays must match."
     },
     {
       "key": "nextOccuranceInvalidWeekdayInlineError",
-      "original": "Weekday must match.",
-      "translated": "Weekday must match."
+      "original": "Weekdays must match.",
+      "translated": "Weekdays must match."
     }
   ],
 

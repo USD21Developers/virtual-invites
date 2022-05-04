@@ -1368,8 +1368,10 @@ function validate() {
       return false;
     }
 
-    const nextOccuranceDate = moment.tz(timeZone, `${startdate} ${starttime}`);
-    const nextOccuranceWeekday = nextOccuranceDate.format("dddd");
+
+    const recurringWeekday = document.querySelector("#frequency").selectedOptions[0].innerText;
+    const nextOccuranceDate = moment.tz(moment(`${startdate} ${starttime}`), timeZone).format();
+    const nextOccuranceWeekday = Intl.DateTimeFormat(getLang(), { weekday: "long" }).format(new Date(nextOccuranceDate));
     let hasWeekdayConflict = false;
 
     switch (frequency) {
@@ -1404,8 +1406,7 @@ function validate() {
     }
 
     if (hasWeekdayConflict) {
-      const recurringWeekday = document.querySelector("#frequency").selectedOptions[0].innerText;
-      const errorMessage = getPhrase("nextOccuranceInvalidWeekdayError").replaceAll("{weekday}", `"${recurringWeekday}"`);
+      const errorMessage = getPhrase("nextOccuranceInvalidWeekdayError").replaceAll("{recurringWeekday}", `"${recurringWeekday}"`).replaceAll("{nextOccuranceWeekday}", nextOccuranceWeekday);
       const errorMessageShort = getPhrase("nextOccuranceInvalidWeekdayInlineError");
 
       showError(errorMessage, "#startdate", errorMessageShort);
