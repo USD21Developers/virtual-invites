@@ -156,7 +156,7 @@
       </div>
       <div class="row">
         <div class="col col-sm-10 offset-sm-1">
-          <form id="formAddEvent" method="POST" novalidate autocomplete="off">
+          <form id="formAddEvent" method="POST" novalidate>
             <div class="form-group">
               <div class="floating-label mt-2 mb-5">
                 <label for="language" data-i18n="labelLanguage"></label>
@@ -532,6 +532,7 @@
                     type="text"
                     class="form-control"
                     id="contactFirstName"
+                    autocomplete="given-name"
                   />
                   <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
                 </div>
@@ -546,6 +547,7 @@
                       type="text"
                       class="form-control"
                       id="contactLastName"
+                      autocomplete="family-name"
                     />
                   </div>
                 </div>
@@ -561,6 +563,7 @@
                       class="form-control"
                       id="contactPhone"
                       pattern="[0-9]*"
+                      autocomplete="tel"
                     />
                     <div class="invalid-feedback"></div>
                   </div>
@@ -576,6 +579,7 @@
                       type="email"
                       class="form-control"
                       id="contactEmail"
+                      autocomplete="email"
                     />
                     <div class="invalid-feedback"></div>
                   </div>
