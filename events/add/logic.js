@@ -95,7 +95,7 @@ ${textQuestions}
   description = description + "\n\n";
 
   // Contact Name
-  description += `${o.contactFirstName.toUpperCase()} ${o.contactLastName.length && o.contactLastName.toUpperCase()}\n\n`;
+  description += `${o.contactFirstName.toUpperCase()} ${o.contactLastName.length ? o.contactLastName.toUpperCase() : ""}\n\n`;
 
   // Contact Phone or Text Message
   if (o.contactPhoneFormatted.length) {
