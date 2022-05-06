@@ -132,3 +132,10 @@ input[type="range"]::-ms-track {
   background: transparent;
 }
 
+label[for=multidayBeginDate],
+label[for=multidayBeginTime],
+label[for=multidayEndDate],
+label[for=multidayEndTime] {
+  bottom: 0.5rem;
+  top: unset;
+}
