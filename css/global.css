@@ -104,7 +104,6 @@ h6 {
 
 .floating-label.is-focused label,
 .floating-label.has-value label {
-  bottom: 0.25rem;
   color: var(--secondary);
   filter: brightness(30%);
   font-family: Lato, sans-serif;
@@ -112,7 +111,6 @@ h6 {
   font-weight: 500;
   margin-top: -0.25rem;
   text-transform: uppercase;
-  top: unset;
 }
 
 .textfield-box.floating-label.is-focused label,
