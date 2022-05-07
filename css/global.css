@@ -116,12 +116,8 @@ h6 {
 .datetime-label {
   color: var(--secondary);
   filter: brightness(30%);
-  font-family: Lato, sans-serif;
-  font-size: .75rem;
-  font-weight: 500;
-  margin-top: -0.25rem;
+  font-size: .875rem;
   text-transform: uppercase;
-  transform: scale(0.75);
 }
 
 .datetime-field {

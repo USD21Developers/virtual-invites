@@ -115,18 +115,18 @@
     },
     {
       "key": "labelDate",
-      "original": "Date",
-      "translated": "Date"
+      "original": "Date:",
+      "translated": "Date:"
     },
     {
       "key": "labelStartTime",
-      "original": "Start time",
-      "translated": "Start time"
+      "original": "Start time:",
+      "translated": "Start time:"
     },
     {
       "key": "labelEndingTime",
-      "original": "Ending time",
-      "translated": "Ending time"
+      "original": "Ending time:",
+      "translated": "Ending time:"
     },
     {
       "key": "legendMultidayBegins",
