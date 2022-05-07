@@ -431,8 +431,8 @@
     },
     {
       "key": "validateDuration",
-      "original": "Please select the duration of the event.",
-      "translated": "Please select the duration of the event."
+      "original": "Please select the duration of the event (in days).",
+      "translated": "Please select the duration of the event (in days)."
     },
     {
       "key": "validateMultidayBeginDate",
