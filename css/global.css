@@ -123,6 +123,10 @@ h6 {
   text-transform: uppercase;
 }
 
+.datetime-field {
+  min-height: 38px;
+}
+
 .textfield-box.floating-label.is-focused label,
 .textfield-box.floating-label.has-value label {
   margin: 0;
