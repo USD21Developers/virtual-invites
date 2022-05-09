@@ -1458,7 +1458,12 @@ function validate() {
   }
 
   if ((!latPopulated) && (!longPopulated) && (numAddressLines === 0)) {
-    showError(getPhrase("validateLocationRequired"), "#addressLine1");
+    let isDiscreet = document.querySelector("#locationIsDiscreet").checked ? true : false;
+    if (isDiscreet) {
+      showError(getPhrase("validateDiscreetLocationRequired"), "#addressLine1");
+    } else {
+      showError(getPhrase("validateLocationRequired"), "#addressLine1");
+    }
     return false;
   }
 

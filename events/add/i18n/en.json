@@ -511,6 +511,11 @@
     },
     {
       "key": "validateLocationRequired",
+      "original": "Please input either the event's address or its map coordinates.",
+      "translated": "Please input either the event's address or its map coordinates."
+    },
+    {
+      "key": "validateDiscreetLocationRequired",
       "original": "Please input either the event's address or its map coordinates. This info is needed for proximity searches.",
       "translated": "Please input either the event's address or its map coordinates. This info is needed for proximity searches."
     },
