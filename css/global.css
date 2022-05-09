@@ -120,10 +120,7 @@ h6 {
   text-transform: uppercase;
 }
 
-.datetime-field,
-input[type=date],
-input[type=time],
-input[type=datetime-local] {
+.datetime-field {
   min-height: 38px;
 }
 
