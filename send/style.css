@@ -15,3 +15,7 @@
 #qr {
   cursor: pointer;
 }
+
+a[href='#howtoscan'] {
+  color: var(--primary);
+}
