@@ -672,7 +672,7 @@ async function onPreviewOpened() {
   });
 }
 
-function onSubmit(e) {
+async function onSubmit(e) {
   e.preventDefault();
 
   const validated = validate();
@@ -683,31 +683,23 @@ function onSubmit(e) {
     return;
   }
 
-  const form = e.target;
-  const language = form.language.value;
-  const eventtype = form.eventtype.value;
-  const eventtitle = form.eventtitle.value.trim() || "";
-  const eventdescription = form.eventdescription.value.trim() || "";
-  const frequency = form.frequency.value;
-  const duration = form.duration.value;
-  const startdate = form.startdate.value.trim() || "";
-  const starttime = form.starttime.value.trim() || "";
-  const multidayBeginDate = form.multidayBeginDate.value.trim() || "";
-  const multidayBeginTime = form.multidayBeginTime.value.trim() || "";
-  const multidayEndDate = form.multidayEndDate.value.trim() || "";
-  const multidayEndTime = form.multidayEndTime.value.trim() || "";
-  const locationDetails = form.locationDetails.value.trim() || "";
-  const addressLine1 = form.addressLine1.value.trim() || "";
-  const addressLine2 = form.addressLine2.value.trim() || "";
-  const addressLine3 = form.addressLine3.value.trim() || "";
-  const country = form.country.value;
-  const latitude = form.latitude.value.trim() || "";
-  const longitude = form.longitude.value.trim() || "";
-  const attendVirtuallyConnectionDetails = form.attendVirtuallyConnectionDetails.value.trim() || "";
-  const contactFirstName = form.contactFirstName.value.trim() || "";
-  const contactLastName = form.contactLastName.value.trim() || "";
-  const contactPhone = form.contactPhone.value.trim() || "";
-  const contactEmail = form.contactEmail.value.toLowerCase().trim() || "";
+  const formdata = getCalendarObject();
+  const accessToken = await getAccessToken();
+  const endpoint = `${getAPIHost()}/invites/event-add`;
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "POST",
+    body: JSON.stringify(formdata),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+    });
 }
 
 function populateCountries() {
@@ -1154,12 +1146,7 @@ function showMultipleDays() {
   const container = document.querySelector("#timeAndDateMultipleDays");
   const timeZone = document.querySelector("#timezone").selectedOptions[0].value;
   const lang = getLang();
-  let locale = "US";
-  try {
-    locale = navigator.languages[0].substring(3, 5);
-  } catch (e) {
-    console.log(e);
-  }
+  const locale = getCountry().toUpperCase();
   const multidayBeginDate = document.querySelector("#multidayBeginDate").value;
   const multidayBeginTime = document.querySelector("#multidayBeginTime").value;
   const multidayEndDate = document.querySelector("#multidayEndDate").value;
@@ -1233,7 +1220,6 @@ function previewSpinner(action) {
 
 function validate() {
   const form = document.querySelector("#formAddEvent");
-  const now = moment();
   const language = form.language.value;
   const eventtype = form.eventtype.value;
   const eventtitle = form.eventtitle.value.trim() || "";
