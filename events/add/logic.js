@@ -1407,6 +1407,11 @@ function validate() {
     }
   }
 
+  if (country === "") {
+    showError(getPhrase("validateCountryRequired"), "#country", getPhrase("fieldIsRequired"));
+    return false;
+  }
+
   let numAddressLines = 0;
   const line1Populated = (addressLine1.length > 0);
   const line2Populated = (addressLine2.length > 0);
@@ -1428,11 +1433,6 @@ function validate() {
       showError(getPhrase("validateMinimumAddressLines"), "#addressLine3", getPhrase("fieldIsRequired"));
     }
     return false;
-  } else if (numAddressLines >= 2) {
-    if (country === "") {
-      showError(getPhrase("validateCountryRequired"), "#country", getPhrase("fieldIsRequired"));
-      return false;
-    }
   }
 
   if ((!latPopulated) && (longPopulated)) {
