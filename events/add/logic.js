@@ -1136,7 +1136,7 @@ function showSingleDay() {
   const singleDayDateEl = document.querySelector("#singleDayDate");
   const singleDayStartTimeEl = document.querySelector("#singleDayStartTime");
 
-  weekdayEl.innerHTML = `${weekday}.`;
+  weekdayEl.innerHTML = (lang === "en") ? `${weekday}.` : weekday;
   singleDayDateEl.innerHTML = previewEventStartDateShort;
   singleDayStartTimeEl.innerHTML = previewEventStartTimeShort;
   hideAllDateTimes();
@@ -1167,11 +1167,11 @@ function showMultipleDays() {
   const multiDayEndingDateEl = document.querySelector("#multiDayEndingDate");
   const multiDayEndingTimeEl = document.querySelector("#multiDayEndingTime");
 
-  multiDayStartingWeekdayEl.innerHTML = `${weekdayStartDate}.`;
+  multiDayStartingWeekdayEl.innerHTML = (lang === "en") ? `${weekdayStartDate}.` : weekdayStartDate;
   multiDayStartingDateEl.innerHTML = previewEventStartDateShort;
   multiDayStartingTimeEl.innerHTML = previewEventStartTimeShort;
 
-  multiDayEndingWeekdayEl.innerHTML = `${weekdayEndDate}.`;
+  multiDayEndingWeekdayEl.innerHTML = (lang === "en") ? `${weekdayEndDate}.` : weekdayEndDate;
   multiDayEndingDateEl.innerHTML = previewEventEndDateShort;
   multiDayEndingTimeEl.innerHTML = previewEventEndTimeShort;
 
@@ -1485,6 +1485,12 @@ function validate() {
   return true;
 }
 
+function removeUnnecessaryHash() {
+  if (window.location.hash.length > 0) {
+    window.location.href = window.location.pathname;
+  }
+}
+
 function attachListeners() {
   document.querySelector("#eventtype")
     .addEventListener("change", () => populateDefaultEventTitle());
@@ -1540,6 +1546,7 @@ function attachListeners() {
 }
 
 async function init() {
+  removeUnnecessaryHash();
   await populateContent();
   populateCountries();
   populateLanguages();
@@ -1549,5 +1556,4 @@ async function init() {
   showCoordinatesContainer();
   initIntlTelInput();
 }
-
 init();
