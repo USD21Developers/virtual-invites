@@ -169,7 +169,7 @@ function getCalendarObject() {
   o.eventdescription = form.eventdescription.value;
   o.frequency = form.frequency.value;
   o.duration = form.duration.value;
-  o.durationInHours = form.durationInHours.value;
+  o.durationInHours = parseFloat(form.durationInHours.value);
   o.startdate = form.startdate.value;
   o.starttime = form.starttime.value;
   o.multidayBeginDate = form.multidayBeginDate.value;
@@ -687,6 +687,12 @@ async function onSubmit(e) {
   const accessToken = await getAccessToken();
   const endpoint = `${getAPIHost()}/invites/event-add`;
 
+  const spinner = document.querySelector("#progressbar");
+  const submitbuttons = document.querySelector("#submitbuttons");
+
+  spinner.classList.remove("d-none");
+  submitbuttons.classList.add("d-none");
+
   fetch(endpoint, {
     mode: "cors",
     method: "POST",
@@ -699,6 +705,12 @@ async function onSubmit(e) {
     .then(res => res.json())
     .then(data => {
       console.log(data);
+
+      window.location.href = "../";
+    })
+    .catch(() => {
+      spinner.classList.add("d-none");
+      submitbuttons.classList.remove("d-none");
     });
 }
 
