@@ -1124,18 +1124,19 @@ function showError(msg, selector, inlineMsg) {
 function showSingleDay() {
   const container = document.querySelector("#timeAndDateSingleDay");
   const timeZone = document.querySelector("#timezone").selectedOptions[0].value;
-  const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
+  const lang = document.querySelector("#language").selectedOptions[0].value.toLowerCase();
+  const locale = document.querySelector("#country").selectedOptions[0].value.toUpperCase();
   const eventStartDate = document.querySelector("#startdate").value;
   const eventStartTime = document.querySelector("#starttime").value;
   const eventStartDateTime = moment.tz(`${eventStartDate} ${eventStartTime}`, timeZone).format();
-  const weekday = Intl.DateTimeFormat(lang, { weekday: "long" }).format(new Date(eventStartDateTime));
+  const weekday = Intl.DateTimeFormat(`${lang}-${locale}`, { weekday: "short" }).format(new Date(eventStartDateTime));
   const weekdayEl = document.querySelector("#singleDayWeekday");
-  const previewEventStartDateShort = Intl.DateTimeFormat(lang, { dateStyle: "short" }).format(new Date(eventStartDateTime));
-  const previewEventStartTimeShort = Intl.DateTimeFormat(lang, { timeStyle: "short" }).format(new Date(eventStartDateTime));
+  const previewEventStartDateShort = Intl.DateTimeFormat(`${lang}-${locale}`, { dateStyle: "short" }).format(new Date(eventStartDateTime));
+  const previewEventStartTimeShort = Intl.DateTimeFormat(`${lang}-${locale}`, { timeStyle: "short" }).format(new Date(eventStartDateTime));
   const singleDayDateEl = document.querySelector("#singleDayDate");
   const singleDayStartTimeEl = document.querySelector("#singleDayStartTime");
 
-  weekdayEl.innerHTML = weekday;
+  weekdayEl.innerHTML = `${weekday}.`;
   singleDayDateEl.innerHTML = previewEventStartDateShort;
   singleDayStartTimeEl.innerHTML = previewEventStartTimeShort;
   hideAllDateTimes();
@@ -1146,7 +1147,7 @@ function showMultipleDays() {
   const container = document.querySelector("#timeAndDateMultipleDays");
   const timeZone = document.querySelector("#timezone").selectedOptions[0].value;
   const lang = getLang();
-  const locale = getCountry().toUpperCase();
+  const locale = document.querySelector("#country").selectedOptions[0].value.toUpperCase();
   const multidayBeginDate = document.querySelector("#multidayBeginDate").value;
   const multidayBeginTime = document.querySelector("#multidayBeginTime").value;
   const multidayEndDate = document.querySelector("#multidayEndDate").value;
@@ -1166,11 +1167,11 @@ function showMultipleDays() {
   const multiDayEndingDateEl = document.querySelector("#multiDayEndingDate");
   const multiDayEndingTimeEl = document.querySelector("#multiDayEndingTime");
 
-  multiDayStartingWeekdayEl.innerHTML = weekdayStartDate;
+  multiDayStartingWeekdayEl.innerHTML = `${weekdayStartDate}.`;
   multiDayStartingDateEl.innerHTML = previewEventStartDateShort;
   multiDayStartingTimeEl.innerHTML = previewEventStartTimeShort;
 
-  multiDayEndingWeekdayEl.innerHTML = weekdayEndDate;
+  multiDayEndingWeekdayEl.innerHTML = `${weekdayEndDate}.`;
   multiDayEndingDateEl.innerHTML = previewEventEndDateShort;
   multiDayEndingTimeEl.innerHTML = previewEventEndTimeShort;
 

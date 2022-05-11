@@ -255,7 +255,7 @@ function getApiServicesHost() {
 }
 
 function getCountry() {
-  return JSON.parse(atob(sessionStorage.getItem("accessToken").split(".")[1])).country || "us";
+  return "US";
 }
 
 function getHash() {
