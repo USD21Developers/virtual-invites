@@ -315,6 +315,14 @@ function hideAllDateTimes() {
   timeAndDateMultipleDays.classList.add("d-none");
 }
 
+function hideSpinner() {
+  const spinner = document.querySelector("#progressbar");
+  const submitbuttons = document.querySelector("#submitbuttons");
+
+  spinner.classList.add("d-none");
+  submitbuttons.classList.remove("d-none");
+}
+
 function initIntlTelInput() {
   const input = document.querySelector("#contactPhone");
   const initialCountry = localStorage.getItem("countryIso") || "us";
@@ -690,8 +698,7 @@ async function onSubmit(e) {
   const spinner = document.querySelector("#progressbar");
   const submitbuttons = document.querySelector("#submitbuttons");
 
-  spinner.classList.remove("d-none");
-  submitbuttons.classList.add("d-none");
+  showSpinner();
 
   fetch(endpoint, {
     mode: "cors",
@@ -704,13 +711,14 @@ async function onSubmit(e) {
   })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
+      if (data.msgType & data.msgType === "error") {
+        return console.log(data);
+      }
 
       window.location.href = "../";
     })
     .catch(() => {
-      spinner.classList.add("d-none");
-      submitbuttons.classList.remove("d-none");
+      hideSpinner();
     });
 }
 
@@ -1503,6 +1511,14 @@ function removeUnnecessaryHash() {
   }
 }
 
+function showSpinner() {
+  const spinner = document.querySelector("#progressbar");
+  const submitbuttons = document.querySelector("#submitbuttons");
+
+  spinner.classList.remove("d-none");
+  submitbuttons.classList.add("d-none");
+}
+
 function attachListeners() {
   document.querySelector("#eventtype")
     .addEventListener("change", () => populateDefaultEventTitle());
@@ -1555,6 +1571,15 @@ function attachListeners() {
   $("#preview").on("hidden.bs.modal", onPreviewClosed);
 
   $("#durationInHours").on("input", onDurationHoursChanged);
+
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      console.log('This page was restored from the bfcache.');
+      hideSpinner();
+    } else {
+      console.log('This page was loaded normally.');
+    }
+  });
 }
 
 async function init() {
@@ -1567,5 +1592,6 @@ async function init() {
   attachListeners();
   showCoordinatesContainer();
   initIntlTelInput();
+  hideSpinner();
 }
 init();
