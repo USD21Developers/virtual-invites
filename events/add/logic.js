@@ -695,9 +695,6 @@ async function onSubmit(e) {
   const accessToken = await getAccessToken();
   const endpoint = `${getAPIHost()}/invites/event-add`;
 
-  const spinner = document.querySelector("#progressbar");
-  const submitbuttons = document.querySelector("#submitbuttons");
-
   showSpinner();
 
   fetch(endpoint, {
@@ -711,14 +708,16 @@ async function onSubmit(e) {
   })
     .then(res => res.json())
     .then(data => {
-      if (data.msgType & data.msgType === "error") {
-        return console.log(data);
+      if (data.msgType === "error") {
+        hideSpinner();
+        return console.error(data);
       }
 
       window.location.href = "../";
     })
-    .catch(() => {
+    .catch((err) => {
       hideSpinner();
+      console.error(err);
     });
 }
 
@@ -1574,10 +1573,7 @@ function attachListeners() {
 
   window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
-      console.log('This page was restored from the bfcache.');
       hideSpinner();
-    } else {
-      console.log('This page was loaded normally.');
     }
   });
 }
