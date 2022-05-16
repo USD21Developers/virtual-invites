@@ -566,8 +566,8 @@
     },
     {
       "key": "duplicateEvent",
-      "original": "It seems that you have already added this event. The event type, title and dates must be distinct from events you added previously.",
-      "translated": "It seems that you have already added this event. The event type, title and dates must be distinct from events you added previously."
+      "original": "It seems that you have already added this event. The event's type, title and dates must be distinct from events that you've added previously.",
+      "translated": "It seems that you have already added this event. The event's type, title and dates must be distinct from events that you've added previously."
     }
   ],
 
