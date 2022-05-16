@@ -343,9 +343,11 @@ function initIntlTelInput() {
 }
 
 function onAddressChanged(e) {
-  if (attendVirtuallyConnectionDetails.value === e.value) {
-    attendVirtuallyConnectionDetails.value = "";
-  }
+  setTimeout(() => {
+    if (attendVirtuallyConnectionDetails.value === e.value) {
+      attendVirtuallyConnectionDetails.value = "";
+    }
+  }, 500);
 }
 
 function onClickDetectLocation(e) {
