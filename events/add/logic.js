@@ -342,12 +342,13 @@ function initIntlTelInput() {
 }
 
 function onAddressChanged(e) {
-  const addressVal = e.value;
-  const attendVirtuallyConnectionDetails = document.querySelector("#attendVirtuallyConnectionDetails");
-
-  if (attendVirtuallyConnectionDetails.value === addressVal) {
-    attendVirtuallyConnectionDetails.value = "";
-  }
+  setTimeout(() => {
+    const addressVal = e.value;
+    const attendVirtuallyConnectionDetails = document.querySelector("#attendVirtuallyConnectionDetails");
+    if (attendVirtuallyConnectionDetails.value === addressVal) {
+      attendVirtuallyConnectionDetails.value = "";
+    }
+  }, 500);
 }
 
 function onClickDetectLocation(e) {
@@ -1626,9 +1627,9 @@ function attachListeners() {
 
   $("#durationInHours").on("input", onDurationHoursChanged);
 
-  $("#addressLine1").on("input", onAddressChanged);
-  $("#addressLine2").on("input", onAddressChanged);
-  $("#addressLine3").on("input", onAddressChanged);
+  $("#addressLine1").on("change", onAddressChanged);
+  $("#addressLine2").on("change", onAddressChanged);
+  $("#addressLine3").on("change", onAddressChanged);
 
   window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
