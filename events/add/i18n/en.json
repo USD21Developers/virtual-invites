@@ -563,6 +563,11 @@
       "key": "nextOccuranceInvalidWeekdayInlineError",
       "original": "Weekdays must match.",
       "translated": "Weekdays must match."
+    },
+    {
+      "key": "duplicateEvent",
+      "original": "It seems that you have already added this event. The event type, title and dates must be distinct from events you added previously.",
+      "translated": "It seems that you have already added this event. The event type, title and dates must be distinct from events you added previously."
     }
   ],
 

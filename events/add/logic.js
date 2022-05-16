@@ -710,6 +710,15 @@ async function onSubmit(e) {
     .then(data => {
       if (data.msgType === "error") {
         hideSpinner();
+
+        if (data.msg === "duplicate event") {
+          $("#modalFormErrors").unbind("hide.bs.modal");
+          $("#modalFormErrors").on("hide.bs.modal", () => {
+            return window.location.href = "../";
+          });
+          showError(getPhrase("duplicateEvent"));
+        }
+
         return console.error(data);
       }
 
