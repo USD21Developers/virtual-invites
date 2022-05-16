@@ -77,6 +77,41 @@
       "key": "recently",
       "original": "recently",
       "translated": "recently"
+    },
+    {
+      "key": "sunday",
+      "original": "Sunday",
+      "translated": "Sunday"
+    },
+    {
+      "key": "monday",
+      "original": "Monday",
+      "translated": "Monday"
+    },
+    {
+      "key": "tuesday",
+      "original": "Tuesday",
+      "translated": "Tuesday"
+    },
+    {
+      "key": "wednesday",
+      "original": "Wednesday",
+      "translated": "Wednesday"
+    },
+    {
+      "key": "thursday",
+      "original": "Thursday",
+      "translated": "Thursday"
+    },
+    {
+      "key": "friday",
+      "original": "Friday",
+      "translated": "Friday"
+    },
+    {
+      "key": "saturday",
+      "original": "Saturday",
+      "translated": "Saturday"
     }
   ],
 

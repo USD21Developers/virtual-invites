@@ -131,3 +131,9 @@ input[type="range"]::-ms-track {
   border: none;
   background: transparent;
 }
+
+#modalFormErrors .modal-body .alert-link {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: underline;
+}

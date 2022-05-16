@@ -568,6 +568,20 @@
       "key": "duplicateEvent",
       "original": "It seems that you have already added this event. The event's type, title and dates must be distinct from events that you've added previously.",
       "translated": "It seems that you have already added this event. The event's type, title and dates must be distinct from events that you've added previously."
+    },
+    {
+      "key": "overlappingRecurringEvent",
+      "original": "This event, which repeats every {REPEATING-WEEKDAY}, overlaps with another repeating event.",
+      "translated": "This event, which repeats every {REPEATING-WEEKDAY}, overlaps with another repeating event.",
+      "changes": [
+        {
+          "original": "another repeating event",
+          "translated": "another repeating event",
+          "bold": true,
+          "italic": false,
+          "link": "../view/#{REPEATING-EVENT-ID}"
+        }
+      ]
     }
   ],
 

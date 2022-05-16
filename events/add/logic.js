@@ -717,12 +717,49 @@ async function onSubmit(e) {
             return window.location.href = "../";
           });
           showError(getPhrase("duplicateEvent"));
+          window.location.href = "../";
+        } else if (data.msg === "overlapping recurring event") {
+          $("#modalFormErrors").unbind("hide.bs.modal");
+          $("#modalFormErrors").on("hide.bs.modal", () => {
+            window.location.href = "../";
+          });
+
+          let errorPhrase = getPhrase("overlappingRecurringEvent");
+
+          let repeatingWeekday;
+          switch (data.frequency) {
+            case "Every Sunday":
+              repeatingWeekday = getGlobalPhrase("sunday");
+              break;
+            case "Every Monday":
+              repeatingWeekday = getGlobalPhrase("monday");
+              break;
+            case "Every Tuesday":
+              repeatingWeekday = getGlobalPhrase("tuesday");
+              break;
+            case "Every Wednesday":
+              repeatingWeekday = getGlobalPhrase("wednesday");
+              break;
+            case "Every Thursday":
+              repeatingWeekday = getGlobalPhrase("thursday");
+              break;
+            case "Every Friday":
+              repeatingWeekday = getGlobalPhrase("friday");
+              break;
+            case "Every Saturday":
+              repeatingWeekday = getGlobalPhrase("saturday");
+              break;
+          }
+          errorPhrase = errorPhrase.replaceAll("{REPEATING-WEEKDAY}", repeatingWeekday);
+          errorPhrase = errorPhrase.replaceAll("{REPEATING-EVENT-ID}", data.eventid);
+
+          showError(errorPhrase);
         }
 
         return console.error(data);
       }
 
-      window.location.href = "../";
+      return window.location.href = "../";
     })
     .catch((err) => {
       hideSpinner();
