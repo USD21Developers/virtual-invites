@@ -718,18 +718,15 @@ async function onSubmit(e) {
         hideSpinner();
 
         if (data.msg === "duplicate event") {
-          $("#modalFormErrors").unbind("hide.bs.modal");
-          $("#modalFormErrors").on("hide.bs.modal", () => {
-            return window.location.href = "../";
-          });
-          showError(getPhrase("duplicateEvent"));
-          window.location.href = "../";
-        } else if (data.msg === "overlapping recurring event") {
-          $("#modalFormErrors").unbind("hide.bs.modal");
-          $("#modalFormErrors").on("hide.bs.modal", () => {
-            window.location.href = "../";
-          });
 
+          // Handle error for duplicate event
+
+          showError(getPhrase("duplicateEvent"));
+
+        } else if (data.msg === "overlapping recurring event") {
+
+          // Handle error for overlapping recurring event
+          
           let errorPhrase = getPhrase("overlappingRecurringEvent");
 
           let repeatingWeekday;
@@ -765,6 +762,7 @@ async function onSubmit(e) {
         return console.error(data);
       }
 
+      // Success
       return window.location.href = "../";
     })
     .catch((err) => {
