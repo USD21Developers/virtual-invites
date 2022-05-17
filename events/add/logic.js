@@ -296,7 +296,7 @@ function getDefaultRecipientName(gender) {
 
 function getDefaultInvitedDate() {
   let lang = getLang();
-  const numDaysAgo = randomIntFromInterval(0, 75) * -1;
+  const numDaysAgo = randomIntFromInterval(0, 32) * -1;
   return getRelativeDate(numDaysAgo, lang);
 }
 
