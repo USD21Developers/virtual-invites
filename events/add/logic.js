@@ -652,9 +652,7 @@ async function onPreviewOpened() {
         description: o.eventdescription,
         start: eventStart
       };
-      /* if (o.attendVirtuallyConnectionDetails.length) {
-        config.description = `${config.description}\n\n\n\n-- -\n\n${o.attendVirtuallyConnectionDetails}`;
-      } */
+      
       if (!!eventEnd) config.end = eventEnd;
       if (isRecurring) {
         config.recurrence = {
