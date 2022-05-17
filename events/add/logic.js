@@ -1,7 +1,6 @@
 let viewedPreview = false;
 let mapCoordinates = "";
 let iti;
-const attendVirtuallyConnectionDetails = document.querySelector("#attendVirtuallyConnectionDetails");
 
 function buildCalendarDescription(invitePhrases, cal) {
   const p = {};  // Phrases that are global to all invites
@@ -343,11 +342,11 @@ function initIntlTelInput() {
 }
 
 function onAddressChanged(e) {
-  setTimeout(() => {
-    if (attendVirtuallyConnectionDetails.value === e.value) {
-      attendVirtuallyConnectionDetails.value = "";
-    }
-  }, 500);
+  const addressLine1 = document.querySelector("#addressLine1");
+  const attendVirtuallyConnectionDetails = document.querySelector("#attendVirtuallyConnectionDetails");
+  if (attendVirtuallyConnectionDetails.value === addressLine1.value) {
+    attendVirtuallyConnectionDetails.value = "";
+  }
 }
 
 function onClickDetectLocation(e) {
@@ -1626,9 +1625,7 @@ function attachListeners() {
 
   $("#durationInHours").on("input", onDurationHoursChanged);
 
-  $("#addressLine1").on("blur input", onAddressChanged);
-  $("#addressLine2").on("blur input", onAddressChanged);
-  $("#addressLine3").on("blur input", onAddressChanged);
+  $("#addressLine1").on("input change", onAddressChanged);
 
   window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
