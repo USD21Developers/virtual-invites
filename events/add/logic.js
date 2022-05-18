@@ -652,7 +652,7 @@ async function onPreviewOpened() {
         description: o.eventdescription,
         start: eventStart
       };
-      
+
       if (!!eventEnd) config.end = eventEnd;
       if (isRecurring) {
         config.recurrence = {
@@ -726,35 +726,10 @@ async function onSubmit(e) {
         } else if (data.msg === "overlapping recurring event") {
 
           // Handle error for overlapping recurring event
-          
+
           let errorPhrase = getPhrase("overlappingRecurringEvent");
 
-          let repeatingWeekday;
-          switch (data.frequency) {
-            case "Every Sunday":
-              repeatingWeekday = getGlobalPhrase("sunday");
-              break;
-            case "Every Monday":
-              repeatingWeekday = getGlobalPhrase("monday");
-              break;
-            case "Every Tuesday":
-              repeatingWeekday = getGlobalPhrase("tuesday");
-              break;
-            case "Every Wednesday":
-              repeatingWeekday = getGlobalPhrase("wednesday");
-              break;
-            case "Every Thursday":
-              repeatingWeekday = getGlobalPhrase("thursday");
-              break;
-            case "Every Friday":
-              repeatingWeekday = getGlobalPhrase("friday");
-              break;
-            case "Every Saturday":
-              repeatingWeekday = getGlobalPhrase("saturday");
-              break;
-          }
-          errorPhrase = errorPhrase.replaceAll("{REPEATING-WEEKDAY}", repeatingWeekday);
-          errorPhrase = errorPhrase.replaceAll("{REPEATING-EVENT-ID}", data.eventid);
+          errorPhrase = errorPhrase.replaceAll("{EVENT-TITLE}", data.title);
 
           showError(errorPhrase);
         }

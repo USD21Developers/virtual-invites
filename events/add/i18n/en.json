@@ -571,15 +571,15 @@
     },
     {
       "key": "overlappingRecurringEvent",
-      "original": "This event, which repeats every {REPEATING-WEEKDAY}, overlaps with another repeating event.",
-      "translated": "This event, which repeats every {REPEATING-WEEKDAY}, overlaps with another repeating event.",
+      "original": "This repeating event overlaps with another on the same weekday, entitled {EVENT-TITLE}. You can either cancel, or revise it to correct the overlap.",
+      "translated": "This repeating event overlaps with another on the same weekday, entitled {EVENT-TITLE}. You can either cancel, or revise it to correct the overlap.",
       "changes": [
         {
-          "original": "another repeating event",
-          "translated": "another repeating event",
+          "original": "{EVENT-TITLE}",
+          "translated": "{EVENT-TITLE}",
           "bold": true,
           "italic": false,
-          "link": "../view/#{REPEATING-EVENT-ID}"
+          "link": ""
         }
       ]
     }
