@@ -717,21 +717,21 @@ async function onSubmit(e) {
       if (data.msgType === "error") {
         hideSpinner();
 
-        if (data.msg === "duplicate event") {
+        switch (data.msg) {
+          case "duplicate event":
+            showError(getPhrase("duplicateEvent"));
+            break;
+          case "overlapping recurring event":
+            let errorPhrase = getPhrase("overlappingRecurringEvent");
 
-          // Handle error for duplicate event
+            errorPhrase = errorPhrase.replaceAll("{EVENT-TITLE}", data.title);
 
-          showError(getPhrase("duplicateEvent"));
+            showError(errorPhrase);
 
-        } else if (data.msg === "overlapping recurring event") {
-
-          // Handle error for overlapping recurring event
-
-          let errorPhrase = getPhrase("overlappingRecurringEvent");
-
-          errorPhrase = errorPhrase.replaceAll("{EVENT-TITLE}", data.title);
-
-          showError(errorPhrase);
+            break;
+          case "invalid phone number":
+            showError(getPhrase("validateInvalidPhoneNumber"), "#contactPhone", getPhrase("validPhoneIsRequired"));
+            break;
         }
 
         return console.error(data);
@@ -1508,7 +1508,7 @@ function validate() {
     return false;
   }
 
-  if (contactPhone.length) {
+  /* if (contactPhone.length) {
     const phoneNumber = iti.getNumber();
     const countryData = iti.getSelectedCountryData();
     const isValidPhoneNumber = iti.isValidNumber(phoneNumber, countryData.iso2);
@@ -1516,7 +1516,7 @@ function validate() {
       showError(getPhrase("validateInvalidPhoneNumber"), "#contactPhone", getPhrase("validPhoneIsRequired"));
       return false;
     }
-  }
+  } */
 
   if (contactEmail.length) {
     const isValidEmail = validateEmail(contactEmail);
