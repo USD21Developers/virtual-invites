@@ -45,6 +45,7 @@ function onCountryChange(e) {
     const churchCountryCode = item.getAttribute("data-country");
     const optgroupLabel = item.getAttribute("label");
     const optgroupText = getPhrase("noneOfTheAboveOptgroup");
+
     if (optgroupLabel === optgroupText) {
       item.classList.remove("d-none");
     }
@@ -230,6 +231,10 @@ async function populateChurches() {
         churchesInCountries.forEach((item) => {
           const { iso: countryCode, name, churches } = item.country;
           let countryName = name;
+
+          if (typeof name !== "string") return;
+          if (countryName.trim() === "") return;
+
           if (countryCode === "us") countryName = "United States";
           const optgroup = document.createElement("optgroup");
           optgroup.label = `${countryName}:`;
@@ -237,6 +242,9 @@ async function populateChurches() {
           churches.forEach((church) => {
             const { id, place } = church;
             const option = document.createElement("option");
+
+            if (typeof place !== "string" || place.trim() === "") return;
+
             option.value = id;
             option.innerText = place;
             optgroup.appendChild(option);
