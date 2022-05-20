@@ -89,7 +89,7 @@ async function onSubmit(e) {
   let emailParagraph1 = getPhrase("emailParagraph1");
   const emailLinkText = getPhrase("emailLinkText");
   const emailSignature = getPhrase("emailSignature");
-  const lang = getLang();
+  const lang = getLang() || "en";
   const endpoint = `${getApiHost()}/register`;
   const dataKey = await invitesCrypto.generateKey();
   const exportedDataKey = await invitesCrypto.exportCryptoKey(dataKey);

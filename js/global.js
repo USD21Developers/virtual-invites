@@ -265,7 +265,24 @@ function getHash() {
 }
 
 function getLang() {
-  return JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
+  const refreshToken = localStorage.getItem("refreshToken");
+  let lang = "en";
+
+  if (typeof refreshToken === "string") {
+    try {
+      lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang;
+    } catch (e) {
+      console.error(e);
+    }
+  } else {
+    try {
+      lang = navigator.language.substring(0, 2);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  return lang;
 }
 
 function getPhrase(key) {
