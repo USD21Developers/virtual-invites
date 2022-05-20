@@ -17,7 +17,6 @@ function onChurchChange(e) {
 }
 
 function onCountryChange(e) {
-  console.log("onCountryChange");
   const countryCode = e.target.value;
   const churchid = document.querySelector("#churchid");
   const churchContainer = document.querySelector("#churchcontainer");
