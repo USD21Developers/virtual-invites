@@ -320,6 +320,11 @@
       ]
     },
     {
+      "key": "avcd",
+      "original": "Connection Details:",
+      "translated": "Connection Details:"
+    },
+    {
       "key": "headlineContact",
       "original": "For more info, contact:",
       "translated": "For more info, contact:"
