@@ -185,7 +185,7 @@ function getCalendarObject() {
   o.latitude = form.latitude.value;
   o.longitude = form.longitude.value;
   o.otherLocationDetails = form.otherLocationDetails.value;
-  o.attendVirtuallyConnectionDetails = form.attendVirtuallyConnectionDetails.value;
+  o.attendVirtuallyConnectionDetails = form.avcd.value;
   o.contactFirstName = form.contactFirstName.value;
   o.contactLastName = form.contactLastName.value;
   o.contactPhone = iti.getNumber() || "";
@@ -343,7 +343,7 @@ function initIntlTelInput() {
 
 function onAddressChanged(e) {
   const addressLine1 = document.querySelector("#addressLine1");
-  const attendVirtuallyConnectionDetails = document.querySelector("#attendVirtuallyConnectionDetails");
+  const attendVirtuallyConnectionDetails = document.querySelector("#avcd");
   if (attendVirtuallyConnectionDetails.value === addressLine1.value) {
     attendVirtuallyConnectionDetails.value = "";
   }
@@ -911,7 +911,7 @@ function populateFormBasedPhrases() {
   const addressLine1 = form.querySelector("#addressLine1").value || "";
   const addressLine2 = form.querySelector("#addressLine2").value || "";
   const addressLine3 = form.querySelector("#addressLine3").value || "";
-  const attendVirtuallyConnectionDetails = form.querySelector("#attendVirtuallyConnectionDetails").value.trim() || "";
+  const attendVirtuallyConnectionDetails = form.querySelector("#avcd").value.trim() || "";
   const connectingVirtually = preview.querySelector("#connectingVirtually");
   const connectionContent = preview.querySelector("#connectionContent");
 
