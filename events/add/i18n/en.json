@@ -535,6 +535,16 @@
       "translated": "Please check the mobile phone number for completeness and proper formatting."
     },
     {
+      "key": "validateInvalidPhoneNumberForRegion",
+      "original": "The mobile phone number must be compatible with the selected country.",
+      "translated": "The mobile phone number must be compatible with the selected country."
+    },
+    {
+      "key": "validateInvalidPhoneNumberForSms",
+      "original": "The mobile phone number must be compatible with receiving SMS text messages.",
+      "translated": "The mobile phone number must be compatible with receiving SMS text messages."
+    },
+    {
       "key": "validateInvalidEmail",
       "original": "Please check the e-mail address for completeness and proper formatting.",
       "translated": "Please check the e-mail address for completeness and proper formatting."

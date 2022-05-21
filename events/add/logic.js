@@ -714,6 +714,13 @@ async function onSubmit(e) {
   })
     .then(res => res.json())
     .then(data => {
+      const mobilePhoneEl = document.querySelector("#contactPhone");
+      const mobilePhoneErrorEl = document.querySelector("#contactPhone").parentElement.parentElement.querySelector(".invalid-feedback");
+
+      mobilePhoneEl.classList.remove("is-invalid");
+      mobilePhoneErrorEl.innerText = "";
+      mobilePhoneErrorEl.style.display = "none";
+
       if (data.msgType === "error") {
         hideSpinner();
 
@@ -723,14 +730,23 @@ async function onSubmit(e) {
             break;
           case "overlapping recurring event":
             let errorPhrase = getPhrase("overlappingRecurringEvent");
-
             errorPhrase = errorPhrase.replaceAll("{EVENT-TITLE}", data.title);
-
             showError(errorPhrase);
-
             break;
           case "invalid phone number":
             showError(getPhrase("validateInvalidPhoneNumber"), "#contactPhone", getPhrase("validPhoneIsRequired"));
+            mobilePhoneErrorEl.innerText = getPhrase("validPhoneIsRequired");
+            mobilePhoneErrorEl.style.display = "block";
+            break;
+          case "invalid phone number for region":
+            showError(getPhrase("validateInvalidPhoneNumberForRegion"), "#contactPhone", getPhrase("validPhoneIsRequired"));
+            mobilePhoneErrorEl.innerText = getPhrase("validPhoneIsRequired");
+            mobilePhoneErrorEl.style.display = "block";
+            break;
+          case "invalid phone number for sms":
+            showError(getPhrase("validateInvalidPhoneNumberForSms"), "#contactPhone", getPhrase("validPhoneIsRequired"));
+            mobilePhoneErrorEl.innerText = getPhrase("validPhoneIsRequired");
+            mobilePhoneErrorEl.style.display = "block";
             break;
         }
 
@@ -1507,16 +1523,6 @@ function validate() {
     showError(getPhrase("validateMissingContactMethod"), "#contactPhone");
     return false;
   }
-
-  /* if (contactPhone.length) {
-    const phoneNumber = iti.getNumber();
-    const countryData = iti.getSelectedCountryData();
-    const isValidPhoneNumber = iti.isValidNumber(phoneNumber, countryData.iso2);
-    if (!isValidPhoneNumber) {
-      showError(getPhrase("validateInvalidPhoneNumber"), "#contactPhone", getPhrase("validPhoneIsRequired"));
-      return false;
-    }
-  } */
 
   if (contactEmail.length) {
     const isValidEmail = validateEmail(contactEmail);

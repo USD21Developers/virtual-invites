@@ -269,10 +269,9 @@ function getLang() {
   let lang = "en";
 
   if (typeof refreshToken === "string") {
-    try {
-      lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang;
-    } catch (e) {
-      console.error(e);
+    lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang;
+    if (typeof lang === "undefined") {
+      return window.location.href = "/logout/";
     }
   } else {
     try {
