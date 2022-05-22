@@ -536,8 +536,8 @@
     },
     {
       "key": "validateInvalidPhoneNumber",
-      "original": "Please check the mobile phone number for completeness and proper formatting.",
-      "translated": "Please check the mobile phone number for completeness and proper formatting."
+      "original": "Please check the mobile phone number for accuracy (according to the format of the selected country).",
+      "translated": "Please check the mobile phone number for accuracy (according to the format of the selected country)."
     },
     {
       "key": "validateInvalidPhoneNumberForRegion",
