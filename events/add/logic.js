@@ -589,7 +589,7 @@ async function onPreviewOpened() {
       let eventEnd = "";
       let isRecurring = false;
       let recurringWeekday = "";
-      let momentStart = moment.tz(`${o.startdate} ${o.starttime}`, o.timezone).format();
+      let momentStart = moment.tz(moment(`${o.startdate} ${o.starttime}`).format(), o.timezone).format();
       let momentEnd = moment.tz(momentStart, o.timezone).add(o.durationInHours, "hours").format();
 
       if (o.frequency !== "once") {
@@ -608,8 +608,8 @@ async function onPreviewOpened() {
           }
         } else if (o.duration === "multiple days") {
           // Multiple-day event
-          momentStart = moment.tz(`${o.multidayBeginDate} ${o.multidayBeginTime}`, o.timezone).format();
-          momentEnd = moment.tz(`${o.multidayEndDate} ${o.multidayEndTime}`, o.timezone).format();
+          momentStart = moment.tz(moment(`${o.multidayBeginDate} ${o.multidayBeginTime}`).format(), o.timezone).format();
+          momentEnd = moment.tz(moment(`${o.multidayEndDate} ${o.multidayEndTime}`).format(), o.timezone).format();
           if (o.multidayBeginDate.length) {
             eventStart = new Date(momentStart);
           }
@@ -1188,7 +1188,7 @@ function showSingleDay() {
   const locale = document.querySelector("#country").selectedOptions[0].value.toUpperCase();
   const eventStartDate = document.querySelector("#startdate").value;
   const eventStartTime = document.querySelector("#starttime").value;
-  const eventStartDateTime = moment.tz(`${eventStartDate} ${eventStartTime}`, timeZone).format();
+  const eventStartDateTime = moment.tz(moment(`${eventStartDate} ${eventStartTime}`).format(), timeZone).format();
   const weekday = Intl.DateTimeFormat(`${lang}-${locale}`, { weekday: "short" }).format(new Date(eventStartDateTime));
   const weekdayEl = document.querySelector("#singleDayWeekday");
   const previewEventStartDateShort = Intl.DateTimeFormat(`${lang}-${locale}`, { dateStyle: "short" }).format(new Date(eventStartDateTime));
@@ -1212,8 +1212,8 @@ function showMultipleDays() {
   const multidayBeginTime = document.querySelector("#multidayBeginTime").value;
   const multidayEndDate = document.querySelector("#multidayEndDate").value;
   const multidayEndTime = document.querySelector("#multidayEndTime").value;
-  const eventStartDateTime = moment.tz(`${multidayBeginDate} ${multidayBeginTime}`, timeZone).format();
-  const eventEndDateTime = moment.tz(`${multidayEndDate} ${multidayEndTime}`, timeZone).format();
+  const eventStartDateTime = moment.tz(moment(`${multidayBeginDate} ${multidayBeginTime}`).format(), timeZone).format();
+  const eventEndDateTime = moment.tz(moment(`${multidayEndDate} ${multidayEndTime}`).format(), timeZone).format();
   const previewEventStartDateShort = Intl.DateTimeFormat(`${lang}-${locale}`, { dateStyle: "short" }).format(new Date(eventStartDateTime));
   const previewEventStartTimeShort = Intl.DateTimeFormat(`${lang}-${locale}`, { timeStyle: "short" }).format(new Date(eventStartDateTime));
   const previewEventEndDateShort = Intl.DateTimeFormat(`${lang}-${locale}`, { dateStyle: "short" }).format(new Date(eventEndDateTime));
@@ -1249,7 +1249,7 @@ function showRepeating(frequency) {
   const startDate = document.querySelector("#startdate").value;
   const startTime = document.querySelector("#starttime").value;
   const eventStartDateTime = `${startDate} ${startTime}`;
-  const eventStartDateTimeUTC = moment.tz(eventStartDateTime, timeZone).format();
+  const eventStartDateTimeUTC = moment.tz(moment(eventStartDateTime).format(), timeZone).format();
   const startTimeLocalized = Intl.DateTimeFormat(lang, { timeStyle: "short" }).format(new Date(eventStartDateTimeUTC));
   const repeatingWeekdayEl = document.querySelector("#repeatingWeekday");
   const repeatingStartTimeEl = document.querySelector("#repeatingStartTime");
@@ -1376,8 +1376,8 @@ function validate() {
         return false;
       }
 
-      const momentFromDate = moment.tz(`${multiDayBeginDate} ${multiDayBeginTime}`, timeZone);
-      const momentToDate = moment.tz(`${multiDayEndDate} ${multiDayEndTime}`, timeZone);
+      const momentFromDate = moment.tz(moment(`${multiDayBeginDate} ${multiDayBeginTime}`).format(), timeZone);
+      const momentToDate = moment.tz(moment(`${multiDayEndDate} ${multiDayEndTime}`).format(), timeZone);
       if (momentFromDate >= momentToDate) {
         showError(getPhrase("startDateMustPrecedeEndDate"), "#multidayBeginDate", getPhrase("validDateIsRequired"));
         return false;
@@ -1423,7 +1423,7 @@ function validate() {
 
 
     const recurringWeekday = document.querySelector("#frequency").selectedOptions[0].innerText;
-    const nextOccuranceDate = moment.tz(moment(`${startdate} ${starttime}`), timeZone).format();
+    const nextOccuranceDate = moment.tz(moment(`${startdate} ${starttime}`).format(), timeZone).format();
     const nextOccuranceWeekday = Intl.DateTimeFormat(getLang(), { weekday: "long" }).format(new Date(nextOccuranceDate));
     let hasWeekdayConflict = false;
 
