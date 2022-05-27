@@ -334,11 +334,15 @@ function initIntlTelInput() {
     utilsScript: "../../js/intl-tel-input-17.0.0/js/utils.js",
   });
 
-  if (input.value.trim().length > 0) {
-    document
-      .querySelector("label[for='contactPhone']")
-      .parentElement.classList.add("has-value");
-  }
+  iti.promise.then(() => {
+    document.querySelector(".iti__selected-flag").setAttribute("tabindex", "-1");
+
+    if (input.value.trim().length > 0) {
+      document
+        .querySelector("label[for='contactPhone']")
+        .parentElement.classList.add("has-value");
+    }
+  });
 }
 
 function onAddressChanged(e) {
