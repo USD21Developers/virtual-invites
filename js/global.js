@@ -196,7 +196,7 @@ function getAccessToken() {
             resolve(accessToken);
             break;
           default:
-            window.location.href = "/logout/";
+            resolve("could not get access token";
             break;
         }
       })
