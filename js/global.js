@@ -196,7 +196,7 @@ function getAccessToken() {
             resolve(accessToken);
             break;
           default:
-            resolve("could not get access token";
+            resolve("could not get access token");
             break;
         }
       })
