@@ -717,7 +717,7 @@ async function onSubmit(e) {
     })
   })
     .then(res => res.json())
-    .then(data => {
+    .then(async (data) => {
       const mobilePhoneEl = document.querySelector("#contactPhone");
       const mobilePhoneErrorEl = document.querySelector("#contactPhone").parentElement.parentElement.querySelector(".invalid-feedback");
 
@@ -758,6 +758,11 @@ async function onSubmit(e) {
       }
 
       // Success
+      const storedEvents = await localforage.getItem("events") || [];
+      storedEvents.push(data.newEvent);
+
+      await localforage.setItem("events", storedEvents);
+
       return window.location.href = "../";
     })
     .catch((err) => {
