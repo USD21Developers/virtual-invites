@@ -24,9 +24,9 @@
       "translated": "Send an Invite"
     },
     {
-      "key": "addinvitelink",
-      "original": "Add an Event",
-      "translated": "Add an Event"
+      "key": "eventslink",
+      "original": "Events",
+      "translated": "Events"
     }
   ],
 
