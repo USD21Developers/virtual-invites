@@ -30,6 +30,7 @@
       rel="stylesheet"
     />
     <link href="../css/global.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
   </head>
   <body>
     <nav class="navbar navbar-light bg-light sticky-top border-bottom">
@@ -167,15 +168,64 @@
         </div>
       </div>
       <div class="row">
-        <div class="col col-sm-4 offset-sm-4">
-          <div class="list-group">
+        <div class="col col-md-8 offset-md-2">
+          <strong>Sunday Service</strong>
+          <div class="small secondary">Sundays &bull; 10:00 AM</div>
+          <div class="my-2 action">
             <a
-              href="add/"
-              class="list-group-item list-group-item-action"
-              data-i18n="addevent"
+              href="#"
+              class="action_editLink small d-inline-block text-center"
             >
+              <span class="material-icons material-symbols-outlined">
+                edit
+              </span>
+              <div class="mt-1 small">Edit</div>
+            </a>
+
+            <a
+              href="#"
+              class="action_deleteLink small danger d-inline-block text-center"
+            >
+              <span class="material-icons material-symbols-outlined">
+                delete
+              </span>
+              <div class="mt-1 small">Delete</div>
             </a>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-md-8 offset-md-2">
+          <strong>Bible Talk</strong>
+          <div class="small secondary">Fridays &bull; 7:30 PM</div>
+          <div class="my-2 action">
+            <a
+              href="#"
+              class="action_editLink small d-inline-block text-center"
+            >
+              <span class="material-icons material-symbols-outlined">
+                edit
+              </span>
+              <div class="mt-1 small">Edit</div>
+            </a>
+
+            <a
+              href="#"
+              class="action_deleteLink small danger d-inline-block text-center"
+            >
+              <span class="material-icons material-symbols-outlined">
+                delete
+              </span>
+              <div class="mt-1 small">Delete</div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col col-md-8 offset-md-2">
+          <p class="mt-1 mb-2">
+            <a href="add/" class="btn btn-primary">Add an Event</a>
+          </p>
         </div>
       </div>
 
