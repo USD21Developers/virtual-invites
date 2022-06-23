@@ -7,7 +7,7 @@ function renderEvents() {
         const el = document.querySelector("#myEvents");
         let eventsHTML = "";
         if (!Array.isArray(myEvents)) return;
-        if (!myEvents.length > 0) return;
+        if (!myEvents.length) return;
         myEvents.forEach((myEvent) => {
           const { eventid, frequency, multidayBeginDate, multidayEndDate, startdate, title } = myEvent;
           let when = "";
