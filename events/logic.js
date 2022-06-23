@@ -1,9 +1,9 @@
 function renderEvents() {
   const timezone = moment.tz.guess();
+  const locale = getLocale();
   return new Promise((resolve, reject) => {
     localforage.getItem("events")
       .then((myEvents) => {
-        // console.log(myEvents);
         const el = document.querySelector("#myEvents");
         let eventsHTML = "";
         if (!Array.isArray(myEvents)) return;
@@ -14,24 +14,28 @@ function renderEvents() {
 
           if (frequency === "once") {
             if (multidayBeginDate) {
-              const whenDateFrom = moment.tz(multidayBeginDate, timezone).format("MMMM d, yyyy");
-              const whenTimeFrom = moment.tz(multidayBeginDate, timezone).format("h:mm A");
-              const whenDateTo = moment.tz(multidayEndDate, timezone).format("MMMM d, yyyy");
-              const whenTimeTo = moment.tz(multidayEndDate, timezone).format("h:mm A");
+              const multidayBeginDateLocal = new Date(moment.tz(multidayBeginDate, timezone).format());
+              const multidayEndDateLocal = new Date(moment.tz(multidayEndDate, timezone).format());
+              const whenDateFrom = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayBeginDateLocal);
+              const whenTimeFrom = Intl.DateTimeFormat(locale, { timeStyle: 'full' }).format(multidayBeginDateLocal);
+              const whenDateTo = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayEndDateLocal);
+              const whenTimeTo = Intl.DateTimeFormat(locale, { timeStyle: 'full' }).format(multidayEndDateLocal);
               when = `
                 From ${whenDateFrom} &bull; ${whenTimeFrom}<br>
                 To ${whenDateTo} &bull; ${whenTimeTo}<br>
               `;
             } else {
-              const whenDate = moment.tz(startdate, timezone).format("MMMM d, yyyy");
-              const whenTime = moment.tz(startdate, timezone).format("h:mm A");
+              const whenDateLocal = new Date(moment.tz(startdate, timezone).format());
+              const whenDate = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(whenDateLocal);
+              const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'full' }).format(whenDateLocal);
               when = `
                 ${whenDate} &bull; ${whenTime}
               `;
             }
           } else {
             const whenDate = frequency;
-            const whenTime = moment.tz(startdate, timezone).format("h:mm A");
+            const whenTimeLocal = new Date(moment.tz(startdate, timezone).format());
+            const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'full' }).format(whenTimeLocal);
             when = `${whenDate} &bull; ${whenTime}`;
           }
 
