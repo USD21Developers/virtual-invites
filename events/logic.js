@@ -17,9 +17,9 @@ function renderEvents() {
               const multidayBeginDateLocal = new Date(moment.tz(multidayBeginDate, timezone).format());
               const multidayEndDateLocal = new Date(moment.tz(multidayEndDate, timezone).format());
               const whenDateFrom = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayBeginDateLocal);
-              const whenTimeFrom = Intl.DateTimeFormat(locale, { timeStyle: 'full' }).format(multidayBeginDateLocal);
+              const whenTimeFrom = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(multidayBeginDateLocal);
               const whenDateTo = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayEndDateLocal);
-              const whenTimeTo = Intl.DateTimeFormat(locale, { timeStyle: 'full' }).format(multidayEndDateLocal);
+              const whenTimeTo = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(multidayEndDateLocal);
               when = `
                 From ${whenDateFrom} &bull; ${whenTimeFrom}<br>
                 To ${whenDateTo} &bull; ${whenTimeTo}<br>
@@ -27,7 +27,7 @@ function renderEvents() {
             } else {
               const whenDateLocal = new Date(moment.tz(startdate, timezone).format());
               const whenDate = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(whenDateLocal);
-              const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'full' }).format(whenDateLocal);
+              const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenDateLocal);
               when = `
                 ${whenDate} &bull; ${whenTime}
               `;
@@ -35,7 +35,7 @@ function renderEvents() {
           } else {
             const whenDate = frequency;
             const whenTimeLocal = new Date(moment.tz(startdate, timezone).format());
-            const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'full' }).format(whenTimeLocal);
+            const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenTimeLocal);
             when = `${whenDate} &bull; ${whenTime}`;
           }
 
