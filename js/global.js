@@ -284,6 +284,39 @@ function getLang() {
   return lang;
 }
 
+function getCountry() {
+  const refreshToken = localStorage.getItem("refreshToken");
+  let country = "US";
+
+  if (typeof refreshToken === "string") {
+    country = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).country;
+    if (typeof lang === "undefined") {
+      return window.location.href = "/logout/";
+    }
+  } else {
+    try {
+      const detectedCountry = navigator.language.substring(3, 6);
+      if (detectedCountry.length === 2) country = detectedCountry;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  return country();
+}
+
+function getLocale() {
+  const lang = getLang().toLowerCase();
+  const country = getCountry().toUpperCase();
+  const locale = `${lang}-${country}`;
+
+  if (locale.length !== 5) {
+    return "en-US";
+  }
+
+  return locale;
+}
+
 function getPhrase(key) {
   let content = "";
   const errorMessage = `phrase key "${key}" was not found`;
