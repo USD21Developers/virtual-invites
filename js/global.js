@@ -298,7 +298,7 @@ function getCountry() {
     }
   }
 
-  return country();
+  return country;
 }
 
 function getLocale() {
