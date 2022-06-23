@@ -254,10 +254,6 @@ function getApiServicesHost() {
   return host;
 }
 
-function getCountry() {
-  return "US";
-}
-
 function getHash() {
   return (
     document.location.hash.substring(1, document.location.hash.length) || ""
@@ -290,7 +286,7 @@ function getCountry() {
 
   if (typeof refreshToken === "string") {
     country = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).country;
-    if (typeof lang === "undefined") {
+    if (typeof country === "undefined") {
       return window.location.href = "/logout/";
     }
   } else {
