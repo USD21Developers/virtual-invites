@@ -1,5 +1,4 @@
 function renderEvents() {
-  const timezone = moment.tz.guess();
   const locale = getLocale();
   return new Promise((resolve, reject) => {
     localforage.getItem("events")
@@ -9,7 +8,7 @@ function renderEvents() {
         if (!Array.isArray(myEvents)) return;
         if (!myEvents.length) return;
         myEvents.forEach((myEvent) => {
-          const { eventid, frequency, multidayBeginDate, multidayEndDate, startdate, title } = myEvent;
+          const { eventid, frequency, multidayBeginDate, multidayEndDate, startdate, timezone, title } = myEvent;
           let when = "";
 
           if (frequency === "once") {
