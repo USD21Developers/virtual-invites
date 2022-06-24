@@ -40,11 +40,13 @@ function renderEvents() {
           }
 
           const template = `
-            <div class="row">
-              <div class="col col-md-8 offset-md-2">
-                <strong>${title}</strong>
-                <div class="small secondary">${when}</div>
-                <div class="my-2 action">
+            <div class="container">
+              <div class="row border-bottom pb-2">
+                <div class="col-12 col-md-8 mb-3 pl-0">
+                  <strong>${title}</strong>
+                  <div class="small secondary">${when}</div>
+                </div>
+                <div class="col col-md-4 text-right text-nowrap">
                   <a
                     href="edit/#${eventid}"
                     class="action_editLink small d-inline-block text-center"
