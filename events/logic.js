@@ -83,7 +83,7 @@ function renderEvents() {
 }
 
 async function syncEvents() {
-  const endpoint = `${getAPIHost()}/sync-events`;
+  const endpoint = `${getAPIHost()}/invites/sync-events`;
   const accessToken = await getAccessToken();
 
   return new Promise((resolve, reject) => {
