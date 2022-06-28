@@ -87,6 +87,7 @@ async function syncEvents() {
   const accessToken = await getAccessToken();
 
   return new Promise((resolve, reject) => {
+    showToast("Syncing...", 5000, "light");
     fetch(endpoint, {
       mode: "cors",
       method: "GET",
@@ -99,9 +100,12 @@ async function syncEvents() {
       .then((data) => {
         console.log(data);
         resolve(data);
+        hideToast();
+        showToast("Synced.", 1000, "light");
       })
       .catch((err) => {
         console.error(err);
+        hideToast();
         reject(err);
       });
   });

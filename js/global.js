@@ -626,6 +626,11 @@ function showModal(
   });
 }
 
+function hideToast() {
+  const snackbar = document.querySelector(".snackbar");
+  snackbar.classList.remove("show");
+}
+
 function showToast(message, duration = 5000, type = "dark") {
   const snackbar = document.querySelector(".snackbar");
   const body = document.querySelector(".snackbar-body");
