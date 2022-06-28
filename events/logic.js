@@ -87,7 +87,7 @@ async function syncEvents() {
   const accessToken = await getAccessToken();
 
   return new Promise((resolve, reject) => {
-    showToast("Syncing...", 5000, "light");
+    showToast("Syncing...", 5000);
     fetch(endpoint, {
       mode: "cors",
       method: "GET",
@@ -101,7 +101,7 @@ async function syncEvents() {
         console.log(data);
         resolve(data);
         hideToast();
-        showToast("Synced.", 1000, "light");
+        showToast("Synced.", 1000);
       })
       .catch((err) => {
         console.error(err);
@@ -117,8 +117,8 @@ function attachListeners() {
 
 async function init() {
   await populateContent();
-  await renderEvents();
   await syncEvents();
+  await renderEvents();
   attachListeners();
 }
 
