@@ -112,6 +112,16 @@
       "key": "saturday",
       "original": "Saturday",
       "translated": "Saturday"
+    },
+    {
+      "key": "syncing",
+      "original": "Syncing...",
+      "translated": "Syncing..."
+    },
+    {
+      "key": "synced",
+      "original": "Synced.",
+      "translated": "Synced."
     }
   ],
 
