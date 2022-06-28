@@ -114,6 +114,7 @@ function attachListeners() {
 async function init() {
   await populateContent();
   await renderEvents();
+  syncEvents();
   attachListeners();
 }
 
