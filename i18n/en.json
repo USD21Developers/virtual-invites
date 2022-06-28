@@ -27,6 +27,16 @@
       "key": "eventslink",
       "original": "Events",
       "translated": "Events"
+    },
+    {
+      "key": "syncing",
+      "original": "Syncing...",
+      "translated": "Syncing..."
+    },
+    {
+      "key": "synced",
+      "original": "Synced.",
+      "translated": "Synced."
     }
   ],
 

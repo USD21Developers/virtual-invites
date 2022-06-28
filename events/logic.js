@@ -85,9 +85,11 @@ function renderEvents() {
 async function syncEvents() {
   const endpoint = `${getAPIHost()}/invites/sync-events`;
   const accessToken = await getAccessToken();
+  const phraseSyncing = getGlobalPhrase("syncing");
+  const phraseSynced = getGlobalPhrase("synced");
 
   return new Promise((resolve, reject) => {
-    showToast("Syncing...", 5000);
+    showToast(phraseSyncing, 5000);
     fetch(endpoint, {
       mode: "cors",
       method: "GET",
@@ -101,7 +103,7 @@ async function syncEvents() {
         console.log(data);
         resolve(data);
         hideToast();
-        showToast("Synced.", 1000);
+        showToast(phraseSynced, 1000);
       })
       .catch((err) => {
         console.error(err);
