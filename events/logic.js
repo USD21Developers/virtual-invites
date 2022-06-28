@@ -82,6 +82,31 @@ function renderEvents() {
   });
 }
 
+async function syncEvents() {
+  const endpoint = `${getAPIHost()}/sync-events`;
+  const accessToken = await getAccessToken();
+
+  return new Promise((resolve, reject) => {
+    fetch(endpoint, {
+      mode: "cors",
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`
+      })
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        resolve(data);
+      })
+      .catch((err) => {
+        console.error(err);
+        reject(err);
+      });
+  });
+}
+
 function attachListeners() {
   //
 }
