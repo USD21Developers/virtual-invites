@@ -118,15 +118,13 @@ async function syncEvents() {
         // Compare local vs. remote events, and update the UI only if a change occurred
         hash.local = await invitesCrypto.hash(eventsLocal) || JSON.stringify([]);
         hash.remote = await invitesCrypto.hash(eventsRemote) || JSON.stringify([]);
-        if (hash.local === hash.remote) {
-          hideToast();
-          console.log("Events in sync.");
-        } else {
+        if (hash.local !== hash.remote) {
           await localforage.setItem("events", eventsJSON);
           await renderEvents();
-          hideToast();
-          showToast(phraseSynced, 1000);
         }
+
+        hideToast();
+        showToast(phraseSynced, 1000);
 
         resolve(data);
       })
