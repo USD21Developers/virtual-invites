@@ -5,8 +5,8 @@ function renderEvents() {
       .then((myEvents) => {
         const el = document.querySelector("#myEvents");
         let eventsHTML = "";
-        if (!Array.isArray(myEvents)) return;
-        if (!myEvents.length) return;
+        if (!Array.isArray(myEvents)) return resolve();
+        if (!myEvents.length) return resolve();
         myEvents.forEach((myEvent) => {
           const { eventid, frequency, multidayBeginDate, multidayEndDate, startdate, timezone, title } = myEvent;
           let when = "";
@@ -87,8 +87,13 @@ async function syncEvents() {
   const accessToken = await getAccessToken();
   const phraseSyncing = getGlobalPhrase("syncing");
   const phraseSynced = getGlobalPhrase("synced");
+  const isOnline = navigator.onLine;
+
+  console.log("syncing...");
 
   return new Promise((resolve, reject) => {
+    if (!isOnline) return reject(new Error("sync failed because user is offline"));
+
     showToast(phraseSyncing, 5000);
     fetch(endpoint, {
       mode: "cors",
@@ -99,11 +104,31 @@ async function syncEvents() {
       })
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+      .then(async (data) => {
+        const { events } = data;
+        const eventsLocal = await localforage.getItem("events");
+        const eventsRemote = JSON.stringify(events);
+        const hash = {};
+
+        // Validate sync response
+        if (!Array.isArray(events)) {
+          reject(new Error("Events in sync response must be an array."));
+        }
+
+        // Compare local vs. remote events, and update the UI only if a change occurred
+        hash.local = await invitesCrypto.hash(eventsLocal) || JSON.stringify([]);
+        hash.remote = await invitesCrypto.hash(eventsRemote) || JSON.stringify([]);
+        if (hash.local === hash.remote) {
+          hideToast();
+          console.log("Events in sync.");
+        } else {
+          await localforage.setItem("events", eventsJSON);
+          await renderEvents();
+          hideToast();
+          showToast(phraseSynced, 1000);
+        }
+
         resolve(data);
-        hideToast();
-        showToast(phraseSynced, 1000);
       })
       .catch((err) => {
         console.error(err);
@@ -113,15 +138,10 @@ async function syncEvents() {
   });
 }
 
-function attachListeners() {
-  //
-}
-
 async function init() {
   await populateContent();
-  await syncEvents();
   await renderEvents();
-  attachListeners();
+  await syncEvents();
 }
 
 init();
