@@ -89,8 +89,6 @@ async function syncEvents() {
   const phraseSynced = getGlobalPhrase("synced");
   const isOnline = navigator.onLine;
 
-  console.log("syncing...");
-
   return new Promise((resolve, reject) => {
     if (!isOnline) return reject(new Error("sync failed because user is offline"));
 
