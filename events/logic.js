@@ -118,7 +118,7 @@ async function syncEvents() {
         hash.local = await invitesCrypto.hash(eventsLocal) || JSON.stringify([]);
         hash.remote = await invitesCrypto.hash(eventsRemote) || JSON.stringify([]);
         if (hash.local !== hash.remote) {
-          await localforage.setItem("events", eventsJSON);
+          await localforage.setItem("events", eventsRemote);
           await renderEvents();
         }
 
