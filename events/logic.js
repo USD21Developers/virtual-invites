@@ -110,6 +110,7 @@ async function syncEvents() {
 
         // Validate sync response
         if (!Array.isArray(events)) {
+          hideToast();
           reject(new Error("Events in sync response must be an array."));
         }
 
