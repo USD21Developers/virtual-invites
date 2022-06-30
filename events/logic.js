@@ -114,13 +114,13 @@ async function syncEvents() {
           reject(new Error("Events in sync response must be an array."));
         }
 
+        await localforage.setItem("events", eventsRemote);
+
         // Compare local vs. remote events, and update the UI only if a change occurred
         hash.local = await invitesCrypto.hash(eventsLocal) || JSON.stringify([]);
         hash.remote = await invitesCrypto.hash(eventsRemote) || JSON.stringify([]);
-        if (hash.local !== hash.remote) {
-          await localforage.setItem("events", eventsRemote);
-          await renderEvents();
-        }
+
+        await renderEvents();
 
         hideToast();
         showToast(phraseSynced, 1000);
