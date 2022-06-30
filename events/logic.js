@@ -2,7 +2,8 @@ function renderEvents() {
   const locale = getLocale();
   return new Promise((resolve, reject) => {
     localforage.getItem("events")
-      .then((myEvents) => {
+      .then((json) => {
+        const myEvents = JSON.parse(json);
         const el = document.querySelector("#myEvents");
         let eventsHTML = "";
         if (!Array.isArray(myEvents)) return resolve();
