@@ -14,8 +14,8 @@ function renderEvents() {
 
           if (frequency === "once") {
             if (multidayBeginDate) {
-              const multidayBeginDateLocal = new Date(moment.tz(multidayBeginDate, timezone).format());
-              const multidayEndDateLocal = new Date(moment.tz(multidayEndDate, timezone).format());
+              const multidayBeginDateLocal = new Date(moment(multidayBeginDate).tz(timezone).format());
+              const multidayEndDateLocal = new Date(moment(multidayEndDate).tz(timezone).format());
               const whenDateFrom = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayBeginDateLocal);
               const whenTimeFrom = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(multidayBeginDateLocal);
               const whenDateTo = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayEndDateLocal);
@@ -25,7 +25,7 @@ function renderEvents() {
                 To ${whenDateTo} &bull; ${whenTimeTo}<br>
               `;
             } else {
-              const whenDateLocal = new Date(moment.tz(startdate, timezone).format());
+              const whenDateLocal = new Date(moment(startdate).tz(timezone).format());
               const whenDate = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(whenDateLocal);
               const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenDateLocal);
               when = `
@@ -34,7 +34,7 @@ function renderEvents() {
             }
           } else {
             const whenDate = frequency;
-            const whenTimeLocal = new Date(moment.tz(startdate, timezone).format());
+            const whenTimeLocal = new Date(moment(startdate).tz(timezone).format());
             const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenTimeLocal);
             when = `${whenDate} &bull; ${whenTime}`;
           }
