@@ -400,6 +400,15 @@ function getPreviewPhrase(key) {
   }
 }
 
+function getTimezoneOffset(timezoneName) {
+  const offset = moment.tz(timezoneName)._offset;
+  const hours = Math.floor(offset / 60);
+  const minutes = Math.abs(Math.floor(offset % 60));
+  const returnVal = `${hours}:${minutes < 10 ? "0" + minutes : minutes}`;
+
+  return returnVal;
+}
+
 function randomIntFromInterval(min = 0, max = 500) { // min and max included 
   return Math.floor(Math.random() * (max - min + 1) + min)
 }

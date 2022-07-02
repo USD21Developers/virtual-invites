@@ -177,6 +177,7 @@ function getCalendarObject() {
   o.multidayEndDate = form.multidayEndDate.value;
   o.multidayEndTime = form.multidayEndTime.value;
   o.timezone = form.timezone.value;
+  o.offset = getTimezoneOffset(form.timezone.value);
   o.locationvisibility = form.locationvisibility.value;
   o.addressLine1 = form.addressLine1.value;
   o.addressLine2 = form.addressLine2.value;
