@@ -1,5 +1,4 @@
 function renderEvents() {
-  const locale = getLocale();
   return new Promise((resolve, reject) => {
     localforage.getItem("events")
       .then((json) => {
@@ -9,13 +8,14 @@ function renderEvents() {
         if (!Array.isArray(myEvents)) return resolve();
         if (!myEvents.length) return resolve();
         myEvents.forEach((myEvent) => {
-          const { eventid, frequency, multidayBeginDate, multidayEndDate, startdate, timezone, title } = myEvent;
+          const { country, lang, eventid, frequency, multidayBeginDate, multidayEndDate, startdate, timezone, title } = myEvent;
+          const locale = `${lang.toLowerCase()}-${country.toUpperCase()}`;
           let when = "";
 
           if (frequency === "once") {
             if (multidayBeginDate) {
-              const multidayBeginDateLocal = new Date(moment(multidayBeginDate).tz(timezone).format());
-              const multidayEndDateLocal = new Date(moment(multidayEndDate).tz(timezone).format());
+              const multidayBeginDateLocal = new Date(moment.tz(multidayBeginDate, timezone).format("YYYY-MM-DD HH:mm"));
+              const multidayEndDateLocal = new Date(moment.tz(multidayEndDate, timezone).format("YYYY-MM-DD HH:mm"));
               const whenDateFrom = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayBeginDateLocal);
               const whenTimeFrom = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(multidayBeginDateLocal);
               const whenDateTo = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayEndDateLocal);
@@ -25,7 +25,7 @@ function renderEvents() {
                 To ${whenDateTo} &bull; ${whenTimeTo}<br>
               `;
             } else {
-              const whenDateLocal = new Date(moment(startdate).tz(timezone).format());
+              const whenDateLocal = new Date(moment.tz(startdate, timezone).format("YYYY-MM-DD HH:mm"));
               const whenDate = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(whenDateLocal);
               const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenDateLocal);
               when = `
@@ -34,7 +34,7 @@ function renderEvents() {
             }
           } else {
             const whenDate = frequency;
-            const whenTimeLocal = new Date(moment(startdate).tz(timezone).format());
+            const whenTimeLocal = new Date(moment.tz(startdate, timezone).format("YYYY-MM-DD HH:mm"));
             const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenTimeLocal);
             when = `${whenDate} &bull; ${whenTime}`;
           }
@@ -138,8 +138,8 @@ async function syncEvents() {
 
 async function init() {
   await populateContent();
-  await renderEvents();
   await syncEvents();
+  await renderEvents();
 }
 
 init();
