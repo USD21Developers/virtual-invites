@@ -25,7 +25,7 @@ function renderEvents() {
                 To ${whenDateTo} &bull; ${whenTimeTo}<br>
               `;
             } else {
-              const whenDateLocal = new Date(moment.tz(startdate, timezone).format("YYYY-MM-DD HH:mm"));
+              const whenDateLocal = new Date(moment.tz(startdate, timezone).format();
               const whenDate = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(whenDateLocal);
               const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenDateLocal);
               when = `
@@ -34,7 +34,7 @@ function renderEvents() {
             }
           } else {
             const whenDate = frequency;
-            const whenTimeLocal = new Date(moment.tz(startdate, timezone).format("YYYY-MM-DD HH:mm"));
+            const whenTimeLocal = new Date(moment.tz(startdate, timezone).format());
             const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenTimeLocal);
             when = `${whenDate} &bull; ${whenTime}`;
           }
