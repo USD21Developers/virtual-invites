@@ -95,7 +95,7 @@ async function syncEvents() {
   return new Promise((resolve, reject) => {
     if (!isOnline) return reject(new Error("sync failed because user is offline"));
 
-    showToast(phraseSyncing, 5000);
+    // showToast(phraseSyncing, 5000);
     fetch(endpoint, {
       mode: "cors",
       method: "GET",
@@ -125,15 +125,12 @@ async function syncEvents() {
 
         hideToast();
 
-        // Respond depending on new vs. old data
-        if (hash.local === hash.remote) {
-          showToast(phraseNoNewEvents, 1000);
-        } else {
+        // Respond to new data
+        if (hash.local !== hash.remote) {
           const numCurrentEvents = (eventsLocal) ? JSON.parse(eventsLocal).length : 0;
 
           if (numCurrentEvents === 0) {
             await renderEvents();
-            showToast(phraseSynced, 1500);
           } else {
             showToast(phraseNewEventsAvailable, 0);
           }
