@@ -714,9 +714,11 @@ function showToast(message, duration = 5000, type = "dark") {
   snackbar.classList.add("show");
 
   if (typeof duration === "number") {
-    setTimeout(() => {
-      snackbar.classList.remove("show");
-    }, duration);
+    if (duration !== 0) {
+      setTimeout(() => {
+        snackbar.classList.remove("show");
+      }, duration);
+    }
   }
 }
 

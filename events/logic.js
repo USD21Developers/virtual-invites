@@ -88,6 +88,8 @@ async function syncEvents() {
   const accessToken = await getAccessToken();
   const phraseSyncing = getGlobalPhrase("syncing");
   const phraseSynced = getGlobalPhrase("synced");
+  const phraseNoNewEvents = getPhrase("noNewEvents");
+  const phraseNewEventsAvailable = getPhrase("newEventsAvailable");
   const isOnline = navigator.onLine;
 
   return new Promise((resolve, reject) => {
@@ -121,10 +123,21 @@ async function syncEvents() {
         hash.local = await invitesCrypto.hash(eventsLocal) || JSON.stringify([]);
         hash.remote = await invitesCrypto.hash(eventsRemote) || JSON.stringify([]);
 
-        await renderEvents();
-
         hideToast();
-        showToast(phraseSynced, 1000);
+
+        // Respond depending on new vs. old data
+        if (hash.local === hash.remote) {
+          showToast(phraseNoNewEvents, 1000);
+        } else {
+          const numCurrentEvents = (eventsLocal) ? JSON.parse(eventsLocal).length : 0;
+
+          if (numCurrentEvents === 0) {
+            await renderEvents();
+            showToast(phraseSynced, 1500);
+          } else {
+            showToast(phraseNewEventsAvailable, 0);
+          }
+        }
 
         resolve(data);
       })
@@ -138,8 +151,8 @@ async function syncEvents() {
 
 async function init() {
   await populateContent();
-  await syncEvents();
-  await renderEvents();
+  renderEvents();
+  syncEvents();
 }
 
 init();

@@ -32,6 +32,25 @@
       "key": "breadcrumbEvents",
       "original": "Events",
       "translated": "Events"
+    },
+    {
+      "key": "noNewEvents",
+      "original": "Events synced.",
+      "translated": "Events synced."
+    },
+    {
+      "key": "newEventsAvailable",
+      "original": "New events available. Reload?",
+      "translated": "New events available. Reload?",
+      "changes": [
+        {
+          "original": "Reload",
+          "translated": "Reload",
+          "bold": false,
+          "italic": false,
+          "link": "javascript:window.location.reload()"
+        }
+      ]
     }
   ],
 
