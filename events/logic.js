@@ -40,33 +40,31 @@ function renderEvents() {
           }
 
           const template = `
-            <div class="container">
-              <div class="row border-bottom pb-2">
-                <div class="col-12 col-md-8 mb-3 pl-0">
-                  <strong>${title}</strong>
-                  <div class="small secondary">${when}</div>
-                </div>
-                <div class="col col-md-4 text-right text-nowrap">
-                  <a
-                    href="edit/#${eventid}"
-                    class="action_editLink small d-inline-block text-center"
-                  >
-                    <span class="material-icons material-symbols-outlined">
-                      edit
-                    </span>
-                    <div class="mt-1 small">Edit</div>
-                  </a>
+            <div class="row border-bottom pb-2 mb-2">
+              <div class="col-12 col-md-8 mb-3 pl-0">
+                <strong>${title}</strong>
+                <div class="small secondary">${when}</div>
+              </div>
+              <div class="col col-md-4 text-right text-nowrap">
+                <a
+                  href="edit/#${eventid}"
+                  class="action_editLink small d-inline-block text-center"
+                >
+                  <span class="material-icons material-symbols-outlined">
+                    edit
+                  </span>
+                  <div class="mt-1 small">Edit</div>
+                </a>
 
-                  <a
-                    href="delete/#${eventid}"
-                    class="action_deleteLink small danger d-inline-block text-center"
-                  >
-                    <span class="material-icons material-symbols-outlined">
-                      delete
-                    </span>
-                    <div class="mt-1 small">Delete</div>
-                  </a>
-                </div>
+                <a
+                  href="delete/#${eventid}"
+                  class="action_deleteLink small danger d-inline-block text-center"
+                >
+                  <span class="material-icons material-symbols-outlined">
+                    delete
+                  </span>
+                  <div class="mt-1 small">Delete</div>
+                </a>
               </div>
             </div>
           `;
