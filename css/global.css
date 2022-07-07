@@ -147,7 +147,12 @@ h6 {
 }
 
 .alert .alert-link {
-  text-decoration: underline !important;
+  text-decoration: underline;
+}
+
+.snackbar-body .alert-link {
+  margin-left: 0.5rem;
+  text-decoration: underline;
 }
 
 .large {
