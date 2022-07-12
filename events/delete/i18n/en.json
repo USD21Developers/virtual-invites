@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "description": "Delete Event",
+    "path": "/events/delete/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Delete Event",
+      "translated": "Delete Event"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbEvents",
+      "original": "Events",
+      "translated": "Events"
+    },
+    {
+      "key": "breadcrumbDelete",
+      "original": "Delete",
+      "translated": "Delete"
+    },
+    {
+      "key": "headlineDeleteEvent",
+      "original": "Delete Event",
+      "translated": "Delete Event"
+    },
+    {
+      "key": "areYouSure",
+      "original": "Are you sure?",
+      "translated": "Are you sure?"
+    },
+    {
+      "key": "btnDelete",
+      "original": "Delete",
+      "translated": "Delete"
+    },
+    {
+      "key": "btnCancel",
+      "original": "Cancel",
+      "translated": "Cancel"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
