@@ -154,21 +154,36 @@
     </nav>
 
     <div class="container">
-      <h1 class="text-center" data-i18n="headlineDeleteEvent"></h1>
-      <p class="text-center mt-4" data-i18n="areYouSure"></p>
-
-      <div class="mt-4 mb-5 border border-dark bg-light text-center">
-        <br />
-        <br />
-        [ Event details here ]
-        <br />
-        <br />
-        <br />
+      <div class="row">
+        <div class="col col-sm-10 offset-sm-1 mt-3">
+          <h2 class="text-center" data-i18n="headlineDeleteEvent"></h2>
+          <p class="text-center mt-4" data-i18n="areYouSure"></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-sm-10 offset-sm-1 mt-4 mb-5">
+          <div
+            id="eventdetails"
+            class="border border-dark bg-light text-center p-2"
+          ></div>
+        </div>
       </div>
 
-      <div class="row">
-        <div class="col text-center">
+      <div class="row d-none" id="progressbar">
+        <div class="col">
+          <div class="progress">
+            <div
+              class="progress-bar progress-bar-indeterminate"
+              role="progressbar"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" id="actionbuttons">
+        <div class="col col-sm-10 offset-sm-1 text-center">
           <button
+            id="btnDelete"
             type="submit"
             class="btn btn-danger"
             data-i18n="btnDelete"
