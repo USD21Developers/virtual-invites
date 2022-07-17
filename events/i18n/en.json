@@ -51,6 +51,26 @@
           "link": "javascript:window.location.reload()"
         }
       ]
+    },
+    {
+      "key": "from",
+      "original": "From:",
+      "translated": "From:"
+    },
+    {
+      "key": "to",
+      "original": "To:",
+      "translated": "To:"
+    },
+    {
+      "key": "btnEdit",
+      "original": "Edit",
+      "translated": "Edit"
+    },
+    {
+      "key": "btnDelete",
+      "original": "Delete",
+      "translated": "Delete"
     }
   ],
 

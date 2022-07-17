@@ -10,6 +10,8 @@ function renderEvents() {
         myEvents.forEach((myEvent) => {
           const { country, lang, eventid, frequency, multidayBeginDate, multidayEndDate, startdate, timezone, title } = myEvent;
           const locale = `${lang.toLowerCase()}-${country.toUpperCase()}`;
+          const from = getPhrase("from");
+          const to = getPhrase("to");
           let when = "";
 
           if (frequency === "once") {
@@ -21,8 +23,8 @@ function renderEvents() {
               const whenDateTo = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayEndDateLocal);
               const whenTimeTo = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(multidayEndDateLocal);
               when = `
-                From ${whenDateFrom} &bull; ${whenTimeFrom}<br>
-                To ${whenDateTo} &bull; ${whenTimeTo}<br>
+                ${from} ${whenDateFrom} &bull; ${whenTimeFrom}<br>
+                ${to} ${whenDateTo} &bull; ${whenTimeTo}<br>
               `;
             } else {
               const whenDateLocal = new Date(moment.tz(startdate, timezone).format());
@@ -53,7 +55,7 @@ function renderEvents() {
                   <span class="material-icons material-symbols-outlined">
                     edit
                   </span>
-                  <div class="mt-1 small">Edit</div>
+                  <div class="mt-1 small" data-i18n="btnEdit"></div>
                 </a>
 
                 <a
@@ -63,7 +65,7 @@ function renderEvents() {
                   <span class="material-icons material-symbols-outlined">
                     delete
                   </span>
-                  <div class="mt-1 small">Delete</div>
+                  <div class="mt-1 small" data-i18n="btnDelete"></div>
                 </a>
               </div>
             </div>
@@ -146,7 +148,8 @@ async function syncEvents() {
 
 async function init() {
   await populateContent();
-  renderEvents();
+  await renderEvents();
+  await populateContent();
   syncEvents();
 }
 

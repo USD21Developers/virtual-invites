@@ -1,46 +1,66 @@
 async function getEvent() {
   const eventid = Math.abs(parseInt(getHash()));
-  const endpoint = `${getApiHost()}/event-get`;
-  const accessToken = await getAccessToken();
-  const controller = new AbortController;
-
   if (typeof eventid !== "number") return;
 
-  spinner("show");
+  const eventsJSON = await localforage.getItem("events");
+  if (!eventsJSON) return;
 
-  fetch(endpoint, {
-    mode: "cors",
-    method: "POST",
-    body: JSON.stringify({
-      eventid: eventid
-    }),
-    headers: new Headers({
-      "Content-Type": "application/json",
-      authorization: `Bearer ${accessToken}`
-    })
-  })
-    .then(res => res.json())
-    .then(data => {
-      populateDetails(data);
-      spinner("hide");
-    })
-    .catch(err => {
-      console.error(err);
-      spinner("hide");
-    });
+  const events = JSON.parse(eventsJSON);
+  if (!Array.isArray(events)) return;
+  if (!events.length) return;
 
-  setTimeout(() => {
-    controller.abort();
-    spinner("hide");
-  }, 8000);
+  let event;
+  for (i in events) {
+    const evt = events[i];
+    if (evt.eventid === eventid) {
+      event = evt;
+      break;
+    }
+  }
+  if (typeof event !== "object") return;
+
+  populateDetails(event);
 }
 
 function populateDetails(data) {
   const details = document.querySelector("#eventdetails");
+  const { country, eventid, frequency, lang, multidayBeginDate, multidayEndDate, startdate, timezone, title } = data;
+  const locale = `${lang.toLowerCase()}-${country.toUpperCase()}`;
+  const from = getPhrase("from");
+  const to = getPhrase("to");
+  let when = "";
 
-  console.log(data);
+  if (frequency === "once") {
+    if (multidayBeginDate) {
+      const multidayBeginDateLocal = new Date(moment.tz(multidayBeginDate, timezone).format());
+      const multidayEndDateLocal = new Date(moment.tz(multidayEndDate, timezone).format());
+      const whenDateFrom = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayBeginDateLocal);
+      const whenTimeFrom = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(multidayBeginDateLocal);
+      const whenDateTo = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayEndDateLocal);
+      const whenTimeTo = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(multidayEndDateLocal);
+      when = `
+        ${from} ${whenDateFrom} &bull; ${whenTimeFrom}<br>
+        ${to} ${whenDateTo} &bull; ${whenTimeTo}<br>
+      `;
+    } else {
+      const whenDateLocal = new Date(moment.tz(startdate, timezone).format());
+      const whenDate = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(whenDateLocal);
+      const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenDateLocal);
+      when = `
+        ${whenDate} &bull; ${whenTime}
+      `;
+    }
+  } else {
+    const whenDate = frequency;
+    const whenTimeLocal = new Date(moment.tz(startdate, timezone).format());
+    const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenTimeLocal);
+    when = `${whenDate} &bull; ${whenTime}`;
+  }
 
-  details.innerHTML = `[ Event details here ]`;
+  details.innerHTML = `
+    <h3>${title}</h3>
+    ${when}
+  `;
 }
 
 function spinner(action = "show") {
@@ -80,14 +100,35 @@ async function onSubmit() {
   })
     .then(res => res.json())
     .then(data => {
+      switch (data.msg) {
+        case "user is not authorized for this action":
+          break;
+        case "unable to delete event":
+          break;
+        case "event not found":
+          break;
+        case "event not created by user":
+          break;
+        case "event deleted":
+          break;
+      }
+
+      // TODO: handle possible responses above
+      // TODO: sync events and store new value in IDB
+      // TODO: redo logic for Add Event, so that sync follows add (no more returning all events in Add response)
+
       spinner("hide");
     })
     .catch(err => {
+      console.error(err);
       spinner("hide");
     });
 
   setTimeout(() => {
     controller.abort();
+
+    // TODO:  handle timeout
+
     spinner("hide");
   }, 8000);
 }

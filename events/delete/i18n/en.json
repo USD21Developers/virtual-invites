@@ -47,6 +47,16 @@
       "key": "btnCancel",
       "original": "Cancel",
       "translated": "Cancel"
+    },
+    {
+      "key": "from",
+      "original": "From:",
+      "translated": "From:"
+    },
+    {
+      "key": "to",
+      "original": "To:",
+      "translated": "To:"
     }
   ],
 

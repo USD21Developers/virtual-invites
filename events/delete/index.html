@@ -156,12 +156,17 @@
     <div class="container">
       <div class="row">
         <div class="col col-sm-10 offset-sm-1 mt-3">
-          <h2 class="text-center" data-i18n="headlineDeleteEvent"></h2>
-          <p class="text-center mt-4" data-i18n="areYouSure"></p>
+          <h2
+            class="text-center text-uppercase m-0"
+            data-i18n="headlineDeleteEvent"
+          ></h2>
+          <p class="text-center mt-4">
+            <strong data-i18n="areYouSure" class="text-danger"></strong>
+          </p>
         </div>
       </div>
       <div class="row">
-        <div class="col col-sm-10 offset-sm-1 mt-4 mb-5">
+        <div class="col col-sm-6 offset-sm-3 mt-4 mb-5 px-0">
           <div
             id="eventdetails"
             class="border border-dark bg-light text-center p-2"
@@ -181,7 +186,7 @@
       </div>
 
       <div class="row" id="actionbuttons">
-        <div class="col col-sm-10 offset-sm-1 text-center">
+        <div class="col col-sm-3 offset-sm-3 text-center">
           <button
             id="btnDelete"
             type="submit"
@@ -189,7 +194,7 @@
             data-i18n="btnDelete"
           ></button>
         </div>
-        <div class="col text-center">
+        <div class="col col-sm-3 text-center">
           <a href="../" class="btn btn-link" data-i18n="btnCancel"></a>
         </div>
       </div>
