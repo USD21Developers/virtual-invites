@@ -86,16 +86,12 @@ function renderEvents() {
 async function syncEvents() {
   const endpoint = `${getAPIHost()}/invites/sync-events`;
   const accessToken = await getAccessToken();
-  const phraseSyncing = getGlobalPhrase("syncing");
-  const phraseSynced = getGlobalPhrase("synced");
-  const phraseNoNewEvents = getPhrase("noNewEvents");
-  const phraseNewEventsAvailable = getPhrase("newEventsAvailable");
+  const phraseEventsWereUpdated = getPhrase("eventsWereUpdated");
   const isOnline = navigator.onLine;
 
   return new Promise((resolve, reject) => {
     if (!isOnline) return reject(new Error("sync failed because user is offline"));
 
-    // showToast(phraseSyncing, 5000);
     fetch(endpoint, {
       mode: "cors",
       method: "GET",
@@ -132,7 +128,7 @@ async function syncEvents() {
           if (numCurrentEvents === 0) {
             await renderEvents();
           } else {
-            showToast(phraseNewEventsAvailable, 0);
+            showToast(phraseEventsWereUpdated, 0);
           }
         }
 

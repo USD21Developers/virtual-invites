@@ -39,9 +39,9 @@
       "translated": "Events synced."
     },
     {
-      "key": "newEventsAvailable",
-      "original": "New events available. Reload?",
-      "translated": "New events available. Reload?",
+      "key": "eventsWereUpdated",
+      "original": "Events have been updated. Reload?",
+      "translated": "Events have been updated. Reload?",
       "changes": [
         {
           "original": "Reload",
