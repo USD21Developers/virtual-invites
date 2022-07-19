@@ -99,7 +99,7 @@ async function onSubmit() {
     signal: controller.signal
   })
     .then(res => res.json())
-    .then(data => {
+    .then(async (data) => {
       switch (data.msg) {
         case "user is not authorized for this action":
           break;
@@ -110,12 +110,12 @@ async function onSubmit() {
         case "event not created by user":
           break;
         case "event deleted":
+          await localforage.setItem("events", JSON.stringify(data.events));
+          window.location.href = "../";
           break;
       }
 
       // TODO: handle possible responses above
-      // TODO: sync events and store new value in IDB
-      // TODO: redo logic for Add Event, so that sync follows add (no more returning all events in Add response)
 
       spinner("hide");
     })
