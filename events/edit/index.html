@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <script src="../../js/enforceaccess.js"></script>
+    <meta charset="utf-8" />
+    <meta
+      content="initial-scale=1, shrink-to-fit=no, width=device-width"
+      name="viewport"
+    />
+    <title data-i18n="pagetitle"></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,900;1,900&family=Oswald:wght@200;400&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="../../css/daemonite-material.css"
+    />
+    <link
+      href="../../js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
+      rel="stylesheet"
+    />
+    <link href="../../css/global.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light sticky-top border-bottom">
+      <a class="navbar-brand" href="/">
+        <img src="/_assets/img/logo.svg" width="133" height="50" alt="logo" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="navdrawer"
+        data-target="#navdrawerDefault"
+        aria-controls="navdrawerDefault"
+        aria-expanded="false"
+        aria-label=""
+        data-i18n-global-aria-label="toggleNavigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+
+    <div
+      aria-hidden="true"
+      class="navdrawer navdrawer-right"
+      id="navdrawerDefault"
+      tabindex="-1"
+    >
+      <div class="navdrawer-content">
+        <div class="navdrawer-header">
+          <div class="row">
+            <div class="col-9 d-flex justify-content-start">
+              <a
+                class="navbar-brand px-0"
+                href="../../"
+                data-i18n-global="apptitle"
+              ></a>
+            </div>
+            <div class="col-3 d-flex justify-content-end align-items-center">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="navdrawer"
+                data-target="#navdrawerDefault"
+                aria-controls="navdrawerDefault"
+                aria-expanded="false"
+                aria-label=""
+                data-i18n-global-aria-label="toggleNavigation"
+              >
+                <span class="material-icons mmaterial-icons-outlined">
+                  close
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <nav class="navdrawer-nav">
+          <a class="nav-item nav-link" href="../../">
+            <span class="material-icons mr-3 material-icons-outlined">
+              home
+            </span>
+            <span data-i18n-global="menuHome"></span>
+          </a>
+          <a class="nav-item nav-link" href="../../send/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              send
+            </span>
+            <span data-i18n-global="menuSendInvite"></span>
+          </a>
+          <a class="nav-item nav-link" href="../../recipients/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              people
+            </span>
+            <span data-i18n-global="menuRecipients"></span>
+          </a>
+          <a class="nav-item nav-link" href="../../events/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              event
+            </span>
+            <span data-i18n-global="menuEventsImSharing"></span>
+          </a>
+          <a class="nav-item nav-link" href="../../maps/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              place
+            </span>
+            <span data-i18n-global="menuMaps"></span>
+          </a>
+          <div class="navdrawer-divider"></div>
+          <a class="nav-item nav-link" href="../../settings/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              settings
+            </span>
+            <span data-i18n-global="menuSettings"></span>
+          </a>
+          <a class="nav-item nav-link" href="../../profile/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              account_circle
+            </span>
+            <span data-i18n-global="menuMyProfile"></span>
+          </a>
+          <a class="nav-item nav-link" href="../../support/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              contact_support
+            </span>
+            <span data-i18n-global="menuSupport"></span>
+          </a>
+          <a class="nav-item nav-link" href="../../logout/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              logout
+            </span>
+            <span data-i18n-global="menuLogOut"></span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb bg-white my-0">
+        <li class="breadcrumb-item"><a href="../../" data-i18n="breadcrumbHome">Home</a></li>
+        <li class="breadcrumb-item"><a href="../" data-i18n="breadcrumbEvents">Events</a></li>
+        <li class="breadcrumb-item active"><a href="./" data-i18n="breadcrumbEdit">Edit</a></li>
+      </ol>
+    </nav>
+
+    <div class="container" id="pageSpinner">
+      <div class="row">
+        <div class="col col-sm-10 offset-sm-1 mt-3 mb-4 text-center">
+          <img src="/_assets/img/spinner.svg" width="200" height="200" style="max-width: 100%" />
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-none" id="pageContent">
+      <div class="row">
+        <div class="col col-sm-10 offset-sm-1 mt-3 mb-4">
+          <h2 class="text-center text-uppercase m-0" data-i18n="pagetitle"></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-sm-10 offset-sm-1">
+          <form id="formAddEvent" method="POST" novalidate>
+            <input type="hidden" id="edit_eventid" />
+            <div class="form-group">
+              <div class="floating-label mt-2 mb-5">
+                <label for="language" data-i18n="labelLanguage"></label>
+                <select class="form-control" id="language"></select>
+              </div>
+              <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+            </div>
+
+            <div class="form-group">
+              <div class="floating-label mt-2 mb-5">
+                <label for="eventtype" data-i18n="labelEventType"></label>
+                <select class="form-control" id="eventtype">
+                  <option label=" "></option>
+                  <option value="bible talk" data-i18n="optionEventTypeBT"></option>
+                  <option value="church" data-i18n="optionEventTypeChurch"></option>
+                  <option value="other" data-i18n="optionEventTypeCustom"></option>
+                </select>
+                <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="floating-label my-5">
+                <label for="eventtitle" data-i18n="labelEventTitle"></label>
+                <input type="text" class="form-control" id="eventtitle" />
+                <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+              </div>
+            </div>
+
+            <div class="form-group my-5">
+              <div class="textfield-box">
+                <label
+                  for="eventdescription"
+                  data-i18n="labelEventDescription"
+                  class="d-none"
+                ></label>
+                <h4 data-i18n="labelEventDescription"></h4>
+                <textarea
+                  class="form-control"
+                  id="eventdescription"
+                  rows="6"
+                ></textarea>
+                <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+              </div>
+            </div>
+
+            <h4 class="mt-5 mb-2" data-i18n="headlineFrequency"></h4>
+
+            <div class="form-group mt-2 mb-5">
+              <select class="form-control" id="frequency">
+                <option value="" data-i18n="dropdownDefault"></option>
+                <option value="once" data-i18n="frequencyOneTime"></option>
+                <option
+                  value="Every Sunday"
+                  data-i18n="frequencyEverySunday"
+                ></option>
+                <option
+                  value="Every Monday"
+                  data-i18n="frequencyEveryMonday"
+                ></option>
+                <option
+                  value="Every Tuesday"
+                  data-i18n="frequencyEveryTuesday"
+                ></option>
+                <option
+                  value="Every Wednesday"
+                  data-i18n="frequencyEveryWednesday"
+                ></option>
+                <option
+                  value="Every Thursday"
+                  data-i18n="frequencyEveryThursday"
+                ></option>
+                <option
+                  value="Every Friday"
+                  data-i18n="frequencyEveryFriday"
+                ></option>
+                <option
+                  value="Every Saturday"
+                  data-i18n="frequencyEverySaturday"
+                ></option>
+              </select>
+              <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+            </div>
+
+            <div id="durationContainer" class="d-none">
+              <h4 class="mt-5 mb-2" data-i18n="durationInDays"></h4>
+              <div class="form-group mt-2 mb-5">
+                <select class="form-control" id="duration">
+                  <option value="" data-i18n="dropdownDefault"></option>
+                  <option value="same day" data-i18n="durationSameDay"></option>
+                  <option
+                    value="multiple days"
+                    data-i18n="durationMultipleDays"
+                  ></option>
+                </select>
+              </div>
+            </div>
+
+            <div id="durationInHoursContainer" class="d-none">
+              <h4 class="mt-5 mb-2" data-i18n="durationInHours"></h4>
+              <div class="form-group mt-2 mb-5">
+                <div class="mt-0 mb-5">
+                  <output id="durationInHoursDisplayed" class="font-weight-bold text-dark bg-light px-2 py-1 rounded border border-secondary d-inline-block text-center" style="min-width: 4em"></output>
+                  <div class="form-group mt-3">
+                    <input type="range" class="custom-range" id="durationInHours" value="2" step="0.5" min="0.5" max="8">
+                  </div>
+                </div>
+                <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+              </div>
+            </div>
+
+            <fieldset id="nextOccurrence" class="my-5 d-none">
+              <legend data-i18n="nextOccurrence"></legend>
+              <div class="form-group">
+                <div class="mt-2 mb-5">
+                  <label for="startdate" data-i18n="labelDate" class="datetime-label"></label>
+                  <input type="date" class="form-control datetime-field" id="startdate" />
+                  <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="mt-5 mb-4">
+                  <label for="starttime" data-i18n="labelStartTime" class="datetime-label"></label>
+                  <input type="time" class="form-control datetime-field" id="starttime" />
+                  <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset id="multidayBeginInfo" class="my-5 d-none">
+              <legend data-i18n="legendMultidayBegins"></legend>
+              <div class="form-group">
+                <div class="mt-2 mb-5">
+                  <label
+                    for="multidayBeginDate"
+                    data-i18n="labelDate"
+                    class="datetime-label"
+                  ></label>
+                  <input
+                    type="date"
+                    class="form-control datetime-field"
+                    id="multidayBeginDate"
+                  />
+                  <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="mt-5 mb-4">
+                  <label
+                    for="multidayBeginTime"
+                    data-i18n="labelStartTime"
+                    class="datetime-label"
+                  ></label>
+                  <input
+                    type="time"
+                    class="form-control datetime-field"
+                    id="multidayBeginTime"
+                  />
+                  <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset id="multidayEndInfo" class="my-5 d-none">
+              <legend data-i18n="legendMultidayEnds"></legend>
+              <div class="form-group">
+                <div class="mt-2 mb-5">
+                  <label for="multidayEndDate" data-i18n="labelDate" class="datetime-label"></label>
+                  <input
+                    type="date"
+                    class="form-control datetime-field"
+                    id="multidayEndDate"
+                  />
+                  <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="mt-5 mb-4">
+                  <label
+                    for="multidayEndTime"
+                    data-i18n="labelEndingTime"
+                    class="datetime-label"
+                  ></label>
+                  <input
+                    type="time"
+                    class="form-control datetime-field"
+                    id="multidayEndTime"
+                  />
+                  <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                </div>
+              </div>
+            </fieldset>
+
+            <h4 class="mt-5 mb-2" data-i18n="headlineTimezone"></h4>
+
+            <div class="form-group mt-2 mb-5">
+              <select class="form-control" id="timezone"></select>
+            </div>
+
+            <fieldset id="locationContainer" class="my-5">
+              <legend data-i18n="headlineLocation"></legend>
+              <div class="my-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="locationvisibility" id="locationIsPublic" value="public" checked>
+                  <label class="form-check-label" for="locationIsPublic">
+                    <div><strong data-i18n="locationIsPublicLine1"></strong></div>
+                    <div data-i18n="locationIsPublicLine2"></div>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="locationvisibility" id="locationIsDiscreet" value="discreet">
+                  <label class="form-check-label" for="locationIsDiscreet">
+                    <div><strong data-i18n="locationIsDiscreetLine1"></strong></div>
+                    <div data-i18n="locationIsDiscreetLine2"></div>
+                  </label>
+                </div>
+              </div>
+              <div id="locationInfo">
+                <div class="mb-5 hideIfDiscreetLocation">
+                  <h4>
+                    <span data-i18n="locationName"></span> 
+                    <span data-i18n="optional" class="font-weight-light"></span>
+                  </h4>
+                  <data class="form-group mb-3">
+                    <input type="text" class="form-control" id="locationName" />
+                  </data>
+                </div>
+                <div id="addressContainer">
+                  <h4 class="mb-0" data-i18n="addressHeadline"></h4>
+                  <div class="form-group mb-5">
+                    <div class="mb-3">
+                      <label for="addressLine1"></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="addressLine1"
+                        data-i18n-placeholder="addressLine1"
+                      />
+                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                    </div>
+                    <div class="my-3">
+                      <label for="addressLine2"></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="addressLine2"
+                        data-i18n-placeholder="addressLine2"
+                      />
+                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                    </div>
+                    <div class="my-3">
+                      <label for="addressLine3"></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="addressLine3"
+                        data-i18n-placeholder="addressLine3"
+                      />
+                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                    </div>
+
+                    <div class="my-4 form-group">
+                      <select class="form-control" id="country">
+                        <option value="" data-i18n="selectCountry"></option>
+                      </select>
+                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                    </div>
+
+                    <div id="coordinatesContainer">
+                      <h4 class="mt-5 mb-4">
+                        <span data-i18n="coordinatesHeadline"></span>
+                        <span
+                          data-i18n="optional"
+                          class="font-weight-light"
+                        ></span>
+                      </h4>
+                      <div class="row">
+                        <div class="col">
+                          <div class="floating-label">
+                            <label for="latitude" data-i18n="latitude"></label>
+                            <input
+                              id="latitude"
+                              type="number"
+                              class="form-control"
+                            />
+                            <div class="invalid-feedback"></div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="form-group">
+                            <div class="floating-label">
+                              <label for="longitude" data-i18n="longitude"></label>
+                              <input
+                                id="longitude"
+                                type="number"
+                                class="form-control"
+                              />
+                              <div class="invalid-feedback"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div id="detectCoordinates" class="mt-3 d-none">
+                        <p data-i18n="coordinatesDetectionExplanation" class="my-4"></p>
+                        <div class="text-center my-4">
+                          <button
+                            class="btn btn-info p-3"
+                            id="detectCoordinatesButton"
+                            data-i18n="buttonDetectLocation"
+                          ></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h4 class="mb-0 hideIfDiscreetLocation">
+                    <span data-i18n="headlineOtherLocationDetails"></span>
+                    <span
+                      data-i18n="optional"
+                      class="font-weight-light"
+                    ></span>
+                  </h4>
+                  <div class="form-group hideIfDiscreetLocation">
+                    <table class="text-muted mt-1 mb-2" cellpadding="3">
+                      <tbody>
+                        <tr>
+                          <td valign="top" rowspan="4" class="pr-2" data-i18n="otherLocationDetailsForExample"></td>
+                          <td class="text-muted" data-i18n="otherLocationDetailsExample1"></td>
+                        </tr>
+                        <tr>
+                          <td class="text-muted" data-i18n="otherLocationDetailsExample2"></td>
+                        </tr>
+                        <tr>
+                          <td class="text-muted" data-i18n="otherLocationDetailsExample3"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="textfield-box">
+                      <label
+                        for="otherLocationDetails"
+                        data-i18n="labelOtherLocationDetails"
+                        class="d-none"
+                      ></label>
+                      <textarea
+                        class="form-control"
+                        id="otherLocationDetails"
+                        rows="3"
+                      ></textarea>
+                      <div class="invalid-feedback"></div>
+                    </div>
+                  </div>    
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset id="attendVirtuallyContainer" class="my-5">
+              <legend>
+                <span data-i18n="headlineAttendVirtually"></span>
+                <span data-i18n="optional" class="font-weight-light"></span>
+              </legend>
+              <div>
+                <p data-i18n="attendVirtuallyExplanation"></p>
+                <div class="form-group mt-2">
+                  <div class="textfield-box">
+                    <label
+                      for="connectionDetails"
+                      data-i18n="connectionDetails"
+                    ></label>
+                    <textarea
+                      class="form-control"
+                      id="connectionDetails"
+                      rows="6"
+                      autocomplete="off"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset id="contactContainer" class="my-5">
+              <legend data-i18n="headlineContact"></legend>
+              <div class="form-group">
+                <div class="floating-label mt-3 mb-4">
+                  <label
+                    for="contactFirstName"
+                    data-i18n="contactFirstName"
+                  ></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="contactFirstName"
+                    autocomplete="given-name"
+                  />
+                  <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="floating-label my-5">
+                  <label
+                    for="contactLastName"
+                    data-i18n="contactLastName"
+                  ></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="contactLastName"
+                    autocomplete="family-name"
+                  />
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="floating-label my-5">
+                  <label
+                    for="contactPhone"
+                    data-i18n="contactPhone"
+                  ></label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="contactPhone"
+                    pattern="[0-9]*"
+                    autocomplete="tel"
+                  />
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="floating-label mt-5 mb-4">
+                  <label
+                    for="contactEmail"
+                    data-i18n="contactEmail"
+                  ></label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="contactEmail"
+                    autocomplete="email"
+                  />
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="row d-none" id="progressbar">
+              <div class="col">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-indeterminate" role="progressbar"></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="submitbuttons">
+              <div class="row">
+                <div class="col col-6 text-center">
+                  <a id="previewbutton" class="p-3 btn btn-success text-white spinner_container">
+                    <span class="material-icons material-icons-outlined mr-2">
+                      preview
+                    </span>
+                    <span data-i18n="previewButton"></span>
+                    <span class="spinner d-none"></span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="row my-5 d-none" id="submitrow">
+                <div class="col col-6">
+                  <button id="submitbutton" class="p-3 btn btn-primary btn-block btn-lg" data-i18n="submitButton"></a>
+                </div>
+                <div class="col col-6 text-center">
+                  <a href="../" class="p-3 btn btn-light btn-block btn-lg" data-i18n="cancelLink"></a>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+
+      <div class="snackbar">
+        <div class="snackbar-body"></div>
+      </div>
+    </div>
+
+    <!-- Preview modal -->
+    <div
+      class="modal fade"
+      id="preview"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="previewtitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="previewtitle" data-i18n="previewTitle"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer justify-content-center bg-light border-top">
+            <button type="button" class="close" data-dismiss="modal" aria-label="">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Errors modal -->
+    <div
+      class="modal fade"
+      id="modalFormErrors"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitleFormErrors"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modaltitleFormErrors"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+
+    <br /><br /><br /><br />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data-10-year-range.min.js" integrity="sha512-d11VXfxQMn+sZuIgzHITdIuInr4cVRGV/uLiSI643WH/J+p4gPFYSHXRMR2v+w4Rn2TSyzJjsZjc0M7+Qd+UXw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/datebook"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js" integrity="sha512-+BMamP0e7wn39JGL8nKAZ3yAQT2dL5oaXWr4ZYlTGkKOaoXM/Yj7c4oy50Ngz5yoUutAG17flueD4F6QpTlPng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../../js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
+    <script src="../../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../../js/linkifyjs/linkify.min.js"></script>
+    <script src="../../js/linkifyjs/linkify-html.min.js"></script>
+    <script src="../../js/global.js"></script>
+    <script src="../../js/isDateInPast.js"></script>
+    <script src="../../js/relativeTimeFormatPolyfill.js"></script>
+    <script src="../../js/getRelativeDate.js"></script>
+    <script src="../../js/getMobileOperatingSystem.js"></script>
+    <script src="logic.js"></script>
+  </body>
+</html>

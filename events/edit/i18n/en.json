@@ -1,0 +1,627 @@
+{
+  "metadata": {
+    "description": "Edit Event",
+    "path": "/events/edit/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Edit Event",
+      "translated": "Edit Event"
+    },
+    {
+      "key": "labelLanguage",
+      "original": "Primary language",
+      "translated": "Primary language"
+    },
+    {
+      "key": "labelEventType",
+      "original": "Type of Event",
+      "translated": "Type of Event"
+    },
+    {
+      "key": "labelEventTitle",
+      "original": "Event Title",
+      "translated": "Event Title"
+    },
+    {
+      "key": "labelEventDescription",
+      "original": "Event Description:",
+      "translated": "Event Description:"
+    },
+    {
+      "key": "headlineTimezone",
+      "original": "Time Zone:",
+      "translated": "Time Zone:"
+    },
+    {
+      "key": "optionEventTypeBT",
+      "original": "Bible Talk",
+      "translated": "Bible Talk"
+    },
+    {
+      "key": "optionEventTypeChurch",
+      "original": "Church",
+      "translated": "Church"
+    },
+    {
+      "key": "optionEventTypeSundayService",
+      "original": "Sunday Service",
+      "translated": "Sunday Service"
+    },
+    {
+      "key": "optionEventTypeCustom",
+      "original": "Other",
+      "translated": "Other"
+    },
+    {
+      "key": "headlineFrequency",
+      "original": "How often does this event occur?",
+      "translated": "How often does this event occur?"
+    },
+    {
+      "key": "dropdownDefault",
+      "original": "(Select)",
+      "translated": "(Select)"
+    },
+    {
+      "key": "frequencyOneTime",
+      "original": "Once",
+      "translated": "Once"
+    },
+    {
+      "key": "frequencyEverySunday",
+      "original": "Every Sunday",
+      "translated": "Sundays"
+    },
+    {
+      "key": "frequencyEveryMonday",
+      "original": "Every Monday",
+      "translated": "Mondays"
+    },
+    {
+      "key": "frequencyEveryTuesday",
+      "original": "Every Tuesday",
+      "translated": "Tuesdays"
+    },
+    {
+      "key": "frequencyEveryWednesday",
+      "original": "Every Wednesday",
+      "translated": "Wednesdays"
+    },
+    {
+      "key": "frequencyEveryThursday",
+      "original": "Every Thursday",
+      "translated": "Thursdays"
+    },
+    {
+      "key": "frequencyEveryFriday",
+      "original": "Every Friday",
+      "translated": "Fridays"
+    },
+    {
+      "key": "frequencyEverySaturday",
+      "original": "Every Saturday",
+      "translated": "Saturdays"
+    },
+    {
+      "key": "nextOccurrence",
+      "original": "Next Occurrence:",
+      "translated": "Next Occurrence:"
+    },
+    {
+      "key": "labelDate",
+      "original": "Date:",
+      "translated": "Date:"
+    },
+    {
+      "key": "labelStartTime",
+      "original": "Start time:",
+      "translated": "Start time:"
+    },
+    {
+      "key": "labelEndingTime",
+      "original": "Ending time:",
+      "translated": "Ending time:"
+    },
+    {
+      "key": "legendMultidayBegins",
+      "original": "Begins:",
+      "translated": "Begins:"
+    },
+    {
+      "key": "legendMultidayEnds",
+      "original": "Ends:",
+      "translated": "Ends:"
+    },
+    {
+      "key": "headlineDuration",
+      "original": "Duration:",
+      "translated": "Duration:"
+    },
+    {
+      "key": "durationInHours",
+      "original": "Duration (in hours):",
+      "translated": "Duration (in hours):"
+    },
+    {
+      "key": "durationInDays",
+      "original": "Duration (in days):",
+      "translated": "Duration (in days):"
+    },
+    {
+      "key": "durationSameDay",
+      "original": "Finishes on the same day",
+      "translated": "Finishes on the same day"
+    },
+    {
+      "key": "durationMultipleDays",
+      "original": "Spans multiple days",
+      "translated": "Spans multiple days"
+    },
+    {
+      "key": "headlineLocation",
+      "original": "Physical Location:",
+      "translated": "Physical Location:"
+    },
+    {
+      "key": "locationIsPublicLine1",
+      "original": "Location is public.",
+      "translated": "Location is public."
+    },
+    {
+      "key": "locationIsPublicLine2",
+      "original": "The address and other location details are safe to display on the invite.",
+      "translated": "The address and other location details are safe to display on the invite."
+    },
+    {
+      "key": "locationIsDiscreetLine1",
+      "original": "Location is discreet. Don't display it.",
+      "translated": "Location is discreet. Don't display it."
+    },
+    {
+      "key": "locationIsDiscreetLine2",
+      "original": "The invite recipient must inquire for location details.",
+      "translated": "The invite recipient must inquire for location details."
+    },
+    {
+      "key": "locationName",
+      "original": "Location Name",
+      "translated": "Location Name"
+    },
+    {
+      "key": "headlineOtherLocationDetails",
+      "original": "Other Details",
+      "translated": "Other Details"
+    },
+    {
+      "key": "labelOtherLocationDetails",
+      "original": "Other Details",
+      "translated": "Other Details"
+    },
+    {
+      "key": "otherLocationDetailsForExample",
+      "original": "For example:",
+      "translated": "e.g."
+    },
+    {
+      "key": "otherLocationDetailsExample1",
+      "original": "Second floor, room A",
+      "translated": "Second floor, room A"
+    },
+    {
+      "key": "otherLocationDetailsExample2",
+      "original": "Across from the red building",
+      "translated": "Across from the red building"
+    },
+    {
+      "key": "otherLocationDetailsExample3",
+      "original": "Next to the playground",
+      "translated": "Next to the playground"
+    },
+    {
+      "key": "addressHeadline",
+      "original": "Address:",
+      "translated": "Address:"
+    },
+    {
+      "key": "addressLine1",
+      "original": "Line 1",
+      "translated": "Line 1"
+    },
+    {
+      "key": "addressLine2",
+      "original": "Line 2",
+      "translated": "Line 2"
+    },
+    {
+      "key": "addressLine3",
+      "original": "Line 3",
+      "translated": "Line 3"
+    },
+    {
+      "key": "selectCountry",
+      "original": "(Select country)",
+      "translated": "(Select country)"
+    },
+    {
+      "key": "coordinatesHeadline",
+      "original": "Map Coordinates",
+      "translated": "Map Coordinates"
+    },
+    {
+      "key": "optional",
+      "original": "(optional):",
+      "translated": "(optional):"
+    },
+    {
+      "key": "coordinatesExplanation",
+      "original": "Map coordinates are useful for providing walking directions to a location with no specific address (for example, a picnic table in a large park).",
+      "translated": "Map coordinates are useful for providing walking directions to a location with no specific address (for example, a picnic table in a large park)."
+    },
+    {
+      "key": "latitude",
+      "original": "Latitude",
+      "translated": "Latitude"
+    },
+    {
+      "key": "longitude",
+      "original": "Longitude",
+      "translated": "Longitude"
+    },
+    {
+      "key": "coordinatesDetectionExplanation",
+      "original": "If you are now physically located at the meeting location, just click the button below to automatically detect its coordinates with your phone:",
+      "translated": "If you are now physically located at the meeting location, just click the button below to automatically detect its coordinates with your phone:",
+      "changes": [
+        {
+          "original": "physically located",
+          "translated": "physically located",
+          "italic": true
+        }
+      ]
+    },
+    {
+      "key": "buttonDetectLocation",
+      "original": "Detect My Location",
+      "translated": "Detect My Location"
+    },
+    {
+      "key": "geocoordinatesErrorMessage",
+      "original": "Unable to detect coordinates.",
+      "translated": "Unable to detect coordinates."
+    },
+    {
+      "key": "geocoordinatesSuccessMessage",
+      "original": "Coordinates detected successfully.",
+      "translated": "Coordinates detected successfully."
+    },
+    {
+      "key": "headlineAttendVirtually",
+      "original": "Attending Virtually",
+      "translated": "Attending Virtually"
+    },
+    {
+      "key": "attendVirtuallyExplanation",
+      "original": "If attendees can attend the event via the Internet (e.g. via Zoom, Google Meet, etc.), paste the full and complete connection details below.",
+      "translated": "If attendees can attend the event via the Internet (e.g. via Zoom, Google Meet, etc.), paste the full and complete connection details below.",
+      "changes": [
+        {
+          "original": "full and complete",
+          "translated": "full and complete",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "connectionDetails",
+      "original": "Connection Details:",
+      "translated": "Connection Details:"
+    },
+    {
+      "key": "headlineContact",
+      "original": "For more info, contact:",
+      "translated": "For more info, contact:"
+    },
+    {
+      "key": "contactFirstName",
+      "original": "First name",
+      "translated": "First name"
+    },
+    {
+      "key": "contactLastName",
+      "original": "Last name  (optional)",
+      "translated": "Last name  (optional)"
+    },
+    {
+      "key": "contactPhone",
+      "original": "Mobile phone number",
+      "translated": "Mobile phone number"
+    },
+    {
+      "key": "contactEmail",
+      "original": "E-mail address",
+      "translated": "E-mail address"
+    },
+    {
+      "key": "previewButton",
+      "original": "Preview Invite",
+      "translated": "Preview Invite"
+    },
+    {
+      "key": "submitButton",
+      "original": "Update",
+      "translated": "Update"
+    },
+    {
+      "key": "previewTitle",
+      "original": "Preview",
+      "translated": "Preview"
+    },
+    {
+      "key": "cancelLink",
+      "original": "Cancel",
+      "translated": "Cancel"
+    },
+    {
+      "key": "formIncomplete",
+      "original": "Form Incomplete",
+      "translated": "Form Incomplete"
+    },
+    {
+      "key": "fieldIsRequired",
+      "original": "This field is required.",
+      "translated": "This field is required."
+    },
+    {
+      "key": "validDateIsRequired",
+      "original": "A valid date is required.",
+      "translated": "A valid date is required."
+    },
+    {
+      "key": "datesInPastAreInvalid",
+      "original": "Events in the past are invalid.",
+      "translated": "Events in the past are invalid."
+    },
+    {
+      "key": "validTimeIsRequired",
+      "original": "A valid time is required.",
+      "translated": "A valid time is required."
+    },
+    {
+      "key": "validPhoneIsRequired",
+      "original": "A valid number is required.",
+      "translated": "A valid number is required."
+    },
+    {
+      "key": "validEmailIsRequired",
+      "original": "A valid e-mail is required.",
+      "translated": "A valid e-mail is required."
+    },
+    {
+      "key": "modalCloseButtonText",
+      "original": "Close",
+      "translated": "Close"
+    },
+    {
+      "key": "validateLanguage",
+      "original": "Please select the primary language of the event.",
+      "translated": "Please select the primary language of the event."
+    },
+    {
+      "key": "validateEventType",
+      "original": "Please select the type of event.",
+      "translated": "Please select the type of event."
+    },
+    {
+      "key": "validateEventTitle",
+      "original": "Please input the title of the event.",
+      "translated": "Please input the title of the event."
+    },
+    {
+      "key": "validateDescription",
+      "original": "Please input a full description of the event.",
+      "translated": "Please input a full description of the event."
+    },
+    {
+      "key": "validateFrequency",
+      "original": "Please select how often this event occurs.",
+      "translated": "Please select how often this event occurs."
+    },
+    {
+      "key": "validateDuration",
+      "original": "Please select the duration of the event (in days).",
+      "translated": "Please select the duration of the event (in days)."
+    },
+    {
+      "key": "validateMultidayBeginDate",
+      "original": "Please input the date when the event begins.",
+      "translated": "Please input the date when the event begins."
+    },
+    {
+      "key": "validatePastDateGeneric",
+      "original": "Please input a date and time that are not in the past.",
+      "translated": "Please input a date and time that are not in the past."
+    },
+    {
+      "key": "startDateMustPrecedeEndDate",
+      "original": "The beginning date must be earlier than the ending date.",
+      "translated": "The beginning date must be earlier than the ending date."
+    },
+    {
+      "key": "validateInvalidMultidayBeginDate",
+      "original": "Please input a valid date for when the event begins.",
+      "translated": "Please input a valid date for when the event begins."
+    },
+    {
+      "key": "validatePastMultidayBeginDate",
+      "original": "Please input a date in the future for when the event begins.",
+      "translated": "Please input a date in the future for when the event begins."
+    },
+    {
+      "key": "validateMultidayBeginTime",
+      "original": "Please input the time when the event begins.",
+      "translated": "Please input the time when the event begins."
+    },
+    {
+      "key": "validateMultidayEndDate",
+      "original": "Please input the date when the event ends.",
+      "translated": "Please input the date when the event ends."
+    },
+    {
+      "key": "validatePastMultidayEndDate",
+      "original": "Please input a date in the future for when the event ends.",
+      "translated": "Please input a date in the future for when the event ends."
+    },
+    {
+      "key": "validateInvalidMultidayEndDate",
+      "original": "Please input a valid date for when the event ends.",
+      "translated": "Please input a valid date for when the event ends."
+    },
+    {
+      "key": "validateMultidayEndTime",
+      "original": "Please input the time when the event ends.",
+      "translated": "Please input the time when the event ends."
+    },
+    {
+      "key": "datesMustNotBeOnSameDay",
+      "original": "For events that span multiple days, the beginning and ending dates must not be on the same day.",
+      "translated": "For events that span multiple days, the beginning and ending dates must not be on the same day."
+    },
+    {
+      "key": "validateMinimumAddressLines",
+      "original": "The event's address must have at least two lines.",
+      "translated": "The event's address must have at least two lines."
+    },
+    {
+      "key": "validateCountryRequired",
+      "original": "Please select the country.",
+      "translated": "Please select the country."
+    },
+    {
+      "key": "validateLatitudeRequired",
+      "original": "Please input the latitude coordinate.",
+      "translated": "Please input the latitude coordinate."
+    },
+    {
+      "key": "validateLongitudeRequired",
+      "original": "Please input the longitude coordinate.",
+      "translated": "Please input the longitude coordinate."
+    },
+    {
+      "key": "validateLocationRequired",
+      "original": "Please input either the event's address or its map coordinates.",
+      "translated": "Please input either the event's address or its map coordinates."
+    },
+    {
+      "key": "validateDiscreetLocationRequired",
+      "original": "Please input either the event's address or its map coordinates. This info is needed for proximity searches.",
+      "translated": "Please input either the event's address or its map coordinates. This info is needed for proximity searches."
+    },
+    {
+      "key": "validateMissingContactFirstName",
+      "original": "Please input the first name of a person who can be contacted about the event.",
+      "translated": "Please input the first name of a person who can be contacted about the event."
+    },
+    {
+      "key": "validateMissingContactMethod",
+      "original": "Please provide at least one method of contact.",
+      "translated": "Please provide at least one method of contact."
+    },
+    {
+      "key": "validateInvalidPhoneNumber",
+      "original": "Please check the mobile phone number for accuracy (according to the format of the selected country).",
+      "translated": "Please check the mobile phone number for accuracy (according to the format of the selected country)."
+    },
+    {
+      "key": "validateInvalidPhoneNumberForRegion",
+      "original": "The mobile phone number must be compatible with the selected country.",
+      "translated": "The mobile phone number must be compatible with the selected country."
+    },
+    {
+      "key": "validateInvalidPhoneNumberForSms",
+      "original": "The mobile phone number must be compatible with receiving SMS text messages.",
+      "translated": "The mobile phone number must be compatible with receiving SMS text messages."
+    },
+    {
+      "key": "validateInvalidEmail",
+      "original": "Please check the e-mail address for completeness and proper formatting.",
+      "translated": "Please check the e-mail address for completeness and proper formatting."
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbEvents",
+      "original": "Events",
+      "translated": "Events"
+    },
+    {
+      "key": "breadcrumbEdit",
+      "original": "Edit",
+      "translated": "Edit"
+    },
+    {
+      "key": "nextOccuranceInvalidWeekdayError",
+      "original": "You selected {recurringWeekday} as the weekday when this event repeats. But this does not match the weekday of the next occurence, which is {nextOccuranceWeekday}. The weekdays must match.",
+      "translated": "You selected {recurringWeekday} as the weekday when this event repeats. But this does not match the weekday of the next occurence, which is {nextOccuranceWeekday}. The weekdays must match."
+    },
+    {
+      "key": "nextOccuranceInvalidWeekdayInlineError",
+      "original": "Weekdays must match.",
+      "translated": "Weekdays must match."
+    },
+    {
+      "key": "duplicateEvent",
+      "original": "It seems that you have already added this event. The event's type, title and dates must be distinct from events that you've added previously.",
+      "translated": "It seems that you have already added this event. The event's type, title and dates must be distinct from events that you've added previously."
+    },
+    {
+      "key": "overlappingRecurringEvent",
+      "original": "This repeating event overlaps with another on the same weekday, entitled {EVENT-TITLE}. You can either cancel, or revise it to correct the overlap.",
+      "translated": "This repeating event overlaps with another on the same weekday, entitled {EVENT-TITLE}. You can either cancel, or revise it to correct the overlap.",
+      "changes": [
+        {
+          "original": "{EVENT-TITLE}",
+          "translated": "{EVENT-TITLE}",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
