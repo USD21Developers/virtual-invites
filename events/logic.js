@@ -8,7 +8,7 @@ function renderEvents() {
         if (!Array.isArray(myEvents)) return resolve();
         if (!myEvents.length) return resolve();
         myEvents.forEach((myEvent) => {
-          const { country, lang, eventid, frequency, multidayBeginDate, multidayEndDate, startdate, timezone, title } = myEvent;
+          const { country, lang, eventid, frequency, multidayBeginDate, multidayEndDate, startdate, timezone, title, locationname, locationaddressline1, locationaddressline2, locationaddressline3 } = myEvent;
           const locale = `${lang.toLowerCase()}-${country.toUpperCase()}`;
           const from = getPhrase("from");
           const to = getPhrase("to");
@@ -69,6 +69,12 @@ function renderEvents() {
               <div class="col-12 col-md-8 mb-3 pl-0">
                 <strong>${title}</strong>
                 <div class="small secondary">${when}</div>
+                <div class="small text-secondary">
+                  ${locationname && locationname.length ? locationname + "<br>" : ""}
+                  ${locationaddressline1 && locationaddressline1.length ? locationaddressline1 : ""}
+                  ${locationaddressline2 && locationaddressline2.length ? "<br>" + locationaddressline2 : ""}
+                  ${locationaddressline3 && locationaddressline3.length ? "<br>" + locationaddressline3 : ""}
+                </div>
               </div>
               <div class="col col-md-4 text-right text-nowrap">
                 <a
