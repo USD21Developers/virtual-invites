@@ -403,8 +403,6 @@ async function loadEvent() {
   document.querySelector("#frequency").value = frequency;
   document.querySelector("#timezone").value = timezone;
 
-  // document.querySelector("#").value = ;
-
   refreshFloatingLabels();
 }
 

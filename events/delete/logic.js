@@ -22,7 +22,7 @@ async function getEvent() {
   populateDetails(event);
 }
 
-function populateDetails(data) {
+async function populateDetails(data) {
   const details = document.querySelector("#eventdetails");
   const { country, eventid, frequency, lang, multidayBeginDate, multidayEndDate, startdate, timezone, title } = data;
   const locale = `${lang.toLowerCase()}-${country.toUpperCase()}`;
@@ -51,7 +51,30 @@ function populateDetails(data) {
       `;
     }
   } else {
-    const whenDate = frequency;
+    let whenDate;
+    switch (frequency) {
+      case "Every Sunday":
+        whenDate = getPhrase("frequencyEverySunday");
+        break;
+      case "Every Monday":
+        whenDate = getPhrase("frequencyEveryMonday");
+        break;
+      case "Every Tuesday":
+        whenDate = getPhrase("frequencyEveryTuesday");
+        break;
+      case "Every Wednesday":
+        whenDate = getPhrase("frequencyEveryWednesday");
+        break;
+      case "Every Thursday":
+        whenDate = getPhrase("frequencyEveryThursday");
+        break;
+      case "Every Friday":
+        whenDate = getPhrase("frequencyEveryFriday");
+        break;
+      case "Every Saturday":
+        whenDate = getPhrase("frequencyEverySaturday");
+        break;
+    }
     const whenTimeLocal = new Date(moment.tz(startdate, timezone).format());
     const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenTimeLocal);
     when = `${whenDate} &bull; ${whenTime}`;
@@ -61,6 +84,8 @@ function populateDetails(data) {
     <h3>${title}</h3>
     ${when}
   `;
+
+  await populateContent();
 }
 
 function spinner(action = "show") {

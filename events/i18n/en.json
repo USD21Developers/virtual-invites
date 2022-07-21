@@ -71,6 +71,41 @@
       "key": "btnDelete",
       "original": "Delete",
       "translated": "Delete"
+    },
+    {
+      "key": "frequencyEverySunday",
+      "original": "Every Sunday",
+      "translated": "Sundays"
+    },
+    {
+      "key": "frequencyEveryMonday",
+      "original": "Every Monday",
+      "translated": "Mondays"
+    },
+    {
+      "key": "frequencyEveryTuesday",
+      "original": "Every Tuesday",
+      "translated": "Tuesdays"
+    },
+    {
+      "key": "frequencyEveryWednesday",
+      "original": "Every Wednesday",
+      "translated": "Wednesdays"
+    },
+    {
+      "key": "frequencyEveryThursday",
+      "original": "Every Thursday",
+      "translated": "Thursdays"
+    },
+    {
+      "key": "frequencyEveryFriday",
+      "original": "Every Friday",
+      "translated": "Fridays"
+    },
+    {
+      "key": "frequencyEverySaturday",
+      "original": "Every Saturday",
+      "translated": "Saturdays"
     }
   ],
 
