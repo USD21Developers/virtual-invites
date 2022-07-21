@@ -405,10 +405,10 @@ async function loadEvent() {
   document.querySelector("#startdate").value = startdate;
   document.querySelector("#durationInHoursDisplayed").innerText = (durationInHours === "") ? 2 : durationInHours;
   document.querySelector("#durationInHours").value = (durationInHours === "") ? 2 : durationInHours;
-  document.querySelector("#multidayBeginDate").value = (moment(multidaybegindate).isValid()) ? moment.tz(timezone, multidaybegindate).format("YYYY-MM-DD") : "";
-  document.querySelector("#multidayBeginTime").value = (moment(multidaybegindate).isValid()) ? moment.tz(timezone, multidaybegindate).format("HH:mm") : "";
-  document.querySelector("#multidayEndDate").value = (moment(multidayenddate).isValid()) ? moment.tz(timezone, multidayenddate).format("YYYY-MM-DD") : "";
-  document.querySelector("#multidayEndTime").value = (moment(multidayenddate).isValid()) ? moment.tz(timezone, multidayenddate).format("HH:mm") : "";
+  document.querySelector("#multidayBeginDate").value = (moment(multidaybegindate).isValid()) ? moment(multidaybegindate).tz(timezone).format("YYYY-MM-DD") : "";
+  document.querySelector("#multidayBeginTime").value = (moment(multidaybegindate).isValid()) ? moment(multidaybegindate).tz(timezone).format("HH:mm") : "";
+  document.querySelector("#multidayEndDate").value = (moment(multidayenddate).isValid()) ? moment(multidayenddate).tz(timezone).format("YYYY-MM-DD") : "";
+  document.querySelector("#multidayEndTime").value = (moment(multidayenddate).isValid()) ? moment(multidayenddate).tz(timezone).format("HH:mm") : "";
   document.querySelector("#timezone").value = timezone;
 
   if (locationvisibility === "discreet") {
