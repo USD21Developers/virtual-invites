@@ -113,7 +113,7 @@ function renderEvents() {
 }
 
 async function syncEvents() {
-  const endpoint = `${getApiHost()}/invites/sync-events`;
+  const endpoint = `${getApiHost()}/sync-events`;
   const accessToken = await getAccessToken();
   const phraseEventsWereUpdated = getPhrase("eventsWereUpdated");
   const isOnline = navigator.onLine;
