@@ -15,7 +15,7 @@ function renderEvents() {
           let when = "";
 
           if (frequency === "once") {
-            if (multidayBeginDate) {
+            if (multidaybegindate) {
               const multidayBeginDateLocal = new Date(moment.tz(multidaybegindate, timezone).format());
               const multidayEndDateLocal = new Date(moment.tz(multidayenddate, timezone).format());
               const whenDateFrom = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayBeginDateLocal);
