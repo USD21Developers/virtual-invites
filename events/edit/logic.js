@@ -179,6 +179,7 @@ function getCalendarObject() {
   o.timezone = form.timezone.value;
   o.offset = getTimezoneOffset(form.timezone.value);
   o.locationvisibility = form.locationvisibility.value;
+  o.locationname = form.locationName.value;
   o.addressLine1 = form.addressLine1.value;
   o.addressLine2 = form.addressLine2.value;
   o.addressLine3 = form.addressLine3.value;
@@ -364,8 +365,6 @@ async function loadEvent() {
   pageSpinner.classList.add("d-none");
   pageContent.classList.remove("d-none");
 
-  console.log(event);
-
   const {
     churchid,
     contactemail,
@@ -385,6 +384,7 @@ async function loadEvent() {
     locationaddressline2,
     locationaddressline3,
     locationcoordinates,
+    locationname,
     locationvisibility,
     multidaybegindate,
     multidayenddate,
@@ -402,6 +402,22 @@ async function loadEvent() {
   document.querySelector("#eventdescription").value = description;
   document.querySelector("#frequency").value = frequency;
   document.querySelector("#timezone").value = timezone;
+  document.querySelector("#startdate").value = startdate;
+  document.querySelector("#durationInHoursDisplayed").innerText = (durationInHours === "") ? 2 : durationInHours;
+  document.querySelector("#durationInHours").value = (durationInHours === "") ? 2 : durationInHours;
+  document.querySelector("#multidayBeginDate").value = (moment(multidaybegindate).isValid()) ? moment.tz(timezone, multidaybegindate).format("YYYY-MM-DD") : "";
+  document.querySelector("#multidayBeginTime").value = (moment(multidaybegindate).isValid()) ? moment.tz(timezone, multidaybegindate).format("HH:mm") : "";
+  document.querySelector("#multidayEndDate").value = (moment(multidayenddate).isValid()) ? moment.tz(timezone, multidayenddate).format("YYYY-MM-DD") : "";
+  document.querySelector("#multidayEndTime").value = (moment(multidayenddate).isValid()) ? moment.tz(timezone, multidayenddate).format("HH:mm") : "";
+  document.querySelector("#timezone").value = timezone;
+
+  if (locationvisibility === "discreet") {
+    document.querySelector("#locationIsDiscreet").checked = true;
+  } else {
+    document.querySelector("#locationIsPublic").checked = true;
+  }
+
+  document.querySelector("#locationName").value = locationname;
 
   refreshFloatingLabels();
 }
@@ -494,9 +510,10 @@ function onDurationChange(e) {
 function onDurationHoursChanged(e) {
   const durationInHoursEl = document.querySelector("#durationInHours");
   const durationInHoursDisplayedEl = document.querySelector("#durationInHoursDisplayed");
-  const numHours = durationInHoursEl.value;
+  const numHours = e.target.value;
 
   durationInHoursDisplayedEl.innerText = numHours;
+  durationInHoursEl.value = numHours;
 }
 
 function onFrequencyChange(e) {
@@ -963,9 +980,8 @@ function populateDurationInHours() {
     numHours = 1.5;
   }
 
-  durationInHours.value = numHours;
-
   durationInHoursDisplayedEl.innerText = numHours;
+  durationInHours.value = durationInHoursDisplayedEl.innerText;
 }
 
 function populateFormBasedPhrases() {
