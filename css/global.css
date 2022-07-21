@@ -1,6 +1,6 @@
 body,
 td {
-  font-family: Lato, sans-serif;
+  font-family: Inter, sans-serif;
   font-size: 16px;
 }
 
@@ -106,7 +106,7 @@ h6 {
 .floating-label.has-value label {
   color: var(--secondary);
   filter: brightness(30%);
-  font-family: Lato, sans-serif;
+  font-family: Inter, sans-serif;
   font-size: 1.1rem;
   font-weight: 500;
   margin-top: -0.25rem;
@@ -132,7 +132,7 @@ h6 {
 .floating-label.is-focused label:after,
 .floating-label.has-value label:after {
   content: ":";
-  font-family: Lato, sans-serif;
+  font-family: Inter, sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
 }
@@ -183,14 +183,14 @@ h6 {
 
 .font-weight-bold,
 strong {
-  font-family: Lato, sans-serif;
+  font-family: Inter, sans-serif;
   font-weight: 400;
 }
 
 @supports (font-variation-settings: "wght" 900) {
   .font-weight-bold,
   strong {
-    font-family: Lato, sans-serif;
+    font-family: Inter, sans-serif;
     font-weight: 900;
   }
 }
