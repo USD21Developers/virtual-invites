@@ -179,6 +179,7 @@ function getCalendarObject() {
   o.timezone = form.timezone.value;
   o.offset = getTimezoneOffset(form.timezone.value);
   o.locationvisibility = form.locationvisibility.value;
+  o.locationname = form.locationName.value;
   o.addressLine1 = form.addressLine1.value;
   o.addressLine2 = form.addressLine2.value;
   o.addressLine3 = form.addressLine3.value;
@@ -434,9 +435,10 @@ function onDurationChange(e) {
 function onDurationHoursChanged(e) {
   const durationInHoursEl = document.querySelector("#durationInHours");
   const durationInHoursDisplayedEl = document.querySelector("#durationInHoursDisplayed");
-  const numHours = durationInHoursEl.value;
+  const numHours = e.target.value;
 
   durationInHoursDisplayedEl.innerText = numHours;
+  durationInHoursEl.value = numHours;
 }
 
 function onFrequencyChange(e) {
