@@ -8,7 +8,7 @@ function renderEvents() {
         if (!Array.isArray(myEvents)) return resolve();
         if (!myEvents.length) return resolve();
         myEvents.forEach((myEvent) => {
-          const { country, lang, eventid, frequency, multidayBeginDate, multidayEndDate, startdate, timezone, title, locationname, locationaddressline1, locationaddressline2, locationaddressline3 } = myEvent;
+          const { country, lang, eventid, frequency, multidaybegindate, multidayenddate, startdate, timezone, title, locationname, locationaddressline1, locationaddressline2, locationaddressline3 } = myEvent;
           const locale = `${lang.toLowerCase()}-${country.toUpperCase()}`;
           const from = getPhrase("from");
           const to = getPhrase("to");
@@ -16,8 +16,8 @@ function renderEvents() {
 
           if (frequency === "once") {
             if (multidayBeginDate) {
-              const multidayBeginDateLocal = new Date(moment.tz(multidayBeginDate, timezone).format());
-              const multidayEndDateLocal = new Date(moment.tz(multidayEndDate, timezone).format());
+              const multidayBeginDateLocal = new Date(moment.tz(multidaybegindate, timezone).format());
+              const multidayEndDateLocal = new Date(moment.tz(multidayenddate, timezone).format());
               const whenDateFrom = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayBeginDateLocal);
               const whenTimeFrom = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(multidayBeginDateLocal);
               const whenDateTo = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayEndDateLocal);
