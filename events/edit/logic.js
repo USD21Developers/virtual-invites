@@ -425,12 +425,20 @@ async function loadEvent() {
     document.querySelector("#durationInHoursContainer").classList.remove("d-none");
   }
 
+  // Duration
+  if (frequency === "once") {
+    const durationInHoursEl = document.querySelector("#durationInHours");
+    const durationInHoursDisplayedEl = document.querySelector("#durationInHoursDisplayed");
+    durationInHoursDisplayedEl.innerText = durationInHours;
+    durationInHoursEl.value = durationInHours;
+  }
+
+  // Location
   if (locationvisibility === "discreet") {
     document.querySelector("#locationIsDiscreet").checked = true;
   } else {
     document.querySelector("#locationIsPublic").checked = true;
   }
-
   document.querySelector("#locationName").value = locationname;
 
   refreshFloatingLabels();
