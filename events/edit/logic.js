@@ -401,7 +401,8 @@ async function loadEvent() {
   document.querySelector("#eventdescription").value = description;
   document.querySelector("#frequency").value = frequency;
   document.querySelector("#timezone").value = timezone;
-  document.querySelector("#startdate").value = startdate;
+  document.querySelector("#startdate").value = (moment(startdate).isValid()) ? moment(startdate).tz(timezone).format("YYYY-MM-DD") : "";
+  document.querySelector("#starttime").value = (moment(startdate).isValid()) ? moment(startdate).tz(timezone).format("HH:mm") : "";
   document.querySelector("#durationInHoursDisplayed").innerText = (durationInHours === "") ? 2 : durationInHours;
   document.querySelector("#durationInHours").value = (durationInHours === "") ? 2 : durationInHours;
   document.querySelector("#multidayBeginDate").value = (moment(multidaybegindate).isValid()) ? moment(multidaybegindate).tz(timezone).format("YYYY-MM-DD") : "";
@@ -426,19 +427,22 @@ async function loadEvent() {
   }
 
   // Duration
+  const isMultiday = ((frequency === "once") && (duration === "multiple days"));
   const durationInHoursEl = document.querySelector("#durationInHours");
   const durationInHoursDisplayedEl = document.querySelector("#durationInHoursDisplayed");
-  let showDurationHours = false;
-  if ((frequency === "once") && (duration === "same day")) {
-    showDurationHours = true;
-  } else if (frequency !== "once") {
-    showDurationHours = true;
-  }
+  let showDurationHours = isMultiday ? false : true;
   if (showDurationHours) {
     durationInHoursDisplayedEl.innerText = durationInHours;
     durationInHoursEl.value = durationInHours;
   } else {
     durationInHoursEl.classList.add("d-none");
+  }
+
+  // Date/Time(s)
+  if (isMultiday) {
+    // 
+  } else {
+    //
   }
 
   // Location
