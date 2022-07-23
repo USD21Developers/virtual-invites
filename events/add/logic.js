@@ -762,7 +762,7 @@ async function onSubmit(e) {
 
       const { events } = data;
 
-      await localforage.setItem("events", JSON.stringify(events));
+      await localforage.setItem("events", events);
 
       return window.location.href = "../";
     })

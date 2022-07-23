@@ -2,10 +2,8 @@ async function getEvent() {
   const eventid = Math.abs(parseInt(getHash()));
   if (typeof eventid !== "number") return;
 
-  const eventsJSON = await localforage.getItem("events");
-  if (!eventsJSON) return;
-
-  const events = JSON.parse(eventsJSON);
+  const events = await localforage.getItem("events") || [];
+  if (!events) return;
   if (!Array.isArray(events)) return;
   if (!events.length) return;
 
@@ -135,7 +133,7 @@ async function onSubmit() {
         case "event not created by user":
           break;
         case "event deleted":
-          await localforage.setItem("events", JSON.stringify(data.events));
+          await localforage.setItem("events", data.events);
           window.location.href = "../";
           break;
       }

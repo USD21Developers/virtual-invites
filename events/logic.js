@@ -1,8 +1,7 @@
 function renderEvents() {
   return new Promise((resolve, reject) => {
     localforage.getItem("events")
-      .then((json) => {
-        const myEvents = JSON.parse(json);
+      .then((myEvents) => {
         const el = document.querySelector("#myEvents");
         let eventsHTML = "";
         if (!Array.isArray(myEvents)) return resolve();
@@ -132,9 +131,6 @@ async function syncEvents() {
       .then((res) => res.json())
       .then(async (data) => {
         const { events } = data;
-        const eventsLocal = await localforage.getItem("events");
-        const eventsRemote = JSON.stringify(events);
-        const hash = {};
 
         // Validate sync response
         if (!Array.isArray(events)) {
@@ -142,19 +138,18 @@ async function syncEvents() {
           reject(new Error("Events in sync response must be an array."));
         }
 
-        await localforage.setItem("events", eventsRemote);
-
         // Compare local vs. remote events, and update the UI only if a change occurred
-        hash.local = await invitesCrypto.hash(eventsLocal) || JSON.stringify([]);
-        hash.remote = await invitesCrypto.hash(eventsRemote) || JSON.stringify([]);
+        const hash = {};
+        const eventsLocalJSON = JSON.stringify(await localforage.getItem("events"));
+        const eventsRemoteJSON = JSON.stringify(events);
+        hash.local = await invitesCrypto.hash(eventsLocalJSON) || JSON.stringify([]);
+        hash.remote = await invitesCrypto.hash(eventsRemoteJSON) || JSON.stringify([]);
 
         hideToast();
 
         // Respond to new data
         if (hash.local !== hash.remote) {
-          const numCurrentEvents = (eventsLocal) ? JSON.parse(eventsLocal).length : 0;
-
-          if (numCurrentEvents === 0) {
+          if (events.length === 0) {
             await renderEvents();
           } else {
             showToast(phraseEventsWereUpdated, 0);

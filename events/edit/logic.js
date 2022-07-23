@@ -351,8 +351,7 @@ async function loadEvent() {
   const pageSpinner = document.querySelector("#pageSpinner");
   const pageContent = document.querySelector("#pageContent");
   const evtid = Math.abs(parseInt(getHash()));
-  const eventsJSON = await localforage.getItem("events");
-  const events = JSON.parse(eventsJSON);
+  const events = await localforage.getItem("events") || [];
   let event = events.filter(evt => evt.eventid === evtid);
 
   if (Array.isArray(event) && event.length) {
@@ -837,7 +836,7 @@ async function onSubmit(e) {
 
       const { events } = data;
 
-      await localforage.setItem("events", JSON.stringify(events));
+      await localforage.setItem("events", events);
 
       return window.location.href = "../";
     })
