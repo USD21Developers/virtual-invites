@@ -21,6 +21,8 @@ async function getEvent() {
 }
 
 async function populateDetails(data) {
+  const pageSpinner = document.querySelector("#pageSpinner");
+  const pageContent = document.querySelector("#pageContent");
   const details = document.querySelector("#eventdetails");
   const { country, eventid, frequency, lang, multidaybegindate, multidayenddate, startdate, timezone, title } = data;
   const locale = `${lang.toLowerCase()}-${country.toUpperCase()}`;
@@ -84,6 +86,8 @@ async function populateDetails(data) {
   `;
 
   await populateContent();
+  pageSpinner.classList.add("d-none");
+  pageContent.classList.remove("d-none");
 }
 
 function spinner(action = "show") {
@@ -137,10 +141,6 @@ async function onSubmit() {
           window.location.href = "../";
           break;
       }
-
-      // TODO: handle possible responses above
-
-      spinner("hide");
     })
     .catch(err => {
       console.error(err);

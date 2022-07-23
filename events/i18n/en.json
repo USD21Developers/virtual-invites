@@ -34,12 +34,12 @@
       "translated": "Events"
     },
     {
-      "key": "noNewEvents",
+      "key": "eventsSynced",
       "original": "Events synced.",
       "translated": "Events synced."
     },
     {
-      "key": "eventsWereUpdated",
+      "key": "eventsWereUpdatedReload",
       "original": "Events have been updated. Reload?",
       "translated": "Events have been updated. Reload?",
       "changes": [

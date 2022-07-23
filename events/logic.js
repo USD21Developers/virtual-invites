@@ -1,4 +1,6 @@
 function renderEvents() {
+  const pageSpinner = document.querySelector("#pageSpinner");
+  const pageContent = document.querySelector("#pageContent");
   return new Promise((resolve, reject) => {
     localforage.getItem("events")
       .then((myEvents) => {
@@ -107,6 +109,9 @@ function renderEvents() {
       .catch((error) => {
         console.error(error);
         reject(error);
+      }).finally(() => {
+        pageSpinner.classList.add("d-none");
+        pageContent.classList.remove("d-none");
       });
   });
 }
@@ -114,8 +119,12 @@ function renderEvents() {
 async function syncEvents() {
   const endpoint = `${getApiHost()}/sync-events`;
   const accessToken = await getAccessToken();
-  const phraseEventsWereUpdated = getPhrase("eventsWereUpdated");
+  const phraseEventsWereUpdatedReload = getPhrase("eventsWereUpdatedReload");
+  const phraseEventsSynced = getPhrase("eventsSynced");
   const isOnline = navigator.onLine;
+  const myEventsEl = document.querySelector("#myEvents");
+  const pageSpinner = document.querySelector("#pageSpinner");
+  const pageContent = document.querySelector("#pageContent");
 
   return new Promise((resolve, reject) => {
     if (!isOnline) return reject(new Error("sync failed because user is offline"));
@@ -131,6 +140,7 @@ async function syncEvents() {
       .then((res) => res.json())
       .then(async (data) => {
         const { events } = data;
+        let localEvents = await localforage.getItem("events") || [];
 
         // Validate sync response
         if (!Array.isArray(events)) {
@@ -140,19 +150,39 @@ async function syncEvents() {
 
         // Compare local vs. remote events, and update the UI only if a change occurred
         const hash = {};
-        const eventsLocalJSON = JSON.stringify(await localforage.getItem("events"));
+        const eventsLocalJSON = JSON.stringify(localEvents);
         const eventsRemoteJSON = JSON.stringify(events);
         hash.local = await invitesCrypto.hash(eventsLocalJSON) || JSON.stringify([]);
         hash.remote = await invitesCrypto.hash(eventsRemoteJSON) || JSON.stringify([]);
 
         hideToast();
 
-        // Respond to new data
+        // Update IDB
+        if (events.length) {
+          await localforage.setItem("events", events);
+        } else {
+          await localforage.setItem("events", []);
+        }
+
+        // Update the view if events have changed
         if (hash.local !== hash.remote) {
-          if (events.length === 0) {
+          if (events.length) {
             await renderEvents();
+            pageSpinner.classList.add("d-none");
+            pageContent.classList.remove("d-none");
           } else {
-            showToast(phraseEventsWereUpdated, 0);
+            if (localEvents.length) {
+              pageContent.classList.add("d-none");
+              pageSpinner.classList.remove("d-none");
+              setTimeout(() => {
+                myEventsEl.innerHTML = "";
+                pageContent.classList.remove("d-none");
+                pageSpinner.classList.add("d-none");
+                showToast(phraseEventsSynced, 3000);
+              }, 1000);
+            } else {
+              showToast(phraseEventsWereUpdatedReload, 0);
+            }
           }
         }
 
