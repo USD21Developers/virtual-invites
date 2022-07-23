@@ -410,6 +410,21 @@ async function loadEvent() {
   document.querySelector("#multidayEndTime").value = (moment(multidayenddate).isValid()) ? moment(multidayenddate).tz(timezone).format("HH:mm") : "";
   document.querySelector("#timezone").value = timezone;
 
+  if (frequency === "once") {
+    // One-time events
+    if (duration === "same day") {
+      document.querySelector("#nextOccurrence").classList.remove("d-none");
+      document.querySelector("#durationInHoursContainer").classList.remove("d-none");
+    } else if (duration === "multiple days") {
+      document.querySelector("#multidayBeginInfo").classList.remove("d-none");
+      document.querySelector("#multidayEndInfo").classList.remove("d-none");
+    }
+  } else {
+    // Recurring events
+    document.querySelector("#nextOccurrence").classList.remove("d-none");
+    document.querySelector("#durationInHoursContainer").classList.remove("d-none");
+  }
+
   if (locationvisibility === "discreet") {
     document.querySelector("#locationIsDiscreet").checked = true;
   } else {
