@@ -426,11 +426,19 @@ async function loadEvent() {
   }
 
   // Duration
-  if (frequency === "once") {
-    const durationInHoursEl = document.querySelector("#durationInHours");
-    const durationInHoursDisplayedEl = document.querySelector("#durationInHoursDisplayed");
+  const durationInHoursEl = document.querySelector("#durationInHours");
+  const durationInHoursDisplayedEl = document.querySelector("#durationInHoursDisplayed");
+  let showDurationHours = false;
+  if ((frequency === "once") && (duration === "same day")) {
+    showDurationHours = true;
+  } else if (frequency !== "once") {
+    showDurationHours = true;
+  }
+  if (showDurationHours) {
     durationInHoursDisplayedEl.innerText = durationInHours;
     durationInHoursEl.value = durationInHours;
+  } else {
+    durationInHoursEl.classList.add("d-none");
   }
 
   // Location
