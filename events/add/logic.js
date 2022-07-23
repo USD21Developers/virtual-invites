@@ -466,6 +466,7 @@ function onFrequencyChange(e) {
       hide(multidayBeginInfoEl);
       hide(multidayEndInfoEl);
       hide(durationInHoursEl);
+      duration.options[0].selected = true;
       break;
     case "once":
       show(durationContainer);
