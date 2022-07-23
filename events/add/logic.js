@@ -461,6 +461,11 @@ function onFrequencyChange(e) {
 
   switch (frequency) {
     case "":
+      hide(durationContainer);
+      hide(nextOccurrenceEl);
+      hide(multidayBeginInfoEl);
+      hide(multidayEndInfoEl);
+      hide(durationInHoursEl);
       break;
     case "once":
       show(durationContainer);
