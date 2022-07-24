@@ -77,7 +77,7 @@ function renderEvents() {
                   ${locationaddressline3 && locationaddressline3.length ? "<br>" + locationaddressline3 : ""}
                 </div>
               </div>
-              <div class="col-4 text-right text-nowrap">
+              <div class="col-4 text-right text-nowrap px-0">
                 <a
                   href="edit/#${eventid}"
                   class="action_editLink small d-inline-block text-center"
