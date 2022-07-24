@@ -90,12 +90,12 @@ function renderEvents() {
 
                 <a
                   href="delete/#${eventid}"
-                  class="action_deleteLink small danger d-inline-block text-center"
+                  class="action_deleteLink danger d-inline-block text-center"
                 >
                   <span class="material-icons material-symbols-outlined">
                     delete
                   </span>
-                  <div class="mt-1 small" data-i18n="btnDelete"></div>
+                  <div class="mt-1" data-i18n="btnDelete"></div>
                 </a>
               </div>
             </div>
