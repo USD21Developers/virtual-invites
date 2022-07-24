@@ -169,7 +169,7 @@ async function syncEvents() {
           pageContent.classList.add("d-none");
           pageSpinner.classList.remove("d-none");
           if (events.length) {
-            setTimeout(() => {
+            setTimeout(async () => {
               await renderEvents();
               pageContent.classList.remove("d-none");
               pageSpinner.classList.add("d-none");
