@@ -166,19 +166,22 @@ async function syncEvents() {
 
         // Update the view if events have changed
         if (hash.local !== hash.remote) {
+          pageContent.classList.add("d-none");
+          pageSpinner.classList.remove("d-none");
           if (events.length) {
-            await renderEvents();
-            pageSpinner.classList.add("d-none");
-            pageContent.classList.remove("d-none");
+            setTimeout(() => {
+              await renderEvents();
+              pageContent.classList.remove("d-none");
+              pageSpinner.classList.add("d-none");
+              showToast(phraseEventsSynced, 2000);
+            }, 1000);
           } else {
             if (localEvents.length) {
-              pageContent.classList.add("d-none");
-              pageSpinner.classList.remove("d-none");
               setTimeout(() => {
                 myEventsEl.innerHTML = "";
                 pageContent.classList.remove("d-none");
                 pageSpinner.classList.add("d-none");
-                showToast(phraseEventsSynced, 3000);
+                showToast(phraseEventsSynced, 2000);
               }, 1000);
             } else {
               showToast(phraseEventsWereUpdatedReload, 0);
