@@ -67,7 +67,7 @@ function renderEvents() {
 
           const template = `
             <div class="row border-bottom pb-2 mb-2">
-              <div class="col-12 col-md-8 mb-3 pl-0">
+              <div class="col-8 mb-3 pl-0">
                 <strong>${title}</strong>
                 <div class="small secondary">${when}</div>
                 <div class="small text-secondary">
@@ -77,7 +77,7 @@ function renderEvents() {
                   ${locationaddressline3 && locationaddressline3.length ? "<br>" + locationaddressline3 : ""}
                 </div>
               </div>
-              <div class="col col-md-4 text-right text-nowrap">
+              <div class="col-4 text-right text-nowrap">
                 <a
                   href="edit/#${eventid}"
                   class="action_editLink small d-inline-block text-center"
