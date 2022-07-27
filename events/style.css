@@ -6,12 +6,14 @@
 }
 
 .action_editLink {
-  color: #828282;
   border-right: 1px solid #E0E0E0;
-  margin-right: 10px;
+  color: #828282;
+  margin-right: 14px;
+  min-width: 50px;
   padding-right: 14px;
 }
 
 .action_deleteLink {
   color: #FF2D55;
+  min-width: 50px;
 }
