@@ -7,11 +7,11 @@
 
 .action_editLink {
   color: #828282;
+  border-right: 1px solid #E0E0E0;
+  margin-right: 10px;
+  padding-right: 14px;
 }
 
 .action_deleteLink {
   color: #FF2D55;
-  border-left: 1px solid #E0E0E0;
-  margin-left: 10px;
-  padding-left: 14px;
 }

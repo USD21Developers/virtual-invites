@@ -452,6 +452,11 @@ async function loadEvent() {
     document.querySelector("#locationIsPublic").checked = true;
   }
   document.querySelector("#locationName").value = locationname;
+  document.querySelector("#addressLine1").value = locationaddressline1;
+  document.querySelector("#addressLine2").value = locationaddressline2;
+  document.querySelector("#addressLine3").value = locationaddressline3;
+  document.querySelector("#country").value = country;
+  document.querySelector("#latitude").value = locationcoordinates
 
   refreshFloatingLabels();
 }
