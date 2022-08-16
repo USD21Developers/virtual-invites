@@ -456,7 +456,20 @@ async function loadEvent() {
   document.querySelector("#addressLine2").value = locationaddressline2;
   document.querySelector("#addressLine3").value = locationaddressline3;
   document.querySelector("#country").value = country;
-  document.querySelector("#latitude").value = locationcoordinates
+  document.querySelector("#latitude").value = (typeof locationcoordinates === "object" && locationcoordinates.hasOwnProperty("x")) ? locationcoordinates.x : "";
+  document.querySelector("#longitude").value = (typeof locationcoordinates === "object" && locationcoordinates.hasOwnProperty("y")) ? locationcoordinates.y : "";
+  document.querySelector("#otherLocationDetails").value = otherlocationdetails;
+  document.querySelector("#connectionDetails").value = (typeof attendVirtuallyConnectionDetails === "string" && attendVirtuallyConnectionDetails.length) ? attendVirtuallyConnectionDetails : "";
+  document.querySelector("#contactFirstName").value = contactfirstname;
+  document.querySelector("#contactLastName").value = contactlastname;
+
+  const contactPhoneEl = document.querySelector("#contactPhone");
+  contactPhoneEl.value = contactphone;
+  window.intlTelInput(contactPhoneEl, {
+    utilsScript: "/js/intl-tel-input-17.0.0/js/utils.js"
+  });
+
+  document.querySelector("#contactEmail").value = contactemail;
 
   refreshFloatingLabels();
 }
