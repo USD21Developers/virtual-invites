@@ -4,10 +4,10 @@
   "description": "An application to send virtual invites to church functions for the International Christian Churches (SoldOut Discipling Movement)",
   "scripts": {
     "start": "serve -p 5555",
-    "ssh:staging": "ssh staginginvites@usd21.org -i ~/.ssh/id_rsa -p 1773",
-    "ssh:prod": "ssh invitesusd21@usd21.org -i ~/.ssh/id_rsa -p 1773",
-    "deploy:staging": "ssh staginginvites@usd21.org -i ~/.ssh/id_rsa -p 1773 \"./pull.sh\"",
-    "deploy:prod": "ssh invitesusd21@usd21.org -i ~/.ssh/id_rsa -p 1773 \"./pull.sh\""
+    "ssh:staging": "ssh staginginvites@usd21.org -i ~/.ssh/usd21/id_rsa -p 1773",
+    "ssh:prod": "ssh invitesusd21@usd21.org -i ~/.ssh/usd21/id_rsa -p 1773",
+    "deploy:staging": "ssh staginginvites@usd21.org -i ~/.ssh/usd21/id_rsa -p 1773 \"./pull.sh\"",
+    "deploy:prod": "ssh invitesusd21@usd21.org -i ~/.ssh/usd21/id_rsa -p 1773 \"./pull.sh\""
   },
   "repository": {
     "type": "git",
