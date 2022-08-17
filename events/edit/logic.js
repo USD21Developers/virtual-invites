@@ -163,6 +163,7 @@ function getCalendarObject() {
   const form = document.querySelector("#formAddEvent");
   const o = {};
 
+  o.eventid = parseInt(getHash().trim());
   o.language = form.language.value;
   o.eventtype = form.eventtype.value;
   o.eventtitle = form.eventtitle.value;
@@ -839,7 +840,7 @@ async function onSubmit(e) {
 
   const formdata = getCalendarObject();
   const accessToken = await getAccessToken();
-  const endpoint = `${getAPIHost()}/invites/event-add`;
+  const endpoint = `${getAPIHost()}/invites/event-edit`;
 
   showSpinner();
 
