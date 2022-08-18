@@ -15,8 +15,8 @@
     },
     {
       "key": "paragraph1",
-      "original": "Every invite must share a specific event. You can manage the events that you share from here.",
-      "translated": "Every invite must share a specific event. You can manage the events that you share from here."
+      "original": "Every invite shares a specific event. You can manage the events that you send from here.",
+      "translated": "Every invite shares a specific event. You can manage the events that you send from here."
     },
     {
       "key": "addevent",
