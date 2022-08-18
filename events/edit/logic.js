@@ -858,9 +858,12 @@ async function onSubmit(e) {
       const mobilePhoneEl = document.querySelector("#contactPhone");
       const mobilePhoneErrorEl = document.querySelector("#contactPhone").parentElement.parentElement.querySelector(".invalid-feedback");
 
+      if (mobilePhoneErrorEl) {
+        mobilePhoneErrorEl.innerText = "";
+        mobilePhoneErrorEl.style.display = "none";        
+      }
+      
       mobilePhoneEl.classList.remove("is-invalid");
-      mobilePhoneErrorEl.innerText = "";
-      mobilePhoneErrorEl.style.display = "none";
 
       if (data.msgType === "error") {
         hideSpinner();
