@@ -673,7 +673,7 @@ function onPreviewClosed(e) {
   refreshFloatingLabels();
 
   viewedPreview = true;
-  history.pushState(null, null, "./");
+  history.pushState(null, null, `./#${window.eventId}`);
   submitRow.classList.remove("d-none");
   customScrollTo("#submitrow");
 }
