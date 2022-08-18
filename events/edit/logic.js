@@ -401,6 +401,7 @@ async function loadEvent() {
   document.querySelector("#eventtitle").value = title;
   document.querySelector("#eventdescription").value = description;
   document.querySelector("#frequency").value = frequency;
+  document.querySelector("#duration").value = duration;
   document.querySelector("#timezone").value = timezone;
   document.querySelector("#startdate").value = (moment(startdate).isValid()) ? moment(startdate).tz(timezone).format("YYYY-MM-DD") : "";
   document.querySelector("#starttime").value = (moment(startdate).isValid()) ? moment(startdate).tz(timezone).format("HH:mm") : "";
