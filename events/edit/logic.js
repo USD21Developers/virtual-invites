@@ -163,7 +163,7 @@ function getCalendarObject() {
   const form = document.querySelector("#formAddEvent");
   const o = {};
 
-  o.eventid = parseInt(getHash().trim());
+  o.eventid = window.eventId;
   o.language = form.language.value;
   o.eventtype = form.eventtype.value;
   o.eventtitle = form.eventtitle.value;
@@ -1678,6 +1678,12 @@ function validate() {
   return true;
 }
 
+function setEventId() {
+  const eventId = Math.abs(parseInt(getHash().trim()));
+  if (typeof eventId !== "number") return;
+  window.eventId = eventId;
+}
+
 function showSpinner() {
   const spinner = document.querySelector("#progressbar");
   const submitbuttons = document.querySelector("#submitbuttons");
@@ -1749,6 +1755,7 @@ function attachListeners() {
 }
 
 async function init() {
+  setEventId();
   await populateContent();
   populateCountries();
   populateLanguages();
