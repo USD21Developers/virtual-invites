@@ -428,10 +428,20 @@ async function loadEvent() {
   }
 
   // Duration
+  const isRecurring = (frequency !== "once");
   const isMultiday = ((frequency === "once") && (duration === "multiple days"));
+  const durationInDaysEl = document.querySelector("#durationContainer");
   const durationInHoursEl = document.querySelector("#durationInHours");
   const durationInHoursDisplayedEl = document.querySelector("#durationInHoursDisplayed");
-  let showDurationHours = isMultiday ? false : true;
+  const showDurationInDays = isRecurring ? false : true;
+  const showDurationHours = isMultiday ? false : true;
+
+  if (showDurationInDays) {
+    durationInDaysEl.classList.remove("d-none");
+  } else {
+    durationInDaysEl.classList.add("d-none");
+  }
+
   if (showDurationHours) {
     durationInHoursDisplayedEl.innerText = durationInHours;
     durationInHoursEl.value = durationInHours;
