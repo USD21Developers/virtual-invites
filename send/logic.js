@@ -721,6 +721,7 @@ async function init() {
   await populateContent();
   // enableWebShareAPI();    // TURNING OFF WEB SHARE API FOR NOW
   populateSaveButtonData();
+  await syncEvents();
   loadEvents();
   setDefaultSendMethod();
   initIntlTelInput();

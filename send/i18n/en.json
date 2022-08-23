@@ -14,6 +14,16 @@
       "translated": "Send an Invite"
     },
     {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbSendInvite",
+      "original": "Send an Invite",
+      "translated": "Send an Invite"
+    },
+    {
       "key": "headlineto",
       "original": "Recipient:",
       "translated": "Recipient:"
