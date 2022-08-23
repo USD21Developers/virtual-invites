@@ -41,7 +41,7 @@ async function eventDetails(events, eventid) {
   const selectedEvent = eventEl.selectedOptions[0];
 
   if (!events) {
-    events = await localforage.getItem("events");
+    events = await localforage.getItem("events").then(res => res.json());
   }
 
   if (!eventid) {
