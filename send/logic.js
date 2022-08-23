@@ -35,7 +35,7 @@ function downloadCanvasAsImage() {
   downloadLink.click();
 }
 
-async function eventDetails(events, eventid) {
+async function eventDetails(events, eventid, evt) {
   const eventEl = document.querySelector("#events_dropdown");
   const meetingdetails = document.querySelector("#meetingdetails");
   const selectedEvent = eventEl.selectedOptions[0];
@@ -707,7 +707,7 @@ function setEventListeners() {
     .addEventListener("change", onSendViaChanged);
   document
     .querySelector("#events_dropdown")
-    .addEventListener("change", eventDetails);
+    .addEventListener("change", eventDetails(null, null, evt));
   document
     .querySelector("#tagwithlocation")
     .addEventListener("click", onTagWithLocation);
