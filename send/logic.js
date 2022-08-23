@@ -40,8 +40,8 @@ async function eventDetails(events, eventid) {
   const meetingdetails = document.querySelector("#meetingdetails");
   const selectedEvent = eventEl.selectedOptions[0];
 
-  if (!events) {
-    events = await localforage.getItem("events").then(res => res.json());
+  if (! Array.isArray(events)) {
+    events = await localforage.getItem("events");
   }
 
   if (!eventid) {
