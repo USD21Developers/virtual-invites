@@ -35,33 +35,29 @@ function downloadCanvasAsImage() {
   downloadLink.click();
 }
 
-function eventDetails() {
-  const event = document.querySelector("#events_dropdown");
+async function eventDetails(events, eventid) {
+  const eventEl = document.querySelector("#events_dropdown");
   const meetingdetails = document.querySelector("#meetingdetails");
-  const selectedEvent = event.selectedOptions[0];
-  const eventDay = selectedEvent.getAttribute("data-day");
-  const eventTime = selectedEvent.getAttribute("data-time");
-  const eventLocation = selectedEvent.getAttribute("data-location");
-  const address1 = selectedEvent.getAttribute("data-address1");
-  const address2 = selectedEvent.getAttribute("data-address2");
-  const address3 = selectedEvent.getAttribute("data-address3");
-  const meetingdetails_timedate = document.querySelector(
-    "#meetingdetails_timedate"
-  );
-  const meetingdetails_location = document.querySelector(
-    "#meetingdetails_location"
-  );
+  const selectedEvent = eventEl.selectedOptions[0];
+
+  const event = events.filter(item => item.eventid == eventid);
+
+  if (!event.length) return;
+
+  const { locationname="", locationaddressline1="", locationaddressline2="", locationaddressline3="" } = event[0];
+
+  eventDateTime = await showEventDateTime(event[0]);
 
   populateQrCode();
 
   if (selectedEvent.value === "") return meetingdetails.classList.add("d-none");
   localStorage.setItem("lastEventSelected", selectedEvent.value);
-  meetingdetails_timedate.innerHTML = `${eventDay} @ ${eventTime}`;
+  meetingdetails_timedate.innerHTML = `${eventDateTime}`;
   meetingdetails_location.innerHTML = `
-    ${eventLocation}
-    ${address1.length ? "<br>" + address1 : ""}
-    ${address2.length ? "<br>" + address2 : ""}
-    ${address3.length ? "<br>" + address3 : ""}
+    ${!!locationname && locationname.length ? locationname : ""}
+    ${!!locationaddressline1 && locationaddressline1.length ? "<br>" + locationaddressline1 : ""}
+    ${!!locationaddressline2 && locationaddressline2.length ? "<br>" + locationaddressline2 : ""}
+    ${!!locationaddressline3 && locationaddressline3.length ? "<br>" + locationaddressline3 : ""}
   `;
   meetingdetails.classList.remove("d-none");
 }
@@ -246,21 +242,19 @@ function loadDummyEvents() {
   return JSON.stringify(events);
 }
 
-async function loadEventsToInvitePeopleTo() {
+async function loadEvents() {
   const events_dropdown = document.querySelector("#events_dropdown");
   const meetingdetails = document.querySelector("#meetingdetails");
-  const events_stored = localStorage.getItem("events") || loadDummyEvents();
-  const events = JSON.parse(events_stored);
-  const events_default = localStorage.getItem("events_default") || 1;
+  const events = await localforage.getItem("events");
+  const events_default = localStorage.getItem("events_default") || 0;
   const lastEventSelected = localStorage.getItem("lastEventSelected") || "";
   let optionsContainLastEventSelected = false;
-  let options;
+  let options = "";
 
-  events.forEach((event) => {
-    const { id, name, day, time, location, address1, address2, address3 } =
-      event;
-    if (id == lastEventSelected) optionsContainLastEventSelected = true;
-    options += `<option value="${id}" data-day="${day}" data-time="${time}" data-location="${location}" data-address1="${address1}" data-address2="${address2}" data-address3="${address3}">${name}</option>`;
+  events.forEach(async (event) => {
+    const { eventid, title } = event;
+    if (eventid == lastEventSelected) optionsContainLastEventSelected = true;
+    options += `<option value="${eventid}">${title}</option>`;
   });
 
   events_dropdown.innerHTML = options;
@@ -268,10 +262,10 @@ async function loadEventsToInvitePeopleTo() {
   if (lastEventSelected.length && optionsContainLastEventSelected)
     events_dropdown.value = lastEventSelected;
 
-  eventDetails();
-  meetingdetails.classList.remove("d-none");
+  const eventid = events_dropdown.value;
 
-  // TODO:  fetch events from API for user, store the result to localStorage, then refresh the UI with it
+  eventDetails(events, eventid);
+  meetingdetails.classList.remove("d-none");
 }
 
 async function onAfterSubmitted(sendvia) {
@@ -494,6 +488,10 @@ function onTagWithLocation(e) {
       geoLocationOptions
     );
   }
+}
+
+async function populateEvents() {
+  //
 }
 
 function populateQrCode() {
@@ -723,7 +721,7 @@ async function init() {
   await populateContent();
   // enableWebShareAPI();    // TURNING OFF WEB SHARE API FOR NOW
   populateSaveButtonData();
-  loadEventsToInvitePeopleTo();
+  loadEvents();
   setDefaultSendMethod();
   initIntlTelInput();
   setEventListeners();
