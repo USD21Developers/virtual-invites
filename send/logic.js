@@ -40,6 +40,16 @@ async function eventDetails(events, eventid) {
   const meetingdetails = document.querySelector("#meetingdetails");
   const selectedEvent = eventEl.selectedOptions[0];
 
+  if (!events) {
+    events = await localforage.getItem("events");
+  }
+
+  if (!eventid) {
+    eventid = eventEl.selectedOptions[0].value;
+  }
+
+  // TODO:  If no events detected, redirect user to a UX that explains that they need to add events.
+
   const event = events.filter(item => item.eventid == eventid);
 
   if (!event.length) return;
