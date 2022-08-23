@@ -605,6 +605,75 @@ function showAlert(selectorObject, message, headline = "") {
   window.scroll({ top: offset, behavior: "smooth" });
 }
 
+function showEventDateTime(eventObj) {
+  return new Promise(async (resolve, reject) => {
+    const { country, frequency, duration, startdate, multidaybegindate, multidayenddate, timezone } = eventObj;
+    const lang = getLang();
+    const locale = `${lang.toLowerCase()}-${country.toUpperCase()}`;
+    const eventPhrasesAll = await fetch(`/events/i18n/${lang}.json`).then(res => res.json());
+    const eventPhrases = eventPhrasesAll.phrases;
+    const from = eventPhrases.filter(item => item.key === "from")[0].translated;
+    const to = eventPhrases.filter(item => item.key === "to")[0].translated;
+    const frequencyEverySunday = eventPhrases.filter(item => item.key === "frequencyEverySunday")[0].translated;
+    const frequencyEveryMonday = eventPhrases.filter(item => item.key === "frequencyEveryMonday")[0].translated;
+    const frequencyEveryTuesday = eventPhrases.filter(item => item.key === "frequencyEveryTuesday")[0].translated;
+    const frequencyEveryWednesday = eventPhrases.filter(item => item.key === "frequencyEveryWednesday")[0].translated;
+    const frequencyEveryThursday = eventPhrases.filter(item => item.key === "frequencyEveryThursday")[0].translated;
+    const frequencyEveryFriday = eventPhrases.filter(item => item.key === "frequencyEveryFriday")[0].translated;
+    const frequencyEverySaturday = eventPhrases.filter(item => item.key === "frequencyEverySaturday")[0].translated;
+    const isRecurring = frequency !== "once";
+    let html = "";
+  
+    if (isRecurring) {
+      const whenTimeLocal = new Date(moment.tz(startdate, timezone).format());
+      const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenTimeLocal);
+      let whenDate;
+      switch(frequency) {
+        case "Every Sunday":
+          whenDate = frequencyEverySunday;
+          break;
+        case "Every Monday":
+          whenDate = frequencyEveryMonday;
+          break;
+        case "Every Tuesday":
+          whenDate = frequencyEveryTuesday;
+          break;
+        case "Every Wednesday":
+          whenDate = frequencyEveryWednesday;
+          break;
+        case "Every Thursday":
+          whenDate = frequencyEveryThursday;
+          break;
+        case "Every Friday":
+          whenDate = frequencyEveryFriday;
+          break;
+        case "Every Saturday":
+          whenDate = frequencyEverySaturday;
+          break;
+      }
+      html = `<span class="eventDate">${whenDate}</span> <span class="eventSeparator">&bull;</span> <span class="eventTime">${whenTime}</span>`;
+    } else if (duration === "same day") {
+      const whenDateLocal = new Date(moment.tz(startdate, timezone).format());
+      const whenDate = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(whenDateLocal);
+      const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenDateLocal);
+      html = `<span class="eventDate">${whenDate}</span> <span class="eventSeparator">&bull;</span> <span class="eventTime">${whenTime}</span>`;
+    } else if (duration === "multiple days") {
+      const multidayBeginDateLocal = new Date(moment.tz(multidaybegindate, timezone).format());
+      const multidayEndDateLocal = new Date(moment.tz(multidayenddate, timezone).format());
+      const whenDateFrom = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayBeginDateLocal);
+      const whenTimeFrom = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(multidayBeginDateLocal);
+      const whenDateTo = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayEndDateLocal);
+      const whenTimeTo = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(multidayEndDateLocal);
+      html = `
+        <span class="eventLabel from">${from}</span> <span class="eventDate from">${whenDateFrom}</span> <span class="eventSeparator">&bull;</span> <span class="eventTime from">${whenTimeFrom}</span><br>
+        <span class="eventLabel to">${to}</span> <span class="eventDate to">${whenDateTo}</span> <span class="eventSeparator">&bull;</span> <span class="eventTime to">${whenTimeTo}</span><br>
+      `;
+    }
+  
+    resolve(html);
+  })
+}
+
 function showMaterialIcons() {
   document
     .querySelectorAll(".material-icons")
