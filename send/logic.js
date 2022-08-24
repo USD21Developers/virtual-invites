@@ -7,6 +7,23 @@ const geoLocationOptions = {
   maximumAge: 0,
 };
 
+async function checkForEvents() {
+  const events = await localforage.getItem("events");
+  let hasEvents = false;
+
+  if (Array.isArray(events) && events.length) {
+    hasEvents = true;
+  }
+
+  if (!hasEvents) {
+    return window.location.href = "../events/needed/";
+  } else {
+    return new Promise((resolve, reject) => {
+      resolve();
+    });
+  }
+}
+
 function clearForm() {
   window.addEventListener("pageshow", () => {
     const form = document.querySelector("#formsendinvite");
@@ -727,6 +744,7 @@ function setEventListeners() {
 }
 
 async function init() {
+  await checkForEvents();
   clearForm();
   await populateContent();
   // enableWebShareAPI();    // TURNING OFF WEB SHARE API FOR NOW

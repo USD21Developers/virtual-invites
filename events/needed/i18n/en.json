@@ -1,0 +1,63 @@
+{
+    "metadata": {
+      "description": "Events Needed",
+      "path": "/events/needed/",
+      "lang": {
+        "original": "en",
+        "translated": "en"
+      }
+    },
+    "phrases": [
+      {
+        "key": "pagetitle",
+        "original": "Events Needed",
+        "translated": "Events Needed"
+      },
+      {
+        "key": "breadcrumbHome",
+        "original": "Home",
+        "translated": "Home"
+      },
+      {
+        "key": "breadcrumbEvents",
+        "original": "Events",
+        "translated": "Events"
+      },
+      {
+        "key": "breadcrumbNeeded",
+        "original": "Needed",
+        "translated": "Needed"
+      },
+      {
+        "key": "paragraph1",
+        "original": "You need some events that you can promote to each invite recipient. Choose either (or both) of the following:",
+        "translated": "You need some events that you can promote to each invite recipient. Choose either (or both) of the following:"
+      }
+    ],
+  
+    "example-no-changes": [
+      {
+        "key": "",
+        "original": "",
+        "translated": ""
+      }
+    ],
+  
+    "example-has-changes": [
+      {
+        "key": "",
+        "original": "",
+        "translated": "",
+        "changes": [
+          {
+            "original": "",
+            "translated": "",
+            "bold": false,
+            "italic": false,
+            "link": ""
+          }
+        ]
+      }
+    ]
+  }
+  
