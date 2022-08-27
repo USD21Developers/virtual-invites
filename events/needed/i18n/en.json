@@ -30,8 +30,33 @@
       },
       {
         "key": "paragraph1",
-        "original": "You need some events that you can promote to each invite recipient. Choose either (or both) of the following:",
-        "translated": "You need some events that you can promote to each invite recipient. Choose either (or both) of the following:"
+        "original": "You need some events!",
+        "translated": "You need some events!"
+      },
+      {
+        "key": "paragraph2",
+        "original": "Every invite you send promotes a specific event (such as Bible Talk or Sunday Service).  You can get events by either (A) using friends' events, and/or (B) adding your own:",
+        "translated": "Every invite you send promotes a specific event (such as Bible Talk or Sunday Service).  You can get events by either (A) using friends' events, and/or (B) adding your own:"
+      },
+      {
+        "key": "optionUseFriendsEvents",
+        "original": "Use Friends' Events",
+        "translated": "Use Friends' Events"
+      },
+      {
+        "key": "optionAddMyOwnEvents",
+        "original": "Add My Own",
+        "translated": "Add My Own"
+      },
+      {
+        "key": "badgeUseFriendsEvents",
+        "original": "Convenient",
+        "translated": "Convenient"
+      },
+      {
+        "key": "badgeAddMyOwnEvents",
+        "original": "Customizable",
+        "translated": "Customizable"
       }
     ],
   
