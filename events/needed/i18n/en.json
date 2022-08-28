@@ -60,8 +60,17 @@
       },
       {
         "key": "textUseFriendsEvents",
-        "original": "Let your friends be responsible for keeping the details of their events up-to-date. You can then invite people to those events. This is a great option if your friend is one of your leaders, is in a different age group, or serves in a ministry for a distant area that you might visit.",
-        "translated": "Let your friends be responsible for keeping the details of their events up-to-date. You can then invite people to those events. This is a great option if your friend is one of your leaders, is in a different age group, or serves in a ministry for a distant area that you might visit."
+        "original": "Let your friends be responsible for keeping the details of their events up-to-date. You can then invite people to their events. This is a great option if your friend is one of your leaders, is in a different age group, or serves in a ministry for a distant area that you might visit.",
+        "translated": "Let your friends be responsible for keeping the details of their events up-to-date. You can then invite people to their events. This is a great option if your friend is one of your leaders, is in a different age group, or serves in a ministry for a distant area that you might visit.",
+        "changes": [
+          {
+            "original": "You can then invite people to their events.",
+            "translated": "You can then invite people to their events.",
+            "bold": true,
+            "italic": true,
+            "link": ""
+          }
+        ]
       },
       {
         "key": "textAddMyOwnEvents",
