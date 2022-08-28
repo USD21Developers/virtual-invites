@@ -45,8 +45,8 @@
       },
       {
         "key": "optionAddMyOwnEvents",
-        "original": "Add Events",
-        "translated": "Add Events"
+        "original": "Add an Event",
+        "translated": "Add an Event"
       },
       {
         "key": "badgeUseFriendsEvents",
@@ -55,8 +55,8 @@
       },
       {
         "key": "badgeAddMyOwnEvents",
-        "original": "Personalized",
-        "translated": "Personalized"
+        "original": "Customized",
+        "translated": "Customized"
       },
       {
         "key": "textUseFriendsEvents",
@@ -65,8 +65,8 @@
       },
       {
         "key": "textAddMyOwnEvents",
-        "original": "Customize your events with your own personal writing style. Describe what personally resonates with you. Or lead the way by publishing your event, so that your friends can use it within their invites.",
-        "translated": "Customize your events with your own personal writing style. Describe what personally resonates with you. Or lead the way by publishing your event, so that your friends can use it within their invites."
+        "original": "Customize an event with your own personal writing style. Describe what personally resonates with you. Or lead the way and write the event specifically for the friends that follow you, so they can use it within their invites.",
+        "translated": "Customize an event with your own personal writing style. Describe what personally resonates with you. Or lead the way and write the event specifically for the friends that follow you, so they can use it within their invites."
       }
     ],
   
