@@ -30,13 +30,13 @@
       },
       {
         "key": "paragraph1",
-        "original": "You need some events!",
-        "translated": "You need some events!"
+        "original": "Every invite that you send promotes a specific event (Bible Talk, Sunday Service, etc.).",
+        "translated": "Every invite that you send promotes a specific event (Bible Talk, Sunday Service, etc.)."
       },
       {
         "key": "paragraph2",
-        "original": "Every invite that you send promotes a specific event (Bible Talk, Sunday Service, etc.).  You can get events by either (A) using friends' events, or by (B) adding them yourself:",
-        "translated": "Every invite that you send promotes a specific event (Bible Talk, Sunday Service, etc.).  You can get events by either (A) using friends' events, or by (B) adding them yourself:"
+        "original": "Choose from the following options:",
+        "translated": "Choose from the following options:"
       },
       {
         "key": "optionUseFriendsEvents",
@@ -45,18 +45,28 @@
       },
       {
         "key": "optionAddMyOwnEvents",
-        "original": "Add an Event",
-        "translated": "Add an Event"
+        "original": "Add Events",
+        "translated": "Add Events"
       },
       {
         "key": "badgeUseFriendsEvents",
-        "original": "Easy",
-        "translated": "Easy"
+        "original": "Easiest",
+        "translated": "Easiest"
       },
       {
         "key": "badgeAddMyOwnEvents",
-        "original": "Customizable",
-        "translated": "Customizable"
+        "original": "Personalized",
+        "translated": "Personalized"
+      },
+      {
+        "key": "textUseFriendsEvents",
+        "original": "Let your friends be responsible for keeping the details of their events up-to-date, so you can focus on inviting people. This is a great option if your friend is an evangelist, a Bible Talk Leader, is in a different age group, or lives close to a distant area that you plan on visiting.",
+        "translated": "Let your friends be responsible for keeping the details of their events up-to-date, so you can focus on inviting people. This is a great option if your friend is an evangelist, a Bible Talk Leader, is in a different age group, or lives close to a distant area that you plan on visiting."
+      },
+      {
+        "key": "textAddMyOwnEvents",
+        "original": "Customize your events with your own personal writing style. Describe what personally resonates with you. Or lead the way, and describe your event in such a way that your followers can use it within their invites.",
+        "translated": "Customize your events with your own personal writing style. Describe what personally resonates with you. Or lead the way, and describe your event in such a way that your followers can use it within their invites."
       }
     ],
   
