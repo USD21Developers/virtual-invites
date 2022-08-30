@@ -30,52 +30,85 @@
       },
       {
         "key": "paragraph1",
-        "original": "Every invite that you send promotes a specific event (Bible Talk, Sunday Service, etc.). You'll need some events in order to send invites.",
-        "translated": "Every invite that you send promotes a specific event (Bible Talk, Sunday Service, etc.). You'll need some events in order to send invites."
+        "original": "Every invite that you send promotes a specific church event. You'll need some events in order to send your invites. You can get events throgh either (or both) of the following methods:",
+        "translated": "Every invite that you send promotes a specific church event. You'll need some events in order to send your invites. You can get events throgh either (or both) of the following methods:"
       },
       {
         "key": "paragraph2",
-        "original": "Click on either option below:",
-        "translated": "Click on either option below:"
+        "original": "There are two ways to get events:",
+        "translated": "There are two ways to get events:"
       },
       {
-        "key": "optionUseFriendsEvents",
-        "original": "Use Friends' Events",
-        "translated": "Use Friends' Events"
+        "key": "headlineFollow",
+        "original": "Follow Another User",
+        "translated": "Follow Another User"
       },
       {
-        "key": "optionAddMyOwnEvents",
-        "original": "Add an Event",
-        "translated": "Add an Event"
+        "key": "textFollow",
+        "original": "When you follow another user, you can use any of their events in your own invites. This has some powerful advantages:",
+        "translated": "When you follow another user, you can use any of their events in your own invites. This has some powerful advantages:"
       },
       {
-        "key": "badgeUseFriendsEvents",
-        "original": "Easy",
-        "translated": "Easy"
-      },
-      {
-        "key": "badgeAddMyOwnEvents",
-        "original": "Flexible",
-        "translated": "Flexible"
-      },
-      {
-        "key": "textUseFriendsEvents",
-        "original": "Let your friends be responsible for keeping the details of their events up-to-date. You can then invite people to their events. This is a great option if your friend leads an event that you already attend, or serves in a ministry for a distant area that you might visit.",
-        "translated": "Let your friends be responsible for keeping the details of their events up-to-date. You can then invite people to their events. This is a great option if your friend leads an event that you already attend, or serves in a ministry for a distant area that you might visit.",
+        "key": "bullet1Follow",
+        "original": "Accuracy. You won't have to keep any of the event details up-to-date (such as meeting times, locations or contact info). The user that you follow will be responsible for that.",
+        "translated": "Accuracy. You won't have to keep any of the event details up-to-date (such as meeting times, locations or contact info). The user that you follow will be responsible for that.",
         "changes": [
           {
-            "original": "You can then invite people to their events.",
-            "translated": "You can then invite people to their events.",
+            "original": "Accuracy.",
+            "translated": "Accuracy.",
             "bold": true,
-            "italic": true,
+            "italic": false,
             "link": ""
           }
         ]
       },
       {
-        "key": "textAddMyOwnEvents",
+        "key": "bullet2Follow",
+        "original": "Convenience. It takes time to write a motivational event description, and to assemble all of the other relevant information (like meeting times, dates, locations, contact info and virtual streaming connection info), which are always subject to change. You can leave these details to someone else.",
+        "translated": "Convenience. It takes time to write a motivational event description, and to assemble all of the other relevant information (like meeting times, dates, locations, contact info and virtual streaming connection info), which are always subject to change. You can leave these details to someone else.",
+        "changes": [
+          {
+            "original": "Convenience.",
+            "translated": "Convenience.",
+            "bold": true,
+            "italic": false,
+            "link": ""
+          }
+        ]
+      },
+      {
+        "key": "bullet3Follow",
+        "original": "Unity. When the person you follow is one of your ministry leaders (such as your evangelist or Bible Talk leader), following and sharing their events can result in an outreach message that is consistent for everyone. This could be effective in creating a sort of 'brand identity' for the group.",
+        "translated": "Unity. When the person you follow is one of your ministry leaders (such as your evangelist or Bible Talk leader), following and sharing their events can result in an outreach message that is consistent for everyone. This could be effective in creating a sort of 'brand identity' for the group.",
+        "changes": [
+          {
+            "original": "Unity.",
+            "translated": "Unity.",
+            "bold": true,
+            "italic": false,
+            "link": ""
+          }
+        ]
+      },
+      {
+        "key": "btnFollow",
+        "original": "Follow a User",
+        "translated": "Follow a User"
+      },
+      {
+        "key": "headlineAdd",
+        "original": "Add My Own Events",
+        "translated": "Add My Own Events"
+      },
+      {
+        "key": "textAdd",
         "original": "Describe an event in your own personal writing style. Emphasize whatever resonates with you. Or lead the way and write the event specifically for the friends that follow you, so they can use it within their invites.",
         "translated": "Describe an event in your own personal writing style. Emphasize whatever resonates with you. Or lead the way and write the event specifically for the friends that follow you, so they can use it within their invites."
+      },
+      {
+        "key": "btnAdd",
+        "original": "Add Event",
+        "translated": "Add Event"
       }
     ],
   
