@@ -50,8 +50,8 @@
       },
       {
         "key": "bullet1Follow",
-        "original": "Accuracy. You won't have to keep any of the event details up-to-date (such as meeting times, locations or contact info). The user that you follow will be responsible for that.",
-        "translated": "Accuracy. You won't have to keep any of the event details up-to-date (such as meeting times, locations or contact info). The user that you follow will be responsible for that.",
+        "original": "Accuracy. You won't have to keep any of the event details up-to-date. The user that you follow will be responsible for that.",
+        "translated": "Accuracy. You won't have to keep any of the event details up-to-date. The user that you follow will be responsible for that.",
         "changes": [
           {
             "original": "Accuracy.",
