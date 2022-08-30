@@ -30,8 +30,8 @@
       },
       {
         "key": "paragraph1",
-        "original": "Every invite that you send promotes a specific church event. You'll need some events in order to send your invites. You can get events through either (or both) of the following methods:",
-        "translated": "Every invite that you send promotes a specific church event. You'll need some events in order to send your invites. You can get events through either (or both) of the following methods:"
+        "original": "Every invite that you send promotes a specific church event. You'll need some events in order to send your invites. You can get events through either (or both) of the following two methods:",
+        "translated": "Every invite that you send promotes a specific church event. You'll need some events in order to send your invites. You can get events through either (or both) of the following two methods:"
       },
       {
         "key": "paragraph2",
@@ -40,8 +40,8 @@
       },
       {
         "key": "headlineFollow",
-        "original": "Follow Another User",
-        "translated": "Follow Another User"
+        "original": "1. Follow Another User",
+        "translated": "1. Follow Another User"
       },
       {
         "key": "textFollow",
@@ -97,8 +97,8 @@
       },
       {
         "key": "headlineAdd",
-        "original": "Add My Own Events",
-        "translated": "Add My Own Events"
+        "original": "2. Add My Own Events",
+        "translated": "2. Add My Own Events"
       },
       {
         "key": "textAdd",
