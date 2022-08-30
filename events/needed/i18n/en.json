@@ -64,8 +64,8 @@
       },
       {
         "key": "bullet2Follow",
-        "original": "Convenience. It takes time to write a motivational event description, and to assemble all of the other relevant information (like meeting times, dates, locations, contact info and virtual streaming connection info), which are always subject to change. You can leave these details to someone else.",
-        "translated": "Convenience. It takes time to write a motivational event description, and to assemble all of the other relevant information (like meeting times, dates, locations, contact info and virtual streaming connection info), which are always subject to change. You can leave these details to someone else.",
+        "original": "Convenience. It takes time to write a motivational event description, and to assemble all of the other relevant information (like meeting times, dates, locations, contact info and virtual streaming connection info, which are always subject to change). You can leave these details to someone else.",
+        "translated": "Convenience. It takes time to write a motivational event description, and to assemble all of the other relevant information (like meeting times, dates, locations, contact info and virtual streaming connection info, which are always subject to change). You can leave these details to someone else.",
         "changes": [
           {
             "original": "Convenience.",
