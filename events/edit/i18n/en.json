@@ -597,6 +597,25 @@
           "link": ""
         }
       ]
+    },
+    {
+      "key": "eventsSynced",
+      "original": "Events synced.",
+      "translated": "Events synced."
+    },
+    {
+      "key": "eventsWereUpdatedReload",
+      "original": "Events have been updated. Reload?",
+      "translated": "Events have been updated. Reload?",
+      "changes": [
+        {
+          "original": "Reload",
+          "translated": "Reload",
+          "bold": false,
+          "italic": false,
+          "link": "javascript:window.location.reload()"
+        }
+      ]
     }
   ],
 

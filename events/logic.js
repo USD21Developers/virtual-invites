@@ -125,6 +125,8 @@ async function syncEvents() {
   const myEventsEl = document.querySelector("#myEvents");
   const pageSpinner = document.querySelector("#pageSpinner");
   const pageContent = document.querySelector("#pageContent");
+  const controller = new AbortController();
+  const timeout = 8000;
 
   return new Promise((resolve, reject) => {
     if (!isOnline) return reject(new Error("sync failed because user is offline"));
@@ -135,7 +137,8 @@ async function syncEvents() {
       headers: new Headers({
         "Content-Type": "application/json",
         authorization: `Bearer ${accessToken}`
-      })
+      }),
+      signal: controller.signal
     })
       .then((res) => res.json())
       .then(async (data) => {
@@ -196,14 +199,19 @@ async function syncEvents() {
         hideToast();
         reject(err);
       });
+
+    setTimeout(() => {
+      controller.abort();
+      reject( new Error("event sync timed out") );
+    }, timeout);
   });
 }
 
 async function init() {
   await populateContent();
+  await syncEvents();
   await renderEvents();
   await populateContent();
-  syncEvents();
 }
 
 init();
