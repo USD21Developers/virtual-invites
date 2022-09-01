@@ -78,12 +78,12 @@
       },
       {
         "key": "bullet3Follow",
-        "original": "Unity. When the person you follow is one of your ministry leaders (such as your evangelist or Bible Talk leader), following and sharing their events can result in an outreach message that is consistent for everyone. This could be effective in creating a sort of 'brand identity' for the group.",
-        "translated": "Unity. When the person you follow is one of your ministry leaders (such as your evangelist or Bible Talk leader), following and sharing their events can result in an outreach message that is consistent for everyone. This could be effective in creating a sort of 'brand identity' for the group.",
+        "original": "Consistency. When the person you follow is one of your ministry leaders (such as your evangelist or Bible Talk leader), following and sharing their events can result in an outreach message that is consistent for everyone. This could be effective in creating a sort of 'brand identity' for the group.",
+        "translated": "Consistency. When the person you follow is one of your ministry leaders (such as your evangelist or Bible Talk leader), following and sharing their events can result in an outreach message that is consistent for everyone. This could be effective in creating a sort of 'brand identity' for the group.",
         "changes": [
           {
-            "original": "Unity.",
-            "translated": "Unity.",
+            "original": "Consistency.",
+            "translated": "Consistency.",
             "bold": true,
             "italic": false,
             "link": ""
@@ -97,18 +97,53 @@
       },
       {
         "key": "headlineAdd",
-        "original": "2. Add My Own Events",
-        "translated": "2. Add My Own Events"
+        "original": "2. Add Events Myself",
+        "translated": "2. Add Events Myself"
       },
       {
         "key": "textAdd",
-        "original": "Describe an event in your own personal writing style. Emphasize whatever resonates with you. Or lead the way and write the event specifically for the friends that follow you, so they can use it within their invites.",
-        "translated": "Describe an event in your own personal writing style. Emphasize whatever resonates with you. Or lead the way and write the event specifically for the friends that follow you, so they can use it within their invites."
+        "original": "You should add an event in these scenarios:",
+        "translated": "You should add an event in these scenarios:"
+      },
+      {
+        "key": "bullet1Add",
+        "original": "To personalize it. Add an event when you want to describe it in your own personal writing style, emphasizing whatever personally resonates with you. If you have a highly distinct personality (and if it closely matches your writing style), a personalized invite might seem more authentic to its recipients.",
+        "translated": "To personalize it. Add an event when you want to describe it in your own personal writing style, emphasizing whatever personally resonates with you. If you have a highly distinct personality (and if it closely matches your writing style), a personalized invite might seem more authentic to its recipients.",
+        "changes": [
+          {
+            "original": "To personalize it.",
+            "translated": "To personalize it.",
+            "bold": true,
+            "italic": false,
+            "link": ""
+          },
+          {
+            "original": "highly distinct",
+            "translated": "highly distinct",
+            "bold": false,
+            "italic": true,
+            "link": ""
+          }
+        ]
+      },
+      {
+        "key": "bullet2Add",
+        "original": "To lead your group. Add an event when you intend for the people who follow you to use it in their invites. If you are a Bible Talk Leader (or higher), then this is definitely the right option.",
+        "translated": "To lead your group. Add an event when you intend for the people who follow you to use it in their invites. If you are a Bible Talk Leader (or higher), then this is definitely the right option.",
+        "changes": [
+          {
+            "original": "To lead your group.",
+            "translated": "To lead your group.",
+            "bold": true,
+            "italic": false,
+            "link": ""
+          }
+        ]
       },
       {
         "key": "btnAdd",
-        "original": "Add Event",
-        "translated": "Add Event"
+        "original": "Add an Event",
+        "translated": "Add an Event"
       }
     ],
   
