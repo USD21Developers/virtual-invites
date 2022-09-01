@@ -4,6 +4,10 @@ td {
   font-size: 16px;
 }
 
+nav .breadcrumb {
+  display: none;
+}
+
 .text-underline {
   text-decoration: underline;
 }

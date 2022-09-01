@@ -428,6 +428,8 @@ async function populateContent(customEndpoint, variable = "pageContent") {
   return new Promise((resolve, reject) => {
     const lang = localStorage.getItem("lang") || "en";
     const endpoint = customEndpoint ? customEndpoint : `i18n/${lang}.json`;
+    const breadcrumbs = document.querySelector("nav .breadcrumb");
+
     fetch(endpoint)
       .then((res) => res.json())
       .then(async (data) => {
@@ -478,6 +480,7 @@ async function populateContent(customEndpoint, variable = "pageContent") {
           )?.content;
           if (matchedcontent) item.setAttribute("placeholder", matchedcontent);
         });
+        breadcrumbs.style.display = "flex";
         await populateGlobalContent();
         refreshFloatingLabels();
         resolve();
@@ -492,6 +495,8 @@ function populateGlobalContent() {
   return new Promise((resolve, reject) => {
     const lang = localStorage.getItem("lang") || "en";
     const endpoint = `/i18n-global/${lang}.json`;
+    const breadcrumbs = document.querySelector("nav .breadcrumb");
+
     fetch(endpoint)
       .then((res) => res.json())
       .then((data) => {
@@ -540,6 +545,7 @@ function populateGlobalContent() {
             )?.content;
             if (matchedcontent) item.setAttribute("aria-label", matchedcontent);
           });
+        breadcrumbs.style.display = "flex";
         resolve();
       })
       .catch((err) => {
