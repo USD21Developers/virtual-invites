@@ -355,6 +355,7 @@ async function init() {
   const countries = populateCountries();
   Promise.all([churches, countries]).then(() => {
     attachListeners();
+    globalHidePageSpinner();
   });
 }
 

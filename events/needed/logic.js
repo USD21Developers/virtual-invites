@@ -13,6 +13,7 @@ function spinner(action="show", spinnerSelector="#pageSpinner", contentSelector=
 async function init() {
     await populateContent();
     spinner("hide");
+    globalHidePageSpinner();
 }
   
 init();

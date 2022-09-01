@@ -1638,5 +1638,6 @@ async function init() {
   showCoordinatesContainer();
   initIntlTelInput();
   hideSpinner();
+  globalHidePageSpinner();
 }
 init();

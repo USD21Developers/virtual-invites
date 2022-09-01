@@ -164,6 +164,7 @@ async function init() {
   await populateContent();
   await getEvent();
   attachListeners();
+  globalHidePageSpinner();
 }
 
 init();

@@ -212,6 +212,7 @@ async function init() {
   await syncEvents();
   await renderEvents();
   await populateContent();
+  globalHidePageSpinner();
 }
 
 init();

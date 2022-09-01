@@ -755,6 +755,7 @@ async function init() {
   setEventListeners();
   getCoordinatesOnLoad();
   showTagInviteWithLocation();
+  globalHidePageSpinner()
 }
 
 init();

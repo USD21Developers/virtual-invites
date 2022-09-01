@@ -409,6 +409,14 @@ function getTimezoneOffset(timezoneName) {
   return returnVal;
 }
 
+function globalHidePageSpinner() {
+  const pageSpinner = document.querySelector("#pageSpinner");
+  const mainContent = document.querySelector(".mainContent");
+
+  pageSpinner.classList.add("d-none");
+  mainContent.classList.remove("d-none");
+}
+
 function randomIntFromInterval(min = 0, max = 500) { // min and max included 
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
@@ -480,7 +488,7 @@ async function populateContent(customEndpoint, variable = "pageContent") {
           )?.content;
           if (matchedcontent) item.setAttribute("placeholder", matchedcontent);
         });
-        breadcrumbs.style.display = "flex";
+        breadcrumbs ? breadcrumbs.style.display = "flex" : "";
         await populateGlobalContent();
         refreshFloatingLabels();
         resolve();
@@ -545,7 +553,7 @@ function populateGlobalContent() {
             )?.content;
             if (matchedcontent) item.setAttribute("aria-label", matchedcontent);
           });
-        breadcrumbs.style.display = "flex";
+        breadcrumbs ? breadcrumbs.style.display = "flex" : "";
         resolve();
       })
       .catch((err) => {

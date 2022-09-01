@@ -70,6 +70,7 @@ function onConfirmed(refreshToken, accessToken) {
 async function init() {
   await populateContent();
   checkConfirmationToken();
+  globalHidePageSpinner();
 }
 
 init();
