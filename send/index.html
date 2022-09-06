@@ -180,6 +180,31 @@
         </div>
       </div>
 
+      <div class="form-group row mb-3">
+        <div
+          class="col-4 col-md-2 offset-md-2 col-form-label py-1 pr-0 text-right"
+        >
+          <h4 class="text-uppercase" data-i18n="headlinevia"></h4>
+        </div>
+        <div class="col-8 col-md-5" id="sendViaOptions">
+          <select
+            tabindex="3"
+            name="sendvia"
+            id="sendvia"
+            class="form-control"
+          >
+            <option value="sms" data-i18n="viasms"></option>
+            <option value="email" data-i18n="viaemail"></option>
+            <option value="qrcode" data-i18n="viaqrcode"></option>
+            <!-- <option
+              value="otherapps"
+              data-i18n="viaotherapps"
+              class="d-none"
+            ></option> -->
+          </select>
+        </div>
+      </div>
+
       <form
         name="formsendinvite"
         id="formsendinvite"
@@ -251,30 +276,7 @@
           </div>
         </div>
 
-        <div class="form-group row mb-3">
-          <div
-            class="col-4 col-md-2 offset-md-2 col-form-label py-1 pr-0 text-right"
-          >
-            <h4 class="text-uppercase" data-i18n="headlinevia"></h4>
-          </div>
-          <div class="col-8 col-md-5" id="sendViaOptions">
-            <select
-              tabindex="3"
-              name="sendvia"
-              id="sendvia"
-              class="form-control"
-            >
-              <option value="sms" data-i18n="viasms"></option>
-              <option value="email" data-i18n="viaemail"></option>
-              <option value="qrcode" data-i18n="viaqrcode"></option>
-              <!-- <option
-                value="otherapps"
-                data-i18n="viaotherapps"
-                class="d-none"
-              ></option> -->
-            </select>
-          </div>
-        </div>
+        
 
         <div class="row d-none" id="containerSendToQRCode">
           <div class="col col-sm-8 offset-sm-3 col-md-5 offset-md-4">
