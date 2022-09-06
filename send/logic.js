@@ -269,30 +269,35 @@ function loadDummyEvents() {
   return JSON.stringify(events);
 }
 
-async function loadEvents() {
+function loadEvents() {
   const events_dropdown = document.querySelector("#events_dropdown");
   const meetingdetails = document.querySelector("#meetingdetails");
-  const events = await localforage.getItem("events");
   const events_default = localStorage.getItem("events_default") || 0;
   const lastEventSelected = localStorage.getItem("lastEventSelected") || "";
-  let optionsContainLastEventSelected = false;
-  let options = "";
 
-  events.forEach(async (event) => {
-    const { eventid, title } = event;
-    if (eventid == lastEventSelected) optionsContainLastEventSelected = true;
-    options += `<option value="${eventid}">${title}</option>`;
+  return new Promise((resolve, reject) => {
+    localforage.getItem("events").then(events => {
+      let optionsContainLastEventSelected = false;
+      let options = "";
+    
+      events.forEach(async (event) => {
+        const { eventid, title } = event;
+        if (eventid == lastEventSelected) optionsContainLastEventSelected = true;
+        options += `<option value="${eventid}">${title}</option>`;
+      });
+    
+      events_dropdown.innerHTML = options;
+      events_dropdown.options[events_default].selected = true;
+      if (lastEventSelected.length && optionsContainLastEventSelected)
+        events_dropdown.value = lastEventSelected;
+    
+      const eventid = events_dropdown.value;
+    
+      eventDetails(events, eventid);
+      meetingdetails.classList.remove("d-none");
+      resolve();
+    });
   });
-
-  events_dropdown.innerHTML = options;
-  events_dropdown.options[events_default].selected = true;
-  if (lastEventSelected.length && optionsContainLastEventSelected)
-    events_dropdown.value = lastEventSelected;
-
-  const eventid = events_dropdown.value;
-
-  eventDetails(events, eventid);
-  meetingdetails.classList.remove("d-none");
 }
 
 async function onAfterSubmitted(sendvia) {
@@ -749,7 +754,7 @@ async function init() {
   await populateContent();
   // enableWebShareAPI();    // TURNING OFF WEB SHARE API FOR NOW
   populateSaveButtonData();
-  loadEvents();
+  await loadEvents();
   setDefaultSendMethod();
   initIntlTelInput();
   setEventListeners();
