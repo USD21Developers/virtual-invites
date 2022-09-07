@@ -1,0 +1,122 @@
+{
+    "metadata": {
+      "description": "Follow a User",
+      "path": "/follow/",
+      "lang": {
+        "original": "en",
+        "translated": "en"
+      }
+    },
+    "phrases": [
+      {
+        "key": "pagetitle",
+        "original": "Follow a User",
+        "translated": "Follow a User"
+      },
+      {
+        "key": "breadcrumbHome",
+        "original": "Home",
+        "translated": "Home"
+      },
+      {
+        "key": "breadcrumbFollow",
+        "original": "Follow",
+        "translated": "Follow"
+      },
+      {
+        "key": "paragraph1",
+        "original": "When you follow a user, you can use all the events that they have added within your invites.",
+        "translated": "When you follow a user, you can use all the events that they have added within your invites.",
+        "changes": [
+          {
+            "original": "Learn More",
+            "translated": "Learn More",
+            "bold": false,
+            "italic": false,
+            "link": "about/"
+          }
+        ]
+      },
+      {
+        "key": "btnLearnMore",
+        "original": "Learn More",
+        "translated": "Learn More"
+      },
+      {
+        "key": "searchByName",
+        "original": "Search by Name",
+        "translated": "Search by Name"
+      },
+      {
+        "key": "labelNameSearched",
+        "original": "Full Name:",
+        "translated": "Full Name:"
+      },
+      {
+        "key": "usersNamePlaceholder",
+        "original": "Full name",
+        "translated": "Full name"
+      },
+      {
+        "key": "limitSearchTo",
+        "original": "Limit search to:",
+        "translated": "Limit search to:"
+      },
+      {
+        "key": "allUsers",
+        "original": "All users",
+        "translated": "All users"
+      },
+      {
+        "key": "btnSearch",
+        "original": "Search",
+        "translated": "Search"
+      },
+      {
+        "key": "searchResults",
+        "original": "Search Results",
+        "translated": "Search Results"
+      },
+      {
+        "key": "noUsersFound",
+        "original": "No users were found.",
+        "translated": "No users were found."
+      },
+      {
+        "key": "numUsersFound",
+        "original": "{quantity} users found:",
+        "translated": "{quantity} users found:"
+      },
+      {
+        "key": "numMore",
+        "original": "{quantity} more",
+        "translated": "{quantity} more"
+      }
+    ],
+  
+    "example-no-changes": [
+      {
+        "key": "",
+        "original": "",
+        "translated": ""
+      }
+    ],
+  
+    "example-has-changes": [
+      {
+        "key": "",
+        "original": "",
+        "translated": "",
+        "changes": [
+          {
+            "original": "",
+            "translated": "",
+            "bold": false,
+            "italic": false,
+            "link": ""
+          }
+        ]
+      }
+    ]
+  }
+  
