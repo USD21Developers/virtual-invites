@@ -27,6 +27,11 @@
       "key": "eventslink",
       "original": "Events",
       "translated": "Events"
+    },
+    {
+      "key": "followlink",
+      "original": "Follow a User",
+      "translated": "Follow a User"
     }
   ],
 

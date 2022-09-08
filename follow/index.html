@@ -30,7 +30,6 @@
       rel="stylesheet"
     />
     <link href="../css/global.css" rel="stylesheet" />
-    <link href="style.css" rel="stylesheet" />
   </head>
   <body>
     <nav class="navbar navbar-light bg-light sticky-top border-bottom">
@@ -104,7 +103,7 @@
             </span>
             <span data-i18n-global="menuRecipients"></span>
           </a>
-          <a class="nav-item nav-link active" href="../events/">
+          <a class="nav-item nav-link" href="../events/">
             <span class="material-icons mr-3 material-icons-outlined">
               event
             </span>
@@ -179,24 +178,20 @@
         <div class="col col-sm-10 offset-sm-1">
             <p class="mt-0 mb-4">
                 <span data-i18n="paragraph1"></span>
-                <a class="btn btn-sm btn-link border border-default ml-2" data-i18n="btnLearnMore"></a>
+                <a href="about/" class="text-primary" data-i18n="learnMore"></a>
             </p>
 
             <h4 class="mb-4" data-i18n="searchByName"></h4>
 
-            <form id="searchByName">
-                <div class="form-group">
-                    <label for="namesearched" data-i18n="labelNameSearched" class="text-uppercase"></label>
-                    <input type="search" class="form-control" id="namesearched" />
+            <form id="formSearchByName">
+              <div class="input-group">
+                <input type="search" class="form-control" id="nameSearched" list="localusers" data-i18n-placeholder="usersNamePlaceholder">
+                <datalist id="localusers"></datalist>
+                <div class="input-group-append">
+                  <button class="btn btn-primary btn-sm" type="submit" data-i18n="btnSearch"></button>
                 </div>
-                <div class="mt-4">
-                    <button class="btn btn-primary">
-                        <span class="material-icons">
-                            search
-                        </span>
-                        <span class="ml-2" data-i18n="btnSearch"></span>
-                    </button>
-                </div>
+                <div class="invalid-feedback" data-i18n="errorNameIsRequired"></div>
+              </div>
             </form>
         </div>
       </div>

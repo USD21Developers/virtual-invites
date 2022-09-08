@@ -26,26 +26,17 @@
       {
         "key": "paragraph1",
         "original": "When you follow a user, you can use all the events that they have added within your invites.",
-        "translated": "When you follow a user, you can use all the events that they have added within your invites.",
-        "changes": [
-          {
-            "original": "Learn More",
-            "translated": "Learn More",
-            "bold": false,
-            "italic": false,
-            "link": "about/"
-          }
-        ]
+        "translated": "When you follow a user, you can use all the events that they have added within your invites."
       },
       {
-        "key": "btnLearnMore",
+        "key": "learnMore",
         "original": "Learn More",
         "translated": "Learn More"
       },
       {
         "key": "searchByName",
-        "original": "Search by Name",
-        "translated": "Search by Name"
+        "original": "Search Users by Name:",
+        "translated": "Search Users by Name:"
       },
       {
         "key": "labelNameSearched",
@@ -54,8 +45,8 @@
       },
       {
         "key": "usersNamePlaceholder",
-        "original": "Full name",
-        "translated": "Full name"
+        "original": "First and last name",
+        "translated": "First and last name"
       },
       {
         "key": "limitSearchTo",
@@ -91,6 +82,11 @@
         "key": "numMore",
         "original": "{quantity} more",
         "translated": "{quantity} more"
+      },
+      {
+        "key": "errorNameIsRequired",
+        "original": "User's name is required",
+        "translated": "User's name is required"
       }
     ],
   
