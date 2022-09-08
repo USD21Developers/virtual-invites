@@ -27,6 +27,8 @@ function onNameSearchInputted(e) {
             item.classList.remove("is-invalid");
         });
     }
+
+    // TODO:  Check indexedDB for list of all registered users in the church congregation of the current user. If populated, insert names into the datalist. Then sync silently.
 }
 
 function attachListeners() {
