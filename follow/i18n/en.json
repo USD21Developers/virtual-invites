@@ -39,19 +39,19 @@
         "translated": "Search Users by Name:"
       },
       {
-        "key": "labelNameSearched",
-        "original": "Full Name:",
-        "translated": "Full Name:"
+        "key": "labelFirstName",
+        "original": "First Name:",
+        "translated": "First Name:"
       },
       {
-        "key": "usersNamePlaceholder",
-        "original": "First and last name",
-        "translated": "First and last name"
+        "key": "labelLastName",
+        "original": "Last Name:",
+        "translated": "Last Name:"
       },
       {
-        "key": "limitSearchTo",
-        "original": "Limit search to:",
-        "translated": "Limit search to:"
+        "key": "limitToLocalCongregation",
+        "original": "Limit to my local congregation",
+        "translated": "Limit to my local congregation"
       },
       {
         "key": "allUsers",
@@ -85,8 +85,8 @@
       },
       {
         "key": "errorNameIsRequired",
-        "original": "User's name is required",
-        "translated": "User's name is required"
+        "original": "Name is required",
+        "translated": "Name is required"
       }
     ],
   
