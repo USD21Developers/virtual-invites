@@ -424,6 +424,8 @@ async function loadEvent() {
     }
   } else {
     // Recurring events
+    const nextOccurrenceDate = getNextRecurringWeekday( document.querySelector("#startdate").value, document.querySelector("#starttime").value );
+    document.querySelector("#startdate").value = nextOccurrenceDate.format("YYYY-MM-DD");
     document.querySelector("#nextOccurrence").classList.remove("d-none");
     document.querySelector("#durationInHoursContainer").classList.remove("d-none");
   }
