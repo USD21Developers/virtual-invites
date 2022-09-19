@@ -313,6 +313,20 @@ function getLocale() {
   return locale;
 }
 
+function getNextRecurringWeekday(initialDate) {
+  const now = moment();
+  const firstOccurrence = moment(initialDate);
+  const weekdayNumber = firstOccurrence.day();
+  const militaryTime = firstOccurrence.format("HH:mm");
+  const nextOccurrence = moment( moment().day(weekdayNumber).format(`YYYY-MM-DDT${militaryTime}`) )
+
+  if (firstOccurrence.isBefore(now)) {
+    return nextOccurrence;
+  } else {
+    return firstOccurrence;
+  }
+}
+
 function getPhrase(key) {
   let content = "";
   const errorMessage = `phrase key "${key}" was not found`;
