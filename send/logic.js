@@ -638,9 +638,9 @@ function selectSendVia(method) {
         });
       });
       if (!method) {
-        const qrCodeContainerOffset =
+        /* const qrCodeContainerOffset =
           document.getElementById("containerSendToQRCode").offsetTop - 80;
-        window.scroll({ top: qrCodeContainerOffset, behavior: "smooth" });
+        window.scroll({ top: qrCodeContainerOffset, behavior: "smooth" }); */
       }
       break;
     case "otherapps":
