@@ -40,13 +40,13 @@
       },
       {
         "key": "labelFirstName",
-        "original": "First Name:",
-        "translated": "First Name:"
+        "original": "First Name",
+        "translated": "First Name"
       },
       {
         "key": "labelLastName",
-        "original": "Last Name:",
-        "translated": "Last Name:"
+        "original": "Last Name",
+        "translated": "Last Name"
       },
       {
         "key": "limitToLocalCongregation",
