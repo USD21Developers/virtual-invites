@@ -209,6 +209,7 @@ async function syncEvents() {
 
 async function init() {
   await populateContent();
+  await renderEvents();
   await syncEvents();
   await renderEvents();
   await populateContent();
