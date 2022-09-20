@@ -138,7 +138,8 @@ async function syncEvents() {
         "Content-Type": "application/json",
         authorization: `Bearer ${accessToken}`
       }),
-      signal: controller.signal
+      signal: controller.signal,
+      keepalive: true
     })
       .then((res) => res.json())
       .then(async (data) => {
