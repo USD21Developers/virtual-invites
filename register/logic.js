@@ -339,6 +339,24 @@ function validate() {
   return isValid;
 }
 
+function onPhotoSelected(event) {
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    const preview = document.getElementById("photoPreview");
+    const container = document.querySelector("#photoPreviewContainer");
+
+    if (reader.result && reader.result.length) {
+      preview.setAttribute("src", reader.result);
+      container.classList.remove("d-none");
+    } else {
+      container.classList.add("d-none");
+    }
+  }
+
+  reader.readAsDataURL(event.target.files[0]);
+}
+
 function attachListeners() {
   document
     .querySelector("#country")
@@ -347,6 +365,7 @@ function attachListeners() {
     .querySelector("#churchid")
     .addEventListener("change", onChurchChange);
   document.querySelector("#formlogin").addEventListener("submit", onSubmit);
+  document.querySelector("#photoUpload").addEventListener("change", onPhotoSelected);
 }
 
 async function init() {

@@ -49,6 +49,11 @@
       "translated": "Gender:"
     },
     {
+      "key": "label-photoupload",
+      "original": "Profile photo:",
+      "translated": "Profile photo:"
+    },
+    {
       "key": "label-gender-male",
       "original": "Male",
       "translated": "Male"
