@@ -18,6 +18,7 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" integrity="sha512-zxBiDORGDEAYDdKLuYU9X/JaJo/DPzE42UubfBw9yg8Qvb2YRRIQ8v4KsGHOx2H1/+sdSXyXxLXv5r7tHc9ygg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/daemonite-material.css" />
     <link href="../css/global.css" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
@@ -239,14 +240,47 @@
             </div>
 
             <div class="form-group my-5">
-              <label for="photoUpload" data-i18n="label-photoupload"></label>
+              <h3 data-i18n="headline-photoupload" class="text-center mt-0 mb-4"></h3>
 
-              <div class="mt-3">
-                <input type="file" id="photoUpload" capture="user" accept="image/jpg">
-
-                <div class="mt-4 text-center d-none" id="photoPreviewContainer">
-                  <img id="photoPreview" alt="Preview" />
+              <div class="text-center">
+                
+                <div id="formTakeASelfie" class="d-none">
+                  <label for="photoCapture">Take a selfie</label>
+                  <input type="file" id="photoCapture" accept="image/*" capture="user" />
+                  <br><br>              
                 </div>
+              
+                <div id="formSelectAPhoto">
+                  <label for="photoUpload">Select a photo</label>
+                  <input type="file" id="photoUpload" accept="image/*">
+                </div>
+              
+                <div id="photoPreviewContainer" class="d-none">
+                  <br><br>              
+
+                  <div id="photoPreview"></div>
+
+                  <div class="container" id="rotateButtons" hidden>
+                    <div class="row">
+                      <div class="col text-center">
+                        <button type="button" class="rotate" data-deg="-90">
+                          <big>&#10227;</big>
+                          &nbsp;
+                          Rotate
+                        </button>
+                      </div>
+
+                      <!-- <div class="col text-center">
+                        <button type="button" class="mirror" data-deg="-180">
+                          <big>&#11138;</big>
+                          &nbsp;
+                          Mirror
+                        </button>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+                
               </div>
             </div>
 
@@ -364,6 +398,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js" integrity="sha512-Gs+PsXsGkmr+15rqObPJbenQ2wB3qYvTHuJO6YJzPe/dTLvhy0fmae2BcnaozxDo5iaF8emzmCZWbQ1XXiX2Ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
     <script src="../js/global.js"></script>
     <script src="logic.js"></script>

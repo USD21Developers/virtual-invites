@@ -2,8 +2,22 @@ label {
   font-size: 16px;
 }
 
-#photoPreview {
-  height: auto;
-  width: 300px;
-  max-width: 100%;
+#photoUpload,
+#photoCapture {
+  display: none;
+}
+
+label[for="photoUpload"],
+label[for="photoCapture"] {
+  background-color: #006699;
+  border: 3px outset #1177aa;
+  color: white;
+  display: inline-block;
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  padding: 8px 15px;
+}
+
+#rotateButtons big {
+  font-size: 1.2em;
 }

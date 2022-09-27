@@ -1,5 +1,126 @@
 let churches = [];
 
+function initCroppie() {
+  let photoData = {
+    url: "",
+    points: "",
+    zoom: "",
+    orientation: ""
+  };
+  
+  let vanilla;
+
+  function showRotateButtons() {
+    const rotateButtons = document.querySelector("#rotateButtons");
+    rotateButtons.removeAttribute("hidden");
+  }
+
+  function showTakeASelfie() {
+    const form = document.querySelector("#formTakeASelfie");
+    const testElement = document.createElement('input');
+    const isCaptureSupported = testElement.capture != undefined;
+
+    if (isCaptureSupported) {
+      form.removeAttribute("hidden");
+    }
+  }
+
+  function onMirror(photoData, vanilla) {
+    const { url, points, zoom, orientation } = photoData;
+    
+    vanilla.bind({
+      url: url,
+      points: points,
+      zoom: zoom,
+      orientation: 2
+    });
+
+  }
+  
+  function onRotate(evt) {
+    const degrees = evt.target.getAttribute("data-deg");
+    vanilla.rotate(parseInt(degrees));
+  }
+  
+  function onPhotoSelected(event) {
+    const croppieContainer = document.getElementById("photoPreview");
+  
+    document.querySelector("#photoPreviewContainer").classList.remove("d-none");
+
+    croppieContainer.innerHTML = "";
+    croppieContainer.classList.remove("croppie-container");
+  
+    vanilla = new Croppie(croppieContainer, {
+      viewport: { width: 250, height: 250, type: "circle" },
+      boundary: { width: 250, height: 250 },
+      type: "circle",
+      showZoomer: true,
+      enableOrientation: true,
+      enableResize: false
+    });
+  
+    const reader = new FileReader();
+    reader.onload = () => {
+      photoData.url = reader.result;
+      vanilla
+        .bind({
+          url: reader.result
+        })
+        .then(() => {
+          showRotateButtons();
+          croppieContainer.addEventListener("update", function (evt) {
+            const { points, zoom, orientation } = vanilla.get();
+  
+            photoData.points = points;
+            photoData.zoom = zoom;
+            photoData.orientation = orientation;
+          });
+        });
+  
+      vanilla
+        .result({
+          type: "base64",
+          size: "viewport",
+          format: "png",
+          quality: 1,
+          circle: true
+        })
+        .then((response) => {
+          photoData.url = response;
+        });
+    };
+  
+    reader.readAsDataURL(event.target.files[0]);
+  }
+  
+  function attachListeners() {
+    document
+      .querySelector("#photoUpload")
+      .addEventListener("change", onPhotoSelected);
+  
+    document
+      .querySelector("#photoCapture")
+      .addEventListener("change", onPhotoSelected);
+  
+    document.querySelectorAll(".rotate").forEach((item) => {
+      item.addEventListener("click", onRotate);
+    });
+
+    document.querySelector(".mirror")?.addEventListener("click", (evt) => {
+      onMirror(photoData, vanilla);
+    });
+  }
+  
+  function init() {
+    console.clear();
+    attachListeners();
+    showTakeASelfie();
+  }
+  
+  init();
+  
+}
+
 function onChurchChange(e) {
   const churchid = e.target.value;
   const unlistedchurch = document.querySelector("#unlistedchurch");
@@ -376,6 +497,8 @@ async function init() {
     attachListeners();
     globalHidePageSpinner();
   });
+
+  initCroppie();
 }
 
 init();
