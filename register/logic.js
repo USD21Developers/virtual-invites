@@ -1,15 +1,15 @@
 let churches = [];
 
-function initCroppie() {
-  let photoData = {
-    url: "",
-    points: "",
-    zoom: "",
-    orientation: ""
-  };
-  
-  let vanilla;
+let photoData = {
+  url: "",
+  points: "",
+  zoom: "",
+  orientation: ""
+};
 
+let vanilla;
+
+function initCroppie() {
   function showRotateButtons() {
     const rotateButtons = document.querySelector("#rotateButtons");
     rotateButtons.removeAttribute("hidden");
@@ -64,7 +64,8 @@ function initCroppie() {
       photoData.url = reader.result;
       vanilla
         .bind({
-          url: reader.result
+          url: reader.result,
+          orientation: 2
         })
         .then(() => {
           showRotateButtons();
