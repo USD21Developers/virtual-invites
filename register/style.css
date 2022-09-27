@@ -7,7 +7,7 @@ label {
   display: none;
 }
 
-label[for="photoUpload"],
+/* label[for="photoUpload"],
 label[for="photoCapture"] {
   background-color: #006699;
   border: 3px outset #1177aa;
@@ -16,4 +16,4 @@ label[for="photoCapture"] {
   font-family: Montserrat, sans-serif;
   font-size: 16px;
   padding: 8px 15px;
-}
+} */
