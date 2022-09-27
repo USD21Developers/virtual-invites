@@ -21,7 +21,7 @@ function initCroppie() {
     const isCaptureSupported = testElement.capture != undefined;
 
     if (isCaptureSupported) {
-      form.removeAttribute("hidden");
+      form.classList.remove("d-none");
     }
   }
 
