@@ -13,7 +13,8 @@ async function getProfileImage() {
   const profileImage = await vanilla.result({
     type: "base64",
     size: {width: 400, height: 400},
-    format: "jpeg"
+    format: "jpeg",
+    circle: false
   });
 
   return profileImage;
