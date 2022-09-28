@@ -9,6 +9,16 @@ let photoData = {
 
 let vanilla;
 
+async function getProfileImage() {
+  const profileImage = await vanilla.result({
+    type: "base64",
+    size: {width: 400, height: 400},
+    format: "jpeg"
+  });
+
+  return profileImage;
+}
+
 function initCroppie() {
   function showRotateButtons() {
     const rotateButtons = document.querySelector("#rotateButtons");
@@ -206,6 +216,7 @@ async function onSubmit(e) {
   const churchid = document.querySelector("#churchid").value.trim() || "";
   const unlistedchurch =
     document.querySelector("#unlistedchurch").value.trim() || "";
+  const profileImage = getProfileImage();
   const emailSenderText = getPhrase("emailSenderText");
   const emailSubject = getPhrase("emailSubject");
   let emailParagraph1 = getPhrase("emailParagraph1");
@@ -240,6 +251,7 @@ async function onSubmit(e) {
       country: country,
       churchid: churchid,
       unlistedchurch: unlistedchurch,
+      profileImage: profileImage,
       lang: lang,
       emailSenderText: emailSenderText,
       emailSubject: emailSubject,
