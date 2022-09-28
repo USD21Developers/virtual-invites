@@ -65,7 +65,7 @@ function initCroppie() {
       vanilla
         .bind({
           url: reader.result,
-          orientation: 2
+          orientation: 1
         })
         .then(() => {
           showRotateButtons();
