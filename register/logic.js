@@ -13,7 +13,8 @@ function getProfileImage() {
   return vanilla.result({
     type: "base64",
     size: {width: 400, height: 400},
-    format: "webp",
+    format: "jpg",
+    quality: 0.75,
     circle: false
   });
 }
