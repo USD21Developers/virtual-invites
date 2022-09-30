@@ -9,15 +9,13 @@ let photoData = {
 
 let vanilla;
 
-async function getProfileImage() {
-  const profileImage = await vanilla.result({
+function getProfileImage() {
+  return vanilla.result({
     type: "base64",
     size: {width: 400, height: 400},
     format: "jpeg",
     circle: false
   });
-
-  return profileImage;
 }
 
 function initCroppie() {
@@ -217,7 +215,7 @@ async function onSubmit(e) {
   const churchid = document.querySelector("#churchid").value.trim() || "";
   const unlistedchurch =
     document.querySelector("#unlistedchurch").value.trim() || "";
-  const profileImage = getProfileImage();
+  const profileImage = await getProfileImage();
   const emailSenderText = getPhrase("emailSenderText");
   const emailSubject = getPhrase("emailSubject");
   let emailParagraph1 = getPhrase("emailParagraph1");
@@ -334,11 +332,11 @@ async function onSubmit(e) {
       }
     });
 
-  setTimeout(() => {
+  /* setTimeout(() => {
     controller.abort();
     hide(spinner);
     show(submitButton);
-  }, 5000);
+  }, 5000); */
 }
 
 async function populateChurches() {
