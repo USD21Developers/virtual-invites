@@ -332,11 +332,11 @@ async function onSubmit(e) {
       }
     });
 
-  /* setTimeout(() => {
+  setTimeout(() => {
     controller.abort();
     hide(spinner);
     show(submitButton);
-  }, 5000); */
+  }, 25000);
 }
 
 async function populateChurches() {
