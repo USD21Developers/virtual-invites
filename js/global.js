@@ -153,6 +153,7 @@ function formErrorsReset() {
   document
     .querySelectorAll(".invalid-feedback")
     .forEach((item) => (item.innerHTML = ""));
+  document.querySelectorAll(".invalid-feedback-unbound").forEach((item) => item.classList.add("d-none"));
 }
 
 function getAccessToken() {

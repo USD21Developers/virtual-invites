@@ -69,6 +69,11 @@
       "translated": "Authorize a New User"
     },
     {
+      "key": "ok",
+      "original": "OK",
+      "translated": "OK"
+    },
+    {
       "key": "close",
       "original": "Close",
       "translated": "Close"

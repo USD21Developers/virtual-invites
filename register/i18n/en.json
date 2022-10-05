@@ -219,6 +219,11 @@
       "translated": "A minimum length of 8 characters is required.  Using a phrase (rather than a single word) is encouraged, because phrases are less predictable."
     },
     {
+      "key": "photoIsRequired",
+      "original": "Please provide a profile photo:",
+      "translated": "Please provide a profile photo:"
+    },
+    {
       "key": "checkyouremailtitle",
       "original": "Check your e-mail",
       "translated": "Check your e-mail"

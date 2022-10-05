@@ -10,6 +10,13 @@ let photoData = {
 let vanilla;
 
 function getProfileImage() {
+  const profileImagePath = document.querySelector("#photoUpload");
+
+  if (!profileImagePath) return false;
+  if (!profileImagePath.length) return "";
+  if (!vanilla) return false;
+  if (typeof vanilla.__proto__.result !== "function") return "";
+
   return vanilla.result({
     type: "base64",
     size: {width: 400, height: 400},
@@ -320,6 +327,11 @@ async function onSubmit(e) {
           `;
           showModal(modalMessage, getPhrase("invalidpassword"));
           break;
+        case "profile photo missing":
+          const photoIsRequired = document.querySelector("#photoIsRequired");
+          photoIsRequired.classList.remove("d-none");
+          customScrollTo("#profilePhotoHeadline");
+          break;
         case "confirmation e-mail sent":
           const defaultContent = document.querySelector("#contentdefault");
           const doneContent = document.querySelector("#contentdone");
@@ -479,12 +491,15 @@ function onPhotoSelected(event) {
   reader.onload = () => {
     const preview = document.getElementById("photoPreview");
     const container = document.querySelector("#photoPreviewContainer");
+    const photoIsRequired = document.querySelector("#photoIsRequired");
 
     if (reader.result && reader.result.length) {
       preview.setAttribute("src", reader.result);
       container.classList.remove("d-none");
+      photoIsRequired.classList.add("d-none");
     } else {
       container.classList.add("d-none");
+      photoIsRequired.classList.remove("d-none");
     }
   }
 
