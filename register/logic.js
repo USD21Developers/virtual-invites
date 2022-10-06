@@ -10,11 +10,7 @@ let photoData = {
 let vanilla;
 
 function getProfileImage() {
-  const profileImagePath = document.querySelector("#photoUpload");
-
-  if (!profileImagePath) return false;
-  if (!profileImagePath.length) return "";
-  if (!vanilla) return false;
+  if (!vanilla) return "";
   if (typeof vanilla.__proto__.result !== "function") return "";
 
   return vanilla.result({
@@ -328,9 +324,7 @@ async function onSubmit(e) {
           showModal(modalMessage, getPhrase("invalidpassword"));
           break;
         case "profile photo missing":
-          const photoIsRequired = document.querySelector("#photoIsRequired");
-          photoIsRequired.classList.remove("d-none");
-          customScrollTo("#profilePhotoHeadline");
+          showProfilePhotoError();
           break;
         case "confirmation e-mail sent":
           const defaultContent = document.querySelector("#contentdefault");
@@ -440,7 +434,15 @@ function populateCountries() {
   });
 }
 
-function validate() {
+function showProfilePhotoError() {
+  const photoIsRequired = document.querySelector("#photoIsRequired");
+
+  photoIsRequired.classList.remove("d-none");
+
+  customScrollTo("#profilePhotoHeadline");
+}
+
+async function validate() {
   let isValid = true;
 
   const username =
@@ -457,6 +459,7 @@ function validate() {
   const churchid = document.querySelector("#churchid").value.trim() || "";
   const unlistedchurch =
     document.querySelector("#unlistedchurch").value.trim() || "";
+  const profileImage = await getProfileImage();
 
   if (!username.length)
     return formError("#username", getPhrase("usernamerequired"));
@@ -481,6 +484,10 @@ function validate() {
     return formError("#churchid", getPhrase("churchrequired"));
   if (churchid == 0 && !unlistedchurch.length)
     return formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
+
+  if (profileImage === "") {
+    return showProfilePhotoError();
+  }
 
   return isValid;
 }
