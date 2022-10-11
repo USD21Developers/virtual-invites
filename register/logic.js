@@ -4,7 +4,7 @@ let photoData = {
   url: "",
   points: "",
   zoom: "",
-  orientation: ""
+  orientation: "",
 };
 
 let vanilla;
@@ -15,10 +15,10 @@ function getProfileImage() {
 
   return vanilla.result({
     type: "base64",
-    size: {width: 400, height: 400},
+    size: { width: 400, height: 400 },
     format: "jpg",
     quality: 0.75,
-    circle: false
+    circle: false,
   });
 }
 
@@ -30,7 +30,7 @@ function initCroppie() {
 
   function showTakeASelfie() {
     const form = document.querySelector("#formTakeASelfie");
-    const testElement = document.createElement('input');
+    const testElement = document.createElement("input");
     const isCaptureSupported = testElement.capture != undefined;
 
     if (isCaptureSupported) {
@@ -40,82 +40,100 @@ function initCroppie() {
 
   function onMirror(photoData, vanilla) {
     const { url, points, zoom, orientation } = photoData;
-    
+
     vanilla.bind({
       url: url,
       points: points,
       zoom: zoom,
-      orientation: 2
+      orientation: 2,
     });
-
   }
-  
+
   function onRotate(evt) {
     const degrees = evt.target.getAttribute("data-deg");
     vanilla.rotate(parseInt(degrees));
   }
-  
+
   function onPhotoSelected(event) {
     const croppieContainer = document.getElementById("photoPreview");
-  
+
     document.querySelector("#photoPreviewContainer").classList.remove("d-none");
 
     croppieContainer.innerHTML = "";
     croppieContainer.classList.remove("croppie-container");
-  
+
     vanilla = new Croppie(croppieContainer, {
       viewport: { width: 250, height: 250, type: "circle" },
       boundary: { width: 250, height: 250 },
       type: "circle",
       showZoomer: true,
       enableOrientation: true,
-      enableResize: false
+      enableResize: false,
     });
-  
+
     const reader = new FileReader();
     reader.onload = () => {
       photoData.url = reader.result;
       vanilla
         .bind({
           url: reader.result,
-          orientation: 1
+          orientation: 1,
         })
         .then(() => {
           showRotateButtons();
           croppieContainer.addEventListener("update", function (evt) {
             const { points, zoom, orientation } = vanilla.get();
-  
+
             photoData.points = points;
             photoData.zoom = zoom;
             photoData.orientation = orientation;
           });
         });
-  
+
       vanilla
         .result({
           type: "base64",
           size: "viewport",
-          format: "webp",
+          format: "jpeg",
           quality: 1,
-          circle: true
+          circle: true,
         })
         .then((response) => {
           photoData.url = response;
         });
     };
-  
-    reader.readAsDataURL(event.target.files[0]);
+
+    const isHeic =
+      event.target.files[0].name.slice(-4) === "heic" ? true : false;
+    if (isHeic) {
+      const readerHeic = new FileReader();
+      readerHeic.onload = async function (e) {
+        const blob = new Blob([new Uint8Array(e.target.result)], {
+          type: "image/heic",
+        });
+        const conversionResult = await heic2any({
+          blob,
+          toType: "image/jpeg",
+          quality: 0.5, // cuts the quality and size by half
+        });
+        reader.readAsDataURL(conversionResult);
+      };
+      const file = document.querySelector("#photoUpload").files[0];
+      readerHeic.readAsArrayBuffer(file);
+    } else {
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
-  
+
   function attachListeners() {
     document
       .querySelector("#photoUpload")
       .addEventListener("change", onPhotoSelected);
-  
+
     document
       .querySelector("#photoCapture")
       .addEventListener("change", onPhotoSelected);
-  
+
     document.querySelectorAll(".rotate").forEach((item) => {
       item.addEventListener("click", onRotate);
     });
@@ -124,15 +142,14 @@ function initCroppie() {
       onMirror(photoData, vanilla);
     });
   }
-  
+
   function init() {
     console.clear();
     attachListeners();
     showTakeASelfie();
   }
-  
+
   init();
-  
 }
 
 function onChurchChange(e) {
@@ -493,6 +510,8 @@ async function validate() {
 }
 
 function onPhotoSelected(event) {
+  const isHeic = event.target.files[0].name.slice(-4) === "heic" ? true : false;
+
   const reader = new FileReader();
 
   reader.onload = () => {
@@ -508,9 +527,26 @@ function onPhotoSelected(event) {
       container.classList.add("d-none");
       photoIsRequired.classList.remove("d-none");
     }
-  }
+  };
 
-  reader.readAsDataURL(event.target.files[0]);
+  if (isHeic) {
+    const readerHeic = new FileReader();
+    readerHeic.onload = async function (e) {
+      const blob = new Blob([new Uint8Array(e.target.result)], {
+        type: "image/heic",
+      });
+      const conversionResult = await heic2any({
+        blob,
+        toType: "image/jpeg",
+        quality: 0.5, // cuts the quality and size by half
+      });
+      reader.readAsDataURL(conversionResult);
+    };
+    const file = document.querySelector("#photoUpload").files[0];
+    readerHeic.readAsArrayBuffer(file);
+  } else {
+    reader.readAsDataURL(event.target.files[0]);
+  }
 }
 
 function attachListeners() {
@@ -521,7 +557,9 @@ function attachListeners() {
     .querySelector("#churchid")
     .addEventListener("change", onChurchChange);
   document.querySelector("#formlogin").addEventListener("submit", onSubmit);
-  document.querySelector("#photoUpload").addEventListener("change", onPhotoSelected);
+  document
+    .querySelector("#photoUpload")
+    .addEventListener("change", onPhotoSelected);
 }
 
 async function init() {
