@@ -128,8 +128,7 @@ function initCroppie() {
         });
         const conversionResult = await heic2any({
           blob,
-          toType: "image/jpeg",
-          quality: 0.5, // cuts the quality and size by half
+          toType: "image/jpeg"
         });
         reader.readAsDataURL(conversionResult);
       };
