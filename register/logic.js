@@ -23,6 +23,18 @@ function getProfileImage() {
 }
 
 function initCroppie() {
+  function loadHeic2Any() {
+    return new Promise((resolve, reject) => {
+      const url = "https://cdnjs.cloudflare.com/ajax/libs/heic2any/0.0.3/heic2any.min.js";
+      const heicToAnyJS = document.createElement("script");
+      heicToAnyJS.setAttribute("src", url);
+      heicToAnyJS.addEventListener("load", () => {
+        resolve();
+      });
+      document.querySelector("head").appendChild(heicToAnyJS);
+    });
+  }
+
   function showRotateButtons() {
     const rotateButtons = document.querySelector("#rotateButtons");
     rotateButtons.removeAttribute("hidden");
@@ -54,10 +66,9 @@ function initCroppie() {
     vanilla.rotate(parseInt(degrees));
   }
 
-  function onPhotoSelected(event) {
+  async function onPhotoSelected(event) {
     const croppieContainer = document.getElementById("photoPreview");
-
-    document.querySelector("#photoPreviewContainer").classList.remove("d-none");
+    const photoPreviewContainer = document.querySelector("#photoPreviewContainer");
 
     croppieContainer.innerHTML = "";
     croppieContainer.classList.remove("croppie-container");
@@ -72,8 +83,9 @@ function initCroppie() {
     });
 
     const reader = new FileReader();
-    reader.onload = () => {
+    reader.onload = async() => {
       photoData.url = reader.result;
+      photoPreviewContainer.classList.remove("d-none");
       vanilla
         .bind({
           url: reader.result,
@@ -107,6 +119,9 @@ function initCroppie() {
       event.target.files[0].name.slice(-4) === "heic" ? true : false;
     if (isHeic) {
       const readerHeic = new FileReader();
+
+      await loadHeic2Any();
+
       readerHeic.onload = async function (e) {
         const blob = new Blob([new Uint8Array(e.target.result)], {
           type: "image/heic",
@@ -509,46 +524,6 @@ async function validate() {
   return isValid;
 }
 
-function onPhotoSelected(event) {
-  const isHeic = event.target.files[0].name.slice(-4) === "heic" ? true : false;
-
-  const reader = new FileReader();
-
-  reader.onload = () => {
-    const preview = document.getElementById("photoPreview");
-    const container = document.querySelector("#photoPreviewContainer");
-    const photoIsRequired = document.querySelector("#photoIsRequired");
-
-    if (reader.result && reader.result.length) {
-      preview.setAttribute("src", reader.result);
-      container.classList.remove("d-none");
-      photoIsRequired.classList.add("d-none");
-    } else {
-      container.classList.add("d-none");
-      photoIsRequired.classList.remove("d-none");
-    }
-  };
-
-  if (isHeic) {
-    const readerHeic = new FileReader();
-    readerHeic.onload = async function (e) {
-      const blob = new Blob([new Uint8Array(e.target.result)], {
-        type: "image/heic",
-      });
-      const conversionResult = await heic2any({
-        blob,
-        toType: "image/jpeg",
-        quality: 0.5, // cuts the quality and size by half
-      });
-      reader.readAsDataURL(conversionResult);
-    };
-    const file = document.querySelector("#photoUpload").files[0];
-    readerHeic.readAsArrayBuffer(file);
-  } else {
-    reader.readAsDataURL(event.target.files[0]);
-  }
-}
-
 function attachListeners() {
   document
     .querySelector("#country")
@@ -557,9 +532,6 @@ function attachListeners() {
     .querySelector("#churchid")
     .addEventListener("change", onChurchChange);
   document.querySelector("#formlogin").addEventListener("submit", onSubmit);
-  document
-    .querySelector("#photoUpload")
-    .addEventListener("change", onPhotoSelected);
 }
 
 async function init() {
