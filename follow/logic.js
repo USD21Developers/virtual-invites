@@ -4,13 +4,14 @@ function hideAlert() {
 }
 
 function hideSpinner() {
-    const searchResults = document.querySelector("#searchResults");
-    searchResults.innerHTML = "";
+    const searchSpinner = document.querySelector("#searchSpinner");
+
+    searchSpinner.classList.add("d-none");
 }
 
 function noMatchesFound() {
-    const searchResults = document.querySelector("#searchResults");
     const alert = document.querySelector("#alert");
+    const searchResults = document.querySelector("#searchResults");
 
     searchResults.classList.add("d-none");
     searchResults.innerHTML = "";
@@ -23,18 +24,9 @@ function showMatchesFound(matches) {
 }
 
 function showSpinner() {
-    const searchResults = document.querySelector("#searchResults");
-    searchResults.innerHTML = `
-        <div class="text-center">
-            <img
-                src="/_assets/img/spinner.svg"
-                width="200"
-                height="200"
-                style="max-width: 100%"
-            />
-        </div>
-    `;
-    searchResults.classList.remove("d-none");
+    const searchSpinner = document.querySelector("#searchSpinner");
+
+    searchSpinner.classList.remove("d-none");
 }
 
 function showTimeoutMessage() {

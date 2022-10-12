@@ -177,51 +177,98 @@
       </div>
       <div class="row">
         <div class="col col-sm-10 offset-sm-1">
-            <p class="mt-0 mb-5">
-                <span data-i18n="paragraph1"></span>
-                <a href="about/" class="text-primary text-nowrap" data-i18n="learnMore"></a>
-            </p>
+          <p class="mt-0 mb-5">
+            <span data-i18n="paragraph1"></span>
+            <a
+              href="about/"
+              class="text-primary text-nowrap"
+              data-i18n="learnMore"
+            ></a>
+          </p>
 
-            <h3 class="mb-3 text-center" data-i18n="searchByName"></h3>
+          <h3 class="mb-3 text-center" data-i18n="searchByName"></h3>
 
-            <div id="alert" class="d-none row mt-4 mb-3">
-              <div class="col col-md-8 offset-md-2">
-                <div
-                  class="alert alert-warning border border-warning"
-                  role="alert"
-                ></div>
-              </div>
-            </div>      
+          <div id="alert" class="d-none row mt-4 mb-3">
+            <div class="col col-md-8 offset-md-2">
+              <div
+                class="alert alert-warning border border-warning"
+                role="alert"
+              ></div>
+            </div>
+          </div>
 
-            <form id="formSearchByName" class="mb-4">
-              <div class="row">
-                <div class="col-md-8 offset-md-2">
-                  <div class="form-group">
-                    <div class="floating-label">
-                      <label for="searchedFirstName" data-i18n="labelFirstName"></label>
-                      <input type="text" id="searchedFirstName" class="form-control">
-                      <div class="invalid-feedback searchedFirstName" data-i18n="errorNameIsRequired"></div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="floating-label">
-                      <label for="searchedLastName" data-i18n="labelLastName"></label>
-                      <input type="text" id="searchedLastName" class="form-control">
-                      <div class="invalid-feedback searchedLastName" data-i18n="errorNameIsRequired"></div>
-                    </div>
-                  </div>
-                  <div class="form-check my-4 text-center py-2">
-                    <input class="form-check-input" type="checkbox" value="1" id="checkboxLimitToLocalCongregation" checked>
-                    <label class="form-check-label" for="checkboxLimitToLocalCongregation" data-i18n="limitToLocalCongregation"></label>
-                  </div>
-                  <div class="mt-4 text-center">
-                    <button class="btn btn-primary" type="submit" data-i18n="btnSearch"></button>
+          <form id="formSearchByName" class="mb-4">
+            <div class="row">
+              <div class="col-md-8 offset-md-2">
+                <div class="form-group">
+                  <div class="floating-label">
+                    <label
+                      for="searchedFirstName"
+                      data-i18n="labelFirstName"
+                    ></label>
+                    <input
+                      type="text"
+                      id="searchedFirstName"
+                      class="form-control"
+                    />
+                    <div
+                      class="invalid-feedback searchedFirstName"
+                      data-i18n="errorNameIsRequired"
+                    ></div>
                   </div>
                 </div>
+                <div class="form-group">
+                  <div class="floating-label">
+                    <label
+                      for="searchedLastName"
+                      data-i18n="labelLastName"
+                    ></label>
+                    <input
+                      type="text"
+                      id="searchedLastName"
+                      class="form-control"
+                    />
+                    <div
+                      class="invalid-feedback searchedLastName"
+                      data-i18n="errorNameIsRequired"
+                    ></div>
+                  </div>
+                </div>
+                <div class="form-check my-4 text-center py-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="1"
+                    id="checkboxLimitToLocalCongregation"
+                    checked
+                  />
+                  <label
+                    class="form-check-label"
+                    for="checkboxLimitToLocalCongregation"
+                    data-i18n="limitToLocalCongregation"
+                  ></label>
+                </div>
+                <div class="mt-4 text-center">
+                  <button
+                    class="btn btn-primary"
+                    type="submit"
+                    data-i18n="btnSearch"
+                  ></button>
+                </div>
               </div>
-            </form>
+            </div>
+          </form>
 
-            <div id="searchResults" class="d-none"></div>
+          <div id="searchSpinner" class="d-none text-center">
+            <img
+              src="/_assets/img/spinner.svg"
+              width="200"
+              height="200"
+              style="max-width: 100%"
+            />
+          </div>
+
+          <div id="searchResults" class="d-none"></div>
         </div>
       </div>
 
