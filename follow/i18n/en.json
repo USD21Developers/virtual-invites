@@ -70,8 +70,8 @@
       },
       {
         "key": "noUsersFound",
-        "original": "No users were found.",
-        "translated": "No users were found."
+        "original": "No matching users were found.",
+        "translated": "No matching users were found."
       },
       {
         "key": "numUsersFound",

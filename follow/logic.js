@@ -1,5 +1,21 @@
+function hideAlert() {
+    const alert = document.querySelector("#alert");
+    alert.classList.add("d-none");
+}
+
 function hideSpinner() {
-    // TODO
+    const searchResults = document.querySelector("#searchResults");
+    searchResults.innerHTML = "";
+}
+
+function noMatchesFound() {
+    const searchResults = document.querySelector("#searchResults");
+    const alert = document.querySelector("#alert");
+
+    searchResults.classList.add("d-none");
+    searchResults.innerHTML = "";
+
+    showAlert(alert, getPhrase("noUsersFound"));
 }
 
 function showMatchesFound(matches) {
@@ -7,7 +23,18 @@ function showMatchesFound(matches) {
 }
 
 function showSpinner() {
-    // TODO
+    const searchResults = document.querySelector("#searchResults");
+    searchResults.innerHTML = `
+        <div class="text-center">
+            <img
+                src="/_assets/img/spinner.svg"
+                width="200"
+                height="200"
+                style="max-width: 100%"
+            />
+        </div>
+    `;
+    searchResults.classList.remove("d-none");
 }
 
 function showTimeoutMessage() {
@@ -28,6 +55,7 @@ async function onNameSearched(e) {
     const controller = new AbortController();
     const timeout = 8000;
 
+    hideAlert();
     showSpinner();
 
     fetch(endpoint, {
@@ -44,12 +72,12 @@ async function onNameSearched(e) {
     })
         .then(res => res.json())
         .then(data => {
-            if (!data.matches.length) {
-                hideSpinner();
-                noMatchesFound();
-            } else {
-                hideSpinner();
+            if (data && data.hasOwnProperty("matches") && data.matches.length) {
                 showMatchesFound(data.matches);
+                hideSpinner();
+            } else {
+                noMatchesFound();
+                hideSpinner();
             }
         })
         .catch(err => {
