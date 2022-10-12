@@ -116,7 +116,7 @@ function initCroppie() {
     };
 
     const isHeic =
-      event.target.files[0].name.slice(-5) === ".heic" ? true : false;
+      event.target.files[0].name.slice(-5).toLowerCase() === ".heic" ? true : false;
     if (isHeic) {
       const readerHeic = new FileReader();
 
