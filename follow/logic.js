@@ -20,7 +20,12 @@ function noMatchesFound() {
 }
 
 function showMatchesFound(matches) {
-    // TODO
+    const searchResults = document.querySelector("#searchResults");
+
+    // TODO:  Inject content
+
+    // Scroll to content
+    customScrollTo("#searchResults");
 }
 
 function showSpinner() {
@@ -33,6 +38,18 @@ function showTimeoutMessage() {
     // TODO
 }
 
+function validate(e) {
+    let isValid = true;
+    const firstName = e.target.searchedFirstName.value.trim();
+    const lastName = e.target.searchedLastName.value.trim();
+
+    if (firstName === "" && lastName === "") {
+        isValid = false;
+    }
+
+    return isValid;
+}
+
 async function onNameSearched(e) {
     e.preventDefault();
 
@@ -43,9 +60,20 @@ async function onNameSearched(e) {
     const accessToken = await getAccessToken();
     const searchedFirstName = e.target.searchedFirstName.value || "";
     const searchedLastName = e.target.searchedLastName.value || "";
-    const endpoint = `${getApiHost()}/users-in-congregation`;
+    const limitToUsersInCongregation = e.target.checkboxLimitToLocalCongregation.checked ? true : false;
+    let endpoint = `${getApiHost()}/users-all`;
     const controller = new AbortController();
     const timeout = 8000;
+    const isValid = validate(e);
+
+    if (!isValid) {
+        formError("#searchedFirstName", getPhrase("errorNameIsRequired"));
+        return;
+    }
+
+    if (limitToUsersInCongregation) {
+        endpoint = `${getApiHost()}/users-in-congregation`;
+    }
 
     hideAlert();
     showSpinner();
