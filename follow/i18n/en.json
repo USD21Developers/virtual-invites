@@ -94,6 +94,11 @@
         "translated": "Follow"
       },
       {
+        "key": "btnFollowing",
+        "original": "Following",
+        "translated": "Following"
+      },
+      {
         "key": "btnProfile",
         "original": "Profile",
         "translated": "Profile"

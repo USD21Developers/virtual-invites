@@ -34,26 +34,25 @@ function showMatchesFound(matches) {
         const btnProfile = getPhrase("btnProfile");
         const defaultImg = (gender === "male") ? "avatar_male.svg" : "avatar_female.svg";
         html += `
-            <div class="row align-items-center result">
-                <div class="col-md-2 offset-md-3 text-center">
-                    <img class="mr-3" src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
-                </div>
-                <div class="col-md-4 text-center">
-                    <h3 class="mt-0 mb-3">${firstname} ${lastname}</h4>
-                    <button type="button" class="btn btn-primary btn-sm my-0 mr-2" data-follow-userid="${userid}">
-                        ${btnFollow}
-                    </button>
-                    <button type="button" class="btn btn-default btn-sm my-0 ml-2" data-profile-userid="${userid}">
-                        ${btnProfile}
-                    </button>
-                </div>
+            <div class="d-inline-block text-center">
+                <img class="mx-3" src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
+                <h3 class="mt-0 mb-3">${firstname} ${lastname}</h4>
+                <button type="button" class="btn btn-primary btn-sm btn-follow my-0 mr-2" data-follow-userid="${userid}">
+                    ${btnFollow}
+                </button>
+                <button type="button" class="btn btn-light btn-sm btn-profile my-0 ml-2" data-profile-userid="${userid}">
+                    ${btnProfile}
+                </button>
             </div>
         `;
     }
 
-    html = `<div class="container">${html}</div>`;
+    html = `<div class="text-center">${html}</div>`;
 
     searchResults.innerHTML = html;
+
+    document.querySelectorAll(".btn-follow").forEach(item => item.addEventListener("click", onFollowClicked));
+    document.querySelectorAll(".btn-profile").forEach(item => item.addEventListener("click", onProfileClicked));
 
     hideSpinner();
 
@@ -159,6 +158,23 @@ function onFirstNameSearchInputted(e) {
     // TODO:  Check indexedDB for list of all registered users in the church congregation of the current user. If populated, insert names into the datalist. Then sync silently.
 }
 
+function onFollowClicked(e) {
+    const txtFollow = getPhrase("btnFollow");
+    const txtFollowing = getPhrase("btnFollowing");
+    const isFollowing = e.target.classList.contains("btn-success") ? true : false;
+    const userid = parseInt(e.target.getAttribute("data-follow-userid"));
+
+    if (!isFollowing) {
+        e.target.classList.remove("btn-primary");
+        e.target.classList.add("btn-success");
+        e.target.innerText = txtFollowing;
+    } else {
+        e.target.classList.remove("btn-success");
+        e.target.classList.add("btn-primary");
+        e.target.innerText = txtFollow;
+    }
+}
+
 function onLastNameSearchInputted(e) {
     const searchTerm = e.target.value || "";
     const searchForm = document.querySelector("#searchedLastName");
@@ -170,6 +186,10 @@ function onLastNameSearchInputted(e) {
     }
 
     // TODO:  Check indexedDB for list of all registered users in the church congregation of the current user. If populated, insert names into the datalist. Then sync silently.
+}
+
+function onProfileClicked(e) {
+    const userid = parseInt(e.target.getAttribute("data-profile-userid"));
 }
 
 function attachListeners() {
