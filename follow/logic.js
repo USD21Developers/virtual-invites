@@ -21,10 +21,36 @@ function noMatchesFound() {
 
 function showMatchesFound(matches) {
     const searchResults = document.querySelector("#searchResults");
+    const numMatches = matches.length;
+    let html = "";
 
-    // TODO:  Inject content
+    for (let i = 0; i < numMatches; i++) {
+        const userid = matches[i].userid;
+        const firstname = matches[i].firstname;
+        const lastname = matches[i].lastname;
+        const gender = matches[i].gender;
+        const profilephoto = matches[i].profilephoto.replace("400.jpg", "140.jpg");
+        const btnFollow = getPhrase("btnFollow");
+        html += `
+            <div class="media">
+                <img class="mr-3" src="${profilephoto}" alt="${firstname} ${lastname}">
+                <div class="media-body">
+                    <h3 class="mt-0">${firstname} ${lastname}</h4>
+                    <p class="text-muted mt-0 mb-2">${gender}</p>
+                    <button type="button" class="btn btn-primary btn-sm my-0" data-follow-userid="${userid}">
+                        ${btnFollow}
+                    </button>
+                </div>
+            </div>
+        `;
+    }
 
-    // Scroll to content
+    searchResults.innerHTML = html;
+
+    hideSpinner();
+
+    searchResults.classList.remove("d-none");
+
     customScrollTo("#searchResults");
 }
 

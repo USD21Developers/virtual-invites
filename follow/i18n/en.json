@@ -87,6 +87,11 @@
         "key": "errorNameIsRequired",
         "original": "Name is required",
         "translated": "Name is required"
+      },
+      {
+        "key": "btnFollow",
+        "original": "Follow",
+        "translated": "Follow"
       }
     ],
   
