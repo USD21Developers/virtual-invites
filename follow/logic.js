@@ -31,19 +31,27 @@ function showMatchesFound(matches) {
         const gender = matches[i].gender;
         const profilephoto = matches[i].profilephoto.replace("400.jpg", "140.jpg");
         const btnFollow = getPhrase("btnFollow");
+        const btnProfile = getPhrase("btnProfile");
+        const defaultImg = (gender === "male") ? "avatar_male.svg" : "avatar_female.svg";
         html += `
-            <div class="media">
-                <img class="mr-3" src="${profilephoto}" alt="${firstname} ${lastname}">
-                <div class="media-body">
-                    <h3 class="mt-0">${firstname} ${lastname}</h4>
-                    <p class="text-muted mt-0 mb-2">${gender}</p>
-                    <button type="button" class="btn btn-primary btn-sm my-0" data-follow-userid="${userid}">
+            <div class="row align-items-center result">
+                <div class="col-md-2 offset-md-3 text-center">
+                    <img class="mr-3" src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
+                </div>
+                <div class="col-md-4 text-center">
+                    <h3 class="mt-0 mb-3">${firstname} ${lastname}</h4>
+                    <button type="button" class="btn btn-primary btn-sm my-0 mr-2" data-follow-userid="${userid}">
                         ${btnFollow}
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm my-0 ml-2" data-profile-userid="${userid}">
+                        ${btnProfile}
                     </button>
                 </div>
             </div>
         `;
     }
+
+    html = `<div class="container">${html}</div>`;
 
     searchResults.innerHTML = html;
 

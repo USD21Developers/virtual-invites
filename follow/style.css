@@ -1,7 +1,23 @@
-.media img {
+#searchResults {
+    border-top: 1px solid #ccc;
+    margin-top: 75px;
+    padding-top: 50px;
+}
+
+#searchResults img {
     width: 90px;
     height: 90px;
     border-radius: 50%;
     padding: 2px;
     border: 2px solid #bbb;
+}
+
+#searchResults .result {
+    border-bottom: 2px solid #bbb;
+    margin-bottom: 50px;
+    padding-bottom: 50px;
+}
+
+#searchResults .result:last-child {
+    border-bottom: 0;
 }
