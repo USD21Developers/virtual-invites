@@ -13,6 +13,10 @@
     width: 140px;
 }
 
+#searchResults img[src*=".svg"] {
+    border: 0;
+}
+
 #searchResults .result {
     border-bottom: 1px solid #ccc;
     margin-bottom: 50px;
