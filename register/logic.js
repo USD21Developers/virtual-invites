@@ -25,7 +25,8 @@ function getProfileImage() {
 function initCroppie() {
   function loadHeic2Any() {
     return new Promise((resolve, reject) => {
-      const url = "https://cdnjs.cloudflare.com/ajax/libs/heic2any/0.0.3/heic2any.min.js";
+      const url =
+        "https://cdnjs.cloudflare.com/ajax/libs/heic2any/0.0.3/heic2any.min.js";
       const heicToAnyJS = document.createElement("script");
       heicToAnyJS.setAttribute("src", url);
       heicToAnyJS.addEventListener("load", () => {
@@ -68,7 +69,9 @@ function initCroppie() {
 
   async function onPhotoSelected(event) {
     const croppieContainer = document.getElementById("photoPreview");
-    const photoPreviewContainer = document.querySelector("#photoPreviewContainer");
+    const photoPreviewContainer = document.querySelector(
+      "#photoPreviewContainer"
+    );
 
     croppieContainer.innerHTML = "";
     croppieContainer.classList.remove("croppie-container");
@@ -83,7 +86,7 @@ function initCroppie() {
     });
 
     const reader = new FileReader();
-    reader.onload = async() => {
+    reader.onload = async () => {
       photoData.url = reader.result;
       photoPreviewContainer.classList.remove("d-none");
       vanilla
@@ -116,7 +119,9 @@ function initCroppie() {
     };
 
     const isHeic =
-      event.target.files[0].name.slice(-5).toLowerCase() === ".heic" ? true : false;
+      event.target.files[0].name.slice(-5).toLowerCase() === ".heic"
+        ? true
+        : false;
     if (isHeic) {
       const readerHeic = new FileReader();
 
@@ -128,7 +133,7 @@ function initCroppie() {
         });
         const conversionResult = await heic2any({
           blob,
-          toType: "image/jpeg"
+          toType: "image/jpeg",
         });
         reader.readAsDataURL(conversionResult);
       };
@@ -233,7 +238,7 @@ async function onSubmit(e) {
   e.preventDefault();
 
   formErrorsReset();
-  const isvalid = validate();
+  const isvalid = await validate();
   if (!isvalid) return;
 
   const spinner = document.querySelector("#progressbar");
@@ -473,54 +478,81 @@ function showProfilePhotoError() {
   customScrollTo("#profilePhotoHeadline");
 }
 
-async function validate() {
-  let isValid = true;
+function validate() {
+  return new Promise(async (resolve, reject) => {
+    const username =
+      document.querySelector("#username").value.trim().toLowerCase() || "";
+    const password = document.querySelector("#password").value.trim() || "";
+    const email =
+      document.querySelector("#email").value.trim().toLowerCase() || "";
+    const firstname = document.querySelector("#firstname").value.trim() || "";
+    const lastname = document.querySelector("#lastname").value.trim() || "";
+    const gender = document.querySelector("input[name=gender]:checked")
+      ? document.querySelector("input[name=gender]:checked").value
+      : "";
+    const country = document.querySelector("#country").value.trim() || "";
+    const churchid = document.querySelector("#churchid").value.trim() || "";
+    const unlistedchurch =
+      document.querySelector("#unlistedchurch").value.trim() || "";
+    const profileImage = await getProfileImage();
 
-  const username =
-    document.querySelector("#username").value.trim().toLowerCase() || "";
-  const password = document.querySelector("#password").value.trim() || "";
-  const email =
-    document.querySelector("#email").value.trim().toLowerCase() || "";
-  const firstname = document.querySelector("#firstname").value.trim() || "";
-  const lastname = document.querySelector("#lastname").value.trim() || "";
-  const gender = document.querySelector("input[name=gender]:checked")
-    ? document.querySelector("input[name=gender]:checked").value
-    : "";
-  const country = document.querySelector("#country").value.trim() || "";
-  const churchid = document.querySelector("#churchid").value.trim() || "";
-  const unlistedchurch =
-    document.querySelector("#unlistedchurch").value.trim() || "";
-  const profileImage = await getProfileImage();
+    if (!username.length) {
+      formError("#username", getPhrase("usernamerequired"));
+      return reject(false);
+    }
 
-  if (!username.length)
-    return formError("#username", getPhrase("usernamerequired"));
-  if (!password.length)
-    return formError("#password", getPhrase("passwordrequired"));
-  if (!email.length) return formError("#email", getPhrase("emailrequired"));
-  if (!firstname.length)
-    return formError("#firstname", getPhrase("firstnamerequired"));
-  if (!lastname.length)
-    return formError("#lastname", getPhrase("lastnamerequired"));
-  if (!gender.length) {
-    const invalidFeedbackGender = document.querySelector(
-      ".invalid-feedback-gender"
-    );
-    invalidFeedbackGender.innerText = getPhrase("genderrequired");
-    invalidFeedbackGender.style.display = "block";
-    return customScrollTo("#gendercontainer");
-  }
-  if (!country.length)
-    return formError("#country", getPhrase("countryrequired"));
-  if (!churchid.length)
-    return formError("#churchid", getPhrase("churchrequired"));
-  if (churchid == 0 && !unlistedchurch.length)
-    return formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
+    if (!password.length) {
+      formError("#password", getPhrase("passwordrequired"));
+      return reject(false);
+    }
 
-  if (profileImage === "") {
-    return showProfilePhotoError();
-  }
+    if (!email.length) {
+      formError("#email", getPhrase("emailrequired"));
+      return reject(false);
+    }
 
-  return isValid;
+    if (!firstname.length) {
+      formError("#firstname", getPhrase("firstnamerequired"));
+      return reject(false);
+    }
+
+    if (!lastname.length) {
+      formError("#lastname", getPhrase("lastnamerequired"));
+      return reject(false);
+    }
+
+    if (!gender.length) {
+      const invalidFeedbackGender = document.querySelector(
+        ".invalid-feedback-gender"
+      );
+      invalidFeedbackGender.innerText = getPhrase("genderrequired");
+      invalidFeedbackGender.style.display = "block";
+      customScrollTo("#gendercontainer");
+      return reject(false);
+    }
+
+    if (!country.length) {
+      formError("#country", getPhrase("countryrequired"));
+      return reject(false);
+    }
+
+    if (!churchid.length) {
+      formError("#churchid", getPhrase("churchrequired"));
+      return reject(false);
+    }
+
+    if (churchid == 0 && !unlistedchurch.length) {
+      formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
+      return reject(false);
+    }
+
+    if (profileImage === "") {
+      showProfilePhotoError();
+      return reject(false);
+    }
+
+    return resolve(true);
+  });
 }
 
 function attachListeners() {
