@@ -498,27 +498,27 @@ function validate() {
 
     if (!username.length) {
       formError("#username", getPhrase("usernamerequired"));
-      return reject(false);
+      return resolve(false);
     }
 
     if (!password.length) {
       formError("#password", getPhrase("passwordrequired"));
-      return reject(false);
+      return resolve(false);
     }
 
     if (!email.length) {
       formError("#email", getPhrase("emailrequired"));
-      return reject(false);
+      return resolve(false);
     }
 
     if (!firstname.length) {
       formError("#firstname", getPhrase("firstnamerequired"));
-      return reject(false);
+      return resolve(false);
     }
 
     if (!lastname.length) {
       formError("#lastname", getPhrase("lastnamerequired"));
-      return reject(false);
+      return resolve(false);
     }
 
     if (!gender.length) {
@@ -528,27 +528,27 @@ function validate() {
       invalidFeedbackGender.innerText = getPhrase("genderrequired");
       invalidFeedbackGender.style.display = "block";
       customScrollTo("#gendercontainer");
-      return reject(false);
+      return resolve(false);
     }
 
     if (!country.length) {
       formError("#country", getPhrase("countryrequired"));
-      return reject(false);
+      return resolve(false);
     }
 
     if (!churchid.length) {
       formError("#churchid", getPhrase("churchrequired"));
-      return reject(false);
+      return resolve(false);
     }
 
     if (churchid == 0 && !unlistedchurch.length) {
       formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
-      return reject(false);
+      return resolve(false);
     }
 
     if (profileImage === "") {
       showProfilePhotoError();
-      return reject(false);
+      return resolve(false);
     }
 
     return resolve(true);
