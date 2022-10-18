@@ -18,6 +18,10 @@ function noMatchesFound() {
 function showMatchesFound(matches) {
   const searchResults = document.querySelector("#searchResults");
   const numMatches = matches.length;
+  const numUsersFound = getPhrase("numUsersFound").replace(
+    "{quantity}",
+    numMatches
+  );
   let html = "";
 
   for (let i = 0; i < numMatches; i++) {
@@ -44,7 +48,15 @@ function showMatchesFound(matches) {
         `;
   }
 
-  html = `<div class="text-center">${html}</div>`;
+  html = `
+    <p class="text-center">
+      <strong>${numUsersFound}</strong>
+    </p>
+    
+    <div class="text-center">
+      ${html}
+    </div>
+  `;
 
   searchResults.innerHTML = html;
 
