@@ -20,7 +20,7 @@
 #searchResults .result {
     border-bottom: 1px solid #ccc;
     margin-bottom: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 60px;
 }
 
 #searchResults .result:last-child {
