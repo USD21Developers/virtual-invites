@@ -35,7 +35,7 @@ function showMatchesFound(matches) {
     const defaultImg =
       gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
     html += `
-            <div class="d-inline-block text-center result">
+            <div class="text-center result">
                 <img class="mx-3" src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
                 <h3 class="mt-0 mb-3">${firstname} ${lastname}</h4>
                 <button type="button" class="btn btn-primary btn-sm btn-follow my-0 mr-2" data-follow-userid="${userid}">
@@ -49,7 +49,7 @@ function showMatchesFound(matches) {
   }
 
   html = `
-    <p class="text-center">
+    <p class="text-center mb-5">
       <strong>${numUsersFound}</strong>
     </p>
     
