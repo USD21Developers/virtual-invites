@@ -79,6 +79,11 @@
         "translated": "{quantity} users found:"
       },
       {
+        "key": "oneUserFound",
+        "original": "One user found:",
+        "translated": "One user found:"
+      },
+      {
         "key": "numMore",
         "original": "{quantity} more",
         "translated": "{quantity} more"

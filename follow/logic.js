@@ -18,10 +18,10 @@ function noMatchesFound() {
 function showMatchesFound(matches) {
   const searchResults = document.querySelector("#searchResults");
   const numMatches = matches.length;
-  const numUsersFound = getPhrase("numUsersFound").replace(
-    "{quantity}",
-    numMatches
-  );
+  const numUsersFound =
+    numMatches === 1
+      ? getPhrase("oneUserFound")
+      : getPhrase("numUsersFound").replace("{quantity}", numMatches);
   let html = "";
 
   for (let i = 0; i < numMatches; i++) {
