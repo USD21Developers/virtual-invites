@@ -38,10 +38,10 @@ function showMatchesFound(matches) {
             <div class="text-center result">
                 <img class="mx-3" src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
                 <h3 class="mt-0 mb-3">${firstname} ${lastname}</h4>
-                <button type="button" class="btn btn-primary btn-sm btn-follow my-0 mr-2" data-follow-userid="${userid}">
+                <button type="button" class="btn btn-primary btn-sm btn-follow my-0 mr-2" data-status="follow" data-follow-userid="${userid}">
                     ${btnFollow}
                 </button>
-                <button type="button" class="btn btn-light btn-sm btn-profile my-0 ml-2" data-profile-userid="${userid}">
+                <button type="button" class="btn btn-light btn-sm btn-profile my-0 ml-2" data-status="follow" data-profile-userid="${userid}">
                     ${btnProfile}
                 </button>
             </div>
@@ -61,7 +61,7 @@ function showMatchesFound(matches) {
   searchResults.innerHTML = html;
 
   document
-    .querySelectorAll(".btn-follow")
+    .querySelectorAll(".btn-follow[data-status=follow]")
     .forEach((item) => item.addEventListener("click", onFollowClicked));
   document
     .querySelectorAll(".btn-profile")
@@ -177,21 +177,48 @@ function onFirstNameSearchInputted(e) {
   // TODO:  Check indexedDB for list of all registered users in the church congregation of the current user. If populated, insert names into the datalist. Then sync silently.
 }
 
-function onFollowClicked(e) {
+async function onFollowClicked(e) {
   const txtFollow = getPhrase("btnFollow");
   const txtFollowing = getPhrase("btnFollowing");
-  const isFollowing = e.target.classList.contains("btn-success") ? true : false;
   const userid = parseInt(e.target.getAttribute("data-follow-userid"));
+  const status = e.target.getAttribute("data-status");
+  const endpoint =
+    status === "follow"
+      ? `${getApiHost()}/follow-user`
+      : `${getApiHost()}/unfollow-user`;
+  const accessToken = await getAccessToken();
 
-  if (!isFollowing) {
-    e.target.classList.remove("btn-primary");
-    e.target.classList.add("btn-success");
-    e.target.innerText = txtFollowing;
-  } else {
-    e.target.classList.remove("btn-success");
-    e.target.classList.add("btn-primary");
-    e.target.innerText = txtFollow;
-  }
+  fetch(endpoint, {
+    mode: "cors",
+    method: "POST",
+    body: JSON.stringify({
+      userid: userid,
+    }),
+    keepalive: true,
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      switch (data.msg) {
+        case "follow successful":
+          e.target.setAttribute("data-status", "followed");
+          e.target.classList.remove("btn-primary");
+          e.target.classList.add("btn-success");
+          e.target.innerText = txtFollowing;
+          break;
+        default:
+          e.target.setAttribute("data-status", "follow");
+          e.target.classList.remove("btn-success");
+          e.target.classList.add("btn-primary");
+          e.target.innerText = txtFollow;
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 function onLastNameSearchInputted(e) {
@@ -209,6 +236,9 @@ function onLastNameSearchInputted(e) {
 
 function onProfileClicked(e) {
   const userid = parseInt(e.target.getAttribute("data-profile-userid"));
+  const url = `/u/#${userid}`;
+
+  window.location.href = url;
 }
 
 function attachListeners() {
