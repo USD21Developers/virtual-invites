@@ -188,6 +188,16 @@ async function onFollowClicked(e) {
       : `${getApiHost()}/unfollow-user`;
   const accessToken = await getAccessToken();
 
+  if (status === "follow") {
+    e.target.classList.remove("btn-primary");
+    e.target.classList.add("btn-success");
+    e.target.innerText = txtFollowing;
+  } else if (status === "followed") {
+    e.target.classList.remove("btn-success");
+    e.target.classList.add("btn-primary");
+    e.target.innerText = txtFollow;
+  }
+
   fetch(endpoint, {
     mode: "cors",
     method: "POST",
@@ -205,15 +215,9 @@ async function onFollowClicked(e) {
       switch (data.msg) {
         case "follow successful":
           e.target.setAttribute("data-status", "followed");
-          e.target.classList.remove("btn-primary");
-          e.target.classList.add("btn-success");
-          e.target.innerText = txtFollowing;
           break;
         default:
           e.target.setAttribute("data-status", "follow");
-          e.target.classList.remove("btn-success");
-          e.target.classList.add("btn-primary");
-          e.target.innerText = txtFollow;
       }
     })
     .catch((err) => {
