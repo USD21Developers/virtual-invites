@@ -1,3 +1,39 @@
+function followUser(userid) {
+  return new Promise(async (resolve, reject) => {
+    const endpoint = `${getApiHost()}/follow-user`;
+    const accessToken = await getAccessToken();
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify({
+        userid: userid,
+      }),
+      keepalive: true,
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        switch (data.msg) {
+          case "follow successful":
+            e.target.setAttribute("data-status", "followed");
+            resolve(data.msg);
+            break;
+          default:
+            e.target.setAttribute("data-status", "follow");
+            resolve(data.msg);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        reject(err);
+      });
+  });
+}
+
 function hideSpinner() {
   const searchSpinner = document.querySelector("#searchSpinner");
 
@@ -84,6 +120,42 @@ function showSpinner() {
 
 function showTimeoutMessage() {
   // TODO
+}
+
+function unfollowUser(userid) {
+  return new Promise(async (resolve, reject) => {
+    const endpoint = `${getApiHost()}/unfollow-user`;
+    const accessToken = await getAccessToken();
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify({
+        userid: userid,
+      }),
+      keepalive: true,
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        switch (data.msg) {
+          case "unfollow successful":
+            e.target.setAttribute("data-status", "follow");
+            resolve(data.msg);
+            break;
+          default:
+            e.target.setAttribute("data-status", "followed");
+            resolve(data.msg);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        reject(err);
+      });
+  });
 }
 
 function validate(e) {
@@ -182,47 +254,20 @@ async function onFollowClicked(e) {
   const txtFollowing = getPhrase("btnFollowing");
   const userid = parseInt(e.target.getAttribute("data-follow-userid"));
   const status = e.target.getAttribute("data-status");
-  const endpoint =
-    status === "follow"
-      ? `${getApiHost()}/follow-user`
-      : `${getApiHost()}/unfollow-user`;
-  const accessToken = await getAccessToken();
 
   if (status === "follow") {
+    // Change button text from "Follow" to "Following"
     e.target.classList.remove("btn-primary");
     e.target.classList.add("btn-success");
     e.target.innerText = txtFollowing;
+    followUser(userid);
   } else if (status === "followed") {
+    // Change button text from "Following" to "Follow"
     e.target.classList.remove("btn-success");
     e.target.classList.add("btn-primary");
     e.target.innerText = txtFollow;
+    unfollowUser(userid);
   }
-
-  fetch(endpoint, {
-    mode: "cors",
-    method: "POST",
-    body: JSON.stringify({
-      userid: userid,
-    }),
-    keepalive: true,
-    headers: new Headers({
-      "Content-Type": "application/json",
-      authorization: `Bearer ${accessToken}`,
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      switch (data.msg) {
-        case "follow successful":
-          e.target.setAttribute("data-status", "followed");
-          break;
-        default:
-          e.target.setAttribute("data-status", "follow");
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-    });
 }
 
 function onLastNameSearchInputted(e) {
