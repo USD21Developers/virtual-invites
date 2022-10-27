@@ -1,4 +1,4 @@
-function followUser(userid) {
+function followUser(userid, e) {
   return new Promise(async (resolve, reject) => {
     const endpoint = `${getApiHost()}/follow-user`;
     const accessToken = await getAccessToken();
@@ -24,6 +24,7 @@ function followUser(userid) {
             break;
           default:
             e.target.setAttribute("data-status", "follow");
+            e.target.innerText = getPhrase("btnFollow");
             resolve(data.msg);
         }
       })
@@ -65,23 +66,41 @@ function showMatchesFound(matches) {
     const firstname = matches[i].firstname;
     const lastname = matches[i].lastname;
     const gender = matches[i].gender;
+    const followid = matches[i].followid;
     const profilephoto = matches[i].profilephoto.replace("400.jpg", "140.jpg");
-    const btnFollow = getPhrase("btnFollow");
+    const btnFollow =
+      followid === null ? getPhrase("btnFollow") : getPhrase("btnFollowing");
     const btnProfile = getPhrase("btnProfile");
     const defaultImg =
       gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
-    html += `
-            <div class="text-center result">
-                <img class="mx-3" src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
-                <h3 class="mt-0 mb-3">${firstname} ${lastname}</h4>
-                <button type="button" class="btn btn-primary btn-sm btn-follow my-0 mr-2" data-status="follow" data-follow-userid="${userid}">
-                    ${btnFollow}
-                </button>
-                <button type="button" class="btn btn-light btn-sm btn-profile my-0 ml-2" data-status="follow" data-profile-userid="${userid}">
-                    ${btnProfile}
-                </button>
-            </div>
-        `;
+
+    if (followid === null) {
+      html += `
+        <div class="text-center result">
+          <img class="mx-3" src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
+          <h3 class="mt-0 mb-3">${firstname} ${lastname}</h4>
+          <button type="button" class="btn btn-primary btn-sm btn-follow my-0 mr-2" data-status="follow" data-follow-userid="${userid}">
+            ${btnFollow}
+          </button>
+          <button type="button" class="btn btn-light btn-sm btn-profile my-0 ml-2" data-status="follow" data-profile-userid="${userid}">
+            ${btnProfile}
+          </button>
+        </div>
+      `;
+    } else {
+      html += `
+        <div class="text-center result">
+          <img class="mx-3" src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
+          <h3 class="mt-0 mb-3">${firstname} ${lastname}</h4>
+          <button type="button" class="btn btn-success btn-sm btn-follow my-0 mr-2" data-status="followed" data-follow-userid="${userid}">
+            ${btnFollow}
+          </button>
+          <button type="button" class="btn btn-light btn-sm btn-profile my-0 ml-2" data-status="followed" data-profile-userid="${userid}">
+            ${btnProfile}
+          </button>
+        </div>
+      `;
+    }
   }
 
   html = `
@@ -97,7 +116,7 @@ function showMatchesFound(matches) {
   searchResults.innerHTML = html;
 
   document
-    .querySelectorAll(".btn-follow[data-status=follow]")
+    .querySelectorAll(".btn-follow")
     .forEach((item) => item.addEventListener("click", onFollowClicked));
   document
     .querySelectorAll(".btn-profile")
@@ -122,7 +141,7 @@ function showTimeoutMessage() {
   // TODO
 }
 
-function unfollowUser(userid) {
+function unfollowUser(userid, e) {
   return new Promise(async (resolve, reject) => {
     const endpoint = `${getApiHost()}/unfollow-user`;
     const accessToken = await getAccessToken();
@@ -144,10 +163,16 @@ function unfollowUser(userid) {
         switch (data.msg) {
           case "unfollow successful":
             e.target.setAttribute("data-status", "follow");
+            e.target.classList.remove("btn-success");
+            e.target.classList.add("btn-primary");
+            e.target.innerText = getPhrase("btnFollow");
             resolve(data.msg);
             break;
           default:
             e.target.setAttribute("data-status", "followed");
+            e.target.classList.remove("btn-primary");
+            e.target.classList.add("btn-success");
+            e.target.innerText = getPhrase("btnFollowing");
             resolve(data.msg);
         }
       })
@@ -250,23 +275,23 @@ function onFirstNameSearchInputted(e) {
 }
 
 async function onFollowClicked(e) {
-  const txtFollow = getPhrase("btnFollow");
-  const txtFollowing = getPhrase("btnFollowing");
   const userid = parseInt(e.target.getAttribute("data-follow-userid"));
   const status = e.target.getAttribute("data-status");
 
   if (status === "follow") {
     // Change button text from "Follow" to "Following"
+    e.target.setAttribute("data-status", "followed");
     e.target.classList.remove("btn-primary");
     e.target.classList.add("btn-success");
-    e.target.innerText = txtFollowing;
-    followUser(userid);
+    e.target.innerText = getPhrase("btnFollowing");
+    followUser(userid, e);
   } else if (status === "followed") {
     // Change button text from "Following" to "Follow"
+    e.target.setAttribute("data-status", "follow");
     e.target.classList.remove("btn-success");
     e.target.classList.add("btn-primary");
-    e.target.innerText = txtFollow;
-    unfollowUser(userid);
+    e.target.innerText = getPhrase("btnFollow");
+    unfollowUser(userid, e);
   }
 }
 
