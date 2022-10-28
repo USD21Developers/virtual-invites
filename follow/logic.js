@@ -228,6 +228,7 @@ async function onNameSearched(e) {
 
   if (!isValid) {
     formError("#searchedFirstName", getPhrase("errorNameIsRequired"));
+    customScrollTo("#searchedFirstName");
     return;
   }
 
