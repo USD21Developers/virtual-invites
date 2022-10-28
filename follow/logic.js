@@ -52,8 +52,9 @@ function noMatchesFound() {
   customScrollTo("#searchResults");
 }
 
-function showMatchesFound(matches) {
+function showMatchesFound(matchesFromDB) {
   const searchResults = document.querySelector("#searchResults");
+  const matches = matchesFromDB.filter((item) => item.followid === null);
   const numMatches = matches.length;
   const numUsersFound =
     numMatches === 1
