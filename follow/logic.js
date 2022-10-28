@@ -213,7 +213,6 @@ async function onNameSearched(e) {
     item.classList.remove("is-invalid");
   });
 
-  const accessToken = await getAccessToken();
   const searchedFirstName = e.target.searchedFirstName.value || "";
   const searchedLastName = e.target.searchedLastName.value || "";
   const searchResults = document.querySelector("#searchResults");
@@ -231,6 +230,8 @@ async function onNameSearched(e) {
     customScrollTo("#searchedFirstName");
     return;
   }
+
+  const accessToken = await getAccessToken();
 
   if (limitToUsersInCongregation) {
     endpoint = `${getApiHost()}/users-in-congregation`;
