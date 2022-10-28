@@ -44,9 +44,11 @@ function hideSpinner() {
 function noMatchesFound() {
   const searchResults = document.querySelector("#searchResults");
 
-  searchResults.innerHTML = `<div class="text-center">${getPhrase(
-    "noUsersFound"
-  )}</div>`;
+  searchResults.innerHTML = `
+    <p class="text-center mb-5">
+      ${getPhrase("noUsersFound")}
+    </p>
+  `;
   searchResults.classList.remove("d-none");
 
   customScrollTo("#searchResults");
@@ -55,13 +57,13 @@ function noMatchesFound() {
 function showMatchesFound(matches) {
   const searchResults = document.querySelector("#searchResults");
   const numMatches = matches.length;
-  let numUsersFound;
+  let msgResultsFound;
   if (numMatches === 0) {
-    numUsersFound = getPhrase("noUsersFound");
+    msgResultsFound = getPhrase("noUsersFound");
   } else if (numMatches === 0) {
-    numUsersFound = getPhrase("oneUserFound");
+    msgResultsFound = getPhrase("oneUserFound");
   } else if (numMatches > 1) {
-    numUsersFound = getPhrase("numUsersFound").replace(
+    msgResultsFound = getPhrase("numUsersFound").replace(
       "{quantity}",
       numMatches
     );
@@ -113,7 +115,7 @@ function showMatchesFound(matches) {
 
   html = `
     <p class="text-center mb-5">
-      <strong>${numUsersFound}</strong>
+      <strong>${msgResultsFound}</strong>
     </p>
     
     <div class="text-center">
