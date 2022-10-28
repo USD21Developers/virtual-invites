@@ -46,7 +46,7 @@ function noMatchesFound() {
 
   searchResults.innerHTML = `
     <p class="text-center mb-5">
-      ${getPhrase("noUsersFound")}
+      <strong>${getPhrase("noUsersFound")}</strong>
     </p>
   `;
   searchResults.classList.remove("d-none");
@@ -58,15 +58,16 @@ function showMatchesFound(matches) {
   const searchResults = document.querySelector("#searchResults");
   const numMatches = matches.length;
   let msgResultsFound;
-  if (numMatches === 0) {
-    msgResultsFound = getPhrase("noUsersFound");
-  } else if (numMatches === 0) {
+
+  if (numMatches === 1) {
     msgResultsFound = getPhrase("oneUserFound");
   } else if (numMatches > 1) {
     msgResultsFound = getPhrase("numUsersFound").replace(
       "{quantity}",
       numMatches
     );
+  } else {
+    msgResultsFound = getPhrase("noUsersFound");
   }
 
   let html = "";
