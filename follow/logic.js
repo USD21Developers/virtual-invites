@@ -52,9 +52,8 @@ function noMatchesFound() {
   customScrollTo("#searchResults");
 }
 
-function showMatchesFound(matchesFromDB) {
+function showMatchesFound(matches) {
   const searchResults = document.querySelector("#searchResults");
-  const matches = matchesFromDB.filter((item) => item.followid === null);
   const numMatches = matches.length;
   const numUsersFound =
     numMatches === 1
@@ -243,7 +242,8 @@ async function onNameSearched(e) {
     .then((res) => res.json())
     .then((data) => {
       if (data && data.hasOwnProperty("matches") && data.matches.length) {
-        showMatchesFound(data.matches);
+        const matches = data.matches.filter((item) => item.followid === null);
+        showMatchesFound(matches);
         hideSpinner();
       } else {
         noMatchesFound();
