@@ -55,10 +55,18 @@ function noMatchesFound() {
 function showMatchesFound(matches) {
   const searchResults = document.querySelector("#searchResults");
   const numMatches = matches.length;
-  const numUsersFound =
-    numMatches === 1
-      ? getPhrase("oneUserFound")
-      : getPhrase("numUsersFound").replace("{quantity}", numMatches);
+  let numUsersFound;
+  if (numMatches === 0) {
+    numUsersFound = getPhrase("noUsersFound");
+  } else if (numMatches === 0) {
+    numUsersFound = getPhrase("oneUserFound");
+  } else if (numMatches > 1) {
+    numUsersFound = getPhrase("numUsersFound").replace(
+      "{quantity}",
+      numMatches
+    );
+  }
+
   let html = "";
 
   for (let i = 0; i < numMatches; i++) {
