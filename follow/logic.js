@@ -54,6 +54,49 @@ function noMatchesFound() {
   customScrollTo("#searchResults");
 }
 
+function populateChurches() {
+  return new Promise((resolve, reject) => {
+    const churchDropdown = document.querySelector("#churchid");
+    const endpoint = `${getApiServicesHost()}/churches`;
+
+    fetch(endpoint)
+      .then((res) => res.json())
+      .then((churchesInCountries) => {
+        churchesInCountries.forEach((item) => {
+          const { iso: countryCode, name, churches } = item.country;
+          let countryName = name;
+
+          if (typeof name !== "string") return;
+          if (countryName.trim() === "") return;
+
+          if (countryCode === "us") countryName = "United States";
+          const optgroup = document.createElement("optgroup");
+          optgroup.label = `${countryName}:`;
+          churchDropdown.appendChild(optgroup);
+          churches.forEach((church) => {
+            const { id, place } = church;
+            const option = document.createElement("option");
+
+            if (typeof place !== "string" || place.trim() === "") return;
+
+            option.value = id;
+            option.innerText = place;
+            optgroup.appendChild(option);
+            optgroup.setAttribute("data-country", countryCode);
+          });
+        });
+        $(
+          ".floating-label .custom-select, .floating-label .form-control"
+        ).floatinglabel();
+        resolve();
+      })
+      .catch((err) => {
+        console.error(err);
+        reject(err);
+      });
+  });
+}
+
 function showMatchesFound(matches) {
   const searchResults = document.querySelector("#searchResults");
   const numMatches = matches.length;
