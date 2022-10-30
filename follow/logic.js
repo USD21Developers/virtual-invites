@@ -97,6 +97,17 @@ function populateChurches() {
   });
 }
 
+function selectUserChurch() {
+  const userChurchId = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  ).churchid;
+  const churchid = document.querySelector("#churchid");
+
+  if (typeof userChurchId !== "number") return;
+
+  churchid.value = userChurchId;
+}
+
 function showMatchesFound(matches) {
   const searchResults = document.querySelector("#searchResults");
   const numMatches = matches.length;
@@ -386,6 +397,7 @@ function attachListeners() {
 
 async function init() {
   await populateChurches();
+  selectUserChurch();
   await populateContent();
   globalHidePageSpinner();
   attachListeners();
