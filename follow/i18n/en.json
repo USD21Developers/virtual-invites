@@ -107,6 +107,11 @@
         "key": "btnProfile",
         "original": "Profile",
         "translated": "Profile"
+      },
+      {
+        "key": "labelChurch",
+        "original": "Church:",
+        "translated": "Church:"
       }
     ],
   
