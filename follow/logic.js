@@ -385,6 +385,7 @@ function attachListeners() {
 }
 
 async function init() {
+  await populateChurches();
   await populateContent();
   globalHidePageSpinner();
   attachListeners();
