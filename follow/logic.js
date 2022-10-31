@@ -54,58 +54,83 @@ function noMatchesFound() {
   customScrollTo("#searchResults");
 }
 
-function populateChurches() {
-  return new Promise((resolve, reject) => {
-    const churchDropdown = document.querySelector("#churchid");
-    const endpoint = `${getApiServicesHost()}/churches`;
+async function populateChurches() {
+  const churchDropdown = document.querySelector("#churchid");
+  const endpoint = `${getApiServicesHost()}/churches`;
+  const churchesStored = localStorage.getItem("churches") || "";
 
-    fetch(endpoint)
-      .then((res) => res.json())
-      .then((churchesInCountries) => {
-        churchesInCountries.forEach((item) => {
-          const { iso: countryCode, name, churches } = item.country;
-          let countryName = name;
-
-          if (typeof name !== "string") return;
-          if (countryName.trim() === "") return;
-
-          if (countryCode === "us") countryName = "United States";
-          const optgroup = document.createElement("optgroup");
-          optgroup.label = `${countryName}:`;
-          churchDropdown.appendChild(optgroup);
-          churches.forEach((church) => {
-            const { id, place } = church;
-            const option = document.createElement("option");
-
-            if (typeof place !== "string" || place.trim() === "") return;
-
-            option.value = id;
-            option.innerText = place;
-            optgroup.appendChild(option);
-            optgroup.setAttribute("data-country", countryCode);
-          });
+  const retrieveChurches = () => {
+    return new Promise((resolve, reject) => {
+      fetch(endpoint)
+        .then((res) => res.json())
+        .then((data) => {
+          const churchesJSON = JSON.stringify(data);
+          localStorage.setItem("churches", churchesJSON);
+          resolve(churchesJSON);
+        })
+        .catch((err) => {
+          console.error(err);
+          reject(err);
         });
-        $(
-          ".floating-label .custom-select, .floating-label .form-control"
-        ).floatinglabel();
-        resolve();
-      })
-      .catch((err) => {
-        console.error(err);
-        reject(err);
+    });
+  };
+
+  const renderChurches = (churches) => {
+    churches.forEach((item) => {
+      const { iso: countryCode, name, churches } = item.country;
+      let countryName = name;
+
+      if (typeof name !== "string") return;
+      if (countryName.trim() === "") return;
+
+      if (countryCode === "us") countryName = "United States";
+      const optgroup = document.createElement("optgroup");
+      optgroup.label = `${countryName}:`;
+      churchDropdown.appendChild(optgroup);
+      churches.forEach((church) => {
+        const { id, name, place } = church;
+        const option = document.createElement("option");
+
+        if (typeof place !== "string" || place.trim() === "") return;
+
+        option.value = id;
+        option.innerText = place;
+        option.setAttribute("data-name", name);
+        option.setAttribute("data-place", place);
+        optgroup.setAttribute("data-country", countryCode);
+        optgroup.appendChild(option);
       });
-  });
+    });
+    $(
+      ".floating-label .custom-select, .floating-label .form-control"
+    ).floatinglabel();
+
+    selectUserChurch();
+  };
+
+  if (churchesStored.length) {
+    const churches = JSON.parse(churchesStored);
+    renderChurches(churches);
+  } else {
+    const churchesJSON = await retrieveChurches();
+    const churches = churchesJSON.length ? JSON.parse(churchesJSON) : [];
+    renderChurches(churches);
+  }
 }
 
 function selectUserChurch() {
   const userChurchId = JSON.parse(
     atob(localStorage.getItem("refreshToken").split(".")[1])
   ).churchid;
-  const churchid = document.querySelector("#churchid");
+  const churchEl = document.querySelector("#churchid");
 
   if (typeof userChurchId !== "number") return;
 
-  churchid.value = userChurchId;
+  churchEl.value = userChurchId;
+
+  const churchName = churchEl.selectedOptions[0].getAttribute("data-name");
+  const churchNameEl = document.querySelector("#selectedChurchName");
+  churchNameEl.innerText = churchName;
 }
 
 function showMatchesFound(matches) {
@@ -260,6 +285,14 @@ function validate(e) {
   return isValid;
 }
 
+function onChurchChanged() {
+  const churchEl = document.querySelector("#churchid");
+  const churchName = churchEl.selectedOptions[0].getAttribute("data-name");
+  const churchNameEl = document.querySelector("#selectedChurchName");
+
+  churchNameEl.innerText = churchName;
+}
+
 async function onNameSearched(e) {
   e.preventDefault();
 
@@ -270,11 +303,8 @@ async function onNameSearched(e) {
   const searchedFirstName = e.target.searchedFirstName.value || "";
   const searchedLastName = e.target.searchedLastName.value || "";
   const searchResults = document.querySelector("#searchResults");
-  const limitToUsersInCongregation = e.target.checkboxLimitToLocalCongregation
-    .checked
-    ? true
-    : false;
-  let endpoint = `${getApiHost()}/users-all`;
+  const churchid = e.target.churchid.value || "";
+  let endpoint = `${getApiHost()}/follow-search`;
   const controller = new AbortController();
   const timeout = 8000;
   const isValid = validate(e);
@@ -287,10 +317,6 @@ async function onNameSearched(e) {
 
   const accessToken = await getAccessToken();
 
-  if (limitToUsersInCongregation) {
-    endpoint = `${getApiHost()}/users-in-congregation`;
-  }
-
   searchResults.classList.add("d-none");
   showSpinner();
 
@@ -300,6 +326,7 @@ async function onNameSearched(e) {
     body: JSON.stringify({
       searchedFirstName: searchedFirstName,
       searchedLastName: searchedLastName,
+      churchid: churchid,
     }),
     headers: new Headers({
       "Content-Type": "application/json",
@@ -393,11 +420,13 @@ function attachListeners() {
   document
     .querySelector("#searchedLastName")
     .addEventListener("input", onLastNameSearchInputted);
+  document
+    .querySelector("#churchid")
+    .addEventListener("change", onChurchChanged);
 }
 
 async function init() {
-  await populateChurches();
-  selectUserChurch();
+  populateChurches();
   await populateContent();
   globalHidePageSpinner();
   attachListeners();
