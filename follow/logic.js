@@ -86,7 +86,6 @@ async function populateChurches() {
       if (countryCode === "us") countryName = "United States";
       const optgroup = document.createElement("optgroup");
       optgroup.label = `${countryName.trim()}:`;
-      churchDropdown.appendChild(optgroup);
       churches.forEach((church) => {
         const { id, name, place } = church;
         const option = document.createElement("option");
@@ -100,6 +99,7 @@ async function populateChurches() {
         optgroup.setAttribute("data-country", countryCode);
         optgroup.appendChild(option);
       });
+      churchDropdown.appendChild(optgroup);
     });
     $(
       ".floating-label .custom-select, .floating-label .form-control"
