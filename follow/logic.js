@@ -111,9 +111,14 @@ async function populateChurches() {
   if (churchesStored.length) {
     const churches = JSON.parse(churchesStored);
     renderChurches(churches);
+
+    const churchesJSON = await retrieveChurches();
+    localStorage.setItem("churches", churchesJSON);
   } else {
     const churchesJSON = await retrieveChurches();
     const churches = churchesJSON.length ? JSON.parse(churchesJSON) : [];
+
+    localStorage.setItem("churches", churchesJSON);
     renderChurches(churches);
   }
 }
