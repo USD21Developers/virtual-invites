@@ -26,13 +26,13 @@
 
 #searchResults .profilephoto.female {
     background-image: url("/_assets/img/avatar_female.svg");
-    border: 3px solid #888;
+    border: 0;
     padding: 2px;
 }
 
 #searchResults .profilephoto.male {
     background-image: url("/_assets/img/avatar_male.svg");
-    border: 3px solid #888;
+    border: 0;
     padding: 2px;
 }
 
