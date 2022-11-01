@@ -18,11 +18,17 @@
     border: 0;
 }
 
-#searchResults img.female {
+#searchResults .profilephoto {
+    background-repeat: no-repeat;
+    height: 140px;
+    width: 140px;
+}
+
+#searchResults .profilephoto.female {
     background-image: url("/_assets/img/avatar_female.svg");
 }
 
-#searchResults img.male {
+#searchResults .profilephoto.male {
     background-image: url("/_assets/img/avatar_male.svg");
 }
 
