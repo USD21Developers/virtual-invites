@@ -24,18 +24,6 @@
     width: 140px;
 }
 
-#searchResults .profilephoto.female {
-    background-image: url("/_assets/img/avatar_female.svg");
-    border: 0;
-    padding: 2px;
-}
-
-#searchResults .profilephoto.male {
-    background-image: url("/_assets/img/avatar_male.svg");
-    border: 0;
-    padding: 2px;
-}
-
 #searchResults .result {
     border-bottom: 1px solid #ccc;
     margin-bottom: 50px;
