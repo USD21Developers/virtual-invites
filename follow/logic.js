@@ -172,7 +172,7 @@ function showMatchesFound(matches) {
     if (followid === null) {
       html += `
         <div class="text-center result">
-          <img class="mx-3" src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
+          <img class="mx-3 ${gender}" src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
           <h3 class="mt-0 mb-3">${firstname} ${lastname}</h4>
           <button type="button" class="btn btn-primary btn-sm btn-follow my-0 mr-2" data-status="follow" data-follow-userid="${userid}">
             ${btnFollow}
@@ -185,7 +185,7 @@ function showMatchesFound(matches) {
     } else {
       html += `
         <div class="text-center result">
-          <img class="mx-3" src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
+          <img class="mx-3 ${gender}" src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
           <h3 class="mt-0 mb-3">${firstname} ${lastname}</h4>
           <button type="button" class="btn btn-success btn-sm btn-follow my-0 mr-2" data-status="followed" data-follow-userid="${userid}">
             ${btnFollow}
@@ -320,10 +320,10 @@ async function onNameSearched(e) {
     return;
   }
 
-  const accessToken = await getAccessToken();
-
   searchResults.classList.add("d-none");
   showSpinner();
+
+  const accessToken = await getAccessToken();
 
   fetch(endpoint, {
     mode: "cors",

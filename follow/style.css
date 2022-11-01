@@ -5,6 +5,7 @@
 }
 
 #searchResults img {
+    background-repeat: no-repeat;
     border: 3px solid #ccc;
     border-radius: 50%;
     height: 140px;
@@ -15,6 +16,14 @@
 
 #searchResults img[src*=".svg"] {
     border: 0;
+}
+
+#searchResults img.female {
+    background-image: url("/_assets/img/avatar_female.svg");
+}
+
+#searchResults img.male {
+    background-image: url("/_assets/img/avatar_male.svg");
 }
 
 #searchResults .result {
