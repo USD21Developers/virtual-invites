@@ -78,14 +78,14 @@ async function populateChurches() {
   const renderChurches = (churches) => {
     churches.forEach((item) => {
       const { iso: countryCode, name, churches } = item.country;
-      let countryName = name;
+      let countryName = name || "";
 
       if (typeof name !== "string") return;
       if (countryName.trim() === "") return;
 
       if (countryCode === "us") countryName = "United States";
       const optgroup = document.createElement("optgroup");
-      optgroup.label = `${countryName}:`;
+      optgroup.label = `${countryName.trim()}:`;
       churchDropdown.appendChild(optgroup);
       churches.forEach((church) => {
         const { id, name, place } = church;
