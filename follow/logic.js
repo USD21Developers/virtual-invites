@@ -76,16 +76,14 @@ async function populateChurches() {
   };
 
   const renderChurches = (churches) => {
-    churches.forEach((item) => {
-      const { iso: countryCode, name, churches } = item.country;
-      let countryName = name || "";
+    churches.forEach(async (item) => {
+      const { iso, churches } = item.country;
+      const countryName = await getCountryName(iso);
 
-      if (typeof name !== "string") return;
-      if (countryName.trim() === "") return;
+      if (iso.length === 0) return getGlobalPhrase("uncategorized");
 
-      if (countryCode === "us") countryName = "United States";
       const optgroup = document.createElement("optgroup");
-      optgroup.label = `${countryName.trim()}:`;
+      optgroup.label = `${countryName}:`;
       churches.forEach((church) => {
         const { id, name, place } = church;
         const option = document.createElement("option");
@@ -96,7 +94,7 @@ async function populateChurches() {
         option.innerText = place;
         option.setAttribute("data-name", name);
         option.setAttribute("data-place", place);
-        optgroup.setAttribute("data-country", countryCode);
+        optgroup.setAttribute("data-country", iso);
         optgroup.appendChild(option);
       });
       churchDropdown.appendChild(optgroup);

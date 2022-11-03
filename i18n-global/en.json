@@ -127,6 +127,11 @@
       "key": "synced",
       "original": "Synced.",
       "translated": "Synced."
+    },
+    {
+      "key": "uncategorized",
+      "original": "Uncategorized",
+      "translated": "Uncategorized"
     }
   ],
 

@@ -38,7 +38,9 @@ const invitesCrypto = {
       return new Error("key must be a string");
     let key;
     try {
-      key = await window.crypto.importSecretKey(invitesCrypto.deserialize(serializedKey));
+      key = await window.crypto.importSecretKey(
+        invitesCrypto.deserialize(serializedKey)
+      );
     } catch (err) {
       return new Error(err);
     }
@@ -104,8 +106,13 @@ const invitesCrypto = {
   },
 
   hash: async (str) => {
-    const buf = await window.crypto.subtle.digest("SHA-256", new TextEncoder("utf-8").encode(str));
-    return Array.prototype.map.call(new Uint8Array(buf), x => (('00' + x.toString(16)).slice(-2))).join('');
+    const buf = await window.crypto.subtle.digest(
+      "SHA-256",
+      new TextEncoder("utf-8").encode(str)
+    );
+    return Array.prototype.map
+      .call(new Uint8Array(buf), (x) => ("00" + x.toString(16)).slice(-2))
+      .join("");
   },
 
   importSecretKey: (rawKey) => {
@@ -121,11 +128,11 @@ const invitesCrypto = {
 };
 
 function breakify(text) {
-  return text.replace(/(?:\r\n|\r|\n)/g, '<br>\n');
+  return text.replace(/(?:\r\n|\r|\n)/g, "<br>\n");
 }
 
 function clearErrorMessages() {
-  document.querySelectorAll(".is-invalid").forEach(item => {
+  document.querySelectorAll(".is-invalid").forEach((item) => {
     item.classList.remove("is-invalid");
   });
 }
@@ -153,7 +160,9 @@ function formErrorsReset() {
   document
     .querySelectorAll(".invalid-feedback")
     .forEach((item) => (item.innerHTML = ""));
-  document.querySelectorAll(".invalid-feedback-unbound").forEach((item) => item.classList.add("d-none"));
+  document
+    .querySelectorAll(".invalid-feedback-unbound")
+    .forEach((item) => item.classList.add("d-none"));
 }
 
 function getAccessToken() {
@@ -255,6 +264,35 @@ function getApiServicesHost() {
   return host;
 }
 
+function getCountryName(iso, lang = "en") {
+  return new Promise(async (resolve, reject) => {
+    const endpoint = `/data/json/lang/${lang}/countries.json`;
+    const storedCountries = localStorage.getItem("countries") || "";
+    let countries = storedCountries.length ? JSON.parse(storedCountries) : [];
+
+    if (!countries.length) {
+      countries = await fetch(endpoint)
+        .then((res) => res.json())
+        .then((countriesFetched) => {
+          localStorage.setItem("countries", JSON.stringify(countriesFetched));
+          return countriesFetched;
+        });
+    }
+
+    let countryName = "";
+    const countriesLength = countries.length;
+
+    for (let i = 0; i < countriesLength; i++) {
+      if (countries[i].alpha2 === iso) {
+        countryName = countries[i].name;
+        break;
+      }
+    }
+
+    resolve(countryName);
+  });
+}
+
 function getHash() {
   return (
     document.location.hash.substring(1, document.location.hash.length) || ""
@@ -266,9 +304,11 @@ function getLang() {
   let lang = "en";
 
   if (typeof refreshToken === "string") {
-    lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang;
+    lang = JSON.parse(
+      atob(localStorage.getItem("refreshToken").split(".")[1])
+    ).lang;
     if (typeof lang === "undefined") {
-      return window.location.href = "/logout/";
+      return (window.location.href = "/logout/");
     }
   } else {
     try {
@@ -286,9 +326,11 @@ function getCountry() {
   let country = "US";
 
   if (typeof refreshToken === "string") {
-    country = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).country;
+    country = JSON.parse(
+      atob(localStorage.getItem("refreshToken").split(".")[1])
+    ).country;
     if (typeof country === "undefined") {
-      return window.location.href = "/logout/";
+      return (window.location.href = "/logout/");
     }
   } else {
     try {
@@ -319,7 +361,9 @@ function getNextRecurringWeekday(initialDate) {
   const firstOccurrence = moment(initialDate);
   const weekdayNumber = firstOccurrence.day();
   const militaryTime = firstOccurrence.format("HH:mm");
-  const nextOccurrence = moment( moment().day(weekdayNumber).format(`YYYY-MM-DDT${militaryTime}`) )
+  const nextOccurrence = moment(
+    moment().day(weekdayNumber).format(`YYYY-MM-DDT${militaryTime}`)
+  );
 
   if (firstOccurrence.isBefore(now)) {
     return nextOccurrence;
@@ -432,8 +476,9 @@ function globalHidePageSpinner() {
   mainContent.classList.remove("d-none");
 }
 
-function randomIntFromInterval(min = 0, max = 500) { // min and max included 
-  return Math.floor(Math.random() * (max - min + 1) + min)
+function randomIntFromInterval(min = 0, max = 500) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function hide(selector) {
@@ -503,7 +548,7 @@ async function populateContent(customEndpoint, variable = "pageContent") {
           )?.content;
           if (matchedcontent) item.setAttribute("placeholder", matchedcontent);
         });
-        breadcrumbs ? breadcrumbs.style.display = "flex" : "";
+        breadcrumbs ? (breadcrumbs.style.display = "flex") : "";
         await populateGlobalContent();
         refreshFloatingLabels();
         resolve();
@@ -568,7 +613,7 @@ function populateGlobalContent() {
             )?.content;
             if (matchedcontent) item.setAttribute("aria-label", matchedcontent);
           });
-        breadcrumbs ? breadcrumbs.style.display = "flex" : "";
+        breadcrumbs ? (breadcrumbs.style.display = "flex") : "";
         resolve();
       })
       .catch((err) => {
@@ -592,7 +637,7 @@ function customScrollTo(selector) {
 
 function refreshFloatingLabels() {
   if (!document[hidden]) {
-    document.querySelectorAll("input, select").forEach(item => {
+    document.querySelectorAll("input, select").forEach((item) => {
       if (item.value !== "") {
         item.parentElement.classList.add("has-value");
       }
@@ -601,7 +646,8 @@ function refreshFloatingLabels() {
 }
 
 function refreshFloatingLabelsListener() {
-  if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
+  if (typeof document.hidden !== "undefined") {
+    // Opera 12.10 and Firefox 18 and later support
     hidden = "hidden";
     visibilityChange = "visibilitychange";
   } else if (typeof document.msHidden !== "undefined") {
@@ -636,28 +682,55 @@ function showAlert(selectorObject, message, headline = "") {
 
 function showEventDateTime(eventObj) {
   return new Promise(async (resolve, reject) => {
-    const { country, frequency, duration, startdate, multidaybegindate, multidayenddate, timezone } = eventObj;
+    const {
+      country,
+      frequency,
+      duration,
+      startdate,
+      multidaybegindate,
+      multidayenddate,
+      timezone,
+    } = eventObj;
     const lang = getLang();
     const locale = `${lang.toLowerCase()}-${country.toUpperCase()}`;
-    const eventPhrasesAll = await fetch(`/events/i18n/${lang}.json`).then(res => res.json());
+    const eventPhrasesAll = await fetch(`/events/i18n/${lang}.json`).then(
+      (res) => res.json()
+    );
     const eventPhrases = eventPhrasesAll.phrases;
-    const from = eventPhrases.filter(item => item.key === "from")[0].translated;
-    const to = eventPhrases.filter(item => item.key === "to")[0].translated;
-    const frequencyEverySunday = eventPhrases.filter(item => item.key === "frequencyEverySunday")[0].translated;
-    const frequencyEveryMonday = eventPhrases.filter(item => item.key === "frequencyEveryMonday")[0].translated;
-    const frequencyEveryTuesday = eventPhrases.filter(item => item.key === "frequencyEveryTuesday")[0].translated;
-    const frequencyEveryWednesday = eventPhrases.filter(item => item.key === "frequencyEveryWednesday")[0].translated;
-    const frequencyEveryThursday = eventPhrases.filter(item => item.key === "frequencyEveryThursday")[0].translated;
-    const frequencyEveryFriday = eventPhrases.filter(item => item.key === "frequencyEveryFriday")[0].translated;
-    const frequencyEverySaturday = eventPhrases.filter(item => item.key === "frequencyEverySaturday")[0].translated;
+    const from = eventPhrases.filter((item) => item.key === "from")[0]
+      .translated;
+    const to = eventPhrases.filter((item) => item.key === "to")[0].translated;
+    const frequencyEverySunday = eventPhrases.filter(
+      (item) => item.key === "frequencyEverySunday"
+    )[0].translated;
+    const frequencyEveryMonday = eventPhrases.filter(
+      (item) => item.key === "frequencyEveryMonday"
+    )[0].translated;
+    const frequencyEveryTuesday = eventPhrases.filter(
+      (item) => item.key === "frequencyEveryTuesday"
+    )[0].translated;
+    const frequencyEveryWednesday = eventPhrases.filter(
+      (item) => item.key === "frequencyEveryWednesday"
+    )[0].translated;
+    const frequencyEveryThursday = eventPhrases.filter(
+      (item) => item.key === "frequencyEveryThursday"
+    )[0].translated;
+    const frequencyEveryFriday = eventPhrases.filter(
+      (item) => item.key === "frequencyEveryFriday"
+    )[0].translated;
+    const frequencyEverySaturday = eventPhrases.filter(
+      (item) => item.key === "frequencyEverySaturday"
+    )[0].translated;
     const isRecurring = frequency !== "once";
     let html = "";
-  
+
     if (isRecurring) {
       const whenTimeLocal = new Date(moment.tz(startdate, timezone).format());
-      const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenTimeLocal);
+      const whenTime = Intl.DateTimeFormat(locale, {
+        timeStyle: "short",
+      }).format(whenTimeLocal);
       let whenDate;
-      switch(frequency) {
+      switch (frequency) {
         case "Every Sunday":
           whenDate = frequencyEverySunday;
           break;
@@ -683,24 +756,40 @@ function showEventDateTime(eventObj) {
       html = `<span class="eventDate">${whenDate}</span> <span class="eventSeparator">&bull;</span> <span class="eventTime">${whenTime}</span>`;
     } else if (duration === "same day") {
       const whenDateLocal = new Date(moment.tz(startdate, timezone).format());
-      const whenDate = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(whenDateLocal);
-      const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenDateLocal);
+      const whenDate = Intl.DateTimeFormat(locale, {
+        dateStyle: "short",
+      }).format(whenDateLocal);
+      const whenTime = Intl.DateTimeFormat(locale, {
+        timeStyle: "short",
+      }).format(whenDateLocal);
       html = `<span class="eventDate">${whenDate}</span> <span class="eventSeparator">&bull;</span> <span class="eventTime">${whenTime}</span>`;
     } else if (duration === "multiple days") {
-      const multidayBeginDateLocal = new Date(moment.tz(multidaybegindate, timezone).format());
-      const multidayEndDateLocal = new Date(moment.tz(multidayenddate, timezone).format());
-      const whenDateFrom = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayBeginDateLocal);
-      const whenTimeFrom = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(multidayBeginDateLocal);
-      const whenDateTo = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayEndDateLocal);
-      const whenTimeTo = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(multidayEndDateLocal);
+      const multidayBeginDateLocal = new Date(
+        moment.tz(multidaybegindate, timezone).format()
+      );
+      const multidayEndDateLocal = new Date(
+        moment.tz(multidayenddate, timezone).format()
+      );
+      const whenDateFrom = Intl.DateTimeFormat(locale, {
+        dateStyle: "short",
+      }).format(multidayBeginDateLocal);
+      const whenTimeFrom = Intl.DateTimeFormat(locale, {
+        timeStyle: "short",
+      }).format(multidayBeginDateLocal);
+      const whenDateTo = Intl.DateTimeFormat(locale, {
+        dateStyle: "short",
+      }).format(multidayEndDateLocal);
+      const whenTimeTo = Intl.DateTimeFormat(locale, {
+        timeStyle: "short",
+      }).format(multidayEndDateLocal);
       html = `
         <span class="eventLabel from">${from}</span> <span class="eventDate from">${whenDateFrom}</span> <span class="eventSeparator">&bull;</span> <span class="eventTime from">${whenTimeFrom}</span><br>
         <span class="eventLabel to">${to}</span> <span class="eventDate to">${whenDateTo}</span> <span class="eventSeparator">&bull;</span> <span class="eventTime to">${whenTimeTo}</span><br>
       `;
     }
-  
+
     resolve(html);
-  })
+  });
 }
 
 function showMaterialIcons() {
