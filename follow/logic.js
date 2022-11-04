@@ -74,7 +74,7 @@ async function populateChurches() {
     });
   };
 
-  const renderChurches = async (churchesInCountries) => {
+  const renderChurches = async (countries) => {
     const countryDataStored = sessionStorage.getItem("countryData") || "";
     let countryData = [];
     const lang = "en"; // TODO:  Create an index of supported languages, then get user's country data if available, defaulting to English
@@ -90,21 +90,15 @@ async function populateChurches() {
       countryData = JSON.parse(countryDataStored);
     }
 
-    const churches = churchesInCountries.map((item) => {
+    const churches = countries.map((item) => {
       const countryName = getCountryName(item.country.iso, countryData);
-      const churchesSorted = item.country.churches.sort((a, b) => {
-        const placeA = a.place;
-        const placeB = b.place;
-
-        if (typeof placeA === "string" && typeof placeB === "string") {
-          placeA.toLowerCase() > placeB.toLowerCase() ? 1 : -1;
-        }
-      });
-
       item.country.name = countryName;
-      item.country.churches = churchesSorted;
       return item;
     });
+
+    churches.sort((a, b) =>
+      a.country.name.toLowerCase() > b.country.name.toLowerCase() ? 1 : -1
+    );
 
     sessionStorage.setItem("churches", JSON.stringify(churches));
 
