@@ -57,7 +57,7 @@ function noMatchesFound() {
 async function populateChurches() {
   const churchDropdown = document.querySelector("#churchid");
   const endpoint = `${getApiServicesHost()}/churches`;
-  const churchesStored = localStorage.getItem("churches") || "";
+  const churchesStored = sessionStorage.getItem("churches") || "";
 
   const retrieveChurches = () => {
     return new Promise((resolve, reject) => {
@@ -65,7 +65,6 @@ async function populateChurches() {
         .then((res) => res.json())
         .then((data) => {
           const churchesJSON = JSON.stringify(data);
-          localStorage.setItem("churches", churchesJSON);
           resolve(churchesJSON);
         })
         .catch((err) => {
@@ -75,15 +74,49 @@ async function populateChurches() {
     });
   };
 
-  const renderChurches = (churches) => {
+  const renderChurches = async (churchesInCountries) => {
+    const countryDataStored = sessionStorage.getItem("countryData") || "";
+    let countryData = [];
+    const lang = "en"; // TODO:  Create an index of supported languages, then get user's country data if available, defaulting to English
+
+    if (!countryDataStored.length) {
+      countryData = await fetch(`/data/json/lang/${lang}/countries.json`)
+        .then((res) => res.json())
+        .then((data) => {
+          sessionStorage.setItem("countryData", JSON.stringify(data));
+          return data;
+        });
+    } else {
+      countryData = JSON.parse(countryDataStored);
+    }
+
+    const churches = churchesInCountries.map((item) => {
+      const countryName = getCountryName(item.country.iso, countryData);
+      const churchesSorted = item.country.churches.sort((a, b) => {
+        const placeA = a.place;
+        const placeB = b.place;
+
+        if (typeof placeA === "string" && typeof placeB === "string") {
+          placeA.toLowerCase() > placeB.toLowerCase() ? 1 : -1;
+        }
+      });
+
+      item.country.name = countryName;
+      item.country.churches = churchesSorted;
+      return item;
+    });
+
+    sessionStorage.setItem("churches", JSON.stringify(churches));
+
     churches.forEach(async (item) => {
-      const { iso, churches } = item.country;
-      const countryName = await getCountryName(iso);
+      const { churches, iso, name } = item.country;
+      const countryName = name;
 
       if (iso.length === 0) return getGlobalPhrase("uncategorized");
+      if (!countryName.trim().length) return;
 
       const optgroup = document.createElement("optgroup");
-      optgroup.label = `${countryName}:`;
+      optgroup.setAttribute("label", `${countryName.trim()}:`);
       churches.forEach((church) => {
         const { id, name, place } = church;
         const option = document.createElement("option");
@@ -107,16 +140,11 @@ async function populateChurches() {
   };
 
   if (churchesStored.length) {
-    const churches = JSON.parse(churchesStored);
-    renderChurches(churches);
-
-    const churchesJSON = await retrieveChurches();
-    localStorage.setItem("churches", churchesJSON);
+    renderChurches(JSON.parse(churchesStored));
   } else {
     const churchesJSON = await retrieveChurches();
     const churches = churchesJSON.length ? JSON.parse(churchesJSON) : [];
 
-    localStorage.setItem("churches", churchesJSON);
     renderChurches(churches);
   }
 }

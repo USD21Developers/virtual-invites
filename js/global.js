@@ -264,33 +264,20 @@ function getApiServicesHost() {
   return host;
 }
 
-function getCountryName(iso, lang = "en") {
-  return new Promise(async (resolve, reject) => {
-    const endpoint = `/data/json/lang/${lang}/countries.json`;
-    const storedCountries = localStorage.getItem("countries") || "";
-    let countries = storedCountries.length ? JSON.parse(storedCountries) : [];
+function getCountryName(iso, countryData) {
+  if (!Array.isArray(countryData)) return;
 
-    if (!countries.length) {
-      countries = await fetch(endpoint)
-        .then((res) => res.json())
-        .then((countriesFetched) => {
-          localStorage.setItem("countries", JSON.stringify(countriesFetched));
-          return countriesFetched;
-        });
+  const countryDataLength = countryData.length;
+
+  let countryName = "";
+  for (let i = 0; i < countryDataLength; i++) {
+    if (countryData[i].alpha2 === iso) {
+      countryName = countryData[i].name;
+      break;
     }
+  }
 
-    let countryName = "";
-    const countriesLength = countries.length;
-
-    for (let i = 0; i < countriesLength; i++) {
-      if (countries[i].alpha2 === iso) {
-        countryName = countries[i].name;
-        break;
-      }
-    }
-
-    resolve(countryName);
-  });
+  return countryName;
 }
 
 function getHash() {
