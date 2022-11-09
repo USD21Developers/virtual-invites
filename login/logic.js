@@ -1,4 +1,3 @@
-
 function onSubmit(e) {
   e.preventDefault();
   const spinner = document.querySelector("#progressbar");
@@ -15,19 +14,21 @@ function onSubmit(e) {
   const signal = controller.signal;
   let state = "before"; // before | during | after | aborted
 
-  document.querySelectorAll(".is-invalid").forEach(item => item.classList.remove("is-invalid"));
+  document
+    .querySelectorAll(".is-invalid")
+    .forEach((item) => item.classList.remove("is-invalid"));
 
   if (!username.length) {
     usernameError.innerHTML = "Please input your username.";
     usernameEl.classList.add("is-invalid");
-    usernameEl.scrollIntoView({ behavior: 'smooth' });
+    usernameEl.scrollIntoView({ behavior: "smooth" });
     return;
   }
 
   if (!password.length) {
     passwordError.innerHTML = "Please input your password.";
     passwordEl.classList.add("is-invalid");
-    passwordEl.scrollIntoView({ behavior: 'smooth' });
+    passwordEl.scrollIntoView({ behavior: "smooth" });
     return;
   }
 
@@ -41,15 +42,15 @@ function onSubmit(e) {
     method: "POST",
     body: JSON.stringify({
       username: username,
-      password: password
+      password: password,
     }),
     headers: new Headers({
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     }),
-    signal: signal
+    signal: signal,
   })
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then(async (data) => {
       switch (data.msg) {
         case "invalid login":
           const phrase = getPhrase("invalid login");
@@ -64,6 +65,9 @@ function onSubmit(e) {
           localStorage.setItem("datakey", data.datakey);
           localStorage.setItem("refreshToken", data.refreshToken);
           sessionStorage.setItem("accessToken", data.accessToken);
+          const countriesPromise = getCountries(getLang());
+          const churchesPromise = getChurches();
+          await Promise.all([countriesPromise, churchesPromise]);
           window.location.href = "../";
           break;
         default:
@@ -75,7 +79,7 @@ function onSubmit(e) {
           break;
       }
     })
-    .catch(err => {
+    .catch((err) => {
       state = "before";
       console.error(err);
       hide(spinner);

@@ -404,7 +404,7 @@ async function populateChurches() {
       .then((res) => res.json())
       .then((churchesInCountries) => {
         churchesInCountries.forEach((item) => {
-          const { iso: countryCode, name, churches } = item.country;
+          const { countryCode, name, churches } = item;
           let countryName = name;
 
           if (typeof name !== "string") return;

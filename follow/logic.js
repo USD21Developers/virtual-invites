@@ -92,6 +92,15 @@ async function populateChurches() {
 
     const churches = countries.map((item) => {
       const countryName = getCountryName(item.country.iso, countryData);
+      const churchesSorted = item.churches.sort((a, b) => {
+        const placeA = a.place;
+        const placeB = b.place;
+
+        if (typeof placeA === "string" && typeof placeB === "string") {
+          placeA.toLowerCase() > placeB.toLowerCase() ? 1 : -1;
+        }
+      });
+
       item.country.name = countryName;
       return item;
     });
