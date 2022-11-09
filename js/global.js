@@ -216,6 +216,40 @@ function getAccessToken() {
   });
 }
 
+function getChurches() {
+  return new Promise(async (resolve, reject) => {
+    const endpoint = `${getApiServicesHost()}/churches`;
+    const churchesStored = localStorage.getItem("churches") || "";
+
+    if (churchesStored.length) {
+      return resolve(JSON.parse(churchesStored));
+    }
+
+    const accessToken = await getAccessToken();
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        switch (data.msgType) {
+          case "success":
+            localStorage.setItem("churches", JSON.stringify(data.churches));
+            resolve(data.churches);
+            break;
+          default:
+            console.error(data.msg);
+            reject(data.msg);
+        }
+      });
+  });
+}
+
 function getApiHost() {
   let host;
 
@@ -271,7 +305,7 @@ function getCountryName(iso, countryData) {
 
   let countryName = "";
   for (let i = 0; i < countryDataLength; i++) {
-    if (countryData[i].alpha2 === iso) {
+    if (countryData[i].iso === iso) {
       countryName = countryData[i].name;
       break;
     }
@@ -280,9 +314,9 @@ function getCountryName(iso, countryData) {
   return countryName;
 }
 
-function getCountryNames(lang) {
+function getCountries(lang) {
   const endpoint = `${getApiServicesHost()}/country-names/${lang}`;
-  const countryNamesStored = localStorage.getItem("countryNames") || "";
+  const countriesStored = localStorage.getItem("countries") || "";
   const isOffline = navigator.onLine ? false : true;
 
   return new Promise(async (resolve, reject) => {
@@ -293,12 +327,12 @@ function getCountryNames(lang) {
       return reject(new Error("language code must be exactly 2 characters"));
 
     // Use locally stored data if possible
-    if (countryNamesStored.length) {
-      const countryNamesParsed = JSON.parse(countryNamesStored);
-      const langStored = countryNamesParsed.lang;
+    if (countriesStored.length) {
+      const countriesParsed = JSON.parse(countriesStored);
+      const langStored = countriesParsed.lang;
 
       if (langStored === lang) {
-        return resolve(countryNamesParsed);
+        return resolve(countriesParsed);
       }
     }
 
@@ -321,10 +355,10 @@ function getCountryNames(lang) {
         switch (data.msgType) {
           case "success":
             localStorage.setItem(
-              "countryNames",
+              "countries",
               JSON.stringify(data.countryNames)
             );
-            resolve(data);
+            resolve(data.countryNames);
           default:
             reject(new Error(data.msg));
         }
