@@ -280,6 +280,62 @@ function getCountryName(iso, countryData) {
   return countryName;
 }
 
+function getCountryNames(lang) {
+  const endpoint = `${getApiServicesHost()}/country-names/${lang}`;
+  const countryNamesStored = localStorage.getItem("countryNames") || "";
+  const isOffline = navigator.onLine ? false : true;
+
+  return new Promise(async (resolve, reject) => {
+    // Validate
+    if (typeof lang !== "string")
+      return reject(new Error("language code is required"));
+    if (lang.length !== 2)
+      return reject(new Error("language code must be exactly 2 characters"));
+
+    // Use locally stored data if possible
+    if (countryNamesStored.length) {
+      const countryNamesParsed = JSON.parse(countryNamesStored);
+      const langStored = countryNamesParsed.lang;
+
+      if (langStored === lang) {
+        return resolve(countryNamesParsed);
+      }
+    }
+
+    if (isOffline) {
+      reject(new Error("user is offline"));
+    }
+
+    // Fetch data
+    const accessToken = await getAccessToken();
+    fetch(endpoint, {
+      mode: "cors",
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        switch (data.msgType) {
+          case "success":
+            localStorage.setItem(
+              "countryNames",
+              JSON.stringify(data.countryNames)
+            );
+            resolve(data);
+          default:
+            reject(new Error(data.msg));
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        reject(err);
+      });
+  });
+}
+
 function getHash() {
   return (
     document.location.hash.substring(1, document.location.hash.length) || ""
