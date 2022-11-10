@@ -76,12 +76,12 @@ async function populateChurches() {
 
     churchesInCountry.sort((a, b) => (a.place > b.place ? 1 : -1));
     churchesInCountry.forEach((church) => {
-      const { country, id, name, place, url } = church;
+      const { country, id, name, place } = church;
       if (!place) {
         skipThisIteration = true;
         return;
       }
-      const option = `<option value="${id}" data-name="${name}" data-url="${url}">${place}</option>`;
+      const option = `<option value="${id}" data-name="${name}">${place}</option>`;
       churchesInCountryHtml += option;
     });
 
@@ -109,15 +109,9 @@ function selectUserChurch() {
   churchEl.value = userChurchId;
 
   const churchName = churchEl.selectedOptions[0].getAttribute("data-name");
-  const churchUrl = churchEl.selectedOptions[0].getAttribute("data-url");
   const churchNameEl = document.querySelector("#selectedChurchName");
-  const churchNameHtml = `<a href="${churchUrl}" target="_blank" rel="noopener noreferrer nofollow">${churchName}</a>`;
 
-  if (churchUrl.trim().length) {
-    churchNameEl.innerHTML = churchNameHtml;
-  } else {
-    churchNameEl.innerText = churchName;
-  }
+  churchNameEl.innerText = churchName;
 }
 
 function showMatchesFound(matches) {
@@ -284,15 +278,9 @@ function validate(e) {
 function onChurchChanged() {
   const churchEl = document.querySelector("#churchid");
   const churchName = churchEl.selectedOptions[0].getAttribute("data-name");
-  const churchUrl = churchEl.selectedOptions[0].getAttribute("data-url");
   const churchNameEl = document.querySelector("#selectedChurchName");
-  const churchNameHtml = `<a href="${churchUrl}" target="_blank" rel="noopener noreferrer nofollow">${churchName}</a>`;
 
-  if (churchUrl.trim().length) {
-    churchNameEl.innerHTML = churchNameHtml;
-  } else {
-    churchNameEl.innerText = churchName;
-  }
+  churchNameEl.innerText = churchName;
 }
 
 async function onNameSearched(e) {
