@@ -1,143 +1,147 @@
 {
-    "metadata": {
-      "description": "Follow a User",
-      "path": "/follow/",
-      "lang": {
-        "original": "en",
-        "translated": "en"
-      }
+  "metadata": {
+    "description": "Follow a User",
+    "path": "/follow/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Follow a User",
+      "translated": "Follow a User"
     },
-    "phrases": [
-      {
-        "key": "pagetitle",
-        "original": "Follow a User",
-        "translated": "Follow a User"
-      },
-      {
-        "key": "breadcrumbHome",
-        "original": "Home",
-        "translated": "Home"
-      },
-      {
-        "key": "breadcrumbFollow",
-        "original": "Follow",
-        "translated": "Follow"
-      },
-      {
-        "key": "paragraph1",
-        "original": "When you follow a user, you can use any of the events that they have added within your invites.",
-        "translated": "When you follow a user, you can use any of the events that they have added within your invites."
-      },
-      {
-        "key": "learnMore",
-        "original": "Learn More",
-        "translated": "Learn More"
-      },
-      {
-        "key": "searchByName",
-        "original": "Search Users to Follow:",
-        "translated": "Search Users to Follow:"
-      },
-      {
-        "key": "labelFirstName",
-        "original": "First Name",
-        "translated": "First Name"
-      },
-      {
-        "key": "labelLastName",
-        "original": "Last Name",
-        "translated": "Last Name"
-      },
-      {
-        "key": "limitToLocalCongregation",
-        "original": "Limit to my local congregation",
-        "translated": "Limit to my local congregation"
-      },
-      {
-        "key": "allUsers",
-        "original": "All users",
-        "translated": "All users"
-      },
-      {
-        "key": "btnSearch",
-        "original": "Search",
-        "translated": "Search"
-      },
-      {
-        "key": "searchResults",
-        "original": "Search Results",
-        "translated": "Search Results"
-      },
-      {
-        "key": "noUsersFound",
-        "original": "No matching users were found.",
-        "translated": "No matching users were found."
-      },
-      {
-        "key": "numUsersFound",
-        "original": "{quantity} users found:",
-        "translated": "{quantity} users found:"
-      },
-      {
-        "key": "oneUserFound",
-        "original": "One user found:",
-        "translated": "One user found:"
-      },
-      {
-        "key": "numMore",
-        "original": "{quantity} more",
-        "translated": "{quantity} more"
-      },
-      {
-        "key": "errorNameIsRequired",
-        "original": "Name is required",
-        "translated": "Name is required"
-      },
-      {
-        "key": "btnFollow",
-        "original": "Follow",
-        "translated": "Follow"
-      },
-      {
-        "key": "btnFollowing",
-        "original": "Following",
-        "translated": "Following"
-      },
-      {
-        "key": "btnProfile",
-        "original": "Profile",
-        "translated": "Profile"
-      },
-      {
-        "key": "labelChurch",
-        "original": "User's Church",
-        "translated": "User's Church"
-      }
-    ],
-  
-    "example-no-changes": [
-      {
-        "key": "",
-        "original": "",
-        "translated": ""
-      }
-    ],
-  
-    "example-has-changes": [
-      {
-        "key": "",
-        "original": "",
-        "translated": "",
-        "changes": [
-          {
-            "original": "",
-            "translated": "",
-            "bold": false,
-            "italic": false,
-            "link": ""
-          }
-        ]
-      }
-    ]
-  }
-  
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbFollow",
+      "original": "Follow",
+      "translated": "Follow"
+    },
+    {
+      "key": "paragraph1",
+      "original": "When you follow a user, you can use any of the events that they have added within your invites.",
+      "translated": "When you follow a user, you can use any of the events that they have added within your invites."
+    },
+    {
+      "key": "learnMore",
+      "original": "Learn More",
+      "translated": "Learn More"
+    },
+    {
+      "key": "searchByName",
+      "original": "Search Users to Follow:",
+      "translated": "Search Users to Follow:"
+    },
+    {
+      "key": "labelFirstName",
+      "original": "First Name",
+      "translated": "First Name"
+    },
+    {
+      "key": "labelLastName",
+      "original": "Last Name",
+      "translated": "Last Name"
+    },
+    {
+      "key": "limitToLocalCongregation",
+      "original": "Limit to my local congregation",
+      "translated": "Limit to my local congregation"
+    },
+    {
+      "key": "allUsers",
+      "original": "All users",
+      "translated": "All users"
+    },
+    {
+      "key": "btnSearch",
+      "original": "Search",
+      "translated": "Search"
+    },
+    {
+      "key": "searchResults",
+      "original": "Search Results",
+      "translated": "Search Results"
+    },
+    {
+      "key": "noUsersFound",
+      "original": "No matching users were found.",
+      "translated": "No matching users were found."
+    },
+    {
+      "key": "numUsersFound",
+      "original": "{quantity} users found:",
+      "translated": "{quantity} users found:"
+    },
+    {
+      "key": "oneUserFound",
+      "original": "One user found:",
+      "translated": "One user found:"
+    },
+    {
+      "key": "numMore",
+      "original": "{quantity} more",
+      "translated": "{quantity} more"
+    },
+    {
+      "key": "errorNameIsRequired",
+      "original": "Name is required",
+      "translated": "Name is required"
+    },
+    {
+      "key": "errorChurchIsRequired",
+      "original": "User's church is required",
+      "translated": "User's church is required"
+    },
+    {
+      "key": "btnFollow",
+      "original": "Follow",
+      "translated": "Follow"
+    },
+    {
+      "key": "btnFollowing",
+      "original": "Following",
+      "translated": "Following"
+    },
+    {
+      "key": "btnProfile",
+      "original": "Profile",
+      "translated": "Profile"
+    },
+    {
+      "key": "labelChurch",
+      "original": "User's Church",
+      "translated": "User's Church"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

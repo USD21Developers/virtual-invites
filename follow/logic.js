@@ -309,11 +309,18 @@ async function onNameSearched(e) {
   let endpoint = `${getApiHost()}/follow-search`;
   const controller = new AbortController();
   const timeout = 8000;
-  const isValid = validate(e);
 
-  if (!isValid) {
+  // Validate name
+  if (searchedFirstName === "" && searchedLastName === "") {
     formError("#searchedFirstName", getPhrase("errorNameIsRequired"));
     customScrollTo("#searchedFirstName");
+    return;
+  }
+
+  // Validate church
+  if (churchid === "" || typeof churchid === "undefined") {
+    formError("#churchid", getPhrase("errorChurchIsRequired"));
+    customScrollTo("#churchid");
     return;
   }
 
