@@ -487,8 +487,6 @@ async function onQuantityFollowingClicked(e) {
 
   titleEl.innerText = getPhrase("usersFollowing");
   bodyEl.innerHTML = `
-    ${getPhrase("usersFollowingParagraph1")}
-
     <div class="text-center" class="modal-users-following">
       <img
         src="/_assets/img/spinner.svg"

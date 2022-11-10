@@ -140,13 +140,8 @@
     },
     {
       "key": "usersFollowing",
-      "original": "Following Users",
-      "translated": "Following Users"
-    },
-    {
-      "key": "usersFollowingParagraph1",
-      "original": "Users that I am currently following:",
-      "translated": "Users that I am currently following:"
+      "original": "Users I Follow",
+      "translated": "Users I Follow"
     }
   ],
 
