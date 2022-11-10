@@ -29,6 +29,21 @@
       "translated": "When you follow a user, you can use any of the events that they have added within your invites."
     },
     {
+      "key": "followingNone",
+      "original": "You are not currently following anyone.",
+      "translated": "You are not currently following anyone."
+    },
+    {
+      "key": "following1",
+      "original": "You are now following {1} user.",
+      "translated": "You are now following {1} user."
+    },
+    {
+      "key": "followingX",
+      "original": "You are now following {quantity} users.",
+      "translated": "You are now following {quantity} users."
+    },
+    {
       "key": "learnMore",
       "original": "Learn More",
       "translated": "Learn More"
@@ -117,6 +132,21 @@
       "key": "labelChurch",
       "original": "User's Church",
       "translated": "User's Church"
+    },
+    {
+      "key": "btnCloseModal",
+      "original": "Close",
+      "translated": "Close"
+    },
+    {
+      "key": "usersFollowing",
+      "original": "Following Users",
+      "translated": "Following Users"
+    },
+    {
+      "key": "usersFollowingParagraph1",
+      "original": "Below are the users that I am currently following:",
+      "translated": "Below are the users that I am currently following:"
     }
   ],
 

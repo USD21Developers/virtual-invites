@@ -20,6 +20,8 @@ function followUser(userid, e) {
         switch (data.msg) {
           case "follow successful":
             e.target.setAttribute("data-status", "followed");
+            const quantityNowFollowing = data.quantityNowFollowing;
+            showQuantityFollowing(quantityNowFollowing);
             resolve(data.msg);
             break;
           default:
@@ -52,6 +54,38 @@ function noMatchesFound() {
   searchResults.classList.remove("d-none");
 
   customScrollTo("#searchResults");
+}
+
+async function populateNowFollowing() {
+  const userid = parseInt(
+    JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).userid
+  );
+  const accessToken = await getAccessToken();
+  const endpoint = `${getApiHost()}/following-quantity/${userid}`;
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "GET",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      switch (data.msg) {
+        case "retrieved quantity of users following":
+          const quantity = data.quantity;
+          showQuantityFollowing(quantity);
+          break;
+        default:
+          console.error(data.msg);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      document.querySelector("#usersNowFollowing").classList.add("d-none");
+    });
 }
 
 async function populateChurches() {
@@ -96,6 +130,12 @@ async function populateChurches() {
   churchDropdown.innerHTML = churchesHtml;
 
   selectUserChurch();
+}
+
+function quantityFollowingListener() {
+  document.querySelectorAll(".followingQuantity").forEach((item) => {
+    item.addEventListener("click", onQuantityFollowingClicked);
+  });
 }
 
 function selectUserChurch() {
@@ -204,6 +244,32 @@ function showMatchesFound(matches) {
   customScrollTo("#searchResults");
 }
 
+function showQuantityFollowing(quantity) {
+  const usersNowFollowingEl = document.querySelector("#usersNowFollowing");
+
+  if (quantity === 0) {
+    const phraseFollowingNone = getPhrase("followingNone");
+    usersNowFollowingEl.innerHTML = phraseFollowingNone;
+    usersNowFollowingEl.classList.remove("d-none");
+  } else if (quantity === 1) {
+    const phraseFollowing1 = getPhrase("following1").replace(
+      "{1}",
+      `<strong><a href="#" class="text-primary followingQuantity">${quantity}</a></strong>`
+    );
+    usersNowFollowingEl.innerHTML = phraseFollowing1;
+    quantityFollowingListener();
+    usersNowFollowingEl.classList.remove("d-none");
+  } else {
+    const phraseFollowingX = getPhrase("followingX").replace(
+      "{quantity}",
+      `<strong><a href="#" class="text-primary followingQuantity">${quantity}</a></strong>`
+    );
+    usersNowFollowingEl.innerHTML = phraseFollowingX;
+    quantityFollowingListener();
+    usersNowFollowingEl.classList.remove("d-none");
+  }
+}
+
 function showSpinner() {
   const searchSpinner = document.querySelector("#searchSpinner");
 
@@ -241,6 +307,8 @@ function unfollowUser(userid, e) {
             e.target.classList.remove("btn-success");
             e.target.classList.add("btn-primary");
             e.target.innerText = getPhrase("btnFollow");
+            const quantityNowFollowing = data.quantityNowFollowing;
+            showQuantityFollowing(quantityNowFollowing);
             resolve(data.msg);
             break;
           default:
@@ -362,8 +430,6 @@ function onFirstNameSearchInputted(e) {
       item.classList.remove("is-invalid");
     });
   }
-
-  // TODO:  Check indexedDB for list of all registered users in the church congregation of the current user. If populated, insert names into the datalist. Then sync silently.
 }
 
 async function onFollowClicked(e) {
@@ -407,6 +473,29 @@ function onProfileClicked(e) {
   window.location.href = url;
 }
 
+async function onQuantityFollowingClicked(e) {
+  e.preventDefault();
+  const modal = document.querySelector("#modal");
+  const titleEl = modal.querySelector(".modal-title");
+  const bodyEl = modal.querySelector(".modal-body");
+
+  titleEl.innerText = getPhrase("usersFollowing");
+  bodyEl.innerHTML = `
+    ${getPhrase("usersFollowingParagraph1")}
+
+    <div class="text-center" class="modal-users-following">
+      <img
+        src="/_assets/img/spinner.svg"
+        width="200"
+        height="200"
+        style="max-width: 100%"
+      />
+    </div>
+  `;
+
+  $("#modal").modal();
+}
+
 function attachListeners() {
   document
     .querySelector("#formSearchByName")
@@ -423,6 +512,7 @@ function attachListeners() {
 }
 
 async function init() {
+  populateNowFollowing();
   populateChurches();
   await populateContent();
   globalHidePageSpinner();
