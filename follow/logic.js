@@ -512,7 +512,7 @@ function attachListeners() {
 }
 
 async function init() {
-  populateNowFollowing();
+  await populateNowFollowing();
   populateChurches();
   await populateContent();
   globalHidePageSpinner();
