@@ -59,8 +59,6 @@ async function populateChurches() {
   const countryData = await getCountries(getLang());
   const countries = countryData.names;
   const churches = await getChurches();
-  const churchCountriesSet = new Set(churches.map((item) => item.country));
-  const churchCountries = [...churchCountriesSet];
   let churchesHtml = "";
 
   countries.sort((a, b) => (a.name > b.name ? 1 : -1));
@@ -96,10 +94,6 @@ async function populateChurches() {
   }
 
   churchDropdown.innerHTML = churchesHtml;
-
-  $(
-    ".floating-label .custom-select, .floating-label .form-control"
-  ).floatinglabel();
 
   selectUserChurch();
 }
@@ -274,8 +268,13 @@ function validate(e) {
   let isValid = true;
   const firstName = e.target.searchedFirstName.value.trim();
   const lastName = e.target.searchedLastName.value.trim();
+  const churchid = e.target.churchid.value.trim() || "";
 
   if (firstName === "" && lastName === "") {
+    isValid = false;
+  }
+
+  if (churchid === "") {
     isValid = false;
   }
 
