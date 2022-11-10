@@ -285,9 +285,15 @@ function validate(e) {
 function onChurchChanged() {
   const churchEl = document.querySelector("#churchid");
   const churchName = churchEl.selectedOptions[0].getAttribute("data-name");
+  const churchUrl = churchEl.selectedOptions[0].getAttribute("data-url");
   const churchNameEl = document.querySelector("#selectedChurchName");
+  const churchNameHtml = `<a href="${churchUrl}" target="_blank" rel="noopener noreferrer nofollow">${churchName}</a>`;
 
-  churchNameEl.innerText = churchName;
+  if (churchUrl.trim().length) {
+    churchNameEl.innerHTML = churchNameHtml;
+  } else {
+    churchNameEl.innerText = churchName;
+  }
 }
 
 async function onNameSearched(e) {
