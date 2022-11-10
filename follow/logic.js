@@ -56,36 +56,42 @@ function noMatchesFound() {
   customScrollTo("#searchResults");
 }
 
-async function populateNowFollowing() {
-  const userid = parseInt(
-    JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).userid
-  );
-  const accessToken = await getAccessToken();
-  const endpoint = `${getApiHost()}/following-quantity/${userid}`;
+function populateNowFollowing() {
+  return new Promise(async (resolve, reject) => {
+    const userid = parseInt(
+      JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1]))
+        .userid
+    );
+    const accessToken = await getAccessToken();
+    const endpoint = `${getApiHost()}/following-quantity/${userid}`;
 
-  fetch(endpoint, {
-    mode: "cors",
-    method: "GET",
-    headers: new Headers({
-      "Content-Type": "application/json",
-      authorization: `Bearer ${accessToken}`,
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      switch (data.msg) {
-        case "retrieved quantity of users following":
-          const quantity = data.quantity;
-          showQuantityFollowing(quantity);
-          break;
-        default:
-          console.error(data.msg);
-      }
+    fetch(endpoint, {
+      mode: "cors",
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
     })
-    .catch((err) => {
-      console.error(err);
-      document.querySelector("#usersNowFollowing").classList.add("d-none");
-    });
+      .then((res) => res.json())
+      .then((data) => {
+        switch (data.msg) {
+          case "retrieved quantity of users following":
+            const quantity = data.quantity;
+            showQuantityFollowing(quantity);
+            resolve();
+            break;
+          default:
+            console.error(data.msg);
+            reject(data.msg);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        document.querySelector("#usersNowFollowing").classList.add("d-none");
+        reject(err);
+      });
+  });
 }
 
 async function populateChurches() {
@@ -512,9 +518,9 @@ function attachListeners() {
 }
 
 async function init() {
-  await populateNowFollowing();
   populateChurches();
   await populateContent();
+  await populateNowFollowing();
   globalHidePageSpinner();
   attachListeners();
 }
