@@ -42,7 +42,9 @@
     text-decoration: none;
 }
 
-.followingQuantity:hover {
+.followingQuantity:hover,
+.followingQuantity:active,
+.followingQuantity:visited {
     border: 1px solid #666;
     text-decoration: none;
 }
