@@ -315,7 +315,7 @@ function showUsersFollowing(users) {
       </div>
     `;
 
-    modalBody.innerHTML = html;
+    modalBody.innerHTML = `<div class="modal-users-following">${html}</div>`;
   });
 }
 
