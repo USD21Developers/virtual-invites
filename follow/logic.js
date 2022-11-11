@@ -328,6 +328,29 @@ function showUsersFollowing(users) {
       <div class="modal-users-following">
         ${html}
       </div>`;
+
+    modalBody.querySelectorAll("[data-follow-userid]").forEach((item) => {
+      item.addEventListener("click", (e) => {
+        const userid = parseInt(e.target.getAttribute("data-follow-userid"));
+        const status = e.target.getAttribute("data-status");
+
+        if (status === "follow") {
+          // Change button text from "Follow" to "Following"
+          e.target.setAttribute("data-status", "followed");
+          e.target.classList.remove("btn-primary");
+          e.target.classList.add("btn-success");
+          e.target.innerText = getPhrase("btnFollowing");
+          followUser(userid, e);
+        } else if (status === "followed") {
+          // Change button text from "Following" to "Follow"
+          e.target.setAttribute("data-status", "follow");
+          e.target.classList.remove("btn-success");
+          e.target.classList.add("btn-primary");
+          e.target.innerText = getPhrase("btnFollow");
+          unfollowUser(userid, e);
+        }
+      });
+    });
   });
 }
 
