@@ -288,6 +288,40 @@ function showTimeoutMessage() {
   // TODO
 }
 
+function showUsersFollowing(users) {
+  const modalBody = document.querySelector(".modal-body");
+  const usersFollowingEl = document.querySelector(".modal-users-following");
+  const btnFollowing = getPhrase("btnFollowing");
+  const btnProfile = getPhrase("btnProfile");
+  let html = "";
+
+  users.forEach((item) => {
+    const { firstname, gender, lastname, profilephoto, userid } = item;
+    const profilephotoThumbnail = profilephoto.replace("400.jpg", "140.jpg");
+    const defaultImg =
+      gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
+
+    html += `
+      <div class="text-center result">
+        <div class="d-inline-block profilephoto ${gender}">
+          <img src="${profilephotoThumbnail}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
+        </div>
+        <h3 class="mt-0 mb-3">${firstname} ${lastname}</h4>
+        <button type="button" class="btn btn-success btn-sm btn-follow my-0 mr-2" data-status="followed" data-follow-userid="${userid}">
+          ${btnFollowing}
+        </button>
+        <button type="button" class="btn btn-light btn-sm btn-profile my-0 ml-2" data-status="followed" data-profile-userid="${userid}">
+          ${btnProfile}
+        </button>
+      </div>
+    `;
+
+    html = `<div class="modal-users-following">${html}</div>`;
+
+    modalBody.innerHTML = html;
+  });
+}
+
 function unfollowUser(userid, e) {
   return new Promise(async (resolve, reject) => {
     const endpoint = `${getApiHost()}/unfollow-user`;
@@ -498,6 +532,25 @@ async function onQuantityFollowingClicked(e) {
   `;
 
   $("#modal").modal();
+
+  const accessToken = await getAccessToken();
+  const userid = parseInt(
+    JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).userid
+  );
+  const endpoint = `${getApiHost()}/following/${userid}`;
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "GET",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      showUsersFollowing(data.following);
+    });
 }
 
 function attachListeners() {

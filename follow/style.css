@@ -1,10 +1,12 @@
-#searchResults {
+#searchResults,
+.modal-users-following {
     border-top: 1px solid #ccc;
     margin-top: 75px;
     padding-top: 50px;
 }
 
-#searchResults img {
+#searchResults img,
+.modal-users-following img {
     background-repeat: no-repeat;
     border: 3px solid #ccc;
     border-radius: 50%;
@@ -14,23 +16,27 @@
     width: 140px;
 }
 
-#searchResults img[src*=".svg"] {
+#searchResults img[src*=".svg"],
+.modal-users-following img[src*=".svg"] {
     border: 0;
 }
 
-#searchResults .profilephoto {
+#searchResults .profilephoto,
+.modal-users-following .profilephoto {
     background-repeat: no-repeat;
     height: 140px;
     width: 140px;
 }
 
-#searchResults .result {
+#searchResults .result,
+.modal-users-following .result {
     border-bottom: 1px solid #ccc;
     margin-bottom: 50px;
     padding-bottom: 60px;
 }
 
-#searchResults .result:last-child {
+#searchResults .result:last-child,
+.modal-users-following .result:last-child {
     border-bottom: 0;
 }
 
