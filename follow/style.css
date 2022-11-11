@@ -58,3 +58,7 @@
 .modal-users-following {
     margin-top: 0;
 }
+
+.modal-users-following .result:last-child {
+    margin-bottom: 0;
+}
