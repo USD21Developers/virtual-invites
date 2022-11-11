@@ -142,6 +142,16 @@
       "key": "usersFollowing",
       "original": "Users I Follow",
       "translated": "Users I Follow"
+    },
+    {
+      "key": "modalFollowing1",
+      "original": "Following 1 user:",
+      "translated": "Following 1 user:"
+    },
+    {
+      "key": "modalFollowingX",
+      "original": "Following {quantity} users:",
+      "translated": "Following {quantity} users:"
     }
   ],
 
