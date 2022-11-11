@@ -290,7 +290,6 @@ function showTimeoutMessage() {
 
 function showUsersFollowing(users) {
   const modalBody = document.querySelector(".modal-body");
-  const usersFollowingEl = document.querySelector(".modal-users-following");
   const btnFollowing = getPhrase("btnFollowing");
   const btnProfile = getPhrase("btnProfile");
   let html = "";
@@ -315,8 +314,6 @@ function showUsersFollowing(users) {
         </button>
       </div>
     `;
-
-    html = `<div class="modal-users-following">${html}</div>`;
 
     modalBody.innerHTML = html;
   });
