@@ -292,7 +292,13 @@ function showUsersFollowing(users) {
   const modalBody = document.querySelector(".modal-body");
   const btnFollowing = getPhrase("btnFollowing");
   const btnProfile = getPhrase("btnProfile");
+  const quantity = users.length;
+  let topParagraph = getPhrase("modalFollowing1");
   let html = "";
+
+  if (quantity > 1) {
+    topParagraph = getPhrase("modalFollowingX").replace("{quantity}", quantity);
+  }
 
   users.forEach((item) => {
     const { firstname, gender, lastname, profilephoto, userid } = item;
@@ -315,7 +321,13 @@ function showUsersFollowing(users) {
       </div>
     `;
 
-    modalBody.innerHTML = `<div class="modal-users-following">${html}</div>`;
+    modalBody.innerHTML = `
+      <p>
+        ${topParagraph}
+      </p>
+      <div class="modal-users-following">
+        ${html}
+      </div>`;
   });
 }
 
