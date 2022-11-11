@@ -322,7 +322,7 @@ function showUsersFollowing(users) {
     `;
 
     modalBody.innerHTML = `
-      <p>
+      <p class="mb-2 text-center">
         ${topParagraph}
       </p>
       <div class="modal-users-following">
