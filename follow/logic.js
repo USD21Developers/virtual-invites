@@ -252,7 +252,7 @@ function showMatchesFound(matches) {
 
 function showQuantityFollowing(quantity) {
   const usersNowFollowingEl = document.querySelector("#usersNowFollowing");
-  const modalTopParagraphEl = getPhrase("modalFollowing1");
+  const modalTopParagraphEl = document.querySelector("#modalTopParagraph");
 
   if (quantity === 0) {
     const phraseFollowingNone = getPhrase("followingNone");
