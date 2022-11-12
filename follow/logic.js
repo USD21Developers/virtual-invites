@@ -276,6 +276,7 @@ function showQuantityFollowing(quantity) {
         "{quantity}",
         quantity
       );
+      modalTopParagraphEl.classList.remove("d-none");
     } catch (e) {
       console.log(e);
     }
@@ -292,6 +293,7 @@ function showQuantityFollowing(quantity) {
         "{quantity}",
         quantity
       );
+      modalTopParagraphEl.classList.remove("d-none");
     } catch (e) {
       console.log(e);
     }
