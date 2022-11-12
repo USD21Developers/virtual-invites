@@ -252,11 +252,17 @@ function showMatchesFound(matches) {
 
 function showQuantityFollowing(quantity) {
   const usersNowFollowingEl = document.querySelector("#usersNowFollowing");
+  const modalTopParagraphEl = getPhrase("modalFollowing1");
 
   if (quantity === 0) {
     const phraseFollowingNone = getPhrase("followingNone");
     usersNowFollowingEl.innerHTML = phraseFollowingNone;
     usersNowFollowingEl.classList.remove("d-none");
+    try {
+      modalTopParagraphEl.classList.add("d-none");
+    } catch (e) {
+      console.log(e);
+    }
   } else if (quantity === 1) {
     const phraseFollowing1 = getPhrase("following1").replace(
       "{1}",
@@ -265,6 +271,14 @@ function showQuantityFollowing(quantity) {
     usersNowFollowingEl.innerHTML = phraseFollowing1;
     quantityFollowingListener();
     usersNowFollowingEl.classList.remove("d-none");
+    try {
+      modalTopParagraphEl.innerText = getPhrase("modalFollowing1").replace(
+        "{quantity}",
+        quantity
+      );
+    } catch (e) {
+      console.log(e);
+    }
   } else {
     const phraseFollowingX = getPhrase("followingX").replace(
       "{quantity}",
@@ -273,6 +287,14 @@ function showQuantityFollowing(quantity) {
     usersNowFollowingEl.innerHTML = phraseFollowingX;
     quantityFollowingListener();
     usersNowFollowingEl.classList.remove("d-none");
+    try {
+      modalTopParagraphEl.innerText = getPhrase("modalFollowingX").replace(
+        "{quantity}",
+        quantity
+      );
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
 
@@ -323,7 +345,7 @@ function showUsersFollowing(users) {
 
     modalBody.innerHTML = `
       <p class="mt-4 mb-5 text-center">
-        <strong>${topParagraph}</strong>
+        <strong id="modalTopParagraph">${topParagraph}</strong>
       </p>
       <div class="modal-users-following">
         ${html}
