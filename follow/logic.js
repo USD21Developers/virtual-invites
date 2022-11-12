@@ -336,10 +336,14 @@ function showUsersFollowing(users) {
 
         if (status === "follow") {
           // Change button text from "Follow" to "Following"
-          e.target.setAttribute("data-status", "followed");
-          e.target.classList.remove("btn-primary");
-          e.target.classList.add("btn-success");
-          e.target.innerText = getPhrase("btnFollowing");
+          document
+            .querySelectorAll(`[data-follow-userid='${userid}']`)
+            .forEach((item) => {
+              item.setAttribute("data-status", "followed");
+              item.classList.remove("btn-primary");
+              item.classList.add("btn-success");
+              item.innerText = getPhrase("btnFollowing");
+            });
           followUser(userid, e);
         } else if (status === "followed") {
           // Change button text from "Following" to "Follow"
@@ -347,6 +351,14 @@ function showUsersFollowing(users) {
           e.target.classList.remove("btn-success");
           e.target.classList.add("btn-primary");
           e.target.innerText = getPhrase("btnFollow");
+          document
+            .querySelectorAll(`[data-follow-userid='${userid}']`)
+            .forEach((item) => {
+              item.setAttribute("data-status", "follow");
+              item.classList.remove("btn-success");
+              item.classList.add("btn-primary");
+              item.innerText = getPhrase("btnFollow");
+            });
           unfollowUser(userid, e);
         }
       });
@@ -510,10 +522,14 @@ async function onFollowClicked(e) {
 
   if (status === "follow") {
     // Change button text from "Follow" to "Following"
-    e.target.setAttribute("data-status", "followed");
-    e.target.classList.remove("btn-primary");
-    e.target.classList.add("btn-success");
-    e.target.innerText = getPhrase("btnFollowing");
+    document
+      .querySelectorAll(`[data-follow-userid='${userid}']`)
+      .forEach((item) => {
+        item.setAttribute("data-status", "followed");
+        item.classList.remove("btn-primary");
+        item.classList.add("btn-success");
+        item.innerText = getPhrase("btnFollowing");
+      });
     followUser(userid, e);
   } else if (status === "followed") {
     // Change button text from "Following" to "Follow"
@@ -521,6 +537,14 @@ async function onFollowClicked(e) {
     e.target.classList.remove("btn-success");
     e.target.classList.add("btn-primary");
     e.target.innerText = getPhrase("btnFollow");
+    document
+      .querySelectorAll(`[data-follow-userid='${userid}']`)
+      .forEach((item) => {
+        item.setAttribute("data-status", "follow");
+        item.classList.remove("btn-success");
+        item.classList.add("btn-primary");
+        item.innerText = getPhrase("btnFollow");
+      });
     unfollowUser(userid, e);
   }
 }
