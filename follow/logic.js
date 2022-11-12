@@ -201,9 +201,9 @@ function showMatchesFound(matches) {
           <button type="button" class="btn btn-primary btn-sm btn-follow my-0 mr-2" data-status="follow" data-follow-userid="${userid}">
             ${btnFollow}
           </button>
-          <button type="button" class="btn btn-light btn-sm btn-profile my-0 ml-2" data-status="follow" data-profile-userid="${userid}">
+          <a href="/u/#${userid}" class="btn btn-light btn-sm btn-profile my-0 ml-2">
             ${btnProfile}
-          </button>
+          </a>
         </div>
       `;
     } else {
@@ -216,9 +216,9 @@ function showMatchesFound(matches) {
           <button type="button" class="btn btn-success btn-sm btn-follow my-0 mr-2" data-status="followed" data-follow-userid="${userid}">
             ${btnFollow}
           </button>
-          <button type="button" class="btn btn-light btn-sm btn-profile my-0 ml-2" data-status="followed" data-profile-userid="${userid}">
+          <a href="/u/#${userid}" class="btn btn-light btn-sm btn-profile my-0 ml-2">
             ${btnProfile}
-          </button>
+          </a>
         </div>
       `;
     }
@@ -315,9 +315,9 @@ function showUsersFollowing(users) {
         <button type="button" class="btn btn-success btn-sm btn-follow my-0 mr-2" data-status="followed" data-follow-userid="${userid}">
           ${btnFollowing}
         </button>
-        <button type="button" class="btn btn-light btn-sm btn-profile my-0 ml-2" data-status="followed" data-profile-userid="${userid}">
+        <a href="/u/#${userid}" class="btn btn-light btn-sm btn-profile my-0 ml-2">
           ${btnProfile}
-        </button>
+        </a>
       </div>
     `;
 
