@@ -1,0 +1,12 @@
+#profilephoto {
+  border: 2px solid white;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
+
+.followquantity {
+  color: black;
+  font-weight: bold;
+  margin-inline-end: 2px;
+}

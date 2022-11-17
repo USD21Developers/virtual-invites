@@ -1,0 +1,88 @@
+{
+  "metadata": {
+    "description": "Follow a User",
+    "path": "/follow/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "pagetitle",
+      "original": "User Profile: {name}",
+      "translated": "User Profile: {name}"
+    },
+    {
+      "key": "breadcrumbUserProfile",
+      "original": "Profile",
+      "translated": "Profile"
+    },
+    {
+      "key": "photoAltText",
+      "original": "Photo of {name}",
+      "translated": "Photo of {name}"
+    },
+    {
+      "key": "numFollowedBy",
+      "original": "{quantity} Followers",
+      "translated": "{quantity} Followers"
+    },
+    {
+      "key": "numFollowing",
+      "original": "{quantity} Following",
+      "translated": "{quantity} Following"
+    },
+    {
+      "key": "followedBy1",
+      "original": "{quantity} Follower",
+      "translated": "{quantity} Follower"
+    },
+    {
+      "key": "following1",
+      "original": "{quantity} Following",
+      "translated": "{quantity} Following"
+    },
+
+    {
+      "key": "btnFollow",
+      "original": "Follow",
+      "translated": "Follow"
+    },
+    {
+      "key": "btnFollowing",
+      "original": "Following",
+      "translated": "Following"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
