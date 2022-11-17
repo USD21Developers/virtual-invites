@@ -22,6 +22,7 @@ function followUser(userid, e) {
             e.target.setAttribute("data-status", "followed");
             e.target.classList.remove("btn-primary");
             e.target.classList.add("btn-success");
+            updateFollowCounts(data.otherUserNow);
             resolve(data.msg);
             break;
           default:
@@ -169,6 +170,7 @@ function unfollowUser(userid, e) {
             e.target.classList.remove("btn-success");
             e.target.classList.add("btn-primary");
             e.target.innerText = getPhrase("btnFollow");
+            updateFollowCounts(data.otherUserNow);
             resolve(data.msg);
             break;
           default:
@@ -184,6 +186,39 @@ function unfollowUser(userid, e) {
         reject(err);
       });
   });
+}
+
+function updateFollowCounts(otherUserNow) {
+  let numFollowedBy = otherUserNow.followers;
+  let numFollowing = otherUserNow.following;
+  const followedByEl = document.querySelector(".numFollowedBy");
+  const followingEl = document.querySelector(".numFollowing");
+
+  let followedByText = getPhrase("numFollowedBy").replace(
+    "{quantity}",
+    `<span class="followquantity">${numFollowedBy}</span>`
+  );
+  let followingText = getPhrase("numFollowing").replace(
+    "{quantity}",
+    `<span class="followquantity">${numFollowing}</span>`
+  );
+
+  if (numFollowedBy === 1) {
+    followedByText = getPhrase("followedBy1").replace(
+      "{quantity}",
+      `<span class="followquantity">${numFollowedBy}</span>`
+    );
+  }
+
+  if (numFollowing === 1) {
+    followingText = getPhrase("following1").replace(
+      "{quantity}",
+      `<span class="followquantity">${numFollowing}</span>`
+    );
+  }
+
+  followedByEl.innerHTML = followedByText;
+  followingEl.innerHTML = followingText;
 }
 
 async function onFollowClicked(e) {
