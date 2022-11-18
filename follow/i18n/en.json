@@ -145,13 +145,13 @@
     },
     {
       "key": "modalFollowing1",
-      "original": "Following 1 user:",
-      "translated": "Following 1 user:"
+      "original": "One user:",
+      "translated": "One user:"
     },
     {
       "key": "modalFollowingX",
-      "original": "Following {quantity} users:",
-      "translated": "Following {quantity} users:"
+      "original": "{quantity} users:",
+      "translated": "{quantity} users:"
     }
   ],
 

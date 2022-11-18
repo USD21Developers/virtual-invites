@@ -58,6 +58,21 @@
       "key": "btnFollowing",
       "original": "Following",
       "translated": "Following"
+    },
+    {
+      "key": "registered",
+      "original": "Registered:",
+      "translated": "Registered:"
+    },
+    {
+      "key": "gender",
+      "original": "Gender:",
+      "translated": "Gender:"
+    },
+    {
+      "key": "userstatus",
+      "original": "Status:",
+      "translated": "Status:"
     }
   ],
 

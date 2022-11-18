@@ -40,6 +40,34 @@ function followUser(userid, e) {
   });
 }
 
+async function getChurchInfo(churchid) {
+  return new Promise((resolve, reject) => {
+    if (!churchid) return;
+    const endpoint = `${getApiServicesHost()}/church/${churchid}`;
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.msgType === "error") {
+          console.error(data.msg);
+          return reject(new Error(data.msg));
+        }
+
+        resolve(data.info);
+      })
+      .catch((err) => {
+        console.error(err);
+        reject(err);
+      });
+  });
+}
+
 async function getUserInfo() {
   let userid = parseInt(getHash()) || "";
 
@@ -61,10 +89,11 @@ async function getUserInfo() {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(async (data) => {
         if (data.msgType !== "success") throw new Error(data.msg);
-        renderProfile(data.profile);
-        resolve(data.profile);
+        const churchinfo = await getChurchInfo(data.profile.churchid);
+        renderProfile(data.profile, churchinfo);
+        resolve(data.profile, churchinfo);
       })
       .catch((err) => {
         console.error(err);
@@ -72,23 +101,20 @@ async function getUserInfo() {
   });
 }
 
-function renderProfile(userdata) {
+function renderProfile(userdata, churchinfo) {
   const {
     country,
     createdAt,
     firstname,
     gender,
-    lang,
     lastname,
     numFollowedBy,
     numFollowing,
     followed,
     profilephoto,
     userid,
-    username,
-    userstatus,
-    usertype,
   } = userdata;
+  const { church_name } = churchinfo;
   const name = `${firstname} ${lastname}`;
   const profilePhotoEl = document.querySelector("#profilephoto");
   const profilePhotoAltText = getPhrase("photoAltText").replace("{name}", name);
@@ -102,8 +128,14 @@ function renderProfile(userdata) {
   );
   const followedByEl = document.querySelector(".numFollowedBy");
   const followingEl = document.querySelector(".numFollowing");
-  const followActionEl = document.querySelector(".followAction");
   const btnFollow = document.querySelector("#btnFollow");
+  const churchNameEl = document.querySelector("#churchname");
+  const registrationDateEl = document.querySelector("#registrationDate");
+  const genderEl = document.querySelector("#gender");
+
+  if (church_name.length) {
+    churchNameEl.innerText = church_name;
+  }
 
   if (numFollowedBy === 1) {
     followedByText = getPhrase("followedBy1").replace(
@@ -143,6 +175,21 @@ function renderProfile(userdata) {
     btnFollow.classList.remove("btn-success");
     btnFollow.classList.add("btn-primary");
   }
+
+  const langCountry = `${getLang()}-${country}`;
+
+  let registrationDateOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const registrationDateText = new Intl.DateTimeFormat(
+    langCountry,
+    registrationDateOptions
+  ).format(new Date(createdAt));
+  registrationDateEl.innerText = registrationDateText;
+
+  genderEl.innerText = gender;
 }
 
 function unfollowUser(userid, e) {

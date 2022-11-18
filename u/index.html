@@ -174,7 +174,10 @@
         <div class="col col-sm-10 offset-sm-1 mt-2">
           <div class="text-center">
             <img id="profilephoto" />
-            <h2 class="fullname mt-2 mb-2"></h2>
+            <h2 class="fullname mt-2 mb-1"></h2>
+            <div class="mb-1">
+              <small class="text-muted" id="churchname"></small>
+            </div>
 
             <div class="d-inline-block mr-4">
               <small class="numFollowedBy text-nowrap"></small>
@@ -184,9 +187,31 @@
               <small class="numFollowing text-nowrap"></small>
             </div>
 
-            <div class="followAction my-3">
-              <button id="btnFollow" class="btn btn-primary" data-i18n="btnFollow" data-status="follow"></button>
+            <div class="followAction my-4">
+              <button
+                id="btnFollow"
+                class="btn btn-primary"
+                data-i18n="btnFollow"
+                data-status="follow"
+              ></button>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-sm-4 offset-sm-4">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td data-i18n="gender"></td>
+                <td class="text-right text-capitalize" id="gender"></td>
+              </tr>
+              <tr>
+                <td data-i18n="registered"></td>
+                <td class="text-right" id="registrationDate"></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
