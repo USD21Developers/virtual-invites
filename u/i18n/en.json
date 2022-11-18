@@ -70,9 +70,14 @@
       "translated": "Gender:"
     },
     {
-      "key": "userstatus",
-      "original": "Status:",
-      "translated": "Status:"
+      "key": "events",
+      "original": "Events:",
+      "translated": "Events:"
+    },
+    {
+      "key": "invitesSent",
+      "original": "Invites Sent:",
+      "translated": "Invites Sent:"
     }
   ],
 
