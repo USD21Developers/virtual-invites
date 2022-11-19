@@ -132,6 +132,16 @@
       "key": "uncategorized",
       "original": "Uncategorized",
       "translated": "Uncategorized"
+    },
+    {
+      "key": "male",
+      "original": "male",
+      "translated": "male"
+    },
+    {
+      "key": "female",
+      "original": "female",
+      "translated": "female"
     }
   ],
 

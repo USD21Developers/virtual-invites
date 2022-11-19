@@ -193,7 +193,8 @@ function renderProfile(userdata, churchinfo) {
   ).format(new Date(createdAt));
   registrationDateEl.innerText = registrationDateText;
 
-  genderEl.innerText = gender;
+  genderEl.innerText =
+    gender === "male" ? getGlobalPhrase("male") : getGlobalPhrase("female");
 
   numEventsEl.innerText = numEvents;
 
