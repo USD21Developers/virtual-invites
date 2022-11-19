@@ -586,6 +586,71 @@ function onLastNameSearchInputted(e) {
   // TODO:  Check indexedDB for list of all registered users in the church congregation of the current user. If populated, insert names into the datalist. Then sync silently.
 }
 
+function onPageShow(e) {
+  return new Promise(async (resolve, reject) => {
+    const isLoadedFromCache = e.persisted;
+    const isModalOpen = document
+      .querySelector("body")
+      .classList.contains("modal-open");
+
+    if (isLoadedFromCache) {
+      if (isModalOpen) {
+        const followedUsers = listedUsersEl
+          .querySelectorAll("button[data-status]")
+          .map((item) => parseInt(item.getAttribute("data-follow-userid")));
+        const endpoint = `${getApiHost()}/isfollowing`;
+        const accessToken = await getAccessToken();
+        fetch(endpoint, {
+          mode: "cors",
+          method: "POST",
+          body: JSON.stringify({
+            userids: followedUsers,
+          }),
+          headers: new Headers({
+            "Content-Type": "application/json",
+            authorization: `Bearer ${accessToken}`,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.msgType !== "success") {
+              console.error(data.msg);
+              return reject(data.msg);
+            }
+
+            data.result.forEach((item) => {
+              const button = listedUsersEl.querySelector(
+                `[data-follow-userid=${item.userid}]`
+              );
+              const isFollowing = item.following;
+              const status = isFollowing ? "followed" : "follow";
+              const text = isFollowing
+                ? getPhrase("btnFollowing")
+                : getPhrase("btnFollow");
+
+              button.setAttribute("data-status", status);
+              button.innerText = text;
+
+              if (isFollowing) {
+                button.classList.remove("btn-success");
+                button.classList.add("btn-primary");
+              } else {
+                button.classList.remove("btn-primary");
+                button.classList.add("btn-success");
+              }
+            });
+
+            resolve();
+          })
+          .catch((err) => {
+            console.error(err);
+            reject(err);
+          });
+      }
+    }
+  });
+}
+
 function onProfileClicked(e) {
   const userid = parseInt(e.target.getAttribute("data-profile-userid"));
   const url = `/u/#${userid}`;
@@ -646,6 +711,7 @@ function attachListeners() {
   document
     .querySelector("#churchid")
     .addEventListener("change", onChurchChanged);
+  window.addEventListener("pageshow", onPageShow);
 }
 
 async function init() {
