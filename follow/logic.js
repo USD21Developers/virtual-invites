@@ -580,6 +580,8 @@ async function onPageShow(e) {
     sessionStorage.removeItem("followActivity");
     refreshButtons(dataFromApi);
   }
+
+  await populateNowFollowing();
 }
 
 function attachListeners() {
@@ -602,7 +604,7 @@ async function init() {
   populateChurches();
   await populateContent();
   await populateNowFollowing();
-  
+
   globalHidePageSpinner();
   attachListeners();
 }
