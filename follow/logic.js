@@ -602,7 +602,7 @@ async function init() {
   populateChurches();
   await populateContent();
   await populateNowFollowing();
-  refreshButtons();
+  
   globalHidePageSpinner();
   attachListeners();
 }
