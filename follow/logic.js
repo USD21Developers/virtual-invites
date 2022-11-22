@@ -570,17 +570,15 @@ async function refreshButtons(dataFromApi) {
       el.innerText = getPhrase("btnFollow");
     }
   });
+}
 
-  if (!dataFromApi && followActivity.length) {
+async function onPageShow(e) {
+  if (e.persisted) {
+    refreshButtons();
+  } else {
     const dataFromApi = await getFollowStatus();
     sessionStorage.removeItem("followActivity");
     refreshButtons(dataFromApi);
-  }
-}
-
-function onPageShow(e) {
-  if (e.persisted) {
-    refreshButtons();
   }
 }
 
