@@ -21,6 +21,11 @@ function followUser(userid, e) {
           case "follow successful":
             e.target.setAttribute("data-status", "followed");
             const quantityNowFollowing = data.quantityNowFollowing;
+            const userFollowed = data.followedid;
+            const whenFollowed = moment
+              .tz(moment.now(), moment.tz.guess())
+              .format();
+            updateFollowActivity(userFollowed, whenFollowed, "followed");
             showQuantityFollowing(quantityNowFollowing);
             resolve(data.msg);
             break;
@@ -138,12 +143,6 @@ async function populateChurches() {
   selectUserChurch();
 }
 
-function quantityFollowingListener() {
-  document.querySelectorAll(".followingQuantity").forEach((item) => {
-    item.addEventListener("click", onQuantityFollowingClicked);
-  });
-}
-
 function selectUserChurch() {
   const userChurchId = JSON.parse(
     atob(localStorage.getItem("refreshToken").split(".")[1])
@@ -197,7 +196,7 @@ function showMatchesFound(matches) {
           <div class="d-inline-block profilephoto ${gender}">
             <img src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
           </div>
-          <h3 class="mt-0 mb-3">${firstname} ${lastname}</h4>
+          <h3 class="mt-2 mb-3">${firstname} ${lastname}</h4>
           <button type="button" class="btn btn-primary btn-sm btn-follow my-0 mr-2" data-status="follow" data-follow-userid="${userid}">
             ${btnFollow}
           </button>
@@ -239,9 +238,6 @@ function showMatchesFound(matches) {
   document
     .querySelectorAll(".btn-follow")
     .forEach((item) => item.addEventListener("click", onFollowClicked));
-  document
-    .querySelectorAll(".btn-profile")
-    .forEach((item) => item.addEventListener("click", onProfileClicked));
 
   hideSpinner();
 
@@ -258,27 +254,21 @@ function showQuantityFollowing(quantity) {
     const phraseFollowingNone = getPhrase("followingNone");
     usersNowFollowingEl.innerHTML = phraseFollowingNone;
     usersNowFollowingEl.classList.remove("d-none");
-    try {
-      modalTopParagraphEl.classList.add("d-none");
-    } catch (e) {
-      console.log(e);
-    }
+
+    if (modalTopParagraphEl) modalTopParagraphEl.classList.add("d-none");
   } else if (quantity === 1) {
     const phraseFollowing1 = getPhrase("following1").replace(
       "{1}",
-      `<strong><a href="#" class="text-primary followingQuantity">${quantity}</a></strong>`
+      `<strong><a href="../following/" class="text-primary followingQuantity">${quantity}</a></strong>`
     );
     usersNowFollowingEl.innerHTML = phraseFollowing1;
-    quantityFollowingListener();
     usersNowFollowingEl.classList.remove("d-none");
-    try {
+    if (modalTopParagraphEl) {
       modalTopParagraphEl.innerText = getPhrase("modalFollowing1").replace(
         "{quantity}",
         quantity
       );
       modalTopParagraphEl.classList.remove("d-none");
-    } catch (e) {
-      console.log(e);
     }
   } else {
     const phraseFollowingX = getPhrase("followingX").replace(
@@ -286,16 +276,13 @@ function showQuantityFollowing(quantity) {
       `<strong><a href="#" class="text-primary followingQuantity">${quantity}</a></strong>`
     );
     usersNowFollowingEl.innerHTML = phraseFollowingX;
-    quantityFollowingListener();
     usersNowFollowingEl.classList.remove("d-none");
-    try {
+    if (modalTopParagraphEl) {
       modalTopParagraphEl.innerText = getPhrase("modalFollowingX").replace(
         "{quantity}",
         quantity
       );
       modalTopParagraphEl.classList.remove("d-none");
-    } catch (e) {
-      console.log(e);
     }
   }
 }
@@ -310,84 +297,6 @@ function showSpinner() {
 
 function showTimeoutMessage() {
   // TODO
-}
-
-function showUsersFollowing(users) {
-  const modalBody = document.querySelector(".modal-body");
-  const btnFollowing = getPhrase("btnFollowing");
-  const btnProfile = getPhrase("btnProfile");
-  const quantity = users.length;
-  let topParagraph = getPhrase("modalFollowing1");
-  let html = "";
-
-  if (quantity > 1) {
-    topParagraph = getPhrase("modalFollowingX").replace("{quantity}", quantity);
-  }
-
-  users.forEach((item) => {
-    const { firstname, gender, lastname, profilephoto, userid } = item;
-    const profilephotoThumbnail = profilephoto.replace("400.jpg", "140.jpg");
-    const defaultImg =
-      gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
-
-    html += `
-      <div class="text-center result">
-        <div class="d-inline-block profilephoto ${gender}">
-          <img src="${profilephotoThumbnail}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
-        </div>
-        <h3 class="mt-0 mb-3">${firstname} ${lastname}</h4>
-        <button type="button" class="btn btn-success btn-sm btn-follow my-0 mr-2" data-status="followed" data-follow-userid="${userid}">
-          ${btnFollowing}
-        </button>
-        <a href="/u/#${userid}" class="btn btn-light btn-sm btn-profile my-0 ml-2">
-          ${btnProfile}
-        </a>
-      </div>
-    `;
-
-    modalBody.innerHTML = `
-      <p class="mt-4 mb-5 text-center">
-        <strong id="modalTopParagraph">${topParagraph}</strong>
-      </p>
-      <div class="modal-users-following">
-        ${html}
-      </div>`;
-
-    modalBody.querySelectorAll("[data-follow-userid]").forEach((item) => {
-      item.addEventListener("click", (e) => {
-        const userid = parseInt(e.target.getAttribute("data-follow-userid"));
-        const status = e.target.getAttribute("data-status");
-
-        if (status === "follow") {
-          // Change button text from "Follow" to "Following"
-          document
-            .querySelectorAll(`[data-follow-userid='${userid}']`)
-            .forEach((item) => {
-              item.setAttribute("data-status", "followed");
-              item.classList.remove("btn-primary");
-              item.classList.add("btn-success");
-              item.innerText = getPhrase("btnFollowing");
-            });
-          followUser(userid, e);
-        } else if (status === "followed") {
-          // Change button text from "Following" to "Follow"
-          e.target.setAttribute("data-status", "follow");
-          e.target.classList.remove("btn-success");
-          e.target.classList.add("btn-primary");
-          e.target.innerText = getPhrase("btnFollow");
-          document
-            .querySelectorAll(`[data-follow-userid='${userid}']`)
-            .forEach((item) => {
-              item.setAttribute("data-status", "follow");
-              item.classList.remove("btn-success");
-              item.classList.add("btn-primary");
-              item.innerText = getPhrase("btnFollow");
-            });
-          unfollowUser(userid, e);
-        }
-      });
-    });
-  });
 }
 
 function unfollowUser(userid, e) {
@@ -416,6 +325,11 @@ function unfollowUser(userid, e) {
             e.target.classList.add("btn-primary");
             e.target.innerText = getPhrase("btnFollow");
             const quantityNowFollowing = data.quantityNowFollowing;
+            const userUnfollowed = data.unfollowedid;
+            const whenUnfollowed = moment
+              .tz(moment.now(), moment.tz.guess())
+              .format();
+            updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
             showQuantityFollowing(quantityNowFollowing);
             resolve(data.msg);
             break;
@@ -586,116 +500,88 @@ function onLastNameSearchInputted(e) {
   // TODO:  Check indexedDB for list of all registered users in the church congregation of the current user. If populated, insert names into the datalist. Then sync silently.
 }
 
-function onPageShow(e) {
-  return new Promise(async (resolve, reject) => {
-    const isLoadedFromCache = e.persisted;
-    const isModalOpen = document
-      .querySelector("body")
-      .classList.contains("modal-open");
+async function getFollowStatus() {
+  const followActivityJSON =
+    sessionStorage.getItem("followActivity") || JSON.stringify([]);
+  const followActivity = JSON.parse(followActivityJSON);
+  const users = followActivity.map((item) => item.userid);
+  const endpoint = `${getApiHost()}/follow-status`;
+  const accessToken = await getAccessToken();
 
-    if (isLoadedFromCache) {
-      if (isModalOpen) {
-        const followedUsers = listedUsersEl
-          .querySelectorAll("button[data-status]")
-          .map((item) => parseInt(item.getAttribute("data-follow-userid")));
-        const endpoint = `${getApiHost()}/isfollowing`;
-        const accessToken = await getAccessToken();
-        fetch(endpoint, {
-          mode: "cors",
-          method: "POST",
-          body: JSON.stringify({
-            userids: followedUsers,
-          }),
-          headers: new Headers({
-            "Content-Type": "application/json",
-            authorization: `Bearer ${accessToken}`,
-          }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.msgType !== "success") {
-              console.error(data.msg);
-              return reject(data.msg);
-            }
-
-            data.result.forEach((item) => {
-              const button = listedUsersEl.querySelector(
-                `[data-follow-userid=${item.userid}]`
-              );
-              const isFollowing = item.following;
-              const status = isFollowing ? "followed" : "follow";
-              const text = isFollowing
-                ? getPhrase("btnFollowing")
-                : getPhrase("btnFollow");
-
-              button.setAttribute("data-status", status);
-              button.innerText = text;
-
-              if (isFollowing) {
-                button.classList.remove("btn-success");
-                button.classList.add("btn-primary");
-              } else {
-                button.classList.remove("btn-primary");
-                button.classList.add("btn-success");
-              }
-            });
-
-            resolve();
-          })
-          .catch((err) => {
-            console.error(err);
-            reject(err);
-          });
-      }
-    }
+  return new Promise((resolve, reject) => {
+    fetch(endpoint, {
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify({
+        userids: users,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.msgType === "error") {
+          reject(data.msg);
+        } else {
+          resolve(data.followStatus);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        reject(err);
+      });
   });
 }
 
-function onProfileClicked(e) {
-  const userid = parseInt(e.target.getAttribute("data-profile-userid"));
-  const url = `/u/#${userid}`;
+async function refreshButtons(dataFromApi) {
+  let buttonsToRefresh;
+  const followActivityJSON =
+    sessionStorage.getItem("followActivity") || JSON.stringify([]);
+  const followActivity = JSON.parse(followActivityJSON);
 
-  window.location.href = url;
+  if (dataFromApi) {
+    buttonsToRefresh = dataFromApi;
+  } else {
+    if (!followActivity.length) return;
+    buttonsToRefresh = followActivity.map((item) => {
+      return {
+        userid: item.userid,
+        isFollowing: item.action === "followed" ? true : false,
+      };
+    });
+  }
+
+  buttonsToRefresh.forEach((item) => {
+    const { userid, isFollowing } = item;
+    const el = document.querySelector(`[data-follow-userid="${userid}"]`);
+
+    if (!el) return;
+    if (isFollowing) {
+      el.setAttribute("data-status", "followed");
+      el.classList.remove("btn-primary");
+      el.classList.add("btn-success");
+      el.innerText = getPhrase("btnFollowing");
+    } else {
+      el.setAttribute("data-status", "follow");
+      el.classList.remove("btn-success");
+      el.classList.add("btn-primary");
+      el.innerText = getPhrase("btnFollow");
+    }
+  });
+
+  if (!dataFromApi && followActivity.length) {
+    const dataFromApi = await getFollowStatus();
+    sessionStorage.removeItem("followActivity");
+    refreshButtons(dataFromApi);
+  }
 }
 
-async function onQuantityFollowingClicked(e) {
-  e.preventDefault();
-  const modal = document.querySelector("#modal");
-  const titleEl = modal.querySelector(".modal-title");
-  const bodyEl = modal.querySelector(".modal-body");
-
-  titleEl.innerText = getPhrase("usersFollowing");
-  bodyEl.innerHTML = `
-    <div class="text-center" class="modal-users-following">
-      <img
-        src="/_assets/img/spinner.svg"
-        width="200"
-        height="200"
-        style="max-width: 100%"
-      />
-    </div>
-  `;
-
-  $("#modal").modal();
-
-  const accessToken = await getAccessToken();
-  const userid = parseInt(
-    JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).userid
-  );
-  const endpoint = `${getApiHost()}/following/${userid}`;
-
-  fetch(endpoint, {
-    mode: "cors",
-    method: "GET",
-    headers: new Headers({
-      "Content-Type": "application/json",
-      authorization: `Bearer ${accessToken}`,
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      showUsersFollowing(data.following);
-    });
+function onPageShow(e) {
+  if (e.persisted) {
+    refreshButtons();
+  }
 }
 
 function attachListeners() {
@@ -718,6 +604,7 @@ async function init() {
   populateChurches();
   await populateContent();
   await populateNowFollowing();
+  refreshButtons();
   globalHidePageSpinner();
   attachListeners();
 }

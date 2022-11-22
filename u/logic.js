@@ -22,6 +22,11 @@ function followUser(userid, e) {
             e.target.setAttribute("data-status", "followed");
             e.target.classList.remove("btn-primary");
             e.target.classList.add("btn-success");
+            const userFollowed = data.followedid;
+            const whenFollowed = moment
+              .tz(moment.now(), moment.tz.guess())
+              .format();
+            updateFollowActivity(userFollowed, whenFollowed, "followed");
             updateFollowCounts(data.otherUserNow);
             resolve(data.msg);
             break;
@@ -226,6 +231,11 @@ function unfollowUser(userid, e) {
             e.target.classList.remove("btn-success");
             e.target.classList.add("btn-primary");
             e.target.innerText = getPhrase("btnFollow");
+            const userUnfollowed = data.unfollowedid;
+            const whenUnfollowed = moment
+              .tz(moment.now(), moment.tz.guess())
+              .format();
+            updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
             updateFollowCounts(data.otherUserNow);
             resolve(data.msg);
             break;

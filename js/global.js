@@ -990,6 +990,22 @@ function spacify(text) {
   return text.split("  ").join("&nbsp;&nbsp;");
 }
 
+function updateFollowActivity(userid, when, action) {
+  const followActivityJSON =
+    sessionStorage.getItem("followActivity") || JSON.stringify([]);
+  let followActivity = JSON.parse(followActivityJSON);
+
+  followActivity = followActivity.filter((item) => item.userid !== userid);
+
+  followActivity.push({
+    userid: userid,
+    when: when,
+    action: action,
+  });
+
+  sessionStorage.setItem("followActivity", JSON.stringify(followActivity));
+}
+
 /* function urlify(text, link_attributes_obj = {}) {
   //link_attributes_obj (optional) object {target:'_blank', class:'myLink'}
 
