@@ -26,7 +26,7 @@ function followUser(userid, e) {
               .tz(moment.now(), moment.tz.guess())
               .format();
             updateFollowActivity(userFollowed, whenFollowed, "followed");
-            showQuantityFollowing(quantityNowFollowing);
+            populateNowFollowing(quantityNowFollowing);
             resolve(data.msg);
             break;
           default:
@@ -317,7 +317,7 @@ function unfollowUser(userid, e) {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(async (data) => {
         switch (data.msg) {
           case "unfollow successful":
             e.target.setAttribute("data-status", "follow");
@@ -330,7 +330,7 @@ function unfollowUser(userid, e) {
               .tz(moment.now(), moment.tz.guess())
               .format();
             updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
-            showQuantityFollowing(quantityNowFollowing);
+            populateNowFollowing(quantityNowFollowing);
             resolve(data.msg);
             break;
           default:
@@ -575,13 +575,13 @@ async function refreshButtons(dataFromApi) {
 async function onPageShow(e) {
   if (e.persisted) {
     refreshButtons();
+    populateNowFollowing();
   } else {
     const dataFromApi = await getFollowStatus();
     sessionStorage.removeItem("followActivity");
     refreshButtons(dataFromApi);
+    populateNowFollowing();
   }
-
-  await populateNowFollowing();
 }
 
 function attachListeners() {
