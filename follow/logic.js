@@ -572,7 +572,7 @@ async function onNameSearched(e) {
   }, timeout);
 }
 
-async function onResume(e) {
+async function refreshData(e) {
   if (e.persisted) {
     refreshButtons();
     await populateFollowingQuantity();
@@ -597,7 +597,8 @@ function attachListeners() {
   document
     .querySelector("#churchid")
     .addEventListener("change", onChurchChanged);
-  window.addEventListener("resume", onResume);
+  window.addEventListener("resume", refreshData);
+  window.addEventListener("pageshow", refreshData);
 }
 
 async function init() {
