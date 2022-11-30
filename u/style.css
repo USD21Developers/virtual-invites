@@ -10,3 +10,8 @@
   font-weight: bold;
   margin-inline-end: 2px;
 }
+
+.followCount {
+  color: black;
+  text-decoration: none;
+}
