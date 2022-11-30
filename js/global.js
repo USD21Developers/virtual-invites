@@ -545,6 +545,13 @@ function getTimezoneOffset(timezoneName) {
   return returnVal;
 }
 
+function getUserId() {
+  const userid = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  ).userid;
+  return userid;
+}
+
 function globalHidePageSpinner() {
   const pageSpinner = document.querySelector("#pageSpinner");
   const mainContent = document.querySelector(".mainContent");
