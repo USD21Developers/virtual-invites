@@ -389,13 +389,6 @@ async function onFollowClicked(e) {
   }
 }
 
-function onPageShow(event) {
-  const isPersisted = event.persisted ? "persisted" : "not persisted";
-  if (isPersisted) {
-    refreshButtons();
-  }
-}
-
 function onVisibilityChange() {
   if (document.visibilityState === "visible") {
     refreshButtons();
@@ -408,7 +401,6 @@ function attachListeners() {
     .addEventListener("click", onFollowClicked);
 
   window.addEventListener("visibilitychange", onVisibilityChange);
-  window.addEventListener("pageshow", onPageShow);
 }
 
 async function init() {
