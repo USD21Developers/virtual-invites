@@ -239,8 +239,10 @@ function renderProfile(userdata, churchinfo) {
     );
   }
 
-  followedByText = `<a href="../followers/#${getHash()}" class="followCount">${followedByText}</a>`;
-  followingText = `<a href="../following/#${getHash()}" class="followCount">${followingText}</a>`;
+  if (numFollowing > 0) {
+    followedByText = `<a href="../followers/#${getHash()}" class="followCount">${followedByText}</a>`;
+    followingText = `<a href="../following/#${getHash()}" class="followCount">${followingText}</a>`;
+  }
 
   document.title = document.title.replace("{name}", name);
   document
@@ -365,8 +367,10 @@ function updateFollowCounts(otherUserNow) {
     );
   }
 
-  followedByText = `<a href="../followers/#${getHash()}" class="followCount">${followedByText}</a>`;
-  followingText = `<a href="../following/#${getHash()}" class="followCount">${followingText}</a>`;
+  if (numFollowing > 0) {
+    followedByText = `<a href="../followers/#${getHash()}" class="followCount">${followedByText}</a>`;
+    followingText = `<a href="../following/#${getHash()}" class="followCount">${followingText}</a>`;
+  }
 
   followedByEl.innerHTML = followedByText;
   followingEl.innerHTML = followingText;
