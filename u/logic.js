@@ -239,7 +239,7 @@ function renderProfile(userdata, churchinfo) {
     );
   }
 
-  if (numFollowers > 0) {
+  if (numFollowedBy > 0) {
     followedByText = `<a href="../followers/#${getHash()}" class="followCount">${followedByText}</a>`;
   }
 
