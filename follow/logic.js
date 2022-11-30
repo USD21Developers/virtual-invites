@@ -42,6 +42,41 @@ function followUser(userid, e) {
   });
 }
 
+async function getFollowStatus() {
+  const followActivityJSON =
+    sessionStorage.getItem("followActivity") || JSON.stringify([]);
+  const followActivity = JSON.parse(followActivityJSON);
+  const users = followActivity.map((item) => item.userid);
+  const endpoint = `${getApiHost()}/follow-status`;
+  const accessToken = await getAccessToken();
+
+  return new Promise((resolve, reject) => {
+    fetch(endpoint, {
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify({
+        userids: users,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.msgType === "error") {
+          reject(data.msg);
+        } else {
+          resolve(data.followStatus);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        reject(err);
+      });
+  });
+}
+
 function hideSpinner() {
   const searchSpinner = document.querySelector("#searchSpinner");
 
@@ -141,6 +176,49 @@ async function populateChurches() {
   churchDropdown.innerHTML = churchesHtml;
 
   selectUserChurch();
+}
+
+async function refreshButtons(dataFromApi) {
+  let buttonsToRefresh;
+  const followActivityJSON =
+    sessionStorage.getItem("followActivity") || JSON.stringify([]);
+  const followActivity = JSON.parse(followActivityJSON);
+
+  if (dataFromApi) {
+    buttonsToRefresh = dataFromApi;
+  } else {
+    if (!followActivity.length) return;
+    buttonsToRefresh = followActivity.map((item) => {
+      return {
+        userid: item.userid,
+        isFollowing: item.action === "followed" ? true : false,
+      };
+    });
+  }
+
+  buttonsToRefresh.forEach((item) => {
+    const { userid, isFollowing } = item;
+    const el = document.querySelector(`[data-follow-userid="${userid}"]`);
+
+    if (!el) return;
+    if (isFollowing) {
+      el.setAttribute("data-status", "followed");
+      el.classList.remove("btn-primary");
+      el.classList.add("btn-success");
+      el.innerText = getPhrase("btnFollowing");
+    } else {
+      el.setAttribute("data-status", "follow");
+      el.classList.remove("btn-success");
+      el.classList.add("btn-primary");
+      el.innerText = getPhrase("btnFollow");
+    }
+  });
+
+  if (!dataFromApi && followActivity.length) {
+    const dataFromApi = await getFollowStatus();
+    sessionStorage.removeItem("followActivity");
+    refreshButtons(dataFromApi);
+  }
 }
 
 function selectUserChurch() {
@@ -500,86 +578,8 @@ function onLastNameSearchInputted(e) {
   // TODO:  Check indexedDB for list of all registered users in the church congregation of the current user. If populated, insert names into the datalist. Then sync silently.
 }
 
-async function getFollowStatus() {
-  const followActivityJSON =
-    sessionStorage.getItem("followActivity") || JSON.stringify([]);
-  const followActivity = JSON.parse(followActivityJSON);
-  const users = followActivity.map((item) => item.userid);
-  const endpoint = `${getApiHost()}/follow-status`;
-  const accessToken = await getAccessToken();
-
-  return new Promise((resolve, reject) => {
-    fetch(endpoint, {
-      mode: "cors",
-      method: "POST",
-      body: JSON.stringify({
-        userids: users,
-      }),
-      headers: new Headers({
-        "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.msgType === "error") {
-          reject(data.msg);
-        } else {
-          resolve(data.followStatus);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        reject(err);
-      });
-  });
-}
-
-async function refreshButtons(dataFromApi) {
-  let buttonsToRefresh;
-  const followActivityJSON =
-    sessionStorage.getItem("followActivity") || JSON.stringify([]);
-  const followActivity = JSON.parse(followActivityJSON);
-
-  if (dataFromApi) {
-    buttonsToRefresh = dataFromApi;
-  } else {
-    if (!followActivity.length) return;
-    buttonsToRefresh = followActivity.map((item) => {
-      return {
-        userid: item.userid,
-        isFollowing: item.action === "followed" ? true : false,
-      };
-    });
-  }
-
-  buttonsToRefresh.forEach((item) => {
-    const { userid, isFollowing } = item;
-    const el = document.querySelector(`[data-follow-userid="${userid}"]`);
-
-    if (!el) return;
-    if (isFollowing) {
-      el.setAttribute("data-status", "followed");
-      el.classList.remove("btn-primary");
-      el.classList.add("btn-success");
-      el.innerText = getPhrase("btnFollowing");
-    } else {
-      el.setAttribute("data-status", "follow");
-      el.classList.remove("btn-success");
-      el.classList.add("btn-primary");
-      el.innerText = getPhrase("btnFollow");
-    }
-  });
-
-  if (!dataFromApi && followActivity.length) {
-    const dataFromApi = await getFollowStatus();
-    sessionStorage.removeItem("followActivity");
-    refreshButtons(dataFromApi);
-  }
-}
-
-function onPageShow(e) {
-  if (e.persisted) {
+function onVisibilityChange(e) {
+  if (document.visibilityState === "visible") {
     refreshButtons();
   }
 }
@@ -597,7 +597,7 @@ function attachListeners() {
   document
     .querySelector("#churchid")
     .addEventListener("change", onChurchChanged);
-  window.addEventListener("pageshow", onPageShow);
+  window.addEventListener("visibilitychange", onVisibilityChange);
 }
 
 async function init() {
