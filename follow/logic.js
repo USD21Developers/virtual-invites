@@ -572,15 +572,9 @@ async function onNameSearched(e) {
   }, timeout);
 }
 
-async function refreshData(e) {
-  if (e.persisted) {
+function onVisibilityChange() {
+  if (document.visibilityState === "visible") {
     refreshButtons();
-    await populateFollowingQuantity();
-  } else {
-    const dataFromApi = await getFollowStatus();
-    sessionStorage.removeItem("followActivity");
-    refreshButtons(dataFromApi);
-    await populateFollowingQuantity();
   }
 }
 
@@ -597,8 +591,7 @@ function attachListeners() {
   document
     .querySelector("#churchid")
     .addEventListener("change", onChurchChanged);
-  window.addEventListener("resume", refreshData);
-  window.addEventListener("pageshow", refreshData);
+  window.addEventListener("visibilitychange", onVisibilityChange);
 }
 
 async function init() {
