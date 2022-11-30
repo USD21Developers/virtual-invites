@@ -73,6 +73,43 @@ async function getChurchInfo(churchid) {
   });
 }
 
+async function getFollowStatus() {
+  const followActivityJSON =
+    sessionStorage.getItem("followActivity") || JSON.stringify([]);
+  const followActivity = JSON.parse(followActivityJSON);
+  const users = followActivity.map((item) => item.userid);
+  const endpoint = `${getApiHost()}/follow-status`;
+  const accessToken = await getAccessToken();
+
+  if (!users.length) return;
+
+  return new Promise((resolve, reject) => {
+    fetch(endpoint, {
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify({
+        userids: users,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.msgType === "error") {
+          reject(data.msg);
+        } else {
+          resolve(data.followStatus);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        reject(err);
+      });
+  });
+}
+
 async function getUserInfo() {
   let userid = parseInt(getHash()) || "";
 
@@ -143,35 +180,8 @@ async function refreshButtons(dataFromApi) {
   });
 
   if (!dataFromApi) {
-    const userIdsToCheck = followActivity.map((item) => item.userid);
-
-    if (!userIdsToCheck.length) return;
-
-    const endpoint = `${getApiHost()}/follow-status`;
-    const accessToken = await getAccessToken();
-
-    fetch(endpoint, {
-      mode: "cors",
-      method: "post",
-      body: JSON.stringify({
-        userids: userIdsToCheck,
-      }),
-      headers: new Headers({
-        "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (msgType === "success") {
-          refreshButtons(data.followStatus);
-        } else {
-          throw new Error(data.msg);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    const dataFromApi = await getFollowStatus();
+    refreshButtons(dataFromApi);
   }
 }
 

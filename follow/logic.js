@@ -50,6 +50,8 @@ async function getFollowStatus() {
   const endpoint = `${getApiHost()}/follow-status`;
   const accessToken = await getAccessToken();
 
+  if (!users.length) return;
+
   return new Promise((resolve, reject) => {
     fetch(endpoint, {
       mode: "cors",
@@ -215,35 +217,8 @@ async function refreshButtons(dataFromApi) {
   });
 
   if (!dataFromApi) {
-    const userIdsToCheck = followActivity.map((item) => item.userid);
-
-    if (!userIdsToCheck.length) return;
-
-    const endpoint = `${getApiHost()}/follow-status`;
-    const accessToken = await getAccessToken();
-
-    fetch(endpoint, {
-      mode: "cors",
-      method: "post",
-      body: JSON.stringify({
-        userids: userIdsToCheck,
-      }),
-      headers: new Headers({
-        "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (msgType === "success") {
-          refreshButtons(data.followStatus);
-        } else {
-          throw new Error(data.msg);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    const dataFromApi = await getFollowStatus();
+    refreshButtons(dataFromApi);
   }
 }
 
