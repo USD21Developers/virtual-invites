@@ -604,13 +604,6 @@ async function onNameSearched(e) {
   }, timeout);
 }
 
-function onPageShow(event) {
-  const isPersisted = event.persisted ? "persisted" : "not persisted";
-  if (isPersisted) {
-    refreshButtons();
-  }
-}
-
 function onVisibilityChange() {
   if (document.visibilityState === "visible") {
     refreshButtons();
@@ -631,7 +624,6 @@ function attachListeners() {
     .querySelector("#churchid")
     .addEventListener("change", onChurchChanged);
   window.addEventListener("visibilitychange", onVisibilityChange);
-  window.addEventListener("pageshow", onPageShow);
 }
 
 async function init() {
