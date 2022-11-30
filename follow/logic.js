@@ -338,7 +338,7 @@ function showQuantityFollowing(quantity) {
   } else if (quantity === 1) {
     const phraseFollowing1 = getPhrase("following1").replace(
       "{1}",
-      `<strong><a href="../following/" class="text-primary followingQuantity">${quantity}</a></strong>`
+      `<strong><a href="../following/#${getUserId()}" class="text-primary followingQuantity">${quantity}</a></strong>`
     );
     usersNowFollowingEl.innerHTML = phraseFollowing1;
     usersNowFollowingEl.classList.remove("d-none");
@@ -352,7 +352,7 @@ function showQuantityFollowing(quantity) {
   } else {
     const phraseFollowingX = getPhrase("followingX").replace(
       "{quantity}",
-      `<strong><a href="../following/" class="text-primary followingQuantity">${quantity}</a></strong>`
+      `<strong><a href="../following/#${getUserId()}" class="text-primary followingQuantity">${quantity}</a></strong>`
     );
     usersNowFollowingEl.innerHTML = phraseFollowingX;
     usersNowFollowingEl.classList.remove("d-none");
