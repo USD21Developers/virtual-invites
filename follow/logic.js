@@ -26,7 +26,7 @@ function followUser(userid, e) {
               .tz(moment.now(), moment.tz.guess())
               .format();
             updateFollowActivity(userFollowed, whenFollowed, "followed");
-            showQuantityFollowing(quantityNowFollowing);
+            populateFollowingQuantity(quantityNowFollowing);
             resolve(data.msg);
             break;
           default:
@@ -96,44 +96,6 @@ function noMatchesFound() {
   customScrollTo("#searchResults");
 }
 
-function populateNowFollowing() {
-  return new Promise(async (resolve, reject) => {
-    const userid = parseInt(
-      JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1]))
-        .userid
-    );
-    const accessToken = await getAccessToken();
-    const endpoint = `${getApiHost()}/following-quantity/${userid}`;
-
-    fetch(endpoint, {
-      mode: "cors",
-      method: "GET",
-      headers: new Headers({
-        "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        switch (data.msg) {
-          case "retrieved quantity of users following":
-            const quantity = data.quantity;
-            showQuantityFollowing(quantity);
-            resolve();
-            break;
-          default:
-            console.error(data.msg);
-            reject(data.msg);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        document.querySelector("#usersNowFollowing").classList.add("d-none");
-        reject(err);
-      });
-  });
-}
-
 async function populateChurches() {
   const churchDropdown = document.querySelector("#churchid");
   const countryData = await getCountries(getLang());
@@ -178,6 +140,44 @@ async function populateChurches() {
   selectUserChurch();
 }
 
+function populateFollowingQuantity() {
+  return new Promise(async (resolve, reject) => {
+    const userid = parseInt(
+      JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1]))
+        .userid
+    );
+    const accessToken = await getAccessToken();
+    const endpoint = `${getApiHost()}/following-quantity/${userid}`;
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        switch (data.msg) {
+          case "retrieved quantity of users following":
+            const quantity = data.quantity;
+            showQuantityFollowing(quantity);
+            resolve();
+            break;
+          default:
+            console.error(data.msg);
+            reject(data.msg);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        document.querySelector("#usersNowFollowing").classList.add("d-none");
+        reject(err);
+      });
+  });
+}
+
 async function refreshButtons(dataFromApi) {
   let buttonsToRefresh;
   const followActivityJSON =
@@ -213,12 +213,6 @@ async function refreshButtons(dataFromApi) {
       el.innerText = getPhrase("btnFollow");
     }
   });
-
-  if (!dataFromApi && followActivity.length) {
-    const dataFromApi = await getFollowStatus();
-    sessionStorage.removeItem("followActivity");
-    refreshButtons(dataFromApi);
-  }
 }
 
 function selectUserChurch() {
@@ -351,7 +345,7 @@ function showQuantityFollowing(quantity) {
   } else {
     const phraseFollowingX = getPhrase("followingX").replace(
       "{quantity}",
-      `<strong><a href="#" class="text-primary followingQuantity">${quantity}</a></strong>`
+      `<strong><a href="../following/" class="text-primary followingQuantity">${quantity}</a></strong>`
     );
     usersNowFollowingEl.innerHTML = phraseFollowingX;
     usersNowFollowingEl.classList.remove("d-none");
@@ -395,7 +389,7 @@ function unfollowUser(userid, e) {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(async (data) => {
         switch (data.msg) {
           case "unfollow successful":
             e.target.setAttribute("data-status", "follow");
@@ -408,7 +402,7 @@ function unfollowUser(userid, e) {
               .tz(moment.now(), moment.tz.guess())
               .format();
             updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
-            showQuantityFollowing(quantityNowFollowing);
+            populateFollowingQuantity(quantityNowFollowing);
             resolve(data.msg);
             break;
           default:
@@ -449,6 +443,63 @@ function onChurchChanged() {
   const churchNameEl = document.querySelector("#selectedChurchName");
 
   churchNameEl.innerText = churchName;
+}
+
+function onFirstNameSearchInputted(e) {
+  const searchTerm = e.target.value || "";
+  const searchForm = document.querySelector("#searchedFirstName");
+
+  if (searchTerm.trim().value !== "") {
+    searchForm.querySelectorAll(".is-invalid").forEach((item) => {
+      item.classList.remove("is-invalid");
+    });
+  }
+}
+
+async function onFollowClicked(e) {
+  const userid = parseInt(e.target.getAttribute("data-follow-userid"));
+  const status = e.target.getAttribute("data-status");
+
+  if (status === "follow") {
+    // Change button text from "Follow" to "Following"
+    document
+      .querySelectorAll(`[data-follow-userid='${userid}']`)
+      .forEach((item) => {
+        item.setAttribute("data-status", "followed");
+        item.classList.remove("btn-primary");
+        item.classList.add("btn-success");
+        item.innerText = getPhrase("btnFollowing");
+      });
+    followUser(userid, e);
+  } else if (status === "followed") {
+    // Change button text from "Following" to "Follow"
+    e.target.setAttribute("data-status", "follow");
+    e.target.classList.remove("btn-success");
+    e.target.classList.add("btn-primary");
+    e.target.innerText = getPhrase("btnFollow");
+    document
+      .querySelectorAll(`[data-follow-userid='${userid}']`)
+      .forEach((item) => {
+        item.setAttribute("data-status", "follow");
+        item.classList.remove("btn-success");
+        item.classList.add("btn-primary");
+        item.innerText = getPhrase("btnFollow");
+      });
+    unfollowUser(userid, e);
+  }
+}
+
+function onLastNameSearchInputted(e) {
+  const searchTerm = e.target.value || "";
+  const searchForm = document.querySelector("#searchedLastName");
+
+  if (searchTerm.trim().value !== "") {
+    searchForm.querySelectorAll(".is-invalid").forEach((item) => {
+      item.classList.remove("is-invalid");
+    });
+  }
+
+  // TODO:  Check indexedDB for list of all registered users in the church congregation of the current user. If populated, insert names into the datalist. Then sync silently.
 }
 
 async function onNameSearched(e) {
@@ -521,66 +572,15 @@ async function onNameSearched(e) {
   }, timeout);
 }
 
-function onFirstNameSearchInputted(e) {
-  const searchTerm = e.target.value || "";
-  const searchForm = document.querySelector("#searchedFirstName");
-
-  if (searchTerm.trim().value !== "") {
-    searchForm.querySelectorAll(".is-invalid").forEach((item) => {
-      item.classList.remove("is-invalid");
-    });
-  }
-}
-
-async function onFollowClicked(e) {
-  const userid = parseInt(e.target.getAttribute("data-follow-userid"));
-  const status = e.target.getAttribute("data-status");
-
-  if (status === "follow") {
-    // Change button text from "Follow" to "Following"
-    document
-      .querySelectorAll(`[data-follow-userid='${userid}']`)
-      .forEach((item) => {
-        item.setAttribute("data-status", "followed");
-        item.classList.remove("btn-primary");
-        item.classList.add("btn-success");
-        item.innerText = getPhrase("btnFollowing");
-      });
-    followUser(userid, e);
-  } else if (status === "followed") {
-    // Change button text from "Following" to "Follow"
-    e.target.setAttribute("data-status", "follow");
-    e.target.classList.remove("btn-success");
-    e.target.classList.add("btn-primary");
-    e.target.innerText = getPhrase("btnFollow");
-    document
-      .querySelectorAll(`[data-follow-userid='${userid}']`)
-      .forEach((item) => {
-        item.setAttribute("data-status", "follow");
-        item.classList.remove("btn-success");
-        item.classList.add("btn-primary");
-        item.innerText = getPhrase("btnFollow");
-      });
-    unfollowUser(userid, e);
-  }
-}
-
-function onLastNameSearchInputted(e) {
-  const searchTerm = e.target.value || "";
-  const searchForm = document.querySelector("#searchedLastName");
-
-  if (searchTerm.trim().value !== "") {
-    searchForm.querySelectorAll(".is-invalid").forEach((item) => {
-      item.classList.remove("is-invalid");
-    });
-  }
-
-  // TODO:  Check indexedDB for list of all registered users in the church congregation of the current user. If populated, insert names into the datalist. Then sync silently.
-}
-
-function onVisibilityChange(e) {
-  if (document.visibilityState === "visible") {
+async function refreshData(e) {
+  if (e.persisted) {
     refreshButtons();
+    await populateFollowingQuantity();
+  } else {
+    const dataFromApi = await getFollowStatus();
+    sessionStorage.removeItem("followActivity");
+    refreshButtons(dataFromApi);
+    await populateFollowingQuantity();
   }
 }
 
@@ -597,14 +597,15 @@ function attachListeners() {
   document
     .querySelector("#churchid")
     .addEventListener("change", onChurchChanged);
-  window.addEventListener("visibilitychange", onVisibilityChange);
+  window.addEventListener("resume", refreshData);
+  window.addEventListener("pageshow", refreshData);
 }
 
 async function init() {
   populateChurches();
   await populateContent();
-  await populateNowFollowing();
-  refreshButtons();
+  await populateFollowingQuantity();
+
   globalHidePageSpinner();
   attachListeners();
 }
