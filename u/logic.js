@@ -408,7 +408,7 @@ function attachListeners() {
     .addEventListener("click", onFollowClicked);
 
   window.addEventListener("visibilitychange", onVisibilityChange);
-  // window.addEventListener("pageshow", onPageShow);
+  window.addEventListener("pageshow", onPageShow);
 }
 
 async function init() {

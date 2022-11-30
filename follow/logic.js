@@ -631,7 +631,7 @@ function attachListeners() {
     .querySelector("#churchid")
     .addEventListener("change", onChurchChanged);
   window.addEventListener("visibilitychange", onVisibilityChange);
-  // window.addEventListener("pageshow", onPageShow);
+  window.addEventListener("pageshow", onPageShow);
 }
 
 async function init() {
