@@ -239,8 +239,11 @@ function renderProfile(userdata, churchinfo) {
     );
   }
 
-  if (numFollowing > 0) {
+  if (numFollowers > 0) {
     followedByText = `<a href="../followers/#${getHash()}" class="followCount">${followedByText}</a>`;
+  }
+
+  if (numFollowing > 0) {
     followingText = `<a href="../following/#${getHash()}" class="followCount">${followingText}</a>`;
   }
 
@@ -367,8 +370,11 @@ function updateFollowCounts(otherUserNow) {
     );
   }
 
-  if (numFollowing > 0) {
+  if (numFollowedBy > 0) {
     followedByText = `<a href="../followers/#${getHash()}" class="followCount">${followedByText}</a>`;
+  }
+
+  if (numFollowing > 0) {
     followingText = `<a href="../following/#${getHash()}" class="followCount">${followingText}</a>`;
   }
 
