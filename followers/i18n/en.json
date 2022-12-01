@@ -81,8 +81,8 @@
     },
     {
       "key": "headlineFollowers",
-      "original": "Followed By:",
-      "translated": "Followed By:"
+      "original": "Followed by {quantity}:",
+      "translated": "Followed by {quantity}:"
     }
   ],
 
