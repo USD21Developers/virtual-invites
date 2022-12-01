@@ -15,8 +15,8 @@
     },
     {
       "key": "pagetitle",
-      "original": "User Profile: {name}",
-      "translated": "User Profile: {name}"
+      "original": "Profile: {name}",
+      "translated": "Profile: {name}"
     },
     {
       "key": "breadcrumbUserProfile",
