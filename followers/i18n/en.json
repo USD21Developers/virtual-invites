@@ -1,0 +1,113 @@
+{
+  "metadata": {
+    "description": "Follow a User",
+    "path": "/follow/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "pagetitle",
+      "original": "Followers of {name}",
+      "translated": "Followers of {name}"
+    },
+    {
+      "key": "breadcrumbFollowers",
+      "original": "Followers",
+      "translated": "Followers"
+    },
+    {
+      "key": "photoAltText",
+      "original": "Photo of {name}",
+      "translated": "Photo of {name}"
+    },
+    {
+      "key": "numFollowedBy",
+      "original": "{quantity} Followers",
+      "translated": "{quantity} Followers"
+    },
+    {
+      "key": "numFollowing",
+      "original": "{quantity} Following",
+      "translated": "{quantity} Following"
+    },
+    {
+      "key": "followedBy1",
+      "original": "{quantity} Follower",
+      "translated": "{quantity} Follower"
+    },
+    {
+      "key": "following1",
+      "original": "{quantity} Following",
+      "translated": "{quantity} Following"
+    },
+
+    {
+      "key": "btnFollow",
+      "original": "Follow",
+      "translated": "Follow"
+    },
+    {
+      "key": "btnFollowing",
+      "original": "Following",
+      "translated": "Following"
+    },
+    {
+      "key": "registered",
+      "original": "Registered:",
+      "translated": "Registered:"
+    },
+    {
+      "key": "gender",
+      "original": "Gender:",
+      "translated": "Gender:"
+    },
+    {
+      "key": "events",
+      "original": "Events:",
+      "translated": "Events:"
+    },
+    {
+      "key": "invitesSent",
+      "original": "Invites Sent:",
+      "translated": "Invites Sent:"
+    },
+    {
+      "key": "headlineFollowers",
+      "original": "Followed By:",
+      "translated": "Followed By:"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
