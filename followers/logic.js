@@ -279,10 +279,6 @@ function renderProfile(userdata, churchinfo) {
     );
   }
 
-  if (numFollowedBy > 0) {
-    followedByText = `<a href="../followers/#${getHash()}" class="followCount">${followedByText}</a>`;
-  }
-
   if (numFollowing > 0) {
     followingText = `<a href="../following/#${getHash()}" class="followCount">${followingText}</a>`;
   }
@@ -311,38 +307,59 @@ function renderProfile(userdata, churchinfo) {
     btnFollow.classList.remove("btn-success");
     btnFollow.classList.add("btn-primary");
   }
-
-  const langCountry = `${getLang()}-${country}`;
-
-  let registrationDateOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const registrationDateText = new Intl.DateTimeFormat(
-    langCountry,
-    registrationDateOptions
-  ).format(new Date(createdAt));
-  registrationDateEl.innerText = registrationDateText;
-
-  genderEl.innerText =
-    gender === "male" ? getGlobalPhrase("male") : getGlobalPhrase("female");
-
-  numEventsEl.innerText = numEvents;
-
-  numInvitesSentEl.innerText = numInvitesSent;
 }
 
 function showFollowers(followers) {
   const headlineFollowersEl = document.querySelector("#headlineFollowers");
   const followersEl = document.querySelector("#followers");
-  const headlineText = getPhrase("headlineFollowers").replace(
-    "{quantity}",
-    followers.length
-  );
+  const numFollowers = followers.length;
+  const headlineText =
+    numFollowers === 1
+      ? getPhrase("headlineFollowers1").replace("{quantity}", numFollowers)
+      : getPhrase("headlineFollowers").replace("{quantity}", numFollowers);
+  let html = "";
 
   headlineFollowersEl.innerText = headlineText;
-  followersEl.innerText = "Loading...";
+
+  followers.forEach((follower) => {
+    const { firstname, followid, gender, lastname, profilephoto, userid } =
+      follower;
+    const profilePhotoSmall = profilephoto.replace("400.jpg", "140.jpg");
+    const churchId = getUserChurchId(userid);
+    const churchInfo = getStoredChurch(churchId);
+    const churchName = churchInfo ? churchInfo.name : "";
+    const churchPlace = churchInfo ? churchInfo.place : "";
+    const defaultImg =
+      gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
+    const rowHtml = `
+      <tr class="follower">
+        <td class="text-center follower_photo" width="1%">
+          <img src="${profilePhotoSmall}" alt="${firstname} ${lastname}" class="mr-2 mb-0" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';" />
+        </td>
+
+        <td class="spacer">&nbsp;</td>
+
+        <td class="follower_text" width="99%">
+          <a href="../u/#${userid}"><strong>${firstname} ${lastname}</strong></a>
+          ${
+            churchName.length
+              ? "<div class='muted'><small>" + churchName + "</small></div>"
+              : ""
+          }
+          ${
+            churchPlace.length
+              ? "<div class='muted'><small>" + churchPlace + "</small></div>"
+              : ""
+          }
+        </td>
+      </tr>
+    `;
+    html += rowHtml;
+  });
+
+  html = `<table class="followers">${html}</div>`;
+
+  followersEl.innerHTML = html;
 }
 
 function unfollowUser(userid, e) {

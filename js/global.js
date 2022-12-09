@@ -536,6 +536,17 @@ function getPreviewPhrase(key) {
   }
 }
 
+function getStoredChurch(churchid) {
+  const churchesJSON = localStorage.getItem("churches");
+
+  if (!churchesJSON) return;
+
+  const churches = JSON.parse(churchesJSON);
+  const church = churches.find((item) => item.id === churchid);
+
+  return church;
+}
+
 function getTimezoneOffset(timezoneName) {
   const offset = moment.tz(timezoneName)._offset;
   const hours = Math.floor(offset / 60);
@@ -543,6 +554,13 @@ function getTimezoneOffset(timezoneName) {
   const returnVal = `${hours}:${minutes < 10 ? "0" + minutes : minutes}`;
 
   return returnVal;
+}
+
+function getUserChurchId(userid) {
+  const churchid = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  ).churchid;
+  return churchid;
 }
 
 function getUserId() {

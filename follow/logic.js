@@ -338,7 +338,7 @@ function showQuantityFollowing(quantity) {
   } else if (quantity === 1) {
     const phraseFollowing1 = getPhrase("following1").replace(
       "{1}",
-      `<strong><a href="../following/#${getUserId()}" class="text-primary followingQuantity">${quantity}</a></strong>`
+      `<strong><a href="../followedby/#${getUserId()}" class="text-primary followingQuantity">${quantity}</a></strong>`
     );
     usersNowFollowingEl.innerHTML = phraseFollowing1;
     usersNowFollowingEl.classList.remove("d-none");

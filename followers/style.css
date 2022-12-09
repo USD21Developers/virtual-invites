@@ -5,6 +5,39 @@
   width: 200px;
 }
 
+.followers {
+  margin: auto;
+  width: unset;
+}
+
+.follower {
+  border-bottom: 1px solid #ccc;
+  display: inline-block;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.follower:first-child {
+  padding-top: unset;
+}
+
+.follower:last-child {
+  border-bottom: 0;
+  padding-bottom: unset;
+}
+
+.follower_photo img {
+  background-repeat: no-repeat;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
+
+.follower_text a {
+  text-decoration: underline;
+}
+
 .followquantity {
   color: black;
   font-weight: bold;

@@ -81,8 +81,13 @@
     },
     {
       "key": "headlineFollowers",
-      "original": "Followed by {quantity}:",
-      "translated": "Followed by {quantity}:"
+      "original": "{quantity} Followers:",
+      "translated": "{quantity} Followers:"
+    },
+    {
+      "key": "headlineFollowers1",
+      "original": "{quantity} Follower:",
+      "translated": "{quantity} Follower:"
     }
   ],
 
