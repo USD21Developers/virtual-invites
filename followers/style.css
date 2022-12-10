@@ -12,7 +12,7 @@
 
 .follower td,
 .followers:nth-child(1) td {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ccc !important;
   padding-bottom: 20px;
   padding-top: 20px;
 }
@@ -23,7 +23,6 @@
 
 .follower:last-child td {
   border-bottom: 0;
-  padding-bottom: unset;
 }
 
 .follower_photo img {
