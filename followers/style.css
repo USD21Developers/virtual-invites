@@ -10,17 +10,17 @@
   text-align: left;
 }
 
-.follower {
+.follower td {
   border-bottom: 1px solid #ccc;
   padding-bottom: 20px;
   padding-top: 20px;
 }
 
-.follower:first-child {
+.follower:first-child td {
   padding-top: unset;
 }
 
-.follower:last-child {
+.follower:last-child td {
   border-bottom: 0;
   padding-bottom: unset;
 }
