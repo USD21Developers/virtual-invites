@@ -6,13 +6,12 @@
 }
 
 .followers {
-  margin: auto;
+  margin: auto !important;
   text-align: left;
 }
 
 .follower {
   border-bottom: 1px solid #ccc;
-  display: inline-block;
   padding-bottom: 20px;
   padding-top: 20px;
 }
