@@ -25,6 +25,12 @@
   padding-bottom: unset;
 }
 
+.followers:nth-child(1) td {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
 .follower_photo img {
   background-repeat: no-repeat;
   border: 2px solid #fff;
