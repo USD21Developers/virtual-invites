@@ -10,8 +10,7 @@
   text-align: left;
 }
 
-.follower td,
-.followers:nth-child(1) td {
+.follower td {
   border-bottom: 1px solid #ccc;
   padding-bottom: 20px;
   padding-top: 20px;
@@ -21,8 +20,12 @@
   padding-top: unset;
 }
 
-.follower:last-child td:not(:nth-child(1)) {
+.follower:last-child td {
   border-bottom: 0;
+}
+
+.followers:nth-child(1) td {
+  border-bottom: 1px solid #ccc;
 }
 
 .follower_photo img {
