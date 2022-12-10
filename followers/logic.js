@@ -333,7 +333,7 @@ function showFollowers(followers) {
       gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
     const rowHtml = `
       <tr class="follower">
-        <td valign="middle" class="text-center follower_photo pt-1" width="1%">
+        <td valign="middle" class="text-center follower_photo" width="1%">
           <img src="${profilePhotoSmall}" alt="${firstname} ${lastname}" class="mr-2 mb-0" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';" />
         </td>
 
