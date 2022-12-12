@@ -377,8 +377,7 @@ function showFollowers(followers) {
   headlineFollowersEl.innerText = headlineText;
 
   followers.forEach((follower) => {
-    const { firstname, followid, gender, lastname, profilephoto, userid } =
-      follower;
+    const { firstname, gender, lastname, profilephoto, userid } = follower;
     const profilePhotoSmall = profilephoto.replace("400.jpg", "140.jpg");
     const churchId = getUserChurchId(userid);
     const churchInfo = getStoredChurch(churchId);
@@ -427,12 +426,23 @@ async function showUserInResults() {
   if (userAlreadyInDOM) {
     el.classList.remove("d-none");
   } else {
+    fetchedFollowers.push(userProfileInfo);
+    fetchedFollowers.sort((a, b) => {
+      const nameA = `${a.lastname}, ${b.firstname}`;
+      const nameB = `${b.lastname}, ${b.firstname}`;
+      return nameA > nameB ? 1 : -1;
+    });
+    showFollowers(fetchedFollowers);
     fetchedFollowers = await getFollowers();
   }
 }
 
 function unfollowUser(userid, e) {
+  fetchedFollowers = fetchedFollowers.filter(
+    (item) => item.userid != getUserId()
+  );
   hideUserFromResults();
+  showFollowers(fetchedFollowers);
 
   return new Promise(async (resolve, reject) => {
     const endpoint = `${getApiHost()}/unfollow-user`;
