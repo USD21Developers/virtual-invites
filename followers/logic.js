@@ -1,3 +1,8 @@
+var userProfileInfo = {
+  church: {},
+  profile: {},
+};
+
 function followUser(userid, e) {
   return new Promise(async (resolve, reject) => {
     const endpoint = `${getApiHost()}/follow-user`;
@@ -145,18 +150,18 @@ async function getFollowStatus() {
   });
 }
 
-async function getUserInfo() {
-  let userid = parseInt(getHash()) || "";
-
+function getProfileInfo() {
+  let profileid = parseInt(getHash());
   // Validate hash
-  if (typeof userid !== "number") return;
-  if (userid.length > 10) return;
-  userid = Math.abs(userid);
+  if (typeof profileid !== "number") return;
+  if (profileid.length > 10) return;
+  profileid = Math.abs(profileid);
 
-  const endpoint = `${getApiHost()}/userprofile/${userid}`;
-  const accessToken = await getAccessToken();
+  const profilePromise = new Promise(async (resolve, reject) => {
+    let profileid = parseInt(getHash()) || "";
+    const endpoint = `${getApiHost()}/userprofile/${profileid}`;
+    const accessToken = await getAccessToken();
 
-  return new Promise((resolve, reject) => {
     fetch(endpoint, {
       mode: "cors",
       method: "GET",
@@ -170,12 +175,52 @@ async function getUserInfo() {
         if (data.msgType !== "success") throw new Error(data.msg);
         const churchinfo = await getChurchInfo(data.profile.churchid);
         renderProfile(data.profile, churchinfo);
-        resolve(data.profile, churchinfo);
+        resolve();
       })
       .catch((err) => {
         console.error(err);
       });
   });
+
+  const userPromise = new Promise(async (resolve, reject) => {
+    const userid = getUserId();
+    const endpoint = `${getApiHost()}/userprofile/${userid}`;
+    const accessToken = await getAccessToken();
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then(async (data) => {
+        if (data.msgType !== "success") throw new Error(data.msg);
+        const churchinfo = await getChurchInfo(data.profile.churchid);
+        userProfileInfo.profile = data.profile;
+        userProfileInfo.church = churchinfo;
+        resolve();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
+
+  Promise.all([profilePromise, userPromise]).then(() => {
+    return new Promise((resolve, reject) => resolve());
+  });
+}
+
+function hideUserFromFollowingList() {
+  const followerid = getUserId();
+  const selector = `.follower[data-followerid='${followerid}']`;
+  const el = document.querySelector(selector);
+
+  if (el) {
+    el.classList.add("d-none");
+  }
 }
 
 async function refreshButtons(dataFromApi) {
@@ -309,6 +354,16 @@ function renderProfile(userdata, churchinfo) {
   }
 }
 
+function showFollowButton() {
+  const profileUserId = parseInt(getHash());
+  const userid = getUserId();
+  const buttonEl = document.querySelector(".followAction");
+
+  if (profileUserId !== userid) {
+    buttonEl.classList.remove("d-none");
+  }
+}
+
 function showFollowers(followers) {
   const headlineFollowersEl = document.querySelector("#headlineFollowers");
   const followersEl = document.querySelector("#followers");
@@ -332,7 +387,7 @@ function showFollowers(followers) {
     const defaultImg =
       gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
     const rowHtml = `
-      <tr class="follower">
+      <tr class="follower" data-followerid="${userid}">
         <td valign="middle" class="text-center follower_photo" width="1%">
           <img src="${profilePhotoSmall}" alt="${firstname} ${lastname}" class="mr-2 mb-0" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';" />
         </td>
@@ -391,8 +446,10 @@ function unfollowUser(userid, e) {
             const whenUnfollowed = moment
               .tz(moment.now(), moment.tz.guess())
               .format();
+
             updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
             updateFollowCounts(data.otherUserNow);
+            hideUserFromFollowingList();
             resolve(data.msg);
             break;
           default:
@@ -415,6 +472,12 @@ function updateFollowCounts(otherUserNow) {
   let numFollowing = otherUserNow.following;
   const followedByEl = document.querySelector(".numFollowedBy");
   const followingEl = document.querySelector(".numFollowing");
+  const followersEl = document.querySelector("#followers");
+  const headlineFollowersEl = document.querySelector("#headlineFollowers");
+  const headlineText =
+    numFollowedBy === 1
+      ? getPhrase("headlineFollowers1").replace("{quantity}", numFollowedBy)
+      : getPhrase("headlineFollowers").replace("{quantity}", numFollowedBy);
 
   let followedByText = getPhrase("numFollowedBy").replace(
     "{quantity}",
@@ -441,9 +504,18 @@ function updateFollowCounts(otherUserNow) {
 
   if (numFollowedBy > 0) {
     followedByText = `<a href="../followers/#${getHash()}" class="followCount">${followedByText}</a>`;
+
+    headlineFollowersEl.innerText = headlineText;
+    followersEl.classList.remove("d-none");
+    headlineFollowersEl.classList.remove("d-none");
+  } else {
+    followersEl.classList.add("d-none");
+    headlineFollowersEl.classList.add("d-none");
   }
 
   if (numFollowing > 0) {
+    followersEl.classList.remove("d-none");
+    headlineFollowersEl.classList.remove("d-none");
     followingText = `<a href="../following/#${getHash()}" class="followCount">${followingText}</a>`;
   }
 
@@ -499,8 +571,9 @@ function attachListeners() {
 }
 
 async function init() {
+  showFollowButton();
   await populateContent();
-  await getUserInfo();
+  await getProfileInfo();
   await getFollowers();
   attachListeners();
   globalHidePageSpinner();
