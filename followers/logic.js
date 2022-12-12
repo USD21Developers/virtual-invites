@@ -1,9 +1,10 @@
-var userProfileInfo = {
-  church: {},
-  profile: {},
-};
+var userProfileInfo = {};
 
-function followUser(userid, e) {
+var fetchedFollowers = [];
+
+function followUser(userIdToFollow, e) {
+  showUserInResults();
+
   return new Promise(async (resolve, reject) => {
     const endpoint = `${getApiHost()}/follow-user`;
     const accessToken = await getAccessToken();
@@ -12,7 +13,7 @@ function followUser(userid, e) {
       mode: "cors",
       method: "POST",
       body: JSON.stringify({
-        userid: userid,
+        userid: userIdToFollow,
       }),
       keepalive: true,
       headers: new Headers({
@@ -33,6 +34,7 @@ function followUser(userid, e) {
               .format();
             updateFollowActivity(userFollowed, whenFollowed, "followed");
             updateFollowCounts(data.otherUserNow);
+            showUserInResults();
             resolve(data.msg);
             break;
           default:
@@ -198,9 +200,7 @@ function getProfileInfo() {
       .then((res) => res.json())
       .then(async (data) => {
         if (data.msgType !== "success") throw new Error(data.msg);
-        const churchinfo = await getChurchInfo(data.profile.churchid);
-        userProfileInfo.profile = data.profile;
-        userProfileInfo.church = churchinfo;
+        userProfileInfo = data.profile;
         resolve();
       })
       .catch((err) => {
@@ -213,7 +213,7 @@ function getProfileInfo() {
   });
 }
 
-function hideUserFromFollowingList() {
+function hideUserFromResults() {
   const followerid = getUserId();
   const selector = `.follower[data-followerid='${followerid}']`;
   const el = document.querySelector(selector);
@@ -417,7 +417,23 @@ function showFollowers(followers) {
   followersEl.innerHTML = html;
 }
 
+async function showUserInResults() {
+  const userid = getUserId();
+  const el = document.querySelector(
+    `.follower[data-followerid="${userid}"].d-none`
+  );
+  const userAlreadyInDOM = el ? true : false;
+
+  if (userAlreadyInDOM) {
+    el.classList.remove("d-none");
+  } else {
+    fetchedFollowers = await getFollowers();
+  }
+}
+
 function unfollowUser(userid, e) {
+  hideUserFromResults();
+
   return new Promise(async (resolve, reject) => {
     const endpoint = `${getApiHost()}/unfollow-user`;
     const accessToken = await getAccessToken();
@@ -449,7 +465,6 @@ function unfollowUser(userid, e) {
 
             updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
             updateFollowCounts(data.otherUserNow);
-            hideUserFromFollowingList();
             resolve(data.msg);
             break;
           default:
@@ -574,7 +589,7 @@ async function init() {
   showFollowButton();
   await populateContent();
   await getProfileInfo();
-  await getFollowers();
+  fetchedFollowers = await getFollowers();
   attachListeners();
   globalHidePageSpinner();
 }
