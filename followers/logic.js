@@ -176,6 +176,7 @@ function getProfileInfo() {
       .then(async (data) => {
         if (data.msgType !== "success") throw new Error(data.msg);
         const churchinfo = await getChurchInfo(data.profile.churchid);
+        userProfileInfo = data.profile;
         renderProfile(data.profile, churchinfo);
         resolve();
       })
