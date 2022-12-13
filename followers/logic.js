@@ -5,10 +5,10 @@ var fetchedFollowers = [];
 function followUser(userIdToFollow, e) {
   const numFollowedBy =
     parseInt(
-      document.querySelector(".numFollowedBy > .followquantity")?.innerText
+      document.querySelector(".numFollowedBy .followquantity")?.innerText
     ) + 1;
   const numFollowing = parseInt(
-    document.querySelector(".numFollowing > .followquantity")?.innerText
+    document.querySelector(".numFollowing .followquantity")?.innerText
   );
   updateFollowCounts({
     followers: numFollowedBy,
