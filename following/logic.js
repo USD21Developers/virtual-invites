@@ -434,7 +434,7 @@ function showFollowing(following) {
     html += rowHtml;
   });
 
-  html = `<table class="following">${html}</div>`;
+  html = `<table class="followingList">${html}</div>`;
 
   followingEl.innerHTML = html;
 }
