@@ -61,13 +61,13 @@
     },
     {
       "key": "headlineFollowing",
-      "original": "{quantity} Following:",
-      "translated": "{quantity} Following:"
+      "original": "Following {quantity}:",
+      "translated": "Following {quantity}:"
     },
     {
       "key": "headlineFollowing1",
-      "original": "{quantity} Following:",
-      "translated": "{quantity} Following:"
+      "original": "Following {quantity}:",
+      "translated": "Following {quantity}:"
     }
   ],
 
