@@ -376,11 +376,11 @@ function showFollowers(followers) {
   let html = "";
 
   if (numFollowers === 0) {
-    headlineFollowersEl.classList.add("d-none");
-    followersEl?.classList.add("d-none");
+    if (headlineFollowersEl) headlineFollowersEl.classList.add("d-none");
+    if (followersEl) followersEl.classList.add("d-none");
   } else {
-    headlineFollowersEl.classList.remove("d-none");
-    followersEl?.classLlist.remove("d-none");
+    if (headlineFollowersEl) headlineFollowersEl.classList.remove("d-none");
+    if (followersEl) followersEl.classLlist.remove("d-none");
   }
 
   headlineFollowersEl.innerText = headlineText;
