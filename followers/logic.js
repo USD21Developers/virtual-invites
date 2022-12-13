@@ -453,6 +453,17 @@ function unfollowUser(userid, e) {
   hideUserFromResults();
   showFollowers(fetchedFollowers);
 
+  const numFollowedBy = parseInt(
+    document.querySelector(".numFollowedBy > .followCount").innerText
+  );
+  const numFollowing = parseInt(
+    document.querySelector(".numFollowing > .followCount").innerText
+  );
+  updateFollowCounts({
+    followers: numFollowedBy - 1,
+    following: numFollowing,
+  });
+
   return new Promise(async (resolve, reject) => {
     const endpoint = `${getApiHost()}/unfollow-user`;
     const accessToken = await getAccessToken();
