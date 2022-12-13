@@ -439,6 +439,16 @@ function showFollowing(following) {
   followingEl.innerHTML = html;
 }
 
+function showProfilePhoto() {
+  const profileUserId = parseInt(getHash());
+  const userid = getUserId();
+  const photoEl = document.querySelector("#profilephoto");
+
+  if (profileUserId !== userid) {
+    photoEl.classList.remove("d-none");
+  }
+}
+
 async function showUserInResults() {
   const userid = getUserId();
   const el = document.querySelector(
@@ -633,6 +643,7 @@ function attachListeners() {
 
 async function init() {
   showFollowButton();
+  showProfilePhoto();
   await populateContent();
   await getProfileInfo();
   fetchedFollowing = await getFollowing();
