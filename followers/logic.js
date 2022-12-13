@@ -3,6 +3,17 @@ var userProfileInfo = {};
 var fetchedFollowers = [];
 
 function followUser(userIdToFollow, e) {
+  const numFollowedBy = parseInt(
+    document.querySelector(".numFollowedBy > .followquantity")?.innerText
+  );
+  const numFollowing = parseInt(
+    document.querySelector(".numFollowing > .followquantity")?.innerText
+  );
+  updateFollowCounts({
+    followers: numFollowedBy + 1,
+    following: numFollowing,
+  });
+
   showUserInResults();
 
   return new Promise(async (resolve, reject) => {
@@ -450,8 +461,6 @@ function unfollowUser(userid, e) {
   fetchedFollowers = fetchedFollowers.filter(
     (item) => item.userid != getUserId()
   );
-  hideUserFromResults();
-  showFollowers(fetchedFollowers);
 
   const numFollowedBy = parseInt(
     document.querySelector(".numFollowedBy > .followquantity")?.innerText
@@ -463,6 +472,9 @@ function unfollowUser(userid, e) {
     followers: numFollowedBy - 1,
     following: numFollowing,
   });
+
+  hideUserFromResults();
+  showFollowers(fetchedFollowers);
 
   return new Promise(async (resolve, reject) => {
     const endpoint = `${getApiHost()}/unfollow-user`;
