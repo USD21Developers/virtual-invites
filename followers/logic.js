@@ -377,8 +377,10 @@ function showFollowers(followers) {
 
   if (numFollowers === 0) {
     headlineFollowersEl.classList.add("d-none");
+    followersEl.classList.add("d-none");
   } else {
     headlineFollowersEl.classList.remove("d-none");
+    followersEl.classLlist.remove("d-none");
   }
 
   headlineFollowersEl.innerText = headlineText;
