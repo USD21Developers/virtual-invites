@@ -454,10 +454,10 @@ function unfollowUser(userid, e) {
   showFollowers(fetchedFollowers);
 
   const numFollowedBy = parseInt(
-    document.querySelector(".numFollowedBy > .followCount").innerText
+    document.querySelector(".numFollowedBy > .followquantity")?.innerText
   );
   const numFollowing = parseInt(
-    document.querySelector(".numFollowing > .followCount").innerText
+    document.querySelector(".numFollowing > .followquantity")?.innerText
   );
   updateFollowCounts({
     followers: numFollowedBy - 1,
