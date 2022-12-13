@@ -1,5 +1,7 @@
 var userProfileInfo = {};
 
+var loggedInUserProfileInfo = {};
+
 var fetchedFollowers = [];
 
 function followUser(userIdToFollow, e) {
@@ -213,7 +215,7 @@ function getProfileInfo() {
       .then((res) => res.json())
       .then(async (data) => {
         if (data.msgType !== "success") throw new Error(data.msg);
-        userProfileInfo = data.profile;
+        loggedInUserProfileInfo = data.profile;
         resolve();
       })
       .catch((err) => {
@@ -447,7 +449,7 @@ async function showUserInResults() {
   if (userAlreadyInDOM) {
     el.classList.remove("d-none");
   } else {
-    fetchedFollowers.push(userProfileInfo);
+    fetchedFollowers.push(loggedInUserProfileInfo);
     fetchedFollowers.sort((a, b) => {
       const nameA = `${a.lastname}, ${b.firstname}`;
       const nameB = `${b.lastname}, ${b.firstname}`;
