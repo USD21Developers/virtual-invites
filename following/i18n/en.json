@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "description": "Followers of a User",
-    "path": "/followers/",
+    "description": "Users that a User is Following",
+    "path": "/follow/",
     "lang": {
       "original": "en",
       "translated": "en"
@@ -15,13 +15,13 @@
     },
     {
       "key": "pagetitle",
-      "original": "Followers of {name}",
-      "translated": "Followers of {name}"
+      "original": "Users Followed by {name}",
+      "translated": "Users Followed by {name}"
     },
     {
-      "key": "breadcrumbFollowers",
-      "original": "Followers",
-      "translated": "Followers"
+      "key": "breadcrumbFollowing",
+      "original": "Following",
+      "translated": "Following"
     },
     {
       "key": "photoAltText",
@@ -60,14 +60,14 @@
       "translated": "Following"
     },
     {
-      "key": "headlineFollowers",
-      "original": "{quantity} Followers:",
-      "translated": "{quantity} Followers:"
+      "key": "headlineFollowing",
+      "original": "{quantity} Following:",
+      "translated": "{quantity} Following:"
     },
     {
-      "key": "headlineFollowers1",
-      "original": "{quantity} Follower:",
-      "translated": "{quantity} Follower:"
+      "key": "headlineFollowing1",
+      "original": "{quantity} Following:",
+      "translated": "{quantity} Following:"
     }
   ],
 

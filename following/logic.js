@@ -2,7 +2,7 @@ var userProfileInfo = {};
 
 var loggedInUserProfileInfo = {};
 
-var fetchedFollowers = [];
+var fetchedFollowing = [];
 
 function followUser(userIdToFollow, e) {
   const numFollowedBy =
@@ -94,14 +94,14 @@ async function getChurchInfo(churchid) {
   });
 }
 
-async function getFollowers() {
+async function getFollowing() {
   let userid = parseInt(getHash());
 
   if (typeof userid !== "number") return;
 
   userid = Math.abs(userid);
 
-  const endpoint = `${getApiHost()}/followers/${userid}`;
+  const endpoint = `${getApiHost()}/following/${userid}`;
   const accessToken = await getAccessToken();
 
   return new Promise((resolve, reject) => {
@@ -116,8 +116,8 @@ async function getFollowers() {
       .then((res) => res.json())
       .then((data) => {
         if (data.msgType === "success") {
-          showFollowers(data.followers);
-          resolve(data.followers);
+          showFollowing(data.following);
+          resolve(data.following);
         } else {
           reject(new Error(data.msg));
         }
@@ -379,28 +379,28 @@ function showFollowButton() {
   }
 }
 
-function showFollowers(followers) {
-  const headlineFollowersEl = document.querySelector("#headlineFollowers");
-  const followersEl = document.querySelector("#followers");
-  const numFollowers = followers.length;
+function showFollowing(following) {
+  const headlineFollowingEl = document.querySelector("#headlineFollowing");
+  const followingEl = document.querySelector("#following");
+  const numFollowing = following.length;
   const headlineText =
-    numFollowers === 1
-      ? getPhrase("headlineFollowers1").replace("{quantity}", numFollowers)
-      : getPhrase("headlineFollowers").replace("{quantity}", numFollowers);
+    numFollowing === 1
+      ? getPhrase("headlineFollowing1").replace("{quantity}", numFollowing)
+      : getPhrase("headlineFollowing").replace("{quantity}", numFollowing);
   let html = "";
 
-  if (numFollowers === 0) {
-    if (headlineFollowersEl) headlineFollowersEl.classList.add("d-none");
-    if (followersEl) followersEl.classList.add("d-none");
+  if (numFollowing === 0) {
+    if (headlineFollowingEl) headlineFollowingEl.classList.add("d-none");
+    if (followingEl) followingEl.classList.add("d-none");
   } else {
-    if (headlineFollowersEl) headlineFollowersEl.classList.remove("d-none");
-    if (followersEl) followersEl.classList.remove("d-none");
+    if (headlineFollowingEl) headlineFollowingEl.classList.remove("d-none");
+    if (followingEl) followingEl.classList.remove("d-none");
   }
 
-  headlineFollowersEl.innerText = headlineText;
+  headlineFollowingEl.innerText = headlineText;
 
-  followers.forEach((follower) => {
-    const { firstname, gender, lastname, profilephoto, userid } = follower;
+  following.forEach((user) => {
+    const { firstname, gender, lastname, profilephoto, userid } = user;
     const profilePhotoSmall = profilephoto.replace("400.jpg", "140.jpg");
     const churchId = getUserChurchId(userid);
     const churchInfo = getStoredChurch(churchId);
@@ -409,14 +409,14 @@ function showFollowers(followers) {
     const defaultImg =
       gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
     const rowHtml = `
-      <tr class="follower" data-followerid="${userid}">
-        <td valign="middle" class="text-center follower_photo" width="1%">
+      <tr class="following" data-followingid="${userid}">
+        <td valign="middle" class="text-center following_photo" width="1%">
           <img src="${profilePhotoSmall}" alt="${firstname} ${lastname}" class="mr-2 mb-0" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';" />
         </td>
 
         <td class="spacer">&nbsp;</td>
 
-        <td valign="middle" class="follower_text" width="99%">
+        <td valign="middle" class="following_text" width="99%">
           <a href="../u/#${userid}"><strong>${firstname} ${lastname}</strong></a>
           ${
             churchName.length
@@ -434,34 +434,34 @@ function showFollowers(followers) {
     html += rowHtml;
   });
 
-  html = `<table class="followers">${html}</div>`;
+  html = `<table class="following">${html}</div>`;
 
-  followersEl.innerHTML = html;
+  followingEl.innerHTML = html;
 }
 
 async function showUserInResults() {
   const userid = getUserId();
   const el = document.querySelector(
-    `.follower[data-followerid="${userid}"].d-none`
+    `.following[data-followingid="${userid}"].d-none`
   );
   const userAlreadyInDOM = el ? true : false;
 
   if (userAlreadyInDOM) {
     el.classList.remove("d-none");
   } else {
-    fetchedFollowers.push(loggedInUserProfileInfo);
-    fetchedFollowers.sort((a, b) => {
+    fetchedFollowing.push(loggedInUserProfileInfo);
+    fetchedFollowing.sort((a, b) => {
       const nameA = `${a.lastname}, ${b.firstname}`;
       const nameB = `${b.lastname}, ${b.firstname}`;
       return nameA > nameB ? 1 : -1;
     });
-    showFollowers(fetchedFollowers);
-    fetchedFollowers = await getFollowers();
+    showFollowing(fetchedFollowing);
+    fetchedFollowing = await getFollowing();
   }
 }
 
 function unfollowUser(userid, e) {
-  fetchedFollowers = fetchedFollowers.filter(
+  fetchedFollowing = fetchedFollowing.filter(
     (item) => item.userid != getUserId()
   );
 
@@ -478,7 +478,7 @@ function unfollowUser(userid, e) {
   });
 
   hideUserFromResults();
-  showFollowers(fetchedFollowers);
+  showFollowing(fetchedFollowing);
 
   return new Promise(async (resolve, reject) => {
     const endpoint = `${getApiHost()}/unfollow-user`;
@@ -533,12 +533,12 @@ function updateFollowCounts(otherUserNow) {
   let numFollowing = otherUserNow.following;
   const numFollowedByEl = document.querySelector(".numFollowedBy");
   const numFollowingEl = document.querySelector(".numFollowing");
-  const followersEl = document.querySelector("#followers");
-  const headlineFollowersEl = document.querySelector("#headlineFollowers");
+  const followingEl = document.querySelector("#following");
+  const headlineFollowingEl = document.querySelector("#headlineFollowing");
   const headlineText =
     numFollowedBy === 1
-      ? getPhrase("headlineFollowers1").replace("{quantity}", numFollowedBy)
-      : getPhrase("headlineFollowers").replace("{quantity}", numFollowedBy);
+      ? getPhrase("headlineFollowing1").replace("{quantity}", numFollowedBy)
+      : getPhrase("headlineFollowing").replace("{quantity}", numFollowedBy);
 
   let followedByText = getPhrase("numFollowedBy").replace(
     "{quantity}",
@@ -566,17 +566,17 @@ function updateFollowCounts(otherUserNow) {
   if (numFollowedBy > 0) {
     followedByText = `<a href="../followers/#${getHash()}" class="followCount">${followedByText}</a>`;
 
-    headlineFollowersEl.innerText = headlineText;
-    followersEl.classList.remove("d-none");
-    headlineFollowersEl.classList.remove("d-none");
+    headlineFollowingEl.innerText = headlineText;
+    followingEl.classList.remove("d-none");
+    headlineFollowingEl.classList.remove("d-none");
   } else {
-    followersEl.classList.add("d-none");
-    headlineFollowersEl.classList.add("d-none");
+    followingEl.classList.add("d-none");
+    headlineFollowingEl.classList.add("d-none");
   }
 
   if (numFollowing > 0) {
-    followersEl.classList.remove("d-none");
-    headlineFollowersEl.classList.remove("d-none");
+    followingEl.classList.remove("d-none");
+    headlineFollowingEl.classList.remove("d-none");
     followingText = `<a href="../following/#${getHash()}" class="followCount">${followingText}</a>`;
   }
 
@@ -635,7 +635,7 @@ async function init() {
   showFollowButton();
   await populateContent();
   await getProfileInfo();
-  fetchedFollowers = await getFollowers();
+  fetchedFollowing = await getFollowing();
   attachListeners();
   globalHidePageSpinner();
 }
