@@ -293,6 +293,16 @@ function renderProfile(userdata, churchinfo) {
   numInvitesSentEl.innerText = numInvitesSent;
 }
 
+function showFollowButton() {
+  const profileUserId = parseInt(getHash());
+  const userid = getUserId();
+  const buttonEl = document.querySelector(".followAction");
+
+  if (profileUserId !== userid) {
+    buttonEl.classList.remove("d-none");
+  }
+}
+
 function unfollowUser(userid, e) {
   return new Promise(async (resolve, reject) => {
     const endpoint = `${getApiHost()}/unfollow-user`;
@@ -430,6 +440,7 @@ function attachListeners() {
 }
 
 async function init() {
+  showFollowButton();
   await populateContent();
   await getUserInfo();
   attachListeners();
