@@ -375,6 +375,12 @@ function showFollowers(followers) {
       : getPhrase("headlineFollowers").replace("{quantity}", numFollowers);
   let html = "";
 
+  if (numFollowers === 0) {
+    headlineFollowersEl.classList.add("d-none");
+  } else {
+    headlineFollowersEl.classList.remove("d-none");
+  }
+
   headlineFollowersEl.innerText = headlineText;
 
   followers.forEach((follower) => {
