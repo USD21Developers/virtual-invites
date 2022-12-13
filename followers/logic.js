@@ -380,7 +380,7 @@ function showFollowers(followers) {
     if (followersEl) followersEl.classList.add("d-none");
   } else {
     if (headlineFollowersEl) headlineFollowersEl.classList.remove("d-none");
-    if (followersEl) followersEl.classLlist.remove("d-none");
+    if (followersEl) followersEl.classList.remove("d-none");
   }
 
   headlineFollowersEl.innerText = headlineText;
