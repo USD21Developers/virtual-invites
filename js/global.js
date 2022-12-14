@@ -571,9 +571,11 @@ function getUserId() {
 }
 
 function globalHidePageSpinner() {
+  const breadcrumbs = document.querySelector("#breadcrumbs");
   const pageSpinner = document.querySelector("#pageSpinner");
   const mainContent = document.querySelector(".mainContent");
 
+  breadcrumbs.classList.remove("d-none");
   pageSpinner.classList.add("d-none");
   mainContent.classList.remove("d-none");
 }

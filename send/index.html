@@ -146,7 +146,7 @@
       </div>
     </div>
 
-    <nav aria-label="breadcrumb">
+    <nav aria-label="breadcrumb" id="breadcrumbs" class="d-none">
       <ol class="breadcrumb bg-white my-0">
         <li class="breadcrumb-item">
           <a href="../" data-i18n="breadcrumbHome"></a>
@@ -187,12 +187,7 @@
           <h4 class="text-uppercase" data-i18n="headlinevia"></h4>
         </div>
         <div class="col-8 col-md-5" id="sendViaOptions">
-          <select
-            tabindex="3"
-            name="sendvia"
-            id="sendvia"
-            class="form-control"
-          >
+          <select tabindex="3" name="sendvia" id="sendvia" class="form-control">
             <option value="sms" data-i18n="viasms"></option>
             <option value="email" data-i18n="viaemail"></option>
             <option value="qrcode" data-i18n="viaqrcode"></option>
@@ -275,8 +270,6 @@
             <div class="invalid-feedback"></div>
           </div>
         </div>
-
-        
 
         <div class="row d-none" id="containerSendToQRCode">
           <div class="col col-sm-8 offset-sm-3 col-md-5 offset-md-4">
