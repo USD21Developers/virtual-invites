@@ -238,45 +238,31 @@ function hideUserFromResults() {
   }
 }
 
-async function refreshButtons(dataFromApi) {
-  let buttonsToRefresh;
+function redirectToProfileIfNecessary() {
+  if (!fetchedFollowing.length) {
+    const userid = parseInt(getHash());
+    window.location.href = `../#${userid}`;
+  }
+}
+
+async function refreshFollows(dataFromApi) {
   const followActivityJSON =
     sessionStorage.getItem("followActivity") || JSON.stringify([]);
   const followActivity = JSON.parse(followActivityJSON);
 
-  if (dataFromApi) {
-    buttonsToRefresh = dataFromApi;
-  } else {
-    if (!followActivity.length) return;
-    buttonsToRefresh = followActivity.map((item) => {
-      return {
-        userid: item.userid,
-        isFollowing: item.action === "followed" ? true : false,
-      };
+  if (followActivity.length) {
+    followActivity.forEach((activity) => {
+      if (fetchedFollowing.length) {
+        const needToRefresh = fetchedFollowing.find(
+          (item) => item.userid === activity.userid
+        )
+          ? true
+          : false;
+        if (needToRefresh) {
+          window.location.reload();
+        }
+      }
     });
-  }
-
-  buttonsToRefresh.forEach((item) => {
-    const { userid, isFollowing } = item;
-    const el = document.querySelector(`[data-follow-userid="${userid}"]`);
-
-    if (!el) return;
-    if (isFollowing) {
-      el.setAttribute("data-status", "followed");
-      el.classList.remove("btn-primary");
-      el.classList.add("btn-success");
-      el.innerText = getPhrase("btnFollowing");
-    } else {
-      el.setAttribute("data-status", "follow");
-      el.classList.remove("btn-success");
-      el.classList.add("btn-primary");
-      el.innerText = getPhrase("btnFollow");
-    }
-  });
-
-  if (!dataFromApi) {
-    const dataFromApi = await getFollowStatus();
-    refreshButtons(dataFromApi);
   }
 }
 
@@ -629,7 +615,7 @@ async function onFollowClicked(e) {
 
 function onVisibilityChange() {
   if (document.visibilityState === "visible") {
-    refreshButtons();
+    refreshFollows();
   }
 }
 
@@ -647,6 +633,7 @@ async function init() {
   await populateContent();
   await getProfileInfo();
   fetchedFollowing = await getFollowing();
+  redirectToProfileIfNecessary();
   attachListeners();
   globalHidePageSpinner();
 }
