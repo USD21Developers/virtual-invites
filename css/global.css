@@ -120,7 +120,7 @@ h6 {
 .datetime-label {
   color: var(--secondary);
   filter: brightness(30%);
-  font-size: .875rem;
+  font-size: 0.875rem;
   text-transform: uppercase;
 }
 
@@ -207,4 +207,28 @@ strong {
   color: #f44336;
   margin-top: 0.5rem;
   width: 100%;
+}
+
+@media (max-width: 767px) {
+  .breadcrumb-item {
+    display: none;
+  }
+
+  .breadcrumb-item:nth-last-child(2),
+  .breadcrumb-item:last-child {
+    display: flex;
+  }
+
+  .breadcrumb-item:before {
+    display: none;
+  }
+
+  .breadcrumb-item:nth-last-child(2):before,
+  .breadcrumb-item:last-child:before {
+    display: block;
+  }
+
+  .breadcrumb-item.firstOnMobile:before {
+    display: none !important;
+  }
 }
