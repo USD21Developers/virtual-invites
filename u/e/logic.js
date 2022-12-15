@@ -72,6 +72,33 @@ async function getChurchInfo(churchid) {
   });
 }
 
+async function getEventList() {
+  let userid = parseInt(getHash()) || "";
+
+  if (typeof userid !== "number") return;
+  if (userid.length > 10) return;
+  userid = Math.abs(userid);
+
+  const endpoint = `${getApiHost()}/event-list/${userid}`;
+  const accessToken = await getAccessToken();
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "GET",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
 async function getUserInfo() {
   let userid = parseInt(getHash()) || "";
 
@@ -315,6 +342,7 @@ async function init() {
   showFollowButton();
   await populateContent();
   await getUserInfo();
+  await getEventList();
   attachListeners();
   globalHidePageSpinner();
 }
