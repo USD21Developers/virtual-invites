@@ -228,6 +228,10 @@ strong {
     display: block;
   }
 
+  .breadcrumb-item.firstOnMobile {
+    margin-left: 0;
+  }
+
   .breadcrumb-item.firstOnMobile:before {
     display: none !important;
   }
