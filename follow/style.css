@@ -44,8 +44,9 @@
   text-decoration: none;
 }
 
-.followingQuantity:hover {
-  text-decoration: none;
+.followingQuantity:hover,
+.followingQuantity:active {
+  text-decoration: none !important;
 }
 
 .modal-users-following {
