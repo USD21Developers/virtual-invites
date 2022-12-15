@@ -166,6 +166,7 @@ function renderUserInfo(userdata, churchinfo) {
   const name = `${firstname} ${lastname}`;
   const profilePhotoEl = document.querySelector("#profilephoto");
   const profilePhotoAltText = getPhrase("photoAltText").replace("{name}", name);
+  const btnFollow = document.querySelector("#btnFollow");
   const churchNameEl = document.querySelector("#churchname");
   const pagetitle = document
     .querySelector("title")
@@ -189,6 +190,18 @@ function renderUserInfo(userdata, churchinfo) {
   document
     .querySelector("#btnFollow")
     .setAttribute("data-follow-userid", userid);
+
+  if (followed) {
+    btnFollow.setAttribute("data-status", "followed");
+    btnFollow.innerText = getPhrase("btnFollowing");
+    btnFollow.classList.add("btn-success");
+    btnFollow.classList.remove("btn-primary");
+  } else {
+    btnFollow.setAttribute("data-status", "follow");
+    btnFollow.innerText = getPhrase("btnFollow");
+    btnFollow.classList.remove("btn-success");
+    btnFollow.classList.add("btn-primary");
+  }
 }
 
 function showFollowButton() {
