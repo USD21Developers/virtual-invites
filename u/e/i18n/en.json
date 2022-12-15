@@ -1,0 +1,88 @@
+{
+  "metadata": {
+    "description": "Events by a User",
+    "path": "/u/events/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbEvents",
+      "original": "Events",
+      "translated": "Events"
+    },
+    {
+      "key": "pagetitle",
+      "original": "Events: {name}",
+      "translated": "Events: {name}"
+    },
+    {
+      "key": "pageheadline",
+      "original": "Events",
+      "translated": "Events"
+    },
+    {
+      "key": "breadcrumbUserEvents",
+      "original": "Events",
+      "translated": "Events"
+    },
+
+    {
+      "key": "photoAltText",
+      "original": "Photo of {name}",
+      "translated": "Photo of {name}"
+    },
+    {
+      "key": "btnFollow",
+      "original": "Follow",
+      "translated": "Follow"
+    },
+    {
+      "key": "btnFollowing",
+      "original": "Following",
+      "translated": "Following"
+    },
+    {
+      "key": "headlineNumEvents",
+      "original": "{quantity} Events:",
+      "translated": "{quantity} Events:"
+    },
+    {
+      "key": "zeroEvents",
+      "original": "{name} has not added any events.",
+      "translated": "{name} has not added any events."
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

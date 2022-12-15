@@ -27,7 +27,6 @@ function followUser(userid, e) {
               .tz(moment.now(), moment.tz.guess())
               .format();
             updateFollowActivity(userFollowed, whenFollowed, "followed");
-            updateFollowCounts(data.otherUserNow);
             resolve(data.msg);
             break;
           default:
@@ -73,43 +72,6 @@ async function getChurchInfo(churchid) {
   });
 }
 
-async function getFollowStatus() {
-  const followActivityJSON =
-    sessionStorage.getItem("followActivity") || JSON.stringify([]);
-  const followActivity = JSON.parse(followActivityJSON);
-  const users = followActivity.map((item) => item.userid);
-  const endpoint = `${getApiHost()}/follow-status`;
-  const accessToken = await getAccessToken();
-
-  if (!users.length) return;
-
-  return new Promise((resolve, reject) => {
-    fetch(endpoint, {
-      mode: "cors",
-      method: "POST",
-      body: JSON.stringify({
-        userids: users,
-      }),
-      headers: new Headers({
-        "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.msgType === "error") {
-          reject(data.msg);
-        } else {
-          resolve(data.followStatus);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        reject(err);
-      });
-  });
-}
-
 async function getUserInfo() {
   let userid = parseInt(getHash()) || "";
 
@@ -134,7 +96,7 @@ async function getUserInfo() {
       .then(async (data) => {
         if (data.msgType !== "success") throw new Error(data.msg);
         const churchinfo = await getChurchInfo(data.profile.churchid);
-        renderProfile(data.profile, churchinfo);
+        renderUserInfo(data.profile, churchinfo);
         resolve(data.profile, churchinfo);
       })
       .catch((err) => {
@@ -185,7 +147,7 @@ async function refreshButtons(dataFromApi) {
   }
 }
 
-function renderProfile(userdata, churchinfo) {
+function renderUserInfo(userdata, churchinfo) {
   const {
     country,
     createdAt,
@@ -204,96 +166,29 @@ function renderProfile(userdata, churchinfo) {
   const name = `${firstname} ${lastname}`;
   const profilePhotoEl = document.querySelector("#profilephoto");
   const profilePhotoAltText = getPhrase("photoAltText").replace("{name}", name);
-  let followedByText = getPhrase("numFollowedBy").replace(
-    "{quantity}",
-    `<span class="followquantity">${numFollowedBy}</span>`
-  );
-  let followingText = getPhrase("numFollowing").replace(
-    "{quantity}",
-    `<span class="followquantity">${numFollowing}</span>`
-  );
-  const followedByEl = document.querySelector(".numFollowedBy");
-  const followingEl = document.querySelector(".numFollowing");
-  const btnFollow = document.querySelector("#btnFollow");
   const churchNameEl = document.querySelector("#churchname");
-  const registrationDateEl = document.querySelector("#registrationDate");
-  const genderEl = document.querySelector("#gender");
-  const numEventsEl = document.querySelector("#numEvents");
-  const numInvitesSentEl = document.querySelector("#numInvitesSent");
+  const pagetitle = document
+    .querySelector("title")
+    .innerHTML.replace("{name}", name);
 
   if (church_name.length) {
     churchNameEl.innerText = church_name;
   }
 
-  if (numFollowedBy === 1) {
-    followedByText = getPhrase("followedBy1").replace(
-      "{quantity}",
-      `<span class="followquantity">${numFollowedBy}</span>`
-    );
-  }
+  document.querySelector("title").innerHTML = pagetitle;
 
-  if (numFollowing === 1) {
-    followingText = getPhrase("following1").replace(
-      "{quantity}",
-      `<span class="followquantity">${numFollowing}</span>`
-    );
-  }
-
-  if (numFollowedBy > 0) {
-    followedByText = `<a href="../followers/#${getHash()}" class="followCount">${followedByText}</a>`;
-  }
-
-  if (numFollowing > 0) {
-    followingText = `<a href="../following/#${getHash()}" class="followCount">${followingText}</a>`;
-  }
-
-  document.title = document.title.replace("{name}", name);
   document
     .querySelectorAll(".fullname")
-    .forEach((item) => (item.innerHTML = name));
+    .forEach((item) => (item.innerText = name));
+
   profilePhotoEl.setAttribute("src", profilephoto);
   profilePhotoEl.setAttribute("alt", profilePhotoAltText);
   profilePhotoEl.setAttribute("width", 200);
   profilePhotoEl.setAttribute("height", 200);
-  followedByEl.innerHTML = followedByText;
-  followingEl.innerHTML = followingText;
 
-  btnFollow.setAttribute("data-follow-userid", userid);
-
-  if (followed) {
-    btnFollow.setAttribute("data-status", "followed");
-    btnFollow.innerText = getPhrase("btnFollowing");
-    btnFollow.classList.add("btn-success");
-    btnFollow.classList.remove("btn-primary");
-  } else {
-    btnFollow.setAttribute("data-status", "follow");
-    btnFollow.innerText = getPhrase("btnFollow");
-    btnFollow.classList.remove("btn-success");
-    btnFollow.classList.add("btn-primary");
-  }
-
-  const langCountry = `${getLang()}-${country}`;
-
-  let registrationDateOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const registrationDateText = new Intl.DateTimeFormat(
-    langCountry,
-    registrationDateOptions
-  ).format(new Date(createdAt));
-  registrationDateEl.innerText = registrationDateText;
-
-  genderEl.innerText =
-    gender === "male" ? getGlobalPhrase("male") : getGlobalPhrase("female");
-
-  numEventsEl.innerHTML =
-    numEvents > 0
-      ? `<a href="e/#${userid}" class="d-block">${numEvents}</a>`
-      : numEvents;
-
-  numInvitesSentEl.innerText = numInvitesSent;
+  document
+    .querySelector("#btnFollow")
+    .setAttribute("data-follow-userid", userid);
 }
 
 function showFollowButton() {
@@ -336,7 +231,6 @@ function unfollowUser(userid, e) {
               .tz(moment.now(), moment.tz.guess())
               .format();
             updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
-            updateFollowCounts(data.otherUserNow);
             resolve(data.msg);
             break;
           default:
@@ -352,47 +246,6 @@ function unfollowUser(userid, e) {
         reject(err);
       });
   });
-}
-
-function updateFollowCounts(otherUserNow) {
-  let numFollowedBy = otherUserNow.followers;
-  let numFollowing = otherUserNow.following;
-  const followedByEl = document.querySelector(".numFollowedBy");
-  const followingEl = document.querySelector(".numFollowing");
-
-  let followedByText = getPhrase("numFollowedBy").replace(
-    "{quantity}",
-    `<span class="followquantity">${numFollowedBy}</span>`
-  );
-  let followingText = getPhrase("numFollowing").replace(
-    "{quantity}",
-    `<span class="followquantity">${numFollowing}</span>`
-  );
-
-  if (numFollowedBy === 1) {
-    followedByText = getPhrase("followedBy1").replace(
-      "{quantity}",
-      `<span class="followquantity">${numFollowedBy}</span>`
-    );
-  }
-
-  if (numFollowing === 1) {
-    followingText = getPhrase("following1").replace(
-      "{quantity}",
-      `<span class="followquantity">${numFollowing}</span>`
-    );
-  }
-
-  if (numFollowedBy > 0) {
-    followedByText = `<a href="../followers/#${getHash()}" class="followCount">${followedByText}</a>`;
-  }
-
-  if (numFollowing > 0) {
-    followingText = `<a href="../following/#${getHash()}" class="followCount">${followingText}</a>`;
-  }
-
-  followedByEl.innerHTML = followedByText;
-  followingEl.innerHTML = followingText;
 }
 
 async function onFollowClicked(e) {
@@ -428,18 +281,10 @@ async function onFollowClicked(e) {
   }
 }
 
-function onVisibilityChange() {
-  if (document.visibilityState === "visible") {
-    refreshButtons();
-  }
-}
-
 function attachListeners() {
   document
     .querySelector("#btnFollow")
     .addEventListener("click", onFollowClicked);
-
-  window.addEventListener("visibilitychange", onVisibilityChange);
 }
 
 async function init() {
