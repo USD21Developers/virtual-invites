@@ -164,6 +164,7 @@ function renderUserInfo(userdata, churchinfo) {
   } = userdata;
   const { church_name } = churchinfo;
   const name = `${firstname} ${lastname}`;
+  const breadcrumbUserEl = document.querySelector("#breadcrumbUser");
   const profilePhotoEl = document.querySelector("#profilephoto");
   const profilePhotoAltText = getPhrase("photoAltText").replace("{name}", name);
   const btnFollow = document.querySelector("#btnFollow");
@@ -171,6 +172,8 @@ function renderUserInfo(userdata, churchinfo) {
   const pagetitle = document
     .querySelector("title")
     .innerHTML.replace("{name}", name);
+
+  breadcrumbUserEl.setAttribute("href", `../#${userid}`);
 
   if (church_name.length) {
     churchNameEl.innerText = church_name;
