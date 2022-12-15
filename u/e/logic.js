@@ -294,10 +294,18 @@ async function onFollowClicked(e) {
   }
 }
 
+function onVisibilityChange() {
+  if (document.visibilityState === "visible") {
+    refreshButtons();
+  }
+}
+
 function attachListeners() {
   document
     .querySelector("#btnFollow")
     .addEventListener("click", onFollowClicked);
+
+  window.addEventListener("visibilitychange", onVisibilityChange);
 }
 
 async function init() {
