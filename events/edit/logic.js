@@ -3,21 +3,25 @@ let mapCoordinates = "";
 let iti;
 
 function buildCalendarDescription(invitePhrases, cal) {
-  const p = {};  // Phrases that are global to all invites
-  const o = getCalendarObject();  // Data from the form
+  const p = {}; // Phrases that are global to all invites
+  const o = getCalendarObject(); // Data from the form
 
-  invitePhrases.phrases.forEach(item => {
-    0
+  invitePhrases.phrases.forEach((item) => {
+    0;
     p[item.key] = item.translated;
   });
 
-  let description = `
+  let description =
+    `
 ${p["you-are-invited-to"]}
 ${o.eventtitle.toUpperCase()}
   `.trim() + "\n\n";
 
   // BEGIN MAIN EVENT INFO
-  const headlineAboutEvent = p["headline-about-event"].replaceAll("{EVENT-TITLE}", o.eventtitle);
+  const headlineAboutEvent = p["headline-about-event"].replaceAll(
+    "{EVENT-TITLE}",
+    o.eventtitle
+  );
 
   description += `=====
 
@@ -29,7 +33,6 @@ ${o.eventdescription}
   description = description + "\n\n";
   // END MAIN EVENT INFO
 
-
   // BEGIN RECURRING EVENT
   if (o.frequency !== "once") {
     description += `=====\n
@@ -39,7 +42,6 @@ ${p["is-recurring"]}
     description = description + "\n\n";
   }
   // END RECURRING EVENT
-
 
   // BEGIN OTHER LOCATION DETAILS
   if (o.otherLocationDetails.length && o.locationvisibility !== "discreet") {
@@ -55,7 +57,6 @@ ${o.otherLocationDetails}
     description = description + "\n\n";
   }
   // END OTHER LOCATION DETAILS
-
 
   // BEGIN ATTENTING VIRTUALLY
   if (o.attendVirtuallyConnectionDetails.length) {
@@ -78,10 +79,12 @@ ${o.attendVirtuallyConnectionDetails.trim()}
   }
   // END ATTENDING VIRTUALLY
 
-
   // BEGIN CONTACT INFORMATION
   const headlineQuestions = p["headline-questions"];
-  const textQuestions = (o.locationvisibility === "discreet") ? p["questionsPlusLocation"] : p["questions"];
+  const textQuestions =
+    o.locationvisibility === "discreet"
+      ? p["questionsPlusLocation"]
+      : p["questions"];
   const labelPhoneCallOrTextMessage = p["phone-call-or-text-message"];
   const labelEmail = p["email"];
 
@@ -95,7 +98,9 @@ ${textQuestions}
   description = description + "\n\n";
 
   // Contact Name
-  description += `${o.contactFirstName.toUpperCase()} ${o.contactLastName.length ? o.contactLastName.toUpperCase() : ""}\n\n`;
+  description += `${o.contactFirstName.toUpperCase()} ${
+    o.contactLastName.length ? o.contactLastName.toUpperCase() : ""
+  }\n\n`;
 
   // Contact Phone or Text Message
   if (o.contactPhoneFormatted.length) {
@@ -153,8 +158,8 @@ function getAddressForMaps() {
 
   const returnObject = {
     address: address,
-    addressLink: addressLink
-  }
+    addressLink: addressLink,
+  };
 
   return returnObject;
 }
@@ -192,7 +197,9 @@ function getCalendarObject() {
   o.contactFirstName = form.contactFirstName.value;
   o.contactLastName = form.contactLastName.value;
   o.contactPhone = iti.getNumber() || "";
-  o.contactPhoneFormatted = o.contactPhone.length ? iti.getNumber(o.contactPhone) : o.contactPhone;
+  o.contactPhoneFormatted = o.contactPhone.length
+    ? iti.getNumber(o.contactPhone)
+    : o.contactPhone;
   o.contactPhoneCountryData = iti.getSelectedCountryData();
   o.contactEmail = form.contactEmail.value;
 
@@ -240,7 +247,7 @@ function getDefaultRecipientName(gender) {
     "Samyar",
     "Seo-jun",
     "William",
-    "Yusuf"
+    "Yusuf",
   ];
 
   const femaleNames = [
@@ -282,16 +289,21 @@ function getDefaultRecipientName(gender) {
     "Saanvi",
     "Sophia",
     "Valentina",
-    "Zeynep"
+    "Zeynep",
   ];
 
-  const userGender = gender ? gender : JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).gender;
+  const userGender = gender
+    ? gender
+    : JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1]))
+        .gender;
   let defaultRecipientName;
 
   if (userGender === "female") {
-    defaultRecipientName = femaleNames[Math.floor(Math.random() * femaleNames.length)];
+    defaultRecipientName =
+      femaleNames[Math.floor(Math.random() * femaleNames.length)];
   } else {
-    defaultRecipientName = maleNames[Math.floor(Math.random() * maleNames.length)];
+    defaultRecipientName =
+      maleNames[Math.floor(Math.random() * maleNames.length)];
   }
 
   return defaultRecipientName;
@@ -304,14 +316,18 @@ function getDefaultInvitedDate() {
 }
 
 function getSenderFirstName() {
-  const firstName = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).firstname || "John";
+  const firstName =
+    JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1]))
+      .firstname || "John";
   return firstName;
 }
 
 function hideAllDateTimes() {
   const timeAndDateRepeating = document.querySelector("#timeAndDateRepeating");
   const timeAndDateSingleDay = document.querySelector("#timeAndDateSingleDay");
-  const timeAndDateMultipleDays = document.querySelector("#timeAndDateMultipleDays");
+  const timeAndDateMultipleDays = document.querySelector(
+    "#timeAndDateMultipleDays"
+  );
 
   timeAndDateRepeating.classList.add("d-none");
   timeAndDateSingleDay.classList.add("d-none");
@@ -338,7 +354,9 @@ function initIntlTelInput() {
   });
 
   iti.promise.then(() => {
-    document.querySelector(".iti__selected-flag").setAttribute("tabindex", "-1");
+    document
+      .querySelector(".iti__selected-flag")
+      .setAttribute("tabindex", "-1");
 
     if (input.value.trim().length > 0) {
       document
@@ -352,8 +370,8 @@ async function loadEvent() {
   const pageSpinner = document.querySelector("#pageSpinner");
   const pageContent = document.querySelector("#pageContent");
   const evtid = Math.abs(parseInt(getHash()));
-  const events = await localforage.getItem("events") || [];
-  let event = events.filter(evt => evt.eventid === evtid);
+  const events = (await localforage.getItem("events")) || [];
+  let event = events.filter((evt) => evt.eventid === evtid);
 
   if (Array.isArray(event) && event.length) {
     event = event[0];
@@ -393,8 +411,14 @@ async function loadEvent() {
     timezone,
     title,
     type,
-    attendVirtuallyConnectionDetails
+    attendVirtuallyConnectionDetails,
   } = event;
+
+  let coordinates = {};
+  if (locationcoordinates) {
+    coordinates.x = locationcoordinates.x;
+    coordinates.y = locationcoordinates.y;
+  }
 
   document.querySelector("#language").value = lang;
   document.querySelector("#eventtype").value = type;
@@ -403,39 +427,71 @@ async function loadEvent() {
   document.querySelector("#frequency").value = frequency;
   document.querySelector("#duration").value = duration;
   document.querySelector("#timezone").value = timezone;
-  document.querySelector("#startdate").value = (moment(startdate).isValid()) ? moment(startdate).tz(timezone).format("YYYY-MM-DD") : "";
-  document.querySelector("#starttime").value = (moment(startdate).isValid()) ? moment(startdate).tz(timezone).format("HH:mm") : "";
-  document.querySelector("#durationInHoursDisplayed").innerText = (durationInHours === "") ? 2 : durationInHours;
-  document.querySelector("#durationInHours").value = (durationInHours === "") ? 2 : durationInHours;
-  document.querySelector("#multidayBeginDate").value = (moment(multidaybegindate).isValid()) ? moment(multidaybegindate).tz(timezone).format("YYYY-MM-DD") : "";
-  document.querySelector("#multidayBeginTime").value = (moment(multidaybegindate).isValid()) ? moment(multidaybegindate).tz(timezone).format("HH:mm") : "";
-  document.querySelector("#multidayEndDate").value = (moment(multidayenddate).isValid()) ? moment(multidayenddate).tz(timezone).format("YYYY-MM-DD") : "";
-  document.querySelector("#multidayEndTime").value = (moment(multidayenddate).isValid()) ? moment(multidayenddate).tz(timezone).format("HH:mm") : "";
+  document.querySelector("#startdate").value = moment(startdate).isValid()
+    ? moment(startdate).tz(timezone).format("YYYY-MM-DD")
+    : "";
+  document.querySelector("#starttime").value = moment(startdate).isValid()
+    ? moment(startdate).tz(timezone).format("HH:mm")
+    : "";
+  document.querySelector("#durationInHoursDisplayed").innerText =
+    durationInHours === "" ? 2 : durationInHours;
+  document.querySelector("#durationInHours").value =
+    durationInHours === "" ? 2 : durationInHours;
+  document.querySelector("#multidayBeginDate").value = moment(
+    multidaybegindate
+  ).isValid()
+    ? moment(multidaybegindate).tz(timezone).format("YYYY-MM-DD")
+    : "";
+  document.querySelector("#multidayBeginTime").value = moment(
+    multidaybegindate
+  ).isValid()
+    ? moment(multidaybegindate).tz(timezone).format("HH:mm")
+    : "";
+  document.querySelector("#multidayEndDate").value = moment(
+    multidayenddate
+  ).isValid()
+    ? moment(multidayenddate).tz(timezone).format("YYYY-MM-DD")
+    : "";
+  document.querySelector("#multidayEndTime").value = moment(
+    multidayenddate
+  ).isValid()
+    ? moment(multidayenddate).tz(timezone).format("HH:mm")
+    : "";
   document.querySelector("#timezone").value = timezone;
 
   if (frequency === "once") {
     // One-time events
     if (duration === "same day") {
       document.querySelector("#nextOccurrence").classList.remove("d-none");
-      document.querySelector("#durationInHoursContainer").classList.remove("d-none");
+      document
+        .querySelector("#durationInHoursContainer")
+        .classList.remove("d-none");
     } else if (duration === "multiple days") {
       document.querySelector("#multidayBeginInfo").classList.remove("d-none");
       document.querySelector("#multidayEndInfo").classList.remove("d-none");
     }
   } else {
     // Recurring events
-    const nextOccurrenceDate = getNextRecurringWeekday( document.querySelector("#startdate").value, document.querySelector("#starttime").value );
-    document.querySelector("#startdate").value = nextOccurrenceDate.format("YYYY-MM-DD");
+    const nextOccurrenceDate = getNextRecurringWeekday(
+      document.querySelector("#startdate").value,
+      document.querySelector("#starttime").value
+    );
+    document.querySelector("#startdate").value =
+      nextOccurrenceDate.format("YYYY-MM-DD");
     document.querySelector("#nextOccurrence").classList.remove("d-none");
-    document.querySelector("#durationInHoursContainer").classList.remove("d-none");
+    document
+      .querySelector("#durationInHoursContainer")
+      .classList.remove("d-none");
   }
 
   // Duration
-  const isRecurring = (frequency !== "once");
-  const isMultiday = ((frequency === "once") && (duration === "multiple days"));
+  const isRecurring = frequency !== "once";
+  const isMultiday = frequency === "once" && duration === "multiple days";
   const durationInDaysEl = document.querySelector("#durationContainer");
   const durationInHoursEl = document.querySelector("#durationInHours");
-  const durationInHoursDisplayedEl = document.querySelector("#durationInHoursDisplayed");
+  const durationInHoursDisplayedEl = document.querySelector(
+    "#durationInHoursDisplayed"
+  );
   const showDurationInDays = isRecurring ? false : true;
   const showDurationHours = isMultiday ? false : true;
 
@@ -454,7 +510,7 @@ async function loadEvent() {
 
   // Date/Time(s)
   if (isMultiday) {
-    // 
+    //
   } else {
     //
   }
@@ -470,17 +526,27 @@ async function loadEvent() {
   document.querySelector("#addressLine2").value = locationaddressline2;
   document.querySelector("#addressLine3").value = locationaddressline3;
   document.querySelector("#country").value = country;
-  document.querySelector("#latitude").value = (typeof locationcoordinates === "object" && locationcoordinates.hasOwnProperty("x")) ? locationcoordinates.x : "";
-  document.querySelector("#longitude").value = (typeof locationcoordinates === "object" && locationcoordinates.hasOwnProperty("y")) ? locationcoordinates.y : "";
+  document.querySelector("#latitude").value =
+    typeof coordinates === "object" && coordinates.hasOwnProperty("x")
+      ? coordinates.x
+      : "";
+  document.querySelector("#longitude").value =
+    typeof coordinates === "object" && coordinates.hasOwnProperty("y")
+      ? coordinates.y
+      : "";
   document.querySelector("#otherLocationDetails").value = otherlocationdetails;
-  document.querySelector("#connectionDetails").value = (typeof attendVirtuallyConnectionDetails === "string" && attendVirtuallyConnectionDetails.length) ? attendVirtuallyConnectionDetails : "";
+  document.querySelector("#connectionDetails").value =
+    typeof attendVirtuallyConnectionDetails === "string" &&
+    attendVirtuallyConnectionDetails.length
+      ? attendVirtuallyConnectionDetails
+      : "";
   document.querySelector("#contactFirstName").value = contactfirstname;
   document.querySelector("#contactLastName").value = contactlastname;
 
   const contactPhoneEl = document.querySelector("#contactPhone");
   contactPhoneEl.value = contactphone;
   window.intlTelInput(contactPhoneEl, {
-    utilsScript: "/js/intl-tel-input-17.0.0/js/utils.js"
+    utilsScript: "/js/intl-tel-input-17.0.0/js/utils.js",
   });
 
   document.querySelector("#contactEmail").value = contactemail;
@@ -490,7 +556,8 @@ async function loadEvent() {
 
 function onAddressChanged(e) {
   const addressLine1 = document.querySelector("#addressLine1");
-  const attendVirtuallyConnectionDetails = document.querySelector("#connectionDetails");
+  const attendVirtuallyConnectionDetails =
+    document.querySelector("#connectionDetails");
   if (attendVirtuallyConnectionDetails.value === addressLine1.value) {
     attendVirtuallyConnectionDetails.value = "";
   }
@@ -543,9 +610,7 @@ function onClickDetectLocation(e) {
 function onDurationChange(e) {
   const duration = e.target.value.trim();
   const nextOccurrenceEl = document.querySelector("#nextOccurrence");
-  const multidayBeginInfoEl = document.querySelector(
-    "#multidayBeginInfo"
-  );
+  const multidayBeginInfoEl = document.querySelector("#multidayBeginInfo");
   const multidayEndInfoEl = document.querySelector("#multidayEndInfo");
   const durationInHoursEl = document.querySelector("#durationInHoursContainer");
 
@@ -575,7 +640,9 @@ function onDurationChange(e) {
 
 function onDurationHoursChanged(e) {
   const durationInHoursEl = document.querySelector("#durationInHours");
-  const durationInHoursDisplayedEl = document.querySelector("#durationInHoursDisplayed");
+  const durationInHoursDisplayedEl = document.querySelector(
+    "#durationInHoursDisplayed"
+  );
   const numHours = e.target.value;
 
   durationInHoursDisplayedEl.innerText = numHours;
@@ -587,9 +654,7 @@ function onFrequencyChange(e) {
   const duration = document.querySelector("#duration");
   const durationContainer = document.querySelector("#durationContainer");
   const nextOccurrenceEl = document.querySelector("#nextOccurrence");
-  const multidayBeginInfoEl = document.querySelector(
-    "#multidayBeginInfo"
-  );
+  const multidayBeginInfoEl = document.querySelector("#multidayBeginInfo");
   const multidayEndInfoEl = document.querySelector("#multidayEndInfo");
   const durationInHoursEl = document.querySelector("#durationInHoursContainer");
 
@@ -622,10 +687,10 @@ function onFrequencyChange(e) {
 }
 
 function onLocationVisibilityChanged(e) {
-  const isDiscreet = e.target.value === 'discreet' ? true : false;
+  const isDiscreet = e.target.value === "discreet" ? true : false;
   const hideIfDiscreet = document.querySelectorAll(".hideIfDiscreetLocation");
 
-  hideIfDiscreet.forEach(item => {
+  hideIfDiscreet.forEach((item) => {
     isDiscreet ? item.classList.add("d-none") : item.classList.remove("d-none");
   });
 }
@@ -660,12 +725,17 @@ async function onPreview() {
     .querySelector(".modal-header")
     .classList.add("bg-light", "border-bottom");
   previewModal.querySelector(".modal-body").innerHTML = html;
-  const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
+  const lang =
+    JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang ||
+    "en";
   await populateContent(`../../i/i18n/${lang}.json`, "previewContent");
 
-  const locationIsDiscreet = document.querySelector("#locationIsDiscreet").checked || false;
+  const locationIsDiscreet =
+    document.querySelector("#locationIsDiscreet").checked || false;
   const locationInfo = previewModal.querySelector("#previewLocationInfo");
-  const requestLocationInfo = previewModal.querySelector("#previewRequestLocationInfo");
+  const requestLocationInfo = previewModal.querySelector(
+    "#previewRequestLocationInfo"
+  );
   if (locationIsDiscreet) {
     locationInfo.classList.add("d-none");
     requestLocationInfo.classList.remove("d-none");
@@ -693,12 +763,14 @@ function onPreviewClosed(e) {
 
 async function onPreviewOpened() {
   const lang = getLang();
-  const invitePhrases = await fetch(`../../i/i18n/${lang}.json`).then(res => res.json());
+  const invitePhrases = await fetch(`../../i/i18n/${lang}.json`).then((res) =>
+    res.json()
+  );
 
   previewSpinner("hide");
 
   $(".collapse").on("show.bs.collapse", () => {
-    addToCalendar.scrollIntoView({ behavior: "smooth" })
+    addToCalendar.scrollIntoView({ behavior: "smooth" });
   });
 
   document.removeEventListener("click", () => {
@@ -712,7 +784,6 @@ async function onPreviewOpened() {
       $(".collapse").collapse("hide");
     }
   });
-
 
   document.querySelectorAll("#atcbOptions a").forEach(function (item) {
     item.removeEventListener("click", () => {
@@ -743,8 +814,13 @@ async function onPreviewOpened() {
       let eventEnd = "";
       let isRecurring = false;
       let recurringWeekday = "";
-      let momentStart = moment.tz(moment(`${o.startdate} ${o.starttime}`), o.timezone).format();
-      let momentEnd = moment.tz(momentStart, o.timezone).add(o.durationInHours, "hours").format();
+      let momentStart = moment
+        .tz(moment(`${o.startdate} ${o.starttime}`), o.timezone)
+        .format();
+      let momentEnd = moment
+        .tz(momentStart, o.timezone)
+        .add(o.durationInHours, "hours")
+        .format();
 
       if (o.frequency !== "once") {
         // Recurring event
@@ -762,8 +838,15 @@ async function onPreviewOpened() {
           }
         } else if (o.duration === "multiple days") {
           // Multiple-day event
-          momentStart = moment.tz(moment(`${o.multidayBeginDate} ${o.multidayBeginTime}`), o.timezone).format();
-          momentEnd = moment.tz(moment(`${o.multidayEndDate} ${o.multidayEndTime}`), o.timezone).format();
+          momentStart = moment
+            .tz(
+              moment(`${o.multidayBeginDate} ${o.multidayBeginTime}`),
+              o.timezone
+            )
+            .format();
+          momentEnd = moment
+            .tz(moment(`${o.multidayEndDate} ${o.multidayEndTime}`), o.timezone)
+            .format();
           if (o.multidayBeginDate.length) {
             eventStart = new Date(momentStart);
           }
@@ -804,17 +887,17 @@ async function onPreviewOpened() {
         title: o.eventtitle,
         location: location,
         description: o.eventdescription,
-        start: eventStart
+        start: eventStart,
       };
 
       if (!!eventEnd) config.end = eventEnd;
       if (isRecurring) {
         config.recurrence = {
-          frequency: 'WEEKLY',
+          frequency: "WEEKLY",
           interval: 1,
           weekdays: recurringWeekday,
-          count: 12
-        }
+          count: 12,
+        };
       }
 
       switch (destination) {
@@ -824,7 +907,10 @@ async function onPreviewOpened() {
           appleCal.download();
           break;
         case "google":
-          config.description = buildCalendarDescription(invitePhrases, "google");
+          config.description = buildCalendarDescription(
+            invitePhrases,
+            "google"
+          );
           const googleCal = new datebook.GoogleCalendar(config);
           window.location.href = googleCal.render();
           break;
@@ -863,19 +949,21 @@ async function onSubmit(e) {
     body: JSON.stringify(formdata),
     headers: new Headers({
       "Content-Type": "application/json",
-      authorization: `Bearer ${accessToken}`
-    })
+      authorization: `Bearer ${accessToken}`,
+    }),
   })
-    .then(res => res.json())
+    .then((res) => res.json())
     .then(async (data) => {
       const mobilePhoneEl = document.querySelector("#contactPhone");
-      const mobilePhoneErrorEl = document.querySelector("#contactPhone").parentElement.parentElement.querySelector(".invalid-feedback");
+      const mobilePhoneErrorEl = document
+        .querySelector("#contactPhone")
+        .parentElement.parentElement.querySelector(".invalid-feedback");
 
       if (mobilePhoneErrorEl) {
         mobilePhoneErrorEl.innerText = "";
-        mobilePhoneErrorEl.style.display = "none";        
+        mobilePhoneErrorEl.style.display = "none";
       }
-      
+
       mobilePhoneEl.classList.remove("is-invalid");
 
       if (data.msgType === "error") {
@@ -891,17 +979,29 @@ async function onSubmit(e) {
             showError(errorPhrase);
             break;
           case "invalid phone number":
-            showError(getPhrase("validateInvalidPhoneNumber"), "#contactPhone", getPhrase("validPhoneIsRequired"));
+            showError(
+              getPhrase("validateInvalidPhoneNumber"),
+              "#contactPhone",
+              getPhrase("validPhoneIsRequired")
+            );
             mobilePhoneErrorEl.innerText = getPhrase("validPhoneIsRequired");
             mobilePhoneErrorEl.style.display = "block";
             break;
           case "invalid phone number for region":
-            showError(getPhrase("validateInvalidPhoneNumberForRegion"), "#contactPhone", getPhrase("validPhoneIsRequired"));
+            showError(
+              getPhrase("validateInvalidPhoneNumberForRegion"),
+              "#contactPhone",
+              getPhrase("validPhoneIsRequired")
+            );
             mobilePhoneErrorEl.innerText = getPhrase("validPhoneIsRequired");
             mobilePhoneErrorEl.style.display = "block";
             break;
           case "invalid phone number for sms":
-            showError(getPhrase("validateInvalidPhoneNumberForSms"), "#contactPhone", getPhrase("validPhoneIsRequired"));
+            showError(
+              getPhrase("validateInvalidPhoneNumberForSms"),
+              "#contactPhone",
+              getPhrase("validPhoneIsRequired")
+            );
             mobilePhoneErrorEl.innerText = getPhrase("validPhoneIsRequired");
             mobilePhoneErrorEl.style.display = "block";
             break;
@@ -914,7 +1014,7 @@ async function onSubmit(e) {
 
       await localforage.setItem("events", events);
 
-      return window.location.href = "../";
+      return (window.location.href = "../");
     })
     .catch((err) => {
       hideSpinner();
@@ -954,7 +1054,10 @@ function populateDefaultEventTitle() {
     case "bible talk":
       populateDurationInHours();
       defaultEventTitle = getPhrase("optionEventTypeBT");
-      if ((eventTitle === "") || (eventTitle === getPhrase("optionEventTypeSundayService"))) {
+      if (
+        eventTitle === "" ||
+        eventTitle === getPhrase("optionEventTypeSundayService")
+      ) {
         eventTitleEl.value = defaultEventTitle;
         eventTitleEl.parentElement.classList.add("has-value");
       }
@@ -962,13 +1065,17 @@ function populateDefaultEventTitle() {
     case "church":
       populateDurationInHours();
       defaultEventTitle = getPhrase("optionEventTypeSundayService");
-      if ((eventTitle === "") || (eventTitle === getPhrase("optionEventTypeBT"))) {
+      if (eventTitle === "" || eventTitle === getPhrase("optionEventTypeBT")) {
         eventTitleEl.value = defaultEventTitle;
         eventTitleEl.parentElement.classList.add("has-value");
       }
       break;
     case "other":
-      if ((eventTitle === "") || (eventTitle === getPhrase("optionEventTypeBT")) || (eventTitle === getPhrase("optionEventTypeSundayService"))) {
+      if (
+        eventTitle === "" ||
+        eventTitle === getPhrase("optionEventTypeBT") ||
+        eventTitle === getPhrase("optionEventTypeSundayService")
+      ) {
         eventTitleEl.value = "";
         eventTitleEl.parentElement.classList.remove("has-value");
       }
@@ -981,7 +1088,9 @@ function populateDefaultEventTitle() {
 }
 
 function populateDrivingDirections() {
-  const mapLinkEl = document.querySelector("#preview").querySelector("[data-i18n='map-and-directions']");
+  const mapLinkEl = document
+    .querySelector("#preview")
+    .querySelector("[data-i18n='map-and-directions']");
   const form = document.querySelector("#formAddEvent");
 
   // Use address info from the form if we have it
@@ -1009,7 +1118,7 @@ function populateDrivingDirections() {
     { char: "|", replacement: "%7C" },
   ];
 
-  unsafeCharacters.forEach(item => {
+  unsafeCharacters.forEach((item) => {
     addressLink = addressLink.replaceAll(item.char, item.replacement);
   });
 
@@ -1044,9 +1153,12 @@ function populateDrivingDirections() {
 }
 
 function populateDurationInHours() {
-  const eventtype = document.querySelector("#eventtype").selectedOptions[0].value;
+  const eventtype =
+    document.querySelector("#eventtype").selectedOptions[0].value;
   const durationInHours = document.querySelector("#durationInHours");
-  const durationInHoursDisplayedEl = document.querySelector("#durationInHoursDisplayed");
+  const durationInHoursDisplayedEl = document.querySelector(
+    "#durationInHoursDisplayed"
+  );
   let numHours = 2;
 
   if (eventtype === "church") {
@@ -1060,24 +1172,28 @@ function populateDurationInHours() {
 }
 
 function populateFormBasedPhrases() {
-  const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
+  const lang =
+    JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang ||
+    "en";
   const form = document.querySelector("#formAddEvent");
   const preview = document.querySelector("#preview");
   const eventType = form.querySelector("#eventtype").selectedOptions[0].value;
   const eventTitle = form.querySelector("#eventtitle").value;
-  const eventDescription = form.querySelector("#eventdescription").value.trim() || "";
+  const eventDescription =
+    form.querySelector("#eventdescription").value.trim() || "";
   const frequency = document.querySelector("#frequency").value;
   const addressLine1 = form.querySelector("#addressLine1").value || "";
   const addressLine2 = form.querySelector("#addressLine2").value || "";
   const addressLine3 = form.querySelector("#addressLine3").value || "";
-  const attendVirtuallyConnectionDetails = form.querySelector("#connectionDetails").value.trim() || "";
+  const attendVirtuallyConnectionDetails =
+    form.querySelector("#connectionDetails").value.trim() || "";
   const connectingVirtually = preview.querySelector("#connectingVirtually");
   const connectionContent = preview.querySelector("#connectionContent");
 
   if (attendVirtuallyConnectionDetails.length >= 1) {
     let info = attendVirtuallyConnectionDetails;
     info = linkifyHtml(info, {
-      defaultProtocol: "https"
+      defaultProtocol: "https",
     });
     info = spacify(info);
     info = breakify(info);
@@ -1091,7 +1207,7 @@ function populateFormBasedPhrases() {
   if (eventDescription.length >= 1) {
     let description = eventDescription;
     description = linkifyHtml(description, {
-      defaultProtocol: "https"
+      defaultProtocol: "https",
     });
     description = spacify(description);
     description = breakify(description);
@@ -1106,19 +1222,25 @@ function populateFormBasedPhrases() {
   if (addressLine3.length) previewEventAddress += `<div>${addressLine3}</div>`;
   preview.querySelector("#eventAddress").innerHTML = previewEventAddress;
 
-
   preview.querySelector("#eventTitle").innerHTML = eventTitle;
 
   let defaultGreetingParagraph1 = "";
   if (eventType === "bible talk") {
-    defaultGreetingParagraph1 = getPreviewPhrase("default-greeting-paragraph-1-bible-talk");
+    defaultGreetingParagraph1 = getPreviewPhrase(
+      "default-greeting-paragraph-1-bible-talk"
+    );
   } else if (eventType === "church") {
-    defaultGreetingParagraph1 = getPreviewPhrase("default-greeting-paragraph-1-church");
+    defaultGreetingParagraph1 = getPreviewPhrase(
+      "default-greeting-paragraph-1-church"
+    );
   } else {
-    defaultGreetingParagraph1 = getPreviewPhrase("default-greeting-paragraph-1-other");
+    defaultGreetingParagraph1 = getPreviewPhrase(
+      "default-greeting-paragraph-1-other"
+    );
   }
 
-  preview.querySelector("#defaultGreetingParagraph1").innerHTML = defaultGreetingParagraph1;
+  preview.querySelector("#defaultGreetingParagraph1").innerHTML =
+    defaultGreetingParagraph1;
 
   if (frequency === "once") {
     const duration = document.querySelector("#duration").value;
@@ -1132,8 +1254,10 @@ function populateFormBasedPhrases() {
   }
 
   const eventContactNameEl = document.querySelector("#eventContactName");
-  const contactFirstName = document.querySelector("#contactFirstName").value.trim() || "";
-  const contactLastName = document.querySelector("#contactLastName").value.trim() || "";
+  const contactFirstName =
+    document.querySelector("#contactFirstName").value.trim() || "";
+  const contactLastName =
+    document.querySelector("#contactLastName").value.trim() || "";
   let contactFullName = "";
   if (contactFirstName.length) {
     if (contactLastName.length) {
@@ -1150,7 +1274,8 @@ function populateFormBasedPhrases() {
   const contactSmsEl = document.querySelector("a[data-i18n='text-message']");
   const contactEmailEl = document.querySelector("a[data-i18n='email']");
   const contactSms = iti.getNumber() || "";
-  const contactEmail = document.querySelector("#contactEmail").value.trim().toLowerCase() || "";
+  const contactEmail =
+    document.querySelector("#contactEmail").value.trim().toLowerCase() || "";
 
   if (contactSms !== "") {
     contactPhoneEl.setAttribute("href", `tel:${contactSms}`);
@@ -1167,7 +1292,8 @@ function populateFormBasedPhrases() {
   }
 
   const previewLocationName = preview.querySelector("#previewLocationName");
-  const locationName = document.querySelector("#locationName").value.trim() || "";
+  const locationName =
+    document.querySelector("#locationName").value.trim() || "";
   if (locationName !== "") {
     previewLocationName.innerHTML = locationName;
     previewLocationName.classList.remove("d-none");
@@ -1175,8 +1301,11 @@ function populateFormBasedPhrases() {
     previewLocationName.classList.add("d-none");
   }
 
-  const previewOtherLocationDetails = document.querySelector("#previewOtherLocationDetails");
-  const otherLocationDetails = document.querySelector("#otherLocationDetails").value.trim() || "";
+  const previewOtherLocationDetails = document.querySelector(
+    "#previewOtherLocationDetails"
+  );
+  const otherLocationDetails =
+    document.querySelector("#otherLocationDetails").value.trim() || "";
   if (otherLocationDetails !== "") {
     previewOtherLocationDetails.innerHTML = breakify(otherLocationDetails);
     previewOtherLocationDetails.classList.remove("d-none");
@@ -1187,8 +1316,11 @@ function populateFormBasedPhrases() {
 }
 
 function populateInterpolatedPhrases() {
-  const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
-  const frequency = document.querySelector("#frequency").selectedOptions[0].value;
+  const lang =
+    JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang ||
+    "en";
+  const frequency =
+    document.querySelector("#frequency").selectedOptions[0].value;
 
   let recipientName = "";
   let senderFirstName = "";
@@ -1197,7 +1329,8 @@ function populateInterpolatedPhrases() {
   let eventStartDate = "";
   let eventStartTime = "";
   if (frequency === "once") {
-    const duration = document.querySelector("#duration").selectedOptions[0].value;
+    const duration =
+      document.querySelector("#duration").selectedOptions[0].value;
     if (duration === "same day") {
       eventStartDate = document.querySelector("#startdate").value;
       eventStartTime = document.querySelector("#starttime").value;
@@ -1220,12 +1353,14 @@ function populateInterpolatedPhrases() {
   eventStartDate = Intl.DateTimeFormat(lang, {
     weekday: "long",
     month: "long",
-    day: "numeric"
+    day: "numeric",
   }).format(new Date(eventStartDateTimeUTC));
 
-  const localizedDate = Intl.DateTimeFormat(lang).format(new Date(eventStartDateTimeUTC));
+  const localizedDate = Intl.DateTimeFormat(lang).format(
+    new Date(eventStartDateTimeUTC)
+  );
   const localizedTime = Intl.DateTimeFormat(lang, {
-    timeStyle: "short"
+    timeStyle: "short",
   }).format(new Date(eventStartDateTimeUTC));
 
   if (localizedTime !== localizedDate) {
@@ -1235,12 +1370,30 @@ function populateInterpolatedPhrases() {
   const previewModal = document.querySelector("#preview .modal-body");
   const currentHTML = previewModal.innerHTML;
   let newHTML = currentHTML;
-  newHTML = newHTML.replaceAll("{RECIPIENT-NAME}", `<span data-interpolated='RECIPIENT-NAME'>${recipientName}</span>`);
-  newHTML = newHTML.replaceAll("{SENDER-FIRST-NAME}", `<span data-interpolated='SENDER-FIRST-NAME'>${senderFirstName}</span>`);
-  newHTML = newHTML.replaceAll("{INVITED-DATE}", `<span data-interpolated='INVITED-DATE'>${invitedDate}</span>`);
-  newHTML = newHTML.replaceAll("{EVENT-TITLE}", `<span data-interpolated='EVENT-TITLE'>${eventTitle}</span>`);
-  newHTML = newHTML.replaceAll("{EVENT-START-DATE}", `<span data-interpolated='EVENT-START-DATE'>${eventStartDate}</span>`);
-  newHTML = newHTML.replaceAll("{EVENT-START-TIME}", `<span data-interpolated='EVENT-START-TIME'>${eventStartTime}</span>`);
+  newHTML = newHTML.replaceAll(
+    "{RECIPIENT-NAME}",
+    `<span data-interpolated='RECIPIENT-NAME'>${recipientName}</span>`
+  );
+  newHTML = newHTML.replaceAll(
+    "{SENDER-FIRST-NAME}",
+    `<span data-interpolated='SENDER-FIRST-NAME'>${senderFirstName}</span>`
+  );
+  newHTML = newHTML.replaceAll(
+    "{INVITED-DATE}",
+    `<span data-interpolated='INVITED-DATE'>${invitedDate}</span>`
+  );
+  newHTML = newHTML.replaceAll(
+    "{EVENT-TITLE}",
+    `<span data-interpolated='EVENT-TITLE'>${eventTitle}</span>`
+  );
+  newHTML = newHTML.replaceAll(
+    "{EVENT-START-DATE}",
+    `<span data-interpolated='EVENT-START-DATE'>${eventStartDate}</span>`
+  );
+  newHTML = newHTML.replaceAll(
+    "{EVENT-START-TIME}",
+    `<span data-interpolated='EVENT-START-TIME'>${eventStartTime}</span>`
+  );
 
   previewModal.innerHTML = newHTML;
 }
@@ -1302,11 +1455,12 @@ function populateLanguages() {
 function populateTimeZones() {
   const dropdown = document.querySelector("#timezone");
   const guessedTimeZone = moment.tz.guess();
-  const defaultTimeZone = localStorage.getItem("defaultTimeZone") || guessedTimeZone;
+  const defaultTimeZone =
+    localStorage.getItem("defaultTimeZone") || guessedTimeZone;
   const timezones = moment.tz.names();
   let timezoneOptions;
 
-  timezones.forEach(item => {
+  timezones.forEach((item) => {
     timezoneOptions += `<option value="${item}">${item}</option>`;
   });
   dropdown.innerHTML = timezoneOptions;
@@ -1335,7 +1489,7 @@ function showError(msg, selector, inlineMsg) {
       formError(selector, inlineMsg);
     } else {
       formError(selector);
-    };
+    }
   }
   showModal(msg, formIncomplete, "true", "#modalFormErrors");
 }
@@ -1343,19 +1497,31 @@ function showError(msg, selector, inlineMsg) {
 function showSingleDay() {
   const container = document.querySelector("#timeAndDateSingleDay");
   const timeZone = document.querySelector("#timezone").selectedOptions[0].value;
-  const lang = document.querySelector("#language").selectedOptions[0].value.toLowerCase();
-  const locale = document.querySelector("#country").selectedOptions[0].value.toUpperCase();
+  const lang = document
+    .querySelector("#language")
+    .selectedOptions[0].value.toLowerCase();
+  const locale = document
+    .querySelector("#country")
+    .selectedOptions[0].value.toUpperCase();
   const eventStartDate = document.querySelector("#startdate").value;
   const eventStartTime = document.querySelector("#starttime").value;
-  const eventStartDateTime = moment.tz(moment(`${eventStartDate} ${eventStartTime}`), timeZone).format();
-  const weekday = Intl.DateTimeFormat(`${lang}-${locale}`, { weekday: "short" }).format(new Date(eventStartDateTime));
+  const eventStartDateTime = moment
+    .tz(moment(`${eventStartDate} ${eventStartTime}`), timeZone)
+    .format();
+  const weekday = Intl.DateTimeFormat(`${lang}-${locale}`, {
+    weekday: "short",
+  }).format(new Date(eventStartDateTime));
   const weekdayEl = document.querySelector("#singleDayWeekday");
-  const previewEventStartDateShort = Intl.DateTimeFormat(`${lang}-${locale}`, { dateStyle: "short" }).format(new Date(eventStartDateTime));
-  const previewEventStartTimeShort = Intl.DateTimeFormat(`${lang}-${locale}`, { timeStyle: "short" }).format(new Date(eventStartDateTime));
+  const previewEventStartDateShort = Intl.DateTimeFormat(`${lang}-${locale}`, {
+    dateStyle: "short",
+  }).format(new Date(eventStartDateTime));
+  const previewEventStartTimeShort = Intl.DateTimeFormat(`${lang}-${locale}`, {
+    timeStyle: "short",
+  }).format(new Date(eventStartDateTime));
   const singleDayDateEl = document.querySelector("#singleDayDate");
   const singleDayStartTimeEl = document.querySelector("#singleDayStartTime");
 
-  weekdayEl.innerHTML = (lang === "en") ? `${weekday}.` : weekday;
+  weekdayEl.innerHTML = lang === "en" ? `${weekday}.` : weekday;
   singleDayDateEl.innerHTML = previewEventStartDateShort;
   singleDayStartTimeEl.innerHTML = previewEventStartTimeShort;
   hideAllDateTimes();
@@ -1366,31 +1532,59 @@ function showMultipleDays() {
   const container = document.querySelector("#timeAndDateMultipleDays");
   const timeZone = document.querySelector("#timezone").selectedOptions[0].value;
   const lang = getLang();
-  const locale = document.querySelector("#country").selectedOptions[0].value.toUpperCase();
+  const locale = document
+    .querySelector("#country")
+    .selectedOptions[0].value.toUpperCase();
   const multidayBeginDate = document.querySelector("#multidayBeginDate").value;
   const multidayBeginTime = document.querySelector("#multidayBeginTime").value;
   const multidayEndDate = document.querySelector("#multidayEndDate").value;
   const multidayEndTime = document.querySelector("#multidayEndTime").value;
-  const eventStartDateTime = moment.tz(moment(`${multidayBeginDate} ${multidayBeginTime}`), timeZone).format();
-  const eventEndDateTime = moment.tz(moment(`${multidayEndDate} ${multidayEndTime}`), timeZone).format();
-  const previewEventStartDateShort = Intl.DateTimeFormat(`${lang}-${locale}`, { dateStyle: "short" }).format(new Date(eventStartDateTime));
-  const previewEventStartTimeShort = Intl.DateTimeFormat(`${lang}-${locale}`, { timeStyle: "short" }).format(new Date(eventStartDateTime));
-  const previewEventEndDateShort = Intl.DateTimeFormat(`${lang}-${locale}`, { dateStyle: "short" }).format(new Date(eventEndDateTime));
-  const previewEventEndTimeShort = Intl.DateTimeFormat(`${lang}-${locale}`, { timeStyle: "short" }).format(new Date(eventEndDateTime));
-  const weekdayStartDate = Intl.DateTimeFormat(lang, { weekday: "short" }).format(new Date(eventStartDateTime));
-  const weekdayEndDate = Intl.DateTimeFormat(lang, { weekday: "short" }).format(new Date(eventEndDateTime));
-  const multiDayStartingWeekdayEl = document.querySelector("#multiDayStartingWeekday");
-  const multiDayStartingDateEl = document.querySelector("#multiDayStartingDate");
-  const multiDayStartingTimeEl = document.querySelector("#multiDayStartingTime");
-  const multiDayEndingWeekdayEl = document.querySelector("#multiDayEndingWeekday");
+  const eventStartDateTime = moment
+    .tz(moment(`${multidayBeginDate} ${multidayBeginTime}`), timeZone)
+    .format();
+  const eventEndDateTime = moment
+    .tz(moment(`${multidayEndDate} ${multidayEndTime}`), timeZone)
+    .format();
+  const previewEventStartDateShort = Intl.DateTimeFormat(`${lang}-${locale}`, {
+    dateStyle: "short",
+  }).format(new Date(eventStartDateTime));
+  const previewEventStartTimeShort = Intl.DateTimeFormat(`${lang}-${locale}`, {
+    timeStyle: "short",
+  }).format(new Date(eventStartDateTime));
+  const previewEventEndDateShort = Intl.DateTimeFormat(`${lang}-${locale}`, {
+    dateStyle: "short",
+  }).format(new Date(eventEndDateTime));
+  const previewEventEndTimeShort = Intl.DateTimeFormat(`${lang}-${locale}`, {
+    timeStyle: "short",
+  }).format(new Date(eventEndDateTime));
+  const weekdayStartDate = Intl.DateTimeFormat(lang, {
+    weekday: "short",
+  }).format(new Date(eventStartDateTime));
+  const weekdayEndDate = Intl.DateTimeFormat(lang, { weekday: "short" }).format(
+    new Date(eventEndDateTime)
+  );
+  const multiDayStartingWeekdayEl = document.querySelector(
+    "#multiDayStartingWeekday"
+  );
+  const multiDayStartingDateEl = document.querySelector(
+    "#multiDayStartingDate"
+  );
+  const multiDayStartingTimeEl = document.querySelector(
+    "#multiDayStartingTime"
+  );
+  const multiDayEndingWeekdayEl = document.querySelector(
+    "#multiDayEndingWeekday"
+  );
   const multiDayEndingDateEl = document.querySelector("#multiDayEndingDate");
   const multiDayEndingTimeEl = document.querySelector("#multiDayEndingTime");
 
-  multiDayStartingWeekdayEl.innerHTML = (lang === "en") ? `${weekdayStartDate}.` : weekdayStartDate;
+  multiDayStartingWeekdayEl.innerHTML =
+    lang === "en" ? `${weekdayStartDate}.` : weekdayStartDate;
   multiDayStartingDateEl.innerHTML = previewEventStartDateShort;
   multiDayStartingTimeEl.innerHTML = previewEventStartTimeShort;
 
-  multiDayEndingWeekdayEl.innerHTML = (lang === "en") ? `${weekdayEndDate}.` : weekdayEndDate;
+  multiDayEndingWeekdayEl.innerHTML =
+    lang === "en" ? `${weekdayEndDate}.` : weekdayEndDate;
   multiDayEndingDateEl.innerHTML = previewEventEndDateShort;
   multiDayEndingTimeEl.innerHTML = previewEventEndTimeShort;
 
@@ -1399,17 +1593,25 @@ function showMultipleDays() {
 }
 
 function showRepeating(frequency) {
-  if ((!frequency) || (!frequency.length)) return;
+  if (!frequency || !frequency.length) return;
   const container = document.querySelector("#timeAndDateRepeating");
   const timeZone = document.querySelector("#timezone").selectedOptions[0].value;
-  const lang = JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang || "en";
-  const frequencyPhrase = document.querySelector("#frequency").selectedOptions[0].getAttribute("data-i18n");
+  const lang =
+    JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang ||
+    "en";
+  const frequencyPhrase = document
+    .querySelector("#frequency")
+    .selectedOptions[0].getAttribute("data-i18n");
   const frequencyTranslated = getPhrase(frequencyPhrase);
   const startDate = document.querySelector("#startdate").value;
   const startTime = document.querySelector("#starttime").value;
   const eventStartDateTime = `${startDate} ${startTime}`;
-  const eventStartDateTimeUTC = moment.tz(moment(eventStartDateTime), timeZone).format();
-  const startTimeLocalized = Intl.DateTimeFormat(lang, { timeStyle: "short" }).format(new Date(eventStartDateTimeUTC));
+  const eventStartDateTimeUTC = moment
+    .tz(moment(eventStartDateTime), timeZone)
+    .format();
+  const startTimeLocalized = Intl.DateTimeFormat(lang, {
+    timeStyle: "short",
+  }).format(new Date(eventStartDateTimeUTC));
   const repeatingWeekdayEl = document.querySelector("#repeatingWeekday");
   const repeatingStartTimeEl = document.querySelector("#repeatingStartTime");
 
@@ -1422,7 +1624,9 @@ function showRepeating(frequency) {
 function previewSpinner(action) {
   const previewButton = document.querySelector("#previewbutton");
   const previewButtonIcon = previewButton.querySelector(".material-icons");
-  const previewButtonText = previewButton.querySelector("#previewbutton [data-i18n='previewButton'], #previewbutton [data-i18n='previewButton]:hover");
+  const previewButtonText = previewButton.querySelector(
+    "#previewbutton [data-i18n='previewButton'], #previewbutton [data-i18n='previewButton]:hover"
+  );
   const spinnerIcon = previewButton.querySelector(".spinner");
 
   if (action === "show") {
@@ -1464,126 +1668,225 @@ function validate() {
   const contactEmail = form.contactEmail.value.toLowerCase().trim() || "";
 
   if (language === "") {
-    showError(getPhrase("validateLanguage"), "#language", getPhrase("fieldIsRequired"));
+    showError(
+      getPhrase("validateLanguage"),
+      "#language",
+      getPhrase("fieldIsRequired")
+    );
     return false;
   }
 
   if (eventtype === "") {
-    showError(getPhrase("validateEventType"), "#eventtype", getPhrase("fieldIsRequired"));
+    showError(
+      getPhrase("validateEventType"),
+      "#eventtype",
+      getPhrase("fieldIsRequired")
+    );
     return false;
   }
 
   if (eventtitle === "") {
-    showError(getPhrase("validateEventTitle"), "#eventtitle", getPhrase("fieldIsRequired"));
+    showError(
+      getPhrase("validateEventTitle"),
+      "#eventtitle",
+      getPhrase("fieldIsRequired")
+    );
     return false;
   }
 
   if (eventdescription === "") {
-    showError(getPhrase("validateDescription"), "#eventdescription", getPhrase("fieldIsRequired"));
+    showError(
+      getPhrase("validateDescription"),
+      "#eventdescription",
+      getPhrase("fieldIsRequired")
+    );
     return false;
   }
 
   if (frequency === "") {
-    showError(getPhrase("validateFrequency"), "#frequency", getPhrase("fieldIsRequired"));
+    showError(
+      getPhrase("validateFrequency"),
+      "#frequency",
+      getPhrase("fieldIsRequired")
+    );
     return false;
   }
 
   if (frequency === "once") {
     if (duration === "") {
-      showError(getPhrase("validateDuration"), "#duration", getPhrase("fieldIsRequired"));
+      showError(
+        getPhrase("validateDuration"),
+        "#duration",
+        getPhrase("fieldIsRequired")
+      );
       return false;
     }
 
     if (duration === "multiple days") {
       if (multiDayBeginDate === "") {
-        showError(getPhrase("validateMultidayBeginDate"), "#multidayBeginDate", getPhrase("fieldIsRequired"));
+        showError(
+          getPhrase("validateMultidayBeginDate"),
+          "#multidayBeginDate",
+          getPhrase("fieldIsRequired")
+        );
         return false;
       }
 
       if (multiDayBeginTime === "") {
-        showError(getPhrase("validateMultidayBeginTime"), "#multidayBeginTime", getPhrase("fieldIsRequired"));
+        showError(
+          getPhrase("validateMultidayBeginTime"),
+          "#multidayBeginTime",
+          getPhrase("fieldIsRequired")
+        );
         return false;
       }
 
       if (!moment(multiDayBeginDate).isValid()) {
-        showError(getPhrase("validateInvalidMultidayBeginDate"), "#multidayBeginDate", getPhrase("validDateIsRequired"));
+        showError(
+          getPhrase("validateInvalidMultidayBeginDate"),
+          "#multidayBeginDate",
+          getPhrase("validDateIsRequired")
+        );
         return false;
       }
 
       if (multiDayEndDate === "") {
-        showError(getPhrase("validateMultidayEndDate"), "#multidayEndDate", getPhrase("fieldIsRequired"));
+        showError(
+          getPhrase("validateMultidayEndDate"),
+          "#multidayEndDate",
+          getPhrase("fieldIsRequired")
+        );
         return false;
       }
 
       if (multiDayEndTime === "") {
-        showError(getPhrase("validateMultidayEndTime"), "#multidayEndTime", getPhrase("fieldIsRequired"));
+        showError(
+          getPhrase("validateMultidayEndTime"),
+          "#multidayEndTime",
+          getPhrase("fieldIsRequired")
+        );
         return false;
       }
 
       if (!moment(multiDayEndDate).isValid()) {
-        showError(getPhrase("validateInvalidMultidayEndDate"), "#multidayEndDate", getPhrase("validDateIsRequired"));
+        showError(
+          getPhrase("validateInvalidMultidayEndDate"),
+          "#multidayEndDate",
+          getPhrase("validDateIsRequired")
+        );
         return false;
       }
 
       if (isDateInPast(timeZone, multiDayBeginDate, multiDayBeginTime)) {
-        showError(getPhrase("validatePastMultidayBeginDate"), "#multidayBeginDate", getPhrase("datesInPastAreInvalid"));
+        showError(
+          getPhrase("validatePastMultidayBeginDate"),
+          "#multidayBeginDate",
+          getPhrase("datesInPastAreInvalid")
+        );
         return false;
       }
 
       if (isDateInPast(timeZone, multiDayEndDate, multiDayEndTime)) {
-        showError(getPhrase("validatePastMultidayEndDate"), "#multidayEndDate", getPhrase("datesInPastAreInvalid"));
+        showError(
+          getPhrase("validatePastMultidayEndDate"),
+          "#multidayEndDate",
+          getPhrase("datesInPastAreInvalid")
+        );
         return false;
       }
 
-      const momentFromDate = moment.tz(moment(`${multiDayBeginDate} ${multiDayBeginTime}`), timeZone);
-      const momentToDate = moment.tz(moment(`${multiDayEndDate} ${multiDayEndTime}`), timeZone);
+      const momentFromDate = moment.tz(
+        moment(`${multiDayBeginDate} ${multiDayBeginTime}`),
+        timeZone
+      );
+      const momentToDate = moment.tz(
+        moment(`${multiDayEndDate} ${multiDayEndTime}`),
+        timeZone
+      );
       if (momentFromDate >= momentToDate) {
-        showError(getPhrase("startDateMustPrecedeEndDate"), "#multidayBeginDate", getPhrase("validDateIsRequired"));
+        showError(
+          getPhrase("startDateMustPrecedeEndDate"),
+          "#multidayBeginDate",
+          getPhrase("validDateIsRequired")
+        );
         return false;
       }
 
       const fromCalDate = momentFromDate.format("YYYY-MM-DD");
       const toCalDate = momentToDate.format("YYYY-MM-DD");
       if (fromCalDate === toCalDate) {
-        showError(getPhrase("datesMustNotBeOnSameDay"), "#multidayBeginDate", getPhrase("validDateIsRequired"));
+        showError(
+          getPhrase("datesMustNotBeOnSameDay"),
+          "#multidayBeginDate",
+          getPhrase("validDateIsRequired")
+        );
         return false;
       }
     } else if (duration === "same day") {
       if (startdate === "") {
-        showError(getPhrase("validateMultidayBeginDate"), "#startdate", getPhrase("fieldIsRequired"));
+        showError(
+          getPhrase("validateMultidayBeginDate"),
+          "#startdate",
+          getPhrase("fieldIsRequired")
+        );
         return false;
       }
 
       if (starttime === "") {
-        showError(getPhrase("validateMultidayBeginTime"), "#starttime", getPhrase("fieldIsRequired"))
+        showError(
+          getPhrase("validateMultidayBeginTime"),
+          "#starttime",
+          getPhrase("fieldIsRequired")
+        );
         return false;
       }
 
       if (isDateInPast(timeZone, startdate, starttime)) {
-        showError(getPhrase("validatePastDateGeneric"), "#startdate", getPhrase("datesInPastAreInvalid"));
+        showError(
+          getPhrase("validatePastDateGeneric"),
+          "#startdate",
+          getPhrase("datesInPastAreInvalid")
+        );
         return false;
       }
     }
-  } else { // Frequency is recurring
+  } else {
+    // Frequency is recurring
     if (startdate === "") {
-      showError(getPhrase("validateMultidayBeginDate"), "#startdate", getPhrase("fieldIsRequired"));
+      showError(
+        getPhrase("validateMultidayBeginDate"),
+        "#startdate",
+        getPhrase("fieldIsRequired")
+      );
       return false;
     }
 
     if (starttime === "") {
-      showError(getPhrase("validateMultidayBeginTime"), "#starttime", getPhrase("fieldIsRequired"))
+      showError(
+        getPhrase("validateMultidayBeginTime"),
+        "#starttime",
+        getPhrase("fieldIsRequired")
+      );
       return false;
     }
 
     if (isDateInPast(timeZone, startdate, starttime)) {
-      showError(getPhrase("validatePastDateGeneric"), "#startdate", getPhrase("datesInPastAreInvalid"));
+      showError(
+        getPhrase("validatePastDateGeneric"),
+        "#startdate",
+        getPhrase("datesInPastAreInvalid")
+      );
       return false;
     }
 
-
-    const recurringWeekday = document.querySelector("#frequency").selectedOptions[0].innerText;
-    const nextOccuranceDate = moment.tz(moment(`${startdate} ${starttime}`), timeZone).format();
-    const nextOccuranceWeekday = Intl.DateTimeFormat(getLang(), { weekday: "long" }).format(new Date(nextOccuranceDate));
+    const recurringWeekday =
+      document.querySelector("#frequency").selectedOptions[0].innerText;
+    const nextOccuranceDate = moment
+      .tz(moment(`${startdate} ${starttime}`), timeZone)
+      .format();
+    const nextOccuranceWeekday = Intl.DateTimeFormat(getLang(), {
+      weekday: "long",
+    }).format(new Date(nextOccuranceDate));
     let hasWeekdayConflict = false;
 
     switch (frequency) {
@@ -1618,8 +1921,12 @@ function validate() {
     }
 
     if (hasWeekdayConflict) {
-      const errorMessage = getPhrase("nextOccuranceInvalidWeekdayError").replaceAll("{recurringWeekday}", `"${recurringWeekday}"`).replaceAll("{nextOccuranceWeekday}", nextOccuranceWeekday);
-      const errorMessageShort = getPhrase("nextOccuranceInvalidWeekdayInlineError");
+      const errorMessage = getPhrase("nextOccuranceInvalidWeekdayError")
+        .replaceAll("{recurringWeekday}", `"${recurringWeekday}"`)
+        .replaceAll("{nextOccuranceWeekday}", nextOccuranceWeekday);
+      const errorMessageShort = getPhrase(
+        "nextOccuranceInvalidWeekdayInlineError"
+      );
 
       showError(errorMessage, "#startdate", errorMessageShort);
       customScrollTo("#startdate");
@@ -1628,43 +1935,69 @@ function validate() {
   }
 
   if (country === "") {
-    showError(getPhrase("validateCountryRequired"), "#country", getPhrase("fieldIsRequired"));
+    showError(
+      getPhrase("validateCountryRequired"),
+      "#country",
+      getPhrase("fieldIsRequired")
+    );
     return false;
   }
 
   let numAddressLines = 0;
-  const line1Populated = (addressLine1.length > 0);
-  const line2Populated = (addressLine2.length > 0);
-  const line3Populated = (addressLine3.length > 0);
-  const latPopulated = (latitude.length > 0);
-  const longPopulated = (longitude.length > 0);
-  const isJapan = (country === "jp");
+  const line1Populated = addressLine1.length > 0;
+  const line2Populated = addressLine2.length > 0;
+  const line3Populated = addressLine3.length > 0;
+  const latPopulated = latitude.length > 0;
+  const longPopulated = longitude.length > 0;
+  const isJapan = country === "jp";
 
   if (line1Populated) numAddressLines += 1;
   if (line2Populated) numAddressLines += 1;
   if (line3Populated) numAddressLines += 1;
 
-  if ((numAddressLines === 1) && (!isJapan)) {
+  if (numAddressLines === 1 && !isJapan) {
     if (!addressLine1.length) {
-      showError(getPhrase("validateMinimumAddressLines"), "#addressLine1", getPhrase("fieldIsRequired"));
+      showError(
+        getPhrase("validateMinimumAddressLines"),
+        "#addressLine1",
+        getPhrase("fieldIsRequired")
+      );
     } else if (!addressLine2.length) {
-      showError(getPhrase("validateMinimumAddressLines"), "#addressLine2", getPhrase("fieldIsRequired"));
+      showError(
+        getPhrase("validateMinimumAddressLines"),
+        "#addressLine2",
+        getPhrase("fieldIsRequired")
+      );
     } else if (!addressLine3.length) {
-      showError(getPhrase("validateMinimumAddressLines"), "#addressLine3", getPhrase("fieldIsRequired"));
+      showError(
+        getPhrase("validateMinimumAddressLines"),
+        "#addressLine3",
+        getPhrase("fieldIsRequired")
+      );
     }
     return false;
   }
 
-  if ((!latPopulated) && (longPopulated)) {
-    showError(getPhrase("validateLatitudeRequired"), "#latitude", getPhrase("fieldIsRequired"));
+  if (!latPopulated && longPopulated) {
+    showError(
+      getPhrase("validateLatitudeRequired"),
+      "#latitude",
+      getPhrase("fieldIsRequired")
+    );
     return false;
-  } else if ((latPopulated) && (!longPopulated)) {
-    showError(getPhrase("validateLongitudeRequired"), "#longitude", getPhrase("fieldIsRequired"));
+  } else if (latPopulated && !longPopulated) {
+    showError(
+      getPhrase("validateLongitudeRequired"),
+      "#longitude",
+      getPhrase("fieldIsRequired")
+    );
     return false;
   }
 
-  if ((!latPopulated) && (!longPopulated) && (numAddressLines === 0)) {
-    let isDiscreet = document.querySelector("#locationIsDiscreet").checked ? true : false;
+  if (!latPopulated && !longPopulated && numAddressLines === 0) {
+    let isDiscreet = document.querySelector("#locationIsDiscreet").checked
+      ? true
+      : false;
     if (isDiscreet) {
       showError(getPhrase("validateDiscreetLocationRequired"), "#addressLine1");
     } else {
@@ -1674,11 +2007,15 @@ function validate() {
   }
 
   if (!contactFirstName.length) {
-    showError(getPhrase("validateMissingContactFirstName"), "#contactFirstName", getPhrase("fieldIsRequired"));
+    showError(
+      getPhrase("validateMissingContactFirstName"),
+      "#contactFirstName",
+      getPhrase("fieldIsRequired")
+    );
     return false;
   }
 
-  if ((!contactPhone.length) && (!contactEmail.length)) {
+  if (!contactPhone.length && !contactEmail.length) {
     showError(getPhrase("validateMissingContactMethod"), "#contactPhone");
     return false;
   }
@@ -1686,7 +2023,11 @@ function validate() {
   if (contactEmail.length) {
     const isValidEmail = validateEmail(contactEmail);
     if (!isValidEmail) {
-      showError(getPhrase("validateInvalidEmail"), "#contactEmail", getPhrase("validEmailIsRequired"));
+      showError(
+        getPhrase("validateInvalidEmail"),
+        "#contactEmail",
+        getPhrase("validEmailIsRequired")
+      );
       return false;
     }
   }
@@ -1721,21 +2062,22 @@ async function syncEvents() {
   const timeout = 8000;
 
   return new Promise((resolve, reject) => {
-    if (!isOnline) return reject(new Error("sync failed because user is offline"));
+    if (!isOnline)
+      return reject(new Error("sync failed because user is offline"));
 
     fetch(endpoint, {
       mode: "cors",
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`
+        authorization: `Bearer ${accessToken}`,
       }),
-      signal: controller.signal
+      signal: controller.signal,
     })
       .then((res) => res.json())
       .then(async (data) => {
         const { events } = data;
-        let localEvents = await localforage.getItem("events") || [];
+        let localEvents = (await localforage.getItem("events")) || [];
 
         // Validate sync response
         if (!Array.isArray(events)) {
@@ -1747,8 +2089,10 @@ async function syncEvents() {
         const hash = {};
         const eventsLocalJSON = JSON.stringify(localEvents);
         const eventsRemoteJSON = JSON.stringify(events);
-        hash.local = await invitesCrypto.hash(eventsLocalJSON) || JSON.stringify([]);
-        hash.remote = await invitesCrypto.hash(eventsRemoteJSON) || JSON.stringify([]);
+        hash.local =
+          (await invitesCrypto.hash(eventsLocalJSON)) || JSON.stringify([]);
+        hash.remote =
+          (await invitesCrypto.hash(eventsRemoteJSON)) || JSON.stringify([]);
 
         hideToast();
 
@@ -1794,13 +2138,14 @@ async function syncEvents() {
 
     setTimeout(() => {
       controller.abort();
-      reject( new Error("event sync timed out") );
+      reject(new Error("event sync timed out"));
     }, timeout);
   });
 }
 
 function attachListeners() {
-  document.querySelector("#eventtype")
+  document
+    .querySelector("#eventtype")
     .addEventListener("change", () => populateDefaultEventTitle());
 
   document
@@ -1811,8 +2156,12 @@ function attachListeners() {
     .querySelector("#duration")
     .addEventListener("change", onDurationChange);
 
-  document.querySelector("#locationIsPublic").addEventListener("change", onLocationVisibilityChanged);
-  document.querySelector("#locationIsDiscreet").addEventListener("change", onLocationVisibilityChanged);
+  document
+    .querySelector("#locationIsPublic")
+    .addEventListener("change", onLocationVisibilityChanged);
+  document
+    .querySelector("#locationIsDiscreet")
+    .addEventListener("change", onLocationVisibilityChanged);
 
   document
     .querySelector("#detectCoordinatesButton")
@@ -1854,7 +2203,7 @@ function attachListeners() {
 
   $("#addressLine1").on("input change", onAddressChanged);
 
-  window.addEventListener('pageshow', (event) => {
+  window.addEventListener("pageshow", (event) => {
     if (event.persisted) {
       hideSpinner();
     }
