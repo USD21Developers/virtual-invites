@@ -476,8 +476,9 @@ async function loadEvent() {
       document.querySelector("#startdate").value,
       document.querySelector("#starttime").value
     );
+    const nextOccurrenceDateMoment = moment(nextOccurrenceDate);
     document.querySelector("#startdate").value =
-      nextOccurrenceDate.format("YYYY-MM-DD");
+      nextOccurrenceDateMoment.format("YYYY-MM-DD");
     document.querySelector("#nextOccurrence").classList.remove("d-none");
     document
       .querySelector("#durationInHoursContainer")
