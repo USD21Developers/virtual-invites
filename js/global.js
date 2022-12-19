@@ -434,14 +434,9 @@ function getLocale() {
 }
 
 function getNextRecurringWeekday(initialDate) {
-  const weekdayOfInitialDate = moment(initialDate).format("d");
-  const weekdayOfToday = moment().isoWeekday();
-
-  if (weekdayOfToday <= weekdayOfInitialDate) {
-    return moment().isoWeekday(weekdayOfInitialDate).format();
-  } else {
-    return moment().add(1, "weeks").isoWeekday(weekdayOfInitialDate).format();
-  }
+  const nextDateMoment = moment().isoWeekday(initialDate);
+  const nextDate = nextDateMoment.format("YYYY-MM-DD");
+  return nextDate;
 }
 
 function getPhrase(key) {
