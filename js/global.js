@@ -433,15 +433,32 @@ function getLocale() {
   return locale;
 }
 
-function getNextRecurringWeekday(initialDate) {
-  const dayINeed = moment(initialDate).day();
-  const today = moment().day();
+function getNextRecurringWeekday(datetime) {
+  const isValidDate = moment(datetime).isValid();
 
-  if (today <= dayINeed) {
-    return moment(initialDate).format("YYYY-MM-DD");
-  } else {
-    return moment(initialDate).add(1, "weeks").format("YYYY-MM-DD");
+  if (!isValidDate) {
+    return console.error(
+      "The date passed to getNextRecurringWeekday() is invalid:",
+      date
+    );
   }
+
+  const initialDate = moment(datetime);
+  const today = moment();
+  const weekdayINeed = initialDate.day();
+  const weekdayToday = today.day();
+
+  // Initial date is in the FUTURE, so next occurrence is in the future; use initial date.
+  if (initialDate > today) return initialDate.format("YYYY-MM-DD");
+
+  // Initial date is today, so next occurrence is today; use today;
+  if (weekdayToday === weekdayINeed) return today.format("YYYY-MM-DD");
+
+  // Initial date is in the PAST, so next occurrence is in the future; calculate a future date based on the difference in weekdays.
+  const numDaysAhead = 7 - Math.abs(weekdayToday - weekdayINeed);
+  const nextOccurence = today.add(numDaysAhead, "days");
+
+  return nextOccurence.format("YYYY-MM-DD");
 }
 
 function getPhrase(key) {
