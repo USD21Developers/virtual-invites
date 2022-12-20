@@ -453,7 +453,10 @@ function getNextRecurringWeekday(date, time) {
   if (initialDateTime > now) return initialDateTime.format("YYYY-MM-DD");
 
   // If the initial date is in the PAST, calculate a future date based on the difference in weekdays and use it as the next occurrence.  Use "futureDateTime."
-  const numDaysAhead = 7 - Math.abs(weekdayOfToday - weekdayOfEvent);
+  const numDaysAhead =
+    weekdayOfEvent >= weekdayOfToday
+      ? weekdayOfEvent - weekdayOfToday
+      : 7 - (weekdayOfToday - weekdayOfEvent);
   const futureDate = now.add(numDaysAhead, "days").format("YYYY-MM-DD");
   const futureDateTime = moment(`${futureDate} ${time}`);
   return futureDateTime.format("YYYY-MM-DD");
