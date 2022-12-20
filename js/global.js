@@ -452,13 +452,14 @@ function getNextRecurringWeekday(date, time) {
   // If the initial date and time are in the FUTURE, then the next occurrence is in the future.  Use "initialDateTime."
   if (initialDateTime > now) return initialDateTime.format("YYYY-MM-DD");
 
-  // If the initial date is in the PAST, calculate a future date based on the difference in weekdays and use it as the next occurrence.  Use "futureDate."
+  // If the initial date is in the PAST, calculate a future date based on the difference in weekdays and use it as the next occurrence.  Use "futureDateTime."
   const numDaysAhead =
     weekdayOfEvent >= weekdayOfToday
       ? weekdayOfEvent - weekdayOfToday
       : 7 - (weekdayOfToday - weekdayOfEvent);
   const futureDate = now.add(numDaysAhead, "days").format("YYYY-MM-DD");
-  return futureDate.format("YYYY-MM-DD");
+  const futureDateTime = moment(`${futureDate} ${time}`);
+  return futureDateTime.format("YYYY-MM-DD");
 }
 
 function getPhrase(key) {
