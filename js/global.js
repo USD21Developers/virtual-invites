@@ -433,8 +433,8 @@ function getLocale() {
   return locale;
 }
 
-function getNextRecurringWeekday(datetime) {
-  const isValidDate = moment(datetime).isValid();
+function getNextRecurringWeekday(date, time) {
+  const isValidDate = moment(`${date} ${time}`).isValid();
 
   if (!isValidDate) {
     return console.error(
@@ -443,21 +443,31 @@ function getNextRecurringWeekday(datetime) {
     );
   }
 
-  const initialDate = moment(datetime);
-  const today = moment();
-  const weekdayINeed = initialDate.day();
-  const weekdayToday = today.day();
+  const initialDateTime = moment(`${date} ${time}`);
+  const now = moment();
+  const weekdayINeed = initialDateTime.day();
+  const weekdayToday = now.day();
 
-  // Initial date is in the FUTURE, so next occurrence is in the future; use initial date.
-  if (initialDate > today) return initialDate.format("YYYY-MM-DD");
+  // If the initial date is in the FUTURE, then the next occurrence is in the future.  Use "initialDateTime."
+  if (initialDateTime > now) return initialDateTime.format("YYYY-MM-DD");
 
-  // Initial date is today, so next occurrence is today; use today;
-  if (weekdayToday === weekdayINeed) return today.format("YYYY-MM-DD");
+  // If the weekday of a past initial date is the same as the weekday of today, then determine whether the start time has passed.  Adjust "nextOccurence" accordingly.
+  if (weekdayINeed === weekdayToday) {
+    const startdate = moment().format("YYYY-MM-DD");
+    const startDateTime = moment(`${startdate} ${time}`);
+    let nextOccurence = startDateTime;
 
-  // Initial date is in the PAST, so next occurrence is in the future; calculate a future date based on the difference in weekdays.
+    if (startDateTime > now) {
+      return nextOccurence.format("YYYY-MM-DD");
+    } else {
+      nextOccurence = startDateTime.add(1, "weeks");
+      return nextOccurence.format("YYYY-MM-DD");
+    }
+  }
+
+  // If the initial date is in the PAST, then next occurrence is in the future; calculate a future date based on the difference in weekdays.
   const numDaysAhead = 7 - Math.abs(weekdayToday - weekdayINeed);
   const nextOccurence = today.add(numDaysAhead, "days");
-
   return nextOccurence.format("YYYY-MM-DD");
 }
 

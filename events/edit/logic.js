@@ -474,8 +474,7 @@ async function loadEvent() {
     // Recurring events
     const date = document.querySelector("#startdate").value;
     const time = document.querySelector("#starttime").value;
-    const datetime = `${date} ${time}`;
-    const nextOccurrenceDate = getNextRecurringWeekday(datetime);
+    const nextOccurrenceDate = getNextRecurringWeekday(date, time);
 
     document.querySelector("#startdate").value = nextOccurrenceDate;
     document.querySelector("#nextOccurrence").classList.remove("d-none");
