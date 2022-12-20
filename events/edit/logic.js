@@ -472,13 +472,10 @@ async function loadEvent() {
     }
   } else {
     // Recurring events
-    const nextOccurrenceDate = getNextRecurringWeekday(
-      document.querySelector("#startdate").value,
-      document.querySelector("#starttime").value
-    );
-    const nextOccurrenceDateMoment = moment(nextOccurrenceDate);
-    document.querySelector("#startdate").value =
-      nextOccurrenceDateMoment.format("YYYY-MM-DD");
+    const date = document.querySelector("#startdate").value;
+    const nextOccurrenceDate = getNextRecurringWeekday(date, time);
+
+    document.querySelector("#startdate").value = nextOccurrenceDate;
     document.querySelector("#nextOccurrence").classList.remove("d-none");
     document
       .querySelector("#durationInHoursContainer")
