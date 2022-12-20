@@ -449,28 +449,14 @@ function getNextRecurringWeekday(date, time) {
   const weekdayOfEvent = initialDateTime.day();
   const weekdayOfToday = now.day();
 
-  // If the initial date is in the FUTURE, then the next occurrence is in the future.  Use "initialDateTime."
+  // If the initial date and time are in the FUTURE, then the next occurrence is in the future.  Use "initialDateTime."
   if (initialDateTime > now) return initialDateTime.format("YYYY-MM-DD");
 
-  // Set date/time variables for the event
-  let startdate = moment().format("YYYY-MM-DD");
-  let nextOccurence = moment(`${startdate} ${time}`);
-
-  // If the event's weekday is the same as today's weekday, then determine whether the start time has passed.  Adjust "nextOccurence" accordingly.
-  if (weekdayOfEvent === weekdayOfToday) {
-    if (nextOccurence > now) {
-      return nextOccurence.format("YYYY-MM-DD");
-    } else {
-      nextOccurence = nextOccurence.add(1, "weeks");
-      return nextOccurence.format("YYYY-MM-DD");
-    }
-  }
-
-  // If the event's weekday is in the future, calculate a future date based on the difference in weekdays.
+  // If the initial date is in the PAST, calculate a future date based on the difference in weekdays and use it as the next occurrence.  Use "futureDateTime."
   const numDaysAhead = 7 - Math.abs(weekdayOfToday - weekdayOfEvent);
-  startdate = moment().add(numDaysAhead, "days");
-  nextOccurence = moment(`${startdate} ${time}`);
-  return nextOccurence.format("YYYY-MM-DD");
+  const futureDate = moment().add(numDaysAhead, "days").format("YYYY-MM-DD");
+  const futureDateTime = moment(`${futureDate} ${time}`);
+  return futureDateTime.format("YYYY-MM-DD");
 }
 
 function getPhrase(key) {
