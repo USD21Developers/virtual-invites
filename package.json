@@ -30,7 +30,6 @@
   },
   "homepage": "https://invites.mobi/",
   "devDependencies": {
-    "serve": "^12.0.0"
-  },
-  "dependencies": {}
+    "serve": "^14.1.2"
+  }
 }
