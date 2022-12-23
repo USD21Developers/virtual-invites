@@ -1,8 +1,9 @@
-function getAPIHost(forceRemote = false) {
-  const local = "http://localhost:4000";
-  const remote = "https://api.usd21.org";
-  const host = window.location.hostname === "localhost" ? local : remote;
-  return forceRemote ? remote : host;
+function framebuster() {
+  const isFramed = top.location === self.location ? false : true;
+
+  if (isFramed) {
+    top.location = self.location;
+  }
 }
 
 function getAccessToken() {
@@ -57,6 +58,13 @@ function getAccessToken() {
   });
 }
 
+function getAPIHost(forceRemote = false) {
+  const local = "http://localhost:4000";
+  const remote = "https://api.usd21.org";
+  const host = window.location.hostname === "localhost" ? local : remote;
+  return forceRemote ? remote : host;
+}
+
 async function getPermissions() {
   const accessToken = await getAccessToken();
   const claims = JSON.parse(atob(accessToken.split(".")[1]));
@@ -94,13 +102,6 @@ function verifyRefreshToken() {
   if (!isAuthorized) window.location.href = logoutUrl;
 }
 
-function framebuster() {
-  const isFramed = top.location === self.location ? false : true;
-
-  if (isFramed) {
-    top.location = self.location;
-  }
-}
-
+redirectOlderBrowsers();
 framebuster();
 verifyRefreshToken();
