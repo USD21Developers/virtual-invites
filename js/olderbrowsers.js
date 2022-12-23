@@ -1,4 +1,4 @@
-function redirectOlderBrowsers() {
+function isBrowserOK() {
   let isBrowserOK = true;
 
   const supportsFetch = !!window.fetch;
@@ -12,9 +12,5 @@ function redirectOlderBrowsers() {
   if (!supportsCryptoSubtle) isBrowserOK = false;
   if (!supportsKeyExport) isBrowserOK = false;
 
-  if (!isBrowserOK) {
-    window.location.href = "/upgradebrowser/";
-  }
+  return isBrowserOK;
 }
-
-redirectOlderBrowsers();
