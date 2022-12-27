@@ -142,6 +142,16 @@
       "key": "female",
       "original": "female",
       "translated": "female"
+    },
+    {
+      "key": "bibletalk",
+      "original": "Bible Talk",
+      "translated": "Bible Talk"
+    },
+    {
+      "key": "church",
+      "original": "Church",
+      "translated": "Church"
     }
   ],
 

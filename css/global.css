@@ -209,6 +209,10 @@ strong {
   width: 100%;
 }
 
+.text-small-caps {
+  font-variant: small-caps;
+}
+
 @media (max-width: 767px) {
   .breadcrumb-item {
     display: none;

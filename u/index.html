@@ -225,11 +225,15 @@
         </div>
       </div>
 
-      <div class="row" id="eventsContainer">
+      <div class="row d-none" id="eventsContainer">
         <div class="col col-md-4 offset-md-4">
-          <h3 class="text-center mt-2 mb-4">4 Events:</h3>
+          <h3 class="text-center mt-2 mb-4" id="events_headline">4 Events:</h3>
           <div class="list-group" id="events">
-            <a href="#" class="list-group-item list-group-item-action">
+            <a
+              href="#"
+              class="list-group-item list-group-item-action"
+              data-eventid="1"
+            >
               <div class="text-dark"><strong>Sunday Service</strong></div>
               <div>Sundays &bull; 10:00 AM</div>
               <div
@@ -239,7 +243,11 @@
               </div>
             </a>
 
-            <a href="#" class="list-group-item list-group-item-action">
+            <a
+              href="#"
+              class="list-group-item list-group-item-action"
+              data-eventid="2"
+            >
               <div class="text-dark">
                 <strong>Northern Lights Bible Talk</strong>
               </div>
@@ -251,19 +259,31 @@
               </div>
             </a>
 
-            <a href="#" class="list-group-item list-group-item-action">
+            <a
+              href="#"
+              class="list-group-item list-group-item-action"
+              data-eventid="3"
+            >
               <div class="text-dark">
                 <strong>Global Leadership Conference</strong>
               </div>
               <div>
-                <span class="text-secondary font-weight-bold">From:</span>
+                <strong class="text-dark text-lowercase text-small-caps pr-1">
+                  From:
+                </strong>
                 Friday 12/23/22 &bull; 7:30 PM<br />
-                <span class="text-secondary font-weight-bold">To:</span> Sunday
-                12/25/22 &bull; 4:30 PM
+                <strong class="text-dark text-lowercase text-small-caps pr-1">
+                  To:
+                </strong>
+                Sunday 12/25/22 &bull; 4:30 PM
               </div>
             </a>
 
-            <a href="#" class="list-group-item list-group-item-action">
+            <a
+              href="#"
+              class="list-group-item list-group-item-action"
+              data-eventid="4"
+            >
               <div class="text-dark"><strong>Women's Day</strong></div>
               <div>Saturday 1/7/23 &bull; 11:00 AM</div>
             </a>

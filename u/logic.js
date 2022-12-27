@@ -110,18 +110,52 @@ async function getFollowStatus() {
   });
 }
 
-async function getUserInfo() {
-  let userid = parseInt(getHash()) || "";
+function getUserEvents() {
+  return new Promise(async (resolve, reject) => {
+    let userid = parseInt(getHash()) || "";
 
-  // Validate hash
-  if (typeof userid !== "number") return;
-  if (userid.length > 10) return;
-  userid = Math.abs(userid);
+    // Validate hash
+    if (typeof userid !== "number") return reject(new Error("invalid hash"));
+    if (userid.length > 10) return reject(new Error("invalid hash"));
 
-  const endpoint = `${getApiHost()}/userprofile/${userid}`;
-  const accessToken = await getAccessToken();
+    userid = Math.abs(userid);
 
-  return new Promise((resolve, reject) => {
+    const endpoint = `${getApiHost()}/event-list/${userid}`;
+    const accessToken = await getAccessToken();
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // TODO:  handle errors
+        renderEvents(data.events);
+        resolve(data.events);
+      })
+      .catch((err) => {
+        resolve(err);
+      });
+  });
+}
+
+function getUserInfo() {
+  return new Promise(async (resolve, reject) => {
+    let userid = parseInt(getHash()) || "";
+
+    // Validate hash
+    if (typeof userid !== "number") return reject(new Error("invalid hash"));
+    if (userid.length > 10) return reject(new Error("invalid hash"));
+
+    userid = Math.abs(userid);
+
+    const endpoint = `${getApiHost()}/userprofile/${userid}`;
+    const accessToken = await getAccessToken();
+
     fetch(endpoint, {
       mode: "cors",
       method: "GET",
@@ -183,6 +217,63 @@ async function refreshButtons(dataFromApi) {
     const dataFromApi = await getFollowStatus();
     refreshButtons(dataFromApi);
   }
+}
+
+async function renderEvents(events) {
+  const eventsContainerEl = document.querySelector("#eventsContainer");
+  const eventsEl = document.querySelector("#events");
+  const eventsHeadlineEl = document.querySelector("#events_headline");
+
+  if (!Array.isArray(events)) return;
+  if (!events.length) return;
+
+  const headlineText = getPhrase("eventsHeadline").replace(
+    "{quantity}",
+    events.length
+  );
+
+  var eventsHTML = "";
+
+  for (let i = 0; i < events.length; i++) {
+    if (!events.length) break;
+    const item = events[i];
+    const eventTitle = item.title;
+    const eventTimeAndDateHTML = await showEventDateTime(item);
+    let badgeHTML = "";
+
+    // If item type is either Bible Talk or Church, display the corresponding badge
+    if (item.type === "bible talk") {
+      badgeHTML = `
+        <div class="badge badge-light border border-dark badge-pill mt-1 mb-2 mr-2">
+          ${getGlobalPhrase("bibletalk")}
+        </div>
+      `;
+    } else if (item.type === "church") {
+      badgeHTML = `
+        <div class="badge badge-light border border-dark badge-pill mt-1 mb-2 mr-2">
+          ${getGlobalPhrase("church")}
+        </div>
+      `;
+    }
+
+    eventsHTML += `
+      <a
+        href="#"
+        class="list-group-item list-group-item-action"
+        data-eventid="${item.eventid}"
+      >
+        <div class="text-dark"><strong>${eventTitle}</strong></div>
+        <div>
+          ${eventTimeAndDateHTML}
+        </div>
+        ${badgeHTML}
+      </a>
+    `;
+  }
+
+  eventsHeadlineEl.innerText = headlineText;
+  eventsEl.innerHTML = eventsHTML;
+  eventsContainerEl.classList.remove("d-none");
 }
 
 function renderProfile(userdata, churchinfo) {
@@ -392,6 +483,11 @@ function updateFollowCounts(otherUserNow) {
   followingEl.innerHTML = followingText;
 }
 
+async function onEventListItemClicked(e) {
+  const eventid = parseInt(e.currentTarget.getAttribute("data-eventid"));
+  e.preventDefault();
+}
+
 async function onFollowClicked(e) {
   const userid = parseInt(e.target.getAttribute("data-follow-userid"));
   const status = e.target.getAttribute("data-status");
@@ -436,13 +532,16 @@ function attachListeners() {
     .querySelector("#btnFollow")
     .addEventListener("click", onFollowClicked);
 
+  document
+    .querySelectorAll("#eventsContainer a")
+    .forEach((item) => item.addEventListener("click", onEventListItemClicked));
+
   window.addEventListener("visibilitychange", onVisibilityChange);
 }
 
 async function init() {
   showFollowButton();
-  await populateContent();
-  await getUserInfo();
+  await Promise.all([populateContent(), getUserInfo(), getUserEvents()]);
   attachListeners();
   globalHidePageSpinner();
 }
