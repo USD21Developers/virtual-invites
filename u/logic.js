@@ -254,7 +254,7 @@ async function renderEvents(events) {
     } else if (item.type === "church") {
       badgeHTML = `
         <div class="badge badge-light border border-dark badge-pill mt-1 mb-2 mr-2">
-          ${getGlobalPhrase("church")}
+          ${getGlobalPhrase("churchservice")}
         </div>
       `;
     }
