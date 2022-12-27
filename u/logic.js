@@ -133,7 +133,10 @@ function getUserEvents() {
     })
       .then((res) => res.json())
       .then((data) => {
-        // TODO:  handle errors
+        if (data.msgType && data.msgType !== "success") {
+          throw new Error(data.msg);
+        }
+
         renderEvents(data.events);
         resolve(data.events);
       })
@@ -384,6 +387,46 @@ function renderProfile(userdata, churchinfo) {
   numInvitesSentEl.innerText = numInvitesSent;
 }
 
+function showEvent(event) {
+  const {
+    churchid,
+    contactemail,
+    contactfirstname,
+    contactlastname,
+    contactphone,
+    contactphonecountrydata,
+    country,
+    description,
+    duration,
+    durationInHours,
+    eventid,
+    frequency,
+    hasvirtual,
+    lang,
+    locationaddressline1,
+    locationaddressline2,
+    locationaddressline3,
+    locationcoordinates,
+    locationname,
+    locationvisibility,
+    multidaybegindate,
+    multidayenddate,
+    otherlocationdetails,
+    startdate,
+    timezone,
+    title,
+    type,
+    virtualconnectiondetails,
+  } = event;
+  const eventTitle = title;
+  const eventHTML = `
+    ${description}
+  `;
+
+  showModal(eventHTML, eventTitle);
+  console.log(event);
+}
+
 function showFollowButton() {
   const profileUserId = parseInt(getHash());
   const userid = getUserId();
@@ -485,7 +528,36 @@ function updateFollowCounts(otherUserNow) {
 
 async function onEventListItemClicked(e) {
   const eventid = parseInt(e.currentTarget.getAttribute("data-eventid"));
+  const endpoint = `${getApiHost()}/event-get`;
+
   e.preventDefault();
+
+  if (typeof eventid !== "number") return;
+
+  const accessToken = await getAccessToken();
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "POST",
+    body: JSON.stringify({
+      eventid: eventid,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.msgType && data.msgType !== "success") {
+        throw new Error(data.msg);
+      }
+
+      showEvent(data.event);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 async function onFollowClicked(e) {
