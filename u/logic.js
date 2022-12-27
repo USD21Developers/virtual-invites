@@ -288,10 +288,7 @@ function renderProfile(userdata, churchinfo) {
   genderEl.innerText =
     gender === "male" ? getGlobalPhrase("male") : getGlobalPhrase("female");
 
-  numEventsEl.innerHTML =
-    numEvents > 0
-      ? `<a href="e/#${userid}" class="d-block">${numEvents}</a>`
-      : numEvents;
+  numEventsEl.innerText = numEvents;
 
   numInvitesSentEl.innerText = numInvitesSent;
 }

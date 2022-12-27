@@ -102,6 +102,5 @@ function verifyRefreshToken() {
   if (!isAuthorized) window.location.href = logoutUrl;
 }
 
-redirectOlderBrowsers();
 framebuster();
 verifyRefreshToken();
