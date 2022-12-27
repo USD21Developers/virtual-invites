@@ -387,7 +387,7 @@ function renderProfile(userdata, churchinfo) {
   numInvitesSentEl.innerText = numInvitesSent;
 }
 
-function showEvent(event) {
+async function showEvent(event) {
   const {
     churchid,
     contactemail,
@@ -419,12 +419,13 @@ function showEvent(event) {
     virtualconnectiondetails,
   } = event;
   const eventTitle = title;
-  const eventHTML = `
+
+  // TODO:  Build out HTML to go in modal
+  let modalHTML = `
     ${description}
   `;
 
-  showModal(eventHTML, eventTitle);
-  console.log(event);
+  showModal(modalHTML, eventTitle, "true");
 }
 
 function showFollowButton() {
