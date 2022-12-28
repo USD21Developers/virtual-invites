@@ -396,6 +396,7 @@ async function showEvent(event) {
     contactphone,
     contactphonecountrydata,
     country,
+    createdBy,
     description,
     duration,
     durationInHours,
@@ -425,7 +426,12 @@ async function showEvent(event) {
     ${description}
   `;
 
-  showModal(modalHTML, eventTitle, "true");
+  // showModal(modalHTML, eventTitle, "true");
+  const modalEl = document.querySelector("#modal");
+  modalEl.querySelector(".modal-title").innerHTML = title;
+  modalEl.querySelector(".modal-body").innerHTML = modalHTML;
+
+  $("#modal").modal();
 }
 
 function showFollowButton() {
