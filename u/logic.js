@@ -259,6 +259,14 @@ async function renderEvents(events) {
       `;
     }
 
+    if (item.hasvirtual) {
+      badgeHTML += `
+        <div class="badge badge-light border border-dark badge-pill mt-1 mb-2 mr-2">
+          ${getGlobalPhrase("online")}
+        </div>
+      `;
+    }
+
     eventsHTML += `
       <a
         href="#"
@@ -426,7 +434,6 @@ async function showEvent(event) {
   let footerHTML = "";
   const userid = getUserId();
 
-  // If item type is either Bible Talk or Church, display the corresponding badge
   if (type === "bible talk") {
     badgeHTML = `
       <div class="badge badge-light border border-dark badge-pill mt-1 mb-2 mr-2">
@@ -437,6 +444,14 @@ async function showEvent(event) {
     badgeHTML = `
       <div class="badge badge-light border border-dark badge-pill mt-1 mb-2 mr-2">
         ${getGlobalPhrase("churchservice")}
+      </div>
+    `;
+  }
+
+  if (hasvirtual) {
+    badgeHTML += `
+      <div class="badge badge-light border border-dark badge-pill mt-1 mb-2 mr-2">
+        ${getGlobalPhrase("online")}
       </div>
     `;
   }

@@ -152,6 +152,11 @@
       "key": "churchservice",
       "original": "Church service",
       "translated": "Church service"
+    },
+    {
+      "key": "online",
+      "original": "Online",
+      "translated": "Online"
     }
   ],
 
