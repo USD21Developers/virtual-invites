@@ -419,17 +419,57 @@ async function showEvent(event) {
     type,
     virtualconnectiondetails,
   } = event;
-  const eventTitle = title;
 
-  // TODO:  Build out HTML to go in modal
-  let modalHTML = `
-    ${description}
-  `;
+  const eventTimeAndDateHTML = await showEventDateTime(event);
+  let badgeHTML = "";
+  let modalHTML = "";
+  let footerHTML = "";
+  const userid = getUserId();
+
+  // If item type is either Bible Talk or Church, display the corresponding badge
+  if (type === "bible talk") {
+    badgeHTML = `
+      <div class="badge badge-light border border-dark badge-pill mt-1 mb-2 mr-2">
+        ${getGlobalPhrase("bibletalk")}
+      </div>
+    `;
+  } else if (type === "church") {
+    badgeHTML = `
+      <div class="badge badge-light border border-dark badge-pill mt-1 mb-2 mr-2">
+        ${getGlobalPhrase("churchservice")}
+      </div>
+    `;
+  }
+
+  if (userid === createdBy) {
+    modalHTML = `
+      <div class="mb-2">
+        ${eventTimeAndDateHTML}
+      </div>
+      
+      <div class="mb-2">
+        ${description}
+      </div>
+
+      <div>
+        ${badgeHTML}
+      </div>
+    `;
+    footerHTML = `
+      <a href="../events/delete/#${eventid}" class="btn btn-danger ml-2">
+        ${getPhrase("delete")}
+      </a>
+      <a href="../events/edit/#${eventid}" class="btn btn-info ml-2">
+        ${getPhrase("edit")}
+      </a>
+    `;
+  }
 
   // showModal(modalHTML, eventTitle, "true");
   const modalEl = document.querySelector("#modal");
   modalEl.querySelector(".modal-title").innerHTML = title;
   modalEl.querySelector(".modal-body").innerHTML = modalHTML;
+  modalEl.querySelector(".modal-footer").innerHTML = footerHTML;
 
   $("#modal").modal();
 }
