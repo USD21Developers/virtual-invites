@@ -230,10 +230,10 @@ async function renderEvents(events) {
   if (!Array.isArray(events)) return;
   if (!events.length) return;
 
-  const headlineText = getPhrase("eventsHeadline").replace(
-    "{quantity}",
-    events.length
-  );
+  const headlineText =
+    events.length === 1
+      ? getPhrase("eventsHeadline1").replace("{quantity}", events.length)
+      : getPhrase("eventsHeadline").replace("{quantity}", events.length);
 
   var eventsHTML = "";
 

@@ -82,6 +82,11 @@
       "key": "eventsHeadline",
       "original": "{quantity} Events:",
       "translated": "{quantity} Events:"
+    },
+    {
+      "key": "eventsHeadline1",
+      "original": "{quantity} Event:",
+      "translated": "{quantity} Event:"
     }
   ],
 
