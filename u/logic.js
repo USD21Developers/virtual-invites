@@ -538,7 +538,6 @@ async function showEvent(event) {
     `;
   }
 
-  // showModal(modalHTML, eventTitle, "true");
   const modalEl = document.querySelector("#modal");
   modalEl.querySelector(".modal-title").innerHTML = title;
   modalEl.querySelector(".modal-body").innerHTML = modalHTML;
