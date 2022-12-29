@@ -429,7 +429,6 @@ async function showEvent(event) {
   } = event;
 
   const eventTimeAndDateHTML = await showEventDateTime(event);
-  let badgeHTML = "";
   let locationHTML = "";
   let modalHTML = "";
   let footerHTML = "";
@@ -503,28 +502,6 @@ async function showEvent(event) {
     locationHTML = getPhrase("inquireForLocation");
   }
 
-  if (type === "bible talk") {
-    badgeHTML = `
-      <div class="badge badge-light border border-dark badge-pill mt-1 mb-2 mr-2">
-        ${getGlobalPhrase("bibletalk")}
-      </div>
-    `;
-  } else if (type === "church") {
-    badgeHTML = `
-      <div class="badge badge-light border border-dark badge-pill mt-1 mb-2 mr-2">
-        ${getGlobalPhrase("churchservice")}
-      </div>
-    `;
-  }
-
-  if (hasvirtual) {
-    badgeHTML += `
-      <div class="badge badge-light border border-dark badge-pill mr-2">
-        ${getGlobalPhrase("online")}
-      </div>
-    `;
-  }
-
   if (userid === createdBy) {
     modalHTML = `
       <div class="mb-3">
@@ -547,14 +524,6 @@ async function showEvent(event) {
         </div>
         ${breakify(description)}
       </div>
-
-      ${
-        badgeHTML.length
-          ? "<div class='mt-4 mb-1'><hr style='1px solid rgba(0, 0, 0, 0.35)'>" +
-            badgeHTML +
-            "</div>"
-          : ""
-      }
     `;
     footerHTML = `
       <a href="../events/delete/#${eventid}" class="btn btn-danger ml-2">
