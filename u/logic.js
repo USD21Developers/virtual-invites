@@ -482,7 +482,7 @@ async function showEvent(event) {
           ${
             otherlocationdetails && otherlocationdetails.length
               ? "<div class='mt-2 location_details'>" +
-                otherlocationdetails +
+                breakify(otherlocationdetails) +
                 "</div>"
               : ""
           }
