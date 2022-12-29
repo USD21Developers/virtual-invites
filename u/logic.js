@@ -480,7 +480,9 @@ async function showEvent(event) {
 
           ${
             mapCoordinates.length
-              ? "<p><a href='${coordinatesLink}' class='text-primary border-bottom border-primary'>" +
+              ? "<p><a href='" +
+                coordinatesLink +
+                "' class='text-primary border-bottom border-primary'>" +
                 getPhrase("mapAndDirections") +
                 "</a></p>"
               : ""
