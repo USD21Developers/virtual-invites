@@ -526,13 +526,13 @@ async function showEvent(event) {
       </div>
     `;
     footerHTML = `
-      <a href="../events/delete/#${eventid}" class="btn btn-link" data-dismiss="modal">
+      <a href="../events/delete/#${eventid}" class="btn btn-link text-uppercase" data-dismiss="modal">
         ${getPhrase("cancel")}
       </a>
-      <a href="../events/delete/#${eventid}" class="btn btn-danger ml-2">
+      <a href="../events/delete/#${eventid}" class="btn btn-danger text-uppercase ml-2">
         ${getPhrase("delete")}
       </a>
-      <a href="../events/edit/#${eventid}" class="btn btn-info ml-2">
+      <a href="../events/edit/#${eventid}" class="btn btn-info text-uppercase ml-2">
         ${getPhrase("edit")}
       </a>
     `;
