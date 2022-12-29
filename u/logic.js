@@ -457,26 +457,34 @@ async function showEvent(event) {
           <div class='mb-2 location_address'>
             ${
               locationaddressline1.length
-                ? "<div class='location_address-line'>" +
+                ? "<div class='location_address-line'><small>" +
                   locationaddressline1 +
-                  "</div>"
+                  "</small></div>"
                 : ""
             }
             ${
               locationaddressline2 && locationaddressline2.length
-                ? "<div class='location_address-line'>" +
+                ? "<div class='location_address-line'><small>" +
                   locationaddressline2 +
-                  "</div>"
+                  "</small></div>"
                 : ""
             }
             ${
               locationaddressline3 && locationaddressline3.length
-                ? "<div class='location_address-line'>" +
+                ? "<div class='location_address-line'><small>" +
                   locationaddressline3 +
-                  "</div>"
+                  "</small></div>"
                 : ""
             }
           </div>
+
+          ${
+            mapCoordinates.length
+              ? "<p><a href='${coordinatesLink}' class='text-primary border-bottom border-primary'>" +
+                getPhrase("mapAndDirections") +
+                "</a></p>"
+              : ""
+          }
 
           ${
             otherlocationdetails && otherlocationdetails.length
