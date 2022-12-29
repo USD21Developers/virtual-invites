@@ -430,9 +430,78 @@ async function showEvent(event) {
 
   const eventTimeAndDateHTML = await showEventDateTime(event);
   let badgeHTML = "";
+  let locationHTML = "";
   let modalHTML = "";
   let footerHTML = "";
   const userid = getUserId();
+  const operatingSystem = getMobileOperatingSystem();
+  const mapCoordinates = locationcoordinates
+    ? `${locationcoordinates.x}, ${locationcoordinates.y}`
+    : "";
+  let coordinatesLink = "";
+  if (operatingSystem === "iOS") {
+    coordinatesLink = `https://maps.apple.com/?daddr=${mapCoordinates}&t=m`;
+  } else {
+    coordinatesLink = `https://www.google.com/maps/search/?api=1&query=${mapCoordinates}`;
+  }
+
+  if (locationvisibility === "public") {
+    if (locationaddressline1 && locationaddressline1.length) {
+      locationHTML = `
+        <div class="location">
+          ${
+            locationname && locationname.length
+              ? "<div class='location_name'>" + locationname + "</div>"
+              : ""
+          }
+
+          <div class='mb-2 location_address'>
+            ${
+              locationaddressline1.length
+                ? "<div class='location_address-line'>" +
+                  locationaddressline1 +
+                  "</div>"
+                : ""
+            }
+            ${
+              locationaddressline2 && locationaddressline2.length
+                ? "<div class='location_address-line'>" +
+                  locationaddressline2 +
+                  "</div>"
+                : ""
+            }
+            ${
+              locationaddressline3 && locationaddressline3.length
+                ? "<div class='location_address-line'>" +
+                  locationaddressline3 +
+                  "</div>"
+                : ""
+            }
+          </div>
+
+          ${
+            otherlocationdetails && otherlocationdetails.length
+              ? "<div class='mt-2 location_details'>" +
+                otherlocationdetails +
+                "</div>"
+              : ""
+          }
+        </div>
+      `;
+    } else {
+      if (locationcoordinates) {
+        locationHTML = `
+          <a href="${coordinatesLink}" class="text-primary border-bottom border-primary">
+            ${getPhrase("mapAndDirections")}
+          </a>
+        `;
+      }
+    }
+  }
+
+  if (locationvisibility === "discreet") {
+    locationHTML = getPhrase("inquireForLocation");
+  }
 
   if (type === "bible talk") {
     badgeHTML = `
@@ -450,7 +519,7 @@ async function showEvent(event) {
 
   if (hasvirtual) {
     badgeHTML += `
-      <div class="badge badge-light border border-dark badge-pill mt-1 mb-2 mr-2">
+      <div class="badge badge-light border border-dark badge-pill mr-2">
         ${getGlobalPhrase("online")}
       </div>
     `;
@@ -458,17 +527,34 @@ async function showEvent(event) {
 
   if (userid === createdBy) {
     modalHTML = `
-      <div class="mb-2">
+      <div class="mb-3">
+        <div>
+          <strong class="text-dark">${getPhrase("datetime")}</strong>
+        </div>
         ${eventTimeAndDateHTML}
       </div>
+
+      <div class="mt-3 mb-3">
+        <div>
+          <strong class="text-dark">${getPhrase("place")}</strong>
+        </div>
+        ${locationHTML}
+      </div>
       
-      <div class="mb-2">
-        ${description}
+      <div>
+        <div>
+          <strong class="text-dark">${getPhrase("description")}</strong>
+        </div>
+        ${breakify(description)}
       </div>
 
-      <div>
-        ${badgeHTML}
-      </div>
+      ${
+        badgeHTML.length
+          ? "<div class='mt-4 mb-1'><hr style='1px solid rgba(0, 0, 0, 0.35)'>" +
+            badgeHTML +
+            "</div>"
+          : ""
+      }
     `;
     footerHTML = `
       <a href="../events/delete/#${eventid}" class="btn btn-danger ml-2">
