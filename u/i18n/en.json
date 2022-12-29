@@ -89,6 +89,11 @@
       "translated": "{quantity} Event:"
     },
     {
+      "key": "cancel",
+      "original": "Cancel",
+      "translated": "Cancel"
+    },
+    {
       "key": "edit",
       "original": "Edit",
       "translated": "Edit"

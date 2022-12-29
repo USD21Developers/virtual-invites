@@ -526,6 +526,9 @@ async function showEvent(event) {
       </div>
     `;
     footerHTML = `
+      <a href="../events/delete/#${eventid}" class="btn btn-link" data-dismiss="modal">
+        ${getPhrase("cancel")}
+      </a>
       <a href="../events/delete/#${eventid}" class="btn btn-danger ml-2">
         ${getPhrase("delete")}
       </a>
