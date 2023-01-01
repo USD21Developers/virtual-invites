@@ -15,3 +15,7 @@
   color: black;
   text-decoration: none;
 }
+
+#profilestats td {
+  font-size: 80%;
+}
