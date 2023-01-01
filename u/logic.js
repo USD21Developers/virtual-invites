@@ -514,21 +514,21 @@ async function showEvent(event) {
 
   if (userid === createdBy) {
     modalHTML = `
-      <div class="mb-3">
+      <div class="mb-4">
         <div>
           <strong class="text-dark">${getPhrase("datetime")}</strong>
         </div>
         ${eventTimeAndDateHTML}
       </div>
 
-      <div class="mt-3 mb-3">
+      <div class="my-4">
         <div>
           <strong class="text-dark">${getPhrase("place")}</strong>
         </div>
         ${locationHTML}
       </div>
       
-      <div>
+      <div class="mt-4">
         <div>
           <strong class="text-dark">${getPhrase("description")}</strong>
         </div>
