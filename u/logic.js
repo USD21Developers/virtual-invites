@@ -457,23 +457,23 @@ async function showEvent(event) {
           <div class='mb-2 location_address'>
             ${
               locationaddressline1.length
-                ? "<div class='location_address-line'><small>" +
+                ? "<div class='location_address-line'>" +
                   locationaddressline1 +
-                  "</small></div>"
+                  "</div>"
                 : ""
             }
             ${
               locationaddressline2 && locationaddressline2.length
-                ? "<div class='location_address-line'><small>" +
+                ? "<div class='location_address-line'>" +
                   locationaddressline2 +
-                  "</small></div>"
+                  "</div>"
                 : ""
             }
             ${
               locationaddressline3 && locationaddressline3.length
-                ? "<div class='location_address-line'><small>" +
+                ? "<div class='location_address-line'>" +
                   locationaddressline3 +
-                  "</small></div>"
+                  "</div>"
                 : ""
             }
           </div>
