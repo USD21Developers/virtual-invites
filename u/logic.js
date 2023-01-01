@@ -482,7 +482,7 @@ async function showEvent(event) {
             mapCoordinates.length
               ? "<p><a href='" +
                 coordinatesLink +
-                "' class='text-primary border-bottom border-primary'>" +
+                "' class='text-primary'>" +
                 getPhrase("mapAndDirections") +
                 "</a></p>"
               : ""
@@ -500,7 +500,7 @@ async function showEvent(event) {
     } else {
       if (locationcoordinates) {
         locationHTML = `
-          <a href="${coordinatesLink}" class="text-primary border-bottom border-primary">
+          <a href="${coordinatesLink}" class="text-primary">
             ${getPhrase("mapAndDirections")}
           </a>
         `;
