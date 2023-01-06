@@ -2,8 +2,8 @@ async function getEvent() {
   const eventid = Math.abs(parseInt(getHash()));
   if (typeof eventid !== "number") return;
 
-  const events = await localforage.getItem("events") || [];
-  if (!events) return;
+  const events = await syncEvents();
+
   if (!Array.isArray(events)) return;
   if (!events.length) return;
 
@@ -24,7 +24,17 @@ async function populateDetails(data) {
   const pageSpinner = document.querySelector("#pageSpinner");
   const pageContent = document.querySelector("#pageContent");
   const details = document.querySelector("#eventdetails");
-  const { country, eventid, frequency, lang, multidaybegindate, multidayenddate, startdate, timezone, title } = data;
+  const {
+    country,
+    eventid,
+    frequency,
+    lang,
+    multidaybegindate,
+    multidayenddate,
+    startdate,
+    timezone,
+    title,
+  } = data;
   const locale = `${lang.toLowerCase()}-${country.toUpperCase()}`;
   const from = getPhrase("from");
   const to = getPhrase("to");
@@ -32,20 +42,36 @@ async function populateDetails(data) {
 
   if (frequency === "once") {
     if (multidaybegindate) {
-      const multidayBeginDateLocal = new Date(moment.tz(multidaybegindate, timezone).format());
-      const multidayEndDateLocal = new Date(moment.tz(multidayenddate, timezone).format());
-      const whenDateFrom = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayBeginDateLocal);
-      const whenTimeFrom = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(multidayBeginDateLocal);
-      const whenDateTo = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(multidayEndDateLocal);
-      const whenTimeTo = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(multidayEndDateLocal);
+      const multidayBeginDateLocal = new Date(
+        moment.tz(multidaybegindate, timezone).format()
+      );
+      const multidayEndDateLocal = new Date(
+        moment.tz(multidayenddate, timezone).format()
+      );
+      const whenDateFrom = Intl.DateTimeFormat(locale, {
+        dateStyle: "short",
+      }).format(multidayBeginDateLocal);
+      const whenTimeFrom = Intl.DateTimeFormat(locale, {
+        timeStyle: "short",
+      }).format(multidayBeginDateLocal);
+      const whenDateTo = Intl.DateTimeFormat(locale, {
+        dateStyle: "short",
+      }).format(multidayEndDateLocal);
+      const whenTimeTo = Intl.DateTimeFormat(locale, {
+        timeStyle: "short",
+      }).format(multidayEndDateLocal);
       when = `
         ${from} ${whenDateFrom} &bull; ${whenTimeFrom}<br>
         ${to} ${whenDateTo} &bull; ${whenTimeTo}<br>
       `;
     } else {
       const whenDateLocal = new Date(moment.tz(startdate, timezone).format());
-      const whenDate = Intl.DateTimeFormat(locale, { dateStyle: 'short' }).format(whenDateLocal);
-      const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenDateLocal);
+      const whenDate = Intl.DateTimeFormat(locale, {
+        dateStyle: "short",
+      }).format(whenDateLocal);
+      const whenTime = Intl.DateTimeFormat(locale, {
+        timeStyle: "short",
+      }).format(whenDateLocal);
       when = `
         ${whenDate} &bull; ${whenTime}
       `;
@@ -76,7 +102,9 @@ async function populateDetails(data) {
         break;
     }
     const whenTimeLocal = new Date(moment.tz(startdate, timezone).format());
-    const whenTime = Intl.DateTimeFormat(locale, { timeStyle: 'short' }).format(whenTimeLocal);
+    const whenTime = Intl.DateTimeFormat(locale, { timeStyle: "short" }).format(
+      whenTimeLocal
+    );
     when = `${whenDate} &bull; ${whenTime}`;
   }
 
@@ -103,6 +131,57 @@ function spinner(action = "show") {
   }
 }
 
+async function syncEvents() {
+  const endpoint = `${getApiHost()}/sync-events`;
+  const accessToken = await getAccessToken();
+  const isOnline = navigator.onLine;
+  const controller = new AbortController();
+  const timeout = 8000;
+
+  return new Promise((resolve, reject) => {
+    if (!isOnline)
+      return reject(new Error("sync failed because user is offline"));
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+      signal: controller.signal,
+      keepalive: true,
+    })
+      .then((res) => res.json())
+      .then(async (data) => {
+        const { events } = data;
+
+        // Validate sync response
+        if (!Array.isArray(events)) {
+          reject(new Error("Events in sync response must be an array."));
+        }
+
+        // Update IDB
+        if (events.length) {
+          await localforage.setItem("events", events);
+        } else {
+          await localforage.setItem("events", []);
+        }
+
+        resolve(events);
+      })
+      .catch((err) => {
+        console.error(err);
+        reject(err);
+      });
+
+    setTimeout(() => {
+      controller.abort();
+      reject(new Error("event sync timed out"));
+    }, timeout);
+  });
+}
+
 async function onSubmit() {
   const eventid = Math.abs(parseInt(getHash()));
   const endpoint = `${getApiHost()}/event-delete`;
@@ -117,15 +196,15 @@ async function onSubmit() {
     mode: "cors",
     method: "POST",
     body: JSON.stringify({
-      eventid: eventid
+      eventid: eventid,
     }),
     headers: new Headers({
       "Content-Type": "application/json",
-      authorization: `Bearer ${accessToken}`
+      authorization: `Bearer ${accessToken}`,
     }),
-    signal: controller.signal
+    signal: controller.signal,
   })
-    .then(res => res.json())
+    .then((res) => res.json())
     .then(async (data) => {
       switch (data.msg) {
         case "user is not authorized for this action":
@@ -142,7 +221,7 @@ async function onSubmit() {
           break;
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(err);
       spinner("hide");
     });
