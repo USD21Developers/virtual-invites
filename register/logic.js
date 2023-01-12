@@ -390,14 +390,6 @@ async function populateChurches() {
     const emptyOption = document.createElement("option");
     emptyOption.label = " ";
     churchDropdown.appendChild(emptyOption);
-    const nonMemberOption = document.createElement("option");
-    nonMemberOption.value = "-1";
-    nonMemberOption.innerText = getPhrase("nonMemberOption");
-    const notListedOption = document.createElement("option");
-    notListedOption.value = "0";
-    notListedOption.innerText = getPhrase("notListedOption");
-    const noneOfTheAboveOptgroup = document.createElement("optgroup");
-    noneOfTheAboveOptgroup.label = getPhrase("noneOfTheAboveOptgroup");
 
     const host = getApiServicesHost();
     const endpoint = `${host}/churches`;
@@ -405,37 +397,20 @@ async function populateChurches() {
     fetch(endpoint)
       .then((res) => res.json())
       .then((data) => {
-        const churchesInCountries = data.churches.filter(
-          (church) => church.country
-        );
+        churches = data.churches;
+        const displayedChurches = churches.sort((a, b) => a.name > b.name);
 
-        churchesInCountries.forEach((item) => {
-          const { id, name, url, place, country: countryCode } = item;
-          let countryName = name;
-
-          if (typeof name !== "string") return;
-          if (countryName.trim() === "") return;
-
-          if (countryCode === "us") countryName = "United States";
-          const optgroup = document.createElement("optgroup");
-          optgroup.label = `${countryName}:`;
-          churchDropdown.appendChild(optgroup);
-          churches.forEach((church) => {
-            const { id, place } = church;
-            const option = document.createElement("option");
-
-            if (typeof place !== "string" || place.trim() === "") return;
-
-            option.value = id;
-            option.innerText = place;
-            optgroup.appendChild(option);
-            optgroup.setAttribute("data-country", countryCode);
-
-            churchDropdown.appendChild(noneOfTheAboveOptgroup);
-            noneOfTheAboveOptgroup.appendChild(nonMemberOption);
-            noneOfTheAboveOptgroup.appendChild(notListedOption);
-          });
+        displayedChurches.forEach((item) => {
+          const { country, id, name, place, url } = item;
+          const opt = document.createElement("option");
+          opt.setAttribute("churchid", id);
+          opt.setAttribute("data-place", place);
+          opt.setAttribute("data-country", country);
+          opt.setAttribute("data-url", url);
+          opt.innerText = name;
+          churchDropdown.appendChild(opt);
         });
+
         $(
           ".floating-label .custom-select, .floating-label .form-control"
         ).floatinglabel();
