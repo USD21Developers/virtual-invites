@@ -191,49 +191,27 @@ function onChurchChange(e) {
 
 function onCountryChange(e) {
   const countryCode = e.target.value;
-  const churchid = document.querySelector("#churchid");
   const churchContainer = document.querySelector("#churchcontainer");
-  const unlistedchurch = document.querySelector("#unlistedchurch");
-  const unlistedchurchcontainer = document.querySelector(
-    "#unlistedchurchcontainer"
-  );
-  let countryHasChurches = false;
+  const churchesInCountry = churches
+    .filter((item) => item.country == countryCode)
+    .sort((a, b) => (a.name < b.name ? 1 : -1));
+  const defaultOption = document.createElement("option");
 
-  churchid.value = "";
-  unlistedchurch.value = "";
-  unlistedchurchcontainer.classList.add("d-none");
+  // Clear existing church dropdown options
+  churchContainer.innerHTML = "";
 
-  if (countryCode === "") {
-    churchContainer.classList.add("d-none");
-    unlistedchurchcontainer.classList.add("d-none");
-    return;
-  }
+  // Add default church dropdown option
+  defaultOption.value = "";
+  defaultOption.innerText = getPhrase("selectchurch");
+  churchContainer.appendChild(defaultOption);
 
-  churchContainer.querySelectorAll("optgroup").forEach((item) => {
-    item.classList.add("d-none");
+  // Populate church dropdown options
+  churchesInCountry.forEach((item) => {
+    const option = document.createElement("option");
+    option.value = item.id;
+    option.innerText = item.name;
+    churchContainer.appendChild(option);
   });
-
-  churchContainer.querySelectorAll("optgroup").forEach((item) => {
-    const churchCountryCode = item.getAttribute("data-country");
-    const optgroupLabel = item.getAttribute("label");
-    const optgroupText = getPhrase("noneOfTheAboveOptgroup");
-
-    if (optgroupLabel === optgroupText) {
-      item.classList.remove("d-none");
-    }
-    if (countryCode === churchCountryCode) {
-      countryHasChurches = true;
-      item.classList.remove("d-none");
-      churchContainer.classList.remove("d-none");
-    }
-  });
-
-  if (!countryHasChurches) {
-    churchContainer
-      .querySelectorAll("optgroup")
-      .forEach((item) => item.classList.remove("d-none"));
-    churchContainer.classList.remove("d-none");
-  }
 }
 
 async function onSubmit(e) {
@@ -398,9 +376,6 @@ async function populateChurches() {
       .then((res) => res.json())
       .then((data) => {
         churches = data.churches;
-        const displayedChurches = churches.sort((a, b) =>
-          a.name > b.name ? 1 : -1
-        );
 
         displayedChurches.forEach((item) => {
           const { country, id, name, place, url } = item;
