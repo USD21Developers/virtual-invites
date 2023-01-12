@@ -376,21 +376,6 @@ async function populateChurches() {
       .then((res) => res.json())
       .then((data) => {
         churches = data.churches;
-
-        displayedChurches.forEach((item) => {
-          const { country, id, name, place, url } = item;
-          const opt = document.createElement("option");
-          opt.setAttribute("churchid", id);
-          opt.setAttribute("data-place", place);
-          opt.setAttribute("data-country", country);
-          opt.setAttribute("data-url", url);
-          opt.innerText = name;
-          churchDropdown.appendChild(opt);
-        });
-
-        $(
-          ".floating-label .custom-select, .floating-label .form-control"
-        ).floatinglabel();
         resolve();
       })
       .catch((err) => {
