@@ -402,7 +402,9 @@ async function populateChurches() {
 
     fetch(endpoint)
       .then((res) => res.json())
-      .then((churchesInCountries) => {
+      .then((data) => {
+        const churchesInCountries = data.churches;
+
         churchesInCountries.forEach((item) => {
           const { countryCode, name, churches } = item;
           let countryName = name;
