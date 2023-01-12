@@ -398,7 +398,9 @@ async function populateChurches() {
       .then((res) => res.json())
       .then((data) => {
         churches = data.churches;
-        const displayedChurches = churches.sort((a, b) => a.name > b.name);
+        const displayedChurches = churches.sort((a, b) =>
+          a.name > b.name ? 1 : -1
+        );
 
         displayedChurches.forEach((item) => {
           const { country, id, name, place, url } = item;
