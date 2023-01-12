@@ -192,13 +192,14 @@ function onChurchChange(e) {
 function onCountryChange(e) {
   const countryCode = e.target.value;
   const churchContainer = document.querySelector("#churchcontainer");
+  const churchSelect = document.querySelector("#churchid");
   const churchesInCountry = churches
     .filter((item) => item.country == countryCode)
     .sort((a, b) => (a.name < b.name ? 1 : -1));
   const defaultOption = document.createElement("option");
 
   // Clear existing church dropdown options
-  churchContainer.innerHTML = "";
+  churchSelect.innerHTML = "";
 
   // Add default church dropdown option
   defaultOption.value = "";
@@ -212,6 +213,9 @@ function onCountryChange(e) {
     option.innerText = item.name;
     churchContainer.appendChild(option);
   });
+
+  // Show church dropdown
+  churchContainer.classList.remove("d-none");
 }
 
 async function onSubmit(e) {
