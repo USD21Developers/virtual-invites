@@ -1,5 +1,7 @@
 let churches = [];
 
+let countries = [];
+
 let photoData = {
   url: "",
   points: "",
@@ -403,7 +405,9 @@ async function populateChurches() {
     fetch(endpoint)
       .then((res) => res.json())
       .then((data) => {
-        const churchesInCountries = data.churches;
+        const churchesInCountries = data.churches.filter(
+          (church) => church.country
+        );
 
         churchesInCountries.forEach((item) => {
           const { countryCode, name, churches } = item;
@@ -449,15 +453,20 @@ function populateCountries() {
     const countryDropdown = document.querySelector("#country");
     const emptyOption = document.createElement("option");
     const lang = getLang();
+    const servicesHost = getApiServicesHost();
+    const endpoint = `${servicesHost}/country-names/${lang}`;
+
     emptyOption.label = " ";
     countryDropdown.appendChild(emptyOption);
-    fetch(`../data/json/lang/${lang}/countries.json`)
+
+    fetch(endpoint)
       .then((res) => res.json())
       .then((data) => {
-        data.forEach((item) => {
-          const { alpha2, name } = item;
+        countries = data.countryNames.names;
+        countries.forEach((item) => {
+          const { iso, name } = item;
           const countryOption = document.createElement("option");
-          countryOption.value = alpha2;
+          countryOption.value = iso;
           countryOption.innerHTML = name;
           countryDropdown.appendChild(countryOption);
         });
