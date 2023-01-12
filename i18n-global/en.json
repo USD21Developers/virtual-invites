@@ -157,6 +157,11 @@
       "key": "online",
       "original": "Online",
       "translated": "Online"
+    },
+    {
+      "key": "selectchurch",
+      "original": "(Select church):",
+      "translated": "(Select church):"
     }
   ],
 
