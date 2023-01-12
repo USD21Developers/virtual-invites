@@ -410,7 +410,7 @@ async function populateChurches() {
         );
 
         churchesInCountries.forEach((item) => {
-          const { countryCode, name, churches } = item;
+          const { id, name, url, place, country: countryCode } = item;
           let countryName = name;
 
           if (typeof name !== "string") return;
