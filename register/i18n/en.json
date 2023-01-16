@@ -246,6 +246,11 @@
       ]
     },
     {
+      "key": "mychurch",
+      "original": "My Church:",
+      "translated": "My Church:"
+    },
+    {
       "key": "selectcountry",
       "original": "(Select country):",
       "translated": "(Select country):"

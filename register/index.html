@@ -18,7 +18,13 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" integrity="sha512-zxBiDORGDEAYDdKLuYU9X/JaJo/DPzE42UubfBw9yg8Qvb2YRRIQ8v4KsGHOx2H1/+sdSXyXxLXv5r7tHc9ygg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css"
+      integrity="sha512-zxBiDORGDEAYDdKLuYU9X/JaJo/DPzE42UubfBw9yg8Qvb2YRRIQ8v4KsGHOx2H1/+sdSXyXxLXv5r7tHc9ygg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="../css/daemonite-material.css" />
     <link href="../css/global.css" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
@@ -253,7 +259,9 @@
               </div>
             </div>
 
-            <div class="form-group my-5 d-none" id="churchcontainer">
+            <h3 class="mb-4" data-i18n="mychurch"></h3>
+
+            <div class="form-group mb-5 d-none" id="churchcontainer">
               <div class="floating-label">
                 <label for="churchid" data-i18n="label-my-icc-church"> </label>
 
@@ -284,39 +292,60 @@
             </div>
 
             <div class="form-group mt-5 mb-2">
-              <h3 id="profilePhotoHeadline" data-i18n="headline-photoupload" class="text-center mt-0 mb-4"></h3>
+              <h3
+                id="profilePhotoHeadline"
+                data-i18n="headline-photoupload"
+                class="text-center mt-0 mb-4"
+              ></h3>
 
-              <p id="photoIsRequired" class="text-center mb-4 invalid-feedback-unbound d-none"><strong data-i18n="photoIsRequired"></strong></p>
+              <p
+                id="photoIsRequired"
+                class="text-center mb-4 invalid-feedback-unbound d-none"
+              >
+                <strong data-i18n="photoIsRequired"></strong>
+              </p>
 
               <div class="text-center">
-                
                 <div id="formTakeASelfie" class="d-none">
-                  <label for="photoCapture" class="btn btn-info">Take a selfie</label>
-                  <input type="file" id="photoCapture" accept="image/*" capture="user" />
-                  <br><br>              
+                  <label for="photoCapture" class="btn btn-info"
+                    >Take a selfie</label
+                  >
+                  <input
+                    type="file"
+                    id="photoCapture"
+                    accept="image/*"
+                    capture="user"
+                  />
+                  <br /><br />
                 </div>
-              
+
                 <div id="formSelectAPhoto">
-                  <label for="photoUpload" class="btn btn-info">Select a photo</label>
-                  <input type="file" id="photoUpload" accept="image/jpeg,image/heic">
+                  <label for="photoUpload" class="btn btn-info"
+                    >Select a photo</label
+                  >
+                  <input
+                    type="file"
+                    id="photoUpload"
+                    accept="image/jpeg,image/heic"
+                  />
                 </div>
-              
+
                 <div id="photoPreviewContainer" class="d-none">
-                  <br><br>              
+                  <br /><br />
 
                   <div id="photoPreview"></div>
 
                   <div class="container" id="rotateButtons" hidden>
                     <div class="row">
                       <div class="col text-center">
-                        <button type="button" class="btn btn-light rotate" data-deg="-90">
-                          <span class="material-icons">
-                            refresh
-                          </span>
+                        <button
+                          type="button"
+                          class="btn btn-light rotate"
+                          data-deg="-90"
+                        >
+                          <span class="material-icons"> refresh </span>
 
-                          &nbsp;
-
-                          Rotate
+                          &nbsp; Rotate
                         </button>
                       </div>
 
@@ -334,11 +363,10 @@
                     </div>
                   </div>
                 </div>
-                
               </div>
             </div>
 
-            <br>
+            <br />
 
             <div class="text-center mt-5 mb-4">
               <div id="progressbar" class="progress d-none">
@@ -403,7 +431,12 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js" integrity="sha512-Gs+PsXsGkmr+15rqObPJbenQ2wB3qYvTHuJO6YJzPe/dTLvhy0fmae2BcnaozxDo5iaF8emzmCZWbQ1XXiX2Ig==" crossorigin="anonymous" referrerpolihttpscy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"
+      integrity="sha512-Gs+PsXsGkmr+15rqObPJbenQ2wB3qYvTHuJO6YJzPe/dTLvhy0fmae2BcnaozxDo5iaF8emzmCZWbQ1XXiX2Ig=="
+      crossorigin="anonymous"
+      referrerpolihttpscy="no-referrer"
+    ></script>
     <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
     <script src="../js/global.js"></script>
     <script src="logic.js"></script>
