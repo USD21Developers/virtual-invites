@@ -283,154 +283,6 @@ function initCroppie() {
     vanilla.rotate(parseInt(degrees));
   }
 
-  async function onSubmit(e) {
-    e.preventDefault();
-
-    formErrorsReset();
-    const isvalid = await validate();
-    if (!isvalid) return;
-
-    const spinner = document.querySelector("#progressbar");
-    const submitButton = document.querySelector("#formsubmit");
-    const username =
-      document.querySelector("#username").value.trim().toLowerCase() || "";
-    const password = document.querySelector("#password").value.trim() || "";
-    const email =
-      document.querySelector("#email").value.trim().toLowerCase() || "";
-    const firstname = document.querySelector("#firstname").value.trim() || "";
-    const lastname = document.querySelector("#lastname").value.trim() || "";
-    const gender = document.querySelector("input[name='gender']:checked").value;
-    const country = document.querySelector("#country").value.trim() || "";
-    const churchid = document.querySelector("#churchid").value.trim() || "";
-    const unlistedchurch =
-      document.querySelector("#unlistedchurch").value.trim() || "";
-    const profileImage = await getProfileImage();
-    const emailSenderText = getPhrase("emailSenderText");
-    const emailSubject = getPhrase("emailSubject");
-    let emailParagraph1 = getPhrase("emailParagraph1");
-    const emailLinkText = getPhrase("emailLinkText");
-    const emailSignature = getPhrase("emailSignature");
-    const lang = getLang() || "en";
-    const endpoint = `${getApiHost()}/register`;
-    const dataKey = await invitesCrypto.generateKey();
-    const exportedDataKey = await invitesCrypto.exportCryptoKey(dataKey);
-    const serializedDataKey = invitesCrypto.serialize(exportedDataKey);
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    emailParagraph1 = emailParagraph1.replaceAll(
-      "${fullname}",
-      `${firstname} ${lastname}`
-    );
-
-    hide(submitButton);
-    show(spinner);
-
-    fetch(endpoint, {
-      mode: "cors",
-      method: "POST",
-      body: JSON.stringify({
-        username: username,
-        password: password,
-        email: email,
-        firstname: firstname,
-        lastname: lastname,
-        gender: gender,
-        country: country,
-        churchid: churchid,
-        unlistedchurch: unlistedchurch,
-        profileImage: profileImage,
-        lang: lang,
-        emailSenderText: emailSenderText,
-        emailSubject: emailSubject,
-        emailParagraph1: emailParagraph1,
-        emailLinkText: emailLinkText,
-        emailSignature: emailSignature,
-        dataKey: serializedDataKey,
-      }),
-      headers: new Headers({
-        "Content-Type": "application/json",
-      }),
-      signal: signal,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        show(submitButton);
-        hide(spinner);
-
-        switch (data.msg) {
-          case "username missing":
-            formError("#username", getPhrase("usernamerequired"));
-            break;
-          case "password missing":
-            formError("#password", getPhrase("passwordrequired"));
-            break;
-          case "e-mail missing":
-            formError("#email", getPhrase("emailrequired"));
-            break;
-          case "invalid e-mail":
-            formError("#email", getPhrase("invalidemail"));
-            break;
-          case "first name missing":
-            formError("#firstname", getPhrase("firstnamerequired"));
-            break;
-          case "last name missing":
-            formError("#lastname", getPhrase("lastnamerequired"));
-            break;
-          case "gender missing":
-            const invalidFeedbackGender = document.querySelector(
-              ".invalid-feedback-gender"
-            );
-            invalidFeedbackGender.innerText = getPhrase("genderrequired");
-            invalidFeedbackGender.style.display = "block";
-            customScrollTo("#gendercontainer");
-            break;
-          case "country missing":
-            formError("#country", getPhrase("countryrequired"));
-            break;
-          case "churchid missing":
-            formError("#churchid", getPhrase("churchrequired"));
-            break;
-          case "unlisted church missing":
-            formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
-            break;
-          case "username already exists":
-            formError("#username", getPhrase("duplicateusername"));
-            break;
-          case "e-mail already exists":
-            formError("#email", getPhrase("duplicateemail"));
-            break;
-          case "password not complex enough":
-            formError("#password", getPhrase("passwordNotComplexEnough"));
-            const modalMessage = `
-              <p>${getPhrase("passwordNotComplexEnoughLine1")}</p>
-              <p>${getPhrase("passwordNotComplexEnoughLine2")}</p>
-            `;
-            showModal(modalMessage, getPhrase("invalidpassword"));
-            break;
-          case "profile photo missing":
-            showProfilePhotoError();
-            break;
-          case "confirmation e-mail sent":
-            const defaultContent = document.querySelector("#contentdefault");
-            const doneContent = document.querySelector("#contentdone");
-
-            hide(defaultContent);
-            show(doneContent);
-            break;
-          default:
-            showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
-            break;
-        }
-      });
-
-    setTimeout(() => {
-      controller.abort();
-      hide(spinner);
-      show(submitButton);
-    }, 25000);
-  }
-
   function attachListeners() {
     document
       .querySelector("#photoUpload")
@@ -531,6 +383,154 @@ function onCountryChange(e) {
 
   // Show church dropdown
   churchContainer.classList.remove("d-none");
+}
+
+async function onSubmit(e) {
+  e.preventDefault();
+
+  formErrorsReset();
+  const isvalid = await validate();
+  if (!isvalid) return;
+
+  const spinner = document.querySelector("#progressbar");
+  const submitButton = document.querySelector("#formsubmit");
+  const username =
+    document.querySelector("#username").value.trim().toLowerCase() || "";
+  const password = document.querySelector("#password").value.trim() || "";
+  const email =
+    document.querySelector("#email").value.trim().toLowerCase() || "";
+  const firstname = document.querySelector("#firstname").value.trim() || "";
+  const lastname = document.querySelector("#lastname").value.trim() || "";
+  const gender = document.querySelector("input[name='gender']:checked").value;
+  const country = document.querySelector("#country").value.trim() || "";
+  const churchid = document.querySelector("#churchid").value.trim() || "";
+  const unlistedchurch =
+    document.querySelector("#unlistedchurch").value.trim() || "";
+  const profileImage = await getProfileImage();
+  const emailSenderText = getPhrase("emailSenderText");
+  const emailSubject = getPhrase("emailSubject");
+  let emailParagraph1 = getPhrase("emailParagraph1");
+  const emailLinkText = getPhrase("emailLinkText");
+  const emailSignature = getPhrase("emailSignature");
+  const lang = getLang() || "en";
+  const endpoint = `${getApiHost()}/register`;
+  const dataKey = await invitesCrypto.generateKey();
+  const exportedDataKey = await invitesCrypto.exportCryptoKey(dataKey);
+  const serializedDataKey = invitesCrypto.serialize(exportedDataKey);
+  const controller = new AbortController();
+  const signal = controller.signal;
+
+  emailParagraph1 = emailParagraph1.replaceAll(
+    "${fullname}",
+    `${firstname} ${lastname}`
+  );
+
+  hide(submitButton);
+  show(spinner);
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "POST",
+    body: JSON.stringify({
+      username: username,
+      password: password,
+      email: email,
+      firstname: firstname,
+      lastname: lastname,
+      gender: gender,
+      country: country,
+      churchid: churchid,
+      unlistedchurch: unlistedchurch,
+      profileImage: profileImage,
+      lang: lang,
+      emailSenderText: emailSenderText,
+      emailSubject: emailSubject,
+      emailParagraph1: emailParagraph1,
+      emailLinkText: emailLinkText,
+      emailSignature: emailSignature,
+      dataKey: serializedDataKey,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+    signal: signal,
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      show(submitButton);
+      hide(spinner);
+
+      switch (data.msg) {
+        case "username missing":
+          formError("#username", getPhrase("usernamerequired"));
+          break;
+        case "password missing":
+          formError("#password", getPhrase("passwordrequired"));
+          break;
+        case "e-mail missing":
+          formError("#email", getPhrase("emailrequired"));
+          break;
+        case "invalid e-mail":
+          formError("#email", getPhrase("invalidemail"));
+          break;
+        case "first name missing":
+          formError("#firstname", getPhrase("firstnamerequired"));
+          break;
+        case "last name missing":
+          formError("#lastname", getPhrase("lastnamerequired"));
+          break;
+        case "gender missing":
+          const invalidFeedbackGender = document.querySelector(
+            ".invalid-feedback-gender"
+          );
+          invalidFeedbackGender.innerText = getPhrase("genderrequired");
+          invalidFeedbackGender.style.display = "block";
+          customScrollTo("#gendercontainer");
+          break;
+        case "country missing":
+          formError("#country", getPhrase("countryrequired"));
+          break;
+        case "churchid missing":
+          formError("#churchid", getPhrase("churchrequired"));
+          break;
+        case "unlisted church missing":
+          formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
+          break;
+        case "username already exists":
+          formError("#username", getPhrase("duplicateusername"));
+          break;
+        case "e-mail already exists":
+          formError("#email", getPhrase("duplicateemail"));
+          break;
+        case "password not complex enough":
+          formError("#password", getPhrase("passwordNotComplexEnough"));
+          const modalMessage = `
+            <p>${getPhrase("passwordNotComplexEnoughLine1")}</p>
+            <p>${getPhrase("passwordNotComplexEnoughLine2")}</p>
+          `;
+          showModal(modalMessage, getPhrase("invalidpassword"));
+          break;
+        case "profile photo missing":
+          showProfilePhotoError();
+          break;
+        case "confirmation e-mail sent":
+          const defaultContent = document.querySelector("#contentdefault");
+          const doneContent = document.querySelector("#contentdone");
+
+          hide(defaultContent);
+          show(doneContent);
+          break;
+        default:
+          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
+          break;
+      }
+    });
+
+  setTimeout(() => {
+    controller.abort();
+    hide(spinner);
+    show(submitButton);
+  }, 25000);
 }
 
 function attachListeners() {
