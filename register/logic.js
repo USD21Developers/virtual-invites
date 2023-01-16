@@ -340,6 +340,7 @@ function populateCountries() {
   });
   countryDropdown.innerHTML = optionsHTML;
   countryDropdown.options[0].selected = true;
+  countryDropdown.parentElement.classList.add("has-value");
 }
 
 function onChurchChange(e) {
