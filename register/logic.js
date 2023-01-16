@@ -384,6 +384,7 @@ function onCountryChange(e) {
 
   // Show church dropdown
   churchContainer.classList.remove("d-none");
+  refreshFloatingLabels();
 }
 
 async function onSubmit(e) {
