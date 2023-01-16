@@ -339,6 +339,7 @@ function populateCountries() {
     optionsHTML += option;
   });
   countryDropdown.innerHTML = optionsHTML;
+  refreshFloatingLabels();
 }
 
 function onChurchChange(e) {
@@ -384,7 +385,6 @@ function onCountryChange(e) {
 
   // Show church dropdown
   churchContainer.classList.remove("d-none");
-  refreshFloatingLabels();
 }
 
 async function onSubmit(e) {
