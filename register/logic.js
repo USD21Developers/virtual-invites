@@ -206,35 +206,6 @@ function initCroppie() {
     }
   }
 
-  function onCountryChange(e) {
-    const countryCode = e.target.value;
-    const churchContainer = document.querySelector("#churchcontainer");
-    const churchSelect = document.querySelector("#churchid");
-    const churchesInCountry = churches
-      .filter((item) => item.country == countryCode)
-      .sort((a, b) => (a.name < b.name ? 1 : -1));
-    const defaultOption = document.createElement("option");
-
-    // Clear existing church dropdown options
-    churchSelect.innerHTML = "";
-
-    // Add default church dropdown option
-    defaultOption.value = "";
-    defaultOption.innerText = getPhrase("selectchurch");
-    churchContainer.appendChild(defaultOption);
-
-    // Populate church dropdown options
-    churchesInCountry.forEach((item) => {
-      const option = document.createElement("option");
-      option.value = item.id;
-      option.innerText = item.name;
-      churchContainer.appendChild(option);
-    });
-
-    // Show church dropdown
-    churchContainer.classList.remove("d-none");
-  }
-
   function onMirror(photoData, vanilla) {
     const { url, points, zoom, orientation } = photoData;
 
@@ -531,6 +502,35 @@ function populateCountries() {
     optionsHTML += option;
   });
   countryDropdown.innerHTML = optionsHTML;
+}
+
+function onCountryChange(e) {
+  const countryCode = e.target.value;
+  const churchContainer = document.querySelector("#churchcontainer");
+  const churchSelect = document.querySelector("#churchid");
+  const churchesInCountry = churches
+    .filter((item) => item.country == countryCode)
+    .sort((a, b) => (a.name < b.name ? 1 : -1));
+  const defaultOption = document.createElement("option");
+
+  // Clear existing church dropdown options
+  churchSelect.innerHTML = "";
+
+  // Add default church dropdown option
+  defaultOption.value = "";
+  defaultOption.innerText = getPhrase("selectchurch");
+  churchContainer.appendChild(defaultOption);
+
+  // Populate church dropdown options
+  churchesInCountry.forEach((item) => {
+    const option = document.createElement("option");
+    option.value = item.id;
+    option.innerText = item.name;
+    churchContainer.appendChild(option);
+  });
+
+  // Show church dropdown
+  churchContainer.classList.remove("d-none");
 }
 
 function attachListeners() {
