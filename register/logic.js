@@ -333,7 +333,7 @@ function populateCountries() {
   });
 
   // Populate the country dropdown
-  let optionsHTML = "";
+  let optionsHTML = `<option value="">${getPhrase("selectcountry")}</option>`;
   countriesArray.forEach((country) => {
     const option = `<option value="${country.iso}">${country.name}</option>`;
     optionsHTML += option;
