@@ -323,9 +323,10 @@ function populateCountries() {
 
   // Loop through all the countries and keep the ones that have a church
   countries.forEach((country) => {
-    const countryHasAChurch = churches.some((church) => {
-      church.country = country.iso;
-    });
+    const countryHasAChurch = churches.some(
+      (church) => church.country === country.iso
+    );
+
     if (countryHasAChurch) {
       countriesArray.push(country);
     }
