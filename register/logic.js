@@ -190,22 +190,6 @@ function initCroppie() {
     });
   }
 
-  function onChurchChange(e) {
-    const churchid = e.target.value;
-    const unlistedchurch = document.querySelector("#unlistedchurch");
-    const unlistedchurchcontainer = document.querySelector(
-      "#unlistedchurchcontainer"
-    );
-
-    unlistedchurch.value = "";
-
-    if (churchid == 0) {
-      unlistedchurchcontainer.classList.remove("d-none");
-    } else {
-      unlistedchurchcontainer.classList.add("d-none");
-    }
-  }
-
   function onMirror(photoData, vanilla) {
     const { url, points, zoom, orientation } = photoData;
 
@@ -502,6 +486,22 @@ function populateCountries() {
     optionsHTML += option;
   });
   countryDropdown.innerHTML = optionsHTML;
+}
+
+function onChurchChange(e) {
+  const churchid = e.target.value;
+  const unlistedchurch = document.querySelector("#unlistedchurch");
+  const unlistedchurchcontainer = document.querySelector(
+    "#unlistedchurchcontainer"
+  );
+
+  unlistedchurch.value = "";
+
+  if (churchid == 0) {
+    unlistedchurchcontainer.classList.remove("d-none");
+  } else {
+    unlistedchurchcontainer.classList.add("d-none");
+  }
 }
 
 function onCountryChange(e) {
