@@ -252,8 +252,8 @@
     },
     {
       "key": "onlyCountriesWithChurch",
-      "original": "(Countries only where we have a church)",
-      "translated": "(Countries only where we have a church)"
+      "original": "(Countries where we have a church)",
+      "translated": "(Countries where we have a church)"
     },
     {
       "key": "selectchurch",
