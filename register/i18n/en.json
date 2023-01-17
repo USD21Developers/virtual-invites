@@ -251,6 +251,11 @@
       "translated": "(Select country):"
     },
     {
+      "key": "onlyCountriesWithChurch",
+      "original": "(Countries only where we have a church)",
+      "translated": "(Countries only where we have a church)"
+    },
+    {
       "key": "selectchurch",
       "original": "(Select church):",
       "translated": "(Select church):"
