@@ -114,83 +114,6 @@ function initCroppie() {
     }
   }
 
-  function validate() {
-    return new Promise(async (resolve, reject) => {
-      const username =
-        document.querySelector("#username").value.trim().toLowerCase() || "";
-      const password = document.querySelector("#password").value.trim() || "";
-      const email =
-        document.querySelector("#email").value.trim().toLowerCase() || "";
-      const firstname = document.querySelector("#firstname").value.trim() || "";
-      const lastname = document.querySelector("#lastname").value.trim() || "";
-      const gender = document.querySelector("input[name=gender]:checked")
-        ? document.querySelector("input[name=gender]:checked").value
-        : "";
-      const country = document.querySelector("#country").value.trim() || "";
-      const churchid = document.querySelector("#churchid").value.trim() || "";
-      const unlistedchurch =
-        document.querySelector("#unlistedchurch").value.trim() || "";
-      const profileImage = await getProfileImage();
-
-      if (!username.length) {
-        formError("#username", getPhrase("usernamerequired"));
-        return resolve(false);
-      }
-
-      if (!password.length) {
-        formError("#password", getPhrase("passwordrequired"));
-        return resolve(false);
-      }
-
-      if (!email.length) {
-        formError("#email", getPhrase("emailrequired"));
-        return resolve(false);
-      }
-
-      if (!firstname.length) {
-        formError("#firstname", getPhrase("firstnamerequired"));
-        return resolve(false);
-      }
-
-      if (!lastname.length) {
-        formError("#lastname", getPhrase("lastnamerequired"));
-        return resolve(false);
-      }
-
-      if (!gender.length) {
-        const invalidFeedbackGender = document.querySelector(
-          ".invalid-feedback-gender"
-        );
-        invalidFeedbackGender.innerText = getPhrase("genderrequired");
-        invalidFeedbackGender.style.display = "block";
-        customScrollTo("#gendercontainer");
-        return resolve(false);
-      }
-
-      if (!country.length) {
-        formError("#country", getPhrase("countryrequired"));
-        return resolve(false);
-      }
-
-      if (!churchid.length) {
-        formError("#churchid", getPhrase("churchrequired"));
-        return resolve(false);
-      }
-
-      if (churchid == 0 && !unlistedchurch.length) {
-        formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
-        return resolve(false);
-      }
-
-      if (profileImage === "") {
-        showProfilePhotoError();
-        return resolve(false);
-      }
-
-      return resolve(true);
-    });
-  }
-
   function onMirror(photoData, vanilla) {
     const { url, points, zoom, orientation } = photoData;
 
@@ -342,6 +265,83 @@ function populateCountries() {
   countryDropdown.innerHTML = optionsHTML;
   countryDropdown.options[0].selected = true;
   countryDropdown.parentElement.classList.add("has-value");
+}
+
+function validate() {
+  return new Promise(async (resolve, reject) => {
+    const username =
+      document.querySelector("#username").value.trim().toLowerCase() || "";
+    const password = document.querySelector("#password").value.trim() || "";
+    const email =
+      document.querySelector("#email").value.trim().toLowerCase() || "";
+    const firstname = document.querySelector("#firstname").value.trim() || "";
+    const lastname = document.querySelector("#lastname").value.trim() || "";
+    const gender = document.querySelector("input[name=gender]:checked")
+      ? document.querySelector("input[name=gender]:checked").value
+      : "";
+    const country = document.querySelector("#country").value.trim() || "";
+    const churchid = document.querySelector("#churchid").value.trim() || "";
+    const unlistedchurch =
+      document.querySelector("#unlistedchurch").value.trim() || "";
+    const profileImage = await getProfileImage();
+
+    if (!username.length) {
+      formError("#username", getPhrase("usernamerequired"));
+      return resolve(false);
+    }
+
+    if (!password.length) {
+      formError("#password", getPhrase("passwordrequired"));
+      return resolve(false);
+    }
+
+    if (!email.length) {
+      formError("#email", getPhrase("emailrequired"));
+      return resolve(false);
+    }
+
+    if (!firstname.length) {
+      formError("#firstname", getPhrase("firstnamerequired"));
+      return resolve(false);
+    }
+
+    if (!lastname.length) {
+      formError("#lastname", getPhrase("lastnamerequired"));
+      return resolve(false);
+    }
+
+    if (!gender.length) {
+      const invalidFeedbackGender = document.querySelector(
+        ".invalid-feedback-gender"
+      );
+      invalidFeedbackGender.innerText = getPhrase("genderrequired");
+      invalidFeedbackGender.style.display = "block";
+      customScrollTo("#gendercontainer");
+      return resolve(false);
+    }
+
+    if (!country.length) {
+      formError("#country", getPhrase("countryrequired"));
+      return resolve(false);
+    }
+
+    if (!churchid.length) {
+      formError("#churchid", getPhrase("churchrequired"));
+      return resolve(false);
+    }
+
+    if (churchid == 0 && !unlistedchurch.length) {
+      formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
+      return resolve(false);
+    }
+
+    if (profileImage === "") {
+      showProfilePhotoError();
+      return resolve(false);
+    }
+
+    return resolve(true);
+  });
 }
 
 function onChurchChange(e) {
