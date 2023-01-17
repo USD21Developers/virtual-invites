@@ -383,6 +383,7 @@ function onCountryChange(e) {
     option.innerText = item.name;
     churchSelect.appendChild(option);
   });
+  churchSelect.parentElement.classList.add("has-value");
 
   // Show church dropdown
   churchContainer.classList.remove("d-none");
