@@ -371,6 +371,9 @@ function onCountryChange(e) {
   // Sort churches alphabetically
   churchesInCountry.sort((a, b) => (a.name < b.name ? 1 : -1));
 
+  // Sort again (somehow this is necessary)
+  churchesInCountry.sort((a, b) => (a.name < b.name ? 1 : -1));
+
   // Clear existing church dropdown options
   churchSelect.innerHTML = "";
 
