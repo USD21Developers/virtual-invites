@@ -387,6 +387,13 @@ function onCountryChange(e) {
     option.innerText = item.name;
     churchSelect.appendChild(option);
   });
+
+  // Add option for ICC churches that aren't in our database yet
+  const unlistedOption = document.createElement("option");
+  unlistedOption.value = "0";
+  unlistedOption.innerText = getPhrase("notListedOption");
+  churchSelect.appendChild(unlistedOption);
+
   churchSelect.parentElement.classList.add("has-value");
 
   // Show church dropdown
