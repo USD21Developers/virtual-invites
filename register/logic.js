@@ -20,6 +20,7 @@ function getChurches() {
       .then((res) => res.json())
       .then((data) => {
         churches = data.churches;
+        localStorage.setItem("churches", JSON.stringify(churches));
         resolve(data.churches);
       })
       .catch((err) => {
