@@ -374,14 +374,14 @@ function onCountryChange(e) {
   // Add default church dropdown option
   defaultOption.value = "";
   defaultOption.innerText = getPhrase("selectchurch");
-  churchContainer.appendChild(defaultOption);
+  churchSelect.appendChild(defaultOption);
 
   // Populate church dropdown options
   churchesInCountry.forEach((item) => {
     const option = document.createElement("option");
     option.value = item.id;
     option.innerText = item.name;
-    churchContainer.appendChild(option);
+    churchSelect.appendChild(option);
   });
 
   // Show church dropdown
