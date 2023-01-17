@@ -363,10 +363,13 @@ function onCountryChange(e) {
   const countryCode = e.target.value;
   const churchContainer = document.querySelector("#churchcontainer");
   const churchSelect = document.querySelector("#churchid");
-  const churchesInCountry = churches
-    .filter((item) => item.country == countryCode)
-    .sort((a, b) => (a.name < b.name ? 1 : -1));
+  const churchesInCountry = churches.filter(
+    (item) => item.country == countryCode
+  );
   const defaultOption = document.createElement("option");
+
+  // Sort churches alphabetically
+  churchesInCountry.sort((a, b) => (a.name < b.name ? 1 : -1));
 
   // Clear existing church dropdown options
   churchSelect.innerHTML = "";
