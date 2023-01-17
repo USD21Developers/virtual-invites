@@ -370,7 +370,7 @@ function onCountryChange(e) {
   const defaultOption = document.createElement("option");
 
   // Sort churches alphabetically
-  churchesInCountry.sort((a, b) => (a.name < b.name ? 1 : -1));
+  churchesInCountry.sort((a, b) => (a.name > b.name ? 1 : -1));
 
   // Clear existing church dropdown options
   churchSelect.innerHTML = "";
