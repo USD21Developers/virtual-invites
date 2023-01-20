@@ -333,6 +333,10 @@ function validate() {
         getPhrase("countryrequired");
       document.querySelector("#churchid").selectedIndex = 0;
       document.querySelector("#churchcontainer").classList.add("d-none");
+      document.querySelector("#unlistedchurch").value = "";
+      document
+        .querySelector("#unlistedchurchcontainer")
+        .classList.add("d-none");
       return resolve(false);
     }
 
