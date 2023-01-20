@@ -323,7 +323,7 @@ function validate() {
       formError("#country", getPhrase("countryrequired"));
       document
         .querySelector("#country")
-        .parentElement.querySelector(".invalid-feedback").value =
+        .parentElement.querySelector(".invalid-feedback").innerText =
         getPhrase("countryrequired");
       return resolve(false);
     }
