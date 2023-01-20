@@ -267,6 +267,12 @@ function showProfilePhotoError() {
 }
 
 function validate() {
+  document
+    .querySelectorAll(".is-invalid")
+    .forEach((item) => item.classList.remove("is-invalid"));
+  document
+    .querySelectorAll(".invalid-feedback")
+    .forEach((item) => (item.innerHTML = ""));
   return new Promise(async (resolve, reject) => {
     const username =
       document.querySelector("#username").value.trim().toLowerCase() || "";
