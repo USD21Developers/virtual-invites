@@ -424,13 +424,12 @@ function onCountryChange(e) {
   if (country.selectedIndex !== 0) {
     country.classList.remove("is-invalid");
     country.parentElement.querySelector(".invalid-feedback").innerHTML = "";
-  } else {
-    churchContainer.classList.add("d-none");
-    unlistedchurch.value = "";
+    churchContainer.classList.remove("d-none");
+    return;
   }
 
-  // Show church dropdown
-  churchContainer.classList.remove("d-none");
+  churchContainer.classList.add("d-none");
+  unlistedchurch.value = "";
 }
 
 async function onSubmit(e) {
