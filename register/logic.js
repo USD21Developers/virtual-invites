@@ -331,6 +331,8 @@ function validate() {
         .querySelector("#country")
         .parentElement.querySelector(".invalid-feedback").innerText =
         getPhrase("countryrequired");
+      document.querySelector("#churchid").selectedIndex = 0;
+      document.querySelector("#churchcontainer").classList.add("d-none");
       return resolve(false);
     }
 
