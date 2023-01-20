@@ -367,11 +367,10 @@ function onChurchChange(e) {
   );
 
   unlistedchurch.value = "";
+  unlistedchurchcontainer.classList.add("d-none");
 
   if (churchid == 0) {
     unlistedchurchcontainer.classList.remove("d-none");
-  } else {
-    unlistedchurchcontainer.classList.add("d-none");
   }
 }
 
