@@ -91,14 +91,6 @@ function initCroppie() {
     });
   }
 
-  function showProfilePhotoError() {
-    const photoIsRequired = document.querySelector("#photoIsRequired");
-
-    photoIsRequired.classList.remove("d-none");
-
-    customScrollTo("#profilePhotoHeadline");
-  }
-
   function showRotateButtons() {
     const rotateButtons = document.querySelector("#rotateButtons");
     rotateButtons.removeAttribute("hidden");
@@ -226,7 +218,6 @@ function initCroppie() {
   }
 
   function init() {
-    console.clear();
     attachListeners();
     showTakeASelfie();
   }
@@ -265,6 +256,14 @@ function populateCountries() {
   countryDropdown.innerHTML = optionsHTML;
   countryDropdown.options[0].selected = true;
   countryDropdown.parentElement.classList.add("has-value");
+}
+
+function showProfilePhotoError() {
+  const photoIsRequired = document.querySelector("#photoIsRequired");
+
+  photoIsRequired.classList.remove("d-none");
+
+  customScrollTo("#profilePhotoHeadline");
 }
 
 function validate() {
