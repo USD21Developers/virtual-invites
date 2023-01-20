@@ -370,6 +370,7 @@ function onCountryChange(e) {
   const unlistedchurchcontainer = document.querySelector(
     "#unlistedchurchcontainer"
   );
+  const unlistedchurch = document.querySelector("#unlistedchurch");
   const defaultOption = document.createElement("option");
 
   // Sort churches alphabetically
@@ -401,6 +402,7 @@ function onCountryChange(e) {
 
   // Hide text input for unlisted church
   unlistedchurchcontainer.classList.add("d-none");
+  unlistedchurch.value = "";
 
   // Show church dropdown
   churchContainer.classList.remove("d-none");
