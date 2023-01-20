@@ -379,6 +379,7 @@ function onCountryChange(e) {
   const unlistedchurchcontainer = document.querySelector(
     "#unlistedchurchcontainer"
   );
+  const country = document.querySelector("#country");
   const unlistedchurch = document.querySelector("#unlistedchurch");
   const defaultOption = document.createElement("option");
 
@@ -412,6 +413,12 @@ function onCountryChange(e) {
   // Hide text input for unlisted church
   unlistedchurchcontainer.classList.add("d-none");
   unlistedchurch.value = "";
+
+  // Hide errors if a valid country was selected
+  if (country.selectedIndex !== 0) {
+    country.classList.remove("is-invalid");
+    country.parentElement.querySelector(".invalid-feedback").innerHTML = "";
+  }
 
   // Show church dropdown
   churchContainer.classList.remove("d-none");
