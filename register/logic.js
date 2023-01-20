@@ -367,6 +367,9 @@ function onCountryChange(e) {
   const churchesInCountry = churches.filter(
     (item) => item.country == countryCode
   );
+  const unlistedchurchcontainer = document.querySelector(
+    "#unlistedchurchcontainer"
+  );
   const defaultOption = document.createElement("option");
 
   // Sort churches alphabetically
@@ -395,6 +398,9 @@ function onCountryChange(e) {
   churchSelect.appendChild(unlistedOption);
 
   churchSelect.parentElement.classList.add("has-value");
+
+  // Hide text input for unlisted church
+  unlistedchurchcontainer.classList.add("d-none");
 
   // Show church dropdown
   churchContainer.classList.remove("d-none");
