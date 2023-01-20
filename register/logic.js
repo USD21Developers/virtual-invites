@@ -321,6 +321,10 @@ function validate() {
 
     if (!country.length) {
       formError("#country", getPhrase("countryrequired"));
+      document
+        .querySelector("#country")
+        .parentElement.querySelector(".invalid-feedback").value =
+        getPhrase("countryrequired");
       return resolve(false);
     }
 
