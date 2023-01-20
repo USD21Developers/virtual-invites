@@ -424,6 +424,9 @@ function onCountryChange(e) {
   if (country.selectedIndex !== 0) {
     country.classList.remove("is-invalid");
     country.parentElement.querySelector(".invalid-feedback").innerHTML = "";
+  } else {
+    churchContainer.classList.add("d-none");
+    unlistedchurch.value = "";
   }
 
   // Show church dropdown
