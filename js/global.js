@@ -150,6 +150,20 @@ function formError(selector, message = "") {
   element.classList.add("is-invalid");
   customScrollTo(selector);
 
+  if (element.tagName === "INPUT") {
+    element.addEventListener("blur", (e) => {
+      if (e.target.value !== "") {
+        e.target.classList.remove("is-invalid");
+      }
+    });
+  } else if (element.tagName === "SELECT") {
+    element.addEventListener("change", (e) => {
+      if (e.target.value !== "") {
+        e.target.classList.remove("is-invalid");
+      }
+    });
+  }
+
   if (!isMobileDevice()) element.focus();
 }
 
