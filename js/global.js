@@ -151,7 +151,56 @@ function formError(selector, message = "") {
   customScrollTo(selector);
 
   if (element.tagName === "INPUT") {
+    const type = element.getAttribute("type");
+
+    if (
+      [
+        "color",
+        "date",
+        "datetime-local",
+        "email",
+        "month",
+        "number",
+        "search",
+        "tel",
+        "text",
+        "time",
+        "url",
+        "week",
+      ].includes(type)
+    ) {
+      element.addEventListener("blur", (e) => {
+        if (e.target.value !== "") {
+          e.target.classList.remove("is-invalid");
+        }
+      });
+    } else if (type === "radio") {
+      const radioName = element.getAttribute("name");
+      let anyRadioChecked = false;
+      let blankRadioChecked = false;
+      element.parentElement
+        .querySelectorAll(`input[type="radio"][name=${radioName}]`)
+        .forEach((item) => {
+          if (item.checked === true) {
+            anyRadioChecked = true;
+          }
+
+          if (item.value === "") {
+            blankRadioChecked = true;
+          }
+        });
+      if (anyRadioChecked && !blankRadioChecked) {
+        element.parentElement.querySelector(".invalid-feedback").innerText = "";
+        element.parentElement
+          .querySelectorAll(`input[type="radio"][name=${radioName}]`)
+          .forEach((item) => {
+            item.classList.remove("is-invalid");
+          });
+      }
+    }
+  } else if (element.tagName === "TEXTAREA") {
     element.addEventListener("blur", (e) => {
+      e.target.value.trim();
       if (e.target.value !== "") {
         e.target.classList.remove("is-invalid");
       }
