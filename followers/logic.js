@@ -411,7 +411,9 @@ function showFollowers(followers) {
     const rowHtml = `
       <tr class="follower" data-followerid="${userid}">
         <td valign="middle" class="text-center follower_photo" width="1%">
-          <img src="${profilePhotoSmall}" alt="${firstname} ${lastname}" class="mr-2 mb-0" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';" />
+          <a href="../u/#${userid}">
+            <img src="${profilePhotoSmall}" alt="${firstname} ${lastname}" class="mr-2 mb-0" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';" />
+          </a>
         </td>
 
         <td class="spacer">&nbsp;</td>

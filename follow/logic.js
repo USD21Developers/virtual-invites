@@ -273,7 +273,9 @@ function showMatchesFound(matches) {
       html += `
         <div class="text-center result">
           <div class="d-inline-block profilephoto ${gender}">
-            <img src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
+            <a href="/u/#${userid}">
+              <img src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
+            </a>
           </div>
           <h3 class="mt-2 mb-3">${firstname} ${lastname}</h4>
           <button type="button" class="btn btn-primary btn-sm btn-follow my-0 mr-2" data-status="follow" data-follow-userid="${userid}">
@@ -288,7 +290,9 @@ function showMatchesFound(matches) {
       html += `
         <div class="text-center result">
           <div class="d-inline-block profilephoto ${gender}">
-            <img src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
+            <a href="/u/#${userid}">
+              <img src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
+            </a>
           </div>
           <h3 class="mt-0 mb-3">${firstname} ${lastname}</h4>
           <button type="button" class="btn btn-success btn-sm btn-follow my-0 mr-2" data-status="followed" data-follow-userid="${userid}">
