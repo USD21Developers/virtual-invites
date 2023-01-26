@@ -1109,34 +1109,6 @@ function updateFollowActivity(userid, when, action) {
   sessionStorage.setItem("followActivity", JSON.stringify(followActivity));
 }
 
-/* function urlify(text, link_attributes_obj = {}) {
-  //link_attributes_obj (optional) object {target:'_blank', class:'myLink'}
-
-  //html to text
-  text = text.replace(/</g, '&lt;');
-  text = text.replace(/>/g, '&gt;');
-
-  const emailPattern = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
-  text = text.replace(emailPattern, '<a href="mailto:$1">$1</a>');
-
-  let attr = [];
-  for (let k in link_attributes_obj) {
-    if (k !== 'href') {
-      attr.push(k + '="' + link_attributes_obj[k].replaceAll(/"/g, "'") + '"');
-    }
-  }
-
-  //URLs starting with http://, https://, or ftp://
-  let exp = /((?:https?|ftp):\/\/[a-zA-Z0-9][\w+\d+&@\-#\/%?=~_|!:,.;+]*)/gim;
-  text = text.replace(exp, '<a href="$1" ' + attr.join(' ') + '>$1</a>');
-
-  //URLs starting with www.
-  let reg_ww = /(?<!\/)(www\.[a-zA-Z0-9][\w+\d+&@\-#\/%?=~_|!:,.;+]*)/gim;
-  text = text.replace(reg_ww, '<a href="https://$1" ' + attr.join(' ') + '>$1</a>');
-
-  return text;
-} */
-
 function validateEmail(email) {
   const re =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
