@@ -21,7 +21,7 @@ async function syncEvents() {
     })
       .then((res) => res.json())
       .then(async (data) => {
-        const { events, eventsByFollowedUsers } = data;
+        const { events, eventsByFollowedUsers, followedUsers } = data;
         let localEvents = (await localforage.getItem("events")) || [];
         let localEventsByFollowedUsers =
           (await localforage.getItem("eventsByFollowedUsers")) || [];
@@ -41,27 +41,27 @@ async function syncEvents() {
         }
 
         // Compare local vs. remote events, and update the UI only if a change occurred
-        const hash = {};
+        const hashEvents = {};
         const eventsLocalJSON = JSON.stringify(localEvents);
         const eventsRemoteJSON = JSON.stringify(events);
-        hash.local =
+        hashEvents.local =
           (await invitesCrypto.hash(eventsLocalJSON)) || JSON.stringify([]);
-        hash.remote =
+        hashEvents.remote =
           (await invitesCrypto.hash(eventsRemoteJSON)) || JSON.stringify([]);
 
         // Compare local vs. remote events by followed users, and update the UI only if a change occurred
-        const hashFollowedUsers = {};
-        const eventsFollowedUsersLocalJSON = JSON.stringify(
+        const hashEventsByFollowedUsers = {};
+        const eventsByFollowedUsersLocalJSON = JSON.stringify(
           localEventsByFollowedUsers
         );
-        const eventsFollowedUsersRemoteJSON = JSON.stringify(
+        const eventsByFollowedUsersRemoteJSON = JSON.stringify(
           eventsByFollowedUsers
         );
-        hashFollowedUsers.local =
-          (await invitesCrypto.hash(eventsFollowedUsersLocalJSON)) ||
+        hashEventsByFollowedUsers.local =
+          (await invitesCrypto.hash(eventsByFollowedUsersLocalJSON)) ||
           JSON.stringify([]);
-        hashFollowedUsers.remote =
-          (await invitesCrypto.hash(eventsFollowedUsersRemoteJSON)) ||
+        hashEventsByFollowedUsers.remote =
+          (await invitesCrypto.hash(eventsByFollowedUsersRemoteJSON)) ||
           JSON.stringify([]);
 
         hideToast();
@@ -80,17 +80,23 @@ async function syncEvents() {
         } else {
           await localforage.setItem("eventsByFollowedUsers", []);
         }
+        await localforage.setItem("followedUsers", followedUsers);
 
         // Update the view if events have changed
-        let changed = false;
+        let eventsHaveChanged = false;
         if (
-          hash.local !== hash.remote ||
-          hashFollowedUsers.local !== hashFollowedUsers.remote
+          hashEvents.local !== hashEvents.remote ||
+          hashEventsByFollowedUsers.local !== hashEventsByFollowedUsers.remote
         ) {
-          changed = true;
+          eventsHaveChanged = true;
         }
 
-        resolve(events, eventsByFollowedUsers, changed);
+        resolve({
+          eventsHaveChanged: eventsHaveChanged,
+          events: events,
+          eventsByFollowedUsers: eventsByFollowedUsers,
+          followedUsers: followedUsers,
+        });
       })
       .catch((err) => {
         console.error(err);
