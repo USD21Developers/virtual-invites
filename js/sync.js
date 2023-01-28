@@ -7,7 +7,7 @@ async function syncEvents() {
 
   return new Promise((resolve, reject) => {
     if (!isOnline)
-      return reject(new Error("sync failed because user is offline"));
+      return reject(new Error("Events sync failed because user is offline"));
 
     fetch(endpoint, {
       mode: "cors",
@@ -29,13 +29,13 @@ async function syncEvents() {
         // Validate sync response
         if (!Array.isArray(events)) {
           hideToast();
-          reject(new Error("Events in sync response must be an array."));
+          reject(new Error("'events' in sync response must be an array."));
         }
         if (!Array.isArray(eventsByFollowedUsers)) {
           hideToast();
           reject(
             new Error(
-              "Events by followed users in sync response must be an array."
+              "'eventsByFollowedUsers' in sync response must be an array."
             )
           );
         }
@@ -66,7 +66,7 @@ async function syncEvents() {
 
         hideToast();
 
-        // Update IDB
+        // Update IndexedDB
         if (events.length) {
           await localforage.setItem("events", events);
         } else {
@@ -100,7 +100,7 @@ async function syncEvents() {
 
     setTimeout(() => {
       controller.abort();
-      reject(new Error("event sync timed out"));
+      reject(new Error("Events sync timed out"));
     }, timeout);
   });
 }
