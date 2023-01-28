@@ -596,7 +596,8 @@ async function onFollowClicked(e) {
         item.classList.add("btn-success");
         item.innerText = getPhrase("btnFollowing");
       });
-    followUser(userid, e);
+    await followUser(userid, e);
+    await syncEvents();
   } else if (status === "followed") {
     // Change button text from "Following" to "Follow"
     e.target.setAttribute("data-status", "follow");
@@ -611,7 +612,8 @@ async function onFollowClicked(e) {
         item.classList.add("btn-primary");
         item.innerText = getPhrase("btnFollow");
       });
-    unfollowUser(userid, e);
+    await unfollowUser(userid, e);
+    await syncEvents();
   }
 }
 
