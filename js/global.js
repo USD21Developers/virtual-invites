@@ -3,6 +3,68 @@ let pageContent = "";
 let previewContent = "";
 var hidden, visibilityChange;
 
+/*
+  FUNCTIONS:
+
+  invitesCrypto
+    .decrypt
+    .decryptMessage
+    .deserialize
+    .encrypt
+    .encryptMessage
+    .exportCryptoKey
+    .generateIV
+    .generateKey
+    .getMessageEncoding
+    .hash
+    .importSecretKey
+    .serialize
+  breakify
+  clearErrorMessages
+  enableTooltips
+  formError
+  formErrorsReset
+  getAccessToken
+  getChurches
+  getApiHost
+  getApiServicesHost
+  getCountryName
+  getCountries
+  getHash
+  getLang
+  getCountry
+  getLocale
+  getNextRecurringWeekday
+  getPhrase
+  getGlobalPhrase
+  getPreviewPhrase
+  getStoredChurch
+  getTimezoneOffset
+  getUserChurchId
+  getUserId
+  globalHidePageSpinner
+  randomIntFromInterval
+  hide
+  isMobileDevice
+  populateContent
+  populateGlobalContent
+  customScrollTo
+  refreshFloatingLabels
+  refreshFloatingLabelsListener
+  setCountry
+  show
+  showAlert
+  showEventDateTime
+  showMaterialIcons
+  showModal
+  hideToast
+  showToast
+  spacify
+  updateFollowActivity
+  validateEmail
+  initGlobal
+*/
+
 const invitesCrypto = {
   decrypt: (serializedKey, encryptionObject) => {
     const key = invitesCrypto.deserialize(serializedKey);
