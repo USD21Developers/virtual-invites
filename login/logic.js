@@ -1,3 +1,13 @@
+async function clearStorage() {
+  await localforage.removeItem("events");
+  await localforage.removeItem("eventsByFollowedUsers");
+  await localforage.removeItem("followedUsers");
+  localStorage.removeItem("lastEventSelected");
+  localStorage.removeItem("country");
+  localStorage.removeItem("refreshToken");
+  sessionStorage.removeItem("accessToken");
+}
+
 function onSubmit(e) {
   e.preventDefault();
   const spinner = document.querySelector("#progressbar");
@@ -103,6 +113,7 @@ function attachListeners() {
 }
 
 async function init() {
+  clearStorage();
   await populateContent();
   attachListeners();
   globalHidePageSpinner();
