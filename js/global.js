@@ -790,7 +790,10 @@ async function populateContent(customEndpoint, variable = "pageContent") {
           )?.content;
           if (matchedcontent) item.setAttribute("placeholder", matchedcontent);
         });
-        breadcrumbs ? (breadcrumbs.style.display = "flex") : "";
+        if (breadcrumbs) {
+          breadcrumbs.style.display = "flex";
+          breadcrumbs.classList.remove("d-none");
+        }
         await populateGlobalContent();
         refreshFloatingLabels();
         resolve();
