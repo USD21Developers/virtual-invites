@@ -138,7 +138,7 @@ function renderEvents() {
                   <span class="material-icons material-symbols-outlined">
                     edit
                   </span>
-                  <div class="mt-1 small" data-i18n="btnEdit"></div>
+                  <div class="mt-1 small">${getPhrase("btnEdit")}</div>
                 </a>
 
                 <a
@@ -148,7 +148,7 @@ function renderEvents() {
                   <span class="material-icons material-symbols-outlined">
                     delete
                   </span>
-                  <div class="mt-1 small" data-i18n="btnDelete"></div>
+                  <div class="mt-1 small">${getPhrase("btnDelete")}</div>
                 </a>
               </div>
             </div>
@@ -171,15 +171,14 @@ function renderEvents() {
 }
 
 async function init() {
-  const p1 = populateContent();
   await populateContent();
   await renderEvents();
+
   const { eventsHaveChanged } = await syncEvents();
+
+  globalHidePageSpinner();
+
   if (eventsHaveChanged) await renderEvents();
-  const p2 = populateContent();
-  Promise.all([p1, p2]).then(() => {
-    globalHidePageSpinner();
-  });
 }
 
 init();

@@ -791,7 +791,7 @@ async function populateContent(customEndpoint, variable = "pageContent") {
           )?.content;
           if (matchedcontent) item.setAttribute("placeholder", matchedcontent);
         });
-        if (breadcrumbs) {
+        if (!!breadcrumbs) {
           breadcrumbs.style.display = "flex";
           breadcrumbContainer.classList.remove("d-none");
         }
