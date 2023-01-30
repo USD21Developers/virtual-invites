@@ -16,7 +16,7 @@ async function checkForEvents() {
   }
 
   if (!hasEvents) {
-    return window.location.href = "../events/needed/";
+    return (window.location.href = "../events/needed/");
   } else {
     return new Promise((resolve, reject) => {
       resolve();
@@ -32,10 +32,12 @@ function clearForm() {
 }
 
 function enableWebShareAPI() {
-  const supportsWebShareAPI = (!!navigator.share) || false;      // TURNING OFF WEB SHARE API FOR
+  const supportsWebShareAPI = !!navigator.share || false; // TURNING OFF WEB SHARE API FOR
 
   if (supportsWebShareAPI) {
-    document.querySelector("#sendvia option[value='otherapps']").classList.remove("d-none");
+    document
+      .querySelector("#sendvia option[value='otherapps']")
+      .classList.remove("d-none");
   }
 }
 
@@ -57,7 +59,7 @@ async function eventDetails(events, eventid) {
   const meetingdetails = document.querySelector("#meetingdetails");
   const selectedEvent = eventEl.selectedOptions[0];
 
-  if (! Array.isArray(events)) {
+  if (!Array.isArray(events)) {
     events = await localforage.getItem("events");
   }
 
@@ -67,11 +69,16 @@ async function eventDetails(events, eventid) {
 
   // TODO:  If no events detected, redirect user to a UX that explains that they need to add events.
 
-  const event = events.filter(item => item.eventid == eventid);
+  const event = events.filter((item) => item.eventid == eventid);
 
   if (!event.length) return;
 
-  const { locationname="", locationaddressline1="", locationaddressline2="", locationaddressline3="" } = event[0];
+  const {
+    locationname = "",
+    locationaddressline1 = "",
+    locationaddressline2 = "",
+    locationaddressline3 = "",
+  } = event[0];
 
   eventDateTime = await showEventDateTime(event[0]);
 
@@ -82,9 +89,21 @@ async function eventDetails(events, eventid) {
   meetingdetails_timedate.innerHTML = `${eventDateTime}`;
   meetingdetails_location.innerHTML = `
     ${!!locationname && locationname.length ? locationname : ""}
-    ${!!locationaddressline1 && locationaddressline1.length ? "<br>" + locationaddressline1 : ""}
-    ${!!locationaddressline2 && locationaddressline2.length ? "<br>" + locationaddressline2 : ""}
-    ${!!locationaddressline3 && locationaddressline3.length ? "<br>" + locationaddressline3 : ""}
+    ${
+      !!locationaddressline1 && locationaddressline1.length
+        ? "<br>" + locationaddressline1
+        : ""
+    }
+    ${
+      !!locationaddressline2 && locationaddressline2.length
+        ? "<br>" + locationaddressline2
+        : ""
+    }
+    ${
+      !!locationaddressline3 && locationaddressline3.length
+        ? "<br>" + locationaddressline3
+        : ""
+    }
   `;
   meetingdetails.classList.remove("d-none");
 }
@@ -269,30 +288,37 @@ function loadDummyEvents() {
   return JSON.stringify(events);
 }
 
-function loadEvents() {
+async function loadEvents() {
   const events_dropdown = document.querySelector("#events_dropdown");
   const meetingdetails = document.querySelector("#meetingdetails");
   const events_default = localStorage.getItem("events_default") || 0;
   const lastEventSelected = localStorage.getItem("lastEventSelected") || "";
 
+  const events = await localforage.getItem("events");
+  const eventsByFollowedUsers = await localforage.getItem(
+    "eventsByFollowedUsers"
+  );
+  const followedUsers = await localforage.getItem("followedUsers");
+
   return new Promise((resolve, reject) => {
-    localforage.getItem("events").then(events => {
+    localforage.getItem("events").then((events) => {
       let optionsContainLastEventSelected = false;
       let options = "";
-    
+
       events.forEach(async (event) => {
         const { eventid, title } = event;
-        if (eventid == lastEventSelected) optionsContainLastEventSelected = true;
+        if (eventid == lastEventSelected)
+          optionsContainLastEventSelected = true;
         options += `<option value="${eventid}">${title}</option>`;
       });
-    
+
       events_dropdown.innerHTML = options;
       events_dropdown.options[events_default].selected = true;
       if (lastEventSelected.length && optionsContainLastEventSelected)
         events_dropdown.value = lastEventSelected;
-    
+
       const eventid = events_dropdown.value;
-    
+
       eventDetails(events, eventid);
       meetingdetails.classList.remove("d-none");
       resolve();
@@ -405,7 +431,8 @@ async function onSubmitButtonClick(e) {
   const sendTo = getSendTo();
   const sendBody = getSendBody();
   const emailSubjectLine = getEmailSubjectLine();
-  const recipientName = document.querySelector("#recipientname").value.trim() || "";
+  const recipientName =
+    document.querySelector("#recipientname").value.trim() || "";
 
   clearErrorMessages();
 
@@ -425,7 +452,7 @@ async function onSubmitButtonClick(e) {
         const msg = getPhrase("phoneNumberIsRequired");
         const msgInline = getPhrase("fieldRequired");
         const inputEl = document.querySelector(".iti--allow-dropdown");
-        const errorContainer = document.createElement("div")
+        const errorContainer = document.createElement("div");
         errorContainer.classList.add("invalid-feedback");
         inputEl.appendChild(errorContainer);
         e.preventDefault();
@@ -436,7 +463,7 @@ async function onSubmitButtonClick(e) {
         const msg = getPhrase("phoneNumberMustBeValid");
         const msgInline = getPhrase("validPhoneNumberIsRequired");
         const inputEl = document.querySelector(".iti--allow-dropdown");
-        const errorContainer = document.createElement("div")
+        const errorContainer = document.createElement("div");
         errorContainer.classList.add("invalid-feedback");
         inputEl.appendChild(errorContainer);
         e.preventDefault();
@@ -488,7 +515,7 @@ async function onSubmitButtonClick(e) {
       const shareData = {
         title: decodeURI(emailSubjectLine),
         text: sendBody,
-        url: url
+        url: url,
       };
 
       try {
@@ -507,7 +534,6 @@ async function onSubmitButtonClick(e) {
       e.preventDefault();
       onAfterSubmitted("qrcode");
   }
-
 }
 
 function onTagWithLocation(e) {
@@ -547,7 +573,10 @@ function populateSaveButtonData() {
   const btnSendInvite = document.querySelector("#btnSendInvite");
   btnSendInvite.setAttribute("data-defaulttext", getPhrase("buttonsendinvite"));
   btnSendInvite.setAttribute("data-qrcodetext", getPhrase("buttonsaveinvite"));
-  btnSendInvite.setAttribute("data-otherappstext", getPhrase("buttonsendinvite"));
+  btnSendInvite.setAttribute(
+    "data-otherappstext",
+    getPhrase("buttonsendinvite")
+  );
 }
 
 async function resetSendButtonText() {
@@ -646,7 +675,8 @@ function selectSendVia(method) {
     case "otherapps":
       localStorage.setItem("lastSendMethodSelected", "otherapps");
       isMobile && containerTagWithLocation.classList.remove("d-none");
-      btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-otherappstext");
+      btnSendInvite.innerHTML =
+        btnSendInvite.getAttribute("data-otherappstext");
       break;
   }
 }
@@ -681,7 +711,12 @@ function setDefaultSendMethod() {
   }
 }
 
-function showError(msg, selector, inlineMsg, modalSelector = "#modalFormErrors") {
+function showError(
+  msg,
+  selector,
+  inlineMsg,
+  modalSelector = "#modalFormErrors"
+) {
   const formIncomplete = getPhrase("formIncomplete");
 
   formErrorsReset();
@@ -691,7 +726,7 @@ function showError(msg, selector, inlineMsg, modalSelector = "#modalFormErrors")
       formError(selector, inlineMsg);
     } else {
       formError(selector);
-    };
+    }
   }
 
   showModal(msg, formIncomplete, "true", modalSelector);
@@ -760,7 +795,7 @@ async function init() {
   setEventListeners();
   getCoordinatesOnLoad();
   showTagInviteWithLocation();
-  globalHidePageSpinner()
+  globalHidePageSpinner();
 }
 
 init();
