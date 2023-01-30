@@ -21,6 +21,7 @@ var hidden, visibilityChange;
     .serialize
   breakify
   clearErrorMessages
+  clearStorage
   enableTooltips
   formError
   formErrorsReset
@@ -197,6 +198,17 @@ function clearErrorMessages() {
   document.querySelectorAll(".is-invalid").forEach((item) => {
     item.classList.remove("is-invalid");
   });
+}
+
+async function clearStorage() {
+  await localforage.removeItem("events");
+  await localforage.removeItem("eventsByFollowedUsers");
+  await localforage.removeItem("followedUsers");
+  localStorage.removeItem("lastEventSelected");
+  localStorage.removeItem("country");
+  localStorage.removeItem("refreshToken");
+  localStorage.removeItem("datakey");
+  sessionStorage.removeItem("accessToken");
 }
 
 function enableTooltips() {
