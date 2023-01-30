@@ -739,6 +739,7 @@ async function populateContent(customEndpoint, variable = "pageContent") {
     const lang = localStorage.getItem("lang") || "en";
     const endpoint = customEndpoint ? customEndpoint : `i18n/${lang}.json`;
     const breadcrumbs = document.querySelector("nav .breadcrumb");
+    const breadcrumbContainer = document.querySelector("#breadcrumbs");
 
     fetch(endpoint)
       .then((res) => res.json())
@@ -792,7 +793,7 @@ async function populateContent(customEndpoint, variable = "pageContent") {
         });
         if (breadcrumbs) {
           breadcrumbs.style.display = "flex";
-          breadcrumbs.classList.remove("d-none");
+          breadcrumbContainer.classList.remove("d-none");
         }
         await populateGlobalContent();
         refreshFloatingLabels();
