@@ -171,7 +171,7 @@ function renderEvents() {
 }
 
 async function init() {
-  // await populateContent();
+  await populateContent();
   await renderEvents();
   const { eventsHaveChanged } = await syncEvents();
   if (eventsHaveChanged) await renderEvents();
