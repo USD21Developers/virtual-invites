@@ -28,6 +28,7 @@ function followUser(userid, e) {
               .format();
             updateFollowActivity(userFollowed, whenFollowed, "followed");
             updateFollowCounts(data.otherUserNow);
+            syncEvents();
             resolve(data.msg);
             break;
           default:
@@ -35,11 +36,13 @@ function followUser(userid, e) {
             e.target.innerText = getPhrase("btnFollow");
             e.target.classList.remove("btn-success");
             e.target.classList.add("btn-primary");
+            syncEvents();
             resolve(data.msg);
         }
       })
       .catch((err) => {
         console.error(err);
+        syncEvents();
         reject(err);
       });
   });
@@ -597,6 +600,7 @@ function unfollowUser(userid, e) {
               .format();
             updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
             updateFollowCounts(data.otherUserNow);
+            syncEvents();
             resolve(data.msg);
             break;
           default:
@@ -604,11 +608,13 @@ function unfollowUser(userid, e) {
             e.target.classList.remove("btn-primary");
             e.target.classList.add("btn-success");
             e.target.innerText = getPhrase("btnFollowing");
+            syncEvents();
             resolve(data.msg);
         }
       })
       .catch((err) => {
         console.error(err);
+        syncEvents();
         reject(err);
       });
   });
