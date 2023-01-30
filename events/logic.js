@@ -171,12 +171,15 @@ function renderEvents() {
 }
 
 async function init() {
+  const p1 = populateContent();
   await populateContent();
   await renderEvents();
   const { eventsHaveChanged } = await syncEvents();
   if (eventsHaveChanged) await renderEvents();
-  // await populateContent();
-  globalHidePageSpinner();
+  const p2 = populateContent();
+  Promise.all([p1, p2]).then(() => {
+    globalHidePageSpinner();
+  });
 }
 
 init();
