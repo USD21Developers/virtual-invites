@@ -175,7 +175,7 @@ async function init() {
   await renderEvents();
   const { eventsHaveChanged } = await syncEvents();
   if (eventsHaveChanged) await renderEvents();
-  await populateContent();
+  // await populateContent();
   globalHidePageSpinner();
 }
 
