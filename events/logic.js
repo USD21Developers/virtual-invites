@@ -172,14 +172,22 @@ async function renderFollowedEvents() {
     );
     const followedUsers = await localforage.getItem("followedUsers");
 
-    if (!eventsByFollowedUsers.length) return resolve();
-
     let html = "";
 
-    if (followedUsers.length) {
-      el.innerHTML = "";
+    if (!followedUsers.length) {
+      el.innerHTML = `
+        <div class="text-muted text-center">
+          ${getPhrase("notFollowingAnyone")}
+        </div>`;
+      return resolve();
+    } else if (!eventsByFollowedUsers.length) {
+      el.innerHTML = `
+        <div class="text-muted text-center">
+          ${getPhrase("noEventsFromUsersIFollow")}
+        </div>`;
+      return resolve();
     } else {
-      resolve();
+      return resolve();
     }
 
     followedUsers.forEach(async (followedUser) => {

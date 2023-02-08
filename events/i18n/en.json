@@ -118,6 +118,11 @@
       "translated": "(Not following anyone)"
     },
     {
+      "key": "noEventsFromUsersIFollow",
+      "original": "There are no events from users I follow.",
+      "translated": "There are no events from users I follow."
+    },
+    {
       "key": "eventsFromMe",
       "original": "From Me:",
       "translated": "From Me:"
