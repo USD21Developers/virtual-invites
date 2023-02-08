@@ -1,6 +1,4 @@
 function renderEvents() {
-  const pageSpinner = document.querySelector("#pageSpinner");
-  const pageContent = document.querySelector("#pageContent");
   return new Promise((resolve, reject) => {
     localforage
       .getItem("events")
@@ -162,23 +160,197 @@ function renderEvents() {
       .catch((error) => {
         console.error(error);
         reject(error);
-      })
-      .finally(() => {
-        pageSpinner.classList.add("d-none");
-        pageContent.classList.remove("d-none");
       });
+  });
+}
+
+async function renderFollowedEvents() {
+  return new Promise(async (resolve, reject) => {
+    const el = document.querySelector("#followedEvents");
+    const eventsByFollowedUsers = await localforage.getItem(
+      "eventsByFollowedUsers"
+    );
+    const followedUsers = await localforage.getItem("followedUsers");
+
+    if (!eventsByFollowedUsers.length) return resolve();
+
+    let html = "";
+
+    if (followedUsers.length) {
+      el.innerHTML = "";
+    } else {
+      resolve();
+    }
+
+    followedUsers.forEach(async (followedUser) => {
+      const eventsByFollowedUser = eventsByFollowedUsers.filter(
+        (item) => item.createdBy === followedUser.userid
+      );
+      if (eventsByFollowedUser.length) {
+        const followedUserEventsHTML = await renderFollowedUser(
+          followedUser,
+          eventsByFollowedUser
+        );
+        el.innerHTML += followedUserEventsHTML;
+      }
+    });
+
+    resolve(html);
+  });
+}
+
+async function renderFollowedUser(followedUser, eventsByFollowedUser) {
+  const {
+    churchid,
+    firstname,
+    gender,
+    lang,
+    lastname,
+    profilephoto,
+    userid,
+    usertype,
+  } = followedUser;
+  const name = `${firstname} ${lastname}`;
+  let church = getStoredChurch(churchid);
+  if (!church) {
+    await getChurches();
+    church = getStoredChurch(churchid);
+  }
+  const churchName = church.name;
+  let churchPlace = church.place;
+
+  const loggedInUserId = getUserId();
+  const userCountry = localStorage.getItem("country");
+  const userLang = getLang();
+  const countries = JSON.parse(localStorage.getItem("countries")).names;
+  const followedUserCountryName = getCountryName(church.country, countries);
+
+  if (userCountry !== church.country) {
+    churchPlace = `${church.place}<br>${followedUserCountryName}`;
+  }
+
+  const followedUserEventHTML = await renderListOfEvents(eventsByFollowedUser);
+
+  let html = `
+    <div class="card border-dark bg-light mb-4">
+      <div class="card-header border-bottom-0 pb-0">
+        <button
+          type="button"
+          class="close ml-3 mb-3"
+          data-dismiss="alert"
+          aria-label="${close}"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+        <div class="media">
+          <a href="../u/#${userid}">
+            <img
+              class="align-self-start mr-3"
+              width="90"
+              height="90"
+              src="${profilephoto}"
+              alt="${name}"
+            />
+          </a>
+          <div class="media-body">
+            <a
+              href="../u/#${userid}"
+              class="text-underline font-weight-bold text-dark"
+            >
+              ${name}
+            </a>
+            <div>
+              <small>
+                ${churchName}<br />
+                ${churchPlace}
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="list-group">
+          ${followedUserEventHTML}
+        </div>
+      </div>
+    </div>
+  `;
+
+  return html;
+}
+
+function renderListOfEvents(eventsByFollowedUser) {
+  return new Promise(async (resolve, reject) => {
+    const badgeBibleTalk = `
+      <div class="badge badge-light border border-dark badge-pill mt-1 mb-2 mr-2">
+        ${getGlobalPhrase("bibletalk")}
+      </div>
+    `;
+
+    const badgeChurchService = `
+      <div class="badge badge-light border border-dark badge-pill mt-1 mb-2 mr-2">
+        ${getGlobalPhrase("churchservice")}
+      </div>
+    `;
+
+    const badgeOnline = `
+      <div class="badge badge-light border border-dark badge-pill mt-1 mb-2 mr-2">
+        ${getGlobalPhrase("online")}
+      </div>
+    `;
+
+    let listHTML = "";
+
+    for (let i = 0; i < eventsByFollowedUser.length; i++) {
+      const eventInfo = eventsByFollowedUser[i];
+      const { churchid, hasvirtual, title, type } = eventInfo;
+      const eventDateTime = await showEventDateTime(eventInfo);
+      let badgeHTML = "";
+
+      if (type === "bible talk") {
+        badgeHTML = badgeBibleTalk;
+      } else if (type === "church service") {
+        badgeHTML = badgeChurchService;
+      }
+
+      if (hasvirtual === 1) {
+        badgeHTML += badgeOnline;
+      }
+
+      listHTML += `
+      <a
+        href="#"
+        class="list-group-item list-group-item-action"
+        data-eventid="${churchid}"
+      >
+        <div class="text-dark"><strong>${title}</strong></div>
+        <div>${eventDateTime}</div>
+        <div class="eventBadges">
+          ${badgeHTML}
+        </div>
+      </a>
+    `;
+    }
+
+    resolve(listHTML);
   });
 }
 
 async function init() {
   await populateContent();
   await renderEvents();
+  await renderFollowedEvents();
 
   const { eventsHaveChanged } = await syncEvents();
 
   globalHidePageSpinner();
 
-  if (eventsHaveChanged) await renderEvents();
+  if (eventsHaveChanged) {
+    globalShowPageSpinner();
+    await renderEvents();
+    await renderFollowedEvents();
+    globalHidePageSpinner();
+  }
 }
 
 init();

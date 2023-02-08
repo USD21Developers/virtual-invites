@@ -111,6 +111,11 @@
       "key": "frequencyEverySaturday",
       "original": "Every Saturday",
       "translated": "Saturdays"
+    },
+    {
+      "key": "notFollowingAnyone",
+      "original": "(You are not following anyone)",
+      "translated": "(You are not following anyone)"
     }
   ],
 

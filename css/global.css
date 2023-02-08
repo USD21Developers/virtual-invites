@@ -240,3 +240,7 @@ strong {
     display: none !important;
   }
 }
+
+.badge {
+  font-size: 14px;
+}

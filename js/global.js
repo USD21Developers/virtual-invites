@@ -31,6 +31,7 @@ var hidden, visibilityChange;
   getApiServicesHost
   getCountryName
   getCountries
+  getFollowedUser
   getHash
   getLang
   getCountry
@@ -44,6 +45,7 @@ var hidden, visibilityChange;
   getUserChurchId
   getUserId
   globalHidePageSpinner
+  globalShowPageSpinner
   randomIntFromInterval
   hide
   isMobileDevice
@@ -507,6 +509,19 @@ function getCountries(lang) {
   });
 }
 
+function getFollowedUser(userid) {
+  return new Promise(async (resolve, reject) => {
+    if (!typeof localforage)
+      reject(new Error("localforage is a required dependency"));
+    const followedUsers = await localforage.getItem("followedUsers");
+    if (!followedUsers)
+      return new Error("missing followedUsers key in IndexedDB");
+    const user = followedUsers.find((item) => (item.userid = userid));
+    if (!user) return reject(false);
+    return resolve(user);
+  });
+}
+
 function getHash() {
   return (
     document.location.hash.substring(1, document.location.hash.length) || ""
@@ -728,6 +743,16 @@ function globalHidePageSpinner() {
   breadcrumbs?.classList.remove("d-none");
   pageSpinner.classList.add("d-none");
   mainContent.classList.remove("d-none");
+}
+
+function globalShowPageSpinner() {
+  const breadcrumbs = document.querySelector("#breadcrumbs");
+  const pageSpinner = document.querySelector("#pageSpinner");
+  const mainContent = document.querySelector(".mainContent");
+
+  breadcrumbs?.classList.add("d-none");
+  pageSpinner.classList.remove("d-none");
+  mainContent.classList.add("d-none");
 }
 
 function randomIntFromInterval(min = 0, max = 500) {
