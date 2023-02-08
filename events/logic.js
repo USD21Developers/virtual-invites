@@ -350,6 +350,21 @@ function renderListOfEvents(eventsByFollowedUser) {
   });
 }
 
+function onFollowedEventClicked(e) {
+  e.preventDefault();
+  const eventid = e.target.getAttribute("data-eventid");
+  console.log(eventid);
+}
+
+function attachListeners() {
+  document
+    .querySelector("#followedEvents")
+    .querySelectorAll("a[data-eventid]")
+    .forEach((item) => {
+      item.addEventListener("click", onFollowedEventClicked);
+    });
+}
+
 async function init() {
   await populateContent();
   await renderEvents();
@@ -367,6 +382,8 @@ async function init() {
     fixLinksToFollowedUsersPage();
     globalHidePageSpinner();
   }
+
+  attachListeners();
 }
 
 init();
