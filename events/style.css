@@ -32,3 +32,7 @@
 .list-group-item-action:active {
   border: 1px solid #424242;
 }
+
+#followedEvents .alert-link {
+  text-decoration: underline;
+}
