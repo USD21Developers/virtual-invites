@@ -265,7 +265,7 @@ async function renderEvents(events) {
     if (item.hasvirtual) {
       badgeHTML += `
         <div class="badge badge-light border border-dark badge-pill mt-1 mb-2 mr-2">
-          ${getGlobalPhrase("online")}
+          ${getGlobalPhrase("streamed")}
         </div>
       `;
     }
