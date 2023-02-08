@@ -352,7 +352,7 @@ function renderListOfEvents(eventsByFollowedUser) {
 
 function onFollowedEventClicked(e) {
   e.preventDefault();
-  const eventid = e.target.getAttribute("data-eventid");
+  const eventid = e.currentTarget.getAttribute("data-eventid");
   console.log(eventid);
 }
 
