@@ -1,3 +1,11 @@
+function fixLinksToFollowedUsersPage() {
+  document.querySelectorAll("a[href='../following']").forEach((item) => {
+    const userId = item.parentElement.getAttribute("data-userid");
+    const href = `../following/#${userId}`;
+    item.setAttribute("href", href);
+  });
+}
+
 function renderEvents() {
   return new Promise((resolve, reject) => {
     localforage
@@ -275,7 +283,7 @@ async function renderFollowedUser(followedUser, eventsByFollowedUser) {
         </div>
       </div>
       <div class="card-body">
-        <div class="list-group">
+        <div class="list-group" data-userid="${userid}">
           ${followedUserEventHTML}
         </div>
       </div>
@@ -355,6 +363,7 @@ async function init() {
     globalShowPageSpinner();
     await renderEvents();
     await renderFollowedEvents();
+    fixLinksToFollowedUsersPage();
     globalHidePageSpinner();
   }
 }
