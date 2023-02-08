@@ -182,7 +182,7 @@ async function renderFollowedEvents() {
       return resolve();
     } else if (!eventsByFollowedUsers.length) {
       el.innerHTML = `
-        <div class="text-muted text-center">
+        <div class="text-center">
           ${getPhrase("noEventsFromUsersIFollow")}
         </div>`;
       return resolve();

@@ -120,7 +120,16 @@
     {
       "key": "noEventsFromUsersIFollow",
       "original": "There are no events from users I follow.",
-      "translated": "There are no events from users I follow."
+      "translated": "There are no events from users I follow.",
+      "changes": [
+        {
+          "original": "users I follow",
+          "translated": "users I follow",
+          "bold": false,
+          "italic": false,
+          "link": "../following/"
+        }
+      ]
     },
     {
       "key": "eventsFromMe",
