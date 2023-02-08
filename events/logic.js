@@ -186,8 +186,6 @@ async function renderFollowedEvents() {
           ${getPhrase("noEventsFromUsersIFollow")}
         </div>`;
       return resolve();
-    } else {
-      return resolve();
     }
 
     followedUsers.forEach(async (followedUser) => {
