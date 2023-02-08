@@ -34,5 +34,6 @@
 }
 
 #followedEvents .alert-link {
+  color: var(--primary);
   text-decoration: underline;
 }
