@@ -116,6 +116,21 @@
       "key": "notFollowingAnyone",
       "original": "(Not following anyone)",
       "translated": "(Not following anyone)"
+    },
+    {
+      "key": "eventsFromMe",
+      "original": "From Me:",
+      "translated": "From Me:"
+    },
+    {
+      "key": "eventsFromUsersIFollow",
+      "original": "From Users I Follow:",
+      "translated": "From Users I Follow:"
+    },
+    {
+      "key": "followAUser",
+      "original": "Follow a User",
+      "translated": "Follow a User"
     }
   ],
 
