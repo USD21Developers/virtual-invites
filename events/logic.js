@@ -1,6 +1,6 @@
 function fixLinksToFollowedUsersPage() {
-  document.querySelectorAll("a[href='../following']").forEach((item) => {
-    const userId = item.parentElement.getAttribute("data-userid");
+  document.querySelectorAll("a[href='../following/']").forEach((item) => {
+    const userId = getUserId();
     const href = `../following/#${userId}`;
     item.setAttribute("href", href);
   });
@@ -283,7 +283,7 @@ async function renderFollowedUser(followedUser, eventsByFollowedUser) {
         </div>
       </div>
       <div class="card-body">
-        <div class="list-group" data-userid="${userid}">
+        <div class="list-group">
           ${followedUserEventHTML}
         </div>
       </div>
