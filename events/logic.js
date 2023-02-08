@@ -206,6 +206,7 @@ async function renderFollowedEvents() {
           eventsByFollowedUser
         );
         el.innerHTML += followedUserEventsHTML;
+        fixLinksToFollowedUsersPage();
       }
     });
 
@@ -363,7 +364,6 @@ async function init() {
     globalShowPageSpinner();
     await renderEvents();
     await renderFollowedEvents();
-    fixLinksToFollowedUsersPage();
     globalHidePageSpinner();
   }
 }
