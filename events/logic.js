@@ -14,7 +14,13 @@ function renderEvents() {
         const el = document.querySelector("#myEvents");
         let eventsHTML = "";
         if (!Array.isArray(myEvents)) return resolve();
-        if (!myEvents.length) return resolve();
+        if (!myEvents.length) {
+          el.innerHTML = `
+            <div class="text-center">
+              ${getPhrase("noEventsFromMe")}
+            </div>`;
+          return resolve();
+        }
         myEvents.forEach((myEvent) => {
           const {
             country,

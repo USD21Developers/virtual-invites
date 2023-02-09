@@ -132,14 +132,19 @@
       ]
     },
     {
+      "key": "noEventsFromMe",
+      "original": "I have added no events.",
+      "translated": "I have added no events."
+    },
+    {
       "key": "eventsFromMe",
-      "original": "From Me:",
-      "translated": "From Me:"
+      "original": "Events Added by Me:",
+      "translated": "Events Added by Me:"
     },
     {
       "key": "eventsFromUsersIFollow",
-      "original": "From Users I Follow:",
-      "translated": "From Users I Follow:"
+      "original": "Events Added by Users I Follow:",
+      "translated": "Events Added by Users I Follow:"
     },
     {
       "key": "followAUser",
