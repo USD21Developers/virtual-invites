@@ -119,8 +119,8 @@
     },
     {
       "key": "noEventsFromUsersIFollow",
-      "original": "There are no events at this time from users I follow.",
-      "translated": "There are no events at this time from users I follow.",
+      "original": "Currently there are no events from users I follow.",
+      "translated": "Currently there are no events from users I follow.",
       "changes": [
         {
           "original": "users I follow",
