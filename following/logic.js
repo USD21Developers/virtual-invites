@@ -329,7 +329,7 @@ function renderProfile(userdata, churchinfo) {
   }
 
   if (numFollowedBy > 0) {
-    followedByText = `<a href="../following/#${getHash()}" class="followCount">${followedByText}</a>`;
+    followedByText = `<a href="../followers/#${getHash()}" class="followCount">${followedByText}</a>`;
   }
 
   document.title = document.title.replace("{name}", name);
