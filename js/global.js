@@ -22,6 +22,7 @@ var hidden, visibilityChange;
   breakify
   clearErrorMessages
   clearStorage
+  customScrollTo
   enableTooltips
   formError
   formErrorsReset
@@ -46,12 +47,12 @@ var hidden, visibilityChange;
   getUserId
   globalHidePageSpinner
   globalShowPageSpinner
-  randomIntFromInterval
   hide
+  hideToast
   isMobileDevice
   populateContent
   populateGlobalContent
-  customScrollTo
+  randomIntFromInterval
   refreshFloatingLabels
   refreshFloatingLabelsListener
   setCountry
@@ -60,12 +61,10 @@ var hidden, visibilityChange;
   showEventDateTime
   showMaterialIcons
   showModal
-  hideToast
   showToast
   spacify
   updateFollowActivity
   validateEmail
-  initGlobal
 */
 
 const invitesCrypto = {
