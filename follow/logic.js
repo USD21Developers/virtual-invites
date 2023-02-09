@@ -117,22 +117,16 @@ async function populateChurches() {
       (item) => item.country === countryIso
     );
     let churchesInCountryHtml = "";
-    let skipThisIteration = false;
 
     if (!churchesInCountry.length) continue;
 
     churchesInCountry.sort((a, b) => (a.place > b.place ? 1 : -1));
     churchesInCountry.forEach((church) => {
       const { country, id, name, place } = church;
-      if (!place) {
-        skipThisIteration = true;
-        return;
-      }
+      if (!place) return;
       const option = `<option value="${id}" data-name="${name}">${place}</option>`;
       churchesInCountryHtml += option;
     });
-
-    if (skipThisIteration) continue;
 
     churchesInCountryHtml = `<optgroup label="${countryName}" data-country="${countryIso}">${churchesInCountryHtml}</optgroup>`;
     if (churchesInCountryHtml.length) {
