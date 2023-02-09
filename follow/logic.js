@@ -226,16 +226,15 @@ async function refreshButtons(dataFromApi) {
 }
 
 function selectUserChurch() {
-  const userChurchId = JSON.parse(
-    atob(localStorage.getItem("refreshToken").split(".")[1])
-  ).churchid;
+  const church = getStoredChurch(getUserChurchId());
+  const userChurchId = church.id;
   const churchEl = document.querySelector("#churchid");
 
   if (typeof userChurchId !== "number") return;
 
   churchEl.value = userChurchId;
 
-  const churchName = churchEl.selectedOptions[0].getAttribute("data-name");
+  const churchName = church.name;
   const churchNameEl = document.querySelector("#selectedChurchName");
 
   churchNameEl.innerText = churchName;
