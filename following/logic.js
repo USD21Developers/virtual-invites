@@ -328,8 +328,8 @@ function renderProfile(userdata, churchinfo) {
     );
   }
 
-  if (numFollowing > 0) {
-    followingText = `<a href="../following/#${getHash()}" class="followCount">${followingText}</a>`;
+  if (numFollowedBy > 0) {
+    followedByText = `<a href="../following/#${getHash()}" class="followCount">${followedByText}</a>`;
   }
 
   document.title = document.title.replace("{name}", name);
