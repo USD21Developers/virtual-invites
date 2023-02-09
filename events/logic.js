@@ -196,7 +196,7 @@ async function renderFollowedEvents() {
       return resolve();
     } else if (!eventsByFollowedUsers.length) {
       el.innerHTML = `
-        <div class="text-center">
+        <div class="text-center" id="noEventsFromUsersIFollow">
           ${getPhrase("noEventsFromUsersIFollow")}
         </div>`;
       return resolve();
