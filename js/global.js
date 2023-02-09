@@ -827,9 +827,6 @@ async function populateContent(customEndpoint, variable = "pageContent") {
           )?.content;
           if (matchedcontent) item.setAttribute("placeholder", matchedcontent);
         });
-        if (!!breadcrumbs) {
-          breadcrumbs.style.display = "flex";
-        }
         await populateGlobalContent();
         refreshFloatingLabels();
         resolve();
