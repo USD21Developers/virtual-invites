@@ -839,7 +839,6 @@ function populateGlobalContent() {
   return new Promise((resolve, reject) => {
     const lang = localStorage.getItem("lang") || "en";
     const endpoint = `/i18n-global/${lang}.json`;
-    const breadcrumbs = document.querySelector("nav .breadcrumb");
 
     fetch(endpoint)
       .then((res) => res.json())
@@ -889,7 +888,6 @@ function populateGlobalContent() {
             )?.content;
             if (matchedcontent) item.setAttribute("aria-label", matchedcontent);
           });
-        breadcrumbs ? (breadcrumbs.style.display = "flex") : "";
         resolve();
       })
       .catch((err) => {
