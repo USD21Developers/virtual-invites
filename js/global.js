@@ -829,7 +829,6 @@ async function populateContent(customEndpoint, variable = "pageContent") {
         });
         if (!!breadcrumbs) {
           breadcrumbs.style.display = "flex";
-          breadcrumbContainer.classList.remove("d-none");
         }
         await populateGlobalContent();
         refreshFloatingLabels();
