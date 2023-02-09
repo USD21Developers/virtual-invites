@@ -774,8 +774,6 @@ async function populateContent(customEndpoint, variable = "pageContent") {
   return new Promise((resolve, reject) => {
     const lang = localStorage.getItem("lang") || "en";
     const endpoint = customEndpoint ? customEndpoint : `i18n/${lang}.json`;
-    const breadcrumbs = document.querySelector("nav .breadcrumb");
-    const breadcrumbContainer = document.querySelector("#breadcrumbs");
 
     fetch(endpoint)
       .then((res) => res.json())
