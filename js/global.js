@@ -739,9 +739,11 @@ function globalHidePageSpinner() {
   const pageSpinner = document.querySelector("#pageSpinner");
   const mainContent = document.querySelector(".mainContent");
 
-  breadcrumbs ? (breadcrumbs.style.display = "flex") : "";
+  if (breadcrumbs) {
+    breadcrumbs.querySelector(".breadcrumb").style.display = "flex";
+    breadcrumbs.classList.remove("d-none");
+  }
 
-  breadcrumbs?.classList.remove("d-none");
   pageSpinner.classList.add("d-none");
   mainContent.classList.remove("d-none");
 }
