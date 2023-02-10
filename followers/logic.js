@@ -195,6 +195,8 @@ function getProfileInfo() {
         const churchinfo = await getChurchInfo(data.profile.churchid);
         userProfileInfo = data.profile;
         renderProfile(data.profile, churchinfo);
+      })
+      .then(() => {
         resolve();
       })
       .catch((err) => {
