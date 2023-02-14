@@ -722,6 +722,8 @@ async function onPreviewOpened() {
           });
           appleCalLink.href = URL.createObjectURL(appleCalFile);
           appleCalLink.download = "appleCal.ics";
+          appleCalLink.click();
+          URL.revokeObjectURL(appleCalLink.href);
           break;
         case "google":
           config.description = buildCalendarDescription(
@@ -739,6 +741,8 @@ async function onPreviewOpened() {
           const iCalFile = new Blob([iCalContent], { type: "text/calendar" });
           iCalLink.href = URL.createObjectURL(iCalFile);
           iCalLink.download = "ical.ics";
+          iCalLink.click();
+          URL.revokeObjectURL(iCalLink.href);
           break;
       }
       $("#atcbOptions").collapse("hide");
