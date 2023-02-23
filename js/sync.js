@@ -1,3 +1,54 @@
+function syncChurches() {
+  const endpoint = `${getApiServicesHost()}/churches`;
+  const isOnline = navigator.onLine;
+  const controller = new AbortController();
+  const timeout = 8000;
+
+  return new Promise((resolve, reject) => {
+    if (!isOnline)
+      return reject(new Error("Churches sync failed because user is offline"));
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "GET",
+      signal: controller.signal,
+      keepalive: true,
+    })
+      .then((res) => res.json())
+      .then(async (data) => {
+        if (data.msgType !== "success") {
+          throw new Error(data.msg);
+        }
+
+        const { churches } = data;
+        const churchesJSON = JSON.stringify(churches);
+        const churchesJSONStored = localStorage.getItem("churches");
+        const hashChurchesRemote = await invitesCrypto.hash(churchesJSON);
+        const hashChurchesLocal = await invitesCrypto.hash(churchesJSONStored);
+        let churchesHaveChanged = false;
+
+        if (hashChurchesLocal !== hashChurchesRemote) {
+          churchesHaveChanged = true;
+          localStorage.setItem("churches", churchesJSON);
+        }
+
+        resolve({
+          churchesHaveChanged: churchesHaveChanged,
+          churches: churches,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+        reject(err);
+      });
+
+    setTimeout(() => {
+      controller.abort();
+      reject(new Error("Churches sync timed out"));
+    }, timeout);
+  });
+}
+
 async function syncEvents() {
   const endpoint = `${getApiHost()}/sync-events`;
   const accessToken = await getAccessToken();

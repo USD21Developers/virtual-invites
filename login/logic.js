@@ -66,7 +66,7 @@ function onSubmit(e) {
           localStorage.setItem("refreshToken", data.refreshToken);
           sessionStorage.setItem("accessToken", data.accessToken);
           const countriesPromise = getCountries(getLang());
-          const churchesPromise = getChurches();
+          const churchesPromise = syncChurches();
           await Promise.all([countriesPromise, churchesPromise]);
           window.location.href = "../";
           break;

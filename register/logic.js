@@ -12,22 +12,8 @@ let photoData = {
 let vanilla;
 
 function getChurches() {
-  return new Promise((resolve, reject) => {
-    const host = getApiServicesHost();
-    const endpoint = `${host}/churches`;
-
-    fetch(endpoint)
-      .then((res) => res.json())
-      .then((data) => {
-        churches = data.churches;
-        localStorage.setItem("churches", JSON.stringify(churches));
-        resolve(data.churches);
-      })
-      .catch((err) => {
-        console.error(err);
-        reject(err);
-      });
-  });
+  const syncChurchesPromise = syncChurches();
+  return syncChurchesPromise;
 }
 
 function getCountries() {
