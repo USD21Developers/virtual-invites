@@ -597,6 +597,26 @@
           "link": ""
         }
       ]
+    },
+    {
+      "key": "eventVisibility",
+      "original": "Event Visibility:",
+      "translated": "Event Visibility:"
+    },
+    {
+      "key": "hideFromFollowers",
+      "original": "Hide this event from my followers",
+      "translated": "Hide this event from my followers"
+    },
+    {
+      "key": "hideFromFollowersHint",
+      "original": "Checking this box means that only you (and not your followers) will be able to invite people to this event. (This can be useful if the event is not open to the public.)",
+      "translated": "Checking this box means that only you (and not your followers) will be able to invite people to this event. (This can be useful if the event is not open to the public.)"
+    },
+    {
+      "key": "hideFromFollowersNote",
+      "original": "NOTE: once an invite has been sent, the recipient will always be able to see the event details.",
+      "translated": "NOTE: once an invite has been sent, the recipient will always be able to see the event details."
     }
   ],
 
