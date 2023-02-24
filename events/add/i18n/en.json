@@ -600,8 +600,8 @@
     },
     {
       "key": "eventVisibility",
-      "original": "Event Visibility:",
-      "translated": "Event Visibility:"
+      "original": "Visibility:",
+      "translated": "Visibility:"
     },
     {
       "key": "hideFromFollowers",
