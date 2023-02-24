@@ -11,9 +11,10 @@ let photoData = {
 
 let vanilla;
 
-function getChurches() {
-  const syncChurchesPromise = syncChurches();
-  return syncChurchesPromise;
+async function getChurches() {
+  const churchesObj = await syncChurches();
+  churches = churchesObj.churches;
+  return churches;
 }
 
 function getCountries() {
