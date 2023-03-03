@@ -193,6 +193,7 @@ function getCalendarObject() {
   o.longitude = form.longitude.value;
   o.otherLocationDetails = form.otherLocationDetails.value;
   o.attendVirtuallyConnectionDetails = form.connectionDetails.value;
+  o.shareWithFollowers = form.sharewithfollowers.value;
   o.contactFirstName = form.contactFirstName.value;
   o.contactLastName = form.contactLastName.value;
   o.contactPhone = iti.getNumber() || "";

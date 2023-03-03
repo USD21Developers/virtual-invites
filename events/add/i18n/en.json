@@ -599,24 +599,29 @@
       ]
     },
     {
-      "key": "eventVisibility",
-      "original": "Visibility:",
-      "translated": "Visibility:"
+      "key": "headlineFollowers",
+      "original": "My Followers:",
+      "translated": "My Followers:"
     },
     {
-      "key": "hideFromFollowers",
-      "original": "Hide this event from my followers",
-      "translated": "Hide this event from my followers"
+      "key": "bylineFollowers",
+      "original": "Allow users that follow me to invite people to this event?",
+      "translated": "Allow users that follow me to invite people to this event?"
     },
     {
-      "key": "hideFromFollowersHint",
-      "original": "Checking this box means that only you (and not your followers) will be able to invite people to this event. (This can be useful if the event is not open to the public.)",
-      "translated": "Checking this box means that only you (and not your followers) will be able to invite people to this event. (This can be useful if the event is not open to the public.)"
+      "key": "shareWithFollowersDefault",
+      "original": "(default)",
+      "translated": "(default)"
     },
     {
-      "key": "hideFromFollowersNote",
-      "original": "NOTE: once an invite has been sent, the recipient will always be able to see the event details.",
-      "translated": "NOTE: once an invite has been sent, the recipient will always be able to see the event details."
+      "key": "shareWithFollowersYesExplanation",
+      "original": "My followers can send invites for this event.",
+      "translated": "My followers can send invites for this event."
+    },
+    {
+      "key": "shareWithFollowersNoExplanation",
+      "original": "Only I can send invites for this event.",
+      "translated": "Only I can send invites for this event."
     }
   ],
 

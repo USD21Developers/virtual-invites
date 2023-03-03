@@ -162,6 +162,16 @@
       "key": "streamed",
       "original": "Streamed",
       "translated": "Streamed"
+    },
+    {
+      "key": "yes",
+      "original": "Yes",
+      "translated": "Yes"
+    },
+    {
+      "key": "no",
+      "original": "No",
+      "translated": "No"
     }
   ],
 
