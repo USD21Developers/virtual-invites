@@ -2115,7 +2115,6 @@ async function syncEvents() {
           pageSpinner.classList.remove("d-none");
           if (events.length) {
             setTimeout(async () => {
-              await renderEvents();
               pageContent.classList.remove("d-none");
               pageSpinner.classList.add("d-none");
               showToast(phraseEventsSynced, 2000);
