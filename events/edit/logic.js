@@ -194,6 +194,7 @@ function getCalendarObject() {
   o.longitude = form.longitude.value;
   o.otherLocationDetails = form.otherLocationDetails.value;
   o.attendVirtuallyConnectionDetails = form.connectionDetails.value;
+  o.shareWithFollowers = form.sharewithfollowers.value;
   o.contactFirstName = form.contactFirstName.value;
   o.contactLastName = form.contactLastName.value;
   o.contactPhone = iti.getNumber() || "";
@@ -412,6 +413,7 @@ async function loadEvent() {
     title,
     type,
     attendVirtuallyConnectionDetails,
+    sharewithfollowers,
   } = event;
 
   let coordinates = {};
@@ -539,6 +541,11 @@ async function loadEvent() {
     attendVirtuallyConnectionDetails.length
       ? attendVirtuallyConnectionDetails
       : "";
+  if (sharewithfollowers === "no") {
+    document.querySelector("#shareWithFollowersNo").checked = true;
+  } else {
+    document.querySelector("#shareWithFollowersYes").checked = true;
+  }
   document.querySelector("#contactFirstName").value = contactfirstname;
   document.querySelector("#contactLastName").value = contactlastname;
 

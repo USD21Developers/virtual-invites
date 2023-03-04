@@ -598,6 +598,32 @@
         }
       ]
     },
+
+    {
+      "key": "headlineFollowers",
+      "original": "Share With My Followers:",
+      "translated": "Share With My Followers:"
+    },
+    {
+      "key": "bylineFollowers",
+      "original": "Allow users that follow me to invite people to this event?",
+      "translated": "Allow users that follow me to invite people to this event?"
+    },
+    {
+      "key": "shareWithFollowersDefault",
+      "original": "(default)",
+      "translated": "(default)"
+    },
+    {
+      "key": "shareWithFollowersYesExplanation",
+      "original": "My followers can send invites for this event.",
+      "translated": "My followers can send invites for this event."
+    },
+    {
+      "key": "shareWithFollowersNoExplanation",
+      "original": "Only I can send invites for this event.",
+      "translated": "Only I can send invites for this event."
+    },
     {
       "key": "eventsSynced",
       "original": "Events synced.",
