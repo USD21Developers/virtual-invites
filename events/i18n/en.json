@@ -138,13 +138,13 @@
     },
     {
       "key": "eventsFromMe",
-      "original": "Events Added by Me:",
-      "translated": "Events Added by Me:"
+      "original": "My Events:",
+      "translated": "My Events:"
     },
     {
       "key": "eventsFromUsersIFollow",
-      "original": "Events Added by Users I Follow:",
-      "translated": "Events Added by Users I Follow:"
+      "original": "Events from Users I Follow:",
+      "translated": "Events from Users I Follow:"
     },
     {
       "key": "followAUser",
