@@ -9,9 +9,16 @@ const geoLocationOptions = {
 
 async function checkForEvents() {
   const events = await localforage.getItem("events");
+  const eventsByFollowedUsers = await localforage.getItem(
+    "eventsByFollowedUsers"
+  );
   let hasEvents = false;
 
   if (Array.isArray(events) && events.length) {
+    hasEvents = true;
+  }
+
+  if (Array.isArray(eventsByFollowedUsers) && eventsByFollowedUsers.length) {
     hasEvents = true;
   }
 
