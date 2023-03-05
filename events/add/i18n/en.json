@@ -609,11 +609,6 @@
       "translated": "Allow users that follow me to invite people to this event?"
     },
     {
-      "key": "shareWithFollowersDefault",
-      "original": "(default)",
-      "translated": "(default)"
-    },
-    {
       "key": "shareWithFollowersYesExplanation",
       "original": "My followers can send invites for this event.",
       "translated": "My followers can send invites for this event."
