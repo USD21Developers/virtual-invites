@@ -429,6 +429,7 @@ async function showEvent(event) {
     title,
     type,
     virtualconnectiondetails,
+    sharewithfollowers,
   } = event;
 
   const eventTimeAndDateHTML = await showEventDateTime(event);
