@@ -8,8 +8,8 @@ const geoLocationOptions = {
 };
 
 async function checkForEvents() {
-  const events = await localforage.getItem("events");
-  const eventsByFollowedUsers = await localforage.getItem(
+  let events = await localforage.getItem("events");
+  let eventsByFollowedUsers = await localforage.getItem(
     "eventsByFollowedUsers"
   );
   let hasEvents = false;
@@ -23,10 +23,46 @@ async function checkForEvents() {
   }
 
   if (!hasEvents) {
-    return (window.location.href = "../events/needed/");
+    return new Promise((resolve, reject) => {
+      syncEvents()
+        .then(async () => {
+          events = await localforage.getItem("events");
+          eventsByFollowedUsers = await localforage.getItem(
+            "eventsByFollowedUsers"
+          );
+
+          if (Array.isArray(events) && events.length) {
+            hasEvents = true;
+          }
+
+          if (
+            Array.isArray(eventsByFollowedUsers) &&
+            eventsByFollowedUsers.length
+          ) {
+            hasEvents = true;
+          }
+
+          if (!hasEvents) {
+            return (window.location.href = "../events/needed/");
+          } else {
+            resolve();
+          }
+        })
+        .catch((err) => {
+          if (
+            err === "event sync timed out" ||
+            err === "sync failed because user is offline"
+          ) {
+            return (window.location.href = "../events/needed/");
+          } else {
+            console.error(err);
+          }
+        });
+    });
   } else {
     return new Promise((resolve, reject) => {
       resolve();
+      syncEvents();
     });
   }
 }
