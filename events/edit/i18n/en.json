@@ -620,6 +620,11 @@
       "translated": "Only I can send invites for this event."
     },
     {
+      "key": "recommended",
+      "original": "(Recommended)",
+      "translated": "(Recommended)"
+    },
+    {
       "key": "eventsSynced",
       "original": "Events synced.",
       "translated": "Events synced."

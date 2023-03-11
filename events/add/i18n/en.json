@@ -617,6 +617,11 @@
       "key": "shareWithFollowersNoExplanation",
       "original": "Only I can send invites for this event.",
       "translated": "Only I can send invites for this event."
+    },
+    {
+      "key": "recommended",
+      "original": "(Recommended)",
+      "translated": "(Recommended)"
     }
   ],
 
