@@ -172,6 +172,11 @@
       "key": "no",
       "original": "No",
       "translated": "No"
+    },
+    {
+      "key": "recommended",
+      "original": "(Recommended)",
+      "translated": "(Recommended)"
     }
   ],
 
