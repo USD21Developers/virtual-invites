@@ -186,6 +186,8 @@ async function renderFollowedEvents() {
     );
     const followedUsers = await localforage.getItem("followedUsers");
 
+    if (!followedUsers) return [];
+
     let html = "";
 
     if (!followedUsers.length) {
