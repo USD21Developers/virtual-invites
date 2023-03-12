@@ -410,6 +410,7 @@ async function loadEvents() {
       matchedOption.selected = true;
     } else {
       events_dropdown.options[0].selected = true;
+      localStorage.removeItem("lastEventSelected");
     }
 
     resolve();
