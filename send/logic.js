@@ -403,9 +403,12 @@ async function loadEvents() {
 
     events_dropdown.innerHTML = optionsHTML;
 
-    events_dropdown.querySelector(
+    const matchedOption = events_dropdown.querySelector(
       `option[value="${lastEventSelected}"]`
-    ).selected = true;
+    );
+    if (matchedOption) {
+      matchedOption.selected = true;
+    }
 
     resolve();
   });
