@@ -408,6 +408,8 @@ async function loadEvents() {
     );
     if (matchedOption) {
       matchedOption.selected = true;
+    } else {
+      events_dropdown.options[0].selected = true;
     }
 
     resolve();
