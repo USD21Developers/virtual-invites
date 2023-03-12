@@ -47,6 +47,7 @@ var hidden, visibilityChange;
   getUserId
   globalHidePageSpinner
   globalShowPageSpinner
+  hamburgerClose
   hide
   hideToast
   isMobileDevice
@@ -756,6 +757,13 @@ function globalShowPageSpinner() {
   breadcrumbs?.classList.add("d-none");
   pageSpinner.classList.remove("d-none");
   mainContent.classList.add("d-none");
+}
+
+function hamburgerClose() {
+  const navdrawerDefault = document.querySelector("#navdrawerDefault");
+  const backdrop = document.querySelector(".navdrawer-backdrop");
+  navdrawerDefault.classList.remove("show");
+  backdrop.classList.remove("show");
 }
 
 function randomIntFromInterval(min = 0, max = 500) {
