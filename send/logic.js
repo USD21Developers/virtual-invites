@@ -334,7 +334,9 @@ function loadDummyEvents() {
 async function loadEvents() {
   const events_dropdown = document.querySelector("#events_dropdown");
   const meetingdetails = document.querySelector("#meetingdetails");
-  const events_default = localStorage.getItem("events_default") || 0;
+  const meetingdetailsContainer = document.querySelector(
+    "#meetingDetailsContainer"
+  );
   const lastEventSelected = localStorage.getItem("lastEventSelected") || "";
 
   const events = await localforage.getItem("events");
@@ -344,28 +346,68 @@ async function loadEvents() {
   const followedUsers = await localforage.getItem("followedUsers");
 
   return new Promise((resolve, reject) => {
-    localforage.getItem("events").then((events) => {
-      let optionsContainLastEventSelected = false;
-      let options = "";
+    const hasOwnEvents = Array.isArray(events) && events.length > 0;
+    const hasEventsByFollowedUsers =
+      Array.isArray(eventsByFollowedUsers) && eventsByFollowedUsers.length > 0;
+    const hasListOfFollowedUsers =
+      Array.isArray(followedUsers) && followedUsers.length > 0;
 
-      events.forEach(async (event) => {
-        const { eventid, title } = event;
-        if (eventid == lastEventSelected)
-          optionsContainLastEventSelected = true;
-        options += `<option value="${eventid}">${title}</option>`;
+    if (!hasOwnEvents && !hasEventsByFollowedUsers) {
+      reject(new Error("no events in IndexedDB"));
+    }
+
+    if (hasEventsByFollowedUsers && !hasListOfFollowedUsers) {
+      reject(new Error("no followed users in IndexedDB"));
+    }
+
+    let optionsHTML = `
+      <option value="">
+        ${getPhrase("dropdownDefault")}
+      </option>
+    `;
+
+    if (hasOwnEvents && !hasEventsByFollowedUsers) {
+      events.forEach((e) => {
+        optionsHTML += `<option value="${e.eventid}">${e.title}</option>`;
       });
+    } else if (!hasOwnEvents && hasEventsByFollowedUsers) {
+      hasListOfFollowedUsers.forEach((followedUser) => {
+        const { userid, firstname, lastname } = followedUser;
+        const eventsByFollowedUser = eventsByFollowedUsers.filter(
+          (e) => e.createdBy === userid
+        );
+        let followedUserHTML = "";
+        followedUserHTML = `<optgroup label="${firstname} ${lastname}" data-userid="${userid}">`;
+        eventsByFollowedUser.forEach((e) => {
+          if (e.eventid === lastEventSelected) {
+            followedUserHTML += `<option value="${e.eventid}" selected>${e.title}</option>`;
+          } else {
+            followedUserHTML += `<option value="${e.eventid}">${e.title}</option>`;
+          }
+        });
+        followedUserHTML = `</optgroup>`;
+        optionsHTML += followedUserHTML;
+      });
+    } else if (hasOwnEvents && hasEventsByFollowedUsers) {
+      let myEventsHTML = "";
+      const { firstname, lastname } = JSON.parse(
+        atob(localStorage.getItem("refreshToken").split(".")[1])
+      );
+      myEventsHTML = `<optgroup label="${firstname} ${lastname}">`;
+      events.forEach((e) => {
+        myEventsHTML += `<option value="${e.eventid}">${e.title}</option>`;
+      });
+      myEventsHTML += `</optgroup>`;
+      optionsHTML += myEventsHTML;
+    }
 
-      events_dropdown.innerHTML = options;
-      events_dropdown.options[events_default].selected = true;
-      if (lastEventSelected.length && optionsContainLastEventSelected)
-        events_dropdown.value = lastEventSelected;
+    events_dropdown.innerHTML = optionsHTML;
 
-      const eventid = events_dropdown.value;
+    events_dropdown.querySelector(
+      `option[value="${lastEventSelected}"]`
+    ).selected = true;
 
-      eventDetails(events, eventid);
-      meetingdetails.classList.remove("d-none");
-      resolve();
-    });
+    resolve();
   });
 }
 

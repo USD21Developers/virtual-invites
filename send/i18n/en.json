@@ -277,6 +277,16 @@
       "key": "eventDetails",
       "original": "Details",
       "translated": "Details"
+    },
+    {
+      "key": "dropdownDefault",
+      "original": "(Select)",
+      "translated": "(Select)"
+    },
+    {
+      "key": "myEvents",
+      "original": "My Events",
+      "translated": "My Events"
     }
   ],
 
