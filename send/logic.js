@@ -881,11 +881,11 @@ async function init() {
   // enableWebShareAPI();    // TURNING OFF WEB SHARE API FOR NOW
   populateSaveButtonData();
   await loadEvents();
-  setDefaultSendMethod();
   initIntlTelInput();
   setEventListeners();
   getCoordinatesOnLoad();
   showTagInviteWithLocation();
+  setDefaultSendMethod();
   globalHidePageSpinner();
 }
 
