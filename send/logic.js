@@ -385,7 +385,7 @@ async function loadEvents() {
             followedUserHTML += `<option value="${e.eventid}">${e.title}</option>`;
           }
         });
-        followedUserHTML = `</optgroup>`;
+        followedUserHTML += `</optgroup>`;
         optionsHTML += followedUserHTML;
       });
     } else if (hasOwnEvents && hasEventsByFollowedUsers) {
