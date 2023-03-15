@@ -793,12 +793,12 @@ function setDefaultSendMethod() {
   const lastSendMethodSelected =
     localStorage.getItem("lastSendMethodSelected") || "";
 
-  document.querySelector("#sendvia").value = defaultSendMethod;
-  selectSendVia(defaultSendMethod);
-
   if (lastSendMethodSelected.length) {
     document.querySelector("#sendvia").value = lastSendMethodSelected;
     selectSendVia(lastSendMethodSelected);
+  } else {
+    document.querySelector("#sendvia").value = defaultSendMethod;
+    selectSendVia(defaultSendMethod);
   }
 }
 
