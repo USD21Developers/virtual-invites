@@ -399,6 +399,24 @@ async function loadEvents() {
       });
       myEventsHTML += `</optgroup>`;
       optionsHTML += myEventsHTML;
+
+      followedUsers.forEach((followedUser) => {
+        const { userid, firstname, lastname } = followedUser;
+        const eventsByFollowedUser = eventsByFollowedUsers.filter(
+          (e) => e.createdBy === userid
+        );
+        let followedUserHTML = "";
+        followedUserHTML = `<optgroup label="${firstname} ${lastname}" data-userid="${userid}">`;
+        eventsByFollowedUser.forEach((e) => {
+          if (e.eventid === lastEventSelected) {
+            followedUserHTML += `<option value="${e.eventid}" selected>${e.title}</option>`;
+          } else {
+            followedUserHTML += `<option value="${e.eventid}">${e.title}</option>`;
+          }
+        });
+        followedUserHTML += `</optgroup>`;
+        optionsHTML += followedUserHTML;
+      });
     }
 
     events_dropdown.innerHTML = optionsHTML;
