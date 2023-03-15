@@ -789,7 +789,7 @@ function saveAndSync() {
 }
 
 function setDefaultSendMethod() {
-  const defaultSendMethod = localStorage.getItem("defaultSendMethod") || "";
+  const defaultSendMethod = "sms";
   const lastSendMethodSelected =
     localStorage.getItem("lastSendMethodSelected") || "";
 
