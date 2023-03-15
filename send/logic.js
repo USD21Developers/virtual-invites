@@ -885,8 +885,8 @@ async function init() {
   setEventListeners();
   getCoordinatesOnLoad();
   showTagInviteWithLocation();
-  setDefaultSendMethod();
   globalHidePageSpinner();
+  setDefaultSendMethod();
 }
 
 init();
