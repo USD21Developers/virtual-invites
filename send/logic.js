@@ -371,7 +371,7 @@ async function loadEvents() {
         optionsHTML += `<option value="${e.eventid}">${e.title}</option>`;
       });
     } else if (!hasOwnEvents && hasEventsByFollowedUsers) {
-      hasListOfFollowedUsers.forEach((followedUser) => {
+      followedUsers.forEach((followedUser) => {
         const { userid, firstname, lastname } = followedUser;
         const eventsByFollowedUser = eventsByFollowedUsers.filter(
           (e) => e.createdBy === userid
@@ -734,7 +734,7 @@ function selectSendVia(method) {
       isMobile && containerTagWithLocation.classList.remove("d-none");
       populateQrCode().then((obj) => {
         let downloadLink = document.createElement("a");
-        downloadLink.setAttribute("download", "invite.png");
+        downloadLink.setAttribute("download", "invite-qrcode.png");
         const dataURL = obj.toDataURL();
         const url = dataURL.replace(
           /^data:image\/png/,
