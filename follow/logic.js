@@ -258,7 +258,9 @@ function showMatchesFound(matches) {
     const lastname = matches[i].lastname;
     const gender = matches[i].gender;
     const followid = matches[i].followid;
-    const profilephoto = matches[i].profilephoto.replace("400.jpg", "140.jpg");
+    const profilephoto = matches[i].profilephoto.length
+      ? matches[i].profilephoto.replace("400.jpg", "140.jpg")
+      : "";
     const btnFollow =
       followid === null ? getPhrase("btnFollow") : getPhrase("btnFollowing");
     const btnProfile = getPhrase("btnProfile");
