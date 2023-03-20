@@ -900,6 +900,19 @@ function populateGlobalContent() {
             )?.content;
             if (matchedcontent) item.setAttribute("aria-label", matchedcontent);
           });
+        const profileImageNav = document.querySelector(".profileImageNav");
+        const { firstname, lastname, profilephoto } = JSON.parse(
+          atob(localStorage.getItem("refreshToken").split(".")[1])
+        );
+        const userFullName = `${firstname} ${lastname}`;
+        const profilePhotoNav = profilephoto.replace("400", "140");
+        const altText = getGlobalPhrase("profilePhotoAlt").replace(
+          "{name}",
+          userFullName
+        );
+        profileImageNav?.setAttribute("alt", altText);
+        profileImageNav?.setAttribute("src", profilePhotoNav);
+        profileImageNav?.parentElement.classList.remove("d-none");
         resolve();
       })
       .catch((err) => {

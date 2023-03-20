@@ -172,6 +172,11 @@
       "key": "no",
       "original": "No",
       "translated": "No"
+    },
+    {
+      "key": "profilePhotoAlt",
+      "original": "Photo of {name}",
+      "translated": "Photo of {name}"
     }
   ],
 
