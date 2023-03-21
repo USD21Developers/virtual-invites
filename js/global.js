@@ -902,7 +902,8 @@ function populateGlobalContent() {
           });
         const profileImageNav = document.querySelector(".profileImageNav");
         const refreshToken = localStorage.getItem("refreshToken");
-        if (refreshToken) {
+        const accessToken = sessionStorage.getItem("accessToken");
+        if (refreshToken && accessToken) {
           const { firstname, lastname, profilephoto } = JSON.parse(
             atob(localStorage.getItem("refreshToken").split(".")[1])
           );
@@ -912,9 +913,12 @@ function populateGlobalContent() {
             "{name}",
             userFullName
           );
-          profileImageNav?.setAttribute("alt", altText);
-          profileImageNav?.setAttribute("src", profilePhotoNav);
-          profileImageNav?.parentElement.classList.remove("d-none");
+          const img = `<img src="${profilePhotoNav}" alt="${altText}" />`;
+          profileImageNav.innerHTML = img;
+          profileImageNav
+            ?.querySelector("img")
+            .setAttribute("src", profilePhotoNav);
+          profileImageNav?.classList.remove("d-none");
         }
         resolve();
       })

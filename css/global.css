@@ -251,11 +251,13 @@ strong {
 }
 
 .profileImageNav {
-  border: 0;
+  display: inline-block;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.profileImageNav img {
   border-radius: 50%;
-  float: left;
   height: 50px;
-  margin-left: 17px;
-  margin-right: 17px;
   width: 50px;
 }
