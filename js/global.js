@@ -903,7 +903,7 @@ function populateGlobalContent() {
         const profileImageNav = document.querySelector(".profileImageNav");
         const refreshToken = localStorage.getItem("refreshToken");
         const accessToken = sessionStorage.getItem("accessToken");
-        if (refreshToken && accessToken) {
+        if (profileImageNav && refreshToken && accessToken) {
           const { firstname, lastname, profilephoto } = JSON.parse(
             atob(localStorage.getItem("refreshToken").split(".")[1])
           );
