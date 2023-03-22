@@ -110,6 +110,7 @@ function initCroppie() {
       "#photoPreviewContainer"
     );
     const photoPreviewSpinner = document.querySelector("#photoPreviewSpinner");
+    const submitButton = document.querySelector("#formsubmit");
 
     croppieContainer.innerHTML = "";
     croppieContainer.classList.remove("croppie-container");
@@ -134,6 +135,7 @@ function initCroppie() {
         })
         .then(() => {
           photoPreviewSpinner.classList.add("d-none");
+          submitButton.removeAttribute("disabled");
           showRotateButtons();
           croppieContainer.addEventListener("update", function (evt) {
             const { points, zoom, orientation } = vanilla.get();
@@ -164,6 +166,7 @@ function initCroppie() {
     if (isHeic) {
       const readerHeic = new FileReader();
 
+      submitButton.setAttribute("disabled", "disabled");
       photoPreviewSpinner.classList.remove("d-none");
 
       await loadHeic2Any();
