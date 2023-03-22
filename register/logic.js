@@ -109,6 +109,7 @@ function initCroppie() {
     const photoPreviewContainer = document.querySelector(
       "#photoPreviewContainer"
     );
+    const photoPreviewSpinner = document.querySelector("#photoPreviewSpinner");
 
     croppieContainer.innerHTML = "";
     croppieContainer.classList.remove("croppie-container");
@@ -132,6 +133,7 @@ function initCroppie() {
           orientation: 1,
         })
         .then(() => {
+          photoPreviewSpinner.classList.add("d-none");
           showRotateButtons();
           croppieContainer.addEventListener("update", function (evt) {
             const { points, zoom, orientation } = vanilla.get();
@@ -161,6 +163,8 @@ function initCroppie() {
         : false;
     if (isHeic) {
       const readerHeic = new FileReader();
+
+      photoPreviewSpinner.classList.remove("d-none");
 
       await loadHeic2Any();
 
