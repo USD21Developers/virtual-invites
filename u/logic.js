@@ -516,29 +516,30 @@ async function showEvent(event) {
     locationHTML = getPhrase("inquireForLocation");
   }
 
-  if (userid === createdBy) {
-    modalHTML = `
-      <div class="mb-4">
-        <div>
-          <strong class="text-dark">${getPhrase("datetime")}</strong>
-        </div>
-        ${eventTimeAndDateHTML}
+  modalHTML = `
+    <div class="mb-4">
+      <div>
+        <strong class="text-dark">${getPhrase("datetime")}</strong>
       </div>
+      ${eventTimeAndDateHTML}
+    </div>
 
-      <div class="my-4">
-        <div>
-          <strong class="text-dark">${getPhrase("place")}</strong>
-        </div>
-        ${locationHTML}
+    <div class="my-4">
+      <div>
+        <strong class="text-dark">${getPhrase("place")}</strong>
       </div>
-      
-      <div class="mt-4">
-        <div>
-          <strong class="text-dark">${getPhrase("description")}</strong>
-        </div>
-        ${breakify(description)}
+      ${locationHTML}
+    </div>
+    
+    <div class="mt-4 mb-3">
+      <div>
+        <strong class="text-dark">${getPhrase("description")}</strong>
       </div>
-    `;
+      ${breakify(description)}
+    </div>
+  `;
+
+  if (userid === createdBy) {
     footerHTML = `
       <a href="../events/delete/#${eventid}" class="btn btn-link text-uppercase" data-dismiss="modal">
         ${getPhrase("cancel")}
