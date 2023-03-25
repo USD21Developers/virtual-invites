@@ -1,5 +1,6 @@
 function checkConfirmationToken() {
-  const hash = document.location.hash.substring(1, document.location.hash.length) || "";
+  const hash =
+    document.location.hash.substring(1, document.location.hash.length) || "";
   const endpoint = `${getApiHost()}/register-confirm`;
 
   fetch(endpoint, {
@@ -10,11 +11,10 @@ function checkConfirmationToken() {
     }),
     headers: new Headers({
       "Content-Type": "application/json",
-    })
+    }),
   })
-    .then(res => res.json())
-    .then(data => {
-      const { accessToken = "", refreshToken = "" } = data;
+    .then((res) => res.json())
+    .then((data) => {
       const notrecognized = document.querySelector("#notrecognized");
       const expired = document.querySelector("#expired");
       const glitch = document.querySelector("#glitch");
@@ -44,26 +44,24 @@ function checkConfirmationToken() {
           break;
         case "registration confirmed":
           confirmed.classList.remove("d-none");
-          onConfirmed(refreshToken, accessToken);
+          onConfirmed();
           break;
         default:
           glitch.classList.remove("d-none");
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(err);
     });
 }
 
 function hideContentContainers() {
-  document.querySelectorAll(".contentcontainer").forEach(item => {
+  document.querySelectorAll(".contentcontainer").forEach((item) => {
     item.classList.add("d-none");
   });
 }
 
-function onConfirmed(refreshToken, accessToken) {
-  localStorage.setItem("refreshToken", refreshToken);
-  sessionStorage.setItem("accessToken", accessToken);
+function onConfirmed() {
   sessionStorage.setItem("justRegistered", true);
 }
 
