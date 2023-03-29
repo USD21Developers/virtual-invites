@@ -117,8 +117,10 @@ async function eventDetails() {
   const eventid = eventEl.selectedOptions[0].value;
 
   if (eventid === "") {
+    const qrcode = document.querySelector("#qrcode");
     localStorage.setItem("lastEventSelected", "");
     meetingDetailsContainer.classList.add("d-none");
+    qrcode.classList.add("d-none");
     return;
   }
 
