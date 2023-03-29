@@ -577,8 +577,17 @@ async function onSubmitButtonClick(e) {
   const emailSubjectLine = getEmailSubjectLine();
   const recipientName =
     document.querySelector("#recipientname").value.trim() || "";
+  const events_dropdown = document.querySelector("#events_dropdown");
+  const eventid = events_dropdown.selectedOptions[0].value;
 
   clearErrorMessages();
+
+  if (eventid === "") {
+    const msg = getPhrase("eventIsRequired");
+    const msgInline = getPhrase("fieldRequired");
+    e.preventDefault();
+    return showError(msg, "#events_dropdown", msgInline);
+  }
 
   if (recipientName === "") {
     const msg = getPhrase("recipientNameRequired");

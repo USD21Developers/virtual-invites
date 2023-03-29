@@ -239,6 +239,11 @@
       "translated": "Cancel"
     },
     {
+      "key": "eventIsRequired",
+      "original": "Please select an event.",
+      "translated": "Please select an event."
+    },
+    {
       "key": "phoneNumberIsRequired",
       "original": "Please input the recipient's mobile phone number.",
       "translated": "Please input the recipient's mobile phone number."
