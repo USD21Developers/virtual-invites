@@ -97,24 +97,50 @@ function downloadCanvasAsImage() {
   downloadLink.click();
 }
 
-async function eventDetails(events, eventid) {
+async function eventDetails() {
   const eventEl = document.querySelector("#events_dropdown");
   const meetingdetails = document.querySelector("#meetingdetails");
+  const meetingDetailsContainer = document.querySelector(
+    "#meetingDetailsContainer"
+  );
+  const meetingdetails_timedate = document.querySelector(
+    "#meetingdetails_timedate"
+  );
+  const meetingdetails_location = document.querySelector(
+    "#meetingdetails_location"
+  );
   const selectedEvent = eventEl.selectedOptions[0];
+  const events = await localforage.getItem("events");
+  const eventsByFollowedUsers = await localforage.getItem(
+    "eventsByFollowedUsers"
+  );
+  const eventid = eventEl.selectedOptions[0].value;
 
-  if (!Array.isArray(events)) {
-    events = await localforage.getItem("events");
+  if (eventid === "") {
+    localStorage.setItem("lastEventSelected", "");
+    meetingDetailsContainer.classList.add("d-none");
+    return;
   }
 
-  if (!eventid) {
-    eventid = eventEl.selectedOptions[0].value;
+  let event = [];
+
+  // Try user's events
+  event = Array.isArray(events)
+    ? events.filter((item) => item.eventid == eventid)
+    : [];
+
+  // Try followed users' events
+  if (!event.length) {
+    event = Array.isArray(eventsByFollowedUsers)
+      ? eventsByFollowedUsers.filter((item) => item.eventid == eventid)
+      : [];
   }
 
-  // TODO:  If no events detected, redirect user to a UX that explains that they need to add events.
-
-  const event = events.filter((item) => item.eventid == eventid);
-
-  if (!event.length) return;
+  // If dropdown still does not match events in IndexedDB
+  if (!event.length) {
+    console.error(`Event for eventid ${eventid} not found`);
+    return;
+  }
 
   const {
     locationname = "",
@@ -128,7 +154,7 @@ async function eventDetails(events, eventid) {
   populateQrCode();
 
   if (selectedEvent.value === "") return meetingdetails.classList.add("d-none");
-  localStorage.setItem("lastEventSelected", selectedEvent.value);
+  localStorage.setItem("lastEventSelected", Number(selectedEvent.value));
   meetingdetails_timedate.innerHTML = `${eventDateTime}`;
   meetingdetails_location.innerHTML = `
     ${!!locationname && locationname.length ? locationname : ""}
@@ -149,6 +175,7 @@ async function eventDetails(events, eventid) {
     }
   `;
   meetingdetails.classList.remove("d-none");
+  meetingDetailsContainer.classList.remove("d-none");
 }
 
 async function getCoordinatesOnLoad() {
@@ -430,6 +457,10 @@ async function loadEvents() {
       events_dropdown.options[0].selected = true;
       localStorage.removeItem("lastEventSelected");
     }
+
+    document
+      .querySelector("#events_dropdown")
+      .addEventListener("change", () => eventDetails(null, null));
 
     resolve();
   });
@@ -901,6 +932,7 @@ async function init() {
   await loadEvents();
   initIntlTelInput();
   setEventListeners();
+  eventDetails();
   getCoordinatesOnLoad();
   showTagInviteWithLocation();
   globalHidePageSpinner();
