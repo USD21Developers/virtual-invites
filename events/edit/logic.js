@@ -910,7 +910,15 @@ async function onPreviewOpened() {
         case "apple":
           config.description = buildCalendarDescription(invitePhrases, "apple");
           const appleCal = new datebook.ICalendar(config);
-          appleCal.download();
+          const appleCalContent = appleCal.render();
+          const appleCalLink = document.createElement("a");
+          const appleCalFile = new Blob([appleCalContent], {
+            type: "text/calendar",
+          });
+          appleCalLink.href = URL.createObjectURL(appleCalFile);
+          appleCalLink.download = "appleCal.ics";
+          appleCalLink.click();
+          URL.revokeObjectURL(appleCalLink.href);
           break;
         case "google":
           config.description = buildCalendarDescription(
@@ -923,7 +931,13 @@ async function onPreviewOpened() {
         case "ical":
           config.description = buildCalendarDescription(invitePhrases, "ical");
           const iCal = new datebook.ICalendar(config);
-          iCal.download();
+          const iCalContent = iCal.render();
+          const iCalLink = document.createElement("a");
+          const iCalFile = new Blob([iCalContent], { type: "text/calendar" });
+          iCalLink.href = URL.createObjectURL(iCalFile);
+          iCalLink.download = "ical.ics";
+          iCalLink.click();
+          URL.revokeObjectURL(iCalLink.href);
           break;
       }
       $("#atcbOptions").collapse("hide");
