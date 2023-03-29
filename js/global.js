@@ -203,14 +203,21 @@ function clearErrorMessages() {
 }
 
 async function clearStorage() {
-  await localforage.removeItem("events");
-  await localforage.removeItem("eventsByFollowedUsers");
-  await localforage.removeItem("followedUsers");
+  await localforage.clear().catch((err) => console.error(err));
   localStorage.removeItem("lastEventSelected");
   localStorage.removeItem("country");
   localStorage.removeItem("refreshToken");
   localStorage.removeItem("datakey");
   sessionStorage.removeItem("accessToken");
+}
+
+function configureLocalForage() {
+  localforage.config({
+    name: "invites",
+    version: 1.0,
+    storeName: "keyvaluepairs",
+    description: "Data store for the Invites app",
+  });
 }
 
 function enableTooltips() {
@@ -1244,6 +1251,7 @@ function validateEmail(email) {
 function initGlobal() {
   showMaterialIcons();
   refreshFloatingLabelsListener();
+  configureLocalForage();
 }
 
 initGlobal();
