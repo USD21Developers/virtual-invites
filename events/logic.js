@@ -331,7 +331,7 @@ function renderListOfEvents(eventsByFollowedUser) {
 
       if (type === "bible talk") {
         badgeHTML = badgeBibleTalk;
-      } else if (type === "church service") {
+      } else if (type === "church") {
         badgeHTML = badgeChurchService;
       }
 
