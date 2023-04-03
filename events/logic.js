@@ -261,6 +261,7 @@ async function renderFollowedUser(followedUser, eventsByFollowedUser) {
           type="button"
           class="close ml-3 mb-3"
           data-dismiss="alert"
+          data-followid="${userid}"
           aria-label="${phraseClose}"
         >
           <span aria-hidden="true">×</span>
@@ -362,7 +363,13 @@ function renderListOfEvents(eventsByFollowedUser) {
 function onFollowedEventClicked(e) {
   e.preventDefault();
   const eventid = e.currentTarget.getAttribute("data-eventid");
-  console.log(eventid);
+  console.log(`View eventid ${eventid}`);
+}
+
+function onFollowedUserUnfollowed(e) {
+  e.preventDefault();
+  const followId = e.currentTarget.getAttribute("data-followid");
+  console.log(`Unfollow userid ${followId}`);
 }
 
 function attachListeners() {
@@ -372,6 +379,13 @@ function attachListeners() {
     .forEach((item) => {
       item.addEventListener("click", onFollowedEventClicked);
     });
+
+  document
+    .querySelector("#followedEvents")
+    .querySelectorAll("[data-dismiss='alert']")
+    .forEach((item) =>
+      item.addEventListener("click", onFollowedUserUnfollowed)
+    );
 }
 
 async function init() {
