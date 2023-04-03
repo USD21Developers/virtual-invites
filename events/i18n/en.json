@@ -163,13 +163,13 @@
     },
     {
       "key": "unfollowMale",
-      "original": "You will no longer be able to send invites for his events.",
-      "translated": "You will no longer be able to send invites for his events."
+      "original": "You will no longer see his events in your event list.",
+      "translated": "You will no longer see his events in your event list."
     },
     {
       "key": "unfollowFemale",
-      "original": "You will no longer be able to send invites for her events.",
-      "translated": "You will no longer be able to send invites for her events."
+      "original": "You will no longer see her events in your event list.",
+      "translated": "You will no longer see her events in your event list."
     },
     {
       "key": "unfollow",
