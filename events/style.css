@@ -41,3 +41,7 @@
 #noEventsFromUsersIFollow a {
   white-space: nowrap;
 }
+
+.profilePhoto {
+  border-radius: 50%;
+}

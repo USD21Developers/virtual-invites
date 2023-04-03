@@ -150,6 +150,31 @@
       "key": "followAUser",
       "original": "Follow a User",
       "translated": "Follow a User"
+    },
+    {
+      "key": "unfollowConfirm",
+      "original": "Confirm:",
+      "translated": "Confirm:"
+    },
+    {
+      "key": "unfollowHeader",
+      "original": "Unfollow {firstname} {lastname}?",
+      "translated": "Unfollow {firstname} {lastname}?"
+    },
+    {
+      "key": "unfollowMale",
+      "original": "You will no longer be able to send invites for his events.",
+      "translated": "You will no longer be able to send invites for his events."
+    },
+    {
+      "key": "unfollowFemale",
+      "original": "You will no longer be able to send invites for her events.",
+      "translated": "You will no longer be able to send invites for her events."
+    },
+    {
+      "key": "unfollow",
+      "original": "Unfollow",
+      "translated": "Unfollow"
     }
   ],
 

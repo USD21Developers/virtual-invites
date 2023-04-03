@@ -383,10 +383,69 @@ async function onFollowedEventClicked(e) {
   console.log(eventInfo);
 }
 
-function onFollowedUserUnfollowed(e) {
+async function onFollowedUserUnfollowed(e) {
   e.preventDefault();
-  const followId = e.currentTarget.getAttribute("data-followid");
-  console.log(`Unfollow userid ${followId}`);
+  const followId = Number(e.currentTarget.getAttribute("data-followid"));
+  const followedUsers = await localforage.getItem("followedUsers");
+
+  if (!Array.isArray(followedUsers)) {
+    console.error(`user ${followId} not found`);
+    return;
+  }
+
+  const userInfo = followedUsers.filter((item) => item.userid === followId);
+
+  if (!userInfo.length) {
+    console.error(`info for user ${followId} not found`);
+  }
+
+  const { firstname, lastname, profilephoto, gender } = userInfo[0];
+
+  const profilePhotoUrl = profilephoto.replace("400", "140");
+
+  const title = getPhrase("unfollowConfirm");
+
+  let header = getPhrase("unfollowHeader");
+
+  header = header.replace("{firstname}", firstname);
+  header = header.replace("{lastname}", lastname);
+
+  const warningText =
+    gender === "male" ? getPhrase("unfollowMale") : getPhrase("unfollowFemale");
+
+  const body = `
+    <div class="text-center mb-3">
+      <img src="${profilePhotoUrl}" width="140" height="140" class="profilePhoto">
+    </div>
+
+    <p class="text-center">
+      <strong>${header}</strong>
+    </p>
+    
+    <p class="text-center">
+      ${warningText}
+    </p>
+
+    <p class="text-center mt-4">
+      <button class="btn btn-danger text-white" id="modalConfirmUnfollow" data-followid="${followId}">
+        ${getGlobalPhrase("unfollow")}
+      </button> 
+      <button class="btn btn-link ml-4" data-dismiss="modal">
+        ${getGlobalPhrase("cancel")}
+      </button>
+    </p>
+  `;
+
+  showModal(body, title, true);
+
+  document
+    .querySelector("#modalConfirmUnfollow")
+    .addEventListener("click", onUnfollowConfirmed);
+}
+
+function onUnfollowConfirmed(e) {
+  const userid = Number(e.target.getAttribute("data-followid"));
+  // TODO
 }
 
 function attachListeners() {
