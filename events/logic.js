@@ -445,7 +445,12 @@ async function onFollowedUserUnfollowed(e) {
 
 function onUnfollowConfirmed(e) {
   const userid = Number(e.target.getAttribute("data-followid"));
-  // TODO
+
+  // TODO: Show spinner
+  // TODO: Unfollow from IndexedDB
+  // TODO: Unfollow from API
+
+  $("#modal").modal("toggle");
 }
 
 function attachListeners() {
