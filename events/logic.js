@@ -246,6 +246,7 @@ async function renderFollowedUser(followedUser, eventsByFollowedUser) {
   const userLang = getLang();
   const countries = JSON.parse(localStorage.getItem("countries")).names;
   const followedUserCountryName = getCountryName(church.country, countries);
+  const phraseClose = getGlobalPhrase("close");
 
   if (userCountry !== church.country) {
     churchPlace = `${church.place}<br>${followedUserCountryName}`;
@@ -260,7 +261,7 @@ async function renderFollowedUser(followedUser, eventsByFollowedUser) {
           type="button"
           class="close ml-3 mb-3"
           data-dismiss="alert"
-          aria-label="${close}"
+          aria-label="${phraseClose}"
         >
           <span aria-hidden="true">×</span>
         </button>
