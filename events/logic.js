@@ -327,6 +327,7 @@ function renderListOfEvents(eventsByFollowedUser) {
 
     for (let i = 0; i < eventsByFollowedUser.length; i++) {
       const eventInfo = eventsByFollowedUser[i];
+      const { eventid } = eventInfo;
       const { churchid, hasvirtual, title, type } = eventInfo;
       const eventDateTime = await showEventDateTime(eventInfo);
       let badgeHTML = "";
@@ -345,7 +346,7 @@ function renderListOfEvents(eventsByFollowedUser) {
       <a
         href="#"
         class="list-group-item list-group-item-action"
-        data-eventid="${churchid}"
+        data-eventid="${eventid}"
       >
         <div class="text-dark"><strong>${title}</strong></div>
         <div>${eventDateTime}</div>
