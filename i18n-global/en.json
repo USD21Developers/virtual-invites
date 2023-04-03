@@ -177,6 +177,21 @@
       "key": "profilePhotoAlt",
       "original": "Photo of {name}",
       "translated": "Photo of {name}"
+    },
+    {
+      "key": "follow",
+      "original": "Follow",
+      "translated": "Follow"
+    },
+    {
+      "key": "unfollow",
+      "original": "Unfollow",
+      "translated": "Unfollow"
+    },
+    {
+      "key": "cancel",
+      "original": "Cancel",
+      "translated": "Cancel"
     }
   ],
 
