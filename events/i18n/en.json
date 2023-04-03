@@ -163,13 +163,13 @@
     },
     {
       "key": "unfollowMale",
-      "original": "You will no longer see his events in your event list.",
-      "translated": "You will no longer see his events in your event list."
+      "original": "You will no longer see his events unless you follow him again.",
+      "translated": "You will no longer see his events unless you follow him again."
     },
     {
       "key": "unfollowFemale",
-      "original": "You will no longer see her events in your event list.",
-      "translated": "You will no longer see her events in your event list."
+      "original": "You will no longer see her events unless you follow her again.",
+      "translated": "You will no longer see her events unless you follow her again."
     },
     {
       "key": "unfollow",
