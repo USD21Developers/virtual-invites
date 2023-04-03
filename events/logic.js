@@ -361,10 +361,26 @@ function renderListOfEvents(eventsByFollowedUser) {
   });
 }
 
-function onFollowedEventClicked(e) {
+async function onFollowedEventClicked(e) {
   e.preventDefault();
-  const eventid = e.currentTarget.getAttribute("data-eventid");
-  console.log(`View eventid ${eventid}`);
+  const eventid = Number(e.currentTarget.getAttribute("data-eventid"));
+  const events = await localforage.getItem("eventsByFollowedUsers");
+
+  if (!Array.isArray(events) || !events.length) {
+    console.error("events not found in IndexedDB");
+    return;
+  }
+
+  const event = events.filter((item) => item.eventid === eventid);
+
+  if (!event.length) {
+    console.error(`event ${eventid} not found`);
+    return;
+  }
+
+  const eventInfo = event[0];
+
+  console.log(eventInfo);
 }
 
 function onFollowedUserUnfollowed(e) {
