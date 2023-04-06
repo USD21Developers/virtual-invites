@@ -161,3 +161,48 @@ async function syncEvents() {
     }, timeout);
   });
 }
+
+function syncFollowing() {
+  return new Promise(async (resolve, reject) => {
+    const isOnline = navigator.onLine;
+    const controller = new AbortController();
+    const timeout = 8000;
+    const userid = getUserId();
+    const accessToken = await getAccessToken();
+    const endpoint = `${getApiHost()}/following/${userid}`;
+
+    if (!isOnline)
+      return reject(new Error("Following sync failed because user is offline"));
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+      signal: controller.signal,
+      keepalive: true,
+    })
+      .then(async (data) => {
+        const { msg, following } = data;
+
+        if (msg === "retrieved list of users following") {
+          await localforage.setItem("following", following);
+          return resolve(following);
+        }
+
+        throw new Error(msg);
+      })
+      .catch((err) => {
+        console.error(err);
+        hideToast();
+        reject(err);
+      });
+
+    setTimeout(() => {
+      controller.abort();
+      reject(new Error("Following sync timed out"));
+    }, timeout);
+  });
+}
