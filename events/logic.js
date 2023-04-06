@@ -255,7 +255,7 @@ async function renderFollowedUser(followedUser, eventsByFollowedUser) {
   const followedUserEventHTML = await renderListOfEvents(eventsByFollowedUser);
 
   let html = `
-    <div class="card border-dark bg-light mb-4">
+    <div class="card border-dark bg-light mb-4 followedUser" data-followid="${userid}">
       <div class="card-header border-bottom-0 pb-0">
         <button
           type="button"
@@ -443,14 +443,67 @@ async function onFollowedUserUnfollowed(e) {
     .addEventListener("click", onUnfollowConfirmed);
 }
 
-function onUnfollowConfirmed(e) {
+async function onUnfollowConfirmed(e) {
   const userid = Number(e.target.getAttribute("data-followid"));
 
-  // TODO: Show spinner
-  // TODO: Unfollow from IndexedDB
-  // TODO: Unfollow from API
+  // Unfollow from IndexedDB
+  const eventsByFollowedUsers = await localforage.getItem(
+    "eventsByFollowedUsers"
+  );
+  const followedUsers = await localforage.getItem("followedUsers");
+  const eventsByFollowedUsers2 = eventsByFollowedUsers.filter(
+    (item) => item.createdBy !== userid
+  );
+  const followedUsers2 = followedUsers.filter((item) => item.userid !== userid);
+  await localforage.setItem("eventsByFollowedUsers", eventsByFollowedUsers2);
+  await localforage.setItem("followedUsers", followedUsers2);
 
-  $("#modal").modal("toggle");
+  // Close modal
+  $("#modal").modal("hide");
+
+  // Remove list of events of followed user
+  const followedEvents = document.querySelector("#followedEvents");
+  const followedUserEvents = document.querySelector(
+    `.followedUser[data-followid="${userid}"]`
+  );
+  if (followedUserEvents) followedUserEvents.remove();
+  if (Array.isArray(followedUsers2)) {
+    if (!followedUsers2.length) {
+      followedEvents.innerHTML = `
+        <div class="text-muted text-center">
+          ${getPhrase("notFollowingAnyone")}
+        </div>
+      `;
+    }
+  }
+
+  // Unfollow from API (silently)
+  const accessToken = await getAccessToken();
+  const endpoint = `${getApiHost()}/unfollow-user`;
+  fetch(endpoint, {
+    mode: "cors",
+    method: "POST",
+    body: JSON.stringify({
+      userid: userid,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then(async (data) => {
+      const { msg } = data;
+
+      if (msg === "unfollow successful") {
+        syncEvents();
+        syncFollowing();
+      }
+
+      if (msg !== "unfollow successful") {
+        throw new Error(msg);
+      }
+    })
+    .catch((e) => console.error(e));
 }
 
 function attachListeners() {
