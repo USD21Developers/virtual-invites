@@ -380,7 +380,7 @@ async function onFollowedEventClicked(e) {
 
   const eventInfo = event[0];
 
-  console.log(eventInfo);
+  showEvent(eventInfo);
 }
 
 async function onFollowedUserUnfollowed(e) {
@@ -504,6 +504,169 @@ async function onUnfollowConfirmed(e) {
       }
     })
     .catch((e) => console.error(e));
+}
+
+async function showEvent(event) {
+  const {
+    churchid,
+    contactemail,
+    contactfirstname,
+    contactlastname,
+    contactphone,
+    contactphonecountrydata,
+    country,
+    createdBy,
+    description,
+    duration,
+    durationInHours,
+    eventid,
+    frequency,
+    hasvirtual,
+    lang,
+    locationaddressline1,
+    locationaddressline2,
+    locationaddressline3,
+    locationcoordinates,
+    locationname,
+    locationvisibility,
+    multidaybegindate,
+    multidayenddate,
+    otherlocationdetails,
+    startdate,
+    timezone,
+    title,
+    type,
+    virtualconnectiondetails,
+    sharewithfollowers,
+  } = event;
+
+  const eventTimeAndDateHTML = await showEventDateTime(event);
+  let locationHTML = "";
+  let modalHTML = "";
+  let footerHTML = "";
+  const userid = getUserId();
+  const operatingSystem = getMobileOperatingSystem();
+  const mapCoordinates = locationcoordinates
+    ? `${locationcoordinates.x}, ${locationcoordinates.y}`
+    : "";
+  let coordinatesLink = "";
+  if (operatingSystem === "iOS") {
+    coordinatesLink = `https://maps.apple.com/?daddr=${mapCoordinates}&t=m`;
+  } else {
+    coordinatesLink = `https://www.google.com/maps/search/?api=1&query=${mapCoordinates}`;
+  }
+
+  if (locationvisibility === "public") {
+    if (locationaddressline1 && locationaddressline1.length) {
+      locationHTML = `
+        <div class="location">
+          ${
+            locationname && locationname.length
+              ? "<div class='location_name'>" + locationname + "</div>"
+              : ""
+          }
+
+          <div class='mb-2 location_address'>
+            ${
+              locationaddressline1.length
+                ? "<div class='location_address-line'>" +
+                  locationaddressline1 +
+                  "</div>"
+                : ""
+            }
+            ${
+              locationaddressline2 && locationaddressline2.length
+                ? "<div class='location_address-line'>" +
+                  locationaddressline2 +
+                  "</div>"
+                : ""
+            }
+            ${
+              locationaddressline3 && locationaddressline3.length
+                ? "<div class='location_address-line'>" +
+                  locationaddressline3 +
+                  "</div>"
+                : ""
+            }
+          </div>
+
+          ${
+            mapCoordinates.length
+              ? "<p><a href='" +
+                coordinatesLink +
+                "' class='text-primary'>" +
+                getPhrase("mapAndDirections") +
+                "</a></p>"
+              : ""
+          }
+
+          ${
+            otherlocationdetails && otherlocationdetails.length
+              ? "<div class='mt-2 location_details'>" +
+                breakify(otherlocationdetails) +
+                "</div>"
+              : ""
+          }
+        </div>
+      `;
+    } else {
+      if (locationcoordinates) {
+        locationHTML = `
+          <a href="${coordinatesLink}" class="text-primary">
+            ${getPhrase("mapAndDirections")}
+          </a>
+        `;
+      }
+    }
+  }
+
+  if (locationvisibility === "discreet") {
+    locationHTML = getPhrase("inquireForLocation");
+  }
+
+  modalHTML = `
+    <div class="mb-4">
+      <div>
+        <strong class="text-dark">${getPhrase("datetime")}</strong>
+      </div>
+      ${eventTimeAndDateHTML}
+    </div>
+
+    <div class="my-4">
+      <div>
+        <strong class="text-dark">${getPhrase("place")}</strong>
+      </div>
+      ${locationHTML}
+    </div>
+    
+    <div class="mt-4 mb-3">
+      <div>
+        <strong class="text-dark">${getPhrase("description")}</strong>
+      </div>
+      ${breakify(description)}
+    </div>
+  `;
+
+  if (userid === createdBy) {
+    footerHTML = `
+      <a href="delete/#${eventid}" class="btn btn-link text-uppercase" data-dismiss="modal">
+        ${getPhrase("cancel")}
+      </a>
+      <a href="delete/#${eventid}" class="btn btn-danger text-uppercase ml-2">
+        ${getPhrase("delete")}
+      </a>
+      <a href="edit/#${eventid}" class="btn btn-info text-uppercase ml-2">
+        ${getPhrase("edit")}
+      </a>
+    `;
+  }
+
+  const modalEl = document.querySelector("#modal");
+  modalEl.querySelector(".modal-title").innerHTML = title;
+  modalEl.querySelector(".modal-body").innerHTML = modalHTML;
+  modalEl.querySelector(".modal-footer").innerHTML = footerHTML;
+
+  $("#modal").modal();
 }
 
 function attachListeners() {

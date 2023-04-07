@@ -175,6 +175,46 @@
       "key": "unfollow",
       "original": "Unfollow",
       "translated": "Unfollow"
+    },
+    {
+      "key": "cancel",
+      "original": "Cancel",
+      "translated": "Cancel"
+    },
+    {
+      "key": "edit",
+      "original": "Edit",
+      "translated": "Edit"
+    },
+    {
+      "key": "delete",
+      "original": "Delete",
+      "translated": "Delete"
+    },
+    {
+      "key": "datetime",
+      "original": "Date and Time:",
+      "translated": "Date and Time:"
+    },
+    {
+      "key": "description",
+      "original": "Description:",
+      "translated": "Description:"
+    },
+    {
+      "key": "place",
+      "original": "Place:",
+      "translated": "Place:"
+    },
+    {
+      "key": "inquireForLocation",
+      "original": "Please inquire for location details.",
+      "translated": "Please inquire for location details."
+    },
+    {
+      "key": "mapAndDirections",
+      "original": "Map and Directions",
+      "translated": "Map and Directions"
     }
   ],
 
