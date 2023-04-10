@@ -1,5 +1,23 @@
 function followUser(userid, e) {
   return new Promise(async (resolve, reject) => {
+    const followedUsersIDB = await localforage.getItem("followedUsers");
+    if (followedUsersIDB) {
+      const updated = followedUsersIDB?.filter(
+        (item) => item.userid !== Number(userid)
+      );
+      await localforage.setItem("followedUsers", updated);
+    }
+
+    const eventsByFollowedUsers = await localforage.getItem(
+      "eventsByFollowedUsers"
+    );
+    if (eventsByFollowedUsers) {
+      const updated = eventsByFollowedUsers?.filter(
+        (item) => item.createdBy !== Number(userid)
+      );
+      await localforage.setItem("eventsByFollowedUsers", updated);
+    }
+
     const endpoint = `${getApiHost()}/follow-user`;
     const accessToken = await getAccessToken();
 
@@ -386,6 +404,24 @@ function showTimeoutMessage() {
 
 function unfollowUser(userid, e) {
   return new Promise(async (resolve, reject) => {
+    const followedUsersIDB = await localforage.getItem("followedUsers");
+    if (followedUsersIDB) {
+      const updated = followedUsersIDB?.filter(
+        (item) => item.userid !== Number(userid)
+      );
+      await localforage.setItem("followedUsers", updated);
+    }
+
+    const eventsByFollowedUsers = await localforage.getItem(
+      "eventsByFollowedUsers"
+    );
+    if (eventsByFollowedUsers) {
+      const updated = eventsByFollowedUsers?.filter(
+        (item) => item.createdBy !== Number(userid)
+      );
+      await localforage.setItem("eventsByFollowedUsers", updated);
+    }
+
     const endpoint = `${getApiHost()}/unfollow-user`;
     const accessToken = await getAccessToken();
 

@@ -1,5 +1,23 @@
 function followUser(userid, e) {
   return new Promise(async (resolve, reject) => {
+    const followedUsersIDB = await localforage.getItem("followedUsers");
+    if (followedUsersIDB) {
+      const updated = followedUsersIDB?.filter(
+        (item) => item.userid !== Number(userid)
+      );
+      await localforage.setItem("followedUsers", updated);
+    }
+
+    const eventsByFollowedUsers = await localforage.getItem(
+      "eventsByFollowedUsers"
+    );
+    if (eventsByFollowedUsers) {
+      const updated = eventsByFollowedUsers?.filter(
+        (item) => item.createdBy !== Number(userid)
+      );
+      await localforage.setItem("eventsByFollowedUsers", updated);
+    }
+
     const endpoint = `${getApiHost()}/follow-user`;
     const accessToken = await getAccessToken();
 
@@ -576,6 +594,24 @@ function showFollowButton() {
 
 function unfollowUser(userid, e) {
   return new Promise(async (resolve, reject) => {
+    const followedUsersIDB = await localforage.getItem("followedUsers");
+    if (followedUsersIDB) {
+      const updated = followedUsersIDB?.filter(
+        (item) => item.userid !== Number(userid)
+      );
+      await localforage.setItem("followedUsers", updated);
+    }
+
+    const eventsByFollowedUsers = await localforage.getItem(
+      "eventsByFollowedUsers"
+    );
+    if (eventsByFollowedUsers) {
+      const updated = eventsByFollowedUsers?.filter(
+        (item) => item.createdBy !== Number(userid)
+      );
+      await localforage.setItem("eventsByFollowedUsers", updated);
+    }
+
     const endpoint = `${getApiHost()}/unfollow-user`;
     const accessToken = await getAccessToken();
 
@@ -605,6 +641,7 @@ function unfollowUser(userid, e) {
               .format();
             updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
             updateFollowCounts(data.otherUserNow);
+            popupQuantityOfEvents();
             syncEvents();
             resolve(data.msg);
             break;
@@ -613,12 +650,14 @@ function unfollowUser(userid, e) {
             e.target.classList.remove("btn-primary");
             e.target.classList.add("btn-success");
             e.target.innerText = getPhrase("btnFollowing");
+            popupQuantityOfEvents();
             syncEvents();
             resolve(data.msg);
         }
       })
       .catch((err) => {
         console.error(err);
+        popupQuantityOfEvents();
         syncEvents();
         reject(err);
       });
