@@ -115,8 +115,6 @@ async function syncEvents() {
           (await invitesCrypto.hash(eventsByFollowedUsersRemoteJSON)) ||
           JSON.stringify([]);
 
-        hideToast();
-
         // Update IndexedDB
         if (events.length) {
           await localforage.setItem("events", events);
@@ -151,7 +149,7 @@ async function syncEvents() {
       })
       .catch((err) => {
         console.error(err);
-        hideToast();
+        // hideToast();
         reject(err);
       });
 
@@ -197,7 +195,7 @@ function syncFollowing() {
       })
       .catch((err) => {
         console.error(err);
-        hideToast();
+        // hideToast();
         reject(err);
       });
 
