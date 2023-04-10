@@ -476,7 +476,30 @@ async function onUnfollowConfirmed(e) {
       `;
     }
   }
-  popupQuantityOfEvents();
+
+  (async () => {
+    const followedUsersIDB = await localforage.getItem("followedUsers");
+    if (followedUsersIDB) {
+      const updated = followedUsersIDB?.filter(
+        (item) => item.userid !== Number(userid)
+      );
+      await localforage.setItem("followedUsers", updated);
+    }
+
+    const eventsByFollowedUsers = await localforage.getItem(
+      "eventsByFollowedUsers"
+    );
+    if (eventsByFollowedUsers) {
+      const updated = eventsByFollowedUsers?.filter(
+        (item) => item.createdBy !== Number(userid)
+      );
+      await localforage.setItem("eventsByFollowedUsers", updated);
+    }
+  })();
+
+  $("#modal").on("hidden.bs.modal", (e) => {
+    popupQuantityOfEvents();
+  });
 
   // Unfollow from API (silently)
   const accessToken = await getAccessToken();
