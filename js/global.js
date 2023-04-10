@@ -969,7 +969,11 @@ async function popupQuantityOfEvents() {
   const phrase = totalQuantity === 1 ? phraseSingular : phrasePlural;
   const toastHTML = `${phrase} <a class="btn btn-sm btn-light ml-4 border border-dark" href="/events/">${phraseEvents}</a>`;
 
-  showToast(toastHTML, 4000, "info");
+  if (window.location.pathname === "/events/") {
+    showToast(phrase, 4000, "info");
+  } else {
+    showToast(toastHTML, 4000, "info");
+  }
 }
 
 function refreshFloatingLabels() {
