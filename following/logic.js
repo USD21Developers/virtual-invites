@@ -36,7 +36,7 @@ function followUser(userIdToFollow, e) {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(async (data) => {
         switch (data.msg) {
           case "follow successful":
             e.target.setAttribute("data-status", "followed");
@@ -49,8 +49,8 @@ function followUser(userIdToFollow, e) {
             updateFollowActivity(userFollowed, whenFollowed, "followed");
             updateFollowCounts(data.otherUserNow);
             showUserInResults();
+            await syncEvents();
             popupQuantityOfEvents();
-            syncEvents();
             resolve(data.msg);
             break;
           default:
@@ -58,15 +58,15 @@ function followUser(userIdToFollow, e) {
             e.target.innerText = getPhrase("btnFollow");
             e.target.classList.remove("btn-success");
             e.target.classList.add("btn-primary");
+            await syncEvents();
             popupQuantityOfEvents();
-            syncEvents();
             resolve(data.msg);
         }
       })
-      .catch((err) => {
+      .catch(async (err) => {
         console.error(err);
+        await syncEvents();
         popupQuantityOfEvents();
-        syncEvents();
         reject(err);
       });
   });

@@ -16,7 +16,7 @@ function followUser(userid, e) {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(async (data) => {
         switch (data.msg) {
           case "follow successful":
             e.target.setAttribute("data-status", "followed");
@@ -28,8 +28,8 @@ function followUser(userid, e) {
               .format();
             updateFollowActivity(userFollowed, whenFollowed, "followed");
             updateFollowCounts(data.otherUserNow);
+            await syncEvents();
             popupQuantityOfEvents();
-            syncEvents();
             resolve(data.msg);
             break;
           default:
@@ -37,15 +37,15 @@ function followUser(userid, e) {
             e.target.innerText = getPhrase("btnFollow");
             e.target.classList.remove("btn-success");
             e.target.classList.add("btn-primary");
+            await syncEvents();
             popupQuantityOfEvents();
-            syncEvents();
             resolve(data.msg);
         }
       })
-      .catch((err) => {
+      .catch(async (err) => {
         console.error(err);
+        await syncEvents();
         popupQuantityOfEvents();
-        syncEvents();
         reject(err);
       });
   });
@@ -610,7 +610,7 @@ function unfollowUser(userid, e) {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(async (data) => {
         switch (data.msg) {
           case "unfollow successful":
             e.target.setAttribute("data-status", "follow");
@@ -623,8 +623,8 @@ function unfollowUser(userid, e) {
               .format();
             updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
             updateFollowCounts(data.otherUserNow);
+            await syncEvents();
             popupQuantityOfEvents();
-            syncEvents();
             resolve(data.msg);
             break;
           default:
@@ -632,15 +632,15 @@ function unfollowUser(userid, e) {
             e.target.classList.remove("btn-primary");
             e.target.classList.add("btn-success");
             e.target.innerText = getPhrase("btnFollowing");
+            await syncEvents();
             popupQuantityOfEvents();
-            syncEvents();
             resolve(data.msg);
         }
       })
-      .catch((err) => {
+      .catch(async (err) => {
         console.error(err);
+        await syncEvents();
         popupQuantityOfEvents();
-        syncEvents();
         reject(err);
       });
   });
