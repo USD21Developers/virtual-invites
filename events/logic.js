@@ -495,7 +495,7 @@ async function onUnfollowConfirmed(e) {
       const { msg } = data;
 
       if (msg === "unfollow successful") {
-        syncEvents();
+        syncEvents().then(() => popupQuantityOfEvents());
         syncFollowing();
       }
 

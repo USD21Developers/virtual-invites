@@ -192,6 +192,21 @@
       "key": "cancel",
       "original": "Cancel",
       "translated": "Cancel"
+    },
+    {
+      "key": "quantityOfEvents1",
+      "original": "You now have 1 event.",
+      "translated": "You now have 1 event."
+    },
+    {
+      "key": "quantityOfEvents",
+      "original": "You now have {quantity} events.",
+      "translated": "You now have {quantity} events."
+    },
+    {
+      "key": "events",
+      "original": "Events",
+      "translated": "Events"
     }
   ],
 

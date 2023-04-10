@@ -53,6 +53,7 @@ var hidden, visibilityChange;
   isMobileDevice
   populateContent
   populateGlobalContent
+  popupQuantityOfEvents
   randomIntFromInterval
   refreshFloatingLabels
   refreshFloatingLabelsListener
@@ -218,6 +219,18 @@ function configureLocalForage() {
     storeName: "keyvaluepairs",
     description: "Data store for the Invites app",
   });
+}
+
+function customScrollTo(selector) {
+  const element = document.querySelector(selector);
+  const offset = 94;
+  const bodyRect = document.body.getBoundingClientRect().top;
+  const elementRect = element.getBoundingClientRect().top;
+  const elementPosition = elementRect - bodyRect;
+  const offsetPosition = elementPosition - offset;
+
+  window.scrollTo({ top: offsetPosition, behavior: "smooth", block: "center" });
+  if (!isMobileDevice()) element.focus();
 }
 
 function enableTooltips() {
@@ -936,16 +949,27 @@ function populateGlobalContent() {
   });
 }
 
-function customScrollTo(selector) {
-  const element = document.querySelector(selector);
-  const offset = 94;
-  const bodyRect = document.body.getBoundingClientRect().top;
-  const elementRect = element.getBoundingClientRect().top;
-  const elementPosition = elementRect - bodyRect;
-  const offsetPosition = elementPosition - offset;
+async function popupQuantityOfEvents() {
+  const eventsByUser = await localforage.getItem("events");
+  const eventsByFollowedUsers = await localforage.getItem(
+    "eventsByFollowedUsers"
+  );
+  const quantityEventsByUser = eventsByUser ? eventsByUser.length : 0;
+  const quantityEventsByFollowedUsers = eventsByFollowedUsers
+    ? eventsByFollowedUsers.length
+    : 0;
+  const totalQuantity = quantityEventsByUser + quantityEventsByFollowedUsers;
+  const phraseEvents = getGlobalPhrase("events");
+  const phrasePlural = getGlobalPhrase("quantityOfEvents").replace(
+    "{quantity}",
+    totalQuantity
+  );
+  const phraseSingular = getGlobalPhrase("quantityOfEvents1");
 
-  window.scrollTo({ top: offsetPosition, behavior: "smooth", block: "center" });
-  if (!isMobileDevice()) element.focus();
+  const phrase = totalQuantity === 1 ? phraseSingular : phrasePlural;
+  const toastHTML = `${phrase} <a class="btn btn-sm btn-light ml-4 border border-dark" href="/events/">${phraseEvents}</a>`;
+
+  showToast(toastHTML, 4000, "info");
 }
 
 function refreshFloatingLabels() {
