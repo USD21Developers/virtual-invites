@@ -1,6 +1,7 @@
 let globalContent = "";
 let pageContent = "";
 let previewContent = "";
+let toastTimeoutId;
 var hidden, visibilityChange;
 
 /*
@@ -1161,6 +1162,7 @@ function showModal(
 }
 
 function hideToast() {
+  clearTimeout(toastTimeoutId);
   const toasts = document.querySelectorAll(".snackbar");
   if (toasts) {
     toasts.forEach((toast) => {
@@ -1244,7 +1246,7 @@ function showToast(message, duration = 5000, type = "dark") {
 
   if (typeof duration === "number") {
     if (duration !== 0) {
-      setTimeout(() => {
+      toastTimeoutId = setTimeout(() => {
         snackbar.classList.remove("show");
       }, duration);
     }
