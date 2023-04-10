@@ -184,6 +184,7 @@ function syncFollowing() {
       signal: controller.signal,
       keepalive: true,
     })
+      .then((res) => res.json())
       .then(async (data) => {
         const { msg, following } = data;
 

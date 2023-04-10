@@ -515,6 +515,7 @@ async function onUnfollowConfirmed(e) {
       authorization: `Bearer ${accessToken}`,
     }),
   })
+    .then((res) => res.json())
     .then(async (data) => {
       const { msg } = data;
 
