@@ -1,7 +1,6 @@
 let globalContent = "";
 let pageContent = "";
 let previewContent = "";
-let toastTimeoutId;
 var hidden, visibilityChange;
 
 /*
@@ -1164,7 +1163,6 @@ function hideToast() {
   const toast = document.querySelector(".snackbar");
   if (toast) {
     toast.classList.remove("show");
-    // clearTimeout(toastTimeoutId);
   }
 }
 
@@ -1243,7 +1241,7 @@ function showToast(message, duration = 5000, type = "dark") {
 
   if (typeof duration === "number") {
     if (duration !== 0) {
-      toastTimeoutId = setTimeout(() => {
+      setTimeout(() => {
         snackbar.classList.remove("show");
       }, duration);
     }
