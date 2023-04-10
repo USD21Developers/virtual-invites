@@ -476,6 +476,7 @@ async function onUnfollowConfirmed(e) {
       `;
     }
   }
+  popupQuantityOfEvents();
 
   // Unfollow from API (silently)
   const accessToken = await getAccessToken();
@@ -495,7 +496,7 @@ async function onUnfollowConfirmed(e) {
       const { msg } = data;
 
       if (msg === "unfollow successful") {
-        syncEvents().then(() => popupQuantityOfEvents());
+        syncEvents();
         syncFollowing();
       }
 

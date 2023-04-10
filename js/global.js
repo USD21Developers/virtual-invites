@@ -970,7 +970,6 @@ async function popupQuantityOfEvents() {
   const phrase = totalQuantity === 1 ? phraseSingular : phrasePlural;
   const toastHTML = `${phrase} <a class="btn btn-sm btn-light ml-4 border border-dark" href="/events/">${phraseEvents}</a>`;
 
-  hideToast();
   showToast(toastHTML, 4000, "info");
 }
 
@@ -1162,12 +1161,10 @@ function showModal(
 }
 
 function hideToast() {
-  clearTimeout(toastTimeoutId);
-  const toasts = document.querySelectorAll(".snackbar");
-  if (toasts) {
-    toasts.forEach((toast) => {
-      toast.classList.remove("show");
-    });
+  const toast = document.querySelector(".snackbar");
+  if (toast) {
+    toast.classList.remove("show");
+    // clearTimeout(toastTimeoutId);
   }
 }
 

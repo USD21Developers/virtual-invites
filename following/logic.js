@@ -49,7 +49,8 @@ function followUser(userIdToFollow, e) {
             updateFollowActivity(userFollowed, whenFollowed, "followed");
             updateFollowCounts(data.otherUserNow);
             showUserInResults();
-            syncEvents().then(() => popupQuantityOfEvents());
+            popupQuantityOfEvents();
+            syncEvents();
             resolve(data.msg);
             break;
           default:
@@ -57,13 +58,15 @@ function followUser(userIdToFollow, e) {
             e.target.innerText = getPhrase("btnFollow");
             e.target.classList.remove("btn-success");
             e.target.classList.add("btn-primary");
-            syncEvents().then(() => popupQuantityOfEvents());
+            popupQuantityOfEvents();
+            syncEvents();
             resolve(data.msg);
         }
       })
       .catch((err) => {
         console.error(err);
-        syncEvents().then(() => popupQuantityOfEvents());
+        popupQuantityOfEvents();
+        syncEvents();
         reject(err);
       });
   });
@@ -512,7 +515,7 @@ function unfollowUser(userid, e) {
 
             updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
             updateFollowCounts(data.otherUserNow);
-            syncEvents().then(() => popupQuantityOfEvents());
+            syncEvents();
             resolve(data.msg);
             break;
           default:
@@ -520,13 +523,13 @@ function unfollowUser(userid, e) {
             e.target.classList.remove("btn-primary");
             e.target.classList.add("btn-success");
             e.target.innerText = getPhrase("btnFollowing");
-            syncEvents().then(() => popupQuantityOfEvents());
+            syncEvents();
             resolve(data.msg);
         }
       })
       .catch((err) => {
         console.error(err);
-        syncEvents().then(() => popupQuantityOfEvents());
+        syncEvents();
         reject(err);
       });
   });
