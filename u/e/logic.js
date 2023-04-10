@@ -264,6 +264,8 @@ function unfollowUser(userid, e) {
       await localforage.setItem("eventsByFollowedUsers", updated);
     }
 
+    popupQuantityOfEvents();
+
     const endpoint = `${getApiHost()}/unfollow-user`;
     const accessToken = await getAccessToken();
 
@@ -292,6 +294,7 @@ function unfollowUser(userid, e) {
               .tz(moment.now(), moment.tz.guess())
               .format();
             updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
+            syncEvents();
             resolve(data.msg);
             break;
           default:
@@ -299,11 +302,13 @@ function unfollowUser(userid, e) {
             e.target.classList.remove("btn-primary");
             e.target.classList.add("btn-success");
             e.target.innerText = getPhrase("btnFollowing");
+            syncEvents();
             resolve(data.msg);
         }
       })
       .catch((err) => {
         console.error(err);
+        syncEvents();
         reject(err);
       });
   });

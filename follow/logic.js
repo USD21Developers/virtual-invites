@@ -404,6 +404,8 @@ function unfollowUser(userid, e) {
       await localforage.setItem("eventsByFollowedUsers", updated);
     }
 
+    popupQuantityOfEvents();
+
     const endpoint = `${getApiHost()}/unfollow-user`;
     const accessToken = await getAccessToken();
 
@@ -434,8 +436,7 @@ function unfollowUser(userid, e) {
               .format();
             updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
             populateFollowingQuantity(quantityNowFollowing);
-            await syncEvents();
-            popupQuantityOfEvents();
+            syncEvents();
             resolve(data.msg);
             break;
           default:
@@ -443,15 +444,13 @@ function unfollowUser(userid, e) {
             e.target.classList.remove("btn-primary");
             e.target.classList.add("btn-success");
             e.target.innerText = getPhrase("btnFollowing");
-            await syncEvents();
-            popupQuantityOfEvents();
+            syncEvents();
             resolve(data.msg);
         }
       })
       .catch(async (err) => {
         console.error(err);
-        await syncEvents();
-        popupQuantityOfEvents();
+        syncEvents();
         reject(err);
       });
   });

@@ -594,6 +594,8 @@ function unfollowUser(userid, e) {
       await localforage.setItem("eventsByFollowedUsers", updated);
     }
 
+    popupQuantityOfEvents();
+
     const endpoint = `${getApiHost()}/unfollow-user`;
     const accessToken = await getAccessToken();
 
@@ -610,7 +612,7 @@ function unfollowUser(userid, e) {
       }),
     })
       .then((res) => res.json())
-      .then(async (data) => {
+      .then((data) => {
         switch (data.msg) {
           case "unfollow successful":
             e.target.setAttribute("data-status", "follow");
@@ -623,8 +625,7 @@ function unfollowUser(userid, e) {
               .format();
             updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
             updateFollowCounts(data.otherUserNow);
-            await syncEvents();
-            popupQuantityOfEvents();
+            syncEvents();
             resolve(data.msg);
             break;
           default:
@@ -632,15 +633,13 @@ function unfollowUser(userid, e) {
             e.target.classList.remove("btn-primary");
             e.target.classList.add("btn-success");
             e.target.innerText = getPhrase("btnFollowing");
-            await syncEvents();
-            popupQuantityOfEvents();
+            syncEvents();
             resolve(data.msg);
         }
       })
-      .catch(async (err) => {
+      .catch((err) => {
         console.error(err);
-        await syncEvents();
-        popupQuantityOfEvents();
+        syncEvents();
         reject(err);
       });
   });

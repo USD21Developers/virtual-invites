@@ -503,6 +503,8 @@ function unfollowUser(userid, e) {
       await localforage.setItem("eventsByFollowedUsers", updated);
     }
 
+    popupQuantityOfEvents();
+
     const endpoint = `${getApiHost()}/unfollow-user`;
     const accessToken = await getAccessToken();
 
