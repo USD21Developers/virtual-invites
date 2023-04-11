@@ -242,7 +242,9 @@ async function renderFollowedUser(followedUser, eventsByFollowedUser) {
   let churchPlace = church.place;
 
   const loggedInUserId = getUserId();
-  const userCountry = localStorage.getItem("country");
+  const userCountry = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  ).country;
   const userLang = getLang();
   const countries = JSON.parse(localStorage.getItem("countries")).names;
   const followedUserCountryName = getCountryName(church.country, countries);
