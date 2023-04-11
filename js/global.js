@@ -967,7 +967,21 @@ async function popupQuantityOfEvents() {
   const phraseSingular = getGlobalPhrase("quantityOfEvents1");
 
   const phrase = totalQuantity === 1 ? phraseSingular : phrasePlural;
-  const toastHTML = `${phrase} <a class="btn btn-sm btn-light ml-4 border border-dark" href="/events/">${phraseEvents}</a>`;
+  const toastHTML = `
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="99%">
+          ${phrase}
+        </td>
+        
+        <td width="1%">
+          <div class="text-right">
+            <a class="btn btn-sm btn-light ml-4 border border-dark" href="/events/">${phraseEvents}</a>
+          </div>
+        </td>
+      </tr>
+    </table>
+  `;
 
   if (window.location.pathname === "/events/") {
     showToast(phrase, 4000, "info");
