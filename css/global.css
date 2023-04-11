@@ -1,7 +1,7 @@
 body,
 td {
   font-family: Inter, sans-serif;
-  font-size: 18px;
+  /* font-size: 18px; */
 }
 
 nav .breadcrumb {
@@ -238,6 +238,10 @@ strong {
 
   .breadcrumb-item.firstOnMobile:before {
     display: none !important;
+  }
+
+  .snackbar-body {
+    width: 100%;
   }
 }
 
