@@ -699,7 +699,6 @@ async function showEvent(event) {
 function onPageShow(event) {
   // Hide unfollowed users from bfcache
   if (event.persisted) {
-    alert("Persisted");
     const followedEvents = document.querySelector("#followedEvents");
     followedEvents
       ?.querySelectorAll(".followedUser")
@@ -707,9 +706,11 @@ function onPageShow(event) {
         const userid = Number(followedUser.getAttribute("data-followid"));
         const followedUsers =
           (await localforage.getfollowedUser("followedUsers")) || [];
+        alert(`followedUsers found: ${followedUsers.length}`);
         const hideUser = followedUsers.every((obj) => {
           return obj.userid !== userid;
         });
+        alert(`hideUser: ${hideUser}`);
 
         if (hideUser) {
           followedUser.remove();
