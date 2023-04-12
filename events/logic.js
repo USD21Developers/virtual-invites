@@ -710,6 +710,26 @@ function attachListeners() {
     .forEach((item) =>
       item.addEventListener("click", onFollowedUserUnfollowed)
     );
+
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+      const followedEvents = document.querySelector("#followedEvents");
+      followedEvents
+        ?.querySelectorAll(".followedUser")
+        .forEach(async (item) => {
+          const userid = Number(item.getAttribute("data-followid"));
+          const followedUsers =
+            (await localforage.getItem("followedUsers")) || [];
+          if (followedUsers.length) {
+            followedUsers.forEach((followedUser) => {
+              if (userid === followedUser.userid) {
+                item.remove();
+              }
+            });
+          }
+        });
+    }
+  });
 }
 
 async function init() {
