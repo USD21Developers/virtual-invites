@@ -697,26 +697,8 @@ async function showEvent(event) {
 }
 
 function onPageShow(event) {
-  // Hide unfollowed users from bfcache
   if (event.persisted) {
-    const followedEvents = document.querySelector("#followedEvents");
-    followedEvents
-      ?.querySelectorAll(".followedUser")
-      .forEach(async (followedUser) => {
-        const userid = Number(followedUser.getAttribute("data-followid"));
-        alert(`Followed User userid: ${userid}`);
-        const followedUsers =
-          (await localforage.getfollowedUser("followedUsers")) || [];
-        alert(`followedUsers found: ${followedUsers.length}`);
-        const hideUser = followedUsers.every((obj) => {
-          return obj.userid !== userid;
-        });
-        alert(`hideUser: ${hideUser}`);
-
-        if (hideUser) {
-          followedUser.remove();
-        }
-      });
+    window.location.reload();
   }
 }
 
