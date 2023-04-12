@@ -265,3 +265,7 @@ strong {
   height: 50px;
   width: 50px;
 }
+
+.balancedTextWrap {
+  text-wrap: balance;
+}
