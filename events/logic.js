@@ -699,6 +699,7 @@ async function showEvent(event) {
 function onPageShow(event) {
   // Hide unfollowed users from bfcache
   if (event.persisted) {
+    alert("Persisted");
     const followedEvents = document.querySelector("#followedEvents");
     followedEvents
       ?.querySelectorAll(".followedUser")
@@ -711,7 +712,7 @@ function onPageShow(event) {
         });
 
         if (hideUser) {
-          followedUser.style.backgroundColor === "red";
+          followedUser.remove();
         }
       });
   }
