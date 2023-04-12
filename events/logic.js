@@ -697,7 +697,7 @@ async function showEvent(event) {
 }
 
 function onPageShow(event) {
-  // Hide unfollowed users
+  // Hide unfollowed users from bfcache
   if (event.persisted) {
     const followedEvents = document.querySelector("#followedEvents");
     followedEvents
@@ -711,7 +711,7 @@ function onPageShow(event) {
         });
 
         if (hideUser) {
-          followedUser.remove();
+          followedUser.style.backgroundColor === "red";
         }
       });
   }
