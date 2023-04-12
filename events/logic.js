@@ -696,6 +696,27 @@ async function showEvent(event) {
   $("#modal").modal();
 }
 
+function onPageShow(event) {
+  // Hide unfollowed users
+  if (event.persisted) {
+    const followedEvents = document.querySelector("#followedEvents");
+    followedEvents
+      ?.querySelectorAll(".followedUser")
+      .forEach(async (followedUser) => {
+        const userid = Number(followedUser.getAttribute("data-followid"));
+        const followedUsers =
+          (await localforage.getfollowedUser("followedUsers")) || [];
+        const hideUser = followedUsers.every((obj) => {
+          return obj.userid !== userid;
+        });
+
+        if (hideUser) {
+          followedUser.remove();
+        }
+      });
+  }
+}
+
 function attachListeners() {
   document
     .querySelector("#followedEvents")
@@ -711,25 +732,7 @@ function attachListeners() {
       item.addEventListener("click", onFollowedUserUnfollowed)
     );
 
-  window.addEventListener("pageshow", (event) => {
-    if (event.persisted) {
-      const followedEvents = document.querySelector("#followedEvents");
-      followedEvents
-        ?.querySelectorAll(".followedUser")
-        .forEach(async (item) => {
-          const userid = Number(item.getAttribute("data-followid"));
-          const followedUsers =
-            (await localforage.getItem("followedUsers")) || [];
-          if (followedUsers.length) {
-            followedUsers.forEach((followedUser) => {
-              if (userid === followedUser.userid) {
-                item.remove();
-              }
-            });
-          }
-        });
-    }
-  });
+  window.addEventListener("pageshow", onPageShow);
 }
 
 async function init() {
