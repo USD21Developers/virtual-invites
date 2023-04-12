@@ -704,6 +704,7 @@ function onPageShow(event) {
       ?.querySelectorAll(".followedUser")
       .forEach(async (followedUser) => {
         const userid = Number(followedUser.getAttribute("data-followid"));
+        alert(`Followed User userid: ${userid}`);
         const followedUsers =
           (await localforage.getfollowedUser("followedUsers")) || [];
         alert(`followedUsers found: ${followedUsers.length}`);
