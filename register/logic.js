@@ -87,8 +87,10 @@ function initCroppie() {
     const form = document.querySelector("#formTakeASelfie");
     const testElement = document.createElement("input");
     const isCaptureSupported = testElement.capture != undefined;
+    const operatingSystem = getMobileOperatingSystem();
+    const isIOS = operatingSystem === "iOS" ? true : false;
 
-    if (isCaptureSupported) {
+    if (isCaptureSupported && isIOS) {
       form.classList.remove("d-none");
     }
   }

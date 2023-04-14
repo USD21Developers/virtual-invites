@@ -312,9 +312,11 @@
 
               <div class="text-center">
                 <div id="formTakeASelfie" class="d-none">
-                  <label for="photoCapture" class="btn btn-info"
-                    >Take a selfie</label
-                  >
+                  <label
+                    for="photoCapture"
+                    class="btn btn-info"
+                    data-i18n="takeASelfie"
+                  ></label>
                   <input
                     type="file"
                     id="photoCapture"
@@ -325,9 +327,11 @@
                 </div>
 
                 <div id="formSelectAPhoto">
-                  <label for="photoUpload" class="btn btn-info"
-                    >Select a photo</label
-                  >
+                  <label
+                    for="photoUpload"
+                    class="btn btn-info"
+                    data-i18n="selectAPhoto"
+                  ></label>
                   <input
                     type="file"
                     id="photoUpload"
@@ -359,7 +363,9 @@
                         >
                           <span class="material-icons"> refresh </span>
 
-                          &nbsp; Rotate
+                          &nbsp;
+
+                          <span data-i18n="rotate"></span>
                         </button>
                       </div>
 
@@ -452,6 +458,7 @@
       referrerpolihttpscy="no-referrer"
     ></script>
     <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../js/getMobileOperatingSystem.js"></script>
     <script src="../js/global.js"></script>
     <script src="../js/sync.js"></script>
     <script src="logic.js"></script>

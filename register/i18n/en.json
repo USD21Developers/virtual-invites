@@ -259,6 +259,21 @@
       "key": "selectchurch",
       "original": "(Select church):",
       "translated": "(Select church):"
+    },
+    {
+      "key": "rotate",
+      "original": "Rotate",
+      "translated": "Rotate"
+    },
+    {
+      "key": "takeASelfie",
+      "original": "Take a selfie",
+      "translated": "Take a selfie"
+    },
+    {
+      "key": "selectAPhoto",
+      "original": "Select a photo",
+      "translated": "Select a photo"
     }
   ],
 
