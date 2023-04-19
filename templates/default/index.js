@@ -2,7 +2,7 @@ function urlifyConnectionContent() {
   const connectionContentEl = document.querySelector("#connectionContent");
   let newContent = connectionContentEl.innerHTML;
   newContent = spacify(newContent);
-  newContent = linkify(newContent);
+  newContent = linkifyHtml(newContent);
   newContent = breakify(newContent);
   connectionContentEl.innerHTML = newContent;
 }
@@ -16,7 +16,7 @@ function setTheme() {
   theme.classList.remove("d-none");
 }
 
-function addEventListeners() { }
+function addEventListeners() {}
 
 function init() {
   setTheme();
