@@ -880,12 +880,12 @@ function saveAndSync(sendvia) {
     };
 
     // Encrypt SMS if populated
-    if (recipientSms.length) {
+    if (typeof recipientSms === "string" && recipientSms.length) {
       unsyncedInvite.sms = await invitesCrypto.encrypt(datakey, recipientSms);
     }
 
     // Encrypt e-mail if populated
-    if (recipientEmail.length) {
+    if (typeof recipientEmail === "string" && recipientEmail.length) {
       unsyncedInvite.email = await invitesCrypto.encrypt(
         datakey,
         recipientEmail
