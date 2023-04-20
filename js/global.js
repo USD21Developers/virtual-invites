@@ -104,8 +104,13 @@ const invitesCrypto = {
       return new Error("key must be a string");
     let key;
     try {
-      key = await window.crypto.importSecretKey(
-        invitesCrypto.deserialize(serializedKey)
+      const deserializedKey = new Uint8Array(atob(serializedKey).split(","));
+      key = await window.crypto.subtle.importKey(
+        "raw",
+        deserializedKey,
+        "AES-GCM",
+        false,
+        ["encrypt", "decrypt"]
       );
     } catch (err) {
       return new Error(err);
