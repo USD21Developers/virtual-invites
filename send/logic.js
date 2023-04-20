@@ -510,7 +510,7 @@ async function onAfterSubmitted(sendvia) {
   // Save to localStorage, try to sync, then show modal
   const txtInviteRecorded = getPhrase("inviteRecorded");
   const txtBtnRetry = getPhrase("btnRetry");
-  saveAndSync()
+  saveAndSync(sendvia)
     .then(() => {
       showModal(modalContent, txtInviteRecorded, "static");
     })
@@ -701,10 +701,6 @@ function onTagWithLocation(e) {
   }
 }
 
-async function populateEvents() {
-  //
-}
-
 function populateQrCode() {
   const el = document.querySelector("#qrcode");
   const availableWidth = el.clientWidth;
@@ -834,11 +830,44 @@ function selectSendVia(method) {
   }
 }
 
-function saveAndSync() {
-  return new Promise((resolve, reject) => {
+function saveAndSync(sendvia) {
+  return new Promise(async (resolve, reject) => {
     let syncSucceeded = true;
+    const eventid = Number(
+      document.querySelector("#events_dropdown").selectedOptions[0].value
+    );
+    const userid = getUserId();
+    const recipientName = document.querySelector("#recipientname").value || "";
+    const recipientSms = sendvia === "sms" ? iti.getNumber() : null;
+    const recipientEmail =
+      sendvia === "email"
+        ? document.querySelector("#sendto_email").value
+        : null;
+    const lang = getLang();
+    const invitedAtLocalTime = moment().toISOString(true); // '2023-04-20T13:37:09.639-07:00'
+    const invitedAtUtcTime = moment().toISOString(); // '2023-04-20T20:37:05.951Z'
 
-    // TODO:  SAVE ALL INVITE DATA TO LOCAL STORAGE
+    const invite = {
+      eventid: eventid,
+      userid: userid,
+      recipientid: recipientIdGlobal,
+      recipientname: recipientName.trim(),
+      recipientsms: recipientSms,
+      recipientemail: recipientEmail.trim(),
+      sharedvia: sendvia,
+      sharedfromcoordinates: coordinates,
+      lang: lang,
+      invitedAt: {
+        local: invitedAtLocalTime,
+        utc: invitedAtUtcTime,
+      },
+    };
+
+    const invitesBefore = (await localforage.getItem("invites")) || [];
+    const invitesAfter = invitesBefore.push(invite);
+
+    await localforage.setItem("invites", invitesAfter);
+
     // TODO:  ATTEMPT TO SYNC
     // TODO:  USE A TIMEOUT ABORT IN CASE SYNCING TAKES TOO LONG
 
