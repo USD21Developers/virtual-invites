@@ -863,10 +863,10 @@ function saveAndSync(sendvia) {
       },
     };
 
-    const invitesBefore = (await localforage.getItem("invites")) || [];
-    const invitesAfter = invitesBefore.push(invite);
+    const invites = (await localforage.getItem("invites")) || [];
+    invites.push(invite);
 
-    await localforage.setItem("invites", invitesAfter);
+    await localforage.setItem("invites", invites);
 
     // TODO:  ATTEMPT TO SYNC
     // TODO:  USE A TIMEOUT ABORT IN CASE SYNCING TAKES TOO LONG
