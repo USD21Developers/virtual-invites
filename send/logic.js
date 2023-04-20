@@ -847,6 +847,7 @@ function saveAndSync(sendvia) {
     const now = moment();
     const invitedAtLocalTime = now.toISOString(true); // '2023-04-20T13:37:09.639-07:00'
     const invitedAtUtcTime = now.toISOString(); // '2023-04-20T20:37:05.951Z'
+    const coords = coordinates ? coordinates : null;
 
     const invite = {
       eventid: eventid,
@@ -856,18 +857,55 @@ function saveAndSync(sendvia) {
       recipientsms: recipientSms,
       recipientemail: recipientEmail,
       sharedvia: sendvia,
-      sharedfromcoordinates: coordinates,
+      sharedfromcoordinates: coords,
       lang: lang,
-      invitedAt: {
-        local: invitedAtLocalTime,
-        utc: invitedAtUtcTime,
-      },
+      invitedAtLocalTime: invitedAtLocalTime,
+      invitedAtUtcTime: invitedAtUtcTime,
     };
+
+    const datakey = localStorage.getItem("datakey");
+
+    const unsyncedInvite = {
+      eventid: eventid,
+      userid: userid,
+      recipientid: recipientIdGlobal,
+      recipientname: recipientName,
+      recipientsms: recipientSms,
+      recipientemail: recipientEmail,
+      sharedvia: sendvia,
+      sharedfromcoordinates: coords,
+      lang: lang,
+      invitedAtLocalTime: invitedAtLocalTime,
+      invitedAtUtcTime: invitedAtUtcTime,
+    };
+
+    // Encrypt SMS if populated
+    if (typeof unsyncedInvite.sms === "string" && unsyncedInvite.sms.length) {
+      unsyncedInvite.sms = await invitesCrypto.encrypt(
+        datakey,
+        unsyncedInvite.recipientsms
+      );
+    }
+
+    // Encrypt e-mail if populated
+    if (
+      typeof unsyncedInvite.recipientemail === "string" &&
+      unsyncedInvite.recipientemail.length
+    ) {
+      unsyncedInvite.email = await invitesCrypto.encrypt(
+        datakey,
+        unsyncedInvite.recipientemail
+      );
+    }
 
     const invites = (await localforage.getItem("invites")) || [];
     invites.push(invite);
-
     await localforage.setItem("invites", invites);
+
+    const unsyncedInvites =
+      (await localforage.getItem("unsyncedInvites")) || [];
+    unsyncedInvites.push(unsyncedInvite);
+    await localforage.setItem("unsyncedInvites", unsyncedInvites);
 
     // TODO:  ATTEMPT TO SYNC
     // TODO:  USE A TIMEOUT ABORT IN CASE SYNCING TAKES TOO LONG
