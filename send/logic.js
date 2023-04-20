@@ -870,8 +870,8 @@ function saveAndSync(sendvia) {
       userid: userid,
       recipientid: recipientIdGlobal,
       recipientname: recipientName,
-      recipientsms: recipientSms,
-      recipientemail: recipientEmail,
+      recipientsms: null,
+      recipientemail: null,
       sharedvia: sendvia,
       sharedfromcoordinates: coords,
       lang: lang,
@@ -880,21 +880,15 @@ function saveAndSync(sendvia) {
     };
 
     // Encrypt SMS if populated
-    if (typeof unsyncedInvite.sms === "string" && unsyncedInvite.sms.length) {
-      unsyncedInvite.sms = await invitesCrypto.encrypt(
-        datakey,
-        unsyncedInvite.recipientsms
-      );
+    if (recipientSms.length) {
+      unsyncedInvite.sms = await invitesCrypto.encrypt(datakey, recipientSms);
     }
 
     // Encrypt e-mail if populated
-    if (
-      typeof unsyncedInvite.recipientemail === "string" &&
-      unsyncedInvite.recipientemail.length
-    ) {
+    if (recipientEmail.length) {
       unsyncedInvite.email = await invitesCrypto.encrypt(
         datakey,
-        unsyncedInvite.recipientemail
+        recipientEmail
       );
     }
 
