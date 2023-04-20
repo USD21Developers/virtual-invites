@@ -844,8 +844,9 @@ function saveAndSync(sendvia) {
         ? document.querySelector("#sendto_email").value
         : null;
     const lang = getLang();
-    const invitedAtLocalTime = moment().toISOString(true); // '2023-04-20T13:37:09.639-07:00'
-    const invitedAtUtcTime = moment().toISOString(); // '2023-04-20T20:37:05.951Z'
+    const now = moment();
+    const invitedAtLocalTime = now.toISOString(true); // '2023-04-20T13:37:09.639-07:00'
+    const invitedAtUtcTime = now.toISOString(); // '2023-04-20T20:37:05.951Z'
 
     const invite = {
       eventid: eventid,
