@@ -895,7 +895,15 @@ function saveAndSync(sendvia) {
       );
     }
 
-    const invites = (await localforage.getItem("invites")) || [];
+    let invites = (await localforage.getItem("invites")) || [];
+
+    // Remove duplicates in IndexedDB due to retries
+    if (invites.length) {
+      invites = invites.filter(
+        (item) => item.recipientid !== recipientIdGlobal
+      );
+    }
+
     invites.push(invite);
     await localforage.setItem("invites", invites);
 
