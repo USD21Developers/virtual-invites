@@ -881,12 +881,15 @@ function saveAndSync(sendvia) {
 
     // Encrypt SMS if populated
     if (typeof recipientSms === "string" && recipientSms.length) {
-      unsyncedInvite.sms = await invitesCrypto.encrypt(datakey, recipientSms);
+      unsyncedInvite.recipientsms = await invitesCrypto.encrypt(
+        datakey,
+        recipientSms
+      );
     }
 
     // Encrypt e-mail if populated
     if (typeof recipientEmail === "string" && recipientEmail.length) {
-      unsyncedInvite.email = await invitesCrypto.encrypt(
+      unsyncedInvite.recipientemail = await invitesCrypto.encrypt(
         datakey,
         recipientEmail
       );
