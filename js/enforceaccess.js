@@ -84,6 +84,15 @@ async function isSysadmin() {
   return usertype === "sysadmin" ? true : false;
 }
 
+function verifyDataKey() {
+  const logoutUrl = "/logout/";
+  const dataKey = localStorage.getItem("datakey") || "";
+  let isAuthorized = true;
+
+  if (!dataKey.length) return (window.location.href = logoutUrl);
+  if (!isAuthorized) window.location.href = logoutUrl;
+}
+
 function verifyRefreshToken() {
   const logoutUrl = "/logout/";
   const refreshToken = localStorage.getItem("refreshToken") || "";
@@ -104,3 +113,4 @@ function verifyRefreshToken() {
 
 framebuster();
 verifyRefreshToken();
+verifyDataKey();
