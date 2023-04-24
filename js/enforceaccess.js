@@ -87,10 +87,8 @@ async function isSysadmin() {
 function verifyDataKey() {
   const logoutUrl = "/logout/";
   const dataKey = localStorage.getItem("datakey") || "";
-  let isAuthorized = true;
 
   if (!dataKey.length) return (window.location.href = logoutUrl);
-  if (!isAuthorized) window.location.href = logoutUrl;
 }
 
 function verifyRefreshToken() {
