@@ -457,8 +457,6 @@ async function onSubmit(e) {
   const lang = getLang() || "en";
   const endpoint = `${getApiHost()}/register`;
   const dataKey = await invitesCrypto.generateKey();
-  const exportedDataKey = await invitesCrypto.exportCryptoKey(dataKey);
-  const serializedDataKey = invitesCrypto.serialize(exportedDataKey);
   const controller = new AbortController();
   const signal = controller.signal;
 
@@ -490,7 +488,7 @@ async function onSubmit(e) {
       emailParagraph1: emailParagraph1,
       emailLinkText: emailLinkText,
       emailSignature: emailSignature,
-      dataKey: serializedDataKey,
+      dataKey: dataKey,
     }),
     headers: new Headers({
       "Content-Type": "application/json",

@@ -12,7 +12,6 @@ var hidden, visibilityChange;
     .deserialize
     .encrypt
     .encryptMessage
-    .exportCryptoKey
     .generateIV
     .generateKey
     .getMessageEncoding
@@ -70,8 +69,7 @@ var hidden, visibilityChange;
 */
 
 const invitesCrypto = {
-  decrypt: (serializedKey, encryptionObject) => {
-    const key = invitesCrypto.deserialize(serializedKey);
+  decrypt: (key, encryptionObject) => {
     const { iv: serializedIV, ciphertext: serializedCiphertext } =
       encryptionObject;
     const iv = invitesCrypto.deserialize(serializedIV);
@@ -80,7 +78,17 @@ const invitesCrypto = {
     return plainText;
   },
 
-  decryptMessage: async (key, iv, ciphertext) => {
+  decryptMessage: async (serializedKey, iv, ciphertext) => {
+    if (typeof serializedKey !== "string" || serializedKey.length === 0)
+      return new Error("key must be a string");
+    const encodedKey = new Uint8Array(atob(serializedKey).split(","));
+    const key = await window.crypto.subtle.importKey(
+      "raw",
+      new Uint8Array(encodedKey),
+      "AES-GCM",
+      false,
+      ["decrypt"]
+    );
     const decrypted = await window.crypto.subtle.decrypt(
       {
         name: "AES-GCM",
@@ -95,26 +103,19 @@ const invitesCrypto = {
   },
 
   deserialize: (serializedString) => {
-    const buffer = atob(serializedString);
-    return buffer;
+    return atob(serializedString);
   },
 
   encrypt: async (serializedKey, message) => {
     if (typeof serializedKey !== "string" || serializedKey.length === 0)
       return new Error("key must be a string");
-    let key;
-    try {
-      const deserializedKey = new Uint8Array(atob(serializedKey).split(","));
-      key = await window.crypto.subtle.importKey(
-        "raw",
-        deserializedKey,
-        "AES-GCM",
-        false,
-        ["encrypt", "decrypt"]
-      );
-    } catch (err) {
-      return new Error(err);
-    }
+    const key = await window.crypto.subtle.importKey(
+      "raw",
+      new Uint8Array(JSON.parse(key)),
+      "AES-GCM",
+      true,
+      ["encrypt", "decrypt"]
+    );
     const iv = invitesCrypto.generateIV();
     const ciphertext = await invitesCrypto.encryptMessage(key, iv, message);
     const encryptionObject = {
@@ -139,13 +140,6 @@ const invitesCrypto = {
     return ciphertext;
   },
 
-  exportCryptoKey: async (key) => {
-    const exported = await window.crypto.subtle.exportKey("raw", key);
-    const exportedKeyBuffer = new Uint8Array(exported);
-
-    return exportedKeyBuffer;
-  },
-
   generateIV: () => {
     const iv = window.crypto.getRandomValues(new Uint8Array(12));
     return iv;
@@ -162,8 +156,14 @@ const invitesCrypto = {
           true,
           ["encrypt", "decrypt"]
         )
-        .then((key) => {
-          resolve(key);
+        .then(async (cryptoKey) => {
+          const exported = await window.crypto.subtle.exportKey(
+            "raw",
+            cryptoKey
+          );
+          const exportedKeyBuffer = new Uint8Array(exported);
+          const datakey = JSON.stringify(Array.from(exportedKeyBuffer));
+          resolve(datakey);
         })
         .catch((err) => {
           reject(new Error(err));

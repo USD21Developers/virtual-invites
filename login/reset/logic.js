@@ -20,8 +20,6 @@ async function onSubmit(e) {
   const newPassword = e.target.newpassword.value.trim();
   const endpoint = `${getApiHost()}/reset-password`;
   const dataKey = await invitesCrypto.generateKey();
-  const exportedDataKey = await invitesCrypto.exportCryptoKey(dataKey);
-  const serializedDataKey = invitesCrypto.serialize(exportedDataKey);
   const controller = new AbortController();
   const signal = controller.signal;
 
@@ -36,7 +34,7 @@ async function onSubmit(e) {
     mode: "cors",
     method: "POST",
     body: JSON.stringify({
-      dataKey: serializedDataKey,
+      dataKey: dataKey,
       newPassword: newPassword,
       token: hash,
     }),
