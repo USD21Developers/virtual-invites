@@ -1,3 +1,9 @@
+function backgroundSync() {
+  return new Promise(async (resolve, reject) => {
+    //
+  });
+}
+
 function syncChurches() {
   const endpoint = `${getApiServicesHost()}/churches`;
   const isOnline = navigator.onLine;
@@ -202,6 +208,83 @@ function syncFollowing() {
     setTimeout(() => {
       controller.abort();
       reject(new Error("Following sync timed out"));
+    }, timeout);
+  });
+}
+
+function syncInvites() {
+  return new Promise(async (resolve, reject) => {
+    const isOnline = navigator.onLine;
+    const controller = new AbortController();
+    const timeout = 8000;
+    const unsyncedInvites =
+      (await localforage.getItem("unsyncedInvites")) || [];
+    const endpoint = `${getApiHost()}/sync-invites}`;
+
+    if (!isOnline) {
+      return reject(new Error("Invites sync failed:  user is offline"));
+    }
+
+    const accessToken = await getAccessToken();
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify(unsyncedInvites),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+      signal: controller.signal,
+      keepalive: true,
+    })
+      .then((res) => res.json())
+      .then(async (data) => {
+        const datakey = localStorage.getItem("datakey") || "";
+
+        if (!datakey.length) {
+          const errorMessage = "Invites sync failed:  datakey is missing";
+          console.error(errorMessage);
+          return reject(new Error(errorMessage));
+        }
+
+        if (!Array.isArray(data.invites)) {
+          const errorMessage =
+            "Invites sync failed:  returned invites key is not an array";
+          console.error(errorMessage);
+          return reject(new Error(errorMessage));
+        }
+
+        const decrypted = data.invites.map(async (invite) => {
+          if (invite.recipientsms !== null) {
+            const decrypted = await invitesCrypto.decrypt(
+              datakey,
+              recipientsms
+            );
+            invite.recipientsms = decrypted;
+          }
+
+          if (invite.recipientemail !== null) {
+            const decrypted = await invitesCrypto.decrypt(
+              datakey,
+              recipientemail
+            );
+            invite.recipientemail = decrypted;
+          }
+
+          return invite;
+        });
+
+        await localforage.setItem("unsyncedInvites", []);
+        await localforage.setItem("invites", decrypted);
+      })
+      .catch((err) => {
+        reject(new Error(err));
+      });
+
+    setTimeout(() => {
+      controller.abort();
+      reject(new Error("Invites sync timed out"));
     }, timeout);
   });
 }
