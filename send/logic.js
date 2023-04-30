@@ -832,7 +832,6 @@ function selectSendVia(method) {
 
 function saveAndSync(sendvia) {
   return new Promise(async (resolve, reject) => {
-    let syncSucceeded = true;
     const eventid = Number(
       document.querySelector("#events_dropdown").selectedOptions[0].value
     );
@@ -904,14 +903,15 @@ function saveAndSync(sendvia) {
     unsyncedInvites.push(unsyncedInvite);
     await localforage.setItem("unsyncedInvites", unsyncedInvites);
 
-    // TODO:  ATTEMPT TO SYNC
-    // TODO:  USE A TIMEOUT ABORT IN CASE SYNCING TAKES TOO LONG
+    backgroundSync();
 
-    if (syncSucceeded) {
-      resolve();
-    } else {
-      reject();
-    }
+    await syncInvites()
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
 }
 
