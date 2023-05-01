@@ -111,7 +111,7 @@ const invitesCrypto = {
       return new Error("key must be a string");
     const key = await window.crypto.subtle.importKey(
       "raw",
-      new Uint8Array(JSON.parse(key)),
+      new Uint8Array(JSON.parse(serializedKey)),
       "AES-GCM",
       true,
       ["encrypt", "decrypt"]
