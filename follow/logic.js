@@ -274,7 +274,7 @@ async function showMatchesFound(matches) {
     const defaultImg =
       gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
 
-    if (!isFollowing) {
+    if (followid === null) {
       html += `
         <div class="text-center result">
           <div class="d-inline-block profilephoto ${gender}">
