@@ -237,9 +237,10 @@ function selectUserChurch() {
   churchNameEl.innerText = churchName;
 }
 
-function showMatchesFound(matches) {
+async function showMatchesFound(matches) {
   const searchResults = document.querySelector("#searchResults");
   const numMatches = matches.length;
+  const followedUsers = await localforage.getItem("followedUsers");
   let msgResultsFound;
 
   if (numMatches === 1) {
@@ -266,7 +267,9 @@ function showMatchesFound(matches) {
         ? matches[i].profilephoto.replace("400.jpg", "140.jpg")
         : "";
     const btnFollow =
-      followid === null ? getPhrase("btnFollow") : getPhrase("btnFollowing");
+      followid === followedUsers.find((item) => item.userid === followid)
+        ? getPhrase("btnFollow")
+        : getPhrase("btnFollowing");
     const btnProfile = getPhrase("btnProfile");
     const defaultImg =
       gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
