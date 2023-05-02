@@ -268,8 +268,8 @@ async function showMatchesFound(matches) {
         : "";
     const btnFollow =
       followid === followedUsers.find((item) => item.userid === followid)
-        ? getPhrase("btnFollow")
-        : getPhrase("btnFollowing");
+        ? getPhrase("btnFollowing")
+        : getPhrase("btnFollow");
     const btnProfile = getPhrase("btnProfile");
     const defaultImg =
       gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
