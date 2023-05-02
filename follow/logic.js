@@ -266,15 +266,15 @@ async function showMatchesFound(matches) {
       matches[i].profilephoto && matches[i].profilephoto.length
         ? matches[i].profilephoto.replace("400.jpg", "140.jpg")
         : "";
-    const btnFollow =
-      followid === followedUsers.find((item) => item.userid === followid)
-        ? getPhrase("btnFollowing")
-        : getPhrase("btnFollow");
+    const isFollowing = followedUsers.find((item) => item.userid === followid);
+    const btnFollow = isFollowing
+      ? getPhrase("btnFollowing")
+      : getPhrase("btnFollow");
     const btnProfile = getPhrase("btnProfile");
     const defaultImg =
       gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
 
-    if (followid === null) {
+    if (!isFollowing) {
       html += `
         <div class="text-center result">
           <div class="d-inline-block profilephoto ${gender}">
@@ -300,7 +300,7 @@ async function showMatchesFound(matches) {
             </a>
           </div>
           <h3 class="mt-0 mb-3">${firstname} ${lastname}</h4>
-          <button type="button" class="btn btn-success btn-sm btn-follow my-0 mr-2" data-status="followed" data-follow-userid="${userid}">
+          <button type="button" class="btn btn-follow btn-sm btn-primary my-0 mr-2" data-status="followed" data-follow-userid="${userid}">
             ${btnFollow}
           </button>
           <a href="/u/#${userid}" class="btn btn-light btn-sm btn-profile my-0 ml-2">
