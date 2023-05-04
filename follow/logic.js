@@ -583,8 +583,8 @@ async function onNameSearched(e) {
     mode: "cors",
     method: "POST",
     body: JSON.stringify({
-      searchedFirstName: trim(searchedFirstName),
-      searchedLastName: trim(searchedLastName),
+      searchedFirstName: searchedFirstName.trim(),
+      searchedLastName: searchedLastName.trim(),
       churchid: churchid,
     }),
     headers: new Headers({
