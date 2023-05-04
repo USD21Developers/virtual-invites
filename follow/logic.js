@@ -595,7 +595,11 @@ async function onNameSearched(e) {
     .then((res) => res.json())
     .then((data) => {
       if (data && data.hasOwnProperty("matches") && data.matches.length) {
-        const matches = data.matches.filter((item) => item.followid === null);
+        let matches = data.matches;
+
+        // Filter out matched users who are already being followed; change this if feedback indicates users want to see even people that they're already following in search results
+        matches = matches.filter((item) => item.followid === null);
+
         showMatchesFound(matches);
         hideSpinner();
       } else {
