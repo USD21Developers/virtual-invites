@@ -595,7 +595,7 @@ async function onNameSearched(e) {
     .then((res) => res.json())
     .then((data) => {
       if (data && data.hasOwnProperty("matches") && data.matches.length) {
-        const matches = data.matches.filter((item) => item.followid !== null);
+        const matches = data.matches.filter((item) => item.followid === null);
         showMatchesFound(matches);
         hideSpinner();
       } else {
