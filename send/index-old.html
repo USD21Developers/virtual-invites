@@ -193,11 +193,13 @@
         autocomplete="off"
         novalidate
       >
-        <div class="form-group row mb-4">
-          <div class="col-12 col-md-2 offset-md-2 col-form-label">
-            <h4 class="mb-0" data-i18n="headlinevia"></h4>
+        <div class="form-group row mb-3">
+          <div
+            class="col-4 col-md-2 offset-md-2 col-form-label py-1 pr-0 text-right"
+          >
+            <h4 class="text-uppercase" data-i18n="headlinevia"></h4>
           </div>
-          <div class="col-12 col-md-5" id="sendViaOptions">
+          <div class="col-8 col-md-5" id="sendViaOptions">
             <select
               tabindex="1"
               name="sendvia"
@@ -215,11 +217,13 @@
             </select>
           </div>
         </div>
-        <div class="form-group row mt-4 mb-4">
-          <div class="col-12 col-md-2 offset-md-2 col-form-label py-1 pr-0">
-            <h4 class="mb-0" data-i18n="headlinefor"></h4>
+        <div class="form-group row mb-4">
+          <div
+            class="col-4 col-md-2 offset-md-2 col-form-label py-1 pr-0 text-right"
+          >
+            <h4 class="text-uppercase" data-i18n="headlinefor"></h4>
           </div>
-          <div class="col-12 col-md-5">
+          <div class="col-8 col-md-5">
             <select
               id="events_dropdown"
               name="events_dropdown"
@@ -258,11 +262,13 @@
           </div>
         </div>
 
-        <div class="form-group row mb-4">
-          <div class="col-12 col-md-2 offset-md-2 col-form-label py-1 pr-0">
-            <h4 class="mb-2" data-i18n="headlineto"></h4>
+        <div class="form-group row mb-3">
+          <div
+            class="col-4 col-md-2 offset-md-2 col-form-label py-1 pr-0 text-right"
+          >
+            <h4 class="text-uppercase" data-i18n="headlineto"></h4>
           </div>
-          <div class="col-12 col-md-5" id="containerName">
+          <div class="col-8 col-md-5" id="containerName">
             <input
               type="text"
               class="form-control"
@@ -279,8 +285,8 @@
         </div>
 
         <div class="row d-none" id="containerSendToQRCode">
-          <div class="col-12 col-sm-8 offset-sm-3 col-md-5 offset-md-4">
-            <div class="text-center mb-2" id="qrcode">
+          <div class="col col-sm-8 offset-sm-3 col-md-5 offset-md-4">
+            <div class="text-center mt-2 mb-2" id="qrcode">
               <canvas id="qr" style="max-width: 100%"></canvas>
             </div>
           </div>
@@ -296,8 +302,13 @@
           </div>
         </div>
 
-        <div class="form-group row" id="containerSendToSms">
-          <div class="col-12 col-sm-8 offset-sm-3 col-md-5 offset-md-4">
+        <div class="form-group row mb-5" id="containerSendToSms">
+          <div
+            class="col-4 col-md-2 offset-md-2 col-form-label py-1 pr-0 text-right"
+          >
+            <h4 class="text-uppercase">&nbsp;</h4>
+          </div>
+          <div class="col-8 col-md-5">
             <div>
               <input
                 type="tel"
@@ -315,7 +326,12 @@
         </div>
 
         <div class="form-group row mb-5 d-none" id="containerSendToEmail">
-          <div class="col-12 col-md-5">
+          <div
+            class="col-4 col-md-2 offset-md-2 col-form-label py-1 pr-0 text-right"
+          >
+            <h4 class="text-uppercase">&nbsp;</h4>
+          </div>
+          <div class="col-8 col-md-5">
             <input
               type="email"
               class="form-control"
