@@ -27,6 +27,9 @@ function followUser(userid, e) {
               .tz(moment.now(), moment.tz.guess())
               .format();
             updateFollowActivity(userFollowed, whenFollowed, "followed");
+            syncEvents().then(() => {
+              popupQuantityOfEvents("unfollow");
+            });
             resolve(data.msg);
             break;
           default:
@@ -34,6 +37,9 @@ function followUser(userid, e) {
             e.target.innerText = getPhrase("btnFollow");
             e.target.classList.remove("btn-success");
             e.target.classList.add("btn-primary");
+            syncEvents().then(() => {
+              popupQuantityOfEvents("unfollow");
+            });
             resolve(data.msg);
         }
       })
@@ -246,26 +252,6 @@ function showFollowButton() {
 
 function unfollowUser(userid, e) {
   return new Promise(async (resolve, reject) => {
-    const followedUsersIDB = await localforage.getItem("followedUsers");
-    if (followedUsersIDB) {
-      const updated = followedUsersIDB?.filter(
-        (item) => item.userid !== Number(userid)
-      );
-      await localforage.setItem("followedUsers", updated);
-    }
-
-    const eventsByFollowedUsers = await localforage.getItem(
-      "eventsByFollowedUsers"
-    );
-    if (eventsByFollowedUsers) {
-      const updated = eventsByFollowedUsers?.filter(
-        (item) => item.createdBy !== Number(userid)
-      );
-      await localforage.setItem("eventsByFollowedUsers", updated);
-    }
-
-    popupQuantityOfEvents();
-
     const endpoint = `${getApiHost()}/unfollow-user`;
     const accessToken = await getAccessToken();
 
@@ -294,7 +280,9 @@ function unfollowUser(userid, e) {
               .tz(moment.now(), moment.tz.guess())
               .format();
             updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
-            syncEvents();
+            syncEvents().then(() => {
+              popupQuantityOfEvents("unfollow");
+            });
             resolve(data.msg);
             break;
           default:
@@ -302,7 +290,9 @@ function unfollowUser(userid, e) {
             e.target.classList.remove("btn-primary");
             e.target.classList.add("btn-success");
             e.target.innerText = getPhrase("btnFollowing");
-            syncEvents();
+            syncEvents().then(() => {
+              popupQuantityOfEvents("unfollow");
+            });
             resolve(data.msg);
         }
       })

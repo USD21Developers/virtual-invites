@@ -500,7 +500,7 @@ async function onUnfollowConfirmed(e) {
   })();
 
   $("#modal").on("hidden.bs.modal", (e) => {
-    popupQuantityOfEvents();
+    popupQuantityOfEvents("unfollow");
   });
 
   // Unfollow from API (silently)

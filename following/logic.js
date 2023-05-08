@@ -50,7 +50,7 @@ function followUser(userIdToFollow, e) {
             updateFollowCounts(data.otherUserNow);
             showUserInResults();
             await syncEvents();
-            popupQuantityOfEvents();
+            popupQuantityOfEvents("follow");
             resolve(data.msg);
             break;
           default:
@@ -59,14 +59,14 @@ function followUser(userIdToFollow, e) {
             e.target.classList.remove("btn-success");
             e.target.classList.add("btn-primary");
             await syncEvents();
-            popupQuantityOfEvents();
+            popupQuantityOfEvents("follow");
             resolve(data.msg);
         }
       })
       .catch(async (err) => {
         console.error(err);
         await syncEvents();
-        popupQuantityOfEvents();
+        popupQuantityOfEvents("follow");
         reject(err);
       });
   });
@@ -503,7 +503,7 @@ function unfollowUser(userid, e) {
       await localforage.setItem("eventsByFollowedUsers", updated);
     }
 
-    popupQuantityOfEvents();
+    popupQuantityOfEvents("unfollow");
 
     const endpoint = `${getApiHost()}/unfollow-user`;
     const accessToken = await getAccessToken();

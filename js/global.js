@@ -987,7 +987,7 @@ function populateGlobalContent() {
   });
 }
 
-async function popupQuantityOfEvents() {
+async function popupQuantityOfEvents(type) {
   const eventsByUser = await localforage.getItem("events");
   const eventsByFollowedUsers = await localforage.getItem(
     "eventsByFollowedUsers"
@@ -1021,10 +1021,22 @@ async function popupQuantityOfEvents() {
     </table>
   `;
 
+  let selector;
+  const followSelector = "#eventsToastOnFollow";
+  const unfollowSelector = "#eventsToastOnUnfollow";
+
+  if (type === "unfollow") {
+    selector = followSelector;
+    hideToast(unfollowSelector);
+  } else if (type === "follow") {
+    selector = unfollowSelector;
+    hideToast(followSelector);
+  }
+
   if (window.location.pathname === "/events/") {
-    showToast(phrase, 4000, "info");
+    showToast(phrase, 4000, "info", selector);
   } else {
-    showToast(toastHTML, 4000, "info");
+    showToast(toastHTML, 4000, "info", selector);
   }
 }
 
@@ -1215,16 +1227,21 @@ function showModal(
   });
 }
 
-function hideToast() {
-  const toast = document.querySelector(".snackbar");
+function hideToast(selector = ".snackbar") {
+  const toast = document.querySelector(selector);
   if (toast) {
     toast.classList.remove("show");
   }
 }
 
-function showToast(message, duration = 5000, type = "dark") {
-  const snackbar = document.querySelector(".snackbar");
-  const body = document.querySelector(".snackbar-body");
+function showToast(
+  message,
+  duration = 5000,
+  type = "dark",
+  selector = ".snackbar"
+) {
+  const snackbar = document.querySelector(selector);
+  const body = snackbar.querySelector(".snackbar-body");
   [
     "bg-danger",
     "bg-dark",

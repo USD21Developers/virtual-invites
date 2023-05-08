@@ -28,21 +28,21 @@ function followUser(userid, e) {
             updateFollowActivity(userFollowed, whenFollowed, "followed");
             populateFollowingQuantity(quantityNowFollowing);
             await syncEvents();
-            popupQuantityOfEvents();
+            popupQuantityOfEvents("follow");
             resolve(data.msg);
             break;
           default:
             e.target.setAttribute("data-status", "follow");
             e.target.innerText = getPhrase("btnFollow");
             await syncEvents();
-            popupQuantityOfEvents();
+            popupQuantityOfEvents("follow");
             resolve(data.msg);
         }
       })
       .catch(async (err) => {
         console.error(err);
         await syncEvents();
-        popupQuantityOfEvents();
+        popupQuantityOfEvents("follow");
         reject(err);
       });
   });
@@ -409,7 +409,7 @@ function unfollowUser(userid, e) {
       await localforage.setItem("eventsByFollowedUsers", updated);
     }
 
-    popupQuantityOfEvents();
+    popupQuantityOfEvents("unfollow");
 
     const endpoint = `${getApiHost()}/unfollow-user`;
     const accessToken = await getAccessToken();
