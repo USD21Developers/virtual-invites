@@ -25,8 +25,8 @@
     },
     {
       "key": "headlineto",
-      "original": "To:",
-      "translated": "To:"
+      "original": "Recipient:",
+      "translated": "Recipient:"
     },
     {
       "key": "recipientsName",
@@ -40,8 +40,8 @@
     },
     {
       "key": "headlinevia",
-      "original": "Send Via:",
-      "translated": "Send Via:"
+      "original": "Sending Method:",
+      "translated": "Sending Method:"
     },
     {
       "key": "viasms",

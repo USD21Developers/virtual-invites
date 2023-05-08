@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="initial-scale=1, shrink-to-fit=no, width=device-width"
+      name="viewport"
+    />
+    <title data-i18n="pagetitle"></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Oswald:wght@200;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="../js/enforceaccess.js"></script>
+    <link rel="stylesheet" href="../css/daemonite-material.css" />
+    <link
+      href="../js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
+      rel="stylesheet"
+    />
+    <link href="../css/global.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar bg-white sticky-top">
+      <a class="navbar-brand" href="/">
+        <img src="/_assets/img/logo.svg" width="133" height="50" alt="logo" />
+      </a>
+      <div class="align-items-end">
+        <a href="/profile/" class="d-none">
+          <img class="profileImageNav" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="navdrawer"
+          data-target="#navdrawerDefault"
+          aria-controls="navdrawerDefault"
+          aria-expanded="false"
+          aria-label=""
+          data-i18n-global-aria-label="toggleNavigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+    <div
+      aria-hidden="true"
+      class="navdrawer navdrawer-right navbar-collapse collapse"
+      id="navdrawerDefault"
+      tabindex="-1"
+    >
+      <div class="navdrawer-content">
+        <div class="navdrawer-header">
+          <div class="row">
+            <div class="col-9 d-flex justify-content-start">
+              <a
+                class="navbar-brand px-0"
+                href="../"
+                data-i18n-global="menuHeadline"
+              ></a>
+            </div>
+            <div class="col-3 d-flex justify-content-end align-items-center">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="navdrawer"
+                data-target="#navdrawerDefault"
+                aria-controls="navdrawerDefault"
+                aria-expanded="false"
+                aria-label=""
+                data-i18n-global-aria-label="toggleNavigation"
+              >
+                <span class="material-icons mmaterial-icons-outlined">
+                  close
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <nav class="navdrawer-nav">
+          <a class="nav-item nav-link" href="../">
+            <span class="material-icons mr-3 material-icons-outlined">
+              home
+            </span>
+            <span data-i18n-global="menuHome"></span>
+          </a>
+          <a class="nav-item nav-link active" href="../send/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              send
+            </span>
+            <span data-i18n-global="menuSendInvite"></span>
+          </a>
+          <a class="nav-item nav-link" href="../followup/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              people
+            </span>
+            <span data-i18n-global="menuFollowUp"></span>
+          </a>
+          <a class="nav-item nav-link" href="../events/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              event
+            </span>
+            <span data-i18n-global="menuEventsImSharing"></span>
+          </a>
+          <a class="nav-item nav-link" href="../maps/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              place
+            </span>
+            <span data-i18n-global="menuMaps"></span>
+          </a>
+          <!-- <a class="nav-item nav-link" href="../authorize/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              approval
+            </span>
+            <span data-i18n-global="menuAuthorizeUser"></span>
+          </a> -->
+          <div class="navdrawer-divider"></div>
+          <a class="nav-item nav-link" href="../settings/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              settings
+            </span>
+            <span data-i18n-global="menuSettings"></span>
+          </a>
+          <a class="nav-item nav-link" href="../profile/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              account_circle
+            </span>
+            <span data-i18n-global="menuMyProfile"></span>
+          </a>
+          <a class="nav-item nav-link" href="../support/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              contact_support
+            </span>
+            <span data-i18n-global="menuSupport"></span>
+          </a>
+          <a class="nav-item nav-link" href="../logout/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              logout
+            </span>
+            <span data-i18n-global="menuLogOut"></span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <nav aria-label="breadcrumb" id="breadcrumbs" class="d-none">
+      <ol class="breadcrumb bg-white my-0">
+        <li class="breadcrumb-item">
+          <a href="../" data-i18n="breadcrumbHome"></a>
+        </li>
+        <li class="breadcrumb-item active">
+          <a href="./" data-i18n="breadcrumbSendInvite"></a>
+        </li>
+      </ol>
+    </nav>
+
+    <div class="container" id="pageSpinner">
+      <div class="row">
+        <div class="col col-sm-10 offset-sm-1 mt-3 mb-4 text-center">
+          <img
+            src="/_assets/img/spinner.svg"
+            width="200"
+            height="200"
+            style="max-width: 100%"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-none mainContent">
+      <div class="row">
+        <div class="col col-sm-8 offset-sm-3 col-md-5 offset-md-4">
+          <h2
+            class="text-center text-uppercase my-4"
+            data-i18n="pagetitle"
+          ></h2>
+        </div>
+      </div>
+
+      <form
+        name="formsendinvite"
+        id="formsendinvite"
+        method="post"
+        action="./"
+        autocomplete="off"
+        novalidate
+      >
+        <div class="form-group row mb-3">
+          <div class="col-12 col-md-2 offset-md-2 col-form-label">
+            <h4 class="mb-0" data-i18n="headlinevia"></h4>
+          </div>
+          <div class="col-12 col-md-5" id="sendViaOptions">
+            <select
+              tabindex="1"
+              name="sendvia"
+              id="sendvia"
+              class="form-control"
+            >
+              <option value="sms" data-i18n="viasms"></option>
+              <option value="email" data-i18n="viaemail"></option>
+              <option value="qrcode" data-i18n="viaqrcode"></option>
+              <!-- <option
+              value="otherapps"
+              data-i18n="viaotherapps"
+              class="d-none"
+            ></option> -->
+            </select>
+          </div>
+        </div>
+        <div class="form-group row mt-4 mb-4">
+          <div class="col-12 col-md-2 offset-md-2 col-form-label py-1 pr-0">
+            <h4 class="mb-0" data-i18n="headlinefor"></h4>
+          </div>
+          <div class="col-12 col-md-5">
+            <select
+              id="events_dropdown"
+              name="events_dropdown"
+              class="form-control"
+              tabindex="2"
+            ></select>
+            <div class="invalid-feedback"></div>
+            <div
+              id="meetingDetailsContainer"
+              class="card shadow-none mt-3 d-none"
+            >
+              <div
+                class="text-secondary font-weight-bold border border-secondary text-dark card-header py-2 text-white small"
+                data-i18n="eventDetails"
+                style="background-color: #e0e0e0"
+              ></div>
+              <div
+                class="card-body border border-secondary border-top-0 shadow-none py-2"
+              >
+                <div class="mt-0 d-none" id="meetingdetails">
+                  <div class="row">
+                    <div class="col">
+                      <div
+                        class="fs-6 text-secondary small"
+                        id="meetingdetails_timedate"
+                      ></div>
+                      <div
+                        class="fs-6 text-secondary small"
+                        id="meetingdetails_location"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-4">
+          <div class="col-12 col-md-2 offset-md-2 col-form-label py-1 pr-0">
+            <h4 class="mb-2" data-i18n="headlineto"></h4>
+          </div>
+          <div class="col-12 col-md-5" id="containerName">
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              id="recipientname"
+              autocomplete="given-name"
+              placeholder=""
+              tabindex="3"
+              data-i18n-placeholder="recipientsName"
+              required
+            />
+            <div class="invalid-feedback"></div>
+          </div>
+        </div>
+
+        <div class="row d-none" id="containerSendToQRCode">
+          <div class="col-12 col-sm-8 offset-sm-3 col-md-5 offset-md-4">
+            <div class="text-center mb-2" id="qrcode">
+              <canvas id="qr" style="max-width: 100%"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="row d-none" id="containerQRCodeInstructions">
+          <div class="col col-sm-8 offset-sm-3 col-md-5 offset-md-4">
+            <p class="center-text text-dark mt-2 mb-0">
+              <strong data-i18n="instructionsLabel"></strong>
+              <span data-i18n="instructionsShort"></span>
+              <span data-i18n="instructionsLong" class="d-none"></span>
+            </p>
+          </div>
+        </div>
+
+        <div class="form-group row" id="containerSendToSms">
+          <div class="col-12 col-sm-8 offset-sm-3 col-md-5 offset-md-4">
+            <div>
+              <input
+                type="tel"
+                class="form-control"
+                name="sendto_sms"
+                id="sendto_sms"
+                placeholder=""
+                tabindex="4"
+                pattern="[0-9]*"
+                data-i18n-placeholder="mobilephonenumber"
+              />
+            </div>
+            <div class="invalid-feedback" id="phoneNumberInvalidFeedback"></div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-5 d-none" id="containerSendToEmail">
+          <div class="col-12 col-md-5">
+            <input
+              type="email"
+              class="form-control"
+              name="sendto_email"
+              id="sendto_email"
+              placeholder=""
+              tabindex="5"
+              data-i18n-placeholder="emailaddress"
+            />
+            <div class="invalid-feedback"></div>
+          </div>
+        </div>
+
+        <div class="row my-5 d-none" id="containerTagWithLocation">
+          <div
+            class="col col-sm-8 offset-sm-3 col-md-5 offset-md-4 text-center"
+          >
+            <div class="d-inline-block">
+              <div class="form-check">
+                <label class="form-check-label text-dark" for="tagwithlocation">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="tagwithlocation"
+                    tabindex="6"
+                  />&nbsp;<span data-i18n="taginvitetext"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-5" id="containerSendInvite">
+          <div
+            class="col col-sm-8 offset-sm-3 col-md-5 offset-md-4 text-center"
+          >
+            <a
+              href="#"
+              class="btn btn-primary btn-lg font-weight-bold"
+              id="btnSendInvite"
+              tabindex="7"
+              data-defaulttext=""
+              data-qrcodetext=""
+              data-otherappstext=""
+              data-i18n="buttonsendinvite"
+            ></a>
+            <br /><br />
+            <input type="submit" style="display: none" />
+
+            <div class="text-center mt-1">
+              <a href="../" class="text-muted" data-i18n="cancel"></a>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="snackbar">
+        <div class="snackbar-body"></div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modaltitle"></h5>
+            <button
+              type="button"
+              class="close"
+              aria-label=""
+              onclick="location.href = '../'"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-3"></div>
+          <div class="modal-footer modal-footer-stacked">
+            <button
+              class="btn btn-outline-info font-weight-bold"
+              data-dismiss="modal"
+              type="button"
+              data-i18n="btnRetry"
+            ></button>
+            <button
+              class="btn btn-outline-info font-weight-bold"
+              id="btnFinish"
+              type="button"
+              data-i18n="btnFinish"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Errors -->
+    <div
+      class="modal fade"
+      id="modalFormErrors"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitleFormErrors"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modaltitleFormErrors"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+
+    <br /><br /><br /><br />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"
+      integrity="sha512-+BMamP0e7wn39JGL8nKAZ3yAQT2dL5oaXWr4ZYlTGkKOaoXM/Yj7c4oy50Ngz5yoUutAG17flueD4F6QpTlPng=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data-10-year-range.min.js"
+      integrity="sha512-d11VXfxQMn+sZuIgzHITdIuInr4cVRGV/uLiSI643WH/J+p4gPFYSHXRMR2v+w4Rn2TSyzJjsZjc0M7+Qd+UXw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
+    <script src="../js/qrious/qrious.min.js"></script>
+    <script src="../js/global.js"></script>
+    <script src="../js/sync.js"></script>
+    <script src="logic.js"></script>
+  </body>
+</html>
