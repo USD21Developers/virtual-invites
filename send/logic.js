@@ -527,16 +527,16 @@ function onFinish() {
 function onGeoLocationError(err) {
   switch (err) {
     case 1:
-      showToast(getPhrase("geocoordinatesPermissionDenied"));
+      console.log(getPhrase("geocoordinatesPermissionDenied"));
       break;
     case 2:
-      showToast(getPhrase("geocoordinatesPermissionUnavailable"));
+      console.log(getPhrase("geocoordinatesPermissionUnavailable"));
       break;
     case 3:
-      showToast(getPhrase("geocoordinatesPermissionTimedOut"));
+      console.log(getPhrase("geocoordinatesPermissionTimedOut"));
       break;
     default:
-      showToast(`${getPhrase("geocoordinatesErrorCode")} ${err}`);
+      console.log(`${getPhrase("geocoordinatesErrorCode")} ${err}`);
   }
 }
 
