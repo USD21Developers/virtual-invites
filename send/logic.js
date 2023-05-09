@@ -100,6 +100,9 @@ function downloadCanvasAsImage() {
 async function eventDetails() {
   const eventEl = document.querySelector("#events_dropdown");
   const qrcode = document.querySelector("#qrcode");
+  const qrcodeInstructions = document.querySelector(
+    "#containerQRCodeInstructions"
+  );
   const meetingdetails = document.querySelector("#meetingdetails");
   const meetingDetailsContainer = document.querySelector(
     "#meetingDetailsContainer"
@@ -121,9 +124,11 @@ async function eventDetails() {
     localStorage.setItem("lastEventSelected", "");
     meetingDetailsContainer.classList.add("d-none");
     qrcode.classList.add("d-none");
+    qrcodeInstructions.classList.add("d-none");
     return;
   } else {
     qrcode.classList.remove("d-none");
+    qrcodeInstructions.classList.remove("d-none");
   }
 
   let event = [];
@@ -157,7 +162,11 @@ async function eventDetails() {
 
   populateQrCode();
 
-  if (selectedEvent.value === "") return meetingdetails.classList.add("d-none");
+  if (selectedEvent.value === "") {
+    meetingdetails.classList.add("d-none");
+    return;
+  }
+
   localStorage.setItem("lastEventSelected", Number(selectedEvent.value));
   meetingdetails_timedate.innerHTML = `${eventDateTime}`;
   meetingdetails_location.innerHTML = `
