@@ -996,7 +996,10 @@ function setEventListeners() {
     .addEventListener("submit", onSubmit);
   document.querySelector("#btnFinish").addEventListener("click", onFinish);
   window.addEventListener("pageshow", (event) => {
-    if (event.persisted) {
+    if (
+      event.persisted ||
+      performance.getEntriesByType("navigation")[0].type === "back_forward"
+    ) {
       window.location.reload();
     }
   });
@@ -1017,8 +1020,8 @@ async function init() {
   eventDetails();
   getCoordinatesOnLoad();
   showTagInviteWithLocation();
-  globalHidePageSpinner();
   setEventListeners();
+  globalHidePageSpinner();
 }
 
 init();
