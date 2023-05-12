@@ -996,11 +996,9 @@ function setEventListeners() {
     .addEventListener("submit", onSubmit);
   document.querySelector("#btnFinish").addEventListener("click", onFinish);
   window.addEventListener("pageshow", (event) => {
-    window.location.reload();
-    /* onSendViaChanged();
     if (event.persisted) {
-      console.log("Page was restored from the bfcache");
-    } */
+      window.location.reload();
+    }
   });
 
   document
@@ -1012,16 +1010,15 @@ async function init() {
   await checkForEvents();
   clearForm();
   await populateContent();
-  // enableWebShareAPI();    // TURNING OFF WEB SHARE API FOR NOW
   populateSaveButtonData();
   await loadEvents();
+  setDefaultSendMethod();
   initIntlTelInput();
-  setEventListeners();
   eventDetails();
   getCoordinatesOnLoad();
   showTagInviteWithLocation();
   globalHidePageSpinner();
-  setDefaultSendMethod();
+  setEventListeners();
 }
 
 init();
