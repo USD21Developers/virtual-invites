@@ -99,7 +99,7 @@ function downloadCanvasAsImage() {
 
 async function eventDetails() {
   const eventEl = document.querySelector("#events_dropdown");
-  const qrcode = document.querySelector("#qrcode");
+  const qrcode = document.querySelector("#containerSendToQRCode");
   const qrcodeInstructions = document.querySelector(
     "#containerQRCodeInstructions"
   );
@@ -113,12 +113,13 @@ async function eventDetails() {
   const meetingdetails_location = document.querySelector(
     "#meetingdetails_location"
   );
-  const selectedEvent = eventEl.selectedOptions[0];
+  const selectedEvent = getInviteToId();
   const events = await localforage.getItem("events");
   const eventsByFollowedUsers = await localforage.getItem(
     "eventsByFollowedUsers"
   );
-  const eventid = eventEl.selectedOptions[0].value;
+  const eventid = getInviteToId();
+  const sendVia = getSendVia();
 
   if (eventid === "") {
     localStorage.setItem("lastEventSelected", "");
@@ -126,9 +127,6 @@ async function eventDetails() {
     qrcode.classList.add("d-none");
     qrcodeInstructions.classList.add("d-none");
     return;
-  } else {
-    qrcode.classList.remove("d-none");
-    qrcodeInstructions.classList.remove("d-none");
   }
 
   let event = [];
@@ -148,6 +146,10 @@ async function eventDetails() {
   // If dropdown still does not match events in IndexedDB
   if (!event.length) {
     console.error(`Event for eventid ${eventid} not found`);
+    localStorage.setItem("lastEventSelected", "");
+    meetingDetailsContainer.classList.add("d-none");
+    qrcode.classList.add("d-none");
+    qrcodeInstructions.classList.add("d-none");
     return;
   }
 
@@ -160,14 +162,14 @@ async function eventDetails() {
 
   eventDateTime = await showEventDateTime(event[0]);
 
-  populateQrCode();
-
   if (selectedEvent.value === "") {
     meetingdetails.classList.add("d-none");
+    qrcode.classList.add("d-none");
+    qrcodeInstructions.add("d-none");
     return;
   }
 
-  localStorage.setItem("lastEventSelected", Number(selectedEvent.value));
+  localStorage.setItem("lastEventSelected", Number(selectedEvent));
   meetingdetails_timedate.innerHTML = `${eventDateTime}`;
   meetingdetails_location.innerHTML = `
     ${!!locationname && locationname.length ? locationname : ""}
@@ -189,6 +191,12 @@ async function eventDetails() {
   `;
   meetingdetails.classList.remove("d-none");
   meetingDetailsContainer.classList.remove("d-none");
+
+  if (sendVia === "qrcode") {
+    qrcode.classList.remove("d-none");
+    qrcodeInstructions.classList.remove("d-none");
+    await populateQrCode();
+  }
 }
 
 async function getCoordinatesOnLoad() {
@@ -373,10 +381,6 @@ function loadDummyEvents() {
 
 async function loadEvents() {
   const events_dropdown = document.querySelector("#events_dropdown");
-  const meetingdetails = document.querySelector("#meetingdetails");
-  const meetingdetailsContainer = document.querySelector(
-    "#meetingDetailsContainer"
-  );
   const lastEventSelected = localStorage.getItem("lastEventSelected") || "";
 
   const events = await localforage.getItem("events");
@@ -419,7 +423,7 @@ async function loadEvents() {
         let followedUserHTML = "";
         followedUserHTML = `<optgroup label="${firstname} ${lastname}" data-userid="${userid}">`;
         eventsByFollowedUser.forEach((e) => {
-          if (e.eventid === lastEventSelected) {
+          if (e.eventid == lastEventSelected) {
             followedUserHTML += `<option value="${e.eventid}" selected>${e.title}</option>`;
           } else {
             followedUserHTML += `<option value="${e.eventid}">${e.title}</option>`;
@@ -448,7 +452,7 @@ async function loadEvents() {
         let followedUserHTML = "";
         followedUserHTML = `<optgroup label="${firstname} ${lastname}" data-userid="${userid}">`;
         eventsByFollowedUser.forEach((e) => {
-          if (e.eventid === lastEventSelected) {
+          if (e.eventid == lastEventSelected) {
             followedUserHTML += `<option value="${e.eventid}" selected>${e.title}</option>`;
           } else {
             followedUserHTML += `<option value="${e.eventid}">${e.title}</option>`;
@@ -461,19 +465,16 @@ async function loadEvents() {
 
     events_dropdown.innerHTML = optionsHTML;
 
-    const matchedOption = events_dropdown.querySelector(
-      `option[value="${lastEventSelected}"]`
-    );
+    const matchedOption =
+      lastEventSelected !== ""
+        ? events_dropdown.querySelector(`option[value="${lastEventSelected}"]`)
+        : null;
     if (matchedOption) {
       matchedOption.selected = true;
     } else {
       events_dropdown.options[0].selected = true;
       localStorage.removeItem("lastEventSelected");
     }
-
-    document
-      .querySelector("#events_dropdown")
-      .addEventListener("change", () => eventDetails(null, null));
 
     resolve();
   });
@@ -559,6 +560,18 @@ function onGeoLocationSuccess(pos) {
   };
 
   // showToast(`<a href="https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}">${latitude}, ${longitude}</a>`);
+}
+
+function onHowToScanClick(e) {
+  e.preventDefault();
+  const instructionsShort = document.querySelector(
+    "[data-i18n='instructionsShort']"
+  );
+  const instructionsLong = document.querySelector(
+    "[data-i18n='instructionsLong']"
+  );
+  instructionsShort.classList.add("d-none");
+  instructionsLong.classList.remove("d-none");
 }
 
 function onSendViaChanged() {
@@ -711,13 +724,11 @@ function onTagWithLocation(e) {
 }
 
 function populateQrCode() {
-  const el = document.querySelector("#qrcode");
-  const availableWidth = el.clientWidth;
-  const maxWidth = 200;
-  const width = availableWidth > maxWidth ? maxWidth : availableWidth;
-  const url = getFinalURL();
-
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
+    const availableWidth = document.querySelector("#qrcode").clientWidth;
+    const maxWidth = 200;
+    const width = availableWidth > maxWidth ? maxWidth : availableWidth;
+    const url = getFinalURL();
     const qr = new QRious({
       element: document.getElementById("qr"),
       value: url,
@@ -810,25 +821,7 @@ function selectSendVia(method) {
         downloadLink.setAttribute("href", url);
         const canvas = document.querySelector("#qr");
         canvas.addEventListener("click", () => downloadLink.click());
-
-        const linkHowToScan = document.querySelector("a[href='#howtoscan']");
-        linkHowToScan.addEventListener("click", (e) => {
-          e.preventDefault();
-          const instructionsShort = document.querySelector(
-            "[data-i18n='instructionsShort']"
-          );
-          const instructionsLong = document.querySelector(
-            "[data-i18n='instructionsLong']"
-          );
-          instructionsShort.classList.add("d-none");
-          instructionsLong.classList.remove("d-none");
-        });
       });
-      if (!method) {
-        /* const qrCodeContainerOffset =
-          document.getElementById("containerSendToQRCode").offsetTop - 80;
-        window.scroll({ top: qrCodeContainerOffset, behavior: "smooth" }); */
-      }
       break;
     case "otherapps":
       localStorage.setItem("lastSendMethodSelected", "otherapps");
@@ -991,7 +984,7 @@ function setEventListeners() {
     .addEventListener("change", onSendViaChanged);
   document
     .querySelector("#events_dropdown")
-    .addEventListener("change", () => eventDetails(null, null));
+    .addEventListener("change", eventDetails);
   document
     .querySelector("#tagwithlocation")
     .addEventListener("click", onTagWithLocation);
@@ -1003,11 +996,16 @@ function setEventListeners() {
     .addEventListener("submit", onSubmit);
   document.querySelector("#btnFinish").addEventListener("click", onFinish);
   window.addEventListener("pageshow", (event) => {
-    onSendViaChanged();
+    window.location.reload();
+    /* onSendViaChanged();
     if (event.persisted) {
       console.log("Page was restored from the bfcache");
-    }
+    } */
   });
+
+  document
+    .querySelector("a[href='#howtoscan']")
+    .addEventListener("click", onHowToScanClick);
 }
 
 async function init() {
