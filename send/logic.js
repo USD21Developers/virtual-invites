@@ -519,7 +519,6 @@ async function onAfterSubmitted(sendvia) {
 
   // Save to localStorage, try to sync, then show modal
   const txtInviteRecorded = getPhrase("inviteRecorded");
-  const txtBtnRetry = getPhrase("btnRetry");
   saveAndSync(sendvia)
     .then(() => {
       showModal(modalContent, txtInviteRecorded, "static");
@@ -848,7 +847,10 @@ function saveAndSync(sendvia) {
     const now = moment();
     const invitedAtLocalTime = now.toISOString(true); // '2023-04-20T13:37:09.639-07:00'
     const invitedAtUtcTime = now.toISOString(); // '2023-04-20T20:37:05.951Z'
-    const coords = coordinates ? coordinates : null;
+    const tagWithLocationCheckbox = document.querySelector("#tagwithlocation");
+    const okToUseCoordinates = tagWithLocationCheckbox?.checked ? true : false;
+
+    const coords = okToUseCoordinates && coordinates ? coordinates : null;
 
     const invite = {
       eventid: eventid,
