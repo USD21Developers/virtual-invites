@@ -219,7 +219,7 @@ function syncInvites() {
     const timeout = 8000;
     const unsyncedInvites =
       (await localforage.getItem("unsyncedInvites")) || [];
-    const endpoint = `${getApiHost()}/sync-invites}`;
+    const endpoint = `${getApiHost()}/sync-invites`;
 
     if (!isOnline) {
       return reject(new Error("Invites sync failed:  user is offline"));
