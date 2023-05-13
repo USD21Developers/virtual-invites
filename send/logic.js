@@ -517,16 +517,9 @@ async function onAfterSubmitted(sendvia) {
     `;
   }
 
-  // Save to localStorage, try to sync, then show modal
   const txtInviteRecorded = getPhrase("inviteRecorded");
-  saveAndSync(sendvia)
-    .then(() => {
-      showModal(modalContent, txtInviteRecorded, "static");
-    })
-    .catch(() => {
-      // TODO:  Handle failed sync here, if necessary
-      showModal(modalContent, txtInviteRecorded, "static");
-    });
+
+  showModal(modalContent, txtInviteRecorded, "static");
 }
 
 function onFinish() {
@@ -616,6 +609,8 @@ async function onSubmitButtonClick(e) {
     e.preventDefault();
     return showError(msg, "#recipientname", msgInline);
   }
+
+  saveAndSync(sendvia);
 
   switch (sendVia) {
     case "sms":
