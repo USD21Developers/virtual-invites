@@ -212,9 +212,12 @@ const invitesCrypto = {
 
     deserialize: (strKey) => {
       return new Promise(async (resolve, reject) => {
+        const array = atob(localStorage.getItem("datakey"))
+          .split(",")
+          .map(Number);
         const key = await window.crypto.subtle.importKey(
           "raw",
-          new Uint8Array(JSON.parse(strKey)),
+          new Uint8Array(array),
           "AES-CTR",
           true,
           ["encrypt", "decrypt"]
@@ -228,6 +231,16 @@ const invitesCrypto = {
   serialize: (buffer) => {
     const serialized = JSON.stringify(Array.from(buffer));
     return serialized;
+  },
+
+  test: async () => {
+    const message = "Cuppa coffee for the big time!";
+    console.log(message);
+    const strKey = await invitesCrypto.generateKey();
+    const encryptionObject = await invitesCrypto.encrypt(strKey, message);
+    console.log(encryptionObject);
+    const decrypted = await invitesCrypto.decrypt(strKey, encryptionObject);
+    console.log(decrypted);
   },
 };
 
