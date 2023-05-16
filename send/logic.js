@@ -710,10 +710,12 @@ async function onSubmitButtonClick(e) {
 
       break;
     default:
+      // Probably a QR Code
       e.preventDefault();
       globalShowPageSpinner();
       saveAndSync(sendVia);
       setTimeout(() => {
+        globalHidePageSpinner();
         onAfterSubmitted(sendVia);
       }, 1000);
   }
