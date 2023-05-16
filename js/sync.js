@@ -240,7 +240,7 @@ function syncInvites() {
       keepalive: true,
     })
       .then((res) => res.json())
-      .then(async (data) => {
+      .then((data) => {
         const datakey = localStorage.getItem("datakey") || "";
 
         if (!datakey.length) {
@@ -256,32 +256,44 @@ function syncInvites() {
           return reject(new Error(errorMessage));
         }
 
-        const decrypted = data.invites.map(async (invite) => {
-          if (invite.recipientsms !== null) {
-            const encryptionObject = invite.recipientsms;
+        const invites = data.invites.map(async (invite) => {
+          const decryptedInvite = invite;
+
+          if (invite.recipient.sms !== null) {
+            const encryptionObject = invite.recipient.sms;
             const decrypted = await invitesCrypto.decrypt(
               datakey,
               encryptionObject
             );
-            invite.recipientsms = decrypted;
+            decryptedInvite.recipient.sms = decrypted;
           }
 
           if (invite.recipientemail !== null) {
-            const encryptionObject = invite.recipientemail;
+            const encryptionObject = invite.recipient.email;
             const decrypted = await invitesCrypto.decrypt(
               datakey,
               encryptionObject
             );
-            invite.recipientemail = decrypted;
+            decryptedInvite.recipient.email = decrypted;
           }
-
-          return invite;
         });
 
-        await localforage.setItem("unsyncedInvites", []);
-        await localforage.setItem("invites", decrypted);
-
-        resolve();
+        try {
+          localforage
+            .removeItem("unsyncedInvites")
+            .then(() => {
+              try {
+                localforage.setItem("invites", invites);
+              } catch (e) {
+                reject(e);
+              }
+            })
+            .then(() => {
+              resolve(invites);
+            });
+        } catch (e) {
+          reject(e);
+        }
       })
       .catch((err) => {
         reject(new Error(err));

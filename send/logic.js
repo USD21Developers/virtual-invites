@@ -538,7 +538,7 @@ function onGeoLocationError(err) {
       console.log(getPhrase("geocoordinatesPermissionTimedOut"));
       break;
     default:
-      console.log(`${getPhrase("geocoordinatesErrorCode")} ${err}`);
+      console.log(err);
   }
 }
 
@@ -641,11 +641,13 @@ async function onSubmitButtonClick(e) {
 
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
 
-      showForwardingMessage("sms");
+      showForwardingMessage(sendVia);
 
+      globalShowPageSpinner();
       setTimeout(() => {
-        onAfterSubmitted("sms");
-      }, 5000);
+        globalHidePageSpinner();
+        onAfterSubmitted(sendVia);
+      }, 2500);
 
       break;
     case "email":
@@ -673,11 +675,13 @@ async function onSubmitButtonClick(e) {
         `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`
       );
 
-      showForwardingMessage("email");
+      showForwardingMessage(sendVia);
 
+      globalShowPageSpinner();
       setTimeout(() => {
-        onAfterSubmitted("email");
-      }, 5000);
+        globalHidePageSpinner();
+        onAfterSubmitted(sendVia);
+      }, 2500);
 
       break;
     case "otherapps":
@@ -694,9 +698,11 @@ async function onSubmitButtonClick(e) {
       try {
         e.preventDefault();
         navigator.share(shareData).then(() => {
+          globalShowPageSpinner();
           setTimeout(() => {
-            onAfterSubmitted("otherapps");
-          }, 5000);
+            globalHidePageSpinner();
+            onAfterSubmitted(sendVia);
+          }, 1000);
         });
       } catch (err) {
         console.error(err);
@@ -705,7 +711,11 @@ async function onSubmitButtonClick(e) {
       break;
     default:
       e.preventDefault();
-      onAfterSubmitted("qrcode");
+      globalShowPageSpinner();
+      saveAndSync(sendVia);
+      setTimeout(() => {
+        onAfterSubmitted(sendVia);
+      }, 1000);
   }
 }
 
@@ -835,6 +845,9 @@ function saveAndSync(sendvia) {
     const eventid = Number(
       document.querySelector("#events_dropdown").selectedOptions[0].value
     );
+    const event = await localforage
+      .getItem("events")
+      .then((events) => events.find((evt) => evt.eventid === eventid));
     const userid = getUserId();
     const recipientName = document.querySelector("#recipientname").value || "";
     const recipientSms = sendvia === "sms" ? iti.getNumber() : null;
@@ -842,73 +855,95 @@ function saveAndSync(sendvia) {
       sendvia === "email"
         ? document.querySelector("#sendto_email").value
         : null;
-    const lang = getLang();
     const now = moment();
-    const invitedAtLocalTime = now.toISOString(true); // '2023-04-20T13:37:09.639-07:00'
-    const invitedAtUtcTime = now.toISOString(); // '2023-04-20T20:37:05.951Z'
+    const timezone = moment.tz.guess();
+    const invitedAtUtcTime = now.toISOString();
     const tagWithLocationCheckbox = document.querySelector("#tagwithlocation");
     const okToUseCoordinates = tagWithLocationCheckbox?.checked ? true : false;
 
     const coords = okToUseCoordinates && coordinates ? coordinates : null;
 
     const invite = {
-      eventid: eventid,
-      userid: userid,
-      recipientid: recipientIdGlobal,
-      recipientname: recipientName,
-      recipientsms: recipientSms,
-      recipientemail: recipientEmail,
-      sharedvia: sendvia,
-      sharedfromcoordinates: coords,
-      lang: lang,
-      invitedAtLocalTime: invitedAtLocalTime,
-      invitedAtUtcTime: invitedAtUtcTime,
+      event: {
+        id: event.eventid,
+        lang: event.lang,
+      },
+      recipient: {
+        id: recipientIdGlobal,
+        name: recipientName,
+        sms: recipientSms,
+        email: recipientEmail,
+      },
+      sent: {
+        userid: userid,
+        time: invitedAtUtcTime,
+        timezone: timezone,
+        coords: coords,
+        via: sendvia,
+      },
     };
 
     const datakey = localStorage.getItem("datakey");
 
     const unsyncedInvite = {
-      eventid: eventid,
-      userid: userid,
-      recipientid: recipientIdGlobal,
-      recipientname: recipientName,
-      recipientsms: null,
-      recipientemail: null,
-      sharedvia: sendvia,
-      sharedfromcoordinates: coords,
-      lang: lang,
-      invitedAtLocalTime: invitedAtLocalTime,
-      invitedAtUtcTime: invitedAtUtcTime,
+      event: {
+        id: event.eventid,
+        lang: event.lang,
+      },
+      recipient: {
+        id: recipientIdGlobal,
+        name: recipientName,
+        sms: null,
+        email: null,
+      },
+      sent: {
+        userid: userid,
+        time: invitedAtUtcTime,
+        timezone: timezone,
+        coords: coords,
+        via: sendvia,
+      },
     };
 
     // Encrypt SMS if populated
     if (typeof recipientSms === "string" && recipientSms.length) {
-      unsyncedInvite.recipientsms = await invitesCrypto.encrypt(
-        datakey,
-        recipientSms
-      );
+      try {
+        unsyncedInvite.recipient.sms = await invitesCrypto.encrypt(
+          datakey,
+          recipientSms
+        );
+      } catch (e) {
+        console.error(e);
+      }
     }
 
     // Encrypt e-mail if populated
     if (typeof recipientEmail === "string" && recipientEmail.length) {
-      unsyncedInvite.recipientemail = await invitesCrypto.encrypt(
-        datakey,
-        recipientEmail
-      );
+      try {
+        unsyncedInvite.recipient.email = await invitesCrypto.encrypt(
+          datakey,
+          recipientEmail
+        );
+      } catch (e) {
+        console.error(e);
+      }
     }
 
-    const invites = (await localforage.getItem("invites")) || [];
-    invites.push(invite);
-    await localforage.setItem("invites", invites);
-
-    const unsyncedInvites =
-      (await localforage.getItem("unsyncedInvites")) || [];
-    unsyncedInvites.push(unsyncedInvite);
-    await localforage.setItem("unsyncedInvites", unsyncedInvites);
-
-    const syncResult = syncInvites();
-
-    resolve(syncResult);
+    localforage.getItem("invites").then((storedInvites) => {
+      let modifiedInvites = storedInvites || [];
+      modifiedInvites.push(invite);
+      localforage.setItem("invites", modifiedInvites).then(() => {
+        localforage.getItem("unsyncedInvites").then((storedUnsyncedInvites) => {
+          let modifiedUnsyncedInvites = storedUnsyncedInvites || [];
+          modifiedUnsyncedInvites.push(invite);
+          localforage
+            .setItem("unsyncedInvites", modifiedUnsyncedInvites)
+            .then(() => {
+              syncInvites().then((invites) => resolve(invites));
+            });
+        });
+      });
+    });
   });
 }
 
