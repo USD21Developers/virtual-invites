@@ -907,45 +907,27 @@ function saveAndSync(sendvia) {
       },
     };
 
-    // Encrypt SMS if populated
-    if (typeof recipientSms === "string" && recipientSms.length) {
-      try {
-        unsyncedInvite.recipient.sms = await invitesCrypto.encrypt(
-          datakey,
-          recipientSms
-        );
-      } catch (e) {
-        console.error(e);
-      }
-    }
+    const encryptedSms = recipientSms
+      ? await invitesCrypto.encrypt(datakey, recipientSms)
+      : null;
+    const encryptedEmail = recipientEmail
+      ? await invitesCrypto.encrypt(datakey, recipientEmail)
+      : null;
 
-    // Encrypt e-mail if populated
-    if (typeof recipientEmail === "string" && recipientEmail.length) {
-      try {
-        unsyncedInvite.recipient.email = await invitesCrypto.encrypt(
-          datakey,
-          recipientEmail
-        );
-      } catch (e) {
-        console.error(e);
-      }
-    }
+    unsyncedInvite.recipient.sms = encryptedSms;
+    unsyncedInvite.recipient.email = encryptedEmail;
 
-    localforage.getItem("invites").then((storedInvites) => {
-      let modifiedInvites = storedInvites || [];
-      modifiedInvites.push(invite);
-      localforage.setItem("invites", modifiedInvites).then(() => {
-        localforage.getItem("unsyncedInvites").then((storedUnsyncedInvites) => {
-          let modifiedUnsyncedInvites = storedUnsyncedInvites || [];
-          modifiedUnsyncedInvites.push(invite);
-          localforage
-            .setItem("unsyncedInvites", modifiedUnsyncedInvites)
-            .then(() => {
-              syncInvites().then((invites) => resolve(invites));
-            });
-        });
-      });
-    });
+    const invites = (await localforage.getItem("invites")) || [];
+    const unsyncedInvites =
+      (await localforage.getItem("unsyncedInvites")) || [];
+
+    invites.push(invite);
+    unsyncedInvites.push(unsyncedInvite);
+
+    await localforage.setItem("invites", invites);
+    await localforage.setItem("unsyncedInvites", unsyncedInvites);
+
+    syncInvites().then((invites) => resolve(invites));
   });
 }
 

@@ -259,7 +259,8 @@ function syncInvites() {
         const invites = data.invites.map(async (invite) => {
           const decryptedInvite = invite;
 
-          if (invite.recipient.sms !== null) {
+          // Replace SMS encryption object with decrypted string
+          if (invite.recipient.sms && invite.recipient.sms.ciphertext) {
             const encryptionObject = invite.recipient.sms;
             const decrypted = await invitesCrypto.decrypt(
               datakey,
@@ -268,7 +269,8 @@ function syncInvites() {
             decryptedInvite.recipient.sms = decrypted;
           }
 
-          if (invite.recipientemail !== null) {
+          // Replace e-mail encryption object with decrypted string
+          if (invite.recipient.email && invite.recipient.email.ciphertext) {
             const encryptionObject = invite.recipient.email;
             const decrypted = await invitesCrypto.decrypt(
               datakey,
@@ -278,22 +280,11 @@ function syncInvites() {
           }
         });
 
-        try {
-          localforage
-            .removeItem("unsyncedInvites")
-            .then(() => {
-              try {
-                localforage.setItem("invites", invites);
-              } catch (e) {
-                reject(e);
-              }
-            })
-            .then(() => {
-              resolve(invites);
-            });
-        } catch (e) {
-          reject(e);
-        }
+        localforage.removeItem("unsyncedInvites");
+
+        localforage.setItem("invites", invites);
+
+        resolve(invites);
       })
       .catch((err) => {
         reject(new Error(err));
