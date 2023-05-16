@@ -215,8 +215,8 @@ function syncFollowing() {
 function syncInvites() {
   return new Promise(async (resolve, reject) => {
     const isOnline = navigator.onLine;
-    const controller = new AbortController();
-    const timeout = 8000;
+    /* const controller = new AbortController();
+    const timeout = 8000; */
     const unsyncedInvites =
       (await localforage.getItem("unsyncedInvites")) || [];
     const endpoint = `${getApiHost()}/sync-invites`;
@@ -230,12 +230,13 @@ function syncInvites() {
     fetch(endpoint, {
       mode: "cors",
       method: "POST",
-      body: JSON.stringify(unsyncedInvites),
+      body: JSON.stringify({
+        unsyncedInvites: unsyncedInvites,
+      }),
       headers: new Headers({
         "Content-Type": "application/json",
         authorization: `Bearer ${accessToken}`,
       }),
-      signal: controller.signal,
       keepalive: true,
     })
       .then((res) => res.json())
@@ -257,17 +258,19 @@ function syncInvites() {
 
         const decrypted = data.invites.map(async (invite) => {
           if (invite.recipientsms !== null) {
+            const encryptionObject = invite.recipientsms;
             const decrypted = await invitesCrypto.decrypt(
               datakey,
-              recipientsms
+              encryptionObject
             );
             invite.recipientsms = decrypted;
           }
 
           if (invite.recipientemail !== null) {
+            const encryptionObject = invite.recipientemail;
             const decrypted = await invitesCrypto.decrypt(
               datakey,
-              recipientemail
+              encryptionObject
             );
             invite.recipientemail = decrypted;
           }
@@ -277,14 +280,16 @@ function syncInvites() {
 
         await localforage.setItem("unsyncedInvites", []);
         await localforage.setItem("invites", decrypted);
+
+        resolve();
       })
       .catch((err) => {
         reject(new Error(err));
       });
 
-    setTimeout(() => {
+    /* setTimeout(() => {
       controller.abort();
       reject(new Error("Invites sync timed out"));
-    }, timeout);
+    }, timeout); */
   });
 }

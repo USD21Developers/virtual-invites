@@ -610,8 +610,6 @@ async function onSubmitButtonClick(e) {
     return showError(msg, "#recipientname", msgInline);
   }
 
-  saveAndSync(sendvia);
-
   switch (sendVia) {
     case "sms":
       const phoneNumber = iti.getNumber();
@@ -638,6 +636,8 @@ async function onSubmitButtonClick(e) {
         e.preventDefault();
         return showError(msg, "#sendto_sms", msgInline);
       }
+
+      saveAndSync(sendVia);
 
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
 
@@ -666,6 +666,8 @@ async function onSubmitButtonClick(e) {
         return showError(msg, "#sendto_email", msgInline);
       }
 
+      saveAndSync(sendVia);
+
       btnSendInvite.setAttribute(
         "href",
         `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`
@@ -686,6 +688,8 @@ async function onSubmitButtonClick(e) {
         text: sendBody,
         url: url,
       };
+
+      saveAndSync(sendVia);
 
       try {
         e.preventDefault();
@@ -902,15 +906,9 @@ function saveAndSync(sendvia) {
     unsyncedInvites.push(unsyncedInvite);
     await localforage.setItem("unsyncedInvites", unsyncedInvites);
 
-    backgroundSync();
+    const syncResult = syncInvites();
 
-    await syncInvites()
-      .then(() => {
-        resolve();
-      })
-      .catch((err) => {
-        reject(err);
-      });
+    resolve(syncResult);
   });
 }
 
