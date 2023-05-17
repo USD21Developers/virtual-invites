@@ -851,6 +851,7 @@ function saveAndSync(sendvia) {
       .getItem("events")
       .then((events) => events.find((evt) => evt.eventid === eventid));
     const userid = getUserId();
+    const userlang = getLang();
     const recipientName = document.querySelector("#recipientname").value || "";
     const recipientSms = sendvia === "sms" ? iti.getNumber() : null;
     const recipientEmail =
@@ -878,6 +879,7 @@ function saveAndSync(sendvia) {
       },
       sent: {
         userid: userid,
+        userlang: userlang,
         time: invitedAtUtcTime,
         timezone: timezone,
         coords: coords,
@@ -900,6 +902,7 @@ function saveAndSync(sendvia) {
       },
       sent: {
         userid: userid,
+        userlang: userlang,
         time: invitedAtUtcTime,
         timezone: timezone,
         coords: coords,
