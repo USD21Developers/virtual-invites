@@ -280,8 +280,10 @@ function syncInvites() {
           }
         });
 
+        // Remove unsyncedInvites because sync succeeded
         localforage.removeItem("unsyncedInvites");
 
+        // Overwrite invites with response from the server
         localforage.setItem("invites", invites);
 
         resolve(invites);
