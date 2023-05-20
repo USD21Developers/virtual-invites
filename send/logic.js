@@ -856,9 +856,8 @@ function saveAndSync(sendvia) {
       sendvia === "email"
         ? document.querySelector("#sendto_email").value
         : null;
-    const now = moment.utc().format();
     const timezone = moment.tz.guess();
-    const invitedAtUtcTime = now.toISOString();
+    const invitedAtUtcTime = moment.utc().format();
     const tagWithLocationCheckbox = document.querySelector("#tagwithlocation");
     const okToUseCoordinates = tagWithLocationCheckbox?.checked ? true : false;
     const coords = okToUseCoordinates && coordinates ? coordinates : null;
