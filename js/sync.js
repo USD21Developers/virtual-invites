@@ -8,7 +8,7 @@ function syncChurches() {
   const endpoint = `${getApiServicesHost()}/churches`;
   const isOnline = navigator.onLine;
   const controller = new AbortController();
-  const timeout = 8000;
+  const timeout = 60000;
 
   return new Promise((resolve, reject) => {
     if (!isOnline)
@@ -60,7 +60,7 @@ async function syncEvents() {
   const accessToken = await getAccessToken();
   const isOnline = navigator.onLine;
   const controller = new AbortController();
-  const timeout = 8000;
+  const timeout = 60000;
 
   return new Promise((resolve, reject) => {
     if (!isOnline)
@@ -170,7 +170,7 @@ function syncFollowing() {
   return new Promise(async (resolve, reject) => {
     const isOnline = navigator.onLine;
     const controller = new AbortController();
-    const timeout = 8000;
+    const timeout = 60000;
     const userid = getUserId();
     const accessToken = await getAccessToken();
     const endpoint = `${getApiHost()}/following/${userid}`;
@@ -215,8 +215,8 @@ function syncFollowing() {
 function syncInvites() {
   return new Promise(async (resolve, reject) => {
     const isOnline = navigator.onLine;
-    /* const controller = new AbortController();
-    const timeout = 8000; */
+    const controller = new AbortController();
+    const timeout = 60000;
     const unsyncedInvites =
       (await localforage.getItem("unsyncedInvites")) || [];
     const endpoint = `${getApiHost()}/sync-invites`;
@@ -260,8 +260,8 @@ function syncInvites() {
           const decryptedInvite = invite;
 
           // Replace SMS encryption object with decrypted string
-          if (invite.recipient.sms && invite.recipient.sms.ciphertext) {
-            const encryptionObject = invite.recipient.sms;
+          if (invite.recipient.sms) {
+            const encryptionObject = JSON.parse(invite.recipient.sms);
             const decrypted = await invitesCrypto.decrypt(
               datakey,
               encryptionObject
@@ -270,31 +270,35 @@ function syncInvites() {
           }
 
           // Replace e-mail encryption object with decrypted string
-          if (invite.recipient.email && invite.recipient.email.ciphertext) {
-            const encryptionObject = invite.recipient.email;
+          if (invite.recipient.email) {
+            const encryptionObject = JSON.parse(invite.recipient.email);
             const decrypted = await invitesCrypto.decrypt(
               datakey,
               encryptionObject
             );
             decryptedInvite.recipient.email = decrypted;
           }
+
+          return decryptedInvite;
         });
 
         // Remove unsyncedInvites because sync succeeded
         localforage.removeItem("unsyncedInvites");
 
         // Overwrite invites with response from the server
-        localforage.setItem("invites", invites);
-
-        resolve(invites);
+        Promise.all(invites).then((invites) => {
+          localforage.setItem("invites", invites).then(() => {
+            resolve(invites);
+          });
+        });
       })
       .catch((err) => {
         reject(new Error(err));
       });
 
-    /* setTimeout(() => {
+    setTimeout(() => {
       controller.abort();
       reject(new Error("Invites sync timed out"));
-    }, timeout); */
+    }, timeout);
   });
 }
