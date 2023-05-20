@@ -850,83 +850,68 @@ function saveAndSync(sendvia) {
     const event = await localforage
       .getItem("events")
       .then((events) => events.find((evt) => evt.eventid === eventid));
-    const userid = getUserId();
-    const userlang = getLang();
     const recipientName = document.querySelector("#recipientname").value || "";
     const recipientSms = sendvia === "sms" ? iti.getNumber() : null;
     const recipientEmail =
       sendvia === "email"
         ? document.querySelector("#sendto_email").value
         : null;
-    const now = moment();
+    const now = moment.utc().format();
     const timezone = moment.tz.guess();
     const invitedAtUtcTime = now.toISOString();
     const tagWithLocationCheckbox = document.querySelector("#tagwithlocation");
     const okToUseCoordinates = tagWithLocationCheckbox?.checked ? true : false;
-
     const coords = okToUseCoordinates && coordinates ? coordinates : null;
 
     const invite = {
-      event: {
-        id: event.eventid,
-        lang: event.lang,
-      },
+      eventid: event.eventid,
+      sentvia: sendvia,
+      coords: coords,
+      utctime: invitedAtUtcTime,
+      timezone: timezone,
       recipient: {
         id: recipientIdGlobal,
         name: recipientName,
         sms: recipientSms,
         email: recipientEmail,
       },
-      sent: {
-        userid: userid,
-        userlang: userlang,
-        time: invitedAtUtcTime,
-        timezone: timezone,
-        coords: coords,
-        via: sendvia,
-      },
     };
 
-    const datakey = localStorage.getItem("datakey");
-
     const unsyncedInvite = {
-      event: {
-        id: event.eventid,
-        lang: event.lang,
-      },
+      eventid: event.eventid,
+      sentvia: sendvia,
+      coords: coords,
+      utctime: invitedAtUtcTime,
+      timezone: timezone,
       recipient: {
         id: recipientIdGlobal,
         name: recipientName,
         sms: null,
         email: null,
       },
-      sent: {
-        userid: userid,
-        userlang: userlang,
-        time: invitedAtUtcTime,
-        timezone: timezone,
-        coords: coords,
-        via: sendvia,
-      },
     };
 
+    // Encrypt recipient's contact information
+    const datakey = localStorage.getItem("datakey");
     const encryptedSms = recipientSms
       ? await invitesCrypto.encrypt(datakey, recipientSms)
       : null;
     const encryptedEmail = recipientEmail
       ? await invitesCrypto.encrypt(datakey, recipientEmail)
       : null;
-
     unsyncedInvite.recipient.sms = encryptedSms;
     unsyncedInvite.recipient.email = encryptedEmail;
 
+    // Get stored invites from IndexedDB
     const invites = (await localforage.getItem("invites")) || [];
     const unsyncedInvites =
       (await localforage.getItem("unsyncedInvites")) || [];
 
+    // Add new invite to stored invites
     invites.push(invite);
     unsyncedInvites.push(unsyncedInvite);
 
+    // Overwrite previous invites in IndexedDB
     await localforage.setItem("invites", invites);
     await localforage.setItem("unsyncedInvites", unsyncedInvites);
 
