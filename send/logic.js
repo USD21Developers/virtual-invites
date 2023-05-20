@@ -847,9 +847,6 @@ function saveAndSync(sendvia) {
     const eventid = Number(
       document.querySelector("#events_dropdown").selectedOptions[0].value
     );
-    const event = await localforage
-      .getItem("events")
-      .then((events) => events.find((evt) => evt.eventid === eventid));
     const recipientName = document.querySelector("#recipientname").value || "";
     const recipientSms = sendvia === "sms" ? iti.getNumber() : null;
     const recipientEmail =
@@ -863,7 +860,7 @@ function saveAndSync(sendvia) {
     const coords = okToUseCoordinates && coordinates ? coordinates : null;
 
     const invite = {
-      eventid: event.eventid,
+      eventid: eventid,
       sentvia: sendvia,
       coords: coords,
       utctime: invitedAtUtcTime,
@@ -877,7 +874,7 @@ function saveAndSync(sendvia) {
     };
 
     const unsyncedInvite = {
-      eventid: event.eventid,
+      eventid: eventid,
       sentvia: sendvia,
       coords: coords,
       utctime: invitedAtUtcTime,
