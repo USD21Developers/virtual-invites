@@ -68,7 +68,13 @@ function onSubmit(e) {
           const countriesPromise = getCountries(getLang());
           const churchesPromise = syncChurches();
           const eventsPromise = syncEvents();
-          await Promise.all([countriesPromise, churchesPromise, eventsPromise]);
+          const invitesPromise = syncInvites();
+          await Promise.all([
+            countriesPromise,
+            churchesPromise,
+            eventsPromise,
+            invitesPromise,
+          ]);
           window.location.href = "../";
           break;
         default:
