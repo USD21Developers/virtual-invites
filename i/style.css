@@ -1,0 +1,56 @@
+.purple-gradient {
+  background-image: linear-gradient(to right, #2a2d54 0%, #504390 100%);
+}
+
+#invite-container {
+  padding: 5vh 5vw;
+  text-align: center;
+}
+
+#invite {
+  background-color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: inline-block;
+  margin: auto;
+  max-width: 530px;
+  padding-bottom: 25px;
+  text-align: left;
+  width: 100%;
+}
+
+#envelope-flap {
+  height: auto;
+  width: 100%;
+}
+
+#you-are-invited {
+  color: #333333;
+  font-family: "Proxima Nova Medium", sans-serif;
+  font-size: 14px;
+  margin-bottom: 7px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+[data-i18n="youAreInvitedTo"] {
+  font-size: 22px;
+  font-weight: 100;
+  margin: 0;
+}
+
+#eventTitle {
+  color: #504390;
+  font-family: Castoro, serif;
+  font-size: 48px;
+  text-align: center;
+}
+
+.connectionContent {
+  color: black;
+  font-family: Consolas, monospace;
+  font-size: small;
+  max-height: 20em;
+  overflow-y: scroll;
+  word-break: break-word;
+}

@@ -10,15 +10,15 @@
     <title>Invitation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Oswald:wght@200;400&display=swap" rel="stylesheet">
-    <link0
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Oswald:wght@200;400&display=swap"
       rel="stylesheet"
     />
     <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
-      href="../../css/daemonite-material.css"
     />
+    <link rel="stylesheet" href="../../css/daemonite-material.css" />
     <link href="../../css/global.css" rel="stylesheet" />
     <link href="index.css" rel="stylesheet" />
     <!--
@@ -39,28 +39,32 @@
   <body class="theme d-none" data-theme="blue">
     <div class="container">
       <div class="row my-3">
-        <div class="col col-sm-10 offset-sm-1 col-md-6 offset-md-3">
+        <div class="col">
           <div class="bg-white px-4 pb-1" id="content">
-            <h3 class="text-center lead mt-4 mb-1" data-i18n="you-are-invited-to">You are invited to join us for</h3>
-            <h1
-              class="text-center text-uppercase mt-0 mb-4"
-              id="eventTitle"
-            >{EVENT-TITLE}</h1>
+            <h3
+              class="text-center lead mt-4 mb-1"
+              data-i18n="you-are-invited-to"
+            >
+              You are invited to join us for
+            </h3>
+            <h1 class="text-center text-uppercase mt-0 mb-4" id="eventTitle">
+              {EVENT-TITLE}
+            </h1>
 
             <!-- REPEATING DAYS -->
             <!-- Every Friday @ 7:30 PM -->
             <div id="timeAndDateRepeating" class="text-center d-none">
-              <strong id="repeatingWeekday">Every Friday</strong> 
-              <strong data-i18n="event-at">@</strong> 
+              <strong id="repeatingWeekday">Every Friday</strong>
+              <strong data-i18n="event-at">@</strong>
               <strong id="repeatingStartTime">7:30 PM</strong>
             </div>
 
             <!-- SINGLE DAY -->
             <!-- Friday 3/22/22 @ 7:30 PM -->
             <div id="timeAndDateSingleDay" class="text-center">
-              <strong id="singleDayWeekday">Fri.</strong> 
-              <strong id="singleDayDate">3/22/22</strong> 
-              <strong data-i18n="event-at">@</strong> 
+              <strong id="singleDayWeekday">Fri.</strong>
+              <strong id="singleDayDate">3/22/22</strong>
+              <strong data-i18n="event-at">@</strong>
               <strong id="singleDayStartTime">7:30 PM</strong>
             </div>
 
@@ -68,25 +72,40 @@
             <!-- From Friday 3/22/22 @ 7:30 PM -->
             <!-- To Sunday 3/25/22 @ 4:30 PM -->
             <div id="timeAndDateMultipleDays" class="text-center d-none">
-              <table cellpadding="3" cellspacing="0" style="margin: auto" class="mb-3">
+              <table
+                cellpadding="3"
+                cellspacing="0"
+                style="margin: auto"
+                class="mb-3"
+              >
                 <tr>
                   <td style="text-align: end">
-                    <div class="mr-1 text-center small text-dark" data-i18n="multiDayFromLabel">From</div>
+                    <div
+                      class="mr-1 text-center small text-dark"
+                      data-i18n="multiDayFromLabel"
+                    >
+                      From
+                    </div>
                     <div class="text-nowrap text-dark">
-                      <strong id="multiDayStartingWeekday">Fri.</strong> 
-                      <strong id="multiDayStartingDate">3/22/22</strong> 
-                      <strong data-i18n="event-at">@</strong> 
+                      <strong id="multiDayStartingWeekday">Fri.</strong>
+                      <strong id="multiDayStartingDate">3/22/22</strong>
+                      <strong data-i18n="event-at">@</strong>
                       <strong id="multiDayStartingTime">7:30 PM</strong>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td style="text-align: end">
-                    <div class="mr-1 text-center small text-dark" data-i18n="multiDayToLabel">To</div> 
+                    <div
+                      class="mr-1 text-center small text-dark"
+                      data-i18n="multiDayToLabel"
+                    >
+                      To
+                    </div>
                     <div class="text-nowrap text-dark">
-                      <strong id="multiDayEndingWeekday">Sun.</strong> 
-                      <strong id="multiDayEndingDate">3/25/22</strong> 
-                      <strong data-i18n="event-at">@</strong> 
+                      <strong id="multiDayEndingWeekday">Sun.</strong>
+                      <strong id="multiDayEndingDate">3/25/22</strong>
+                      <strong data-i18n="event-at">@</strong>
                       <strong id="multiDayEndingTime">4:30 PM</strong>
                     </div>
                   </td>
@@ -95,7 +114,11 @@
             </div>
 
             <div id="previewLocationInfo">
-              <div id="previewLocationName" class="text-center d-none" data-i18n="locationName">
+              <div
+                id="previewLocationName"
+                class="text-center d-none"
+                data-i18n="locationName"
+              >
                 Starbucks
               </div>
 
@@ -104,41 +127,144 @@
                 Phoenix, AZ 99999<br />
               </div>
 
-              <div id="previewOtherLocationDetails" class="d-none text-center my-4 not-bold">
-              </div>
+              <div
+                id="previewOtherLocationDetails"
+                class="d-none text-center my-4 not-bold"
+              ></div>
 
               <p class="text-center mt-4">
-                <img src="/_assets/svg/icons/place.svg" width="24" height="29" alt="Map icon" />
+                <img
+                  src="/_assets/svg/icons/place.svg"
+                  width="24"
+                  height="29"
+                  alt="Map icon"
+                />
 
                 <a
                   href="https://www.google.com/maps/dir/?api=1&destination=555%20Main%20Street,%20Phoenix,%20AZ,%2099999&sensor=true"
                   style="text-decoration: underline"
                   data-i18n="map-and-directions"
-                >Map and Directions</a>
+                  >Map and Directions</a
+                >
               </p>
             </div>
-            <div id="previewRequestLocationInfo" class="d-none text-center mt-1 font-italic" data-i18n="previewRequestLocationInfo"></div>
+            <div
+              id="previewRequestLocationInfo"
+              class="d-none text-center mt-1 font-italic"
+              data-i18n="previewRequestLocationInfo"
+            ></div>
 
             <div class="my-5 text-center">
-              <div style="max-width: 320px" class="d-inline-block" id="addToCalendar">
-                <button class="p-3 btn btn-info font-weight-bold" type="button" data-toggle="collapse" data-target="#atcbOptions" aria-expanded="false" aria-controls="atcbOptions">
+              <div
+                style="max-width: 320px"
+                class="d-inline-block"
+                id="addToCalendar"
+              >
+                <button
+                  class="p-3 btn btn-info font-weight-bold"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#atcbOptions"
+                  aria-expanded="false"
+                  aria-controls="atcbOptions"
+                >
                   <span class="mr-2">
-                    <img src="/_assets/svg/icons/insert_invitation.svg" width="20" height="20" alt="Invitation icon" />
+                    <img
+                      src="/_assets/svg/icons/insert_invitation.svg"
+                      width="20"
+                      height="20"
+                      alt="Invitation icon"
+                    />
                   </span>
                   <span data-i18n="add-to-my-calendar">Add to my calendar</span>
                 </button>
-                <div class="collapse" id="atcbOptions"> 
-                  <div class="list-group border border-info text-left list-atcb">
-                    <a href="#" class="list-group-item list-group-item-action" data-destination="apple">
-                      <span class="atcb_icon atcb_icon-apple"><svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" shape-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" viewBox="0 0 640 640"><path d="M494.782 340.02c-.803-81.025 66.084-119.907 69.072-121.832-37.595-54.993-96.167-62.552-117.037-63.402-49.843-5.032-97.242 29.362-122.565 29.362-25.253 0-64.277-28.607-105.604-27.85-54.32.803-104.4 31.594-132.403 80.245C29.81 334.457 71.81 479.58 126.816 558.976c26.87 38.882 58.914 82.56 100.997 81 40.512-1.594 55.843-26.244 104.848-26.244 48.993 0 62.753 26.245 105.64 25.406 43.606-.803 71.232-39.638 97.925-78.65 30.887-45.12 43.548-88.75 44.316-90.994-.969-.437-85.029-32.634-85.879-129.439l.118-.035zM414.23 102.178C436.553 75.095 451.636 37.5 447.514-.024c-32.162 1.311-71.163 21.437-94.253 48.485-20.729 24.012-38.836 62.28-33.993 99.036 35.918 2.8 72.591-18.248 94.926-45.272l.036-.047z"/></svg></span>
+                <div class="collapse" id="atcbOptions">
+                  <div
+                    class="list-group border border-info text-left list-atcb"
+                  >
+                    <a
+                      href="#"
+                      class="list-group-item list-group-item-action"
+                      data-destination="apple"
+                    >
+                      <span class="atcb_icon atcb_icon-apple">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="64"
+                          height="64"
+                          shape-rendering="geometricPrecision"
+                          image-rendering="optimizeQuality"
+                          fill-rule="evenodd"
+                          viewBox="0 0 640 640"
+                        >
+                          <path
+                            d="M494.782 340.02c-.803-81.025 66.084-119.907 69.072-121.832-37.595-54.993-96.167-62.552-117.037-63.402-49.843-5.032-97.242 29.362-122.565 29.362-25.253 0-64.277-28.607-105.604-27.85-54.32.803-104.4 31.594-132.403 80.245C29.81 334.457 71.81 479.58 126.816 558.976c26.87 38.882 58.914 82.56 100.997 81 40.512-1.594 55.843-26.244 104.848-26.244 48.993 0 62.753 26.245 105.64 25.406 43.606-.803 71.232-39.638 97.925-78.65 30.887-45.12 43.548-88.75 44.316-90.994-.969-.437-85.029-32.634-85.879-129.439l.118-.035zM414.23 102.178C436.553 75.095 451.636 37.5 447.514-.024c-32.162 1.311-71.163 21.437-94.253 48.485-20.729 24.012-38.836 62.28-33.993 99.036 35.918 2.8 72.591-18.248 94.926-45.272l.036-.047z"
+                          />
+                        </svg>
+                      </span>
                       <span data-i18n="calendarApple">Apple</span>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action" data-destination="google">
-                      <span class="atcb_icon atcb_icon-google"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 122.88"><path d="M93.78 29.1H29.1v64.68h64.68V29.1z" fill="#fff"/><path d="M93.78 122.88l29.1-29.1h-29.1v29.1z" fill="#f72a25"/><path d="M122.88 29.1h-29.1v64.68h29.1V29.1z" fill="#fbbc04"/><path d="M93.78 93.78H29.1v29.1h64.68v-29.1z" fill="#34a853"/><path d="M0 93.78v19.4c0 5.36 4.34 9.7 9.7 9.7h19.4v-29.1H0h0z" fill="#188038"/><path d="M122.88 29.1V9.7c0-5.36-4.34-9.7-9.7-9.7h-19.4v29.1h29.1 0z" fill="#1967d2"/><path d="M93.78 0H9.7C4.34 0 0 4.34 0 9.7v84.08h29.1V29.1h64.67V0h.01z" fill="#4285f4"/><path d="M42.37 79.27c-2.42-1.63-4.09-4.02-5-7.17l5.61-2.31c.51 1.94 1.4 3.44 2.67 4.51 1.26 1.07 2.8 1.59 4.59 1.59 1.84 0 3.41-.56 4.73-1.67 1.32-1.12 1.98-2.54 1.98-4.26 0-1.76-.7-3.2-2.09-4.32s-3.14-1.67-5.22-1.67H46.4v-5.55h2.91c1.79 0 3.31-.48 4.54-1.46 1.23-.97 1.84-2.3 1.84-3.99 0-1.5-.55-2.7-1.65-3.6s-2.49-1.35-4.18-1.35c-1.65 0-2.96.44-3.93 1.32s-1.7 2-2.12 3.24l-5.55-2.31c.74-2.09 2.09-3.93 4.07-5.52s4.51-2.39 7.58-2.39c2.27 0 4.32.44 6.13 1.32s3.23 2.1 4.26 3.65c1.03 1.56 1.54 3.31 1.54 5.25 0 1.98-.48 3.65-1.43 5.03-.95 1.37-2.13 2.43-3.52 3.16v.33c1.79.74 3.36 1.96 4.51 3.52 1.17 1.58 1.76 3.46 1.76 5.66s-.56 4.16-1.67 5.88c-1.12 1.72-2.66 3.08-4.62 4.07s-4.17 1.49-6.62 1.49c-2.84 0-5.46-.81-7.88-2.45h0 0zm34.46-27.84l-6.16 4.45-3.08-4.67 11.05-7.97h4.24v37.6h-6.05V51.43h0z" fill="#1a73e8"/></svg></span>
+                    <a
+                      href="#"
+                      class="list-group-item list-group-item-action"
+                      data-destination="google"
+                    >
+                      <span class="atcb_icon atcb_icon-google">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 122.88 122.88"
+                        >
+                          <path
+                            d="M93.78 29.1H29.1v64.68h64.68V29.1z"
+                            fill="#fff"
+                          />
+                          <path
+                            d="M93.78 122.88l29.1-29.1h-29.1v29.1z"
+                            fill="#f72a25"
+                          />
+                          <path
+                            d="M122.88 29.1h-29.1v64.68h29.1V29.1z"
+                            fill="#fbbc04"
+                          />
+                          <path
+                            d="M93.78 93.78H29.1v29.1h64.68v-29.1z"
+                            fill="#34a853"
+                          />
+                          <path
+                            d="M0 93.78v19.4c0 5.36 4.34 9.7 9.7 9.7h19.4v-29.1H0h0z"
+                            fill="#188038"
+                          />
+                          <path
+                            d="M122.88 29.1V9.7c0-5.36-4.34-9.7-9.7-9.7h-19.4v29.1h29.1 0z"
+                            fill="#1967d2"
+                          />
+                          <path
+                            d="M93.78 0H9.7C4.34 0 0 4.34 0 9.7v84.08h29.1V29.1h64.67V0h.01z"
+                            fill="#4285f4"
+                          />
+                          <path
+                            d="M42.37 79.27c-2.42-1.63-4.09-4.02-5-7.17l5.61-2.31c.51 1.94 1.4 3.44 2.67 4.51 1.26 1.07 2.8 1.59 4.59 1.59 1.84 0 3.41-.56 4.73-1.67 1.32-1.12 1.98-2.54 1.98-4.26 0-1.76-.7-3.2-2.09-4.32s-3.14-1.67-5.22-1.67H46.4v-5.55h2.91c1.79 0 3.31-.48 4.54-1.46 1.23-.97 1.84-2.3 1.84-3.99 0-1.5-.55-2.7-1.65-3.6s-2.49-1.35-4.18-1.35c-1.65 0-2.96.44-3.93 1.32s-1.7 2-2.12 3.24l-5.55-2.31c.74-2.09 2.09-3.93 4.07-5.52s4.51-2.39 7.58-2.39c2.27 0 4.32.44 6.13 1.32s3.23 2.1 4.26 3.65c1.03 1.56 1.54 3.31 1.54 5.25 0 1.98-.48 3.65-1.43 5.03-.95 1.37-2.13 2.43-3.52 3.16v.33c1.79.74 3.36 1.96 4.51 3.52 1.17 1.58 1.76 3.46 1.76 5.66s-.56 4.16-1.67 5.88c-1.12 1.72-2.66 3.08-4.62 4.07s-4.17 1.49-6.62 1.49c-2.84 0-5.46-.81-7.88-2.45h0 0zm34.46-27.84l-6.16 4.45-3.08-4.67 11.05-7.97h4.24v37.6h-6.05V51.43h0z"
+                            fill="#1a73e8"
+                          />
+                        </svg>
+                      </span>
                       <span data-i18n="calendarGoogle">Google</span>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action" data-destination="ical">
-                      <span class="atcb_icon atcb_icon-ical"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 122.88"><path d="M81.61 4.73c0-2.61 2.58-4.73 5.77-4.73s5.77 2.12 5.77 4.73v20.72c0 2.61-2.58 4.73-5.77 4.73s-5.77-2.12-5.77-4.73V4.73h0zm-15.5 99.08c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2H81.9c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H66.11h0zM15.85 67.09c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2h15.79c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H15.85h0zm25.13 0c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2h15.79c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H40.98h0zm25.13 0c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2H81.9c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H66.11h0zm25.14 0c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2h15.79c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H91.25h0zm-75.4 18.36c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2h15.79c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H15.85h0zm25.13 0c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2h15.79c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H40.98h0zm25.13 0c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2H81.9c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H66.11h0zm25.14 0c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2h15.79c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H91.25h0zm-75.4 18.36c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2h15.79c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H15.85h0zm25.13 0c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2h15.79c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H40.98h0zM29.61 4.73c0-2.61 2.58-4.73 5.77-4.73s5.77 2.12 5.77 4.73v20.72c0 2.61-2.58 4.73-5.77 4.73s-5.77-2.12-5.77-4.73V4.73h0zM6.4 45.32h110.07V21.47c0-.8-.33-1.53-.86-2.07-.53-.53-1.26-.86-2.07-.86H103c-1.77 0-3.2-1.43-3.2-3.2s1.43-3.2 3.2-3.2h10.55c2.57 0 4.9 1.05 6.59 2.74s2.74 4.02 2.74 6.59v27.06 65.03c0 2.57-1.05 4.9-2.74 6.59s-4.02 2.74-6.59 2.74H9.33c-2.57 0-4.9-1.05-6.59-2.74-1.69-1.7-2.74-4.03-2.74-6.6V48.52 21.47c0-2.57 1.05-4.9 2.74-6.59s4.02-2.74 6.59-2.74H20.6c1.77 0 3.2 1.43 3.2 3.2s-1.43 3.2-3.2 3.2H9.33c-.8 0-1.53.33-2.07.86-.53.53-.86 1.26-.86 2.07v23.85h0zm110.08 6.41H6.4v61.82c0 .8.33 1.53.86 2.07.53.53 1.26.86 2.07.86h104.22c.8 0 1.53-.33 2.07-.86.53-.53.86-1.26.86-2.07V51.73h0zM50.43 18.54c-1.77 0-3.2-1.43-3.2-3.2s1.43-3.2 3.2-3.2h21.49c1.77 0 3.2 1.43 3.2 3.2s-1.43 3.2-3.2 3.2H50.43h0z"/></svg></span>
+                    <a
+                      href="#"
+                      class="list-group-item list-group-item-action"
+                      data-destination="ical"
+                    >
+                      <span class="atcb_icon atcb_icon-ical">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 122.88 122.88"
+                        >
+                          <path
+                            d="M81.61 4.73c0-2.61 2.58-4.73 5.77-4.73s5.77 2.12 5.77 4.73v20.72c0 2.61-2.58 4.73-5.77 4.73s-5.77-2.12-5.77-4.73V4.73h0zm-15.5 99.08c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2H81.9c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H66.11h0zM15.85 67.09c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2h15.79c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H15.85h0zm25.13 0c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2h15.79c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H40.98h0zm25.13 0c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2H81.9c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H66.11h0zm25.14 0c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2h15.79c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H91.25h0zm-75.4 18.36c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2h15.79c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H15.85h0zm25.13 0c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2h15.79c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H40.98h0zm25.13 0c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2H81.9c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H66.11h0zm25.14 0c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2h15.79c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H91.25h0zm-75.4 18.36c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2h15.79c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H15.85h0zm25.13 0c-.34 0-.61-1.43-.61-3.2s.27-3.2.61-3.2h15.79c.34 0 .61 1.43.61 3.2s-.27 3.2-.61 3.2H40.98h0zM29.61 4.73c0-2.61 2.58-4.73 5.77-4.73s5.77 2.12 5.77 4.73v20.72c0 2.61-2.58 4.73-5.77 4.73s-5.77-2.12-5.77-4.73V4.73h0zM6.4 45.32h110.07V21.47c0-.8-.33-1.53-.86-2.07-.53-.53-1.26-.86-2.07-.86H103c-1.77 0-3.2-1.43-3.2-3.2s1.43-3.2 3.2-3.2h10.55c2.57 0 4.9 1.05 6.59 2.74s2.74 4.02 2.74 6.59v27.06 65.03c0 2.57-1.05 4.9-2.74 6.59s-4.02 2.74-6.59 2.74H9.33c-2.57 0-4.9-1.05-6.59-2.74-1.69-1.7-2.74-4.03-2.74-6.6V48.52 21.47c0-2.57 1.05-4.9 2.74-6.59s4.02-2.74 6.59-2.74H20.6c1.77 0 3.2 1.43 3.2 3.2s-1.43 3.2-3.2 3.2H9.33c-.8 0-1.53.33-2.07.86-.53.53-.86 1.26-.86 2.07v23.85h0zm110.08 6.41H6.4v61.82c0 .8.33 1.53.86 2.07.53.53 1.26.86 2.07.86h104.22c.8 0 1.53-.33 2.07-.86.53-.53.86-1.26.86-2.07V51.73h0zM50.43 18.54c-1.77 0-3.2-1.43-3.2-3.2s1.43-3.2 3.2-3.2h21.49c1.77 0 3.2 1.43 3.2 3.2s-1.43 3.2-3.2 3.2H50.43h0z"
+                          />
+                        </svg>
+                      </span>
                       <span data-i18n="calendariCal">iCal File</span>
                     </a>
                   </div>
@@ -146,38 +272,76 @@
               </div>
             </div>
             <div class="mb-2" id="defaultGreeting">
-              <p id="defaultGreetingParagraph1">Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to Bible Talk. I'm looking forward to joining you there {EVENT-START-DATE} at {EVENT-START-TIME}.</p>
-              <p data-i18n="default-greeting-paragraph-2">If you can join, I recommend adding it to your calendar (above) to help you remember.</p>
-              <p data-i18n="default-greeting-paragraph-3">I hope to see you there!</p>
+              <p id="defaultGreetingParagraph1">
+                Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you
+                {INVITED-DATE} to Bible Talk. I'm looking forward to joining you
+                there {EVENT-START-DATE} at {EVENT-START-TIME}.
+              </p>
+              <p data-i18n="default-greeting-paragraph-2">
+                If you can join, I recommend adding it to your calendar (above)
+                to help you remember.
+              </p>
+              <p data-i18n="default-greeting-paragraph-3">
+                I hope to see you there!
+              </p>
             </div>
 
             <hr class="mt-5 mb-2" />
 
             <div class="my-4">
-              <h3 data-toggle="collapse" data-i18n="headline-about-event">About {EVENT-TITLE}</h3>
+              <h3 data-toggle="collapse" data-i18n="headline-about-event">
+                About {EVENT-TITLE}
+              </h3>
             </div>
 
             <div class="my-4">
               <div id="eventDescription" class="mb-4">
-                A Bible Talk is a casual, light-hearted discussion group that is open to anyone, regardless of their beliefs or prior experience with the Bible. We usually meet in a home or restaurant, but sometimes we meet in an open setting like a park.
+                A Bible Talk is a casual, light-hearted discussion group that is
+                open to anyone, regardless of their beliefs or prior experience
+                with the Bible. We usually meet in a home or restaurant, but
+                sometimes we meet in an open setting like a park.
                 <br />
-                <br />The discussion leader will focus on a Biblical topic and pertinent scriptures, and will engage the attendees with thought-provoking questions designed to get everyone thinking about those scriptures on a deeper level. The goal is to try to understand the scripture better through practical application, and to inspire attendees to pursue further Bible study.
+                <br />The discussion leader will focus on a Biblical topic and
+                pertinent scriptures, and will engage the attendees with
+                thought-provoking questions designed to get everyone thinking
+                about those scriptures on a deeper level. The goal is to try to
+                understand the scripture better through practical application,
+                and to inspire attendees to pursue further Bible study.
               </div>
 
               <div id="connectingVirtually" class="mb-4 d-none">
                 <hr />
-                <h3 data-i18n="headline-cant-attend">Can't Attend in Person?</h3>
-                <p data-i18n="text-cant-attend">If you can't attend in person (e.g. for health or safety reasons), you can attend virtually.</p>
-                <h4 class="text-center mb-3" data-i18n="headline-how-to-connect">Here's how to connect:</h4>
-                <div class="bg-light border border-dark px-3" id="connectionInfo" style="border-radius: 8px">
-                  <div id="connectionContent" class="connectionContent py-3"></div>
+                <h3 data-i18n="headline-cant-attend">
+                  Can't Attend in Person?
+                </h3>
+                <p data-i18n="text-cant-attend">
+                  If you can't attend in person (e.g. for health or safety
+                  reasons), you can attend virtually.
+                </p>
+                <h4
+                  class="text-center mb-3"
+                  data-i18n="headline-how-to-connect"
+                >
+                  Here's how to connect:
+                </h4>
+                <div
+                  class="bg-light border border-dark px-3"
+                  id="connectionInfo"
+                  style="border-radius: 8px"
+                >
+                  <div
+                    id="connectionContent"
+                    class="connectionContent py-3"
+                  ></div>
                 </div>
               </div>
 
               <hr />
               <h3 data-i18n="headline-questions">Questions?</h3>
               <div class="row">
-                <div class="col" data-i18n="questions">If you have any questions or feedback, please reach out below:</div>
+                <div class="col" data-i18n="questions">
+                  If you have any questions or feedback, please reach out below:
+                </div>
               </div>
               <div class="row my-3">
                 <div class="col col-sm-10 offset-sm-1 text-center">
@@ -189,11 +353,27 @@
                   <div class="card">
                     <div class="card-body p-0">
                       <div class="list-group list-group-flush">
-                        <a href="tel:+12135551212" class="list-group-item list-group-item-action" data-i18n="phone-call">Phone call</a>
-                        <a href="sms:+12135551212" class="list-group-item list-group-item-action" data-i18n="text-message">Text message</a>
-                        <a href="mailto:johnqdisciple@gmail.com" class="list-group-item list-group-item-action" data-i18n="email">E-mail</a>
+                        <a
+                          href="tel:+12135551212"
+                          class="list-group-item list-group-item-action"
+                          data-i18n="phone-call"
+                          >Phone call</a
+                        >
+                        <a
+                          href="sms:+12135551212"
+                          class="list-group-item list-group-item-action"
+                          data-i18n="text-message"
+                          >Text message</a
+                        >
+                        <a
+                          href="mailto:johnqdisciple@gmail.com"
+                          class="list-group-item list-group-item-action"
+                          data-i18n="email"
+                          >E-mail</a
+                        >
                       </div>
                     </div>
+                  </div>
                 </div>
               </div>
             </div>
