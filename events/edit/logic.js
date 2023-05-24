@@ -738,7 +738,7 @@ async function onPreview() {
 
   const locationIsDiscreet =
     document.querySelector("#locationIsDiscreet").checked || false;
-  const locationInfo = previewModal.querySelector("#previewLocationInfo");
+  const locationInfo = previewModal.querySelector("#inviteLocationInfo");
   const requestLocationInfo = previewModal.querySelector(
     "#previewRequestLocationInfo"
   );
@@ -1311,7 +1311,7 @@ function populateFormBasedPhrases() {
     contactEmailEl.classList.add("d-none");
   }
 
-  const previewLocationName = preview.querySelector("#previewLocationName");
+  const previewLocationName = preview.querySelector("#inviteLocationName");
   const locationName =
     document.querySelector("#locationName").value.trim() || "";
   if (locationName !== "") {
