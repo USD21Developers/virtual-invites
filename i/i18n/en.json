@@ -9,6 +9,11 @@
   },
   "phrases": [
     {
+      "key": "pagetitle",
+      "original": "Invitation",
+      "translated": "Invitation"
+    },
+    {
       "key": "you-are-invited-to",
       "original": "You are invited to join us for",
       "translated": "You are invited to join us for"
