@@ -8,6 +8,7 @@ function populateTemplate(version = "default") {
       const mainContent = parsed.querySelector(".container");
       const mainEl = document.querySelector("main");
       mainEl.appendChild(mainContent);
+      populateContent();
     });
 }
 
