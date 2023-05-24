@@ -24,6 +24,7 @@
     <!--
       
       PLACEHOLDERS:
+      Note: Elements with an "id" attribute will NOT be populated by i18n, and therefore don't need a "data-i18n" attribute. The exception is when the i18n file contains placeholders, e.g. "Hi {RECIPIENT-NAME}."
 
       {EVENT-START-DATE}  - the date that the event starts
       {EVENT-START-TIME}  - the time that the event starts
@@ -113,18 +114,15 @@
               </table>
             </div>
 
-            <div id="previewLocationInfo">
-              <div
-                id="previewLocationName"
-                class="text-center d-none"
-                data-i18n="locationName"
-              >
+            <div id="inviteLocationInfo">
+              <div id="inviteLocationName" class="text-center d-none">
                 Starbucks
               </div>
 
               <div class="text-center mt-0 mb-1" id="eventAddress">
-                555 Main Street<br />
-                Phoenix, AZ 99999<br />
+                <div id="address_line_1">555 Main Street</div>
+                <div id="address_line_2">Phoenix, AZ 99999</div>
+                <div id="address_line_3"></div>
               </div>
 
               <div
@@ -144,8 +142,9 @@
                   href="https://www.google.com/maps/dir/?api=1&destination=555%20Main%20Street,%20Phoenix,%20AZ,%2099999&sensor=true"
                   style="text-decoration: underline"
                   data-i18n="map-and-directions"
-                  >Map and Directions</a
                 >
+                  Map and Directions
+                </a>
               </p>
             </div>
             <div
@@ -272,7 +271,10 @@
               </div>
             </div>
             <div class="mb-2" id="defaultGreeting">
-              <p id="defaultGreetingParagraph1">
+              <p
+                id="defaultGreetingParagraph1"
+                data-i18n="default-greeting-paragraph-1-bible-talk"
+              >
                 Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you
                 {INVITED-DATE} to Bible Talk. I'm looking forward to joining you
                 there {EVENT-START-DATE} at {EVENT-START-TIME}.
@@ -357,20 +359,23 @@
                           href="tel:+12135551212"
                           class="list-group-item list-group-item-action"
                           data-i18n="phone-call"
-                          >Phone call</a
                         >
+                          Phone call
+                        </a>
                         <a
                           href="sms:+12135551212"
                           class="list-group-item list-group-item-action"
                           data-i18n="text-message"
-                          >Text message</a
                         >
+                          Text message
+                        </a>
                         <a
                           href="mailto:johnqdisciple@gmail.com"
                           class="list-group-item list-group-item-action"
                           data-i18n="email"
-                          >E-mail</a
                         >
+                          E-mail
+                        </a>
                       </div>
                     </div>
                   </div>
