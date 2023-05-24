@@ -264,6 +264,7 @@ async function clearStorage() {
 }
 
 function configureLocalForage() {
+  if (typeof localforage === "undefined") return;
   localforage.config({
     name: "invites",
     version: 1.0,
