@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital@0;1&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap");
+
 .purple-gradient {
   background-image: linear-gradient(to right, #2a2d54 0%, #504390 100%);
 }
@@ -12,11 +16,48 @@
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   display: inline-block;
+  font-family: "Nunito Sans";
+  font-size: 17px;
   margin: auto;
   max-width: 530px;
   padding-bottom: 25px;
   text-align: left;
   width: 100%;
+}
+
+#eventTitle {
+  font-family: Castoro, sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  letter-spacing: 0.34px;
+  line-height: 60px;
+}
+
+[data-i18n="headline-about-event"] {
+  color: #2a2d54;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0.34px;
+  line-height: 32px !important;
+  text-align: center;
+}
+
+#timeAndDateRepeating,
+#timeAndDateSingleDay,
+#timeAndDateMultipleDays,
+#timeAndDateMultipleDays td {
+  color: #504390;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.34px;
+  line-height: 20px;
+}
+
+#eventAddress {
+  color: #504390;
+  font-weight: 600;
+  letter-spacing: 0.34px;
+  line-height: 20px;
 }
 
 #envelope-flap {
@@ -46,6 +87,21 @@
   text-align: center;
 }
 
+#addToCalendar > button {
+  background: linear-gradient(93.58deg, #504390 0%, #3f3973 100%);
+  box-shadow: 5px 2px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 10px 22px;
+}
+
+#addToCalendar > [data-i18n="add-to-my-calendar"] {
+  font-weight: 600;
+  letter-spacing: 0.34px;
+  line-height: 17px;
+}
+
 .connectionContent {
   color: black;
   font-family: Consolas, monospace;
@@ -53,4 +109,16 @@
   max-height: 20em;
   overflow-y: scroll;
   word-break: break-word;
+}
+
+[data-i18n="headline-about-event"],
+[data-i18n="headline-cant-attend"],
+[data-i18n="headline-questions"] {
+  color: #2a2d54;
+  font-family: Castoro, serif;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0.34px;
+  line-height: 15px;
+  text-align: center;
 }
