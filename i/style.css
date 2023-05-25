@@ -98,8 +98,7 @@
 
 #addToCalendar > [data-i18n="add-to-my-calendar"] {
   font-weight: 600;
-  letter-spacing: 0.34px;
-  line-height: 17px;
+  text-transform: initial;
 }
 
 .connectionContent {

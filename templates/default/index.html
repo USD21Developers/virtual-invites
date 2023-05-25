@@ -158,22 +158,28 @@
                 id="addToCalendar"
               >
                 <button
-                  class="p-3 btn btn-info font-weight-bold"
+                  class="p-3 btn btn-info"
                   type="button"
                   data-toggle="collapse"
                   data-target="#atcbOptions"
                   aria-expanded="false"
                   aria-controls="atcbOptions"
                 >
-                  <span class="mr-2">
+                  <div class="mr-2 d-inline-block">
                     <img
                       src="/_assets/svg/icons/calendar.svg"
                       width="18"
                       height="20"
                       alt="Invitation icon"
                     />
-                  </span>
-                  <span data-i18n="add-to-my-calendar">Add to my calendar</span>
+                  </div>
+                  <div
+                    data-i18n="add-to-my-calendar"
+                    class="d-inline-block align-middle"
+                    style="text-transform: initial"
+                  >
+                    Add to my calendar
+                  </div>
                 </button>
                 <div class="collapse" id="atcbOptions">
                   <div
