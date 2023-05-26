@@ -47,6 +47,13 @@ a:visited {
   line-height: 58px;
 }
 
+@media only screen and (max-width: 400px) {
+  #eventTitle {
+    font-size: 38px !important;
+    line-height: 48px;
+  }
+}
+
 #repeatingWeekday {
   color: #333333;
   font-family: Castoro, sans-serif;
