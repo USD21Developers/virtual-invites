@@ -2,6 +2,16 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap");
 
+a:link,
+a:visited {
+  color: #333333;
+}
+
+.balanced {
+  max-inline-size: 19ch;
+  text-wrap: balance;
+}
+
 .purple-gradient {
   background-image: linear-gradient(to right, #2a2d54 0%, #504390 100%);
 }
@@ -15,6 +25,7 @@
   background-color: white;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  color: #333333;
   display: inline-block;
   font-family: "Nunito Sans";
   font-size: 17px;
@@ -25,12 +36,60 @@
   width: 100%;
 }
 
+#youAreInvitedTo {
+  font-size: 14px;
+}
+
 #eventTitle {
   font-family: Castoro, sans-serif;
   font-size: 48px;
   font-weight: 400;
-  letter-spacing: 0.34px;
-  line-height: 60px;
+  line-height: 58px;
+}
+
+#repeatingWeekday {
+  color: #333333;
+  font-family: Castoro, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+}
+
+#singleDayWeekday {
+  color: #333333;
+  font-family: Castoro, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 3px;
+}
+
+#singleDayDate {
+  color: #333333;
+  font-family: Castoro, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  word-spacing: 5px;
+}
+
+#repeatingStartTime,
+#singleDayStartTime {
+  color: #333333;
+  font-family: Castoro, sans-serif;
+  font-weight: 400;
+}
+
+#multiDayFromLabel,
+#multiDayToLabel {
+  color: #333333;
+  font-family: Castoro, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 2px;
+  word-spacing: 2px;
 }
 
 [data-i18n="headline-about-event"] {
@@ -38,7 +97,7 @@
   font-size: 24px;
   font-weight: 400;
   letter-spacing: 0.34px;
-  line-height: 32px !important;
+  /* line-height: 32px !important; */
   text-align: center;
 }
 
@@ -51,6 +110,18 @@
   font-weight: 600;
   letter-spacing: 0.34px;
   line-height: 20px;
+}
+#multiDayFromText,
+#multiDayToText {
+  color: #333333;
+}
+
+#inviteLocationName {
+  color: #504390;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.34px;
+  line-height: 25px;
 }
 
 #eventAddress {
