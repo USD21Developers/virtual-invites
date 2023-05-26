@@ -52,6 +52,11 @@ a:visited {
     font-size: 38px !important;
     line-height: 48px;
   }
+
+  #repeatingWeekday,
+  #singleDayWeekday {
+    font-size: 14px !important;
+  }
 }
 
 #repeatingWeekday {
@@ -99,12 +104,12 @@ a:visited {
   word-spacing: 2px;
 }
 
-[data-i18n="headline-about-event"] {
+#headline-about-event {
   color: #2a2d54;
   font-size: 24px;
   font-weight: 400;
   letter-spacing: 0.34px;
-  /* line-height: 32px !important; */
+  line-height: 32px !important;
   text-align: center;
 }
 
