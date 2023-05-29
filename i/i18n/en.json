@@ -110,18 +110,18 @@
     },
     {
       "key": "phone-call",
-      "original": "Phone call",
-      "translated": "Phone call"
+      "original": "Phone Call",
+      "translated": "Phone Call"
     },
     {
       "key": "text-message",
-      "original": "Text message",
-      "translated": "Text message"
+      "original": "Text Message",
+      "translated": "Text Message"
     },
     {
       "key": "phone-call-or-text-message",
-      "original": "Phone or text message:",
-      "translated": "Phone or text message:"
+      "original": "Phone or Text:",
+      "translated": "Phone or Text:"
     },
     {
       "key": "email",
