@@ -204,3 +204,18 @@ a:visited {
   line-height: 15px;
   text-align: center;
 }
+
+[data-i18n="questions"] {
+  font-size: 14px;
+}
+
+#eventContactName {
+  color: #504390;
+}
+
+.contactMethodLabel {
+  color: #504390;
+  font-size: 14px;
+  letter-spacing: 0.32px;
+  line-height: 20px;
+}
