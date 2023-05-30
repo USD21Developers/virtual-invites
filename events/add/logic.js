@@ -1094,9 +1094,9 @@ function populateFormBasedPhrases() {
   }
   eventContactNameEl.innerHTML = contactFullName;
 
-  const contactPhoneEl = document.querySelector("a[data-i18n='phone-call']");
-  const contactSmsEl = document.querySelector("a[data-i18n='text-message']");
-  const contactEmailEl = document.querySelector("a[data-i18n='email']");
+  const contactPhoneEl = preview.querySelector("#contactViaPhone");
+  const contactSmsEl = preview.querySelector("#contactViaSms");
+  const contactEmailEl = preview.querySelector("#contactViaEmail");
   const contactSms = iti.getNumber() || "";
   const contactEmail =
     document.querySelector("#contactEmail").value.trim().toLowerCase() || "";
