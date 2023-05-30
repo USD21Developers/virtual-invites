@@ -9,7 +9,7 @@ function populateTemplate(version = "default") {
     .then((unparsed) => {
       const parser = new DOMParser();
       const parsed = parser.parseFromString(unparsed, "text/html");
-      const templateContent = parsed.querySelector("#content");
+      const templateContent = parsed.querySelector(".container");
       const el = document.querySelector("main");
       el.appendChild(templateContent);
       populateContent();
