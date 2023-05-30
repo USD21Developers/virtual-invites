@@ -1,3 +1,7 @@
+function populateContent() {
+  //
+}
+
 function populateTemplate(version = "default") {
   const path = `../templates/${version}/index.html`;
   fetch(path)
@@ -5,9 +9,9 @@ function populateTemplate(version = "default") {
     .then((unparsed) => {
       const parser = new DOMParser();
       const parsed = parser.parseFromString(unparsed, "text/html");
-      const mainContent = parsed.querySelector(".container");
-      const mainEl = document.querySelector("main");
-      mainEl.appendChild(mainContent);
+      const templateContent = parsed.querySelector("#content");
+      const el = document.querySelector("main");
+      el.appendChild(templateContent);
       populateContent();
     });
 }
