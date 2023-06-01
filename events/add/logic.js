@@ -546,7 +546,7 @@ async function onPreview() {
     document.querySelector("#locationIsDiscreet").checked || false;
   const locationInfo = previewModal.querySelector("#inviteLocationInfo");
   const requestLocationInfo = previewModal.querySelector(
-    "#previewRequestLocationInfo"
+    "#requestLocationInfo"
   );
   if (locationIsDiscreet) {
     locationInfo.classList.add("d-none");
