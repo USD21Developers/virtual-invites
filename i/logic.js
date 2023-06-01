@@ -1,23 +1,22 @@
-function populateContent() {
-  //
-}
-
 function populateTemplate(version = "default") {
-  const path = `../templates/${version}/index.html`;
-  fetch(path)
-    .then((res) => res.text())
-    .then((unparsed) => {
-      const parser = new DOMParser();
-      const parsed = parser.parseFromString(unparsed, "text/html");
-      const templateContent = parsed.querySelector(".container");
-      const el = document.querySelector("main");
-      el.appendChild(templateContent);
-      populateContent();
-    });
+  return new Promise((resolve, reject) => {
+    const path = `../templates/${version}/index.html`;
+    fetch(path)
+      .then((res) => res.text())
+      .then((unparsed) => {
+        const parser = new DOMParser();
+        const parsed = parser.parseFromString(unparsed, "text/html");
+        const templateContent = parsed.querySelector(".container");
+        const el = document.querySelector("main");
+        el.appendChild(templateContent);
+        resolve();
+      });
+  });
 }
 
-function init() {
-  populateTemplate();
+async function init() {
+  await populateTemplate();
+  await populateContent();
 }
 
 init();

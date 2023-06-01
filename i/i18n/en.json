@@ -79,12 +79,12 @@
       "translated": "Location Details:"
     },
     {
-      "key": "cant-attend-in-person",
+      "key": "headline-cant-attend",
       "original": "Can't Attend in Person?",
       "translated": "Can't Attend in Person?"
     },
     {
-      "key": "text-connect",
+      "key": "text-cant-attend",
       "original": "If you can't attend in person (e.g. for health or safety reasons), you can attend virtually.",
       "translated": "If you can't attend in person (e.g. for health or safety reasons), you can attend virtually."
     },

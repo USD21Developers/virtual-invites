@@ -104,7 +104,8 @@ a:visited {
   word-spacing: 2px;
 }
 
-#headline-about-event {
+#headline-about-event,
+[data-i18n="headline-cant-attend"] {
   color: #2a2d54;
   font-size: 24px;
   font-weight: 400;
@@ -197,12 +198,15 @@ a:visited {
 [data-i18n="headline-cant-attend"],
 [data-i18n="headline-questions"] {
   color: #2a2d54;
+  letter-spacing: 0.34px;
   font-family: Castoro, serif;
   font-size: 24px;
   font-weight: 400;
-  letter-spacing: 0.34px;
-  line-height: 15px;
   text-align: center;
+}
+
+[data-i18n="headline-questions"] {
+  line-height: 15px;
 }
 
 [data-i18n="questions"] {
@@ -211,6 +215,7 @@ a:visited {
 
 #eventContactName {
   color: #504390;
+  font-weight: bold;
 }
 
 .contactMethod-label {
