@@ -1,20 +1,160 @@
-body {
-  background-position: center;
-  background-repeat: repeat-y;
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital@0;1&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap");
+
+a:link,
+a:visited {
+  color: #333333;
+}
+
+.balanced {
+  text-wrap: balance;
+}
+
+.purple-gradient {
+  background-image: linear-gradient(to right, #2a2d54 0%, #504390 100%);
+}
+
+#invite-container {
+  max-width: 100%;
+  width: 530px;
+}
+
+#invite {
+  background-color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: #333333;
+  display: inline-block;
+  font-family: "Nunito Sans";
+  font-size: 17px;
+  margin: 30px 0;
+  max-width: 530px;
+  padding-bottom: 25px;
+  text-align: left;
+  width: 100%;
+}
+
+#youAreInvitedTo {
+  font-size: 14px;
+}
+
+#eventTitle {
+  font-family: Castoro, sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 58px;
+}
+
+@media only screen and (max-width: 400px) {
+  #eventTitle {
+    font-size: 38px !important;
+    line-height: 48px;
+  }
+
+  #repeatingWeekday,
+  #singleDayWeekday {
+    font-size: 14px !important;
+  }
+}
+
+#repeatingWeekday {
+  color: #333333;
+  font-family: Castoro, sans-serif;
   font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 2px;
+  word-spacing: 2px;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Oswald", sans-serif;
+#singleDayWeekday {
+  color: #333333;
+  font-family: Castoro, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 3px;
 }
 
-h1 {
-  font-size: 32px;
+#singleDayDate {
+  color: #333333;
+  font-family: Castoro, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  word-spacing: 5px;
+}
+
+#repeatingStartTime,
+#singleDayStartTime {
+  color: #333333;
+  font-family: Castoro, sans-serif;
+  font-weight: 400;
+}
+
+#multiDayFromLabel,
+#multiDayToLabel {
+  color: #333333;
+  font-family: Castoro, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+}
+
+#headline-about-event,
+[data-i18n="headline-cant-attend"] {
+  color: #2a2d54;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0.34px;
+  line-height: 32px !important;
+  text-align: center;
+}
+
+#timeAndDateRepeating,
+#timeAndDateSingleDay,
+#timeAndDateMultipleDays,
+#timeAndDateMultipleDays td {
+  color: #504390;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.34px;
+  line-height: 20px;
+}
+#multiDayFromText,
+#multiDayToText {
+  color: #333333;
+}
+
+#inviteLocationName {
+  color: #504390;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.34px;
+  line-height: 25px;
+}
+
+#eventAddress {
+  color: #504390;
+  font-weight: 600;
+  letter-spacing: 0.34px;
+  line-height: 20px;
+}
+
+#envelope-flap {
+  height: auto;
+  width: 100%;
+}
+
+#you-are-invited {
+  color: #333333;
+  font-family: "Proxima Nova Medium", sans-serif;
+  font-size: 14px;
+  margin-bottom: 7px;
+  margin-top: 15px;
+  text-align: center;
 }
 
 [data-i18n="youAreInvitedTo"] {
@@ -23,90 +163,25 @@ h1 {
   margin: 0;
 }
 
-a:not(.list-group-item) {
-  text-decoration: underline;
+#eventTitle {
+  color: #504390;
+  font-family: Castoro, serif;
+  font-size: 48px;
+  text-align: center;
 }
 
-.modal-content {
-  border: 5px solid #2196f3 !important;
-  border-radius: 4px;
-  max-height: 75vh;
-  overflow-y: scroll;
+#addToCalendar > button {
+  background: linear-gradient(93.58deg, #504390 0%, #3f3973 100%);
+  box-shadow: 5px 2px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 10px 22px;
 }
 
-/* BLUE THEME */
-
-[data-theme="blue"] {
-  background-color: #0d3c56;
-  background-image: url("../img/backgrounds/blue/AdobeStock_243376759.jpg");
-}
-
-[data-theme="blue"] #content {
-  border: 5px double #0d3c56;
-}
-
-[data-theme="blue"] a {
-  color: #1c78b0;
-}
-
-/* GREEN THEME */
-
-[data-theme="green"] {
-  background-color: #066440;
-  background-image: url("../img/backgrounds/green/AdobeStock_336463377.jpg");
-}
-
-[data-theme="green"] #content {
-  border: 5px double #066440;
-}
-
-[data-theme="green"] a {
-  color: #0aa167;
-}
-
-/* GREY THEME */
-
-[data-theme="grey"] {
-  background-color: #545559;
-  background-image: url("../img/backgrounds/grey/AdobeStock_311360889.jpg");
-}
-
-[data-theme="grey"] #content {
-  border: 5px double #545559;
-}
-
-[data-theme="grey"] a {
-  color: var(--primary);
-}
-
-/* PURPLE THEME */
-
-[data-theme="purple"] {
-  background-color: #28024f;
-  background-image: url("../img/backgrounds/purple/AdobeStock_320397648.jpg");
-}
-
-[data-theme="purple"] #content {
-  border: 5px double #28024f;
-}
-
-[data-theme="purple"] a {
-  color: #4a0493;
-}
-
-/* RED THEME */
-
-[data-theme="red"] {
-  background-color: #791515;
-  background-image: url("../img/backgrounds/red/AdobeStock_309304269.jpg");
-}
-
-[data-theme="red"] #content {
-  border: 5px double #791515;
-}
-
-[data-theme="red"] a {
-  color: #c62323;
+#addToCalendar > [data-i18n="add-to-my-calendar"] {
+  font-weight: 600;
+  text-transform: initial;
 }
 
 .connectionContent {
@@ -116,4 +191,35 @@ a:not(.list-group-item) {
   max-height: 20em;
   overflow-y: scroll;
   word-break: break-word;
+}
+
+[data-i18n="headline-about-event"],
+[data-i18n="headline-cant-attend"],
+[data-i18n="headline-questions"] {
+  color: #2a2d54;
+  letter-spacing: 0.34px;
+  font-family: Castoro, serif;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+}
+
+[data-i18n="headline-questions"] {
+  line-height: 15px;
+}
+
+[data-i18n="questions"] {
+  font-size: 16px;
+}
+
+#eventContactName {
+  color: #504390;
+  font-weight: bold;
+}
+
+.contactMethod-label {
+  color: #504390;
+  font-size: 16px;
+  letter-spacing: 0.32px;
+  line-height: 20px;
 }
