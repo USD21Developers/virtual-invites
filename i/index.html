@@ -13,20 +13,46 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="/templates/default/index.css"
+      href="../templates/default/index.css"
     />
+    <style type="text/css">
+      #inviteroot {
+        background-color: white;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        width: 530px;
+        min-height: 130px;
+        margin: 25px auto 40px auto;
+        max-width: calc(100% - 40px);
+      }
+    </style>
   </head>
   <body class="purple-gradient">
-    <div id="invite-container" class="m-auto">
-      <div id="invite" class="shadow">
-        <img
-          src="img/envelope-flap.jpg"
-          alt=""
-          id="envelope-flap"
-          width="530"
-          height="113"
-        />
-        <main></main>
+    <div id="inviteroot">
+      <img
+        src="img/envelope-flap.jpg"
+        width="1060"
+        height="226"
+        alt=""
+        class="img-fluid"
+        id="envelope-flap"
+      />
+
+      <main></main>
+
+      <div class="container" id="pageSpinner">
+        <div class="row">
+          <div class="col col-sm-10 offset-sm-1 mt-2 mb-4 text-center">
+            <img
+              src="/_assets/img/spinner.svg"
+              width="100"
+              height="100"
+              style="max-width: 100%"
+            />
+          </div>
+        </div>
       </div>
     </div>
 

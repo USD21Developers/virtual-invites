@@ -1,3 +1,8 @@
+function hideSpinner() {
+  const el = document.querySelector("#pageSpinner");
+  el.classList.add("d-none");
+}
+
 function populateTemplate(version = "default") {
   return new Promise((resolve, reject) => {
     const path = `../templates/${version}/index.html`;
@@ -9,6 +14,7 @@ function populateTemplate(version = "default") {
         const templateContent = parsed.querySelector(".container");
         const el = document.querySelector("main");
         el.appendChild(templateContent);
+        hideSpinner();
         resolve();
       });
   });

@@ -2,6 +2,10 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap");
 
+body {
+  background-color: #2a2d54;
+}
+
 a:link,
 a:visited {
   color: #333333;
@@ -16,23 +20,21 @@ a:visited {
 }
 
 #invite-container {
-  max-width: 100%;
-  width: 530px;
+  margin: auto;
 }
 
-#invite {
+#inviteRoot {
   background-color: white;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   color: #333333;
-  display: inline-block;
   font-family: "Nunito Sans";
   font-size: 17px;
-  margin: 30px 0;
+  margin: auto;
+  margin-top: 25px;
   max-width: 530px;
   padding-bottom: 25px;
   text-align: left;
-  width: 100%;
 }
 
 #youAreInvitedTo {
