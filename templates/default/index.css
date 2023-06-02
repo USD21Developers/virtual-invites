@@ -6,6 +6,10 @@ body {
   background-color: #2a2d54;
 }
 
+html {
+  font-size: 18px;
+}
+
 a:link,
 a:visited {
   color: #333333;
@@ -29,7 +33,6 @@ a:visited {
   border-bottom-right-radius: 10px;
   color: #333333;
   font-family: "Nunito Sans";
-  font-size: 17px;
   margin: auto;
   margin-top: 25px;
   max-width: 530px;
@@ -38,32 +41,31 @@ a:visited {
 }
 
 #youAreInvitedTo {
-  font-size: 14px;
+  font-size: 0.8rem;
 }
 
 #eventTitle {
   font-family: Castoro, sans-serif;
-  font-size: 48px;
+  font-size: 3rem;
   font-weight: 400;
   line-height: 58px;
 }
 
 @media only screen and (max-width: 400px) {
   #eventTitle {
-    font-size: 38px !important;
-    line-height: 48px;
+    font-size: 2.2rem !important;
   }
 
   #repeatingWeekday,
   #singleDayWeekday {
-    font-size: 14px !important;
+    font-size: 0.8rem !important;
   }
 }
 
 #repeatingWeekday {
   color: #333333;
   font-family: Castoro, sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 140%;
   letter-spacing: 2px;
@@ -73,16 +75,16 @@ a:visited {
 #singleDayWeekday {
   color: #333333;
   font-family: Castoro, sans-serif;
-  font-size: 12px;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 140%;
-  letter-spacing: 3px;
+  letter-spacing: 0.15rem;
 }
 
 #singleDayDate {
   color: #333333;
   font-family: Castoro, sans-serif;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 400;
   word-spacing: 5px;
 }
@@ -98,7 +100,7 @@ a:visited {
 #multiDayToLabel {
   color: #333333;
   font-family: Castoro, sans-serif;
-  font-size: 16px;
+  font-size: 0.8rem;
   font-weight: 400;
   line-height: 140%;
   letter-spacing: 2px;
@@ -108,10 +110,10 @@ a:visited {
 #headline-about-event,
 [data-i18n="headline-cant-attend"] {
   color: #2a2d54;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 400;
   letter-spacing: 0.34px;
-  line-height: 32px !important;
+  line-height: 2rem !important;
   text-align: center;
 }
 
@@ -122,7 +124,6 @@ a:visited {
   color: #504390;
   font-style: normal;
   font-weight: 600;
-  letter-spacing: 0.34px;
   line-height: 20px;
 }
 #multiDayFromText,
@@ -134,20 +135,13 @@ a:visited {
   color: #504390;
   font-size: 18px;
   font-weight: 600;
-  letter-spacing: 0.34px;
-  line-height: 25px;
+  line-height: 1.35rem;
 }
 
 #eventAddress {
   color: #504390;
   font-weight: 600;
-  letter-spacing: 0.34px;
-  line-height: 20px;
-}
-
-#envelope-flap {
-  height: auto;
-  width: 100%;
+  line-height: 1.35rem;
 }
 
 #you-are-invited {
@@ -168,7 +162,7 @@ a:visited {
 #eventTitle {
   color: #504390;
   font-family: Castoro, serif;
-  font-size: 48px;
+  font-size: 3rem;
   text-align: center;
 }
 
@@ -197,31 +191,24 @@ a:visited {
 
 [data-i18n="headline-about-event"],
 [data-i18n="headline-cant-attend"],
-[data-i18n="headline-questions"] {
+#questions_headline {
   color: #2a2d54;
   letter-spacing: 0.34px;
   font-family: Castoro, serif;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 400;
   text-align: center;
 }
 
-[data-i18n="headline-questions"] {
-  line-height: 15px;
-}
-
-[data-i18n="questions"] {
-  font-size: 16px;
-}
-
 #eventContactName {
   color: #504390;
+  font-size: 1.1rem;
   font-weight: bold;
 }
 
 .contactMethod-label {
   color: #504390;
-  font-size: 16px;
+  font-size: 0.9rem;
   letter-spacing: 0.32px;
   line-height: 20px;
 }
