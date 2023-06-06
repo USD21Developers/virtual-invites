@@ -153,15 +153,6 @@ a:visited {
   line-height: 1.35rem;
 }
 
-#you-are-invited {
-  color: #333333;
-  font-family: "Proxima Nova Medium", sans-serif;
-  font-size: 0.8rem;
-  font-weight: 100;
-  margin-top: 15px;
-  text-align: center;
-}
-
 #eventTitle {
   color: #504390;
   font-family: Castoro, serif;
@@ -176,11 +167,6 @@ a:visited {
   color: #ffffff;
   font-weight: 600;
   padding: 10px 22px;
-}
-
-#addToCalendar > [data-i18n="add-to-my-calendar"] {
-  font-weight: 600;
-  text-transform: initial;
 }
 
 .connectionContent {
