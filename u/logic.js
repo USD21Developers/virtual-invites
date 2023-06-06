@@ -326,7 +326,6 @@ function renderProfile(userdata, churchinfo) {
   const churchNameEl = document.querySelector("#churchname");
   const registrationDateEl = document.querySelector("#registrationDate");
   const genderEl = document.querySelector("#gender");
-  const numEventsEl = document.querySelector("#numEvents");
   const numInvitesSentEl = document.querySelector("#numInvitesSent");
 
   if (church_name.length) {
@@ -395,8 +394,6 @@ function renderProfile(userdata, churchinfo) {
 
   genderEl.innerText =
     gender === "male" ? getGlobalPhrase("male") : getGlobalPhrase("female");
-
-  numEventsEl.innerText = numEvents;
 
   numInvitesSentEl.innerText = numInvitesSent;
 }
