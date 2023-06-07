@@ -31,6 +31,10 @@ label[for="connectionDetails"] {
   opacity: 1;
 }
 
+#preview #eventTitle {
+  line-height: 2.6rem;
+}
+
 #eventDescription {
   word-break: break-word;
 }
