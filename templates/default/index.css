@@ -135,8 +135,8 @@ a:visited {
 }
 
 #mapAndDirections {
-  font-size: 0.95rem;
-  text-decoration: underline;
+  /* font-size: 0.95rem; */
+  /* text-decoration: underline; */
 }
 
 #headline-about-event,
