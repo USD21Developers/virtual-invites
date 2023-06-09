@@ -13,6 +13,8 @@ async function getInvite() {
 
     const endpoint = `${getApiHost()}/invite`;
 
+    showSpinner();
+
     fetch(endpoint, {
       mode: "cors",
       method: "POST",
@@ -28,9 +30,11 @@ async function getInvite() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        hideSpinner();
       })
       .catch((err) => {
         console.error(err);
+        showSpinner();
       });
   });
 }
@@ -66,6 +70,7 @@ function populateTemplate(version = "default") {
 }
 
 async function init() {
+  showSpinner();
   await populateTemplate();
   await populateContent();
   await getInvite();
