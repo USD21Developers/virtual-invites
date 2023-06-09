@@ -1,9 +1,7 @@
 async function getInvite() {
   return new Promise((resolve, reject) => {
     const hash = window.location.hash;
-    const inviteParts = hash
-      ? window.location.hash.split("#")[1].split("/")
-      : null;
+    let inviteParts = hash.split("/") || null;
     if (!inviteParts) {
       return reject(new Error("Required URL parameters are missing"));
     }
@@ -14,9 +12,11 @@ async function getInvite() {
       return reject(new Error("At least one URL parameter is required"));
     }
 
-    let eventid = Number(inviteParts[0]) || null;
-    let userid = Number(inviteParts[1]) || null;
-    let recipientid = inviteParts[2] || null;
+    inviteParts.shift();
+
+    let eventid = Number(inviteParts[1]) || null;
+    let userid = Number(inviteParts[2]) || null;
+    let recipientid = inviteParts[3] || null;
 
     if (!eventid) return reject();
 
