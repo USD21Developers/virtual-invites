@@ -155,9 +155,21 @@ function populateTemplate(version = "default") {
   });
 }
 
+function onAddToCalendarClick(e) {
+  e.preventDefault();
+  console.log("Add to Calendar clicked");
+}
+
+function attachListeners() {
+  document
+    .querySelector("#addToCalendarButton")
+    .addEventListener("click", onAddToCalendarClick);
+}
+
 async function init() {
   showSpinner();
   await populateTemplate();
+  attachListeners();
   await populateContent();
   await getInvite().catch((err) => console.error(err));
 }
