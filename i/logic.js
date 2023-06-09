@@ -1,8 +1,11 @@
 async function getInvite() {
   return new Promise((resolve, reject) => {
-    const inviteParts = window.location.hash.split("#")[1].split("/") || null;
+    const hash = window.location.hash;
+    const inviteParts = hash
+      ? window.location.hash.split("#")[1].split("/")
+      : null;
     if (!inviteParts) {
-      hideSpinner(); // Remove this when we go to production
+      hideSpinner(); // Remove this when going to production
       return reject();
     }
     if (!Array.isArray(inviteParts)) {
@@ -77,10 +80,10 @@ function populateTemplate(version = "default") {
 }
 
 async function init() {
-  showSpinner();
   await populateTemplate();
   await populateContent();
   await getInvite();
+  hideSpinner();
 }
 
 init();
