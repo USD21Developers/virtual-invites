@@ -97,14 +97,14 @@ function renderInvite(invite) {
 
     // Populate one-time weekday
     const weekday = Intl.DateTimeFormat(userDateTimePrefs.locale, {
-      timeZone: userDateTimePrefs.timeZone,
+      timeZone: event.timezone,
       weekday: "long",
     }).format(new Date(event.startdate));
     singleDayWeekdayEl.innerHTML = weekday;
 
     // Populate one-time date
     const date = Intl.DateTimeFormat(userDateTimePrefs.locale, {
-      timeZone: userDateTimePrefs.timeZone,
+      timeZone: event.timezone,
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -113,7 +113,7 @@ function renderInvite(invite) {
 
     // Populate one-time start time
     const starttime = new Intl.DateTimeFormat(userDateTimePrefs.locale, {
-      timeZone: userDateTimePrefs.timeZone,
+      timeZone: event.timezone,
       hour: "numeric",
       minute: "numeric",
     }).format(new Date(event.startdate));
@@ -121,8 +121,6 @@ function renderInvite(invite) {
   } else if (isMultiDay) {
     //
   }
-
-  console.log(invite);
 
   hideSpinner();
 }
