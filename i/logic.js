@@ -78,7 +78,7 @@ function renderInvite(invite) {
 
     // Populate recurring start time
     const starttime = new Intl.DateTimeFormat(userDateTimePrefs.locale, {
-      timeZone: userDateTimePrefs.timeZone,
+      timeZone: event.timezone,
       hour: "numeric",
       minute: "numeric",
     }).format(new Date(event.startdate));
