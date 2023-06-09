@@ -1,9 +1,16 @@
 async function getInvite() {
   return new Promise((resolve, reject) => {
     const inviteParts = window.location.hash.split("#")[1].split("/") || null;
-    if (!inviteParts) return reject();
-    if (!Array.isArray(inviteParts)) return reject();
-    if (!inviteParts.length) return reject();
+    if (!inviteParts) {
+      hideSpinner(); // Remove this when we go to production
+      return reject();
+    }
+    if (!Array.isArray(inviteParts)) {
+      return reject();
+    }
+    if (!inviteParts.length) {
+      return reject();
+    }
 
     let eventid = Number(inviteParts[0]) || null;
     let userid = Number(inviteParts[1]) || null;
