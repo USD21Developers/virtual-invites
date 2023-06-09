@@ -12,8 +12,6 @@ async function getInvite() {
       return reject(new Error("At least one URL parameter is required"));
     }
 
-    inviteParts.shift();
-
     let eventid = Number(inviteParts[1]) || null;
     let userid = Number(inviteParts[2]) || null;
     let recipientid = inviteParts[3] || null;
