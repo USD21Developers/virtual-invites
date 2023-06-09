@@ -40,6 +40,7 @@ var hidden, visibilityChange;
   getPhrase
   getGlobalPhrase
   getPreviewPhrase
+  getRecurringWeekdayName
   getStoredChurch
   getTimezoneOffset
   getUserChurchId
@@ -771,6 +772,36 @@ function getPreviewPhrase(key) {
     console.error(err);
     return content;
   }
+}
+
+function getRecurringWeekdayName(frequency) {
+  let weekday = "";
+
+  switch (frequency) {
+    case "Every Sunday":
+      weekday = getGlobalPhrase("frequencyEverySunday");
+      break;
+    case "Every Monday":
+      weekday = getGlobalPhrase("frequencyEveryMonday");
+      break;
+    case "Every Tuesday":
+      weekday = getGlobalPhrase("frequencyEveryTuesday");
+      break;
+    case "Every Wednesday":
+      weekday = getGlobalPhrase("frequencyEveryWednesday");
+      break;
+    case "Every Thursday":
+      weekday = getGlobalPhrase("frequencyEveryThursday");
+      break;
+    case "Every Friday":
+      weekday = getGlobalPhrase("frequencyEveryFriday");
+      break;
+    case "Every Saturday":
+      weekday = getGlobalPhrase("frequencyEverySaturday");
+      break;
+  }
+
+  return weekday;
 }
 
 function getStoredChurch(churchid) {
