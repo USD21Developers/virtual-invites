@@ -237,9 +237,10 @@ function getFinalURL() {
   const eventId = getInviteToId();
   const userId = getUserId();
   const recipientId = getRecipientId();
-  const finalUrl = (window.location.hostname = "localhost"
-    ? `${window.location.origin}/i/#/${eventId}/${userId}/${recipientId}`
-    : `${window.location.origin}/i/${eventId}/${userId}/${recipientId}`);
+  const finalUrl =
+    window.location.hostname === "localhost"
+      ? `${window.location.origin}/i/#/${eventId}/${userId}/${recipientId}`
+      : `${window.location.origin}/i/${eventId}/${userId}/${recipientId}`;
 
   recipientIdGlobal = recipientId;
   return finalUrl;
@@ -568,6 +569,13 @@ function onHowToScanClick(e) {
   instructionsLong.classList.remove("d-none");
 }
 
+function onQRCodeClick(url) {
+  const phrase = getPhrase("linkCopied");
+  navigator.clipboard.writeText(url);
+  showToast(phrase, 2000);
+  return;
+}
+
 function onSendViaChanged() {
   clearErrorMessages();
   selectSendVia();
@@ -823,7 +831,7 @@ function selectSendVia(method) {
       btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-qrcodetext");
       isMobile && containerTagWithLocation.classList.remove("d-none");
       populateQrCode().then((obj) => {
-        let downloadLink = document.createElement("a");
+        /* let downloadLink = document.createElement("a");
         downloadLink.setAttribute("download", "invite-qrcode.png");
         const dataURL = obj.toDataURL();
         const url = dataURL.replace(
@@ -832,7 +840,10 @@ function selectSendVia(method) {
         );
         downloadLink.setAttribute("href", url);
         const canvas = document.querySelector("#qr");
-        canvas.addEventListener("click", () => downloadLink.click());
+        canvas.addEventListener("click", () => downloadLink.click()); */
+        const canvas = document.querySelector("#qr");
+        const url = obj._value;
+        canvas.addEventListener("click", () => onQRCodeClick(url));
       });
       break;
     case "otherapps":

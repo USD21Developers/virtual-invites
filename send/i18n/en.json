@@ -292,6 +292,11 @@
       "key": "myEvents",
       "original": "My Events",
       "translated": "My Events"
+    },
+    {
+      "key": "linkCopied",
+      "original": "Invite link copied!",
+      "translated": "Invite link copied!"
     }
   ],
 
