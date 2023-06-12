@@ -117,16 +117,11 @@ async function eventDetails() {
   const eventsByFollowedUsers = await localforage.getItem(
     "eventsByFollowedUsers"
   );
+
+  localStorage.setItem("lastEventSelected", "");
+
   const eventid = getInviteToId();
   const sendVia = getSendVia();
-
-  if (eventid === "") {
-    localStorage.setItem("lastEventSelected", "");
-    meetingDetailsContainer.classList.add("d-none");
-    qrcode.classList.add("d-none");
-    qrcodeInstructions.classList.add("d-none");
-    return;
-  }
 
   let event = [];
 
@@ -144,7 +139,9 @@ async function eventDetails() {
 
   // If dropdown still does not match events in IndexedDB
   if (!event.length) {
-    console.error(`Event for eventid ${eventid} not found`);
+    if (eventid && Number(eventid) >= 0) {
+      console.error(`Event for eventid ${eventid} not found`);
+    }
     localStorage.setItem("lastEventSelected", "");
     meetingDetailsContainer.classList.add("d-none");
     qrcode.classList.add("d-none");
@@ -167,11 +164,6 @@ async function eventDetails() {
     qrcodeInstructions.add("d-none");
     return;
   }
-
-  const qrCodeObject = await populateQrCode();
-  const url = qrCodeObject._value;
-  const canvas = document.querySelector("#qr");
-  canvas.addEventListener("click", () => onQRCodeClick(url));
 
   localStorage.setItem("lastEventSelected", Number(eventid));
   meetingdetails_timedate.innerHTML = `${eventDateTime}`;
@@ -197,9 +189,23 @@ async function eventDetails() {
   meetingDetailsContainer.classList.remove("d-none");
 
   if (sendVia === "qrcode") {
-    qrcode.classList.remove("d-none");
-    qrcodeInstructions.classList.remove("d-none");
-    await populateQrCode();
+    let okToShowQRCode = true;
+    if (sendVia !== "qrcode") okToShowQRCode = false;
+    if (!eventid.length || Number(eventid) <= 0) okToShowQRCode = false;
+
+    if (okToShowQRCode) {
+      qrcode.classList.remove("d-none");
+      qrcodeInstructions.classList.remove("d-none");
+      meetingDetailsContainer.classList.remove("d-none");
+    } else {
+      qrcode.classList.add("d-none");
+      qrcodeInstructions.classList.add("d-none");
+      meetingDetailsContainer.classList.add("d-none");
+    }
+    const qrCodeObject = await populateQrCode();
+    const url = qrCodeObject._value;
+    const canvas = document.querySelector("#qr");
+    canvas.addEventListener("click", () => onQRCodeClick(url));
   }
 }
 
@@ -583,7 +589,25 @@ function onQRCodeClick(url) {
 async function onSendViaChanged() {
   clearErrorMessages();
   const url = getFinalURL();
-  await populateQrCode(url);
+  const sendVia = getSendVia();
+  const eventid = getInviteToId();
+  const containerSendToQRCode = document.querySelector(
+    "#containerSendToQRCode"
+  );
+  const containerQRCodeInstructions = document.querySelector(
+    "#containerQRCodeInstructions"
+  );
+  let okToShowQRCode = true;
+  if (sendVia !== "qrcode") okToShowQRCode = false;
+  if (!eventid || Number(eventid) <= 0) okToShowQRCode = false;
+  if (okToShowQRCode) {
+    containerSendToQRCode.classList.remove("d-none");
+    containerQRCodeInstructions.classList.remove("d-none");
+    await populateQrCode(url);
+  } else {
+    containerSendToQRCode.classList.add("d-none");
+    containerQRCodeInstructions.classList.add("d-none");
+  }
   selectSendVia();
 }
 
@@ -751,6 +775,14 @@ function onTagWithLocation(e) {
 
 function populateQrCode() {
   return new Promise(async (resolve, reject) => {
+    const containerSendToQRCode = document.querySelector(
+      "#containerSendToQRCode"
+    );
+    const containerQRCodeInstructions = document.querySelector(
+      "#containerQRCodeInstructions"
+    );
+    const sendvia = getSendVia();
+    const eventid = getInviteToId();
     const availableWidth = document.querySelector("#qrcode").clientWidth;
     const maxWidth = 200;
     const width = availableWidth > maxWidth ? maxWidth : availableWidth;
@@ -760,6 +792,16 @@ function populateQrCode() {
       value: url,
       size: width,
     });
+    let okToShowQRCode = true;
+    if (sendvia !== "qrcode") okToShowQRCode = false;
+    if (!eventid || Number(eventid) <= 0) okToShowQRCode = false;
+    if (okToShowQRCode) {
+      containerSendToQRCode.classList.remove("d-none");
+      containerQRCodeInstructions.classList.remove("d-none");
+    } else {
+      containerSendToQRCode.classList.add("d-none");
+      containerQRCodeInstructions.classList.add("d-none");
+    }
     resolve(qr);
   });
 }
@@ -832,10 +874,16 @@ function selectSendVia(method) {
       break;
     case "qrcode":
       localStorage.setItem("lastSendMethodSelected", "qrcode");
-      containerQRCode.classList.remove("d-none");
-      containerQRCodeInstructions.classList.remove("d-none");
-      btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-qrcodetext");
-      isMobile && containerTagWithLocation.classList.remove("d-none");
+      const eventid = getInviteToId();
+      if (eventid.length) {
+        containerQRCode.classList.remove("d-none");
+        containerQRCodeInstructions.classList.remove("d-none");
+        btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-qrcodetext");
+        isMobile && containerTagWithLocation.classList.remove("d-none");
+      } else {
+        containerQRCode.classList.add("d-none");
+        containerQRCodeInstructions.classList.add("d-none");
+      }
       break;
     case "otherapps":
       localStorage.setItem("lastSendMethodSelected", "otherapps");
