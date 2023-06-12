@@ -113,7 +113,6 @@ async function eventDetails() {
   const meetingdetails_location = document.querySelector(
     "#meetingdetails_location"
   );
-  const selectedEvent = getInviteToId();
   const events = await localforage.getItem("events");
   const eventsByFollowedUsers = await localforage.getItem(
     "eventsByFollowedUsers"
@@ -162,14 +161,19 @@ async function eventDetails() {
 
   eventDateTime = await showEventDateTime(event[0]);
 
-  if (selectedEvent.value === "") {
+  if (eventid.value === "") {
     meetingdetails.classList.add("d-none");
     qrcode.classList.add("d-none");
     qrcodeInstructions.add("d-none");
     return;
   }
 
-  localStorage.setItem("lastEventSelected", Number(selectedEvent));
+  const qrCodeObject = await populateQrCode();
+  const url = qrCodeObject._value;
+  const canvas = document.querySelector("#qr");
+  canvas.addEventListener("click", () => onQRCodeClick(url));
+
+  localStorage.setItem("lastEventSelected", Number(eventid));
   meetingdetails_timedate.innerHTML = `${eventDateTime}`;
   meetingdetails_location.innerHTML = `
     ${!!locationname && locationname.length ? locationname : ""}
@@ -236,13 +240,13 @@ function getEmailSubjectLine() {
 function getFinalURL() {
   const eventId = getInviteToId();
   const userId = getUserId();
-  const recipientId = getRecipientId();
+  const recipientId = recipientIdGlobal.length
+    ? recipientIdGlobal
+    : getRecipientId();
   const finalUrl =
     window.location.hostname === "localhost"
       ? `${window.location.origin}/i/#/${eventId}/${userId}/${recipientId}`
       : `${window.location.origin}/i/${eventId}/${userId}/${recipientId}`;
-
-  recipientIdGlobal = recipientId;
   return finalUrl;
 }
 
@@ -830,21 +834,6 @@ function selectSendVia(method) {
       containerQRCodeInstructions.classList.remove("d-none");
       btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-qrcodetext");
       isMobile && containerTagWithLocation.classList.remove("d-none");
-      populateQrCode().then((obj) => {
-        /* let downloadLink = document.createElement("a");
-        downloadLink.setAttribute("download", "invite-qrcode.png");
-        const dataURL = obj.toDataURL();
-        const url = dataURL.replace(
-          /^data:image\/png/,
-          "data:application/octet-stream"
-        );
-        downloadLink.setAttribute("href", url);
-        const canvas = document.querySelector("#qr");
-        canvas.addEventListener("click", () => downloadLink.click()); */
-        const canvas = document.querySelector("#qr");
-        const url = obj._value;
-        canvas.addEventListener("click", () => onQRCodeClick(url));
-      });
       break;
     case "otherapps":
       localStorage.setItem("lastSendMethodSelected", "otherapps");
@@ -942,6 +931,10 @@ function setDefaultSendMethod() {
   }
 }
 
+function setRecipientID() {
+  recipientIdGlobal = getRecipientId();
+}
+
 function showError(
   msg,
   selector,
@@ -1021,6 +1014,7 @@ function setEventListeners() {
 }
 
 async function init() {
+  setRecipientID();
   await checkForEvents();
   clearForm();
   await populateContent();
