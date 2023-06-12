@@ -59,13 +59,24 @@ function renderInvite(invite) {
   const isSameDay = event.duration === "same day" ? true : false;
   const isMultiDay = event.duration === "multiple days" ? true : false;
   const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
+  const timeAndDateRepeatingEl = document.querySelector(
+    "#timeAndDateRepeating"
+  );
+  const timeAndDateSingleDayEl = document.querySelector(
+    "#timeAndDateSingleDay"
+  );
+  const timeAndDateMultipleDays = document.querySelector(
+    "#timeAndDateMultipleDays"
+  );
+
+  // Hide by default
+  timeAndDateRepeatingEl.classList.add("d-none");
+  timeAndDateSingleDayEl.classList.add("d-none");
+  timeAndDateMultipleDays.classList.add("d-none");
 
   eventTitleEl.innerHTML = event.title;
 
   if (isRecurring) {
-    const timeAndDateRepeatingEl = document.querySelector(
-      "#timeAndDateRepeating"
-    );
     const repeatingWeekdayEl =
       timeAndDateRepeatingEl.querySelector("#repeatingWeekday");
     const repeatingStartTimeEl = timeAndDateRepeatingEl.querySelector(
@@ -118,8 +129,86 @@ function renderInvite(invite) {
       minute: "numeric",
     }).format(new Date(event.startdate));
     singleDayStartTimeEl.innerHTML = starttime;
+
+    // Unhide
+    timeAndDateRepeatingEl.classList.remove("d-none");
   } else if (isMultiDay) {
-    //
+    const multiDayStartingWeekdayEl = timeAndDateMultipleDays.querySelector(
+      "#multiDayStartingWeekday"
+    );
+    const multiDayStartingDateEl = timeAndDateMultipleDays.querySelector(
+      "#multiDayStartingDate"
+    );
+    const multiDayStartingTimeEl = timeAndDateMultipleDays.querySelector(
+      "#multiDayStartingTime"
+    );
+    const multiDayEndingWeekdayEl = timeAndDateMultipleDays.querySelector(
+      "#multiDayEndingWeekday"
+    );
+    const multiDayEndingDateEl = timeAndDateMultipleDays.querySelector(
+      "#multiDayEndingDate"
+    );
+    const multiDayEndingTimeEl = timeAndDateMultipleDays.querySelector(
+      "#multiDayEndingTime"
+    );
+    const { multidaybegindate, multidayenddate } = event;
+
+    // Populate beginning weekday
+    const beginWeekday = Intl.DateTimeFormat(userDateTimePrefs.locale, {
+      timeZone: event.timezone,
+      weekday: "short",
+    }).format(new Date(multidaybegindate));
+    multiDayStartingWeekdayEl.innerHTML =
+      userDateTimePrefs.locale.substring(0, 2) == "en"
+        ? `${beginWeekday}.`
+        : beginWeekday;
+
+    // Populate beginning date
+    const beginDate = Intl.DateTimeFormat(userDateTimePrefs.locale, {
+      timeZone: event.timezone,
+      year: "2-digit",
+      month: "numeric",
+      day: "numeric",
+    }).format(new Date(multidaybegindate));
+    multiDayStartingDateEl.innerHTML = beginDate;
+
+    // Populate beginning time
+    const beginTime = Intl.DateTimeFormat(userDateTimePrefs.locale, {
+      timeZone: event.timezone,
+      hour: "numeric",
+      minute: "numeric",
+    }).format(new Date(multidaybegindate));
+    multiDayStartingTimeEl.innerHTML = beginTime;
+
+    // Populate ending weekday
+    const endWeekday = Intl.DateTimeFormat(userDateTimePrefs.locale, {
+      timeZone: event.timezone,
+      weekday: "short",
+    }).format(new Date(multidayenddate));
+    multiDayEndingWeekdayEl.innerHTML =
+      userDateTimePrefs.locale.substring(0, 2) == "en"
+        ? `${endWeekday}.`
+        : endWeekday;
+
+    // Populate ending date
+    const endDate = Intl.DateTimeFormat(userDateTimePrefs.locale, {
+      timeZone: event.timezone,
+      year: "2-digit",
+      month: "numeric",
+      day: "numeric",
+    }).format(new Date(multidayenddate));
+    multiDayEndingDateEl.innerHTML = endDate;
+
+    // Populate ending time
+    const endTime = Intl.DateTimeFormat(userDateTimePrefs.locale, {
+      timeZone: event.timezone,
+      hour: "numeric",
+      minute: "numeric",
+    }).format(new Date(multidayenddate));
+    multiDayEndingTimeEl.innerHTML = endTime;
+
+    // unhide
+    timeAndDateMultipleDays.classList.remove("d-none");
   }
 
   hideSpinner();
