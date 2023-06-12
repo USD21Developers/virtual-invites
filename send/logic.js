@@ -580,8 +580,10 @@ function onQRCodeClick(url) {
   return;
 }
 
-function onSendViaChanged() {
+async function onSendViaChanged() {
   clearErrorMessages();
+  const url = getFinalURL();
+  await populateQrCode(url);
   selectSendVia();
 }
 
