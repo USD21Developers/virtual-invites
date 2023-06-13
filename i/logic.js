@@ -253,6 +253,10 @@ function attachListeners() {
   document
     .querySelector("#addToCalendarButton")
     .addEventListener("click", onAddToCalendarClick);
+
+  window.addEventListener("hashchange", () => {
+    window.location.reload();
+  });
 }
 
 async function init() {
