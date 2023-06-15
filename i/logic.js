@@ -133,7 +133,7 @@ function renderInvite(invite) {
     singleDayStartTimeEl.innerHTML = starttime;
 
     // Unhide
-    timeAndDateRepeatingEl.classList.remove("d-none");
+    timeAndDateSingleDayEl.classList.remove("d-none");
   } else if (isMultiDay) {
     const multiDayStartingWeekdayEl = timeAndDateMultipleDays.querySelector(
       "#multiDayStartingWeekday"
