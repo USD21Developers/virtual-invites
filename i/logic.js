@@ -1,3 +1,9 @@
+let inviteObject = {
+  event: null,
+  user: null,
+  recipient: null,
+};
+
 async function getInvite() {
   return new Promise((resolve, reject) => {
     const hash = window.location.hash;
@@ -69,6 +75,11 @@ function renderInvite(invite) {
     "#timeAndDateMultipleDays"
   );
 
+  // Store invite in global scope
+  inviteObject.event = event;
+  inviteObject.user = user;
+  inviteObject.recipient = recipient;
+
   // Hide by default
   timeAndDateRepeatingEl.classList.add("d-none");
   timeAndDateSingleDayEl.classList.add("d-none");
@@ -76,6 +87,7 @@ function renderInvite(invite) {
 
   eventTitleEl.innerHTML = event.title;
 
+  // EVENT TIME AND DATE
   if (isRecurring) {
     const repeatingWeekdayEl =
       timeAndDateRepeatingEl.querySelector("#repeatingWeekday");
@@ -227,7 +239,7 @@ function renderInvite(invite) {
     timeAndDateMultipleDays.classList.remove("d-none");
   }
 
-  // Populate location
+  // POPULATE LOCATION
   const inviteLocationNameEl = document.querySelector("#inviteLocationName");
   const eventAddressEl = document.querySelector("#eventAddress");
   const address_line_1_el = document.querySelector("#address_line_1");
@@ -252,7 +264,7 @@ function renderInvite(invite) {
     eventAddressEl.classList.add("d-none");
   }
 
-  // Other location details
+  // OTHER LOCATION DETAILS
   const otherLocationDetailsEl = document.querySelector(
     "#previewOtherLocationDetails"
   );
@@ -262,7 +274,7 @@ function renderInvite(invite) {
     otherLocationDetailsEl.classList.remove("d-none");
   }
 
-  // Map and Directions
+  // MAP AND DIRECTIONS
   const mapAndDirectionsEl = document.querySelector("#mapAndDirections");
   const locationcoordinates = event.locationcoordinates || null;
   const { x: latitude, y: longitude } = locationcoordinates;
@@ -339,7 +351,7 @@ function populateTemplate(version = "default") {
 
 function onAddToCalendarClick(e) {
   e.preventDefault();
-  console.log("Add to Calendar clicked");
+  console.log("Add to Calendar clicked", inviteObject);
 }
 
 function attachListeners() {
