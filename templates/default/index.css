@@ -147,8 +147,14 @@ a:hover {
 }
 
 #mapAndDirections {
-  /* font-size: 0.95rem; */
-  /* text-decoration: underline; */
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+#mapAndDirections:link,
+#mapAndDirections:active,
+#mapAndDirections:visited {
+  text-decoration: underline;
 }
 
 #headline-about-event,
