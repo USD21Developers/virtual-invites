@@ -94,6 +94,8 @@ function renderInvite(invite) {
       minute: "numeric",
     }).format(new Date(event.startdate));
     repeatingStartTimeEl.innerHTML = starttime;
+
+    timeAndDateRepeatingEl.classList.remove("d-none");
   } else if (isSameDay) {
     const timeAndDateSingleDayEl = document.querySelector(
       "#timeAndDateSingleDay"
