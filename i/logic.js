@@ -223,86 +223,86 @@ function renderInvite(invite) {
       requestLocationInfoEl.classList.add("d-none");
     }
 
-    // Populate location
-    const inviteLocationNameEl = document.querySelector("#inviteLocationName");
-    const eventAddressEl = document.querySelector("#eventAddress");
-    const address_line_1_el = document.querySelector("#address_line_1");
-    const address_line_2_el = document.querySelector("#address_line_2");
-    const address_line_3_el = document.querySelector("#address_line_3");
-    const locationName = event.locationname || "";
-    const locationAddress1 = event.locationaddressline1 || "";
-    const locationAddress2 = event.locationaddressline2 || "";
-    const locationAddress3 = event.locationaddressline3 || "";
-    const hasAddress =
-      locationAddress1.length ||
-      locationAddress2.length ||
-      locationAddress3.length
-        ? true
-        : false;
-    inviteLocationNameEl.innerHTML = locationName;
-    if (hasAddress) {
-      address_line_1_el.innerHTML = locationAddress1;
-      address_line_2_el.innerHTML = locationAddress2;
-      address_line_3_el.innerHTML = locationAddress3;
-    } else {
-      eventAddressEl.classList.add("d-none");
-    }
-
-    // Other location details
-    const otherLocationDetailsEl = document.querySelector(
-      "#previewOtherLocationDetails"
-    );
-    const otherLocationDetails = event.otherlocationdetails || "";
-    if (otherLocationDetails.length) {
-      otherLocationDetailsEl.innerHTML = otherLocationDetails;
-      otherLocationDetailsEl.classList.remove("d-none");
-    }
-
-    // Map and Directions
-    const mapAndDirectionsEl = document.querySelector("#mapAndDirections");
-    const locationcoordinates = event.locationcoordinates || null;
-    const { x: latitude, y: longitude } = locationcoordinates;
-    const operatingSystem = getMobileOperatingSystem();
-    let address = "";
-    let addressLink = "";
-    if (locationAddress1.length) {
-      address += locationAddress1.trim();
-      addressLink += encodeURIComponent(locationAddress1.trim());
-    }
-    if (locationAddress2.length) {
-      address += ", ";
-      addressLink += ",";
-      address += locationAddress2.trim();
-      addressLink += encodeURIComponent(locationAddress2.trim());
-    }
-    if (locationAddress3.length) {
-      if (locationAddress1.length || locationAddress2.length) {
-        address += ", ";
-        addressLink += ",";
-      }
-      address += locationAddress3.trim();
-      addressLink += encodeURIComponent(locationAddress3.trim());
-    }
-    if (operatingSystem === "iOS") {
-      // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
-      if (address.length > 0) {
-        addressLink = `https://maps.apple.com/?daddr=${addressLink}&dirflg=d&t=m`;
-      } else if (latitude.length > 0 && longitude.length > 0) {
-        addressLink = `https://maps.apple.com/?ll=${latitude},${longitude}&t=m`;
-      }
-    } else {
-      // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
-      if (address.length > 0) {
-        addressLink = `https://www.google.com/maps/dir/?api=1&destination=${addressLink}&sensor=true`;
-      } else if (latitude.length > 0 && longitude.length > 0) {
-        addressLink = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
-      }
-    }
-    mapAndDirectionsEl.setAttribute("href", addressLink);
-
     // unhide
     timeAndDateMultipleDays.classList.remove("d-none");
   }
+
+  // Populate location
+  const inviteLocationNameEl = document.querySelector("#inviteLocationName");
+  const eventAddressEl = document.querySelector("#eventAddress");
+  const address_line_1_el = document.querySelector("#address_line_1");
+  const address_line_2_el = document.querySelector("#address_line_2");
+  const address_line_3_el = document.querySelector("#address_line_3");
+  const locationName = event.locationname || "";
+  const locationAddress1 = event.locationaddressline1 || "";
+  const locationAddress2 = event.locationaddressline2 || "";
+  const locationAddress3 = event.locationaddressline3 || "";
+  const hasAddress =
+    locationAddress1.length ||
+    locationAddress2.length ||
+    locationAddress3.length
+      ? true
+      : false;
+  inviteLocationNameEl.innerHTML = locationName;
+  if (hasAddress) {
+    address_line_1_el.innerHTML = locationAddress1;
+    address_line_2_el.innerHTML = locationAddress2;
+    address_line_3_el.innerHTML = locationAddress3;
+  } else {
+    eventAddressEl.classList.add("d-none");
+  }
+
+  // Other location details
+  const otherLocationDetailsEl = document.querySelector(
+    "#previewOtherLocationDetails"
+  );
+  const otherLocationDetails = event.otherlocationdetails || "";
+  if (otherLocationDetails.length) {
+    otherLocationDetailsEl.innerHTML = otherLocationDetails;
+    otherLocationDetailsEl.classList.remove("d-none");
+  }
+
+  // Map and Directions
+  const mapAndDirectionsEl = document.querySelector("#mapAndDirections");
+  const locationcoordinates = event.locationcoordinates || null;
+  const { x: latitude, y: longitude } = locationcoordinates;
+  const operatingSystem = getMobileOperatingSystem();
+  let address = "";
+  let addressLink = "";
+  if (locationAddress1.length) {
+    address += locationAddress1.trim();
+    addressLink += encodeURIComponent(locationAddress1.trim());
+  }
+  if (locationAddress2.length) {
+    address += ", ";
+    addressLink += ",";
+    address += locationAddress2.trim();
+    addressLink += encodeURIComponent(locationAddress2.trim());
+  }
+  if (locationAddress3.length) {
+    if (locationAddress1.length || locationAddress2.length) {
+      address += ", ";
+      addressLink += ",";
+    }
+    address += locationAddress3.trim();
+    addressLink += encodeURIComponent(locationAddress3.trim());
+  }
+  if (operatingSystem === "iOS") {
+    // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
+    if (address.length > 0) {
+      addressLink = `https://maps.apple.com/?daddr=${addressLink}&dirflg=d&t=m`;
+    } else if (latitude.length > 0 && longitude.length > 0) {
+      addressLink = `https://maps.apple.com/?ll=${latitude},${longitude}&t=m`;
+    }
+  } else {
+    // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
+    if (address.length > 0) {
+      addressLink = `https://www.google.com/maps/dir/?api=1&destination=${addressLink}&sensor=true`;
+    } else if (latitude.length > 0 && longitude.length > 0) {
+      addressLink = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+    }
+  }
+  mapAndDirectionsEl.setAttribute("href", addressLink);
 
   hideSpinner();
 }
