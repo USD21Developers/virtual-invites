@@ -4,6 +4,64 @@ let inviteObject = {
   recipient: null,
 };
 
+function getAddressForMaps(event) {
+  const {
+    locationaddressline1: addressLine1,
+    locationaddressline2: addressLine2,
+    locationaddressline3: addressLine3,
+    locationcoordinates,
+  } = event;
+  let address = "";
+  let addressLink = "";
+  if (addressLine1) {
+    address += addressLine1.trim();
+    addressLink += encodeURIComponent(addressLine1.trim());
+  }
+  if (addressLine2) {
+    if (addressLine1) {
+      address += ", ";
+      addressLink += ",";
+    }
+    address += addressLine2.trim();
+    addressLink += encodeURIComponent(addressLine2.trim());
+  }
+  if (addressLine3) {
+    if (addressLine1 || addressLine2) {
+      address += ", ";
+      addressLink += ",";
+    }
+    address += addressLine3.trim();
+    addressLink += encodeURIComponent(addressLine3.trim());
+  }
+
+  const operatingSystem = getMobileOperatingSystem();
+  const { x: latitude, y: longitude } = locationcoordinates;
+
+  // Use Apple Maps if we're on iOS. For all other operating systems, use Google Maps.
+  if (operatingSystem === "iOS") {
+    // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
+    if (address.length > 0) {
+      addressLink = `https://maps.apple.com/?daddr=${addressLink}&dirflg=d&t=m`;
+    } else if (latitude.length > 0 && longitude.length > 0) {
+      addressLink = `https://maps.apple.com/?ll=${latitude},${longitude}&t=m`;
+    }
+  } else {
+    // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
+    if (address.length > 0) {
+      addressLink = `https://www.google.com/maps/dir/?api=1&destination=${addressLink}&sensor=true`;
+    } else if (latitude.length > 0 && longitude.length > 0) {
+      addressLink = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+    }
+  }
+
+  const returnObject = {
+    address: address,
+    addressLink: addressLink,
+  };
+
+  return returnObject;
+}
+
 async function getInvite() {
   return new Promise((resolve, reject) => {
     const hash = window.location.hash;
@@ -276,45 +334,8 @@ function renderInvite(invite) {
 
   // MAP AND DIRECTIONS
   const mapAndDirectionsEl = document.querySelector("#mapAndDirections");
-  const locationcoordinates = event.locationcoordinates || null;
-  const { x: latitude, y: longitude } = locationcoordinates;
-  const operatingSystem = getMobileOperatingSystem();
-  let address = "";
-  let addressLink = "";
-  if (locationAddress1.length) {
-    address += locationAddress1.trim();
-    addressLink += encodeURIComponent(locationAddress1.trim());
-  }
-  if (locationAddress2.length) {
-    address += ", ";
-    addressLink += ",";
-    address += locationAddress2.trim();
-    addressLink += encodeURIComponent(locationAddress2.trim());
-  }
-  if (locationAddress3.length) {
-    if (locationAddress1.length || locationAddress2.length) {
-      address += ", ";
-      addressLink += ",";
-    }
-    address += locationAddress3.trim();
-    addressLink += encodeURIComponent(locationAddress3.trim());
-  }
-  if (operatingSystem === "iOS") {
-    // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
-    if (address.length > 0) {
-      addressLink = `https://maps.apple.com/?daddr=${addressLink}&dirflg=d&t=m`;
-    } else if (latitude.length > 0 && longitude.length > 0) {
-      addressLink = `https://maps.apple.com/?ll=${latitude},${longitude}&t=m`;
-    }
-  } else {
-    // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
-    if (address.length > 0) {
-      addressLink = `https://www.google.com/maps/dir/?api=1&destination=${addressLink}&sensor=true`;
-    } else if (latitude.length > 0 && longitude.length > 0) {
-      addressLink = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
-    }
-  }
-  mapAndDirectionsEl.setAttribute("href", addressLink);
+  const addressObject = getAddressForMaps(event);
+  mapAndDirectionsEl.setAttribute("href", addressObject.addressLink);
 
   hideSpinner();
 }
