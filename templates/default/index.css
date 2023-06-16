@@ -141,8 +141,8 @@ a:hover {
 #multiDayToText {
   color: #333333;
   font-family: "Nunito Sans", sans-serif;
-  font-size: 0.9rem;
-  font-weight: 200;
+  font-size: 1rem;
+  font-weight: lighter;
   line-height: 1.3rem;
   word-spacing: 0.2rem;
 }
