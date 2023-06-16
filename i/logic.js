@@ -614,7 +614,19 @@ function onAddToCalendarClick(e) {
 function attachListeners() {
   document
     .querySelector("#addToCalendarButton")
-    .addEventListener("click", onAddToCalendarClick);
+    .addEventListener("click", () => {
+      const calendarOptions = document.querySelector("#calendarOptions");
+      const isExpanded =
+        calendarOptions.getAttribute("aria-expanded") === "true" ? true : false;
+
+      if (isExpanded) {
+        calendarOptions.classList.add("collapse");
+        calendarOptions.setAttribute("aria-expanded", "false");
+      } else {
+        calendarOptions.classList.remove("collapse");
+        calendarOptions.setAttribute("aria-expanded", "true");
+      }
+    });
 
   window.addEventListener("hashchange", () => {
     window.location.reload();
@@ -627,6 +639,7 @@ async function init() {
   attachListeners();
   await populateContent();
   await getInvite().catch((err) => console.error(err));
+  $(".collapse").collapse();
 }
 
 init();
