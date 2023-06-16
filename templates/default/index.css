@@ -149,7 +149,6 @@ a:hover {
 
 #mapAndDirections {
   font-size: 1rem;
-  text-decoration: underline;
 }
 
 #mapAndDirections:link,
@@ -178,7 +177,7 @@ a:hover {
 
 #inviteLocationName {
   color: #504390;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   line-height: 1.5rem;
 }
