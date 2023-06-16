@@ -169,9 +169,7 @@ a:hover {
 }
 
 #timeAndDateRepeating,
-#timeAndDateSingleDay,
-#timeAndDateMultipleDays,
-#timeAndDateMultipleDays td {
+#timeAndDateSingleDay {
   color: #504390;
   font-style: normal;
   font-weight: 600;
