@@ -242,6 +242,21 @@
       "key": "events",
       "original": "Events",
       "translated": "Events"
+    },
+    {
+      "key": "addToCalendarApple",
+      "original": "Apple",
+      "translated": "Apple"
+    },
+    {
+      "key": "addToCalendarGoogle",
+      "original": "Google",
+      "translated": "Google"
+    },
+    {
+      "key": "addToCalendarIcalFile",
+      "original": "iCal file",
+      "translated": "iCal file"
     }
   ],
 

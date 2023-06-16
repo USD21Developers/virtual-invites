@@ -3,6 +3,124 @@ let inviteObject = {
   user: null,
   recipient: null,
 };
+let iti;
+
+function buildCalendarDescription(event) {
+  let description = `
+${getPhrase("you-are-invited-to")}
+${event.title.toUpperCase().trim() + "\n\n"}
+  `;
+
+  // BEGIN MAIN EVENT INFO
+  const headlineAboutEvent = getPhrase("headline-about-event").replaceAll(
+    "{EVENT-TITLE}",
+    event.title
+  );
+
+  description += `=====
+
+${headlineAboutEvent.toUpperCase()}:
+
+${event.description}
+  `;
+  description = description.trim();
+  description = description + "\n\n";
+  // END MAIN EVENT INFO
+
+  // BEGIN RECURRING EVENT
+  if (event.frequency !== "once") {
+    description += `=====\n
+${getPhrase("is-recurring")}
+    `;
+    description = description.trim();
+    description = description + "\n\n";
+  }
+  // END RECURRING EVENT
+
+  // BEGIN OTHER LOCATION DETAILS
+  if (
+    event.otherlocationdetails.length &&
+    event.locationvisibility !== "discreet"
+  ) {
+    const headlineLocationDetails = getPhrase("headlineLocationDetails");
+
+    description += `=====
+
+${headlineLocationDetails.toUpperCase()}
+
+${event.otherlocationdetails}
+    `;
+    description = description.trim();
+    description = description + "\n\n";
+  }
+  // END OTHER LOCATION DETAILS
+
+  // BEGIN ATTENTING VIRTUALLY
+  if (event.virtualconnectiondetails.length) {
+    const attendOnline_headlineCantAttendInPerson = getPhrase(
+      "cant-attend-in-person"
+    );
+    const attendOnline_text = getPhrase("text-connect");
+    const attendOnline_headlineHowToConnect = getPhrase(
+      "headline-how-to-connect"
+    );
+    const calAttendingVirtually = `=====
+
+${attendOnline_headlineCantAttendInPerson.toUpperCase()}
+
+${attendOnline_text}
+
+${attendOnline_headlineHowToConnect.toUpperCase()}
+
+${event.virtualconnectiondetails.trim()}
+    `;
+    description += calAttendingVirtually;
+    description = description.trim();
+    description = description + "\n\n";
+  }
+  // END ATTENDING VIRTUALLY
+
+  // BEGIN CONTACT INFORMATION
+  const headlineQuestions = getPhrase("headline-questions");
+  const textQuestions =
+    event.locationvisibility === "discreet"
+      ? getPhrase("questionsPlusLocation")
+      : getPhrase("questions");
+  const labelPhoneCallOrTextMessage = getPhrase("phone-call-or-text-message");
+  const labelEmail = getPhrase("email");
+
+  description += `=====
+
+${headlineQuestions.toUpperCase()}
+
+${textQuestions}
+  `;
+  description = description.trim();
+  description = description + "\n\n";
+
+  // Contact Name
+  description += `${event.contactfirstname.toUpperCase()} ${
+    event.contactlastname.length ? event.contactlastname.toUpperCase() : ""
+  }\n\n`;
+
+  // Contact Phone or Text Message
+  if (event.contactphone.length && window.libphonenumber) {
+    const phoneNumberObject = window.libphonenumber.parsePhoneNumber(
+      event.contactphone
+    );
+    const contactPhoneFormatted = phoneNumberObject.formatNational();
+    description += `* ${labelPhoneCallOrTextMessage}\n${contactPhoneFormatted}\n\n`;
+  }
+
+  // Contact E-mail
+  if (event.contactemail.length) {
+    description += `* ${labelEmail}:\n${event.contactemail}\n\n`;
+  }
+
+  // END CONTACT INFORMATION
+
+  return description;
+}
 
 function getAddressForMaps(event) {
   const {
@@ -60,6 +178,124 @@ function getAddressForMaps(event) {
   };
 
   return returnObject;
+}
+
+function getCalendar(event, calType) {
+  const {
+    duration,
+    frequency,
+    multidaybegindate,
+    multidayenddate,
+    startdate,
+    title,
+  } = event;
+  const description = buildCalendarDescription(event);
+  const location = getAddressForMaps(event).address;
+  const isRecurring = frequency === "once" ? false : true;
+  const isMultiDay = duration === "multiple days" ? true : false;
+  let recurringWeekday;
+  let eventStart;
+  let eventEnd;
+  let config;
+
+  if (isRecurring) {
+    eventStart = startdate;
+    switch (frequency) {
+      case "Every Sunday":
+        recurringWeekday = "SU";
+        break;
+      case "Every Monday":
+        recurringWeekday = "MO";
+        break;
+      case "Every Tuesday":
+        recurringWeekday = "TU";
+        break;
+      case "Every Wednesday":
+        recurringWeekday = "WE";
+        break;
+      case "Every Thursday":
+        recurringWeekday = "TH";
+        break;
+      case "Every Friday":
+        recurringWeekday = "FR";
+        break;
+      case "Every Saturday":
+        recurringWeekday = "SA";
+        break;
+    }
+
+    config = {
+      title: title,
+      location: location,
+      description: description,
+      start: eventStart,
+      recurrence: {
+        frequency: "WEEKLY",
+        interval: 1,
+        weekdays: recurringWeekday,
+        count: 12,
+      },
+    };
+  } else if (!isMultiDay) {
+    eventStart = startdate;
+    config = {
+      title: title,
+      location: location,
+      description: description,
+      start: eventStart,
+    };
+  } else if (isMultiDay) {
+    eventStart = multidaybegindate;
+    eventEnd = multidayenddate;
+    config = {
+      title: title,
+      location: location,
+      description: description,
+      start: eventStart,
+      end: eventEnd,
+    };
+  }
+
+  switch (calType) {
+    case "apple":
+      getCalendarApple(config);
+      break;
+    case "google":
+      getCalendarGoogle(config);
+      break;
+    case "ical":
+      getCalendarIcal(config);
+      break;
+  }
+}
+
+function getCalendarApple(config) {
+  const appleCal = new datebook.ICalendar(config);
+  const appleCalContent = appleCal.render();
+  const appleCalLink = document.createElement("a");
+  const appleCalFile = new Blob([appleCalContent], {
+    type: "text/calendar",
+  });
+  appleCalLink.href = URL.createObjectURL(appleCalFile);
+  appleCalLink.download = "appleCal.ics";
+  appleCalLink.click();
+  URL.revokeObjectURL(appleCalLink.href);
+}
+
+function getCalendarGoogle(config) {
+  const googleCal = new datebook.GoogleCalendar(config);
+  window.location.href = googleCal.render();
+}
+
+function getCalendarIcal(config) {
+  const iCal = new datebook.ICalendar(config);
+  const iCalContent = iCal.render();
+  const iCalLink = document.createElement("a");
+  const iCalFile = new Blob([iCalContent], { type: "text/calendar" });
+  iCalLink.href = URL.createObjectURL(iCalFile);
+  iCalLink.download = "ical.ics";
+  iCalLink.click();
+  URL.revokeObjectURL(iCalLink.href);
 }
 
 async function getInvite() {
