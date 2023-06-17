@@ -663,7 +663,6 @@ async function init() {
   attachListeners();
   await populateContent();
   await getInvite().catch((err) => console.error(err));
-  $(".collapse").collapse();
 }
 
 init();
