@@ -632,13 +632,6 @@ function attachListeners() {
     window.location.reload();
   });
 
-  document
-    .querySelector("#calendarOptions")
-    .querySelectorAll("a")
-    .forEach((item) => {
-      item.addEventListener("click", onCalenderOptionClick);
-    });
-
   document.addEventListener("click", (event) => {
     const addToCalendar = document.querySelector("#addToCalendar");
     const clickedCalendar = addToCalendar.contains(event.target);
