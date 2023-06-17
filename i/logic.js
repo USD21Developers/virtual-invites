@@ -650,7 +650,7 @@ function attachListeners() {
     .addEventListener("click", () => getCalendar(inviteObject.event, "google"));
 
   document
-    .querySelector("#btnCalendarIcalFile")
+    .querySelector("#btnCalendariCalFile")
     .addEventListener("click", () => getCalendar(inviteObject.event, "ical"));
 }
 
