@@ -606,31 +606,40 @@ function populateTemplate(version = "default") {
   });
 }
 
-function onAddToCalendarClick(e) {
+function onCalenderOptionClick(e) {
   e.preventDefault();
-  console.log("Add to Calendar clicked", inviteObject);
+  console.log("Clicked");
 }
 
 function attachListeners() {
   document
     .querySelector("#addToCalendarButton")
     .addEventListener("click", () => {
+      const addToCalendar = document.querySelector("#addToCalendar");
       const calendarOptions = document.querySelector("#calendarOptions");
       const isExpanded =
-        calendarOptions.getAttribute("aria-expanded") === "true" ? true : false;
+        addToCalendar.getAttribute("aria-expanded") === "true" ? true : false;
 
       if (isExpanded) {
-        calendarOptions.classList.add("collapse");
-        calendarOptions.setAttribute("aria-expanded", "false");
+        calendarOptions.classList.add("d-none");
+        addToCalendar.setAttribute("aria-expanded", "false");
       } else {
-        calendarOptions.classList.remove("collapse");
-        calendarOptions.setAttribute("aria-expanded", "true");
+        calendarOptions.classList.remove("d-none");
+        addToCalendar.setAttribute("aria-expanded", "true");
+        addToCalendar.scrollIntoView();
       }
     });
 
   window.addEventListener("hashchange", () => {
     window.location.reload();
   });
+
+  document
+    .querySelector("#calendarOptions")
+    .querySelectorAll("a")
+    .forEach((item) => {
+      item.addEventListener("click", onCalenderOptionClick);
+    });
 }
 
 async function init() {

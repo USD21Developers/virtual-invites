@@ -188,12 +188,29 @@ a:hover {
   line-height: 1.35rem;
 }
 
-#addToCalendar > .btn {
+#addToCalendar {
+  border-radius: inherit inherit 8px 8px;
+  scroll-padding: 30px 0 0 0 !important;
+}
+
+#addToCalendar[aria-expanded="true"] .btn {
+  border-radius: 10px 10px 0 0;
+}
+
+#addToCalendarButton {
   background: linear-gradient(93.58deg, #504390 0%, #3f3973 100%);
   border-radius: 10px;
   color: #ffffff;
   font-weight: 600;
   text-decoration: none;
+  z-index: 1;
+}
+
+#calendarOptions {
+  background-color: white;
+  border-color: #504390;
+  border-radius: 0 0 8px 8px;
+  width: 100%;
 }
 
 .connectionContent {

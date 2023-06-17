@@ -145,16 +145,15 @@
             <!-- Add to calendar -->
             <section>
               <div class="my-5 text-center">
-                <div class="d-inline-block" id="addToCalendar">
+                <div
+                  class="d-inline-block"
+                  id="addToCalendar"
+                  aria-expanded="false"
+                >
                   <button
                     class="btn btn-primary d-flex align-items-center align-content-center"
                     style="text-transform: initial; white-space: initial"
-                    href="#calendarOptions"
                     id="addToCalendarButton"
-                    data-toggle="collapse"
-                    data-target="#calendarOptions"
-                    aria-expanded="false"
-                    aria-controls="calendarOptions"
                   >
                     <img
                       src="/_assets/svg/icons/calendar.svg"
@@ -167,64 +166,51 @@
                     </span>
                   </button>
 
-                  <div
-                    id="calendarOptions"
-                    class="border border-dark p-3 collapse"
-                  >
-                    <div>
-                      <a
-                        href="javascript:void()"
-                        class="shadow-none d-flex align-items-center align-content-center"
-                        id="btnCalendarApple"
-                      >
-                        <img
-                          src="/_assets/svg/icons/addToCalendar-Apple.svg"
-                          width="17"
-                          height="20"
-                          alt=""
-                        />
-                        <span
-                          class="ml-2"
-                          data-i18n-global="addToCalendarApple"
-                        ></span>
-                      </a>
-                    </div>
-                    <div>
-                      <a
-                        href="javascript:void()"
-                        class="shadow-none d-flex align-items-center align-content-center"
-                        id="btnCalendarGoogle"
-                      >
-                        <img
-                          src="/_assets/svg/icons/addToCalendar-Google.svg"
-                          width="16"
-                          height="26"
-                          alt=""
-                        />
-                        <span
-                          class="ml-2"
-                          data-i18n-global="addToCalendarGoogle"
-                        ></span>
-                      </a>
-                    </div>
-                    <div class="text-center">
-                      <a
-                        href="javascript:void"
-                        class="shadow-none d-flex align-items-center align-content-center"
-                        id="btnCalendariCalFile"
-                      >
-                        <img
-                          src="/_assets/svg/icons/addToCalendar-iCalFile.svg"
-                          width="14"
-                          height="15"
-                          alt=""
-                        />
-                        <span
-                          class="ml-2"
-                          data-i18n-global="addToCalendarIcalFile"
-                        ></span>
-                      </a>
-                    </div>
+                  <div id="calendarOptions" class="list-group shadow-6 d-none">
+                    <a
+                      href="#"
+                      class="list-group-item list-group-item-action flex-column align-items-start"
+                      id="btnCalendarApple"
+                    >
+                      <img
+                        src="/_assets/svg/icons/addToCalendar-Apple.svg"
+                        width="17"
+                        height="20"
+                        alt=""
+                        class="mr-1"
+                      />
+                      <span data-i18n-global="addToCalendarApple"></span>
+                    </a>
+
+                    <a
+                      href="#"
+                      class="list-group-item list-group-item-action flex-column align-items-start"
+                      id="btnCalendarGoogle"
+                    >
+                      <img
+                        src="/_assets/svg/icons/addToCalendar-Google.svg"
+                        width="16"
+                        height="26"
+                        alt=""
+                        class="mr-1"
+                      />
+                      <span data-i18n-global="addToCalendarGoogle"></span>
+                    </a>
+
+                    <a
+                      href="#"
+                      class="list-group-item list-group-item-action flex-column align-items-start"
+                      id="btnCalendariCalFile"
+                    >
+                      <img
+                        src="/_assets/svg/icons/addToCalendar-iCalFile.svg"
+                        width="14"
+                        height="15"
+                        alt=""
+                        class="mr-1"
+                      />
+                      <span data-i18n-global="addToCalendarIcalFile"></span>
+                    </a>
                   </div>
                 </div>
               </div>
