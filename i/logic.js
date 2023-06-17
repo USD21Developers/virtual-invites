@@ -183,7 +183,7 @@ function getAddressForMaps(event) {
   return returnObject;
 }
 
-function getCalendar(event, calType) {
+function getCalendar(clickEvent, event, calType) {
   const {
     duration,
     frequency,
@@ -200,6 +200,8 @@ function getCalendar(event, calType) {
   let eventStart;
   let eventEnd;
   let config;
+
+  clickEvent.preventDefault();
 
   if (isRecurring) {
     eventStart = startdate;
@@ -646,15 +648,21 @@ function attachListeners() {
 
   document
     .querySelector("#btnCalendarApple")
-    .addEventListener("click", () => getCalendar(inviteObject.event, "apple"));
+    .addEventListener("click", (clickEvent) =>
+      getCalendar(clickEvent, inviteObject.event, "apple")
+    );
 
   document
     .querySelector("#btnCalendarGoogle")
-    .addEventListener("click", () => getCalendar(inviteObject.event, "google"));
+    .addEventListener("click", (clickEvent) =>
+      getCalendar(clickEvent, inviteObject.event, "google")
+    );
 
   document
     .querySelector("#btnCalendariCalFile")
-    .addEventListener("click", () => getCalendar(inviteObject.event, "ical"));
+    .addEventListener("click", (clickEvent) =>
+      getCalendar(clickEvent, inviteObject.event, "ical")
+    );
 }
 
 async function init() {
