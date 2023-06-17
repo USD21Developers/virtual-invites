@@ -606,11 +606,6 @@ function populateTemplate(version = "default") {
   });
 }
 
-function onCalenderOptionClick(e) {
-  e.preventDefault();
-  console.log("Clicked");
-}
-
 function attachListeners() {
   document
     .querySelector("#addToCalendarButton")
@@ -619,6 +614,7 @@ function attachListeners() {
       const calendarOptions = document.querySelector("#calendarOptions");
       const isExpanded =
         addToCalendar.getAttribute("aria-expanded") === "true" ? true : false;
+      const isMobile = isMobileDevice();
 
       if (isExpanded) {
         calendarOptions.classList.add("d-none");
@@ -626,7 +622,9 @@ function attachListeners() {
       } else {
         calendarOptions.classList.remove("d-none");
         addToCalendar.setAttribute("aria-expanded", "true");
-        addToCalendar.scrollIntoView();
+        if (isMobile) {
+          addToCalendar.scrollIntoView({ behavior: smooth });
+        }
       }
     });
 
@@ -640,6 +638,27 @@ function attachListeners() {
     .forEach((item) => {
       item.addEventListener("click", onCalenderOptionClick);
     });
+
+  document.addEventListener("click", (event) => {
+    const addToCalendar = document.querySelector("#addToCalendar");
+    const clickedCalendar = addToCalendar.contains(event.target);
+    if (!clickedCalendar) {
+      const calendarOptions = document.querySelector("#calendarOptions");
+      calendarOptions.classList.add("d-none");
+    }
+  });
+
+  document
+    .querySelector("#btnCalendarApple")
+    .addEventListener("click", () => getCalendar(inviteObject.event, "apple"));
+
+  document
+    .querySelector("#btnCalendarGoogle")
+    .addEventListener("click", () => getCalendar(inviteObject.event, "google"));
+
+  document
+    .querySelector("#btnCalendarIcalFile")
+    .addEventListener("click", () => getCalendar(inviteObject.event, "ical"));
 }
 
 async function init() {
