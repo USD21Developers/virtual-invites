@@ -38,10 +38,7 @@ ${getPhrase("is-recurring")}
   // END RECURRING EVENT
 
   // BEGIN OTHER LOCATION DETAILS
-  if (
-    event.otherlocationdetails.length &&
-    event.locationvisibility !== "discreet"
-  ) {
+  if (event.otherlocationdetails && event.locationvisibility !== "discreet") {
     const headlineLocationDetails = getPhrase("headlineLocationDetails");
 
     description += `=====
@@ -56,7 +53,7 @@ ${event.otherlocationdetails}
   // END OTHER LOCATION DETAILS
 
   // BEGIN ATTENTING VIRTUALLY
-  if (event.virtualconnectiondetails.length) {
+  if (event.virtualconnectiondetails) {
     const attendOnline_headlineCantAttendInPerson = getPhrase(
       "cant-attend-in-person"
     );
@@ -100,11 +97,17 @@ ${textQuestions}
 
   // Contact Name
   description += `${event.contactfirstname.toUpperCase()} ${
-    event.contactlastname.length ? event.contactlastname.toUpperCase() : ""
+    event.contactlastname && event.contactlastname.length
+      ? event.contactlastname.toUpperCase()
+      : ""
   }\n\n`;
 
   // Contact Phone or Text Message
-  if (event.contactphone.length && window.libphonenumber) {
+  if (
+    event.contactphone &&
+    event.contactphone.length &&
+    window.libphonenumber
+  ) {
     const phoneNumberObject = window.libphonenumber.parsePhoneNumber(
       event.contactphone
     );
@@ -113,7 +116,7 @@ ${textQuestions}
   }
 
   // Contact E-mail
-  if (event.contactemail.length) {
+  if (event.contactemail && event.contactemail.length) {
     description += `* ${labelEmail}:\n${event.contactemail}\n\n`;
   }
 
