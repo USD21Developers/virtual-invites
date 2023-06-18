@@ -879,9 +879,7 @@ function hide(selector) {
 }
 
 function isMobileDevice() {
-  const result =
-    typeof window.orientation !== "undefined" ||
-    navigator.userAgent.indexOf("IEMobile") !== -1;
+  const result = "ontouchstart" in document.documentElement ? true : false;
   return result;
 }
 
