@@ -9,7 +9,7 @@ function buildCalendarDescription(event) {
   let description = `
 ${getPhrase("you-are-invited-to")}
 ${event.title.toUpperCase().trim() + "\n\n"}
-  `;
+`;
 
   // BEGIN MAIN EVENT INFO
   const headlineAboutEvent = getPhrase("headline-about-event").replaceAll(
