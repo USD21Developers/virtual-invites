@@ -611,40 +611,45 @@ function populateTemplate(version = "default") {
   });
 }
 
+function onCalendarButtonClick() {
+  const addToCalendar = document.querySelector("#addToCalendar");
+  const calendarOptions = document.querySelector("#calendarOptions");
+  const isExpanded =
+    addToCalendar.getAttribute("aria-expanded") === "true" ? true : false;
+  const isMobile = isMobileDevice();
+
+  if (isExpanded) {
+    calendarOptions.classList.add("d-none");
+    addToCalendar.setAttribute("aria-expanded", "false");
+  } else {
+    calendarOptions.classList.remove("d-none");
+    addToCalendar.setAttribute("aria-expanded", "true");
+    if (isMobile) {
+      addToCalendar.scrollIntoView({ behavior: smooth });
+    }
+  }
+}
+
+function onClickAway(event) {
+  const addToCalendar = document.querySelector("#addToCalendar");
+  const clickedCalendar = addToCalendar.contains(event.target);
+  if (!clickedCalendar) {
+    const calendarOptions = document.querySelector("#calendarOptions");
+    calendarOptions.classList.add("d-none");
+    addToCalendar.setAttribute("aria-expanded", "false");
+  }
+}
+
 function attachListeners() {
   document
     .querySelector("#addToCalendarButton")
-    .addEventListener("click", () => {
-      const addToCalendar = document.querySelector("#addToCalendar");
-      const calendarOptions = document.querySelector("#calendarOptions");
-      const isExpanded =
-        addToCalendar.getAttribute("aria-expanded") === "true" ? true : false;
-      const isMobile = isMobileDevice();
-
-      if (isExpanded) {
-        calendarOptions.classList.add("d-none");
-        addToCalendar.setAttribute("aria-expanded", "false");
-      } else {
-        calendarOptions.classList.remove("d-none");
-        addToCalendar.setAttribute("aria-expanded", "true");
-        if (isMobile) {
-          addToCalendar.scrollIntoView({ behavior: smooth });
-        }
-      }
-    });
+    .addEventListener("click", onCalendarButtonClick);
 
   window.addEventListener("hashchange", () => {
     window.location.reload();
   });
 
-  document.addEventListener("click", (event) => {
-    const addToCalendar = document.querySelector("#addToCalendar");
-    const clickedCalendar = addToCalendar.contains(event.target);
-    if (!clickedCalendar) {
-      const calendarOptions = document.querySelector("#calendarOptions");
-      calendarOptions.classList.add("d-none");
-    }
-  });
+  document.addEventListener("click", onClickAway);
 
   document
     .querySelector("#btnCalendarApple")
