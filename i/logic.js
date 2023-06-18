@@ -186,10 +186,12 @@ function getAddressForMaps(event) {
 function getCalendar(clickEvent, event, calType) {
   const {
     duration,
+    durationInHours,
     frequency,
     multidaybegindate,
     multidayenddate,
     startdate,
+    timezone,
     title,
   } = event;
   const description = buildCalendarDescription(event);
@@ -204,7 +206,11 @@ function getCalendar(clickEvent, event, calType) {
   clickEvent.preventDefault();
 
   if (isRecurring) {
-    eventStart = startdate;
+    eventStart = new Date(moment(startdate).format());
+    eventEnd = new Date(
+      moment(eventStart).add(durationInHours, "hours").format()
+    );
+
     switch (frequency) {
       case "Every Sunday":
         recurringWeekday = "SU";
@@ -234,6 +240,7 @@ function getCalendar(clickEvent, event, calType) {
       location: location,
       description: description,
       start: eventStart,
+      end: eventEnd,
       recurrence: {
         frequency: "WEEKLY",
         interval: 1,
@@ -242,16 +249,20 @@ function getCalendar(clickEvent, event, calType) {
       },
     };
   } else if (!isMultiDay) {
-    eventStart = startdate;
+    eventStart = new Date(moment(startdate).format());
+    eventEnd = new Date(
+      moment(eventStart).add(durationInHours, "hours").format()
+    );
     config = {
       title: title,
       location: location,
       description: description,
       start: eventStart,
+      end: eventEnd,
     };
   } else if (isMultiDay) {
-    eventStart = multidaybegindate;
-    eventEnd = multidayenddate;
+    eventStart = new Date(multidaybegindate);
+    eventEnd = new Date(multidayenddate);
     config = {
       title: title,
       location: location,
