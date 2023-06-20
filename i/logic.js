@@ -640,7 +640,7 @@ function onClickAway(event) {
   }
 }
 
-function onCalendarOpen() {
+function onCalendarExpand() {
   const addToCalendar = document.querySelector("#addToCalendar");
   const isMobile = isMobileDevice();
 
@@ -674,7 +674,7 @@ function attachListeners() {
       getCalendar(clickEvent, inviteObject.event)
     );
 
-  $(".collapse").on("show.bs.collapse", onCalendarOpen);
+  $(".collapse").on("show.bs.collapse", onCalendarExpand);
 }
 
 async function init() {

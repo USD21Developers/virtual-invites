@@ -190,7 +190,7 @@ a:hover {
 
 #addToCalendar {
   border-radius: inherit inherit 8px 8px;
-  scroll-padding: 30px 0 0 0 !important;
+  scroll-padding: 40px 0 0 0 !important;
 }
 
 #addToCalendarButton[aria-expanded="true"] {
