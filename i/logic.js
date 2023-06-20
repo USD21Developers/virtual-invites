@@ -675,6 +675,14 @@ function attachListeners() {
     );
 
   $(".collapse").on("show.bs.collapse", onCalendarExpand);
+
+  $(".collapse").on("hide.bs.collapse", () => {
+    document.querySelector("#atcbOptions").classList.add("d-none");
+  });
+
+  $(".collapse").on("hidden.bs.collapse", () => {
+    document.querySelector("#atcbOptions").classList.remove("d-none");
+  });
 }
 
 async function init() {
