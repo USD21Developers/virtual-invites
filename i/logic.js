@@ -624,15 +624,17 @@ function populateTemplate(version = "default") {
   });
 }
 
-function onClickAway(evt) {
-  return;
+function onClickAway(event) {
   const addToCalendar = document.querySelector("#addToCalendar");
+  const clickedCalendar = addToCalendar.contains(event.target);
   const addToCalendarButton = addToCalendar.querySelector(
     "#addToCalendarButton"
   );
-  const clickedAway = evt.currentTarget === addToCalendar ? true : false;
+  if (!clickedCalendar) {
+    $(".collapse").collapse("hide");
+  }
 
-  if (clickedAway) {
+  if (!clickedCalendar) {
     addToCalendarButton.classList.add("collapsed");
     addToCalendarButton.setAttribute("aria-expanded", "false");
   }
