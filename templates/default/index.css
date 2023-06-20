@@ -206,10 +206,9 @@ a:hover {
   z-index: 1;
 }
 
-#calendarOptions {
+#atcbOptions {
   background-color: white;
-  border-color: #504390;
-  width: 100%;
+  border-color: #3f3973;
 }
 
 .connectionContent {
