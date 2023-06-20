@@ -289,7 +289,34 @@ function getCalendar(clickEvent, inviteEvent) {
 
 function getCalendarApple(config) {
   const appleCal = new datebook.ICalendar(config);
-  const appleCalContent = appleCal.render();
+  const alarm1Time = new Date(
+    moment(config.start).subtract(1, "days").format()
+  );
+  const alarm2Time = new Date(
+    moment(config.start).subtract(1, "hours").format()
+  );
+  const alarm1 = {
+    action: "DISPLAY",
+    trigger: alarm1Time,
+    description: "The first alarm description",
+    summary: "The first alarm summary",
+    summary: "a quick summary",
+    duration: {
+      after: true,
+      minutes: 3,
+    },
+  };
+  const alarm2 = {
+    action: "DISPLAY",
+    description: "The second alarm description",
+    summary: "The second alarm summary",
+    trigger: alarm2Time,
+    duration: {
+      after: true,
+      minutes: 3,
+    },
+  };
+  const appleCalContent = appleCal.addAlarm(alarm1).addAlarm(alarm2).render();
   const appleCalLink = document.createElement("a");
   const appleCalFile = new Blob([appleCalContent], {
     type: "text/calendar",
@@ -307,7 +334,34 @@ function getCalendarGoogle(config) {
 
 function getCalendarIcal(config) {
   const iCal = new datebook.ICalendar(config);
-  const iCalContent = iCal.render();
+  const alarm1Time = new Date(
+    moment(config.start).subtract(1, "days").format()
+  );
+  const alarm2Time = new Date(
+    moment(config.start).subtract(1, "hours").format()
+  );
+  const alarm1 = {
+    action: "DISPLAY",
+    trigger: alarm1Time,
+    description: "The first alarm description",
+    summary: "The first alarm summary",
+    summary: "a quick summary",
+    duration: {
+      after: true,
+      minutes: 3,
+    },
+  };
+  const alarm2 = {
+    action: "DISPLAY",
+    description: "The second alarm description",
+    summary: "The second alarm summary",
+    trigger: alarm2Time,
+    duration: {
+      after: true,
+      minutes: 3,
+    },
+  };
+  const iCalContent = iCal.addAlarm(alarm1).addAlarm(alarm2).render();
   const iCalLink = document.createElement("a");
   const iCalFile = new Blob([iCalContent], { type: "text/calendar" });
   iCalLink.href = URL.createObjectURL(iCalFile);
