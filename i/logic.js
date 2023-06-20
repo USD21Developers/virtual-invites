@@ -183,7 +183,7 @@ function getAddressForMaps(event) {
   return returnObject;
 }
 
-function getCalendar(clickEvent, event, calType) {
+function getCalendar(clickEvent, inviteEvent) {
   const {
     duration,
     durationInHours,
@@ -193,9 +193,9 @@ function getCalendar(clickEvent, event, calType) {
     startdate,
     timezone,
     title,
-  } = event;
-  const description = buildCalendarDescription(event);
-  const location = getAddressForMaps(event).address;
+  } = inviteEvent;
+  const description = buildCalendarDescription(inviteEvent);
+  const location = getAddressForMaps(inviteEvent).address;
   const isRecurring = frequency === "once" ? false : true;
   const isMultiDay = duration === "multiple days" ? true : false;
   let recurringWeekday;
@@ -271,6 +271,8 @@ function getCalendar(clickEvent, event, calType) {
       end: eventEnd,
     };
   }
+
+  const calType = clickEvent.currentTarget.attributes["data-destination"].value;
 
   switch (calType) {
     case "apple":
@@ -622,40 +624,21 @@ function populateTemplate(version = "default") {
   });
 }
 
-function onCalendarButtonClick() {
+function onClickAway(evt) {
+  return;
   const addToCalendar = document.querySelector("#addToCalendar");
-  const calendarOptions = document.querySelector("#calendarOptions");
-  const isExpanded =
-    addToCalendar.getAttribute("aria-expanded") === "true" ? true : false;
-  const isMobile = isMobileDevice();
+  const addToCalendarButton = addToCalendar.querySelector(
+    "#addToCalendarButton"
+  );
+  const clickedAway = evt.currentTarget === addToCalendar ? true : false;
 
-  if (isExpanded) {
-    calendarOptions.classList.add("d-none");
-    addToCalendar.setAttribute("aria-expanded", "false");
-  } else {
-    calendarOptions.classList.remove("d-none");
-    addToCalendar.setAttribute("aria-expanded", "true");
-    if (isMobile) {
-      addToCalendar.scrollIntoView({ behavior: smooth });
-    }
-  }
-}
-
-function onClickAway(event) {
-  const addToCalendar = document.querySelector("#addToCalendar");
-  const clickedCalendar = addToCalendar.contains(event.target);
-  if (!clickedCalendar) {
-    const calendarOptions = document.querySelector("#calendarOptions");
-    calendarOptions.classList.add("d-none");
-    addToCalendar.setAttribute("aria-expanded", "false");
+  if (clickedAway) {
+    addToCalendarButton.classList.add("collapsed");
+    addToCalendarButton.setAttribute("aria-expanded", "false");
   }
 }
 
 function attachListeners() {
-  document
-    .querySelector("#addToCalendarButton")
-    .addEventListener("click", onCalendarButtonClick);
-
   window.addEventListener("hashchange", () => {
     window.location.reload();
   });
@@ -663,21 +646,21 @@ function attachListeners() {
   document.addEventListener("click", onClickAway);
 
   document
-    .querySelector("#btnCalendarApple")
+    .querySelector("a[data-destination='apple']")
     .addEventListener("click", (clickEvent) =>
-      getCalendar(clickEvent, inviteObject.event, "apple")
+      getCalendar(clickEvent, inviteObject.event)
     );
 
   document
-    .querySelector("#btnCalendarGoogle")
+    .querySelector("a[data-destination='google']")
     .addEventListener("click", (clickEvent) =>
-      getCalendar(clickEvent, inviteObject.event, "google")
+      getCalendar(clickEvent, inviteObject.event)
     );
 
   document
-    .querySelector("#btnCalendariCalFile")
+    .querySelector("a[data-destination='ical']")
     .addEventListener("click", (clickEvent) =>
-      getCalendar(clickEvent, inviteObject.event, "ical")
+      getCalendar(clickEvent, inviteObject.event)
     );
 }
 

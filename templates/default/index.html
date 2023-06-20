@@ -146,14 +146,18 @@
             <section>
               <div class="my-5 text-center">
                 <div
+                  style="max-width: 320px"
                   class="d-inline-block"
                   id="addToCalendar"
-                  aria-expanded="false"
                 >
                   <button
-                    class="btn btn-primary d-flex align-items-center align-content-center"
-                    style="text-transform: initial; white-space: initial"
                     id="addToCalendarButton"
+                    class="p-3 btn btn-info font-weight-bold"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#atcbOptions"
+                    aria-expanded="false"
+                    aria-controls="atcbOptions"
                   >
                     <img
                       src="/_assets/svg/icons/calendar.svg"
@@ -161,62 +165,79 @@
                       height="20"
                       alt="Invitation icon"
                     />
-                    <span data-i18n="add-to-my-calendar" class="ml-3 ms-3">
+                    <span
+                      class="ml-2"
+                      data-i18n="add-to-my-calendar"
+                      style="text-transform: initial; white-space: initial"
+                    >
                       Add to my calendar
                     </span>
                   </button>
-
-                  <div
-                    id="calendarOptions"
-                    class="list-group shadow-6 d-none"
-                    data-destination="apple"
-                  >
-                    <a
-                      href="#"
-                      class="list-group-item list-group-item-action flex-column align-items-start"
-                      id="btnCalendarApple"
+                  <div class="collapse" id="atcbOptions">
+                    <div
+                      class="list-group border border-info text-left list-atcb"
                     >
-                      <img
-                        src="/_assets/svg/icons/addToCalendar-Apple.svg"
-                        width="24"
-                        height="24"
-                        alt=""
-                        class="mr-1"
-                      />
-                      <span data-i18n-global="addToCalendarApple"></span>
-                    </a>
-
-                    <a
-                      href="#"
-                      class="list-group-item list-group-item-action flex-column align-items-start"
-                      id="btnCalendarGoogle"
-                      data-destination="google"
-                    >
-                      <img
-                        src="/_assets/svg/icons/addToCalendar-Google.svg"
-                        width="24"
-                        height="24"
-                        alt=""
-                        class="mr-1"
-                      />
-                      <span data-i18n-global="addToCalendarGoogle"></span>
-                    </a>
-
-                    <a
-                      href="#"
-                      class="list-group-item list-group-item-action flex-column align-items-start"
-                      id="btnCalendariCalFile"
-                      data-destination="ical"
-                    >
-                      <img
-                        src="/_assets/svg/icons/addToCalendar-iCalFile.svg"
-                        width="24"
-                        height="24"
-                        alt=""
-                        class="mr-1"
-                      />
-                      <span data-i18n-global="addToCalendarIcalFile"></span>
-                    </a>
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action"
+                        data-destination="apple"
+                      >
+                        <span class="atcb_icon atcb_icon-apple">
+                          <img
+                            src="/_assets/svg/icons/addToCalendar-Apple.svg"
+                            width="24"
+                            height="24"
+                            alt=""
+                          />
+                        </span>
+                        <span
+                          class="ml-1"
+                          data-i18n-global="addToCalendarApple"
+                        >
+                          Apple
+                        </span>
+                      </a>
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action"
+                        data-destination="google"
+                      >
+                        <span class="atcb_icon atcb_icon-google">
+                          <img
+                            src="/_assets/svg/icons/addToCalendar-Google.svg"
+                            width="24"
+                            height="24"
+                            alt=""
+                          />
+                        </span>
+                        <span
+                          class="ml-1"
+                          data-i18n-global="addToCalendarGoogle"
+                        >
+                          Google
+                        </span>
+                      </a>
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action"
+                        data-destination="ical"
+                      >
+                        <span class="atcb_icon atcb_icon-ical">
+                          <img
+                            src="/_assets/svg/icons/addToCalendar-iCalFile.svg"
+                            width="24"
+                            height="24"
+                            alt=""
+                          />
+                        </span>
+                        <span
+                          class="ml-1"
+                          data-i18n-global="addToCalendarIcalFile"
+                        >
+                          iCal file
+                        </span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
