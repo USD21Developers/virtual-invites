@@ -206,9 +206,9 @@ a:hover {
   z-index: 1;
 }
 
-#atcbOptions {
+#atcbOptions > .list-group {
   background-color: white;
-  border-color: #3f3973;
+  border-color: #504390 !important;
 }
 
 .connectionContent {
