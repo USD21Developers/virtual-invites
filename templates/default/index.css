@@ -247,3 +247,8 @@ a:hover {
   letter-spacing: 0.32px;
   line-height: 20px;
 }
+
+#actbOptions a:first-child {
+  margin-top: -25px;
+  padding-top: 40px;
+}

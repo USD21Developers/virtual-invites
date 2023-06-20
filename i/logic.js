@@ -640,6 +640,15 @@ function onClickAway(event) {
   }
 }
 
+function onCalendarOpen() {
+  const addToCalendar = document.querySelector("#addToCalendar");
+  const isMobile = isMobileDevice();
+
+  if (isMobile) {
+    addToCalendar.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
 function attachListeners() {
   window.addEventListener("hashchange", () => {
     window.location.reload();
@@ -664,6 +673,8 @@ function attachListeners() {
     .addEventListener("click", (clickEvent) =>
       getCalendar(clickEvent, inviteObject.event)
     );
+
+  $(".collapse").on("show.bs.collapse", onCalendarOpen);
 }
 
 async function init() {
@@ -672,6 +683,7 @@ async function init() {
   attachListeners();
   await populateContent();
   await getInvite().catch((err) => console.error(err));
+  onCalendarClick();
 }
 
 init();
