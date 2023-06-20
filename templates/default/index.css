@@ -193,10 +193,6 @@ a:hover {
   scroll-padding: 40px 0 0 0 !important;
 }
 
-#addToCalendarButton[aria-expanded="true"] {
-  border-radius: 10px 10px 0 0;
-}
-
 #addToCalendarButton {
   background: linear-gradient(93.58deg, #504390 0%, #3f3973 100%);
   border-radius: 10px;
@@ -204,6 +200,10 @@ a:hover {
   font-weight: 600;
   text-decoration: none;
   z-index: 1;
+}
+
+#addToCalendarButton[aria-expanded="true"] {
+  border-radius: 10px 10px 0 0;
 }
 
 #atcbOptions > .list-group {
