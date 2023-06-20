@@ -208,12 +208,14 @@ function getCalendar(clickEvent, inviteEvent) {
   if (isRecurring) {
     const startDateUTC = moment(startdate).format("YYYY-MM-DD");
     const startTimeUTC = moment(startdate).format("HH:mm");
-    const nextOccurrenceInUTC = moment.tz(
-      `${getNextRecurringWeekday(startDateUTC, startTimeUTC)}T${startTimeUTC}`,
-      "UTC"
-    );
     const nextOccurrenceInTimezone = moment
-      .tz(nextOccurrenceInUTC, timezone)
+      .tz(
+        `${getNextRecurringWeekday(
+          startDateUTC,
+          startTimeUTC
+        )}T${startTimeUTC}`,
+        timezone
+      )
       .format();
     eventStart = new Date(nextOccurrenceInTimezone);
     eventEnd = new Date(
@@ -477,12 +479,14 @@ function renderInvite(invite) {
     // Populate recurring start time
     const startDateUTC = moment(event.startdate).format("YYYY-MM-DD");
     const startTimeUTC = moment(event.startdate).format("HH:mm");
-    const nextOccurrenceInUTC = moment.tz(
-      `${getNextRecurringWeekday(startDateUTC, startTimeUTC)}T${startTimeUTC}`,
-      "UTC"
-    );
     const nextOccurrenceInTimezone = moment
-      .tz(nextOccurrenceInUTC, event.timezone)
+      .tz(
+        `${getNextRecurringWeekday(
+          startDateUTC,
+          startTimeUTC
+        )}T${startTimeUTC}`,
+        event.timezone
+      )
       .format();
 
     const starttime = new Intl.DateTimeFormat(userDateTimePrefs.locale, {
