@@ -206,7 +206,16 @@ function getCalendar(clickEvent, inviteEvent) {
   clickEvent.preventDefault();
 
   if (isRecurring) {
-    eventStart = new Date(moment(startdate).format());
+    const startDateUTC = moment(startdate).format("YYYY-MM-DD");
+    const startTimeUTC = moment(startdate).format("HH:mm");
+    const nextOccurrenceInUTC = moment.tz(
+      `${getNextRecurringWeekday(startDateUTC, startTimeUTC)}T${startTimeUTC}`,
+      "UTC"
+    );
+    const nextOccurrenceInTimezone = moment
+      .tz(nextOccurrenceInUTC, timezone)
+      .format();
+    eventStart = new Date(nextOccurrenceInTimezone);
     eventEnd = new Date(
       moment(eventStart).add(durationInHours, "hours").format()
     );
@@ -466,11 +475,21 @@ function renderInvite(invite) {
     repeatingWeekdayEl.innerHTML = frequency;
 
     // Populate recurring start time
+    const startDateUTC = moment(event.startdate).format("YYYY-MM-DD");
+    const startTimeUTC = moment(event.startdate).format("HH:mm");
+    const nextOccurrenceInUTC = moment.tz(
+      `${getNextRecurringWeekday(startDateUTC, startTimeUTC)}T${startTimeUTC}`,
+      "UTC"
+    );
+    const nextOccurrenceInTimezone = moment
+      .tz(nextOccurrenceInUTC, event.timezone)
+      .format();
+
     const starttime = new Intl.DateTimeFormat(userDateTimePrefs.locale, {
       timeZone: event.timezone,
       hour: "numeric",
       minute: "numeric",
-    }).format(new Date(event.startdate));
+    }).format(new Date(nextOccurrenceInTimezone));
     repeatingStartTimeEl.innerHTML = starttime;
 
     timeAndDateRepeatingEl.classList.remove("d-none");
