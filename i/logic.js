@@ -193,7 +193,11 @@ function getCalendar(clickEvent, inviteEvent) {
     title,
   } = inviteEvent;
   const description = buildCalendarDescription(inviteEvent);
-  const location = getAddressForMaps(inviteEvent).address;
+  const locationObject = getAddressForMaps(inviteEvent);
+  const location =
+    locationObject.address === ""
+      ? locationObject.addressLink
+      : locationObject.address;
   const locationName = inviteEvent.locationname ? inviteEvent.locationname : "";
   const isRecurring = frequency === "once" ? false : true;
   const isMultiDay = duration === "multiple days" ? true : false;
