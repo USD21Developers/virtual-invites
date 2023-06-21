@@ -247,7 +247,7 @@ function getCalendar(clickEvent, inviteEvent) {
 
     config = {
       title: title,
-      location: `${locationName.length ? locationName : "\n"}${location}`,
+      location: `${locationName.length ? locationName + "\n" : ""}${location}`,
       description: description,
       start: eventStart,
       end: eventEnd,
