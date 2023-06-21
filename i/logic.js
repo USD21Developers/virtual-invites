@@ -194,6 +194,7 @@ function getCalendar(clickEvent, inviteEvent) {
   } = inviteEvent;
   const description = buildCalendarDescription(inviteEvent);
   const location = getAddressForMaps(inviteEvent).address;
+  const locationName = inviteEvent.locationname ? inviteEvent.locationname : "";
   const isRecurring = frequency === "once" ? false : true;
   const isMultiDay = duration === "multiple days" ? true : false;
   let recurringWeekday;
@@ -246,7 +247,7 @@ function getCalendar(clickEvent, inviteEvent) {
 
     config = {
       title: title,
-      location: location,
+      location: `${locationName.length ? locationName : "\n"}${location}`,
       description: description,
       start: eventStart,
       end: eventEnd,
