@@ -799,6 +799,46 @@ function populateHeadlineAboutEvent() {
   headlineAboutEventEl.innerHTML = text;
 }
 
+function populateQuestionsSection() {
+  const eventContactNameEl = document.querySelector("#eventContactName");
+  const contactViaSmsEl = document.querySelector("#contactViaSms");
+  const contactViaPhoneEl = document.querySelector("#contactViaPhone");
+  const contactViaEmailEl = document.querySelector("#contactViaEmail");
+  const contactViaSmsContainerEl = document.querySelector(
+    "#contactViaSmsContainer"
+  );
+  const contactViaPhoneContainerEl = document.querySelector(
+    "#contactViaPhoneContainer"
+  );
+  const contactTelContainerEl = document.querySelector("#contactTelContainer");
+  const contactViaEmailContainerEl = document.querySelector(
+    "#contactViaEmailContainer"
+  );
+  const {
+    contactemail,
+    contactfirstname,
+    contactlastname,
+    contactphone,
+    contactphonecountrydata,
+  } = inviteObject.event;
+
+  eventContactNameEl.innerHTML = `${contactfirstname} ${contactlastname}`;
+
+  if (contactphone) {
+    contactViaSmsEl.setAttribute("href", `sms:${contactphone}`);
+    contactViaPhoneEl.setAttribute("href", `tel:${contactphone}`);
+  } else {
+    contactTelContainerEl.classList.add("d-none");
+    contactViaEmailContainerEl.classList.remove("col-sm-4");
+  }
+
+  if (contactemail) {
+    contactViaEmailEl.setAttribute("href", `mailto:${contactemail}`);
+  } else {
+    contactViaEmailEl.classList.add("d-none");
+  }
+}
+
 function populateTemplate(version = "default") {
   return new Promise((resolve, reject) => {
     const path = `../templates/${version}/index.html`;
@@ -885,6 +925,7 @@ async function init() {
   populateGreetingParagraph1();
   populateHeadlineAboutEvent();
   populateEventDescription();
+  populateQuestionsSection();
   hideSpinner();
 }
 
