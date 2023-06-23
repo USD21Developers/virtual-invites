@@ -672,8 +672,6 @@ function renderInvite(invite) {
   const mapAndDirectionsEl = document.querySelector("#mapAndDirections");
   const addressObject = getAddressForMaps(event);
   mapAndDirectionsEl.setAttribute("href", addressObject.addressLink);
-
-  hideSpinner();
 }
 
 function hideSpinner() {
@@ -887,6 +885,7 @@ async function init() {
   populateGreetingParagraph1();
   populateHeadlineAboutEvent();
   populateEventDescription();
+  hideSpinner();
 }
 
 init();
