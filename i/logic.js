@@ -703,6 +703,7 @@ function populateGreetingParagraph1() {
   const {
     type: eventType,
     title: eventTitle,
+    lang: eventLang,
     frequency,
     durationInHours,
     startdate,
@@ -766,10 +767,18 @@ function populateGreetingParagraph1() {
     text = getPhrase("default-greeting-paragraph-1-other");
   }
 
+  let canUseTitleCase = false;
+
+  if (text.includes("{EVENT-TITLE}") && eventLang.substring(0, 2) === "en") {
+    canUseTitleCase = true;
+  }
+
   text = text.replaceAll("{RECIPIENT-NAME}", recipientname);
   text = text.replaceAll("{SENDER-FIRST-NAME}", senderFirstName);
   text = text.replaceAll("{INVITED-DATE}", invitedDate);
-  text = text.replaceAll("{EVENT-TITLE}", eventTitle);
+  text = canUseTitleCase
+    ? text.replaceAll("{EVENT-TITLE}", eventTitle.toTitleCase())
+    : text.replaceAll("{EVENT-TITLE}", eventTitle);
   text = text.replaceAll(
     "{EVENT-START-DATE}",
     Intl.DateTimeFormat(recipientDateTimePrefs.locale, {
@@ -792,10 +801,20 @@ function populateGreetingParagraph1() {
 
 function populateHeadlineAboutEvent() {
   const headlineAboutEventEl = document.querySelector("#headline-about-event");
-  const { title: eventTitle } = inviteObject.event;
+  const { title: eventTitle, lang: eventLang } = inviteObject.event;
   let text = getPhrase("headline-about-event");
+  let canUseTitleCase = false;
+
+  if (text.includes("{EVENT-TITLE}") && eventLang.substring(0, 2) === "en") {
+    canUseTitleCase = true;
+  }
 
   text = text.replaceAll("{EVENT-TITLE}", eventTitle);
+
+  if (canUseTitleCase) {
+    text = text.toTitleCase();
+  }
+
   headlineAboutEventEl.innerHTML = text;
 }
 
