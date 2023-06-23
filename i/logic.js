@@ -696,6 +696,7 @@ function populateGreetingParagraph1() {
   );
   const {
     type: eventType,
+    eventTitle,
     frequency,
     durationInHours,
     startdate,
@@ -762,6 +763,7 @@ function populateGreetingParagraph1() {
   text = text.replaceAll("{RECIPIENT-NAME}", recipientname);
   text = text.replaceAll("{SENDER-FIRST-NAME}", senderFirstName);
   text = text.replaceAll("{INVITED-DATE}", invitedDate);
+  text = text.replaceAll("{EVENT-TITLE}", eventTitle);
   text = text.replaceAll(
     "{EVENT-START-DATE}",
     Intl.DateTimeFormat(recipientDateTimePrefs.locale, {
