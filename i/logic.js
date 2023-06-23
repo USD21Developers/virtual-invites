@@ -696,7 +696,7 @@ function populateGreetingParagraph1() {
   );
   const {
     type: eventType,
-    eventTitle,
+    title: eventTitle,
     frequency,
     durationInHours,
     startdate,
