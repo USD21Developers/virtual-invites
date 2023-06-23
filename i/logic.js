@@ -690,6 +690,14 @@ function showSpinner() {
   pageEl.classList.add("d-none");
 }
 
+function populateEventDescription() {
+  const eventDescriptionEl = document.querySelector("#eventDescription");
+  const { description } = inviteObject.event;
+  const text = breakify(description);
+
+  eventDescriptionEl.innerHTML = text;
+}
+
 function populateGreetingParagraph1() {
   const defaultGreetingParagraph1El = document.querySelector(
     "#defaultGreetingParagraph1"
@@ -878,6 +886,7 @@ async function init() {
   await getInvite().catch((err) => console.error(err));
   populateGreetingParagraph1();
   populateHeadlineAboutEvent();
+  populateEventDescription();
 }
 
 init();
