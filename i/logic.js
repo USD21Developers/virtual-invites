@@ -822,7 +822,12 @@ function populateQuestionsSection() {
     contactphonecountrydata,
   } = inviteObject.event;
 
-  eventContactNameEl.innerHTML = `${contactfirstname} ${contactlastname}`;
+  const contactName =
+    contactlastname && contactlastname.length
+      ? `${contactfirstname} ${contactlastname}`
+      : contactfirstname;
+
+  eventContactNameEl.innerHTML = contactName;
 
   if (contactphone) {
     contactViaSmsEl.setAttribute("href", `sms:${contactphone}`);
