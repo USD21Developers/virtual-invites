@@ -426,9 +426,11 @@ async function getInvite() {
         switch (msg) {
           case "invite retrieved":
             renderInvite(data.invite);
+            resolve();
             break;
           default:
             showSpinner();
+            reject();
         }
       })
       .catch((err) => {
@@ -688,6 +690,98 @@ function showSpinner() {
   pageEl.classList.add("d-none");
 }
 
+function populateGreetingParagraph1() {
+  const defaultGreetingParagraph1El = document.querySelector(
+    "#defaultGreetingParagraph1"
+  );
+  const {
+    type: eventType,
+    frequency,
+    durationInHours,
+    startdate,
+    multidaybegindate,
+    multidayenddate,
+    timezone: eventTimeZone,
+  } = inviteObject.event;
+  const { invitedAt, recipientname, sharedfromtimezone } =
+    inviteObject.recipient;
+  const { firstname: senderFirstName, lastname: senderLastname } =
+    inviteObject.user;
+  const recipientDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
+  const { locale, timeZone: recipientTimeZone } = recipientDateTimePrefs;
+  const dateInvitedMoment = moment.tz(invitedAt, sharedfromtimezone);
+  const dateNowMoment = moment().tz(recipientTimeZone);
+  const daysAgo = moment.duration(dateInvitedMoment.diff(dateNowMoment))._data
+    .days;
+  const invitedDate = getRelativeDate(daysAgo, locale);
+  const isRecurringEvent = frequency === "once" ? false : true;
+  const isMultiDay = multidaybegindate ? true : false;
+  let eventStartDateTime;
+  let eventEndDateTime;
+
+  if (isRecurringEvent) {
+    eventStartDateTime = moment.tz(startdate, eventTimeZone).format();
+    eventEndDateTime = moment
+      .tz(eventStartDateTime, eventTimeZone)
+      .add(durationInHours, "hours")
+      .format();
+    const firstOccurrence = {
+      date: moment(eventStartDateTime).format("YYYY-MM-DD"),
+      time: moment(eventStartDateTime).format("HH:mm"),
+    };
+    const nextOccurrenceDate = getNextRecurringWeekday(
+      firstOccurrence.date,
+      firstOccurrence.time
+    );
+    const nextOccurrenceStart = moment
+      .tz(`${nextOccurrenceDate} ${firstOccurrence.time}`, eventTimeZone)
+      .format();
+    const nextOccurrenceEnd = moment(nextOccurrenceStart)
+      .add(durationInHours, "hours")
+      .format();
+  } else if (!isMultiDay) {
+    eventStartDateTime = moment.tz(startdate, eventTimeZone).format();
+    eventEndDateTime = moment(eventStartDateTime)
+      .add(durationInHours, "hours")
+      .format();
+  } else if (isMultiDay) {
+    eventStartDateTime = moment.tz(multidaybegindate, eventTimeZone).format();
+    eventEndDateTime = moment.tz(multidayenddate, eventTimeZone).format();
+  }
+
+  let text = "";
+
+  if (eventType === "bible talk") {
+    text = getPhrase("default-greeting-paragraph-1-bible-talk");
+  } else if (eventType === "church") {
+    text = getPhrase("default-greeting-paragraph-1-church");
+  } else if (eventType === "other") {
+    text = getPhrase("default-greeting-paragraph-1-other");
+  }
+
+  text = text.replaceAll("{RECIPIENT-NAME}", recipientname);
+  text = text.replaceAll("{SENDER-FIRST-NAME}", senderFirstName);
+  text = text.replaceAll("{INVITED-DATE}", invitedDate);
+  text = text.replaceAll(
+    "{EVENT-START-DATE}",
+    Intl.DateTimeFormat(recipientDateTimePrefs.locale, {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+    }).format(new Date(eventStartDateTime))
+  );
+  text = text.replaceAll(
+    "{EVENT-START-TIME}",
+    Intl.DateTimeFormat(recipientDateTimePrefs.locale, {
+      timeZone: recipientDateTimePrefs.timeZone,
+      hour: "numeric",
+      minute: "numeric",
+    }).format(new Date(eventStartDateTime))
+  );
+
+  defaultGreetingParagraph1El.innerHTML = text;
+}
+
 function populateTemplate(version = "default") {
   return new Promise((resolve, reject) => {
     const path = `../templates/${version}/index.html`;
@@ -771,7 +865,7 @@ async function init() {
   attachListeners();
   await populateContent();
   await getInvite().catch((err) => console.error(err));
-  onCalendarClick();
+  populateGreetingParagraph1();
 }
 
 init();
