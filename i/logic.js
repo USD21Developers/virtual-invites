@@ -784,6 +784,15 @@ function populateGreetingParagraph1() {
   defaultGreetingParagraph1El.innerHTML = text;
 }
 
+function populateHeadlineAboutEvent() {
+  const headlineAboutEventEl = document.querySelector("#headline-about-event");
+  const { title: eventTitle } = inviteObject.event;
+  let text = getPhrase("headline-about-event");
+
+  text = text.replaceAll("{EVENT-TITLE}", eventTitle);
+  headlineAboutEventEl.innerHTML = text;
+}
+
 function populateTemplate(version = "default") {
   return new Promise((resolve, reject) => {
     const path = `../templates/${version}/index.html`;
@@ -868,6 +877,7 @@ async function init() {
   await populateContent();
   await getInvite().catch((err) => console.error(err));
   populateGreetingParagraph1();
+  populateHeadlineAboutEvent();
 }
 
 init();
