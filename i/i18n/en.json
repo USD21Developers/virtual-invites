@@ -140,8 +140,8 @@
     },
     {
       "key": "eventExpired",
-      "original": "This event is now in the past.",
-      "translated": "This event is now in the past."
+      "original": "This event has passed.",
+      "translated": "This event has passed."
     }
   ],
 
