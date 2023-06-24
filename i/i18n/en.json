@@ -137,6 +137,11 @@
       "key": "multiDayToLabel",
       "original": "To",
       "translated": "To"
+    },
+    {
+      "key": "eventExpired",
+      "original": "This event is now in the past.",
+      "translated": "This event is now in the past."
     }
   ],
 

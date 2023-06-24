@@ -879,6 +879,33 @@ function populateTemplate(version = "default") {
   });
 }
 
+function warnIfEventIsPast() {
+  const expiredMessage = getPhrase("eventExpired");
+  const { event } = inviteObject;
+  const timeNow = moment().utc();
+  const isRecurring = event.frequency === "once" ? false : true;
+  const isMultiDay = event.duration === "multiple days" ? true : false;
+
+  if (!isRecurring) {
+    if (!isMultiDay) {
+      const eventEndTime = moment(event.startdate).add(
+        event.durationInHours,
+        "hours"
+      );
+      if (timeNow > eventEndTime) {
+        if (timeNow > eventEndTime) {
+          showToast(expiredMessage, 0, "danger");
+        }
+      }
+    } else if (isMultiDay) {
+      const eventEndTime = moment(event.multidayenddate);
+      if (timeNow > eventEndTime) {
+        showToast(expiredMessage, 0, "danger");
+      }
+    }
+  }
+}
+
 function onClickAway(event) {
   const addToCalendar = document.querySelector("#addToCalendar");
   const clickedCalendar = addToCalendar.contains(event.target);
@@ -951,6 +978,7 @@ async function init() {
   populateEventDescription();
   populateQuestionsSection();
   hideSpinner();
+  warnIfEventIsPast();
 }
 
 init();
