@@ -892,10 +892,8 @@ function warnIfEventIsPast() {
         event.durationInHours,
         "hours"
       );
-      if (timeNow > eventEndTime) {
-        if (eventEndTime.isBefore(timeNow)) {
-          showToast(expiredMessage, 5000, "danger");
-        }
+      if (eventEndTime.isBefore(timeNow)) {
+        showToast(expiredMessage, 5000, "danger");
       }
     } else if (isMultiDay) {
       const eventEndTime = moment(event.multidayenddate);
