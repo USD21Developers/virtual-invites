@@ -893,13 +893,13 @@ function warnIfEventIsPast() {
         "hours"
       );
       if (timeNow > eventEndTime) {
-        if (timeNow > eventEndTime) {
+        if (eventEndTime.isBefore(timeNow)) {
           showToast(expiredMessage, 5000, "danger");
         }
       }
     } else if (isMultiDay) {
       const eventEndTime = moment(event.multidayenddate);
-      if (timeNow > eventEndTime) {
+      if (eventEndTime.isBefore(timeNow)) {
         showToast(expiredMessage, 5000, "danger");
       }
     }
