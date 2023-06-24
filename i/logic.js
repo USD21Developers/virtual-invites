@@ -894,13 +894,13 @@ function warnIfEventIsPast() {
       );
       if (timeNow > eventEndTime) {
         if (timeNow > eventEndTime) {
-          showToast(expiredMessage, 0, "danger");
+          showToast(expiredMessage, 5000, "danger");
         }
       }
     } else if (isMultiDay) {
       const eventEndTime = moment(event.multidayenddate);
       if (timeNow > eventEndTime) {
-        showToast(expiredMessage, 0, "danger");
+        showToast(expiredMessage, 5000, "danger");
       }
     }
   }
