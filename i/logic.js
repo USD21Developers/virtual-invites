@@ -882,24 +882,12 @@ function populateTemplate(version = "default") {
 function warnIfEventIsPast() {
   const expiredMessage = getPhrase("eventExpired");
   const { event } = inviteObject;
-  const timeNow = moment().utc();
   const isRecurring = event.frequency === "once" ? false : true;
-  const isMultiDay = event.duration === "multiple days" ? true : false;
 
   if (!isRecurring) {
-    if (!isMultiDay) {
-      const eventEndTime = moment(event.startdate).add(
-        event.durationInHours,
-        "hours"
-      );
-      if (eventEndTime.isBefore(timeNow)) {
-        showToast(expiredMessage, 5000, "danger");
-      }
-    } else if (isMultiDay) {
-      const eventEndTime = moment(event.multidayenddate);
-      if (eventEndTime.isBefore(timeNow)) {
-        showToast(expiredMessage, 5000, "danger");
-      }
+    const isPast = inviteObject.event.isPast === 1 ? true : false;
+    if (isPast) {
+      showToast(expiredMessage, 5000, "danger");
     }
   }
 }
