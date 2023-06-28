@@ -254,13 +254,13 @@ function getCalendar(clickEvent, inviteEvent) {
           ? locationObject.addressLink
           : locationObject.address;
       locationName = inviteEvent.locationname
-        ? inviteEvent.locationname + ", "
+        ? inviteEvent.locationname + " \n"
         : "";
     }
 
     config = {
       title: title,
-      location: `${locationName.length ? locationName + ", " : ""}${location}`,
+      location: `${locationName.length ? locationName + " \n" : ""}${location}`,
       description: description,
       start: eventStart,
       end: eventEnd,
@@ -284,7 +284,7 @@ function getCalendar(clickEvent, inviteEvent) {
           ? locationObject.addressLink
           : locationObject.address;
       locationName = inviteEvent.locationname
-        ? inviteEvent.locationname + ", "
+        ? inviteEvent.locationname + " \n"
         : "";
     }
 
@@ -305,7 +305,7 @@ function getCalendar(clickEvent, inviteEvent) {
           ? locationObject.addressLink
           : locationObject.address;
       locationName = inviteEvent.locationname
-        ? inviteEvent.locationname + ", "
+        ? inviteEvent.locationname + " \n"
         : "";
     }
     config = {
