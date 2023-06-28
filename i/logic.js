@@ -17,6 +17,27 @@ function buildCalendarDescription(event) {
   let description = `${getPhrase("you-are-invited-to")}
 ${event.title.toUpperCase().trim() + "\n\n"}`;
 
+  // BEGIN LOCATION
+  if (locationName.length) {
+    if (locationAddress.length) {
+      description +=
+        `=====
+
+${locationName}
+${locationAddress}` + "\n\n";
+    } else {
+      description +=
+        `=====
+
+${locationName}` + "\n\n";
+    }
+  } else if (locationAddress.length) {
+    description +=
+      `=====
+
+${locationAddress}` + "\n\n";
+  }
+
   // BEGIN MAIN EVENT INFO
   const headlineAboutEvent = getPhrase("headline-about-event").replaceAll(
     "{EVENT-TITLE}",
@@ -25,7 +46,7 @@ ${event.title.toUpperCase().trim() + "\n\n"}`;
 
   description += `=====
 
-${locationName}${locationAddress}${headlineAboutEvent.toUpperCase()}:
+${headlineAboutEvent.toUpperCase()}:
 
 ${event.description}
   `;
