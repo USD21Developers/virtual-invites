@@ -186,6 +186,7 @@ function getCalendar(clickEvent, inviteEvent) {
     duration,
     durationInHours,
     frequency,
+    locationvisibility,
     multidaybegindate,
     multidayenddate,
     startdate,
@@ -193,12 +194,9 @@ function getCalendar(clickEvent, inviteEvent) {
     title,
   } = inviteEvent;
   const description = buildCalendarDescription(inviteEvent);
-  const locationObject = getAddressForMaps(inviteEvent);
-  const location =
-    locationObject.address === ""
-      ? locationObject.addressLink
-      : locationObject.address;
-  const locationName = inviteEvent.locationname ? inviteEvent.locationname : "";
+  let locationObject = null;
+  let location = "";
+  let locationName = "";
   const isRecurring = frequency === "once" ? false : true;
   const isMultiDay = duration === "multiple days" ? true : false;
   let recurringWeekday;
@@ -247,6 +245,15 @@ function getCalendar(clickEvent, inviteEvent) {
       case "Every Saturday":
         recurringWeekday = "SA";
         break;
+    }
+
+    if (locationvisibility !== "discreet") {
+      locationObject = getAddressForMaps(inviteEvent);
+      location =
+        locationObject.address === ""
+          ? locationObject.addressLink
+          : locationObject.address;
+      locationName = inviteEvent.locationname ? inviteEvent.locationname : "";
     }
 
     config = {
@@ -443,6 +450,7 @@ async function getInvite() {
 function renderInvite(invite) {
   const { event, user, recipient } = invite;
   const eventTitleEl = document.querySelector("#eventTitle");
+  const isDiscreet = event.locationvisibility === "discreet" ? true : false;
   const isRecurring = event.frequency !== "once" ? true : false;
   const isSameDay = event.duration === "same day" ? true : false;
   const isMultiDay = event.duration === "multiple days" ? true : false;
@@ -634,44 +642,46 @@ function renderInvite(invite) {
   }
 
   // POPULATE LOCATION
-  const inviteLocationNameEl = document.querySelector("#inviteLocationName");
-  const eventAddressEl = document.querySelector("#eventAddress");
-  const address_line_1_el = document.querySelector("#address_line_1");
-  const address_line_2_el = document.querySelector("#address_line_2");
-  const address_line_3_el = document.querySelector("#address_line_3");
-  const locationName = event.locationname || "";
-  const locationAddress1 = event.locationaddressline1 || "";
-  const locationAddress2 = event.locationaddressline2 || "";
-  const locationAddress3 = event.locationaddressline3 || "";
-  const hasAddress =
-    locationAddress1.length ||
-    locationAddress2.length ||
-    locationAddress3.length
-      ? true
-      : false;
-  inviteLocationNameEl.innerHTML = locationName;
-  if (hasAddress) {
-    address_line_1_el.innerHTML = locationAddress1;
-    address_line_2_el.innerHTML = locationAddress2;
-    address_line_3_el.innerHTML = locationAddress3;
-  } else {
-    eventAddressEl.classList.add("d-none");
-  }
+  if (!isDiscreet) {
+    const inviteLocationNameEl = document.querySelector("#inviteLocationName");
+    const eventAddressEl = document.querySelector("#eventAddress");
+    const address_line_1_el = document.querySelector("#address_line_1");
+    const address_line_2_el = document.querySelector("#address_line_2");
+    const address_line_3_el = document.querySelector("#address_line_3");
+    const locationName = event.locationname || "";
+    const locationAddress1 = event.locationaddressline1 || "";
+    const locationAddress2 = event.locationaddressline2 || "";
+    const locationAddress3 = event.locationaddressline3 || "";
+    const hasAddress =
+      locationAddress1.length ||
+      locationAddress2.length ||
+      locationAddress3.length
+        ? true
+        : false;
+    inviteLocationNameEl.innerHTML = locationName;
+    if (hasAddress) {
+      address_line_1_el.innerHTML = locationAddress1;
+      address_line_2_el.innerHTML = locationAddress2;
+      address_line_3_el.innerHTML = locationAddress3;
+    } else {
+      eventAddressEl.classList.add("d-none");
+    }
 
-  // OTHER LOCATION DETAILS
-  const otherLocationDetailsEl = document.querySelector(
-    "#previewOtherLocationDetails"
-  );
-  const otherLocationDetails = event.otherlocationdetails || "";
-  if (otherLocationDetails.length) {
-    otherLocationDetailsEl.innerHTML = otherLocationDetails;
-    otherLocationDetailsEl.classList.remove("d-none");
-  }
+    // OTHER LOCATION DETAILS
+    const otherLocationDetailsEl = document.querySelector(
+      "#previewOtherLocationDetails"
+    );
+    const otherLocationDetails = event.otherlocationdetails || "";
+    if (otherLocationDetails.length) {
+      otherLocationDetailsEl.innerHTML = otherLocationDetails;
+      otherLocationDetailsEl.classList.remove("d-none");
+    }
 
-  // MAP AND DIRECTIONS
-  const mapAndDirectionsEl = document.querySelector("#mapAndDirections");
-  const addressObject = getAddressForMaps(event);
-  mapAndDirectionsEl.setAttribute("href", addressObject.addressLink);
+    // MAP AND DIRECTIONS
+    const mapAndDirectionsEl = document.querySelector("#mapAndDirections");
+    const addressObject = getAddressForMaps(event);
+    mapAndDirectionsEl.setAttribute("href", addressObject.addressLink);
+  }
 }
 
 function hideSpinner() {
