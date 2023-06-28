@@ -253,9 +253,7 @@ function getCalendar(clickEvent, inviteEvent) {
         locationObject.address === ""
           ? locationObject.addressLink
           : locationObject.address;
-      locationName = inviteEvent.locationname
-        ? inviteEvent.locationname + ", "
-        : "";
+      locationName = inviteEvent.locationname ? inviteEvent.locationname : "";
     }
 
     config = {
@@ -283,14 +281,12 @@ function getCalendar(clickEvent, inviteEvent) {
         locationObject.address === ""
           ? locationObject.addressLink
           : locationObject.address;
-      locationName = inviteEvent.locationname
-        ? inviteEvent.locationname + ", "
-        : "";
+      locationName = inviteEvent.locationname ? inviteEvent.locationname : "";
     }
 
     config = {
       title: title,
-      location: location,
+      location: `${locationName.length ? locationName + ", " : ""}${location}`,
       description: description,
       start: eventStart,
       end: eventEnd,
@@ -304,13 +300,11 @@ function getCalendar(clickEvent, inviteEvent) {
         locationObject.address === ""
           ? locationObject.addressLink
           : locationObject.address;
-      locationName = inviteEvent.locationname
-        ? inviteEvent.locationname + ", "
-        : "";
+      locationName = inviteEvent.locationname ? inviteEvent.locationname : "";
     }
     config = {
       title: title,
-      location: location,
+      location: `${locationName.length ? locationName + ", " : ""}${location}`,
       description: description,
       start: eventStart,
       end: eventEnd,
