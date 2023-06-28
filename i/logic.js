@@ -274,6 +274,16 @@ function getCalendar(clickEvent, inviteEvent) {
     eventEnd = new Date(
       moment(eventStart).add(durationInHours, "hours").format()
     );
+
+    if (locationvisibility !== "discreet") {
+      locationObject = getAddressForMaps(inviteEvent);
+      location =
+        locationObject.address === ""
+          ? locationObject.addressLink
+          : locationObject.address;
+      locationName = inviteEvent.locationname ? inviteEvent.locationname : "";
+    }
+
     config = {
       title: title,
       location: location,
@@ -284,6 +294,14 @@ function getCalendar(clickEvent, inviteEvent) {
   } else if (isMultiDay) {
     eventStart = new Date(multidaybegindate);
     eventEnd = new Date(multidayenddate);
+    if (locationvisibility !== "discreet") {
+      locationObject = getAddressForMaps(inviteEvent);
+      location =
+        locationObject.address === ""
+          ? locationObject.addressLink
+          : locationObject.address;
+      locationName = inviteEvent.locationname ? inviteEvent.locationname : "";
+    }
     config = {
       title: title,
       location: location,
