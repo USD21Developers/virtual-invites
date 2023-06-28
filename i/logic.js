@@ -6,6 +6,14 @@ let inviteObject = {
 let iti;
 
 function buildCalendarDescription(event) {
+  let locationName =
+    event.locationvisibility === "public" && event.locationname
+      ? event.locationname + "\n"
+      : "";
+  let locationAddress =
+    event.locationvisibility === "public"
+      ? getAddressForMaps(event).address + "\n\n"
+      : "";
   let description = `${getPhrase("you-are-invited-to")}
 ${event.title.toUpperCase().trim() + "\n\n"}`;
 
@@ -17,7 +25,7 @@ ${event.title.toUpperCase().trim() + "\n\n"}`;
 
   description += `=====
 
-${headlineAboutEvent.toUpperCase()}:
+${locationName}${locationAddress}${headlineAboutEvent.toUpperCase()}:
 
 ${event.description}
   `;
