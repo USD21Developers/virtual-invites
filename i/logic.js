@@ -518,6 +518,7 @@ function renderInvite(invite) {
   timeAndDateRepeatingEl.classList.add("d-none");
   timeAndDateSingleDayEl.classList.add("d-none");
   timeAndDateMultipleDays.classList.add("d-none");
+  implementDiscreetLocation(event);
 
   eventTitleEl.innerHTML = event.title;
 
@@ -938,6 +939,18 @@ function removeDefaultContent() {
   document
     .querySelectorAll(".defaultContent")
     .forEach((item) => (item.innerHTML = ""));
+}
+
+function implementDiscreetLocation(event) {
+  const inviteLocationInfo = document.querySelector("#inviteLocationInfo");
+  const requestLocationInfo = document.querySelector("#requestLocationInfo");
+  const isDiscreet = event.locationvisibility === "discreet" ? true : false;
+
+  if (isDiscreet) {
+    inviteLocationInfo.classList.add("d-none");
+  } else {
+    requestLocationInfo.classList.add("d-none");
+  }
 }
 
 function warnIfEventIsPast() {
