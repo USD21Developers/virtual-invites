@@ -986,11 +986,8 @@ function onClickAway(event) {
 
 function onCalendarExpand() {
   const addToCalendar = document.querySelector("#addToCalendar");
-  const isMobile = isMobileDevice();
 
-  if (isMobile) {
-    addToCalendar.scrollIntoView({ behavior: "smooth" });
-  }
+  addToCalendar.scrollIntoView({ behavior: "smooth" });
 }
 
 function attachListeners() {
