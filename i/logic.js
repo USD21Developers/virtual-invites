@@ -20,22 +20,19 @@ ${event.title.toUpperCase().trim() + "\n\n"}`;
   // BEGIN LOCATION
   if (locationName.length) {
     if (locationAddress.length) {
-      description +=
-        `=====
+      description += `=====
 
 ${locationName}
-${locationAddress}` + "\n";
+${locationAddress}`;
     } else {
-      description +=
-        `=====
+      description += `=====
 
-${locationName}` + "\n";
+${locationName}`;
     }
   } else if (locationAddress.length) {
-    description +=
-      `=====
+    description += `=====
 
-${locationAddress}` + "\n";
+${locationAddress}`;
   }
 
   // BEGIN MAIN EVENT INFO
