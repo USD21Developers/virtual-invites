@@ -948,7 +948,9 @@ function implementDiscreetLocation(event) {
 
   if (isDiscreet) {
     inviteLocationInfo.classList.add("d-none");
+    requestLocationInfo.classList.remove("d-none");
   } else {
+    inviteLocationInfo.classList.remove("d-none");
     requestLocationInfo.classList.add("d-none");
   }
 }
