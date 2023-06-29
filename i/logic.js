@@ -24,18 +24,18 @@ ${event.title.toUpperCase().trim() + "\n\n"}`;
         `=====
 
 ${locationName}
-${locationAddress}` + "\n\n";
+${locationAddress}` + "\n";
     } else {
       description +=
         `=====
 
-${locationName}` + "\n\n";
+${locationName}` + "\n";
     }
   } else if (locationAddress.length) {
     description +=
       `=====
 
-${locationAddress}` + "\n\n";
+${locationAddress}` + "\n";
   }
 
   // BEGIN MAIN EVENT INFO
