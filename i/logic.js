@@ -928,9 +928,16 @@ function populateTemplate(version = "default") {
         const templateContent = parsed.querySelector(".container");
         const el = document.querySelector("main");
         el.appendChild(templateContent);
+        removeDefaultContent();
         resolve();
       });
   });
+}
+
+function removeDefaultContent() {
+  document
+    .querySelectorAll(".defaultContent")
+    .forEach((item) => (item.innerHTML = ""));
 }
 
 function warnIfEventIsPast() {

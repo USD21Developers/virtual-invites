@@ -7,7 +7,7 @@
       content="initial-scale=1, shrink-to-fit=no, width=device-width"
       name="viewport"
     />
-    <title>Invitation</title>
+    <title data-i18n="pagetitle" class="defaultContent">Invitation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="../../css/daemonite-material.css" />
@@ -35,29 +35,40 @@
         <div class="col">
           <div class="bg-white" id="content">
             <div
-              class="text-center mt-2 mb-1"
+              class="text-center mt-2 mb-1 defaultContent"
               data-i18n="you-are-invited-to"
               id="youAreInvitedTo"
             >
               You are invited to join us for
             </div>
-            <h1 class="balanced text-center" id="eventTitle">Bible Talk</h1>
+            <h1 class="balanced text-center defaultContent" id="eventTitle">
+              Bible Talk
+            </h1>
 
             <!-- REPEATING DAYS -->
             <!-- Every Friday @ 7:30 PM -->
             <div id="timeAndDateRepeating" class="text-center my-4">
-              <div id="repeatingWeekday" class="text-uppercase">Fridays</div>
-              <div id="repeatingStartTime" class="mt-1">7:30 PM</div>
+              <div id="repeatingWeekday" class="text-uppercase defaultContent">
+                Fridays
+              </div>
+              <div id="repeatingStartTime" class="mt-1 defaultContent">
+                7:30 PM
+              </div>
             </div>
 
             <!-- SINGLE DAY -->
             <!-- Friday 3/22/22 @ 7:30 PM -->
             <div id="timeAndDateSingleDay" class="text-center mt-3 mb-4 d-none">
-              <div id="singleDayWeekday" class="text-uppercase mb-2">
+              <div
+                id="singleDayWeekday"
+                class="text-uppercase mb-2 defaultContent"
+              >
                 Friday
               </div>
-              <div id="singleDayDate" class="my-2">03 | 22 | 2023</div>
-              <div id="singleDayStartTime">7:30 PM</div>
+              <div id="singleDayDate" class="my-2 defaultContent">
+                03 | 22 | 2023
+              </div>
+              <div id="singleDayStartTime defaultContent">7:30 PM</div>
             </div>
 
             <!-- MULTIPLE DAYS -->
@@ -78,27 +89,39 @@
                       From
                     </div>
                     <div class="text-nowrap" id="multiDayFromText">
-                      <span id="multiDayStartingWeekday"> Fri. </span>
-                      <span id="multiDayStartingDate"> 3/22/22 </span>
+                      <span id="multiDayStartingWeekday" class="defaultContent">
+                        Fri.
+                      </span>
+                      <span id="multiDayStartingDate" class="defaultContent">
+                        3/22/22
+                      </span>
                       <span data-i18n="event-at">@</span>
-                      <span id="multiDayStartingTime"> 7:30 PM </span>
+                      <span id="multiDayStartingTime" class="defaultContent">
+                        7:30 PM
+                      </span>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td style="text-align: end">
                     <div
-                      class="mr-1 text-center small text-uppercase mt-3 mb-1"
+                      class="mr-1 text-center small text-uppercase mt-3 mb-1 defaultContent"
                       data-i18n="multiDayToLabel"
                       id="multiDayToLabel"
                     >
                       To
                     </div>
                     <div class="text-nowrap" id="multiDayToText">
-                      <strong id="multiDayEndingWeekday">Sun.</strong>
-                      <strong id="multiDayEndingDate">3/25/22</strong>
+                      <strong id="multiDayEndingWeekday" class="defaultContent"
+                        >Sun.</strong
+                      >
+                      <strong id="multiDayEndingDate" class="defaultContent"
+                        >3/25/22</strong
+                      >
                       <strong data-i18n="event-at">@</strong>
-                      <strong id="multiDayEndingTime">4:30 PM</strong>
+                      <strong id="multiDayEndingTime" class="defaultContent"
+                        >4:30 PM</strong
+                      >
                     </div>
                   </td>
                 </tr>
@@ -106,11 +129,17 @@
             </div>
 
             <div id="inviteLocationInfo" class="font-weight-bold">
-              <div id="inviteLocationName" class="text-center">Starbucks</div>
+              <div id="inviteLocationName" class="text-center defaultContent">
+                Starbucks
+              </div>
 
               <div class="text-center" id="eventAddress">
-                <div id="address_line_1">3549 W Bell Road</div>
-                <div id="address_line_2">Phoenix, AZ 85053</div>
+                <div id="address_line_1" class="defaultContent">
+                  3549 W Bell Road
+                </div>
+                <div id="address_line_2" class="defaultContent">
+                  Phoenix, AZ 85053
+                </div>
                 <div id="address_line_3"></div>
               </div>
 
@@ -131,6 +160,7 @@
                   href="https://www.google.com/maps/dir/?api=1&destination=3549%20W%20Bell%20Road,%20Phoenix,%20AZ,%2085053&sensor=true"
                   data-i18n="map-and-directions"
                   id="mapAndDirections"
+                  class="defaultContent"
                 >
                   Map and Directions
                 </a>
@@ -166,7 +196,7 @@
                       alt="Invitation icon"
                     />
                     <span
-                      class="ml-2"
+                      class="ml-2 defaultContent"
                       data-i18n="add-to-my-calendar"
                       style="text-transform: initial; white-space: initial"
                     >
@@ -191,7 +221,7 @@
                           />
                         </span>
                         <span
-                          class="ml-1"
+                          class="ml-1 defaultContent"
                           data-i18n-global="addToCalendarApple"
                         >
                           Apple
@@ -211,7 +241,7 @@
                           />
                         </span>
                         <span
-                          class="ml-1"
+                          class="ml-1 defaultContent"
                           data-i18n-global="addToCalendarGoogle"
                         >
                           Google
@@ -231,7 +261,7 @@
                           />
                         </span>
                         <span
-                          class="ml-1"
+                          class="ml-1 defaultContent"
                           data-i18n-global="addToCalendarIcalFile"
                         >
                           iCal file
@@ -248,16 +278,23 @@
                 <p
                   id="defaultGreetingParagraph1"
                   data-i18n="default-greeting-paragraph-1-bible-talk"
+                  class="defaultContent"
                 >
                   Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you
                   {INVITED-DATE} to Bible Talk. I'm looking forward to joining
                   you there {EVENT-START-DATE} at {EVENT-START-TIME}.
                 </p>
-                <p data-i18n="default-greeting-paragraph-2">
+                <p
+                  data-i18n="default-greeting-paragraph-2"
+                  class="defaultContent"
+                >
                   If you can join, I recommend adding it to your calendar
                   (above) to help you remember.
                 </p>
-                <p data-i18n="default-greeting-paragraph-3">
+                <p
+                  data-i18n="default-greeting-paragraph-3"
+                  class="defaultContent"
+                >
                   I hope to see you there!
                 </p>
               </div>
@@ -269,7 +306,7 @@
             <section class="my-4 pb-1">
               <div class="mb-4">
                 <h3
-                  class="text-center m-0 balanced"
+                  class="text-center m-0 balanced defaultContent"
                   data-toggle="collapse"
                   data-i18n="headline-about-event"
                   id="headline-about-event"
@@ -278,7 +315,7 @@
                 </h3>
               </div>
 
-              <div id="eventDescription" class="mb-2 pb-1">
+              <div id="eventDescription" class="mb-2 pb-1 defaultContent">
                 A Bible Talk is a casual, light-hearted discussion group that is
                 open to anyone, regardless of their beliefs or prior experience
                 with the Bible. We usually meet in a home or restaurant, but
@@ -297,15 +334,18 @@
             <section id="connectingVirtually" class="mb-3 pb-3 d-none">
               <hr class="my-4 pb-2" />
               <div class="my-4">
-                <h3 data-i18n="headline-cant-attend">
+                <h3 data-i18n="headline-cant-attend" class="defaultContent">
                   Can't Attend in Person?
                 </h3>
               </div>
-              <p class="balanced" data-i18n="text-cant-attend">
+              <p class="balanced defaultContent" data-i18n="text-cant-attend">
                 If you can't attend in person (e.g. for health or safety
                 reasons), you can attend virtually.
               </p>
-              <h4 class="text-center mb-3" data-i18n="headline-how-to-connect">
+              <h4
+                class="text-center mb-3 defaultContent"
+                data-i18n="headline-how-to-connect"
+              >
                 Here's how to connect:
               </h4>
               <div
@@ -328,7 +368,7 @@
                 <h3
                   id="questions_headline"
                   data-i18n="headline-questions"
-                  class="text-center"
+                  class="text-center defaultContent"
                 >
                   Questions?
                 </h3>
@@ -336,7 +376,7 @@
               <div class="row">
                 <div class="col">
                   <div
-                    class="text-center balanced"
+                    class="text-center balanced defaultContent"
                     id="questions_text"
                     data-i18n="questions"
                   >
@@ -347,7 +387,9 @@
               </div>
               <div class="row my-4">
                 <div class="col text-center">
-                  <h4 id="eventContactName" class="m-0">John Q. Disciple</h4>
+                  <h4 id="eventContactName" class="m-0 defaultContent">
+                    John Q. Disciple
+                  </h4>
                 </div>
               </div>
               <div class="row" id="contactTelContainer">
@@ -367,7 +409,7 @@
                       alt=""
                     />
                     <div
-                      class="mt-2 contactMethod-label"
+                      class="mt-2 contactMethod-label defaultContent"
                       data-i18n="text-message"
                     >
                       Text Message
@@ -390,7 +432,7 @@
                       alt=""
                     />
                     <div
-                      class="mt-2 contactMethod-label"
+                      class="mt-2 contactMethod-label defaultContent"
                       data-i18n="phone-call"
                     >
                       Phone
@@ -412,7 +454,10 @@
                       height="75"
                       alt=""
                     />
-                    <div class="mt-2 contactMethod-label" data-i18n="email">
+                    <div
+                      class="mt-2 contactMethod-label defaultContent"
+                      data-i18n="email"
+                    >
                       E-mail
                     </div>
                   </a>
