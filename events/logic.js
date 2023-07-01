@@ -107,8 +107,7 @@ function renderEvents() {
             }
             const whenTime = Intl.DateTimeFormat(locale, {
               timeStyle: "short",
-              timeZone: "UTC",
-            }).format(new Date(startdate.replace("Z", "")));
+            }).format(new Date(startdate));
             when = `${whenDate} &bull; ${whenTime}`;
           }
 
