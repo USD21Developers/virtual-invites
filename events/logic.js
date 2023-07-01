@@ -1,4 +1,4 @@
-function fixLinksToFollowedUsersPage() {
+function populateLinksToFollowedUsers() {
   document.querySelectorAll("a[href='../following/']").forEach((item) => {
     const userId = getUserId();
     const href = `../following/#${userId}`;
@@ -724,7 +724,7 @@ async function init() {
   await populateContent();
   await renderEvents();
   await renderFollowedEvents();
-  fixLinksToFollowedUsersPage();
+  populateLinksToFollowedUsers();
 
   const { eventsHaveChanged } = await syncEvents();
 
@@ -734,7 +734,7 @@ async function init() {
     globalShowPageSpinner();
     await renderEvents();
     await renderFollowedEvents();
-    fixLinksToFollowedUsersPage();
+    populateLinksToFollowedUsers();
     globalHidePageSpinner();
   }
 
