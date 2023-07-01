@@ -2,7 +2,7 @@ async function getEvent() {
   const eventid = Math.abs(parseInt(getHash()));
   if (typeof eventid !== "number") return;
 
-  const events = await syncEvents();
+  const { events } = await syncEvents();
 
   if (!Array.isArray(events)) return;
   if (!events.length) return;
@@ -129,57 +129,6 @@ function spinner(action = "show") {
     actionButtons.classList.remove("d-none");
     progressBar.classList.add("d-none");
   }
-}
-
-async function syncEvents() {
-  const endpoint = `${getApiHost()}/sync-events`;
-  const accessToken = await getAccessToken();
-  const isOnline = navigator.onLine;
-  const controller = new AbortController();
-  const timeout = 8000;
-
-  return new Promise((resolve, reject) => {
-    if (!isOnline)
-      return reject(new Error("sync failed because user is offline"));
-
-    fetch(endpoint, {
-      mode: "cors",
-      method: "GET",
-      headers: new Headers({
-        "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`,
-      }),
-      signal: controller.signal,
-      keepalive: true,
-    })
-      .then((res) => res.json())
-      .then(async (data) => {
-        const { events } = data;
-
-        // Validate sync response
-        if (!Array.isArray(events)) {
-          reject(new Error("Events in sync response must be an array."));
-        }
-
-        // Update IDB
-        if (events.length) {
-          await localforage.setItem("events", events);
-        } else {
-          await localforage.setItem("events", []);
-        }
-
-        resolve(events);
-      })
-      .catch((err) => {
-        console.error(err);
-        reject(err);
-      });
-
-    setTimeout(() => {
-      controller.abort();
-      reject(new Error("event sync timed out"));
-    }, timeout);
-  });
 }
 
 async function onSubmit() {
