@@ -105,12 +105,10 @@ function renderEvents() {
                 whenDate = getPhrase("frequencyEverySaturday");
                 break;
             }
-            const whenTimeLocal = new Date(
-              moment.tz(startdate, timezone).format()
-            );
             const whenTime = Intl.DateTimeFormat(locale, {
               timeStyle: "short",
-            }).format(whenTimeLocal);
+              timeZone: "UTC",
+            }).format(new Date(startdate.replace("Z", "")));
             when = `${whenDate} &bull; ${whenTime}`;
           }
 
