@@ -244,6 +244,11 @@
       "translated": "Events"
     },
     {
+      "key": "sendAnInvite",
+      "original": "Send an Invite",
+      "translated": "Send an Invite"
+    },
+    {
       "key": "addToCalendarApple",
       "original": "Apple",
       "translated": "Apple"

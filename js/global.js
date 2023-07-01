@@ -1040,7 +1040,7 @@ async function popupQuantityOfEvents(type) {
     ? eventsByFollowedUsers.length
     : 0;
   const totalQuantity = quantityEventsByUser + quantityEventsByFollowedUsers;
-  const phraseEvents = getGlobalPhrase("events");
+  const phraseSendAnInvite = getGlobalPhrase("sendAnInvite");
   const phrasePlural = getGlobalPhrase("quantityOfEvents").replace(
     "{quantity}",
     totalQuantity
@@ -1057,7 +1057,7 @@ async function popupQuantityOfEvents(type) {
         
         <td width="1%">
           <div class="text-right">
-            <a class="btn btn-sm btn-light ml-4 border border-dark" href="/send/">${phraseEvents}</a>
+            <a class="btn btn-sm btn-light ml-4 border border-dark" href="/send/">${phraseSendAnInvite}</a>
           </div>
         </td>
       </tr>
