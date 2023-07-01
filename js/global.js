@@ -1057,7 +1057,7 @@ async function popupQuantityOfEvents(type) {
         
         <td width="1%">
           <div class="text-right">
-            <a class="btn btn-sm btn-light ml-4 border border-dark" href="/events/">${phraseEvents}</a>
+            <a class="btn btn-sm btn-light ml-4 border border-dark" href="/send/">${phraseEvents}</a>
           </div>
         </td>
       </tr>
