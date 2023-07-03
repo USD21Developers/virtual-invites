@@ -7,7 +7,6 @@
 #searchResults img,
 .modal-users-following img {
   background-repeat: no-repeat;
-  border: 3px solid #ccc;
   border-radius: 50%;
   height: 140px;
   margin-bottom: 9px;
