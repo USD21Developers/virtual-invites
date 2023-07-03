@@ -1173,10 +1173,10 @@ function showEventDateTime(eventObj) {
     let html = "";
 
     if (isRecurring) {
-      const whenTimeLocal = new Date(moment.tz(startdate, timezone).format());
       const whenTime = Intl.DateTimeFormat(locale, {
         timeStyle: "short",
-      }).format(whenTimeLocal);
+        timeZone: timezone,
+      }).format(new Date(startdate));
       let whenDate;
       switch (frequency) {
         case "Every Sunday":
