@@ -873,12 +873,12 @@ function selectSendVia(method) {
       btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-defaulttext");
       break;
     case "qrcode":
-      localStorage.setItem("lastSendMethodSelected", "qrcode");
       const eventid = getInviteToId();
+      localStorage.setItem("lastSendMethodSelected", "qrcode");
+      btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-qrcodetext");
       if (eventid.length) {
         containerQRCode.classList.remove("d-none");
         containerQRCodeInstructions.classList.remove("d-none");
-        btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-qrcodetext");
         isMobile && containerTagWithLocation.classList.remove("d-none");
       } else {
         containerQRCode.classList.add("d-none");
