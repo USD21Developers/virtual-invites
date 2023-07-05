@@ -18,10 +18,7 @@ ${o.eventtitle.toUpperCase()}
   `.trim() + "\n\n";
 
   // BEGIN MAIN EVENT INFO
-  const headlineAboutEvent = p["headline-about-event"].replaceAll(
-    "{EVENT-TITLE}",
-    o.eventtitle
-  );
+  const headlineAboutEvent = o.descriptionHeadline;
 
   description += `=====
 
@@ -171,6 +168,7 @@ function getCalendarObject() {
   o.language = form.language.value;
   o.eventtype = form.eventtype.value;
   o.eventtitle = form.eventtitle.value;
+  o.descriptionHeadline = form.descriptionHeadline.value;
   o.eventdescription = form.eventdescription.value;
   o.frequency = form.frequency.value;
   o.duration = form.duration.value;
@@ -883,6 +881,7 @@ function populateDefaultEventTitle() {
       ) {
         eventTitleEl.value = defaultEventTitle;
         eventTitleEl.parentElement.classList.add("has-value");
+        populateSuggestedDescriptionHeadline("eventtype");
       }
       break;
     case "church":
@@ -891,6 +890,7 @@ function populateDefaultEventTitle() {
       if (eventTitle === "" || eventTitle === getPhrase("optionEventTypeBT")) {
         eventTitleEl.value = defaultEventTitle;
         eventTitleEl.parentElement.classList.add("has-value");
+        populateSuggestedDescriptionHeadline();
       }
       break;
     case "other":
@@ -901,11 +901,13 @@ function populateDefaultEventTitle() {
       ) {
         eventTitleEl.value = "";
         eventTitleEl.parentElement.classList.remove("has-value");
+        populateSuggestedDescriptionHeadline();
       }
       break;
     default:
       eventTitleEl.value = "";
       eventTitleEl.parentElement.classList.remove("has-value");
+      populateSuggestedDescriptionHeadline();
       break;
   }
 }
@@ -1003,6 +1005,8 @@ function populateFormBasedPhrases() {
   const preview = document.querySelector("#preview");
   const eventType = form.querySelector("#eventtype").selectedOptions[0].value;
   const eventTitle = form.querySelector("#eventtitle").value;
+  const descriptionHeadline =
+    form.querySelector("#descriptionHeadline").value.trim() || "";
   const eventDescription =
     form.querySelector("#eventdescription").value.trim() || "";
   const frequency = document.querySelector("#frequency").value;
@@ -1035,8 +1039,12 @@ function populateFormBasedPhrases() {
     });
     description = spacify(description);
     description = breakify(description);
+    preview.querySelector("#headline-about-event").innerHTML =
+      descriptionHeadline;
     preview.querySelector("#eventDescription").innerHTML = description;
   } else {
+    preview.querySelector("#headline-about-event").innerHTML =
+      descriptionHeadline;
     preview.querySelector("#eventDescription").innerHTML = "";
   }
 
@@ -1471,6 +1479,7 @@ function validate() {
   const language = form.language.value;
   const eventtype = form.eventtype.value;
   const eventtitle = form.eventtitle.value.trim() || "";
+  const descriptionHeadline = form.descriptionHeadline.value.trim() || "";
   const eventdescription = form.eventdescription.value.trim() || "";
   const frequency = form.frequency.value;
   const duration = form.duration.value;
@@ -1513,6 +1522,15 @@ function validate() {
     showError(
       getPhrase("validateEventTitle"),
       "#eventtitle",
+      getPhrase("fieldIsRequired")
+    );
+    return false;
+  }
+
+  if (descriptionHeadline === "") {
+    showError(
+      getPhrase("validateDescriptionHeadline"),
+      "#descriptionHeadline",
       getPhrase("fieldIsRequired")
     );
     return false;
@@ -1873,10 +1891,87 @@ function showSpinner() {
   submitbuttons.classList.add("d-none");
 }
 
+function populateSuggestedDescriptionHeadline(elementChanged = "eventtype") {
+  const eventTitleEl = document.querySelector("#eventtitle");
+  const descriptionHeadlineEl = document.querySelector("#descriptionHeadline");
+  const descriptionHeadline = descriptionHeadlineEl.value.trim() || "";
+  const eventTitle = eventTitleEl.value.trim() || "";
+  const eventType = document.querySelector("#eventtype").value;
+  const phraseBibleTalk = getPhrase("optionEventTypeBT");
+  const genericHeadline = getPhrase("genericDescriptionHeadline");
+  let headline = getPhrase("suggestedDescriptionHeadline");
+  const headlineBT = headline.replaceAll(
+    "{EVENT-TITLE}",
+    getPhrase("optionEventTypeBT")
+  );
+  const headlineChurch = headline.replaceAll(
+    "{EVENT-TITLE}",
+    getPhrase("optionEventTypeSundayService")
+  );
+  const headlineOther = headline.replaceAll("{EVENT-TITLE}", eventTitle);
+
+  if (!eventType.length) return;
+
+  if (elementChanged === "eventtype") {
+    if (eventType === "bible talk") {
+      if (!descriptionHeadline.length) {
+        descriptionHeadlineEl.value = headlineBT;
+      } else if (descriptionHeadline === headlineChurch) {
+        descriptionHeadlineEl.value = headlineBT;
+      }
+    } else if (eventType === "church") {
+      if (!descriptionHeadline.length) {
+        descriptionHeadlineEl.value = headlineChurch;
+      } else if (descriptionHeadline === headlineBT) {
+        descriptionHeadlineEl.value = headlineChurch;
+      } else if (descriptionHeadline.indexOf(phraseBibleTalk) >= 0) {
+        descriptionHeadlineEl.value = headlineChurch;
+      }
+    } else if (eventType === "other") {
+      if (descriptionHeadline === headlineBT) {
+        descriptionHeadlineEl.value = "";
+      } else if (descriptionHeadline === headlineChurch) {
+        descriptionHeadlineEl.value = "";
+      } else if (eventTitle === "" && descriptionHeadline === "") {
+        descriptionHeadlineEl.value = "";
+      } else {
+        descriptionHeadlineEl.value = headlineOther;
+      }
+    } else {
+      descriptionHeadlineEl.value = "";
+    }
+  } else if (elementChanged === "eventtitle") {
+    descriptionHeadlineEl.value = headlineOther;
+
+    if (descriptionHeadline === headlineBT) {
+      if (eventType !== "bible talk") {
+        descriptionHeadlineEl.value = genericHeadline;
+      }
+    } else if (descriptionHeadline === headlineChurch) {
+      if (eventType !== "church") {
+        descriptionHeadlineEl.value = genericHeadline;
+      }
+    } else if (descriptionHeadline.indexOf(phraseBibleTalk) >= 0) {
+      if (
+        eventType !== "bible talk" &&
+        eventTitle.indexOf(phraseBibleTalk) <= -1
+      ) {
+        descriptionHeadlineEl.value = headlineOther;
+      }
+    }
+  }
+}
+
 function attachListeners() {
   document
     .querySelector("#eventtype")
     .addEventListener("change", () => populateDefaultEventTitle());
+
+  document
+    .querySelector("#eventtitle")
+    .addEventListener("change", () =>
+      populateSuggestedDescriptionHeadline("eventtitle")
+    );
 
   document
     .querySelector("#frequency")
