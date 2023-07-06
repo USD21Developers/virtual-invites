@@ -966,7 +966,7 @@ function warnIfEventIsPast() {
   if (!isRecurring) {
     const isPast = inviteObject.event.isPast === 1 ? true : false;
     if (isPast) {
-      showToast(expiredMessage, 5000, "danger");
+      showToast(expiredMessage, 0, "danger");
     }
   }
 }
