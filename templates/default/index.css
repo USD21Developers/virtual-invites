@@ -227,6 +227,7 @@ a:hover {
 
 [data-i18n="headline-about-event"],
 [data-i18n="headline-cant-attend"],
+#headline-about-event,
 #questions_headline {
   color: #2a2d54;
   font-family: Castoro, serif;
