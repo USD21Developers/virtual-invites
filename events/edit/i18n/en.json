@@ -30,8 +30,18 @@
     },
     {
       "key": "labelEventDescription",
-      "original": "Event Description:",
-      "translated": "Event Description:"
+      "original": "Description:",
+      "translated": "Description:"
+    },
+    {
+      "key": "genericDescriptionHeadline",
+      "original": "About This Event",
+      "translated": "About This Event"
+    },
+    {
+      "key": "labelDescriptionHeadline",
+      "original": "Description Headline:",
+      "translated": "Description Headline:"
     },
     {
       "key": "headlineTimezone",
@@ -423,6 +433,16 @@
       "key": "validateEventTitle",
       "original": "Please input the title of the event.",
       "translated": "Please input the title of the event."
+    },
+    {
+      "key": "validateDescriptionHeadline",
+      "original": "Please input a headline to appear just above the description.",
+      "translated": "Please input a headline to appear just above the description."
+    },
+    {
+      "key": "suggestedDescriptionHeadline",
+      "original": "About {EVENT-TITLE}",
+      "translated": "About {EVENT-TITLE}"
     },
     {
       "key": "validateDescription",

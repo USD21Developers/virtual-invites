@@ -890,7 +890,7 @@ function populateDefaultEventTitle() {
       if (eventTitle === "" || eventTitle === getPhrase("optionEventTypeBT")) {
         eventTitleEl.value = defaultEventTitle;
         eventTitleEl.parentElement.classList.add("has-value");
-        populateSuggestedDescriptionHeadline();
+        populateSuggestedDescriptionHeadline("eventtype");
       }
       break;
     case "other":
@@ -901,13 +901,13 @@ function populateDefaultEventTitle() {
       ) {
         eventTitleEl.value = "";
         eventTitleEl.parentElement.classList.remove("has-value");
-        populateSuggestedDescriptionHeadline();
+        populateSuggestedDescriptionHeadline("eventtype");
       }
       break;
     default:
       eventTitleEl.value = "";
       eventTitleEl.parentElement.classList.remove("has-value");
-      populateSuggestedDescriptionHeadline();
+      populateSuggestedDescriptionHeadline("eventtype");
       break;
   }
 }
