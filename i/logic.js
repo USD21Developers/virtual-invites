@@ -744,10 +744,13 @@ function showSpinner() {
 }
 
 function populateEventDescription() {
+  const descriptionHeadlineEl = document.querySelector("#headline-about-event");
   const eventDescriptionEl = document.querySelector("#eventDescription");
-  const { description } = inviteObject.event;
+  const { descriptionHeading: descriptionHeadline, description } =
+    inviteObject.event;
   const text = breakify(description);
 
+  descriptionHeadlineEl.innerHTML = descriptionHeadline;
   eventDescriptionEl.innerHTML = text;
 }
 
