@@ -29,9 +29,9 @@
       "translated": "Event Title"
     },
     {
-      "key": "labelEventDescription",
-      "original": "Description:",
-      "translated": "Description:"
+      "key": "eventDescription",
+      "original": "Event Description",
+      "translated": "Event Description"
     },
     {
       "key": "genericDescriptionHeadline",
@@ -42,6 +42,11 @@
       "key": "labelDescriptionHeadline",
       "original": "Description Headline:",
       "translated": "Description Headline:"
+    },
+    {
+      "key": "labelEventDescription",
+      "original": "Description:",
+      "translated": "Description:"
     },
     {
       "key": "headlineTimezone",
