@@ -36,10 +36,7 @@ ${locationAddress}`;
   }
 
   // BEGIN MAIN EVENT INFO
-  const headlineAboutEvent = getPhrase("headline-about-event").replaceAll(
-    "{EVENT-TITLE}",
-    event.title
-  );
+  const headlineAboutEvent = event.descriptionHeading;
 
   description += `=====
 
