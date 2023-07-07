@@ -40,7 +40,7 @@ ${locationAddress}`;
 
   description += `=====
 
-${headlineAboutEvent.toUpperCase()}:
+${headlineAboutEvent.toUpperCase()}
 
 ${event.description}
   `;
