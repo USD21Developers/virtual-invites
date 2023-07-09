@@ -677,7 +677,7 @@ async function onSubmitButtonClick(e) {
         return showError(msg, "#sendto_sms", msgInline);
       }
 
-      saveAndSync(sendVia);
+      await saveAndSync(sendVia);
 
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
 
@@ -963,7 +963,9 @@ function saveAndSync(sendvia) {
     await localforage.setItem("invites", invites);
     await localforage.setItem("unsyncedInvites", unsyncedInvites);
 
-    syncInvites().then((invites) => resolve(invites));
+    const invitesSynced = await syncInvites();
+
+    resolve(invitesSynced);
   });
 }
 
