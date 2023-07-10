@@ -491,6 +491,7 @@ async function getInvite() {
 function renderInvite(invite) {
   const { event, user, recipient } = invite;
   const eventTitleEl = document.querySelector("#eventTitle");
+  const titleTagEl = document.querySelector("title");
   const isDiscreet = event.locationvisibility === "discreet" ? true : false;
   const isRecurring = event.frequency !== "once" ? true : false;
   const isSameDay = event.duration === "same day" ? true : false;
@@ -517,6 +518,7 @@ function renderInvite(invite) {
   timeAndDateMultipleDays.classList.add("d-none");
   implementDiscreetLocation(event);
 
+  titleTagEl.innerText = event.title;
   eventTitleEl.innerHTML = event.title;
 
   // EVENT TIME AND DATE
