@@ -917,6 +917,8 @@ function populateQuestionsSection() {
     contactViaEmailEl.setAttribute("href", `mailto:${contactemail}`);
   } else {
     contactViaEmailEl.classList.add("d-none");
+    contactViaSmsContainerEl.classList.replace("col-sm-4", "col-sm-6");
+    contactViaPhoneContainerEl.classList.replace("col-sm-4", "col-sm-6");
   }
 }
 
