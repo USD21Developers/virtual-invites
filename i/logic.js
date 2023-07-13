@@ -378,18 +378,9 @@ function getCalendarApple(config) {
       minutes: 3,
     },
   };
-  const organizerName = inviteObject.event.contactlastname
-    ? `${inviteObject.event.contactfirstname} ${inviteObject.event.contactlastname}`
-    : `${inviteObject.event.contactfirstname}`;
-  const organizerAsPhone = `CN=${organizerName}:TEL:${inviteObject.event.contactphone}`;
-  const organizerAsEmail = `CN=${organizerName}:MAILTO:${inviteObject.event.contactemail}`;
-  const organizer = inviteObject.event.contactphone
-    ? organizerAsPhone
-    : organizerAsEmail;
   const appleCalContent = appleCal
     .addAlarm(alarm1)
     .addAlarm(alarm2)
-    .addProperty("ORGANIZER", organizer)
     .addProperty("TZID", inviteObject.event.timezone)
     .render();
   const appleCalLink = document.createElement("a");
@@ -436,18 +427,9 @@ function getCalendarIcal(config) {
       minutes: 3,
     },
   };
-  const organizerName = inviteObject.event.contactlastname
-    ? `${inviteObject.event.contactfirstname} ${inviteObject.event.contactlastname}`
-    : `${inviteObject.event.contactfirstname}`;
-  const organizerAsPhone = `CN=${organizerName}:TEL:${inviteObject.event.contactphone}`;
-  const organizerAsEmail = `CN=${organizerName}:MAILTO:${inviteObject.event.contactemail}`;
-  const organizer = inviteObject.event.contactphone
-    ? organizerAsPhone
-    : organizerAsEmail;
   const iCalContent = iCal
     .addAlarm(alarm1)
     .addAlarm(alarm2)
-    .addProperty("ORGANIZER", organizer)
     .addProperty("TZID", inviteObject.event.timezone)
     .render();
   const iCalLink = document.createElement("a");
