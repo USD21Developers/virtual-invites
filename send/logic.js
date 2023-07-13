@@ -963,6 +963,16 @@ function saveAndSync(sendvia) {
     await localforage.setItem("invites", invites);
     await localforage.setItem("unsyncedInvites", unsyncedInvites);
 
+    // Save invite via sendBeacon
+    const sendBeaconEndpoint = `${getApiHost()}/save-invite`;
+    const sendBeaconAccessToken = await getAccessToken();
+    const sendBeaconPayload = JSON.stringify({
+      accessToken: sendBeaconAccessToken,
+      invite: unsyncedInvite,
+    });
+    navigator.sendBeacon(sendBeaconEndpoint, sendBeaconPayload);
+
+    // Sync invites via fetch + keepalive
     const invitesSynced = await syncInvites();
 
     resolve(invitesSynced);
