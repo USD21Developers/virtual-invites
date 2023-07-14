@@ -1089,6 +1089,7 @@ async function init() {
   showTagInviteWithLocation();
   setEventListeners();
   globalHidePageSpinner();
+  syncInvites(); // Don't put an "await" on this; let it succeed or fail without blocking.
 }
 
 init();
