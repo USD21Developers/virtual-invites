@@ -392,9 +392,7 @@ function getCalendarApple(config) {
     ? `${contactfirstname} ${contactlastname}`
     : `${contactfirstname}`;
 
-  const eventContact = contactphone
-    ? `${contactName}\\, ${contactphone}`
-    : null;
+  const eventContact = contactphone ? `${contactName}, ${contactphone}` : null;
 
   const eventOrganizer = contactemail
     ? `CN=${contactName}:MAILTO:${contactemail}`
@@ -482,9 +480,7 @@ function getCalendarIcal(config) {
     ? `${contactfirstname} ${contactlastname}`
     : `${contactfirstname}`;
 
-  const eventContact = contactphone
-    ? `${contactName}\\, ${contactphone}`
-    : null;
+  const eventContact = contactphone ? `${contactName}, ${contactphone}` : null;
 
   const eventOrganizer = contactemail
     ? `CN=${contactName}:MAILTO:${contactemail}`
