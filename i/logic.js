@@ -370,8 +370,8 @@ function getCalendarApple(config) {
   const alarm1 = {
     action: "DISPLAY",
     trigger: alarm1Time,
-    description: title,
-    summary: `${descriptionHeading.toUpperCase()}\n\n${description}`,
+    summary: title,
+    description: `${descriptionHeading}\n\n${description}`,
     duration: {
       after: true,
       minutes: 3,
@@ -381,7 +381,7 @@ function getCalendarApple(config) {
     action: "DISPLAY",
     trigger: alarm2Time,
     description: title,
-    summary: `${descriptionHeading.toUpperCase()}\n\n${description}`,
+    summary: `${descriptionHeading}\n\n${description}`,
     duration: {
       after: true,
       minutes: 3,
@@ -458,8 +458,8 @@ function getCalendarIcal(config) {
   const alarm1 = {
     action: "DISPLAY",
     trigger: alarm1Time,
-    description: title,
-    summary: `${descriptionHeading.toUpperCase()}\n\n${description}`,
+    summary: title,
+    description: `${descriptionHeading}\n\n${description}`,
     duration: {
       after: true,
       minutes: 3,
@@ -469,7 +469,7 @@ function getCalendarIcal(config) {
     action: "DISPLAY",
     trigger: alarm2Time,
     description: title,
-    summary: `${descriptionHeading.toUpperCase()}\n\n${description}`,
+    summary: `${descriptionHeading}\n\n${description}`,
     duration: {
       after: true,
       minutes: 3,
