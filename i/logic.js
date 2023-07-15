@@ -350,6 +350,16 @@ function getCalendar(clickEvent, inviteEvent) {
 }
 
 function getCalendarApple(config) {
+  const {
+    contactemail,
+    contactfirstname,
+    contactlastname,
+    contactphone,
+    timezone,
+    title,
+    descriptionHeading,
+    description,
+  } = inviteObject.event;
   const appleCal = new datebook.ICalendar(config);
   const alarm1Time = new Date(
     moment(config.start).subtract(1, "days").format()
@@ -360,9 +370,8 @@ function getCalendarApple(config) {
   const alarm1 = {
     action: "DISPLAY",
     trigger: alarm1Time,
-    description: "The first alarm description",
-    summary: "The first alarm summary",
-    summary: "a quick summary",
+    description: title,
+    summary: `${descriptionHeading.toUpperCase()}\n\n${description}`,
     duration: {
       after: true,
       minutes: 3,
@@ -370,22 +379,15 @@ function getCalendarApple(config) {
   };
   const alarm2 = {
     action: "DISPLAY",
-    description: "The second alarm description",
-    summary: "The second alarm summary",
     trigger: alarm2Time,
+    description: title,
+    summary: `${descriptionHeading.toUpperCase()}\n\n${description}`,
     duration: {
       after: true,
       minutes: 3,
     },
   };
 
-  const {
-    contactemail,
-    contactfirstname,
-    contactlastname,
-    contactphone,
-    timezone,
-  } = inviteObject.event;
   let contactName = contactlastname
     ? `${contactfirstname} ${contactlastname}`
     : `${contactfirstname}`;
@@ -436,6 +438,16 @@ function getCalendarGoogle(config) {
 }
 
 function getCalendarIcal(config) {
+  const {
+    contactemail,
+    contactfirstname,
+    contactlastname,
+    contactphone,
+    timezone,
+    title,
+    descriptionHeading,
+    description,
+  } = inviteObject.event;
   const iCal = new datebook.ICalendar(config);
   const alarm1Time = new Date(
     moment(config.start).subtract(1, "days").format()
@@ -446,9 +458,8 @@ function getCalendarIcal(config) {
   const alarm1 = {
     action: "DISPLAY",
     trigger: alarm1Time,
-    description: "The first alarm description",
-    summary: "The first alarm summary",
-    summary: "a quick summary",
+    description: title,
+    summary: `${descriptionHeading.toUpperCase()}\n\n${description}`,
     duration: {
       after: true,
       minutes: 3,
@@ -456,22 +467,15 @@ function getCalendarIcal(config) {
   };
   const alarm2 = {
     action: "DISPLAY",
-    description: "The second alarm description",
-    summary: "The second alarm summary",
     trigger: alarm2Time,
+    description: title,
+    summary: `${descriptionHeading.toUpperCase()}\n\n${description}`,
     duration: {
       after: true,
       minutes: 3,
     },
   };
 
-  const {
-    contactemail,
-    contactfirstname,
-    contactlastname,
-    contactphone,
-    timezone,
-  } = inviteObject.event;
   let contactName = contactlastname
     ? `${contactfirstname} ${contactlastname}`
     : `${contactfirstname}`;
