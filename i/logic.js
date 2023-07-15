@@ -388,24 +388,18 @@ function getCalendarApple(config) {
     },
   };
 
-  let contactName = contactlastname
+  const contactName = contactlastname
     ? `${contactfirstname} ${contactlastname}`
     : `${contactfirstname}`;
-  let contactInfo = "";
-  if (contactphone && contactphone) {
-    contactInfo = `${contactphone}\, ${contactemail}`;
-  } else if (contactphone) {
-    contactInfo = contactphone;
-  } else if (contactemail) {
-    contactInfo = contactemail;
-  }
 
-  let eventContact = `${contactName}\, ${contactInfo}`;
+  const eventContact = contactphone ? `${contactName}\, ${contactphone}` : null;
+
   const eventOrganizer = contactemail
     ? `CN=${contactName}:MAILTO:${contactemail}`
     : null;
+
   let appleCalContent;
-  if (eventOrganizer) {
+  if (eventContact && eventOrganizer) {
     appleCalContent = appleCal
       .addAlarm(alarm1)
       .addAlarm(alarm2)
@@ -413,12 +407,18 @@ function getCalendarApple(config) {
       .addProperty("CONTACT", eventContact)
       .addProperty("ORGANIZER", eventOrganizer)
       .render();
-  } else {
+  } else if (eventContact) {
     appleCalContent = appleCal
       .addAlarm(alarm1)
       .addAlarm(alarm2)
       .addProperty("TZID", timezone)
       .addProperty("CONTACT", eventContact)
+      .render();
+  } else {
+    appleCalContent = appleCal
+      .addAlarm(alarm1)
+      .addAlarm(alarm2)
+      .addProperty("TZID", timezone)
       .render();
   }
 
@@ -476,23 +476,18 @@ function getCalendarIcal(config) {
     },
   };
 
-  let contactName = contactlastname
+  const contactName = contactlastname
     ? `${contactfirstname} ${contactlastname}`
     : `${contactfirstname}`;
-  let contactInfo = "";
-  if (contactphone && contactphone) {
-    contactInfo = `${contactphone}\, ${contactemail}`;
-  } else if (contactphone) {
-    contactInfo = contactphone;
-  } else if (contactemail) {
-    contactInfo = contactemail;
-  }
-  let eventContact = `${contactName}\, ${contactInfo}`;
+
+  const eventContact = contactphone ? `${contactName}\, ${contactphone}` : null;
+
   const eventOrganizer = contactemail
     ? `CN=${contactName}:MAILTO:${contactemail}`
     : null;
+
   let iCalContent;
-  if (eventOrganizer) {
+  if (eventContact && eventOrganizer) {
     iCalContent = iCal
       .addAlarm(alarm1)
       .addAlarm(alarm2)
@@ -500,12 +495,18 @@ function getCalendarIcal(config) {
       .addProperty("CONTACT", eventContact)
       .addProperty("ORGANIZER", eventOrganizer)
       .render();
-  } else {
+  } else if (eventContact) {
     iCalContent = iCal
       .addAlarm(alarm1)
       .addAlarm(alarm2)
       .addProperty("TZID", timezone)
       .addProperty("CONTACT", eventContact)
+      .render();
+  } else {
+    iCalContent = iCal
+      .addAlarm(alarm1)
+      .addAlarm(alarm2)
+      .addProperty("TZID", timezone)
       .render();
   }
 
