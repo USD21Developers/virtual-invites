@@ -203,9 +203,9 @@ async function eventDetails() {
       meetingDetailsContainer.classList.add("d-none");
     }
     const qrCodeObject = await populateQrCode();
-    const url = qrCodeObject._value;
+    /* const url = qrCodeObject._value;
     const canvas = document.querySelector("#qr");
-    canvas.addEventListener("click", () => onQRCodeClick(url));
+    canvas.addEventListener("click", () => onQRCodeClick(url)); */
   }
 }
 
