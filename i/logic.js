@@ -378,11 +378,48 @@ function getCalendarApple(config) {
       minutes: 3,
     },
   };
-  const appleCalContent = appleCal
-    .addAlarm(alarm1)
-    .addAlarm(alarm2)
-    .addProperty("TZID", inviteObject.event.timezone)
-    .render();
+
+  const {
+    contactemail,
+    contactfirstname,
+    contactlastname,
+    contactphone,
+    timezone,
+  } = inviteObject.event;
+  let contactName = contactlastname
+    ? `${contactfirstname} ${contactlastname}`
+    : `${contactfirstname}`;
+  let contactInfo = "";
+  if (contactphone && contactphone) {
+    contactInfo = `${contactphone}\, ${contactemail}`;
+  } else if (contactphone) {
+    contactInfo = contactphone;
+  } else if (contactemail) {
+    contactInfo = contactemail;
+  }
+
+  let eventContact = `${contactName}\, ${contactInfo}`;
+  const eventOrganizer = contactemail
+    ? `CN=${contactName}:MAILTO:${contactemail}`
+    : null;
+  let appleCalContent;
+  if (eventOrganizer) {
+    appleCalContent = appleCal
+      .addAlarm(alarm1)
+      .addAlarm(alarm2)
+      .addProperty("TZID", timezone)
+      .addProperty("CONTACT", eventContact)
+      .addProperty("ORGANIZER", eventOrganizer)
+      .render();
+  } else {
+    appleCalContent = appleCal
+      .addAlarm(alarm1)
+      .addAlarm(alarm2)
+      .addProperty("TZID", timezone)
+      .addProperty("CONTACT", eventContact)
+      .render();
+  }
+
   const appleCalLink = document.createElement("a");
   const appleCalFile = new Blob([appleCalContent], {
     type: "text/calendar",
@@ -427,11 +464,47 @@ function getCalendarIcal(config) {
       minutes: 3,
     },
   };
-  const iCalContent = iCal
-    .addAlarm(alarm1)
-    .addAlarm(alarm2)
-    .addProperty("TZID", inviteObject.event.timezone)
-    .render();
+
+  const {
+    contactemail,
+    contactfirstname,
+    contactlastname,
+    contactphone,
+    timezone,
+  } = inviteObject.event;
+  let contactName = contactlastname
+    ? `${contactfirstname} ${contactlastname}`
+    : `${contactfirstname}`;
+  let contactInfo = "";
+  if (contactphone && contactphone) {
+    contactInfo = `${contactphone}\, ${contactemail}`;
+  } else if (contactphone) {
+    contactInfo = contactphone;
+  } else if (contactemail) {
+    contactInfo = contactemail;
+  }
+  let eventContact = `${contactName}\, ${contactInfo}`;
+  const eventOrganizer = contactemail
+    ? `CN=${contactName}:MAILTO:${contactemail}`
+    : null;
+  let iCalContent;
+  if (eventOrganizer) {
+    iCalContent = iCal
+      .addAlarm(alarm1)
+      .addAlarm(alarm2)
+      .addProperty("TZID", timezone)
+      .addProperty("CONTACT", eventContact)
+      .addProperty("ORGANIZER", eventOrganizer)
+      .render();
+  } else {
+    iCalContent = iCal
+      .addAlarm(alarm1)
+      .addAlarm(alarm2)
+      .addProperty("TZID", timezone)
+      .addProperty("CONTACT", eventContact)
+      .render();
+  }
+
   const iCalLink = document.createElement("a");
   const iCalFile = new Blob([iCalContent], { type: "text/calendar" });
   iCalLink.href = URL.createObjectURL(iCalFile);
