@@ -677,9 +677,11 @@ async function onSubmitButtonClick(e) {
         return showError(msg, "#sendto_sms", msgInline);
       }
 
-      await saveAndSync(sendVia);
+      saveAndSync(sendVia);
 
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
+
+      btnSendInvite.click();
 
       showForwardingMessage(sendVia);
 
@@ -714,6 +716,8 @@ async function onSubmitButtonClick(e) {
         "href",
         `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`
       );
+
+      btnSendInvite.click();
 
       showForwardingMessage(sendVia);
 
