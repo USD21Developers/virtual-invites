@@ -681,7 +681,7 @@ async function onSubmitButtonClick(e) {
 
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
 
-      btnSendInvite.click();
+      // btnSendInvite.click();
       showForwardingMessage(sendVia);
 
       setTimeout(() => {
@@ -715,7 +715,7 @@ async function onSubmitButtonClick(e) {
         `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`
       );
 
-      btnSendInvite.click();
+      // btnSendInvite.click();
       showForwardingMessage(sendVia);
 
       setTimeout(() => {
