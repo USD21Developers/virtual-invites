@@ -682,14 +682,12 @@ async function onSubmitButtonClick(e) {
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
 
       btnSendInvite.click();
-
       showForwardingMessage(sendVia);
 
-      globalShowPageSpinner();
       setTimeout(() => {
         globalHidePageSpinner();
         onAfterSubmitted(sendVia);
-      }, 2500);
+      }, 2000);
 
       break;
     case "email":
@@ -718,14 +716,12 @@ async function onSubmitButtonClick(e) {
       );
 
       btnSendInvite.click();
-
       showForwardingMessage(sendVia);
 
-      globalShowPageSpinner();
       setTimeout(() => {
         globalHidePageSpinner();
         onAfterSubmitted(sendVia);
-      }, 2500);
+      }, 2000);
 
       break;
     case "otherapps":
@@ -746,7 +742,7 @@ async function onSubmitButtonClick(e) {
           setTimeout(() => {
             globalHidePageSpinner();
             onAfterSubmitted(sendVia);
-          }, 1000);
+          }, 2000);
         });
       } catch (err) {
         console.error(err);
@@ -761,7 +757,7 @@ async function onSubmitButtonClick(e) {
       setTimeout(() => {
         globalHidePageSpinner();
         onAfterSubmitted(sendVia);
-      }, 1000);
+      }, 2000);
   }
 }
 

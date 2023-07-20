@@ -574,6 +574,20 @@ async function getInvite() {
   });
 }
 
+function personalizeGreeting() {
+  const { event, recipient, user } = inviteObject;
+
+  if (event && user && recipient) {
+    populateGreetingParagraph1();
+  } else if (event && user) {
+    console.log("Only can show event and user");
+  } else if (event) {
+    console.log("Only can show event");
+  } else {
+    console.log("Can't show invite at all");
+  }
+}
+
 function renderInvite(invite) {
   const { event, user, recipient } = invite;
   const eventTitleEl = document.querySelector("#eventTitle");
@@ -1122,7 +1136,7 @@ async function init() {
   attachListeners();
   await populateContent();
   await getInvite().catch((err) => console.error(err));
-  populateGreetingParagraph1();
+  personalizeGreeting();
   populateHeadlineAboutEvent();
   populateEventDescription();
   populateQuestionsSection();
