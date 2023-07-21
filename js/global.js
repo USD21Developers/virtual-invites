@@ -64,6 +64,7 @@ var hidden, visibilityChange;
   showMaterialIcons
   showModal
   showToast
+  sleep
   spacify
   updateFollowActivity
   validateEmail
@@ -1362,6 +1363,14 @@ function showToast(
       }, duration);
     }
   }
+}
+
+function sleep(milliseconds) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve();
+    }, milliseconds);
+  });
 }
 
 function spacify(text) {

@@ -683,6 +683,8 @@ async function onSubmitButtonClick(e) {
 
       showForwardingMessage(sendVia);
 
+      await sleep(2000);
+
       setTimeout(() => {
         globalHidePageSpinner();
         onAfterSubmitted(sendVia);
@@ -715,6 +717,8 @@ async function onSubmitButtonClick(e) {
       );
 
       showForwardingMessage(sendVia);
+
+      await sleep(2000);
 
       setTimeout(() => {
         globalHidePageSpinner();
