@@ -575,16 +575,19 @@ async function getInvite() {
 }
 
 function personalizeGreeting() {
-  const { event, recipient, user } = inviteObject;
+  const { event, user, recipient } = inviteObject;
 
   if (event && user && recipient) {
     populateGreetingParagraph1();
   } else if (event && user) {
-    console.log("Only can show event and user");
+    console.warn("WARNING:  RECIPIENT IS UNKNOWN.");
+    populateGreetingParagraph1UnknownRecipient();
   } else if (event) {
-    console.log("Only can show event");
+    console.warn("WARNING:  SENDER AND RECIPIENT ARE UNKNOWN.");
+    populateGreetingParagraph1UnknownUser();
   } else {
-    console.log("Can't show invite at all");
+    // Just show a spinner
+    console.error("ERROR:  EVENT IS UNKNOWN. CANNOT DISPLAY ANYTHING.");
   }
 }
 
@@ -933,6 +936,197 @@ function populateGreetingParagraph1() {
   text = text.replaceAll("{RECIPIENT-NAME}", recipientname);
   text = text.replaceAll("{SENDER-FIRST-NAME}", senderFirstName);
   text = text.replaceAll("{INVITED-DATE}", invitedDate);
+  text = canUseTitleCase
+    ? text.replaceAll("{EVENT-TITLE}", eventTitle.toTitleCase())
+    : text.replaceAll("{EVENT-TITLE}", eventTitle);
+  text = text.replaceAll(
+    "{EVENT-START-DATE}",
+    Intl.DateTimeFormat(recipientDateTimePrefs.locale, {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+    }).format(new Date(eventStartDateTime))
+  );
+  text = text.replaceAll(
+    "{EVENT-START-TIME}",
+    Intl.DateTimeFormat(recipientDateTimePrefs.locale, {
+      timeZone: recipientDateTimePrefs.timeZone,
+      hour: "numeric",
+      minute: "numeric",
+    }).format(new Date(eventStartDateTime))
+  );
+
+  defaultGreetingParagraph1El.innerHTML = text;
+}
+
+function populateGreetingParagraph1UnknownRecipient() {
+  const defaultGreetingParagraph1El = document.querySelector(
+    "#defaultGreetingParagraph1"
+  );
+  const {
+    type: eventType,
+    title: eventTitle,
+    lang: eventLang,
+    frequency,
+    durationInHours,
+    startdate,
+    multidaybegindate,
+    multidayenddate,
+    timezone: eventTimeZone,
+  } = inviteObject.event;
+  const { firstname: senderFirstName, lastname: senderLastname } =
+    inviteObject.user;
+  const recipientDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
+  const isRecurringEvent = frequency === "once" ? false : true;
+  const isMultiDay = multidaybegindate ? true : false;
+  let eventStartDateTime;
+  let eventEndDateTime;
+
+  if (isRecurringEvent) {
+    eventStartDateTime = moment.tz(startdate, eventTimeZone).format();
+    eventEndDateTime = moment
+      .tz(eventStartDateTime, eventTimeZone)
+      .add(durationInHours, "hours")
+      .format();
+    const firstOccurrence = {
+      date: moment(eventStartDateTime).format("YYYY-MM-DD"),
+      time: moment(eventStartDateTime).format("HH:mm"),
+    };
+    const nextOccurrenceDate = getNextRecurringWeekday(
+      firstOccurrence.date,
+      firstOccurrence.time
+    );
+    const nextOccurrenceStart = moment
+      .tz(`${nextOccurrenceDate} ${firstOccurrence.time}`, eventTimeZone)
+      .format();
+    const nextOccurrenceEnd = moment(nextOccurrenceStart)
+      .add(durationInHours, "hours")
+      .format();
+  } else if (!isMultiDay) {
+    eventStartDateTime = moment.tz(startdate, eventTimeZone).format();
+    eventEndDateTime = moment(eventStartDateTime)
+      .add(durationInHours, "hours")
+      .format();
+  } else if (isMultiDay) {
+    eventStartDateTime = moment.tz(multidaybegindate, eventTimeZone).format();
+    eventEndDateTime = moment.tz(multidayenddate, eventTimeZone).format();
+  }
+
+  let text = "";
+
+  if (eventType === "bible talk") {
+    text = getPhrase(
+      "default-greeting-paragraph-1-bible-talk-unknown-recipient"
+    );
+  } else if (eventType === "church") {
+    text = getPhrase("default-greeting-paragraph-1-church-unknown-recipient");
+  } else if (eventType === "other") {
+    text = getPhrase("default-greeting-paragraph-1-other-unknown-recipient");
+  }
+
+  let canUseTitleCase = false;
+
+  if (text.includes("{EVENT-TITLE}") && eventLang.substring(0, 2) === "en") {
+    canUseTitleCase = true;
+  }
+
+  text = text.replaceAll("{SENDER-FIRST-NAME}", senderFirstName);
+  text = canUseTitleCase
+    ? text.replaceAll("{EVENT-TITLE}", eventTitle.toTitleCase())
+    : text.replaceAll("{EVENT-TITLE}", eventTitle);
+  text = text.replaceAll(
+    "{EVENT-START-DATE}",
+    Intl.DateTimeFormat(recipientDateTimePrefs.locale, {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+    }).format(new Date(eventStartDateTime))
+  );
+  text = text.replaceAll(
+    "{EVENT-START-TIME}",
+    Intl.DateTimeFormat(recipientDateTimePrefs.locale, {
+      timeZone: recipientDateTimePrefs.timeZone,
+      hour: "numeric",
+      minute: "numeric",
+    }).format(new Date(eventStartDateTime))
+  );
+
+  defaultGreetingParagraph1El.innerHTML = text;
+}
+
+function populateGreetingParagraph1UnknownUser() {
+  const defaultGreetingParagraph1El = document.querySelector(
+    "#defaultGreetingParagraph1"
+  );
+  const {
+    type: eventType,
+    title: eventTitle,
+    lang: eventLang,
+    frequency,
+    durationInHours,
+    startdate,
+    multidaybegindate,
+    multidayenddate,
+    timezone: eventTimeZone,
+  } = inviteObject.event;
+  const recipientDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
+  const isRecurringEvent = frequency === "once" ? false : true;
+  const isMultiDay = multidaybegindate ? true : false;
+  let eventStartDateTime;
+  let eventEndDateTime;
+
+  if (isRecurringEvent) {
+    eventStartDateTime = moment.tz(startdate, eventTimeZone).format();
+    eventEndDateTime = moment
+      .tz(eventStartDateTime, eventTimeZone)
+      .add(durationInHours, "hours")
+      .format();
+    const firstOccurrence = {
+      date: moment(eventStartDateTime).format("YYYY-MM-DD"),
+      time: moment(eventStartDateTime).format("HH:mm"),
+    };
+    const nextOccurrenceDate = getNextRecurringWeekday(
+      firstOccurrence.date,
+      firstOccurrence.time
+    );
+    const nextOccurrenceStart = moment
+      .tz(`${nextOccurrenceDate} ${firstOccurrence.time}`, eventTimeZone)
+      .format();
+    const nextOccurrenceEnd = moment(nextOccurrenceStart)
+      .add(durationInHours, "hours")
+      .format();
+  } else if (!isMultiDay) {
+    eventStartDateTime = moment.tz(startdate, eventTimeZone).format();
+    eventEndDateTime = moment(eventStartDateTime)
+      .add(durationInHours, "hours")
+      .format();
+  } else if (isMultiDay) {
+    eventStartDateTime = moment.tz(multidaybegindate, eventTimeZone).format();
+    eventEndDateTime = moment.tz(multidayenddate, eventTimeZone).format();
+  }
+
+  let text = "";
+
+  if (eventType === "bible talk") {
+    text = getPhrase(
+      "default-greeting-paragraph-1-bible-talk-unknown-sender-unknown-recipient"
+    );
+  } else if (eventType === "church") {
+    text = getPhrase(
+      "default-greeting-paragraph-1-church-unknown-sender-unknown-recipient"
+    );
+  } else if (eventType === "other") {
+    text = getPhrase(
+      "default-greeting-paragraph-1-other-unknown-sender-unknown-recipient"
+    );
+  }
+
+  let canUseTitleCase = false;
+
+  if (text.includes("{EVENT-TITLE}") && eventLang.substring(0, 2) === "en") {
+    canUseTitleCase = true;
+  }
+
   text = canUseTitleCase
     ? text.replaceAll("{EVENT-TITLE}", eventTitle.toTitleCase())
     : text.replaceAll("{EVENT-TITLE}", eventTitle);

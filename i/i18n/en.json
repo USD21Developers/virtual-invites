@@ -55,8 +55,8 @@
     },
     {
       "key": "default-greeting-paragraph-1-bible-talk-unknown-sender-unknown-recipient",
-      "original": "Hi! I'm glad that I could invite you to Bible Talk. I'm looking forward to joining you there {EVENT-START-DATE} at {EVENT-START-TIME}.",
-      "translated": "Hi! I'm glad that I could invite you to Bible Talk. I'm looking forward to joining you there {EVENT-START-DATE} at {EVENT-START-TIME}."
+      "original": "Hi again! I'm glad that I could invite you to Bible Talk. I'm looking forward to joining you there {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi again! I'm glad that I could invite you to Bible Talk. I'm looking forward to joining you there {EVENT-START-DATE} at {EVENT-START-TIME}."
     },
     {
       "key": "default-greeting-paragraph-1-church",
@@ -70,8 +70,8 @@
     },
     {
       "key": "default-greeting-paragraph-1-church-unknown-sender-unknown-recipient",
-      "original": "Hi! I'm glad that I could invite you to church. I'm looking forward to joining you there {EVENT-START-DATE} at {EVENT-START-TIME}.",
-      "translated": "Hi! I'm glad that I could invite you to church. I'm looking forward to joining you there {EVENT-START-DATE} at {EVENT-START-TIME}."
+      "original": "Hi again! I'm glad that I could invite you to church. I'm looking forward to joining you there {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi again! I'm glad that I could invite you to church. I'm looking forward to joining you there {EVENT-START-DATE} at {EVENT-START-TIME}."
     },
     {
       "key": "default-greeting-paragraph-1-other",
@@ -85,8 +85,8 @@
     },
     {
       "key": "default-greeting-paragraph-1-other-unknown-sender-unknown-recipient",
-      "original": "Hi! I'm glad that I could invite you to {EVENT-TITLE}. I'm looking forward to joining you there {EVENT-START-DATE} at {EVENT-START-TIME}.",
-      "translated": "Hi! I'm glad that I could invite you to {EVENT-TITLE}. I'm looking forward to joining you there {EVENT-START-DATE} at {EVENT-START-TIME}."
+      "original": "Hi again! I'm glad that I could invite you to {EVENT-TITLE}. I'm looking forward to joining you there {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi again! I'm glad that I could invite you to {EVENT-TITLE}. I'm looking forward to joining you there {EVENT-START-DATE} at {EVENT-START-TIME}."
     },
     {
       "key": "default-greeting-paragraph-2",
