@@ -1366,11 +1366,7 @@ function showToast(
 }
 
 function sleep(milliseconds) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, milliseconds);
-  });
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
 function spacify(text) {
