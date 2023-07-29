@@ -519,7 +519,7 @@ function getCalendarIcal(config) {
 }
 
 async function getInvite() {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     const hash = window.location.hash;
     let inviteParts = hash.split("/") || null;
     if (!inviteParts) {
@@ -535,6 +535,24 @@ async function getInvite() {
     let eventid = Number(inviteParts[1]) || null;
     let userid = Number(inviteParts[2]) || null;
     let recipientid = inviteParts[3] || null;
+    const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
+    const timezone = userDateTimePrefs.timeZone || "";
+    const emailHtml = await fetch("./sender-notification-email.html").then(
+      (res) => res.text()
+    );
+    const emailPhrases = {
+      "email-subject-viewed-invite": getPhrase("email-subject-viewed-invite"),
+      "email-recipient-viewed-your-invite": getPhrase(
+        "email-recipient-viewed-your-invite"
+      ),
+      "email-event-label": getPhrase("email-event-label"),
+      "email-date-sent-label": getPhrase("email-date-sent-label"),
+      "email-timezone": getPhrase("email-timezone"),
+      "email-follow-up-link-text": getPhrase("email-follow-up-link-text"),
+      "email-about-app-headline": getPhrase("email-about-app-headline"),
+      "email-unsubscribe": getPhrase("email-unsubscribe"),
+      "email-message-id-text": getPhrase("email-message-id-text"),
+    };
 
     if (!eventid) return reject();
 
@@ -549,6 +567,9 @@ async function getInvite() {
         eventid: eventid,
         userid: userid,
         recipientid: recipientid,
+        timezone: timezone,
+        emailHtml: emailHtml,
+        emailPhrases: emailPhrases,
       }),
       headers: new Headers({
         "Content-Type": "application/json",
