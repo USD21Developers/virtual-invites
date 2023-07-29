@@ -172,6 +172,51 @@
       "key": "eventExpired",
       "original": "This event has passed.",
       "translated": "This event has passed."
+    },
+    {
+      "key": "email-subject-viewed-invite",
+      "original": "{RECIPIENT-NAME} viewed your invite to {EVENT-TITLE}",
+      "translated": "{RECIPIENT-NAME} viewed your invite to {EVENT-TITLE}"
+    },
+    {
+      "key": "email-recipient-viewed-your-invite",
+      "original": "{RECIPIENT-NAME} viewed your invite:",
+      "translated": "{RECIPIENT-NAME} viewed your invite:"
+    },
+    {
+      "key": "email-event-label",
+      "original": "Event:",
+      "translated": "Event:"
+    },
+    {
+      "key": "email-date-sent-label",
+      "original": "Sent:",
+      "translated": "Sent:"
+    },
+    {
+      "key": "email-timezone",
+      "original": "time zone",
+      "translated": "time zone"
+    },
+    {
+      "key": "email-follow-up-link-text",
+      "original": "Follow up with {RECIPIENT-NAME}",
+      "translated": "Follow up with {RECIPIENT-NAME}"
+    },
+    {
+      "key": "email-about-app-headline",
+      "original": "About the Invites App",
+      "translated": "About the Invites App"
+    },
+    {
+      "key": "email-unsubscribe",
+      "original": "Unsubscribe",
+      "translated": "Unsubscribe"
+    },
+    {
+      "key": "email-message-id-text",
+      "original": "Message ID:",
+      "translated": "Message ID:"
     }
   ],
 
