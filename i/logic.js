@@ -547,6 +547,7 @@ async function getInvite() {
       ),
       "email-event-label": getPhrase("email-event-label"),
       "email-date-sent-label": getPhrase("email-date-sent-label"),
+      "email-date-viewed-label": getPhrase("email-date-viewed-label"),
       "email-timezone": getPhrase("email-timezone"),
       "email-follow-up-link-text": getPhrase("email-follow-up-link-text"),
       "email-about-app-headline": getPhrase("email-about-app-headline"),

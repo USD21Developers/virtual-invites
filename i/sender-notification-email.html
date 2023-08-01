@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sender Notification E-mail Template</title>
+    <title></title>
   </head>
   <body id="invitesemail">
     <style type="text/css">
@@ -64,12 +64,11 @@
 
     <br />
 
-    <p align="center" data-i18n="summary">
+    <p align="center">
       <font
         face="arial, sans-serif"
         data-i18n="email-recipient-viewed-your-invite"
       >
-        <b data-i18n="email-recipient-name">John</b> viewed your invite:
       </font>
     </p>
 
@@ -84,20 +83,9 @@
             </font>
           </td>
           <td valign="top">
-            <font
-              face="arial, sans-serif"
-              size="-1"
-              data-i18n="email-event-title"
-            >
-              Bible Talk
-            </font>
+            <font face="arial, sans-serif" size="-1" data-event="title"> </font>
             <br />
-            <font
-              face="arial, sans-serif"
-              size="-2"
-              data-i18n="email-event-datetime"
-            >
-              Fridays @ 7:30 PM
+            <font face="arial, sans-serif" size="-2" data-var="eventDateTime">
             </font>
           </td>
         </tr>
@@ -109,17 +97,12 @@
             </font>
           </td>
           <td valign="top">
-            <font
-              face="arial, sans-serif"
-              size="-1"
-              data-i18n="email-date-sent"
-            >
-              April 10, 2023 at 5:18 PM
+            <font face="arial, sans-serif" size="-1" data-var="dateTimeSent">
             </font>
             <br />
             <font face="arial, sans-serif" size="-2" color="#bbbbbb">
-              <span data-i18n="email-timezone-sent">America/Phoenix</span>
-              <span data-18n="email-timezone">time zone</span>
+              <span data-var="timezone"></span>
+              <span data-i18n="email-timezone"></span>
             </font>
           </td>
         </tr>
@@ -127,21 +110,16 @@
         <tr>
           <td valign="top" align="right">
             <font face="arial, sans-serif" size="-1">
-              <b data-i18n="email-date-viewed-label"> Viewed: </b>
+              <b data-i18n="email-date-viewed-label"></b>
             </font>
           </td>
           <td valign="top">
-            <font
-              face="arial, sans-serif"
-              size="-1"
-              data-i18n="email-date-viewed"
-            >
-              April 10, 2023 at 5:19 PM
+            <font face="arial, sans-serif" size="-1" data-var="dateTimeNow">
             </font>
             <br />
             <font face="arial, sans-serif" size="-2" color="#bbbbbb">
-              <span data-i18n="email-timezone-viewed">America/Phoenix</span>
-              <span data-18n="email-timezone">time zone</span>
+              <span data-var="timezone"></span>
+              <span data-i18n="email-timezone"></span>
             </font>
           </td>
         </tr>
@@ -157,8 +135,7 @@
           data-i18n="email-follow-up-link-text"
           class="invites-link"
           style="text-decoration: underline; color: #504390 !important"
-          >Follow up with John</a
-        >
+        ></a>
       </font>
     </h3>
 
@@ -178,8 +155,7 @@
           data-i18n="email-about-app-headline"
           class="invites-link"
           style="color: #504390; text-decoration: underline"
-          >About the Invites App</a
-        >
+        ></a>
       </font>
     </p>
 
@@ -195,18 +171,15 @@
           href="https://invites.mobi/notifications/unsubscribe/"
           data-i18n="email-unsubscribe"
           style="color: #cccccc; text-decoration: underline"
-          >Unsubscribe</a
-        >
+        ></a>
       </font>
     </p>
 
     <p align="center">
       <font face="arial, sans-serif" size="-2" color="#eeeeee">
         <small>
-          <span data-i18n="email-message-id-text">Message ID:</span>
-          <span data-18n="email-message-id">
-            367e2fab-ec4a-410f-a6bd-a85f119c68d5
-          </span>
+          <span data-i18n="email-message-id-text"></span>
+          <span data-var="messageID"> </span>
         </small>
       </font>
     </p>
