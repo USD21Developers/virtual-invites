@@ -194,6 +194,11 @@
       "translated": "Sent:"
     },
     {
+      "key": "email-date-viewed-label",
+      "original": "Viewed:",
+      "translated": "Viewed:"
+    },
+    {
       "key": "email-timezone",
       "original": "time zone",
       "translated": "time zone"
