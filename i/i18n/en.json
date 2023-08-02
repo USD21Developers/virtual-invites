@@ -235,13 +235,13 @@
     },
     {
       "key": "rsvp-paragraph-1",
-      "original": "Before traveling to this event in-person, I recommend that you RSVP (below) so that we can expect you.",
-      "translated": "Before traveling to this event in-person, I recommend that you RSVP (below) so that we can expect you."
+      "original": "If you plan on attending, I recommend that you RSVP (below) so that we can expect you.",
+      "translated": "If you plan on attending, I recommend that you RSVP (below) so that we can expect you."
     },
     {
       "key": "rsvp-paragraph-2",
-      "original": "Also, you may want to confirm a second time, just before you leave, to make sure that everything is still on schedule and that there have been no last-minute changes.",
-      "translated": "Also, you may want to confirm a second time, just before you leave, to make sure that everything is still on schedule and that there have been no last-minute changes."
+      "original": "If you are traveling in person, you may also want to confirm a second time just before you leave, to make sure that everything is still on schedule and that there have been no last-minute changes.",
+      "translated": "If you are traveling in person, you may also want to confirm a second time just before you leave, to make sure that everything is still on schedule and that there have been no last-minute changes."
     }
   ],
 
