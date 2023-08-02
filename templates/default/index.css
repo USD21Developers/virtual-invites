@@ -228,6 +228,7 @@ a:hover {
 [data-i18n="headline-about-event"],
 [data-i18n="headline-cant-attend"],
 #headline-about-event,
+#rsvpHeadline,
 #questions_headline {
   color: #2a2d54;
   font-family: Castoro, serif;
@@ -256,4 +257,12 @@ a:hover {
 #actbOptions a:first-child {
   margin-top: -25px;
   padding-top: 40px;
+}
+
+.bold.text-success {
+  font-weight: 400;
+}
+
+#rsvpHeadline {
+  line-height: 1rem;
 }

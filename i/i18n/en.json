@@ -222,6 +222,35 @@
       "key": "email-message-id-text",
       "original": "Message ID:",
       "translated": "Message ID:"
+    },
+    {
+      "key": "headline-rsvp",
+      "original": "RSVP",
+      "translated": "RSVP"
+    },
+    {
+      "key": "recommended",
+      "original": "(recommended)",
+      "translated": "(recommended)"
+    },
+    {
+      "key": "rsvp-paragraph-1",
+      "original": "Before traveling to this event in-person, I recommend that you RSVP (below) so we can expect you.",
+      "translated": "Before traveling to this event in-person, I recommend that you RSVP (below) so we can expect you."
+    },
+    {
+      "key": "rsvp-paragraph-2",
+      "original": "Also, you may want to confirm a second time, just before you leave, to make sure that everything is still on schedule and that there have been no last-minute changes.",
+      "translated": "Also, you may want to confirm a second time, just before you leave, to make sure that everything is still on schedule and that there have been no last-minute changes.",
+      "changes": [
+        {
+          "original": "a second time",
+          "translated": "a second time",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
     }
   ],
 
