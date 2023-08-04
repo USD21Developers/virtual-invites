@@ -10,8 +10,8 @@
   "phrases": [
     {
       "key": "pagetitle",
-      "original": "Recipient",
-      "translated": "Recipient"
+      "original": "{RECIPIENT-NAME}",
+      "translated": "{RECIPIENT-NAME}"
     }
   ],
 

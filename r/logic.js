@@ -25,7 +25,16 @@ function getRecipient() {
       .then((data) => {
         console.log(data);
 
-        resolve();
+        const { recipientname } = data.recipient;
+
+        document.querySelectorAll("[data-i18n='pagetitle']").forEach((item) => {
+          item.innerText = item.innerText.replaceAll(
+            "{RECIPIENT-NAME}",
+            recipientname
+          );
+        });
+
+        resolve(data.recipient);
       });
   });
 }
