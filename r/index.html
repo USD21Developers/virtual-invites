@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="initial-scale=1, shrink-to-fit=no, width=device-width"
+      name="viewport"
+    />
+    <title data-i18n="pagetitle"></title>
+    <script src="../js/enforceaccess.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Oswald:wght@200;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/daemonite-material.css" />
+    <link href="../css/global.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar bg-white sticky-top">
+      <a class="navbar-brand" href="/">
+        <img src="/_assets/img/logo.svg" width="133" height="50" alt="logo" />
+      </a>
+      <div class="align-items-end">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="navdrawer"
+          data-target="#navdrawerDefault"
+          aria-controls="navdrawerDefault"
+          aria-expanded="false"
+          aria-label=""
+          data-i18n-global-aria-label="toggleNavigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+    <div
+      aria-hidden="true"
+      class="navdrawer navdrawer-right navbar-collapse collapse"
+      id="navdrawerDefault"
+      tabindex="-1"
+    >
+      <div class="navdrawer-content">
+        <div class="navdrawer-header">
+          <div class="row">
+            <div class="col-9 d-flex justify-content-start">
+              <a
+                class="navbar-brand px-0"
+                href="../"
+                data-i18n-global="menuHeadline"
+              ></a>
+            </div>
+            <div class="col-3 d-flex justify-content-end align-items-center">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="navdrawer"
+                data-target="#navdrawerDefault"
+                aria-controls="navdrawerDefault"
+                aria-expanded="false"
+                aria-label=""
+                data-i18n-global-aria-label="toggleNavigation"
+              >
+                <span class="material-icons mmaterial-icons-outlined">
+                  close
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <nav class="navdrawer-nav">
+          <a class="nav-item nav-link" href="../">
+            <span class="material-icons mr-3 material-icons-outlined">
+              home
+            </span>
+            <span data-i18n-global="menuHome"></span>
+          </a>
+          <a class="nav-item nav-link" href="../support/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              contact_support
+            </span>
+            <span data-i18n-global="menuSupport"></span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container" id="pageSpinner">
+      <div class="row">
+        <div class="col col-sm-10 offset-sm-1 mt-3 mb-4 text-center">
+          <img
+            src="/_assets/img/spinner.svg"
+            width="200"
+            height="200"
+            style="max-width: 100%"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-none mainContent">
+      <div class="row">
+        <div class="col col-md-6 offset-md-3">
+          <h2
+            class="text-center text-uppercase my-4"
+            data-i18n="pagetitle"
+          ></h2>
+        </div>
+      </div>
+
+      <div id="alert" class="d-none row mb-4">
+        <div class="col col-md-6 offset-md-3">
+          <div
+            class="alert alert-danger border border-danger"
+            role="alert"
+          ></div>
+        </div>
+      </div>
+
+      <div class="snackbar">
+        <div class="snackbar-body"></div>
+      </div>
+    </div>
+
+    <br /><br /><br /><br />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"
+      integrity="sha512-+BMamP0e7wn39JGL8nKAZ3yAQT2dL5oaXWr4ZYlTGkKOaoXM/Yj7c4oy50Ngz5yoUutAG17flueD4F6QpTlPng=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../js/global.js"></script>
+    <script src="../js/sync.js"></script>
+    <script src="logic.js"></script>
+  </body>
+</html>
