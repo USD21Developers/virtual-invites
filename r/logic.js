@@ -17,6 +17,9 @@ function getRecipient() {
     const recipientid = recipientParts[3] || null;
     const notificationToken = recipientParts[4] || null;
     const endpoint = `${getApiHost()}/recipient`;
+
+    // TODO:  validate notification token
+
     const accessToken = await getAccessToken();
 
     fetch(endpoint, {
