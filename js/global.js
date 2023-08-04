@@ -394,7 +394,7 @@ function getAccessToken() {
     const refreshToken = localStorage.getItem("refreshToken") || "";
     if (!refreshToken.length) return reject("refresh token missing");
 
-    const endpoint = `${getAPIHost()}/invites/refresh-token`;
+    const endpoint = `${getApiHost()}/refresh-token`;
 
     fetch(endpoint, {
       mode: "cors",
