@@ -16,6 +16,8 @@ function getRecipient() {
     const userid = Number(recipientParts[2]) || null;
     const recipientid = recipientParts[3] || null;
     const notificationToken = recipientParts[4] || null;
+    const endpoint = `${getApiHost()}/recipient`;
+    const accessToken = await getAccessToken();
 
     fetch(endpoint, {
       mode: "cors",
