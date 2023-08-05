@@ -121,7 +121,11 @@ function attachListeners() {
 }
 
 async function init() {
+  const newUrl = sessionStorage.getItem("redirectOnLogin");
   clearStorage();
+  if (newUrl && newUrl.length) {
+    sessionStorage.setItem("redirectOnLogin", newUrl);
+  }
   await populateContent();
   attachListeners();
   globalHidePageSpinner();
