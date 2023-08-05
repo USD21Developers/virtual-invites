@@ -38,7 +38,7 @@ function getAccessToken() {
       .then((data) => {
         const logoutUrl = `/logout/`;
         const accessScriptEl = document.querySelector("#enforceaccess");
-        if (accessScript) {
+        if (accessScriptEl) {
           if (accessScriptEl.hasAttribute("data-return-here")) {
             const redirectUrl = window.location.href;
             sessionStorage.setItem("redirectOnLogin", redirectUrl);
