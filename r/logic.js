@@ -15,7 +15,6 @@ function getRecipient() {
     const eventid = Number(recipientParts[1]) || null;
     const userid = Number(recipientParts[2]) || null;
     const recipientid = recipientParts[3] || null;
-    const notificationToken = recipientParts[4] || null;
     const endpoint = `${getApiHost()}/recipient`;
 
     // TODO:  validate notification token
@@ -29,7 +28,6 @@ function getRecipient() {
         eventid: eventid,
         userid: userid,
         recipientid: recipientid,
-        notificationToken: notificationToken,
       }),
       headers: new Headers({
         "Content-Type": "application/json",

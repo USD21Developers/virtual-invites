@@ -75,7 +75,18 @@ function onSubmit(e) {
             eventsPromise,
             invitesPromise,
           ]);
-          window.location.href = "../";
+
+          let redirectUrl = "../";
+
+          if (sessionStorage.getItem("redirectOnLogin")) {
+            const newUrl = sessionStorage.getItem("redirectOnLogin");
+            sessionStorage.removeItem("redirectOnLogin");
+            if (newUrl && newUrl.length) {
+              redirectUrl = newUrl;
+            }
+          }
+
+          window.location.href = redirectUrl;
           break;
         default:
           state = "before";

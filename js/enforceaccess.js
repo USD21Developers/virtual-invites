@@ -37,6 +37,13 @@ function getAccessToken() {
       .then((res) => res.json())
       .then((data) => {
         const logoutUrl = `/logout/`;
+        const accessScriptEl = document.querySelector("#enforceaccess");
+        if (accessScript) {
+          if (accessScriptEl.hasAttribute("data-return-here")) {
+            const redirectUrl = window.location.href;
+            sessionStorage.setItem("redirectOnLogin", redirectUrl);
+          }
+        }
         switch (data.msg) {
           case "tokens renewed":
             const { accessToken, refreshToken } = data;
