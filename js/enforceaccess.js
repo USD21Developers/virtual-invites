@@ -1,3 +1,14 @@
+function checkRedirectOnLogin() {
+  const accessScriptEl = document.querySelector("#enforceaccess");
+  if (accessScriptEl) {
+    if (accessScriptEl.hasAttribute("data-return-here")) {
+      const redirectUrl = window.location.href;
+      sessionStorage.setItem("redirectOnLogin", redirectUrl);
+    }
+  }
+  debugger;
+}
+
 function framebuster() {
   const isFramed = top.location === self.location ? false : true;
 
@@ -37,13 +48,6 @@ function getAccessToken() {
       .then((res) => res.json())
       .then((data) => {
         const logoutUrl = `/logout/`;
-        const accessScriptEl = document.querySelector("#enforceaccess");
-        if (accessScriptEl) {
-          if (accessScriptEl.hasAttribute("data-return-here")) {
-            const redirectUrl = window.location.href;
-            sessionStorage.setItem("redirectOnLogin", redirectUrl);
-          }
-        }
         switch (data.msg) {
           case "tokens renewed":
             const { accessToken, refreshToken } = data;
@@ -116,6 +120,7 @@ function verifyRefreshToken() {
   if (!isAuthorized) window.location.href = logoutUrl;
 }
 
+checkRedirectOnLogin();
 framebuster();
 verifyRefreshToken();
 verifyDataKey();
