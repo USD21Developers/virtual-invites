@@ -1,14 +1,3 @@
-function checkRedirectOnLogin() {
-  const accessScriptEl = document.querySelector("#enforceaccess");
-  if (accessScriptEl) {
-    if (accessScriptEl.hasAttribute("data-return-here")) {
-      const redirectUrl = window.location.href;
-      sessionStorage.setItem("redirectOnLogin", redirectUrl);
-    }
-  }
-  debugger;
-}
-
 function framebuster() {
   const isFramed = top.location === self.location ? false : true;
 
@@ -59,6 +48,7 @@ function getAccessToken() {
             resolve(accessToken);
             break;
           default:
+            setRedirectOnLogin();
             window.location.href = logoutUrl;
             break;
         }
@@ -95,11 +85,24 @@ async function isSysadmin() {
   return usertype === "sysadmin" ? true : false;
 }
 
+function setRedirectOnLogin() {
+  const accessScriptEl = document.querySelector("#enforceaccess");
+  if (accessScriptEl) {
+    if (accessScriptEl.hasAttribute("data-return-here")) {
+      const redirectUrl = window.location.href;
+      sessionStorage.setItem("redirectOnLogin", redirectUrl);
+    }
+  }
+}
+
 function verifyDataKey() {
   const logoutUrl = "/logout/";
   const dataKey = localStorage.getItem("datakey") || "";
 
-  if (!dataKey.length) return (window.location.href = logoutUrl);
+  if (!dataKey.length) {
+    setRedirectOnLogin();
+    return (window.location.href = logoutUrl);
+  }
 }
 
 function verifyRefreshToken() {
@@ -107,7 +110,10 @@ function verifyRefreshToken() {
   const refreshToken = localStorage.getItem("refreshToken") || "";
   let isAuthorized = true;
 
-  if (!refreshToken.length) return (window.location.href = logoutUrl);
+  if (!refreshToken.length) {
+    setRedirectOnLogin();
+    return (window.location.href = logoutUrl);
+  }
   try {
     const parsedToken = JSON.parse(atob(refreshToken.split(".")[1]));
     if (Date.now() >= parsedToken.exp * 1000) {
@@ -117,10 +123,12 @@ function verifyRefreshToken() {
     console.error(err);
     isAuthorized = false;
   }
-  if (!isAuthorized) window.location.href = logoutUrl;
+  if (!isAuthorized) {
+    setRedirectOnLogin();
+    window.location.href = logoutUrl;
+  }
 }
 
-checkRedirectOnLogin();
 framebuster();
 verifyRefreshToken();
 verifyDataKey();
