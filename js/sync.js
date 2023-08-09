@@ -256,6 +256,8 @@ function syncInvites() {
           return reject(new Error(errorMessage));
         }
 
+        const interactions = data.interactions;
+
         const invites = data.invites.map(async (invite) => {
           const decryptedInvite = invite;
 
@@ -288,7 +290,9 @@ function syncInvites() {
         // Overwrite invites with response from the server
         Promise.all(invites).then((invites) => {
           localforage.setItem("invites", invites).then(() => {
-            resolve(invites);
+            localforage.setItem("interactions", interactions).then(() => {
+              resolve(invites);
+            });
           });
         });
       })
