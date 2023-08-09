@@ -1,3 +1,5 @@
+let syncedInvites = false;
+
 function getRecipient() {
   return new Promise(async (resolve, reject) => {
     const hash = window.location.hash;
@@ -20,6 +22,7 @@ function getRecipient() {
 
     if (!invites) {
       await syncInvites();
+      syncedInvites = true;
       invites = await localforage.getItem("invites");
     }
 
@@ -31,6 +34,7 @@ function getRecipient() {
     }
 
     syncInvites().then(() => {
+      syncedInvites = true;
       getRecipient();
       return resolve();
     });
@@ -53,6 +57,7 @@ function attachListeners() {
 async function init() {
   await populateContent();
   await getRecipient();
+  if (!syncedInvites) syncInvites();
   attachListeners();
   globalHidePageSpinner();
 }
