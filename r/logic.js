@@ -68,9 +68,9 @@ async function renderRecipient(invite) {
     event = eventsByFollowedUsers.find((item) => item.eventid === eventid);
   }
 
-  const inviteViews = interactions.filter(
-    (item) => item.interactiontype === "viewed invite"
-  );
+  const inviteViews =
+    interactions.filter((item) => item.interactiontype === "viewed invite") ||
+    [];
 
   const eventName = event.title || null;
 
