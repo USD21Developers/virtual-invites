@@ -14,30 +14,24 @@ function getRecipient() {
       return reject(new Error("At least one URL parameter is required"));
     }
 
-    const eventid = Number(recipientParts[1]) || null;
-    const userid = Number(recipientParts[2]) || null;
-    const recipientid = recipientParts[3] || null;
+    const invitationid = recipientParts[1] || null;
 
     let invites = (await localforage.getItem("invites")) || null;
 
-    if (!invites) {
-      await syncInvites();
-      syncedInvites = true;
-      invites = await localforage.getItem("invites");
-    }
+    await syncInvites();
+    syncedInvites = true;
+    invites = await localforage.getItem("invites");
 
-    const invite = invites.find((item) => item.recipient.id === recipientid);
+    const invite = invites.find(
+      (item) => item.invitationid === parseInt(Math.abs(invitationid))
+    );
 
     if (invite) {
       renderRecipient(invite);
       return resolve();
     }
 
-    syncInvites().then(() => {
-      syncedInvites = true;
-      getRecipient();
-      return resolve();
-    });
+    return reject(new Error("invite not found"));
   });
 }
 
@@ -57,7 +51,6 @@ function attachListeners() {
 async function init() {
   await populateContent();
   await getRecipient();
-  if (!syncedInvites) syncInvites();
   attachListeners();
   globalHidePageSpinner();
 }
