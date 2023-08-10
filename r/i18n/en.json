@@ -12,6 +12,31 @@
       "key": "pagetitle",
       "original": "{RECIPIENT-NAME}",
       "translated": "{RECIPIENT-NAME}"
+    },
+    {
+      "key": "dateInvited",
+      "original": "Date invited:",
+      "translated": "Date invited:"
+    },
+    {
+      "key": "invitedFromLocation",
+      "original": "Invited from location:",
+      "translated": "Invited from location:"
+    },
+    {
+      "key": "map",
+      "original": "Map",
+      "translated": "Map"
+    },
+    {
+      "key": "event",
+      "original": "Event:",
+      "translated": "Event:"
+    },
+    {
+      "key": "numTimesViewedInvite",
+      "original": "{RECIPIENT-NAME} has viewed this invite {QUANTITY-VIEWS} times.",
+      "translated": "{RECIPIENT-NAME} has viewed this invite {QUANTITY-VIEWS} times."
     }
   ],
 
