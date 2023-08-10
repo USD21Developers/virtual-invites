@@ -49,7 +49,6 @@ async function renderRecipient(invite) {
   const dateInvitedEl = document.querySelector("#dateInvited");
   const eventNameEl = document.querySelector("#eventName");
   const interactionViewsEl = document.querySelector("#interactionViews");
-  const labelViewsEl = document.querySelector("[data-i18n='label_views']");
   const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
   const userTimezone = userDateTimePrefs.timeZone || "";
   const { locale } = userDateTimePrefs;
@@ -60,17 +59,11 @@ async function renderRecipient(invite) {
   }).format(new Date(utctime));
 
   const events = await localforage.getItem("eventsFromMyInvites");
-  const eventsByFollowedUsers = await localforage.getItem(
-    "eventsByFollowedUsers"
-  );
-  let event = events.find((item) => item.eventid === eventid);
-  if (!event) {
-    event = eventsByFollowedUsers.find((item) => item.eventid === eventid);
-  }
+  const event = events.find((item) => item.eventid === eventid);
 
-  const inviteViews =
-    interactions.filter((item) => item.interactiontype === "viewed invite") ||
-    [];
+  const inviteViews = interactions.filter(
+    (item) => item.interactiontype === "viewed invite"
+  );
 
   const eventName = event.title || null;
 
@@ -79,26 +72,31 @@ async function renderRecipient(invite) {
   });
 
   let inviteViewsHTML = ``;
-  inviteViews.forEach((item) => {
-    const dateText = Intl.DateTimeFormat(locale, {
-      dateStyle: "short",
-      timeStyle: "short",
-      timeZone: userTimezone,
-    }).format(new Date(item.utcdate));
-    inviteViewsHTML += `<div class="mb-2">${dateText}</div>\n`;
-  });
+  if (inviteViews.length === 0) {
+    const phraseNoViews = getPhrase("paragraph_no_views").replaceAll(
+      "{RECIPIENT-NAME}",
+      name
+    );
+    inviteViewsHTML = phraseNoViews;
+  } else {
+    const phraseTotalViews = getPhrase("total_views").replaceAll(
+      "{QUANTITY-VIEWS}",
+      `<span class="inviteViewsQuantity">${inviteViews.length}</span>`
+    );
+    inviteViews.forEach((item) => {
+      const dateText = Intl.DateTimeFormat(locale, {
+        dateStyle: "short",
+        timeStyle: "short",
+        timeZone: userTimezone,
+      }).format(new Date(item.utcdate));
+      inviteViewsHTML += `<div class="mb-2">${dateText}</div>\n`;
+    });
+    inviteViewsHTML = `<details><summary class="mb-2">${phraseTotalViews}</summary>${inviteViewsHTML}</details>`;
+  }
 
   if (eventNameEl && eventName) eventNameEl.innerText = eventName;
   if (dateInvitedEl) dateInvitedEl.innerText = whenInvited;
   if (interactionViewsEl) interactionViewsEl.innerHTML = inviteViewsHTML;
-  if (labelViewsEl) {
-    let labelViewsPhrase = getPhrase("label_views");
-    labelViewsPhrase = labelViewsPhrase.replaceAll(
-      "{QUANTITY-VIEWS}",
-      `${inviteViews.length}`
-    );
-    labelViewsEl.innerHTML = labelViewsPhrase;
-  }
 }
 
 function attachListeners() {

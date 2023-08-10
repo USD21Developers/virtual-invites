@@ -35,8 +35,18 @@
     },
     {
       "key": "label_views",
-      "original": "Invite views ({QUANTITY-VIEWS}):",
-      "translated": "Invite views ({QUANTITY-VIEWS}):"
+      "original": "Invite was viewed:",
+      "translated": "Invite was viewed:"
+    },
+    {
+      "key": "total_views",
+      "original": "{QUANTITY-VIEWS} times",
+      "translated": "{QUANTITY-VIEWS} times"
+    },
+    {
+      "key": "paragraph_no_views",
+      "original": "(No views yet)",
+      "translated": "(No views yet)"
     }
   ],
 
