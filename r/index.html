@@ -25,6 +25,7 @@
     />
     <link rel="stylesheet" href="../css/daemonite-material.css" />
     <link href="../css/global.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
   </head>
   <body>
     <nav class="navbar bg-white sticky-top">
@@ -171,7 +172,7 @@
       </div>
     </div>
 
-    <div class="container d-none mainContent">
+    <div class="container px-3 d-none mainContent">
       <div id="alert" class="d-none row mb-4">
         <div class="col col-md-6 offset-md-3">
           <div
@@ -195,40 +196,47 @@
           <div class="mb-4">
             <table class="table table-striped">
               <tr>
-                <td><strong data-i18n="dateInvited"></strong></td>
-                <td>
+                <td class="pl-2"><strong data-i18n="label_event"></strong></td>
+                <td class="pr-2 text-right">
+                  <div id="eventName"></div>
+                </td>
+              </tr>
+              <tr>
+                <td class="pl-2">
+                  <strong data-i18n="label_dateInvited"></strong>
+                </td>
+                <td class="pr-2 text-nowrap text-right">
                   <div id="dateInvited"></div>
                 </td>
               </tr>
               <tr class="invitedFromLocation">
-                <td><strong data-i18n="invitedFromLocation"></strong></td>
-                <td>
+                <td class="pl-2">
+                  <strong data-i18n="label_invitedFromLocation"></strong>
+                </td>
+                <td class="pr-2 text-right align-middle">
                   <a
                     href="#"
                     id="invitedFromLocation"
                     style="text-decoration: underline"
+                    class="mr-4"
                   >
                     <img
                       src="../_assets/svg/icons/place.svg"
                       width="20"
                       height="20"
-                      style="margin-right: 0.5rem"
+                      style="margin-right: 7px"
                     /><span data-i18n="map"></span>
                   </a>
                 </td>
               </tr>
               <tr>
-                <td><strong data-i18n="event"></strong></td>
-                <td>
-                  <div id="eventName"></div>
+                <td class="pl-2"><strong data-i18n="label_views"></strong></td>
+                <td class="pr-2 text-nowrap text-right">
+                  <div id="interactionViews"></div>
                 </td>
               </tr>
             </table>
           </div>
-
-          <p class="my-4 text-center">
-            <span data-i18n="numTimesViewedInvite"></span>
-          </p>
         </div>
       </div>
 

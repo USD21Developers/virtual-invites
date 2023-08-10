@@ -14,12 +14,17 @@
       "translated": "{RECIPIENT-NAME}"
     },
     {
-      "key": "dateInvited",
+      "key": "label_event",
+      "original": "Event:",
+      "translated": "Event:"
+    },
+    {
+      "key": "label_dateInvited",
       "original": "Date invited:",
       "translated": "Date invited:"
     },
     {
-      "key": "invitedFromLocation",
+      "key": "label_invitedFromLocation",
       "original": "Invited from location:",
       "translated": "Invited from location:"
     },
@@ -29,14 +34,9 @@
       "translated": "Map"
     },
     {
-      "key": "event",
-      "original": "Event:",
-      "translated": "Event:"
-    },
-    {
-      "key": "numTimesViewedInvite",
-      "original": "{RECIPIENT-NAME} has viewed this invite {QUANTITY-VIEWS} times.",
-      "translated": "{RECIPIENT-NAME} has viewed this invite {QUANTITY-VIEWS} times."
+      "key": "label_views",
+      "original": "Invite views ({QUANTITY-VIEWS}):",
+      "translated": "Invite views ({QUANTITY-VIEWS}):"
     }
   ],
 

@@ -48,9 +48,8 @@ async function renderRecipient(invite) {
   const { email, id, name, sms } = recipient;
   const dateInvitedEl = document.querySelector("#dateInvited");
   const eventNameEl = document.querySelector("#eventName");
-  const numTimesViewedInviteEl = document.querySelector(
-    "[data-i18n='numTimesViewedInvite']"
-  );
+  const interactionViewsEl = document.querySelector("#interactionViews");
+  const labelViewsEl = document.querySelector("[data-i18n='label_views']");
   const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
   const userTimezone = userDateTimePrefs.timeZone || "";
   const { locale } = userDateTimePrefs;
@@ -59,16 +58,19 @@ async function renderRecipient(invite) {
     timeStyle: "short",
     timeZone: userTimezone,
   }).format(new Date(utctime));
+
   const events = await localforage.getItem("events");
-  const event = events.filter((item) => item.eventid === eventid);
+  const eventsByFollowedUsers = await localforage.getItem(
+    "eventsByFollowedUsers"
+  );
+  let event = events.find((item) => item.eventid === eventid);
+  if (!event) {
+    event = eventsByFollowedUsers.find((item) => item.eventid === eventid);
+  }
+
   const inviteViews = interactions.filter(
     (item) => item.interactiontype === "viewed invite"
   );
-  let numTimesViewedInviteText = numTimesViewedInviteEl.innerText;
-
-  if (!event.length) {
-    console.error(`Event ${eventid} not found`);
-  }
 
   const eventName = event.title || null;
 
@@ -76,18 +78,27 @@ async function renderRecipient(invite) {
     item.innerText = item.innerText.replaceAll("{RECIPIENT-NAME}", name);
   });
 
-  if (dateInvitedEl) dateInvitedEl.innerText = whenInvited;
-  if (eventNameEl && eventName) eventNameEl.innerText = eventName;
+  let inviteViewsHTML = ``;
+  inviteViews.forEach((item) => {
+    const dateText = Intl.DateTimeFormat(locale, {
+      dateStyle: "short",
+      timeStyle: "short",
+      timeZone: userTimezone,
+    }).format(new Date(item.utcdate));
+    inviteViewsHTML += `<div class="mb-2">${dateText}</div>\n`;
+  });
 
-  numTimesViewedInviteText = numTimesViewedInviteText.replaceAll(
-    "{RECIPIENT-NAME}",
-    name
-  );
-  numTimesViewedInviteText = numTimesViewedInviteText.replaceAll(
-    "{QUANTITY-VIEWS}",
-    inviteViews.length
-  );
-  numTimesViewedInviteEl.innerHTML = numTimesViewedInviteText;
+  if (eventNameEl && eventName) eventNameEl.innerText = eventName;
+  if (dateInvitedEl) dateInvitedEl.innerText = whenInvited;
+  if (interactionViewsEl) interactionViewsEl.innerHTML = inviteViewsHTML;
+  if (labelViewsEl) {
+    let labelViewsPhrase = getPhrase("label_views");
+    labelViewsPhrase = labelViewsPhrase.replaceAll(
+      "{QUANTITY-VIEWS}",
+      `${inviteViews.length}`
+    );
+    labelViewsEl.innerHTML = labelViewsPhrase;
+  }
 }
 
 function attachListeners() {
