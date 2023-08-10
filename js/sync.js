@@ -240,7 +240,7 @@ function syncInvites() {
       keepalive: true,
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(async (data) => {
         const datakey = localStorage.getItem("datakey") || "";
 
         if (!datakey.length) {
@@ -296,9 +296,17 @@ function syncInvites() {
 
         // Overwrite invites with response from the server
         Promise.all(invites).then((invites) => {
-          localforage.setItem("invites", invites).then(() => {
-            resolve(invites);
-          });
+          localforage
+            .setItem("invites", invites)
+            .then(() => {
+              localforage.setItem(
+                "eventsFromMyInvites",
+                data.eventsFromMyInvites
+              );
+            })
+            .then(() => {
+              resolve(invites);
+            });
         });
       })
       .catch((err) => {

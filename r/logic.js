@@ -59,7 +59,7 @@ async function renderRecipient(invite) {
     timeZone: userTimezone,
   }).format(new Date(utctime));
 
-  const events = await localforage.getItem("events");
+  const events = await localforage.getItem("eventsFromMyInvites");
   const eventsByFollowedUsers = await localforage.getItem(
     "eventsByFollowedUsers"
   );
@@ -107,7 +107,6 @@ function attachListeners() {
 
 async function init() {
   await populateContent();
-  await syncEvents();
   await getRecipient();
   attachListeners();
   globalHidePageSpinner();
