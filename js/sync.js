@@ -256,10 +256,17 @@ function syncInvites() {
           return reject(new Error(errorMessage));
         }
 
-        const interactions = data.interactions;
+        // Add interactions
+        const allInteractions = data.interactions;
 
         const invites = data.invites.map(async (invite) => {
           const decryptedInvite = invite;
+          const interactions = allInteractions.filter(
+            (interaction) => interaction.invitationid === invite.invitationid
+          );
+
+          // Attach interactions to invite
+          invite.interactions = interactions;
 
           // Replace SMS encryption object with decrypted string
           if (invite.recipient.sms) {
@@ -290,9 +297,7 @@ function syncInvites() {
         // Overwrite invites with response from the server
         Promise.all(invites).then((invites) => {
           localforage.setItem("invites", invites).then(() => {
-            localforage.setItem("interactions", interactions).then(() => {
-              resolve(invites);
-            });
+            resolve(invites);
           });
         });
       })
