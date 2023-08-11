@@ -100,7 +100,9 @@ async function renderRecipient(invite) {
 }
 
 function attachListeners() {
-  //
+  window.addEventListener("hashchange", () => {
+    window.location.reload();
+  });
 }
 
 async function init() {
