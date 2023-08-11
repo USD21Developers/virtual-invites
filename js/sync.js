@@ -261,9 +261,12 @@ function syncInvites() {
 
         const invites = data.invites.map(async (invite) => {
           const decryptedInvite = invite;
-          const interactions = allInteractions.filter(
-            (interaction) => interaction.invitationid === invite.invitationid
-          );
+          const interactions = allInteractions
+            ? allInteractions.filter(
+                (interaction) =>
+                  interaction.invitationid === invite.invitationid
+              )
+            : [];
 
           // Attach interactions to invite
           invite.interactions = interactions;
