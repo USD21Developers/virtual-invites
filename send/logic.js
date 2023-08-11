@@ -636,9 +636,7 @@ async function onSubmitButtonClick(e) {
 
   clearErrorMessages();
 
-  if (window.location.hostname === "localhost") {
-    console.log(getFinalURL());
-  }
+  console.log(getFinalURL());
 
   if (eventid === "") {
     const msg = getPhrase("eventIsRequired");
