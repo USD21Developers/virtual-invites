@@ -61,9 +61,9 @@ async function renderRecipient(invite) {
   const events = await localforage.getItem("eventsFromMyInvites");
   const event = events.find((item) => item.eventid === eventid);
 
-  const inviteViews = interactions.filter(
-    (item) => item.interactiontype === "viewed invite"
-  );
+  const inviteViews = interactions.length
+    ? interactions.filter((item) => item.action === "viewed invite")
+    : [];
 
   const eventName = event.title || null;
 
@@ -77,12 +77,16 @@ async function renderRecipient(invite) {
       "{RECIPIENT-NAME}",
       name
     );
+
     inviteViewsHTML = phraseNoViews;
   } else {
-    const phraseTotalViews = getPhrase("total_views").replaceAll(
-      "{QUANTITY-VIEWS}",
-      `<span class="inviteViewsQuantity">${inviteViews.length}</span>`
-    );
+    let phraseTotalViews = getPhrase("paragraph_1_view");
+    if (inviteViews.length > 1) {
+      phraseTotalViews = getPhrase("total_views").replaceAll(
+        "{QUANTITY-VIEWS}",
+        `<span class="inviteViewsQuantity">${inviteViews.length}</span>`
+      );
+    }
     inviteViews.forEach((item) => {
       const dateText = Intl.DateTimeFormat(locale, {
         dateStyle: "short",

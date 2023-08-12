@@ -44,6 +44,11 @@
       "translated": "{QUANTITY-VIEWS} times"
     },
     {
+      "key": "paragraph_1_view",
+      "original": "1 time",
+      "translated": "1 time"
+    },
+    {
       "key": "paragraph_no_views",
       "original": "(No views yet)",
       "translated": "(No views yet)"
