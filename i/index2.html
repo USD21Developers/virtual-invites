@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        background-color: #2a2d54;
+        font-family: "Nunito Sans", sans-serif;
+      }
+
+      #video-container {
+        position: relative;
+        max-width: 530px;
+        margin: auto;
+      }
+
+      #video {
+        width: 100%;
+      }
+
+      #paper {
+        background-color: white;
+        display: none;
+        left: 4%;
+        min-height: calc(100% - 38.2%);
+        position: absolute;
+        top: calc(100% - 63%);
+        transition: height 0.5s ease;
+        width: calc(100% - 8%);
+      }
+
+      .purple-gradient {
+        background-image: linear-gradient(to right, #2a2d54 0%, #504390 100%);
+      }
+    </style>
+  </head>
+  <body class="purple-gradient">
+    <div id="video-container">
+      <video id="video" muted autoplay>
+        <source src="video/envelope.webm" type="video/webm" />
+        <source src="video/envelope.mp4" type="video/mp4" />
+      </video>
+      <div id="paper" hidden>
+        Blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+        blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+      </div>
+    </div>
+
+    <script>
+      (() => {
+        const video = document.querySelector("video");
+        const paper = document.querySelector("#paper");
+
+        video.addEventListener("ended", () => {
+          fadeInContent(paper);
+        });
+
+        function fadeInContent(paper) {
+          paper.style.display = "block";
+          paper.scrollIntoView({ behavior: "smooth" });
+        }
+      })();
+    </script>
+  </body>
+</html>
