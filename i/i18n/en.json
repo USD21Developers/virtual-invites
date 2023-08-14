@@ -189,24 +189,29 @@
       "translated": "Event:"
     },
     {
+      "key": "view-invite",
+      "original": "view invite",
+      "translated": "view invite"
+    },
+    {
       "key": "email-date-sent-label",
-      "original": "Sent:",
-      "translated": "Sent:"
+      "original": "Date Invited:",
+      "translated": "Date Invited:"
     },
     {
       "key": "email-date-viewed-label",
-      "original": "Viewed:",
-      "translated": "Viewed:"
-    },
-    {
-      "key": "email-timezone",
-      "original": "time zone",
-      "translated": "time zone"
+      "original": "Date Viewed:",
+      "translated": "Date Viewed:"
     },
     {
       "key": "email-follow-up-link-text",
       "original": "Follow up with {RECIPIENT-NAME}",
       "translated": "Follow up with {RECIPIENT-NAME}"
+    },
+    {
+      "key": "email-timezone-notice",
+      "original": "All times shown above are in the {EVENT-TIMEZONE} time zone",
+      "translated": "All times shown above are in the {EVENT-TIMEZONE} time zone"
     },
     {
       "key": "email-about-app-headline",

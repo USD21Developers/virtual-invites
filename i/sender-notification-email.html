@@ -3,179 +3,129 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+    <title>John viewed your invite to Bible Talk</title>
   </head>
-  <body id="invitesemail">
+  <body>
     <style type="text/css">
       #invitesemail {
-        font-size: 18px;
         font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height: 150%;
       }
-      font[size="-0"] {
-        font-size: 1rem;
+
+      #invitesemail header {
+        font-size: 1.2rem;
       }
-      font[size="-1"] {
-        font-size: 0.85rem;
+
+      #invitesemail a {
+        text-decoration: underline !important;
       }
-      font[size="-1"] small {
-        font-family: consolas, arial, sans-serif;
-        font-size: 0.7rem;
+
+      #invitesemail ul {
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+        padding-left: 0;
       }
-      font[color="#bbbbbb"] {
-        color: #bbbbbb;
+
+      #invitesemail li {
+        margin-bottom: 1.5rem;
       }
-      .invites-link {
+
+      #invitesemail li > b {
+        font-size: 1.1rem;
+        font-style: italic;
+      }
+
+      #invitesemail .followupLink {
         color: #504390;
-      }
-      table {
-        border-collapse: separate;
-      }
-      a,
-      a:link,
-      a:visited {
-        text-decoration: none;
-        color: #00788a;
-      }
-      a:hover {
+        font-size: 1.3rem;
+        font-style: unset;
+        line-height: 100%;
         text-decoration: underline;
       }
-      h2,
-      h2 a,
-      h2 a:visited,
-      h3,
-      h3 a,
-      h3 a:visited,
-      h4,
-      h5,
-      h6,
-      .t_cht {
-        color: #000000 !important;
-      }
-      .ExternalClass p,
-      .ExternalClass span,
-      .ExternalClass font,
-      .ExternalClass td {
-        line-height: 100%;
-      }
-      .ExternalClass {
-        width: 100%;
+
+      #invitesemail footer {
+        font-size: 0.9rem;
       }
     </style>
 
-    <p>
-      <strong>
-        <font
-          face="arial, sans-serif"
-          size="+1"
-          data-i18n="email-recipient-viewed-your-invite"
-        >
-        </font>
-      </strong>
-    </p>
+    <div id="invitesemail">
+      <header>
+        <b data-i18n="email-recipient-viewed-your-invite">
+          John viewed your invite:
+        </b>
+      </header>
 
-    <table cellpadding="7" cellspacing="0">
-      <tr>
-        <td valign="top" align="right">
-          <font face="arial, sans-serif" size="-0">
-            <b data-i18n="email-event-label"></b>
-          </font>
-        </td>
-        <td valign="top">
-          <font face="arial, sans-serif" size="-0" data-event="title"> </font>
-          <br />
-          <font face="arial, sans-serif" size="-1" data-var="eventDateTime">
-          </font>
-        </td>
-      </tr>
+      <ul>
+        <li>
+          <b data-i18n="email-event-label">Event:</b><br />
+          <span data-event="title">Bible Talk</span>
+          &mdash;
+          <a href="#" data-i18n="view-invite">view invite</a><br />
+          <span data-var="eventDateTime">
+            Tues., Aug. 15, 2023 at 7:30 PM
+          </span>
+        </li>
 
-      <tr>
-        <td valign="top" align="right">
-          <font face="arial, sans-serif" size="-0">
-            <b data-i18n="email-date-viewed-label"></b>
-          </font>
-        </td>
-        <td valign="top">
-          <font face="arial, sans-serif" size="-0" data-var="dateTimeNow">
-          </font>
-          <br />
-          <font face="arial, sans-serif" size="-1" color="#bbbbbb">
-            <span data-var="timezone"></span>
-            <span data-i18n="email-timezone"></span>
-          </font>
-        </td>
-      </tr>
+        <li>
+          <b data-i18n="email-date-sent-label">Date Invited:</b><br />
+          <span data-var="dateTimeSent"> Sat., Aug. 12, 2023 at 1:05 PM </span>
+        </li>
 
-      <tr>
-        <td valign="top" align="right">
-          <font face="arial, sans-serif" size="-0">
-            <b data-i18n="email-date-sent-label"></b>
-          </font>
-        </td>
-        <td valign="top">
-          <font face="arial, sans-serif" size="-0" data-var="dateTimeSent">
-          </font>
-          <br />
-          <font face="arial, sans-serif" size="-1" color="#bbbbbb">
-            <span data-var="timezone"></span>
-            <span data-i18n="email-timezone"></span>
-          </font>
-        </td>
-      </tr>
-    </table>
+        <li>
+          <b data-i18n="email-date-viewed-label">Date Viewed:</b><br />
+          <span data-var="dateTimeNow">Sat., Aug. 12, 2023 at 1:05 PM</span>
+        </li>
+      </ul>
 
-    <h3 class="invites followupLink">
-      <font face="arial, sans-serif" size="+1">
-        <a
-          href="{FOLLOW-UP-LINK}"
-          data-i18n="email-follow-up-link-text"
-          class="invites-link"
-          style="text-decoration: underline; color: #504390 !important"
-        ></a>
-      </font>
-    </h3>
+      <p>
+        <b>
+          <a
+            href="{FOLLOW-UP-LINK}"
+            data-i18n="email-follow-up-link-text"
+            class="followupLink"
+          >
+            Follow up with John
+          </a>
+        </b>
+      </p>
 
-    <br />
-    <br />
-    <br />
+      <br />
 
-    <p style="margin: 2rem 0">
-      <font face="arial, sans-serif" size="-0">
-        <a
-          href="https://invites.mobi/about/"
-          data-i18n="email-about-app-headline"
-          class="invites-link"
-          style="color: #504390; text-decoration: underline"
-        ></a>
-      </font>
-    </p>
+      <hr size="1" noshade />
 
-    <hr
-      size="1"
-      noshade="noshade"
-      style="border: 0; border-top: 1px solid #dddddd"
-    />
-
-    <p style="margin: 2em 0 1em 0">
-      <font face="arial, sans-serif" size="-0" color="#eeeeee">
-        <a
-          href="https://invites.mobi/notifications/unsubscribe/"
-          id="unsubscribe"
-          data-i18n="email-unsubscribe"
-          style="color: #cccccc; text-decoration: underline"
-        ></a>
-      </font>
-    </p>
-
-    <p>
-      <font face="arial, sans-serif" size="-1" color="#eeeeee">
+      <footer>
         <small>
-          <span data-i18n="email-message-id-text"></span>
-          <span data-var="messageID"> </span>
-        </small>
-      </font>
-    </p>
+          <p data-i18n="email-timezone-notice">
+            <em>All times shown above are in the Phoenix/America time zone</em>
+          </p>
 
-    <br />
-    <br />
+          <p>
+            <a
+              href="https://invites.mobi/about/"
+              data-i18n="email-about-app-headline"
+            >
+              About the Invites App
+            </a>
+          </p>
+
+          <p>
+            <a href="#" id="unsubscribe" data-i18n="email-unsubscribe">
+              Unsubscribe
+            </a>
+          </p>
+
+          <p>
+            <small style="color: #eeeeee">
+              <span data-i18n="email-message-id-text">Message ID:</span>
+              <span data-var="messageID"> 1234567890</span>
+            </small>
+          </p>
+        </small>
+      </footer>
+
+      <br />
+      <br />
+    </div>
   </body>
 </html>
