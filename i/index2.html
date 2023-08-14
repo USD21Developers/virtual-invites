@@ -31,6 +31,14 @@
         width: calc(100% - 8%);
       }
 
+      #envelopeTop {
+        height: 1px;
+        left: 4%;
+        position: absolute;
+        top: calc(100% - 83%);
+        width: calc(100% - 8%);
+      }
+
       .purple-gradient {
         background-image: linear-gradient(to right, #2a2d54 0%, #504390 100%);
       }
@@ -38,10 +46,11 @@
   </head>
   <body class="purple-gradient">
     <div id="video-container">
-      <video id="video" muted autoplay playsinline>
+      <video id="video" autoplay playsinline muted>
         <source src="video/envelope.webm" type="video/webm" />
         <source src="video/envelope.mp4" type="video/mp4" />
       </video>
+      <div id="envelopeTop"></div>
       <div id="paper" hidden>
         <p>
           Blah blah blah blah blah blah blah blah blah blah blah blah blah blah
@@ -100,14 +109,15 @@
       (() => {
         const video = document.querySelector("video");
         const paper = document.querySelector("#paper");
+        const envelopeTop = document.querySelector("#envelopeTop");
 
         video.addEventListener("ended", () => {
-          fadeInContent(paper);
+          fadeInContent(paper, envelopeTop);
         });
 
-        function fadeInContent(paper) {
+        function fadeInContent(paper, envelopeTop) {
           paper.style.display = "block";
-          paper.scrollIntoView({ behavior: "smooth" });
+          envelopeTop.scrollIntoView({ behavior: "smooth" });
         }
       })();
     </script>
