@@ -209,6 +209,11 @@
       "translated": "Follow up with {RECIPIENT-NAME}"
     },
     {
+      "key": "email-timezone",
+      "original": "time zone",
+      "translated": "time zone"
+    },
+    {
       "key": "email-timezone-notice",
       "original": "All times shown above are in the {EVENT-TIMEZONE} time zone",
       "translated": "All times shown above are in the {EVENT-TIMEZONE} time zone"
