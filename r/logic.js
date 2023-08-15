@@ -105,11 +105,11 @@ async function renderRecipient(invite) {
     let latitude;
     let longitude;
 
-    if (event.hasOwnProperty("locationcoordinates")) {
-      if (event.locationcoordinates.hasOwnProperty("x")) {
+    if (coords) {
+      if (coords.hasOwnProperty("x")) {
         latitude = event.locationcoordinates.x;
       }
-      if (event.locationcoordinates.hasOwnProperty("y")) {
+      if (coords.hasOwnProperty("y")) {
         longitude = event.locationcoordinates.y;
       }
     }
