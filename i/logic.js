@@ -1344,6 +1344,12 @@ function attachListeners() {
   $(".collapse").on("hidden.bs.collapse", () => {
     document.querySelector("#atcbOptions").classList.remove("d-none");
   });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      window.location.reload();
+    }
+  });
 }
 
 async function init() {

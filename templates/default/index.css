@@ -266,3 +266,32 @@ a:hover {
 #rsvpHeadline {
   line-height: 1rem;
 }
+
+#envelopeContainer {
+  position: relative;
+  max-width: 530px;
+  margin: auto;
+}
+
+#video {
+  width: 100%;
+}
+
+#paper {
+  background-color: white;
+  display: none;
+  left: 4%;
+  min-height: calc(100% - 38.2%);
+  position: absolute;
+  top: calc(100% - 63%);
+  transition: height 0.5s ease;
+  width: calc(100% - 8%);
+}
+
+#topOfEnvelope {
+  height: 1px;
+  left: 4%;
+  position: absolute;
+  top: calc(100% - 83%);
+  width: calc(100% - 8%);
+}
