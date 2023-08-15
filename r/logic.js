@@ -47,6 +47,7 @@ async function renderRecipient(invite) {
   } = invite;
   const { email, id, name, sms } = recipient;
   const dateInvitedEl = document.querySelector("#dateInvited");
+  const invitedFromLocationEl = document.querySelector("#invitedFromLocation");
   const eventNameEl = document.querySelector("#eventName");
   const interactionViewsEl = document.querySelector("#interactionViews");
   const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
@@ -100,6 +101,29 @@ async function renderRecipient(invite) {
 
   if (eventNameEl && eventName) eventNameEl.innerText = eventName;
   if (dateInvitedEl) dateInvitedEl.innerText = whenInvited;
+  if (invitedFromLocationEl) {
+    let latitude;
+    let longitude;
+
+    if (event.hasOwnProperty("locationcoordinates")) {
+      if (event.locationcoordinates.hasOwnProperty("x")) {
+        latitude = event.locationcoordinates.x;
+      }
+      if (event.locationcoordinates.hasOwnProperty("y")) {
+        longitude = event.locationcoordinates.y;
+      }
+    }
+
+    if (latitude && longitude) {
+      const mapLink = `https://www.google.com/maps/search/?api=1&query=${latitude}%2C${longitude}`;
+      invitedFromLocationEl.setAttribute("href", mapLink);
+    } else {
+      const invitedFromLocationContainer = document.querySelector(
+        ".invitedFromLocation"
+      );
+      if (invitedFromLocationContainer) invitedFromLocationContainer.remove();
+    }
+  }
   if (interactionViewsEl) interactionViewsEl.innerHTML = inviteViewsHTML;
 }
 
