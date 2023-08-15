@@ -10,7 +10,7 @@
         font-family: "Nunito Sans", sans-serif;
       }
 
-      #video-container {
+      #envelopeContainer {
         position: relative;
         max-width: 530px;
         margin: auto;
@@ -31,7 +31,7 @@
         width: calc(100% - 8%);
       }
 
-      #envelopeTop {
+      #topOfEnvelope {
         height: 1px;
         left: 4%;
         position: absolute;
@@ -45,79 +45,28 @@
     </style>
   </head>
   <body class="purple-gradient">
-    <div id="video-container">
+    <div id="envelopeContainer">
       <video id="video" autoplay playsinline muted>
         <source src="video/envelope.mp4" type="video/mp4" />
         <source src="video/envelope.webm" type="video/webm" />
       </video>
-      <div id="envelopeTop"></div>
-      <div id="paper" hidden>
-        <p>
-          Blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-        </p>
-
-        <p>
-          Blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-        </p>
-
-        <p>
-          Blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-          blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-        </p>
-      </div>
+      <div id="topOfEnvelope"></div>
+      <main></main>
     </div>
 
     <script>
       (() => {
-        const video = document.querySelector("video");
-        const paper = document.querySelector("#paper");
-        const envelopeTop = document.querySelector("#envelopeTop");
+        const video = document.querySelector("#video");
+        const paper = document.querySelector("main");
+        const topOfEnvelope = document.querySelector("#topOfEnvelope");
 
         video.addEventListener("ended", () => {
-          fadeInContent(paper, envelopeTop);
+          fadeInContent(paper, topOfEnvelope);
         });
 
-        function fadeInContent(paper, envelopeTop) {
+        function fadeInContent(paper, topOfEnvelope) {
           paper.style.display = "block";
-          envelopeTop.scrollIntoView({ behavior: "smooth" });
+          topOfEnvelope.scrollIntoView({ behavior: "smooth" });
         }
       })();
 
