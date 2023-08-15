@@ -119,20 +119,16 @@
           paper.style.display = "block";
           envelopeTop.scrollIntoView({ behavior: "smooth" });
         }
-
-        window.addEventListener("pagehide", () => {
-          sessionStorage.setItem("refreshOnReturn", true);
-        });
-
-        window.addEventListener("pageshow", () => {
-          const refreshOnReturn = sessionStorage.getItem("refreshOnReturn")
-            ? true
-            : false;
-          if (refreshOnReturn) {
-            window.location.reload();
-          }
-        });
       })();
+
+      window.addEventListener("pageshow", (event) => {
+        if (
+          event.persisted ||
+          performance.getEntriesByType("navigation")[0].type === "back_forward"
+        ) {
+          window.location.reload();
+        }
+      });
     </script>
   </body>
 </html>
