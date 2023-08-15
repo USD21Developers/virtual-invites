@@ -537,7 +537,7 @@ async function getInvite() {
     let recipientid = inviteParts[3] || null;
     const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
     const timezone = userDateTimePrefs.timeZone || "";
-    const emailHtml = await fetch("./sender-notification-email.html").then(
+    const emailHtml = await fetch("./sender-notification-email.html?v=1").then(
       (res) => res.text()
     );
     const emailPhrases = {
