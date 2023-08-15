@@ -47,8 +47,8 @@
   <body class="purple-gradient">
     <div id="video-container">
       <video id="video" autoplay playsinline muted>
-        <source src="video/envelope.webm" type="video/webm" />
         <source src="video/envelope.mp4" type="video/mp4" />
+        <source src="video/envelope.webm" type="video/webm" />
       </video>
       <div id="envelopeTop"></div>
       <div id="paper" hidden>
@@ -119,6 +119,19 @@
           paper.style.display = "block";
           envelopeTop.scrollIntoView({ behavior: "smooth" });
         }
+
+        window.addEventListener("pagehide", () => {
+          sessionStorage.setItem("refreshOnReturn", true);
+        });
+
+        window.addEventListener("pageshow", () => {
+          const refreshOnReturn = sessionStorage.getItem("refreshOnReturn")
+            ? true
+            : false;
+          if (refreshOnReturn) {
+            window.location.reload();
+          }
+        });
       })();
     </script>
   </body>
