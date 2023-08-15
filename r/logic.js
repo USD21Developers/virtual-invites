@@ -119,7 +119,7 @@ async function renderRecipient(invite) {
       invitedFromLocationEl.setAttribute("href", mapLink);
     } else {
       const invitedFromLocationContainer = document.querySelector(
-        ".invitedFromLocation"
+        "#invitedFromLocationContainer"
       );
       if (invitedFromLocationContainer) invitedFromLocationContainer.remove();
     }
