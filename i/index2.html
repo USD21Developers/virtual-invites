@@ -32,12 +32,12 @@
       }
 
       #paper {
-        animation: fadeIn 0.5s;
+        animation: fadeIn 0.75s;
         background-color: #f7f5f6;
         left: 4%;
         min-height: calc(100% - 38%);
         position: absolute;
-        top: calc(100% - 64% + 9px);
+        top: calc(100% - 63% + -2px) !important;
         transition: height 0.5s ease;
         width: calc(100% - 8%);
       }
@@ -49,19 +49,27 @@
         text-align: center;
       }
 
-      @media screen and (max-width: 360px) {
-        #pageSpinner img {
-          width: 77px;
+      @media screen and (max-width: 350px) {
+        #paper {
+          top: calc(100% - 63% + -2px) !important;
         }
       }
-      @media screen and (max-width: 450px) {
-        #pageSpinner img {
-          width: 90px;
+
+      @media screen and (max-width: 390px) {
+        #paper {
+          top: calc(100% - 63% + -4px) !important;
         }
       }
-      @media screen and (max-width: 550px) {
-        #pageSpinner img {
-          width: 100px;
+
+      @media screen and (max-width: 500px) {
+        #paper {
+          top: calc(100% - 63% + -5px) !important;
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        #paper {
+          top: calc(100% - 63% + -6px) !important;
         }
       }
 
