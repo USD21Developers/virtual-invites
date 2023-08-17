@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Invite</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../css/daemonite-material.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../templates/default/index.css"
+    />
     <style>
       body {
         background-color: #2a2d54;
@@ -14,6 +24,7 @@
         position: relative;
         max-width: 530px;
         margin: auto;
+        margin-bottom: 50px;
       }
 
       #video {
@@ -21,14 +32,37 @@
       }
 
       #paper {
-        background-color: white;
-        display: none;
+        animation: fadeIn 0.5s;
+        background-color: #f7f5f6;
         left: 4%;
-        min-height: calc(100% - 38.2%);
+        min-height: calc(100% - 38%);
         position: absolute;
-        top: calc(100% - 63%);
+        top: calc(100% - 64% + 9px);
         transition: height 0.5s ease;
         width: calc(100% - 8%);
+      }
+
+      #pageSpinner {
+        animation: fadeIn 0.5s;
+        margin-top: 25px;
+        max-width: 100%;
+        text-align: center;
+      }
+
+      @media screen and (max-width: 360px) {
+        #pageSpinner img {
+          width: 77px;
+        }
+      }
+      @media screen and (max-width: 450px) {
+        #pageSpinner img {
+          width: 90px;
+        }
+      }
+      @media screen and (max-width: 550px) {
+        #pageSpinner img {
+          width: 100px;
+        }
       }
 
       #topOfEnvelope {
@@ -42,6 +76,15 @@
       .purple-gradient {
         background-image: linear-gradient(to right, #2a2d54 0%, #504390 100%);
       }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
     </style>
   </head>
   <body class="purple-gradient">
@@ -51,7 +94,11 @@
         <source src="video/envelope.webm" type="video/webm" />
       </video>
       <div id="topOfEnvelope"></div>
-      <main></main>
+      <main id="paper"></main>
+    </div>
+
+    <div class="snackbar">
+      <div class="snackbar-body"></div>
     </div>
 
     <script>
@@ -61,13 +108,9 @@
         const topOfEnvelope = document.querySelector("#topOfEnvelope");
 
         video.addEventListener("ended", () => {
-          fadeInContent(paper, topOfEnvelope);
-        });
-
-        function fadeInContent(paper, topOfEnvelope) {
           paper.style.display = "block";
           topOfEnvelope.scrollIntoView({ behavior: "smooth" });
-        }
+        });
       })();
 
       document.addEventListener("visibilitychange", () => {
@@ -76,5 +119,29 @@
         }
       });
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/datebook/dist/datebook.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data-10-year-range.min.js"
+      integrity="sha512-d11VXfxQMn+sZuIgzHITdIuInr4cVRGV/uLiSI643WH/J+p4gPFYSHXRMR2v+w4Rn2TSyzJjsZjc0M7+Qd+UXw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/libphonenumber-js/1.9.12/libphonenumber-js.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="/css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="/js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
+    <script src="/js/global.js"></script>
+    <script src="/js/getMobileOperatingSystem.js"></script>
+    <script src="/js/relativeTimeFormatPolyfill.js"></script>
+    <script src="/js/getRelativeDate.js"></script>
+    <script src="/js/to-title-case.js"></script>
+    <script src="logic.js"></script>
   </body>
 </html>
