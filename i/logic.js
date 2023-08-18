@@ -1240,7 +1240,7 @@ function populateQuestionsSection() {
 
 function populateTemplate(version = "default") {
   return new Promise((resolve, reject) => {
-    const path = `../templates/${version}/index.html`;
+    const path = `/templates/${version}/index.html`;
     fetch(path)
       .then((res) => res.text())
       .then((unparsed) => {
@@ -1365,5 +1365,3 @@ async function init() {
   hideSpinner();
   warnIfEventIsPast();
 }
-
-init();
