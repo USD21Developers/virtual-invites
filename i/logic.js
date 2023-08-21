@@ -553,6 +553,7 @@ async function getInvite() {
       "email-about-app-headline": getPhrase("email-about-app-headline"),
       "email-unsubscribe": getPhrase("email-unsubscribe"),
       "email-message-id-text": getPhrase("email-message-id-text"),
+      "email-timezone-notice": getPhrase("email-timezone-notice"),
     };
 
     const loadedAlready = sessionStorage.getItem("loaded") || false;

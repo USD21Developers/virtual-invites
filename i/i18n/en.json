@@ -247,6 +247,11 @@
       "key": "rsvp-paragraph-2",
       "original": "Also, before traveling to the event you might want to call just before you leave, to confirm that there have been no last-minute changes.",
       "translated": "Also, before traveling to the event you might want to call just before you leave, to confirm that there have been no last-minute changes."
+    },
+    {
+      "key": "email-timezone-notice",
+      "original": "All times shown above are in the {EVENT-TIMEZONE} time zone.",
+      "translated": "All times shown above are in the {EVENT-TIMEZONE} time zone."
     }
   ],
 
