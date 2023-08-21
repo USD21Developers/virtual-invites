@@ -532,9 +532,6 @@ async function getInvite() {
       return reject(new Error("At least one URL parameter is required"));
     }
 
-    const shouldRecordInteraction = sessionStorage.getItem("loaded")
-      ? true
-      : false;
     let eventid = Number(inviteParts[1]) || null;
     let userid = Number(inviteParts[2]) || null;
     let recipientid = inviteParts[3] || null;
@@ -558,7 +555,9 @@ async function getInvite() {
       "email-message-id-text": getPhrase("email-message-id-text"),
     };
 
-    if (!shouldRecordInteraction) {
+    const loadedAlready = sessionStorage.getItem("loaded") || false;
+
+    if (!loadedAlready) {
       sessionStorage.setItem("loaded", true);
     }
 
@@ -578,7 +577,7 @@ async function getInvite() {
         timezone: timezone,
         emailHtml: emailHtml,
         emailPhrases: emailPhrases,
-        shouldRecordInteraction: shouldRecordInteraction,
+        loadedAlready: loadedAlready,
       }),
       headers: new Headers({
         "Content-Type": "application/json",
