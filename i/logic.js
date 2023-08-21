@@ -852,11 +852,8 @@ function renderInvite(invite) {
     mapAndDirectionsEl.setAttribute("href", addressObject.addressLink);
   }
 
-  // Unhide entire invite
-  const spinner = document.querySelector("#pageSpinner");
-  const content = document.querySelector("#pageContent");
-  spinner.classList.add("d-none");
-  content.classList.remove("d-none");
+  // Show invite
+  hideSpinner();
 }
 
 function hideSpinner() {
