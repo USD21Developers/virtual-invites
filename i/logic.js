@@ -1368,3 +1368,5 @@ async function init() {
   hideSpinner();
   warnIfEventIsPast();
 }
+
+init();
