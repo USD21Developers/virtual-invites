@@ -865,7 +865,7 @@ function hideSpinner() {
 
 function showSpinner() {
   const spinnerEl = document.querySelector("#pageSpinner");
-  const pageEl = document.querySelector("main");
+  const pageEl = document.querySelector("#pageContent");
   spinnerEl.classList.remove("d-none");
   pageEl.classList.add("d-none");
 }
