@@ -214,11 +214,6 @@
       "translated": "time zone"
     },
     {
-      "key": "email-timezone-notice",
-      "original": "All times shown above are in the {EVENT-TIMEZONE} time zone",
-      "translated": "All times shown above are in the {EVENT-TIMEZONE} time zone"
-    },
-    {
       "key": "email-about-app-headline",
       "original": "About the Invites App",
       "translated": "About the Invites App"

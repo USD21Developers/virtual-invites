@@ -52,6 +52,11 @@
       "key": "paragraph_no_views",
       "original": "(No views yet)",
       "translated": "(No views yet)"
+    },
+    {
+      "key": "email-timezone-notice",
+      "original": "All times shown above are in the {EVENT-TIMEZONE} time zone.",
+      "translated": "All times shown above are in the {EVENT-TIMEZONE} time zone."
     }
   ],
 
