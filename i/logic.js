@@ -851,13 +851,19 @@ function renderInvite(invite) {
     const addressObject = getAddressForMaps(event);
     mapAndDirectionsEl.setAttribute("href", addressObject.addressLink);
   }
+
+  // Unhide entire invite
+  const spinner = document.querySelector("#pageSpinner");
+  const content = document.querySelector("#pageContent");
+  spinner.classList.add("d-none");
+  content.classList.remove("d-none");
 }
 
 function hideSpinner() {
   const spinnerEl = document.querySelector("#pageSpinner");
-  const pageEl = document.querySelector("main");
+  const contentEl = document.querySelector("#pageContent");
   spinnerEl.classList.add("d-none");
-  pageEl.classList.remove("d-none");
+  contentEl.classList.remove("d-none");
 }
 
 function showSpinner() {
@@ -1247,7 +1253,7 @@ function populateTemplate(version = "default") {
         const parser = new DOMParser();
         const parsed = parser.parseFromString(unparsed, "text/html");
         const templateContent = parsed.querySelector(".container");
-        const el = document.querySelector("main");
+        const el = document.querySelector("#pageContent");
         el.appendChild(templateContent);
         removeDefaultContent();
         resolve();
@@ -1353,7 +1359,7 @@ function attachListeners() {
 }
 
 async function init() {
-  showSpinner();
+  // showSpinner();
   await populateTemplate();
   attachListeners();
   await populateContent();
