@@ -532,6 +532,9 @@ async function getInvite() {
       return reject(new Error("At least one URL parameter is required"));
     }
 
+    const shouldRecordInteraction = sessionStorage.getItem("loaded")
+      ? true
+      : false;
     let eventid = Number(inviteParts[1]) || null;
     let userid = Number(inviteParts[2]) || null;
     let recipientid = inviteParts[3] || null;
@@ -555,6 +558,10 @@ async function getInvite() {
       "email-message-id-text": getPhrase("email-message-id-text"),
     };
 
+    if (!shouldRecordInteraction) {
+      sessionStorage.setItem("loaded", true);
+    }
+
     if (!eventid) return reject();
 
     const endpoint = `${getApiHost()}/invite`;
@@ -571,6 +578,7 @@ async function getInvite() {
         timezone: timezone,
         emailHtml: emailHtml,
         emailPhrases: emailPhrases,
+        shouldRecordInteraction: shouldRecordInteraction,
       }),
       headers: new Headers({
         "Content-Type": "application/json",
@@ -1356,7 +1364,6 @@ function attachListeners() {
 }
 
 async function init() {
-  // showSpinner();
   await populateTemplate();
   attachListeners();
   await populateContent();
@@ -1365,7 +1372,7 @@ async function init() {
   populateHeadlineAboutEvent();
   populateEventDescription();
   populateQuestionsSection();
-  hideSpinner();
+  // hideSpinner();
   warnIfEventIsPast();
 }
 
