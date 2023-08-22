@@ -115,13 +115,40 @@ async function renderRecipient(invite) {
     }
 
     if (latitude && longitude) {
-      const mapLink = `https://www.google.com/maps/search/?api=1&query=${latitude}%2C${longitude}`;
+      const operatingSystem = getMobileOperatingSystem();
+      let mapLink;
+
+      if (operatingSystem === "iOS") {
+        // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
+        mapLink = `http://maps.apple.com/?sll=${latitude},${longitude}&z=10&t=s`;
+      } else {
+        // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
+        mapLink = `https://www.google.com/maps/search/?api=1&query=${latitude}%2C${longitude}`;
+      }
+
       invitedFromLocationEl.setAttribute("href", mapLink);
     } else {
       const invitedFromLocationContainer = document.querySelector(
         "#invitedFromLocationContainer"
       );
       if (invitedFromLocationContainer) invitedFromLocationContainer.remove();
+    }
+
+    // Populate followup method
+    /*
+      Available variables:
+      name
+      sms
+      email
+      latitude
+      longitude
+    */
+    if (sentvia === "sms") {
+      //
+    } else if (sentvia === "email") {
+      //
+    } else if (sentvia === "qrcode") {
+      //
     }
   }
   if (interactionViewsEl) interactionViewsEl.innerHTML = inviteViewsHTML;
