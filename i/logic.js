@@ -556,11 +556,7 @@ async function getInvite() {
       "email-timezone-notice": getPhrase("email-timezone-notice"),
     };
 
-    const loadedAlready = sessionStorage.getItem("loaded") || false;
-
-    if (!loadedAlready) {
-      sessionStorage.setItem("loaded", true);
-    }
+    const loadedAlready = sessionStorage.getItem("loaded") ? true : false;
 
     if (!eventid) return reject();
 
@@ -589,6 +585,7 @@ async function getInvite() {
         const msg = data.msg;
         switch (msg) {
           case "invite retrieved":
+            sessionStorage.setItem("loaded", true);
             renderInvite(data.invite);
             resolve();
             break;
