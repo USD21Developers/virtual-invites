@@ -176,7 +176,9 @@ async function renderRecipient(invite) {
       headlineFollowUpEl.innerText = getPhrase("headlineFollowUp");
       followupEl.classList.remove("d-none");
     } else if (sentvia === "qrcode") {
-      headlineFollowUpEl.innerText = getPhrase("headlineFollowUpInPerson");
+      headlineFollowUpEl.innerText = getPhrase(
+        "headlineFollowUpInPerson"
+      ).replaceAll("{RECIPIENT-NAME}", name);
       if (latitude && longitude) {
         qrCodeMapLinkEl.setAttribute("href", mapLink);
         followupQRCodeWithLocationEl.classList.remove("d-none");
