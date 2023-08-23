@@ -166,8 +166,8 @@ async function renderRecipient(invite) {
       phoneLinkEl.setAttribute("href", `tel:${sms}`);
       smsLinkEl.setAttribute("href", `sms:${sms}`);
       headlineFollowUpEl.innerText = getPhrase("headlineFollowUp");
-      phoneLinkContainerEl.remove("d-none");
-      smsLinkContainerEl.remove("d-none");
+      phoneLinkContainerEl.classList.remove("d-none");
+      smsLinkContainerEl.classList.remove("d-none");
       addToPhonebookLinkContainerEl.remove("d-none");
       followupEl.classList.remove("d-none");
     } else if (sentvia === "email") {
