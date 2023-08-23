@@ -4,5 +4,9 @@
 }
 
 .underline {
-  text-decoration: underline;
+  text-decoration: underline !important;
+}
+
+#followup li {
+  margin-bottom: 1rem;
 }
