@@ -80,13 +80,13 @@
     },
     {
       "key": "headlineFollowUp",
-      "original": "Follow Up",
-      "translated": "Follow Up"
+      "original": "Follow Up:",
+      "translated": "Follow Up:"
     },
     {
       "key": "headlineFollowUpInPerson",
-      "original": "Follow Up in Person",
-      "translated": "Follow Up in Person"
+      "original": "Follow Up in Person:",
+      "translated": "Follow Up in Person:"
     },
     {
       "key": "qrCodeWithLocation",
