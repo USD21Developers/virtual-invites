@@ -79,14 +79,59 @@
       "translated": "Send an e-mail to {RECIPIENT-NAME}"
     },
     {
-      "key": "visitTheRecipient",
-      "original": "You may be able to follow up with {RECIPIENT-NAME} in person by returning to the location from which you provided the QR Code for the invite. To do so, click on the map link above.",
-      "translated": "You may be able to follow up with {RECIPIENT-NAME} in person by returning to the location from which you provided the QR Code for the invite. To do so, click on the map link above."
+      "key": "headlineFollowUp",
+      "original": "Follow Up",
+      "translated": "Follow Up"
     },
     {
-      "key": "visitTheRecipientNoLocation",
-      "original": "You may be able to follow up with {RECIPIENT-NAME} in person by returning to the location from which you provided the QR Code for the invite. Since you did not tag the invite with your location, you will have to remember where you met {RECIPIENT-NAME}.",
-      "translated": "You may be able to follow up with {RECIPIENT-NAME} in person by returning to the location from which you provided the QR Code for the invite. Since you did not tag the invite with your location, you will have to remember where you met {RECIPIENT-NAME}."
+      "key": "headlineFollowUpInPerson",
+      "original": "Follow Up in Person",
+      "translated": "Follow Up in Person"
+    },
+    {
+      "key": "qrCodeWithLocation",
+      "original": "Since this invite was sent via QR code, no contact information was exchanged. But you did tag the invite with the location from which you sent it. If you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return to that location in order to follow up in person.",
+      "translated": "Since this invite was sent via QR code, no contact information was exchanged. But you did tag the invite with the location from which you sent it. If you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return to that location in order to follow up in person."
+    },
+    {
+      "key": "qrCodeWithoutLocation",
+      "original": "Since this invite was sent via QR code, no contact information was exchanged. You did not tag the invite with your location. But if you remember the location, and if you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return there in order to follow up in person.",
+      "translated": "Since this invite was sent via QR code, no contact information was exchanged. You did not tag the invite with your location. But if you remember the location, and if you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return there in order to follow up in person."
+    },
+    {
+      "key": "mapAndDrivingDirections",
+      "original": "Map and driving directions",
+      "translated": "Map and driving directions"
+    },
+    {
+      "key": "phone-call",
+      "original": "Call",
+      "translated": "Call"
+    },
+    {
+      "key": "send-sms",
+      "original": "Send a text message",
+      "translated": "Send a text message"
+    },
+    {
+      "key": "send-email",
+      "original": "Send an e-mail",
+      "translated": "Send an e-mail"
+    },
+    {
+      "key": "add-calendar-reminder",
+      "original": "Add a follow up reminder to my calendar",
+      "translated": "Add a follow up reminder to my calendar"
+    },
+    {
+      "key": "resend",
+      "original": "Resend the invite",
+      "translated": "Resend the invite"
+    },
+    {
+      "key": "addToPhonebook",
+      "original": "Add {RECIPIENT-NAME} to my phonebook",
+      "translated": "Add {RECIPIENT-NAME} to my phonebook"
     }
   ],
 

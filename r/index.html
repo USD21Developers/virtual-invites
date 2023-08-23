@@ -242,50 +242,52 @@
 
       <div class="row my-3">
         <div class="col col-md-6 offset-md-3 text-center">
-          <h2 data-i18n="follow-up"></h2>
+          <h2 id="headlineFollowUp"></h2>
         </div>
       </div>
 
-      <div class="row d-none" id="contactViaSms">
-        <div class="col col-md-3 offset-md-3 text-center">
-          <strong
-            ><a
-              href=""
-              id="contactViaSms_link"
-              class="text-primary"
-              style="text-decoration: underline"
-            ></a
-          ></strong>
-        </div>
-        <div class="col col-md-3 text-center">
-          <strong
-            ><a
-              href=""
-              id="contactViaPhone_link"
-              class="text-primary"
-              style="text-decoration: underline"
-            ></a
-          ></strong>
-        </div>
+      <div id="followupQRCodeWithLocation" class="d-none">
+        <p data-i18n="qrCodeWithLocation"></p>
+        <ul>
+          <li>
+            <a
+              href="#"
+              id="qrCodeMapLink"
+              data-i18n="mapAndDrivingDirections"
+            ></a>
+          </li>
+        </ul>
       </div>
 
-      <div class="row d-none" id="contactViaEmail">
-        <div class="col col-md-6 offset-md-3 text-center">
-          <strong
-            ><a
-              href=""
-              id="contactViaEmail_link"
-              class="text-primary"
-              style="text-decoration: underline"
-            ></a
-          ></strong>
-        </div>
+      <div id="followupQRCodeWithoutLocation" class="d-none">
+        <p data-i18n="qrCodeWithoutLocation"></p>
       </div>
 
-      <div class="row d-none" id="contactInPersonContainer">
-        <div class="col col-md-6 offset-md-3 text-center">
-          <span id="contactInPersonContent"></span>
-        </div>
+      <div id="followup" class="d-none">
+        <ul>
+          <li class="d-none" id="phoneLinkContainer">
+            <a href="#" data-i18n="phone-call" id="phoneLink"></a>
+          </li>
+          <li class="d-none" id="smsLinkContainer">
+            <a href="#" data-i18n="send-sms" id="smsLink"></a>
+          </li>
+          <li class="d-none" id="emailLinkContainer">
+            <a href="#" data-i18n="send-email" id="emailLink"></a>
+          </li>
+          <li>
+            <a
+              href="#"
+              data-i18n="add-calendar-reminder"
+              id="addCalendarReminderLink"
+            ></a>
+          </li>
+          <li id="resendLinkContainer">
+            <a href="#" data-i18n="resend" id="resendLink"></a>
+          </li>
+          <li class="d-none" id="addToPhonebookLinkContainer">
+            <a href="#" data-i18n="addToPhonebook" id="addToPhonebookLink"></a>
+          </li>
+        </ul>
       </div>
     </div>
 

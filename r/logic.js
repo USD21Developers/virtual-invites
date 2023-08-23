@@ -120,7 +120,8 @@ async function renderRecipient(invite) {
 
       if (operatingSystem === "iOS") {
         // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
-        mapLink = `http://maps.apple.com/?ll=${latitude},${longitude}`;
+        // Docs for showing a point:  https://developer.apple.com/documentation/mapkit/mkmappoint
+        mapLink = `http://maps.apple.com/?ll=${latitude},${longitude}&t=m`;
       } else {
         // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
         mapLink = `https://www.google.com/maps/search/?api=1&query=${latitude}%2C${longitude}`;
@@ -134,60 +135,44 @@ async function renderRecipient(invite) {
       if (invitedFromLocationContainer) invitedFromLocationContainer.remove();
     }
 
+    const headlineFollowUpEl = document.querySelector("#headlineFollowUp");
+    const followupEl = document.querySelector("#followup");
+    const phoneLinkContainerEl = document.querySelector("#phoneLinkContainer");
+    const phoneLinkEl = document.querySelector("#phoneLink");
+    const smsLinkContainerEl = document.querySelector("#smsLinkContainer");
+    const smsLinkEl = document.querySelector("#smsLink");
+    const emailLinkContainerEl = document.querySelector("#emailLinkContainer");
+    const emailLinkEl = document.querySelector("#emailLink");
+    const addCalendarReminderLinkEl = document.querySelector(
+      "#addCalendarReminderLink"
+    );
+    const resendLinkContainerEl = document.querySelector(
+      "#resendLinkContainer"
+    );
+    const resendLinkEl = document.querySelector("#resendLink");
+    const addToPhonebookLinkContainerEl = document.querySelector(
+      "#addToPhonebookLinkContainer"
+    );
+    const addToPhonebookLinkEl = document.querySelector("#addToPhonebookLink");
+    const qrCodeMapLinkEl = document.querySelector("#qrCodeMapLink");
+
     if (sentvia === "sms") {
-      const contactViaSmsEl = document.querySelector("#contactViaSms");
-      const contactViaSmsLinkEl = document.querySelector("#contactViaSms_link");
-      const contactViaPhoneLinkEl = document.querySelector(
-        "#contactViaPhone_link"
-      );
-      const smsContent = getPhrase("textTheRecipient").replace(
-        "{RECIPIENT-NAME}",
-        name
-      );
-      const telContent = getPhrase("callTheRecipient").replace(
-        "{RECIPIENT-NAME}",
-        name
-      );
-
-      contactViaSmsLinkEl.setAttribute("href", `sms:${sms}`);
-      contactViaSmsLinkEl.innerText = smsContent;
-
-      contactViaPhoneLinkEl.setAttribute("href", `tel:${sms}`);
-      contactViaPhoneLinkEl.innerText = telContent;
-      contactViaSmsEl.classList.remove("d-none");
+      phoneLinkEl.setAttribute("href", `tel:${sms}`);
+      smsLinkEl.setAttribute("href", `sms:${sms}`);
+      headlineFollowUpEl.innerText = getPhrase("headlineFollowUp");
+      phoneLinkContainerEl.remove("d-none");
+      smsLinkContainerEl.remove("d-none");
+      addToPhonebookLinkContainerEl.remove("d-none");
+      followupEl.classList.remove("d-none");
     } else if (sentvia === "email") {
-      const contactViaEmailEl = document.querySelector("#contactViaEmail");
-      const contactViaEmailLinkEl = document.querySelector(
-        "#contactViaEmail_link"
-      );
-      const emailContent = getPhrase("emailTheRecipient").replace(
-        "{RECIPIENT-NAME}",
-        name
-      );
-      contactViaEmailLinkEl.setAttribute("href", `mailto:${email}`);
-      contactViaEmailLinkEl.innerText = emailContent;
-      contactViaEmailEl.classList.remove("d-none");
+      emailLinkEl.setAttribute("href", `mailto:${email}`);
+      emailLinkContainerEl.classList.remove("d-none");
+      headlineFollowUpEl.innerText = getPhrase("headlineFollowUp");
     } else if (sentvia === "qrcode") {
-      const contactInPersonContainerEl = document.querySelector(
-        "#contactInPersonContainer"
-      );
-      const contactInPersonContentEl = document.querySelector(
-        "#contactInPersonContent"
-      );
-      const inPersonContent = getPhrase("visitTheRecipient").replaceAll(
-        "{RECIPIENT-NAME}",
-        name
-      );
-      const inPersonContentNoLocation = getPhrase(
-        "visitTheRecipientNoLocation"
-      ).replaceAll("{RECIPIENT-NAME}", name);
-
+      headlineFollowUpEl.innerText = getPhrase("headlineFollowUpInPerson");
       if (latitude && longitude) {
-        contactInPersonContentEl.innerHTML = inPersonContent;
-      } else {
-        contactInPersonContentEl.innerHTML = inPersonContentNoLocation;
+        qrCodeMapLinkEl.setAttribute("href", mapLink);
       }
-      contactInPersonContainerEl.classList.remove("d-none");
     }
   }
   if (interactionViewsEl) interactionViewsEl.innerHTML = inviteViewsHTML;
