@@ -105,8 +105,8 @@
     },
     {
       "key": "phone-call",
-      "original": "Call",
-      "translated": "Call"
+      "original": "Make a phone call",
+      "translated": "Make a phone call"
     },
     {
       "key": "send-sms",
