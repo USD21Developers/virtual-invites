@@ -36,6 +36,7 @@ function getRecipient() {
 }
 
 async function renderRecipient(invite) {
+  let mapLink;
   const {
     coords,
     interactions,
@@ -116,7 +117,6 @@ async function renderRecipient(invite) {
 
     if (latitude && longitude) {
       const operatingSystem = getMobileOperatingSystem();
-      let mapLink;
 
       if (operatingSystem === "iOS") {
         // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
