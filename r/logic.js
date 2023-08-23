@@ -181,14 +181,16 @@ async function renderRecipient(invite) {
       ).replaceAll("{RECIPIENT-NAME}", name);
       if (latitude && longitude) {
         qrCodeMapLinkEl.setAttribute("href", mapLink);
+        document.querySelector("[data-i18n='qrCodeWithLocation']").innerText =
+          getPhrase("qrCodeWithLocation").replaceAll("{RECIPIENT-NAME}", name);
+        followupQRCodeWithLocationEl.classList.remove("d-none");
+      } else {
         document.querySelector(
           "[data-i18n='qrCodeWithoutLocation']"
         ).innerText = getPhrase("qrCodeWithoutLocation").replaceAll(
           "{RECIPIENT-NAME}",
           name
         );
-        followupQRCodeWithLocationEl.classList.remove("d-none");
-      } else {
         followupQRCodeWithoutLocationEl.classList.remove("d-none");
       }
     }
