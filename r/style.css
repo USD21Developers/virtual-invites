@@ -2,3 +2,7 @@
 #interactionViews div {
   font-variant-numeric: tabular-nums;
 }
+
+.underline {
+  text-decoration: underline;
+}
