@@ -155,6 +155,12 @@ async function renderRecipient(invite) {
     );
     const addToPhonebookLinkEl = document.querySelector("#addToPhonebookLink");
     const qrCodeMapLinkEl = document.querySelector("#qrCodeMapLink");
+    const followupQRCodeWithLocationEl = document.querySelector(
+      "#followupQRCodeWithLocation"
+    );
+    const followupQRCodeWithoutLocationEl = document.querySelector(
+      "#followupQRCodeWithoutLocation"
+    );
 
     if (sentvia === "sms") {
       phoneLinkEl.setAttribute("href", `tel:${sms}`);
@@ -168,10 +174,14 @@ async function renderRecipient(invite) {
       emailLinkEl.setAttribute("href", `mailto:${email}`);
       emailLinkContainerEl.classList.remove("d-none");
       headlineFollowUpEl.innerText = getPhrase("headlineFollowUp");
+      followupEl.classList.remove("d-none");
     } else if (sentvia === "qrcode") {
       headlineFollowUpEl.innerText = getPhrase("headlineFollowUpInPerson");
       if (latitude && longitude) {
         qrCodeMapLinkEl.setAttribute("href", mapLink);
+        followupQRCodeWithLocationEl.classList.remove("d-none");
+      } else {
+        followupQRCodeWithoutLocationEl.classList.remove("d-none");
       }
     }
   }
