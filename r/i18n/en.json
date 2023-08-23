@@ -90,8 +90,8 @@
     },
     {
       "key": "qrCodeWithLocation",
-      "original": "Since this invite was sent via QR code, no contact information was exchanged. But you did tag the invite with the location from which you sent it. If you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return to that location in order to follow up in person.",
-      "translated": "Since this invite was sent via QR code, no contact information was exchanged. But you did tag the invite with the location from which you sent it. If you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return to that location in order to follow up in person."
+      "original": "Since this invite was sent via QR code, no contact information was exchanged. But you did tag the invite with your location when you sent it. If you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return to that location in order to follow up in person.",
+      "translated": "Since this invite was sent via QR code, no contact information was exchanged. But you did tag the invite with your location when you sent it. If you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return to that location in order to follow up in person."
     },
     {
       "key": "qrCodeWithoutLocation",
