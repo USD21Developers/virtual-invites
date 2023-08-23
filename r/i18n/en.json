@@ -60,8 +60,8 @@
     },
     {
       "key": "follow-up",
-      "original": "Follow Up with {RECIPIENT-NAME}",
-      "translated": "Follow Up with {RECIPIENT-NAME}"
+      "original": "Follow Up:",
+      "translated": "Follow Up:"
     },
     {
       "key": "textTheRecipient",

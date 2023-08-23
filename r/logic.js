@@ -134,13 +134,6 @@ async function renderRecipient(invite) {
       if (invitedFromLocationContainer) invitedFromLocationContainer.remove();
     }
 
-    const followUpHeadlineEl = document.querySelector("#followUpHeadline");
-    const followUpHeadlineContent = getPhrase("follow-up").replaceAll(
-      "{RECIPIENT-NAME}",
-      name
-    );
-    followUpHeadlineEl.innerText = followUpHeadlineContent;
-
     if (sentvia === "sms") {
       const contactViaSmsEl = document.querySelector("#contactViaSms");
       const contactViaSmsLinkEl = document.querySelector("#contactViaSms_link");
