@@ -57,6 +57,36 @@
       "key": "email-timezone-notice",
       "original": "Times shown above are in the {EVENT-TIMEZONE} time zone.",
       "translated": "Times shown above are in the {EVENT-TIMEZONE} time zone."
+    },
+    {
+      "key": "follow-up",
+      "original": "Follow Up with {RECIPIENT-NAME}",
+      "translated": "Follow Up with {RECIPIENT-NAME}"
+    },
+    {
+      "key": "textTheRecipient",
+      "original": "Send a text message to {RECIPIENT-NAME}",
+      "translated": "Send a text message to {RECIPIENT-NAME}"
+    },
+    {
+      "key": "callTheRecipient",
+      "original": "Call {RECIPIENT-NAME}",
+      "translated": "Call {RECIPIENT-NAME}"
+    },
+    {
+      "key": "emailTheRecipient",
+      "original": "Send an e-mail to {RECIPIENT-NAME}",
+      "translated": "Send an e-mail to {RECIPIENT-NAME}"
+    },
+    {
+      "key": "visitTheRecipient",
+      "original": "You may be able to follow up with {RECIPIENT-NAME} in person by returning to the location from which you provided the QR Code for the invite. To do so, click on the map link above.",
+      "translated": "You may be able to follow up with {RECIPIENT-NAME} in person by returning to the location from which you provided the QR Code for the invite. To do so, click on the map link above."
+    },
+    {
+      "key": "visitTheRecipientNoLocation",
+      "original": "You may be able to follow up with {RECIPIENT-NAME} in person by returning to the location from which you provided the QR Code for the invite. Since you did not tag the invite with your location, you will have to remember where you met {RECIPIENT-NAME}.",
+      "translated": "You may be able to follow up with {RECIPIENT-NAME} in person by returning to the location from which you provided the QR Code for the invite. Since you did not tag the invite with your location, you will have to remember where you met {RECIPIENT-NAME}."
     }
   ],
 

@@ -134,21 +134,67 @@ async function renderRecipient(invite) {
       if (invitedFromLocationContainer) invitedFromLocationContainer.remove();
     }
 
-    // Populate followup method
-    /*
-      Available variables:
+    const followUpHeadlineEl = document.querySelector("#followUpHeadline");
+    const followUpHeadlineContent = getPhrase("follow-up").replaceAll(
+      "{RECIPIENT-NAME}",
       name
-      sms
-      email
-      latitude
-      longitude
-    */
+    );
+    followUpHeadlineEl.innerText = followUpHeadlineContent;
+
     if (sentvia === "sms") {
-      //
+      const contactViaSmsEl = document.querySelector("#contactViaSms");
+      const contactViaSmsLinkEl = document.querySelector("#contactViaSms_link");
+      const contactViaPhoneLinkEl = document.querySelector(
+        "#contactViaPhone_link"
+      );
+      const smsContent = getPhrase("textTheRecipient").replace(
+        "{RECIPIENT-NAME}",
+        name
+      );
+      const telContent = getPhrase("callTheRecipient").replace(
+        "{RECIPIENT-NAME}",
+        name
+      );
+
+      contactViaSmsLinkEl.setAttribute("href", `sms:${sms}`);
+      contactViaSmsLinkEl.innerText = smsContent;
+
+      contactViaPhoneLinkEl.setAttribute("href", `tel:${sms}`);
+      contactViaPhoneLinkEl.innerText = telContent;
+      contactViaSmsEl.classList.remove("d-none");
     } else if (sentvia === "email") {
-      //
+      const contactViaEmailEl = document.querySelector("#contactViaEmail");
+      const contactViaEmailLinkEl = document.querySelector(
+        "#contactViaEmail_link"
+      );
+      const emailContent = getPhrase("emailTheRecipient").replace(
+        "{RECIPIENT-NAME}",
+        name
+      );
+      contactViaEmailLinkEl.setAttribute("href", `mailto:${email}`);
+      contactViaEmailLinkEl.innerText = emailContent;
+      contactViaEmailEl.classList.remove("d-none");
     } else if (sentvia === "qrcode") {
-      //
+      const contactInPersonContainerEl = document.querySelector(
+        "#contactInPersonContainer"
+      );
+      const contactInPersonContentEl = document.querySelector(
+        "#contactInPersonContent"
+      );
+      const inPersonContent = getPhrase("visitTheRecipient").replaceAll(
+        "{RECIPIENT-NAME}",
+        name
+      );
+      const inPersonContentNoLocation = getPhrase(
+        "visitTheRecipientNoLocation"
+      ).replaceAll("{RECIPIENT-NAME}", name);
+
+      if (latitude && longitude) {
+        contactInPersonContentEl.innerHTML = inPersonContent;
+      } else {
+        contactInPersonContentEl.innerHTML = inPersonContentNoLocation;
+      }
+      contactInPersonContainerEl.classList.remove("d-none");
     }
   }
   if (interactionViewsEl) interactionViewsEl.innerHTML = inviteViewsHTML;
