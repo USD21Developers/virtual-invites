@@ -90,13 +90,13 @@
     },
     {
       "key": "qrCodeWithLocation",
-      "original": "Since this invite was sent via QR code, no contact information was exchanged. But you did tag the invite with your location when you sent it. If you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return to that location in order to follow up in person.",
-      "translated": "Since this invite was sent via QR code, no contact information was exchanged. But you did tag the invite with your location when you sent it. If you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return to that location in order to follow up in person."
+      "original": "Since this invite was sent via QR code, no contact information was exchanged. But you did tag the invite with your location when you sent it. So, if you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return to that location in order to follow up in person.",
+      "translated": "Since this invite was sent via QR code, no contact information was exchanged. But you did tag the invite with your location when you sent it. So, if you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return to that location in order to follow up in person."
     },
     {
       "key": "qrCodeWithoutLocation",
-      "original": "Since this invite was sent via QR code, no contact information was exchanged. You did not tag the invite with your location. But if you remember the location, and if you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return there in order to follow up in person.",
-      "translated": "Since this invite was sent via QR code, no contact information was exchanged. You did not tag the invite with your location. But if you remember the location, and if you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return there in order to follow up in person."
+      "original": "Since this invite was sent via QR code, no contact information was exchanged. You did not tag the invite with your location. But if you still remember the location, and if you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return there in order to follow up in person.",
+      "translated": "Since this invite was sent via QR code, no contact information was exchanged. You did not tag the invite with your location. But if you still remember the location, and if you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return there in order to follow up in person."
     },
     {
       "key": "mapAndDrivingDirections",
