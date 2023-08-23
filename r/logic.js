@@ -161,6 +161,10 @@ async function renderRecipient(invite) {
     const followupQRCodeWithoutLocationEl = document.querySelector(
       "#followupQRCodeWithoutLocation"
     );
+    const qrCodeWithLocationEl = document.querySelector("#qrCodeWithLocation");
+    const qrCodeWithoutLocationEl = document.querySelector(
+      "#qrCodeWithoutLocation"
+    );
 
     if (sentvia === "sms") {
       phoneLinkEl.setAttribute("href", `tel:${sms}`);
@@ -176,21 +180,16 @@ async function renderRecipient(invite) {
       headlineFollowUpEl.innerText = getPhrase("headlineFollowUp");
       followupEl.classList.remove("d-none");
     } else if (sentvia === "qrcode") {
-      headlineFollowUpEl.innerText = getPhrase(
-        "headlineFollowUpInPerson"
-      ).replaceAll("{RECIPIENT-NAME}", name);
       if (latitude && longitude) {
         qrCodeMapLinkEl.setAttribute("href", mapLink);
-        document.querySelector("[data-i18n='qrCodeWithLocation']").innerText =
-          getPhrase("qrCodeWithLocation").replaceAll("{RECIPIENT-NAME}", name);
+        qrCodeWithLocationEl.innerText = getPhrase(
+          "qrCodeWithLocation"
+        ).replaceAll("{RECIPIENT-NAME}", name);
         followupQRCodeWithLocationEl.classList.remove("d-none");
       } else {
-        document.querySelector(
-          "[data-i18n='qrCodeWithoutLocation']"
-        ).innerText = getPhrase("qrCodeWithoutLocation").replaceAll(
-          "{RECIPIENT-NAME}",
-          name
-        );
+        qrCodeWithoutLocationEl.innerText = getPhrase(
+          "qrCodeWithoutLocation"
+        ).replaceAll("{RECIPIENT-NAME}", name);
         followupQRCodeWithoutLocationEl.classList.remove("d-none");
       }
     }
