@@ -1320,6 +1320,7 @@ function onCalendarExpand() {
 
 function attachListeners() {
   window.addEventListener("hashchange", () => {
+    sessionStorage.removeItem("loaded");
     window.location.reload();
   });
 
