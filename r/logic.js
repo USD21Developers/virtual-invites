@@ -124,11 +124,11 @@ async function renderRecipient(invite) {
 
     if (latitude && longitude) {
       const operatingSystem = getMobileOperatingSystem();
+      const mapPointLabel = getPhrase("mapPointLabel");
 
       if (operatingSystem === "iOS") {
         // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
         // Docs for showing a point:  https://developer.apple.com/documentation/mapkit/mkmappoint
-        const mapPointLabel = getPhrase("mapPointLabel");
         mapLink = `http://maps.apple.com/?q=${mapPointLabel}&ll=${latitude},${longitude}&t=m`;
         directionsLink = `http://maps.apple.com/?daddr=${latitude},${longitude}&t=m`;
       } else {
