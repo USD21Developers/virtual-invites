@@ -124,7 +124,10 @@ async function renderRecipient(invite) {
 
     if (latitude && longitude) {
       const operatingSystem = getMobileOperatingSystem();
-      const mapPointLabel = getPhrase("mapPointLabel");
+      const mapPointLabel = getPhrase("mapPointLabel").replaceAll(
+        "{RECIPIENT-NAME}",
+        name
+      );
 
       if (operatingSystem === "iOS") {
         // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
