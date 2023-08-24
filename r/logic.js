@@ -128,7 +128,7 @@ async function renderRecipient(invite) {
       if (operatingSystem === "iOS") {
         // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
         // Docs for showing a point:  https://developer.apple.com/documentation/mapkit/mkmappoint
-        mapLink = `http://maps.apple.com/?sll==${latitude},${longitude}&t=m`;
+        mapLink = `http://maps.apple.com/?sll=${latitude},${longitude}&t=m`;
         directionsLink = `http://maps.apple.com/?daddr=${latitude},${longitude}&t=m`;
       } else {
         // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
