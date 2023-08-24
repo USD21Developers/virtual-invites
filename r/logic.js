@@ -37,6 +37,7 @@ function getRecipient() {
 
 async function renderRecipient(invite) {
   let mapLink;
+  let directionsLink;
   const {
     coords,
     interactions,
@@ -128,9 +129,11 @@ async function renderRecipient(invite) {
         // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
         // Docs for showing a point:  https://developer.apple.com/documentation/mapkit/mkmappoint
         mapLink = `http://maps.apple.com/?ll=${latitude},${longitude}&t=m`;
+        directionsLink = `http://maps.apple.com/?daddr=${latitude},${longitude}&t=m`;
       } else {
         // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
         mapLink = `https://www.google.com/maps/search/?api=1&query=${latitude}%2C${longitude}`;
+        directionsLink = mapLink;
       }
 
       invitedFromLocationEl.setAttribute("href", mapLink);
@@ -188,7 +191,7 @@ async function renderRecipient(invite) {
     } else if (sentvia === "qrcode") {
       headlineFollowUpEl.innerText = getPhrase("headlineFollowUpInPerson");
       if (latitude && longitude) {
-        qrCodeMapLinkEl.setAttribute("href", mapLink);
+        qrCodeMapLinkEl.setAttribute("href", directionsLink);
         qrCodeWithLocationEl.innerText = getPhrase(
           "qrCodeWithLocation"
         ).replaceAll("{RECIPIENT-NAME}", name);
