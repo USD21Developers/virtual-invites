@@ -51,6 +51,7 @@ async function renderRecipient(invite) {
   const invitedFromLocationEl = document.querySelector("#invitedFromLocation");
   const eventNameEl = document.querySelector("#eventName");
   const interactionViewsEl = document.querySelector("#interactionViews");
+  const timezoneNoticeEl = document.querySelector("#timezoneNotice");
   const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
   const userTimezone = userDateTimePrefs.timeZone || "";
   const { locale } = userDateTimePrefs;
@@ -68,6 +69,11 @@ async function renderRecipient(invite) {
     : [];
 
   const eventName = event.title || null;
+
+  timezoneNoticeEl.innerText = getPhrase("timezone-notice").replaceAll(
+    "{EVENT-TIMEZONE}",
+    userTimezone
+  );
 
   document.querySelectorAll("[data-i18n='pagetitle']").forEach((item) => {
     item.innerText = item.innerText.replaceAll("{RECIPIENT-NAME}", name);

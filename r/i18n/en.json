@@ -54,7 +54,7 @@
       "translated": "(No views yet)"
     },
     {
-      "key": "email-timezone-notice",
+      "key": "timezone-notice",
       "original": "Times shown above are in the {EVENT-TIMEZONE} time zone.",
       "translated": "Times shown above are in the {EVENT-TIMEZONE} time zone."
     },
