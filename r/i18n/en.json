@@ -90,8 +90,8 @@
     },
     {
       "key": "headlineFollowUpInPerson",
-      "original": "Follow Up in Person:",
-      "translated": "Follow Up in Person:"
+      "original": "Follow Up with {RECIPIENT-NAME} in Person:",
+      "translated": "Follow Up with {RECIPIENT-NAME} in Person:"
     },
     {
       "key": "qrCodeWithLocation",
