@@ -76,6 +76,8 @@ async function renderRecipient(invite) {
     userTimezone
   );
 
+  document.title = getPhrase("pagetitle").replaceAll("{RECIPIENT-NAME}", name);
+
   document.querySelectorAll("[data-i18n='pagetitle']").forEach((item) => {
     item.innerText = item.innerText.replaceAll("{RECIPIENT-NAME}", name);
   });
