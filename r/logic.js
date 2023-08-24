@@ -137,7 +137,7 @@ async function renderRecipient(invite) {
       } else {
         // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
         mapLink = `https://www.google.com/maps/search/?api=1&query=${mapPointLabel},${latitude}%2C${longitude}`;
-        directionsLink = `https://www.google.com/maps/dir/?api=1&query=${mapPointLabel},${latitude}%2C${longitude}`;
+        directionsLink = `https://www.google.com/maps/place/${mapPointLabel}/@${latitude}%2C${longitude}`;
       }
 
       invitedFromLocationEl.setAttribute("href", mapLink);
