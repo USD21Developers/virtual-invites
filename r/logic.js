@@ -94,7 +94,7 @@ async function renderRecipient(invite) {
         dateStyle: "short",
         timeStyle: "short",
         timeZone: userTimezone,
-      }).format(new Date(item.utcdate));
+      }).format(new Date(moment(item.utcdate).utc().tz(userTimezone)._d));
       inviteViewsHTML += `<div class="mb-2">${dateText}</div>\n`;
     });
     inviteViewsHTML = `<details><summary class="mb-2">${phraseTotalViews}</summary>${inviteViewsHTML}</details>`;
