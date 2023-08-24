@@ -182,7 +182,10 @@ async function renderRecipient(invite) {
     if (sentvia === "sms") {
       phoneLinkEl.setAttribute("href", `tel:${sms}`);
       smsLinkEl.setAttribute("href", `sms:${sms}`);
-      headlineFollowUpEl.innerText = getPhrase("headlineFollowUp");
+      headlineFollowUpEl.innerText = getPhrase("headlineFollowUp").replaceAll(
+        "{RECIPIENT-NAME}",
+        name
+      );
       phoneLinkContainerEl.classList.remove("d-none");
       smsLinkContainerEl.classList.remove("d-none");
       addToPhonebookLinkEl.innerText = getPhrase("addToPhonebook").replaceAll(
@@ -194,7 +197,10 @@ async function renderRecipient(invite) {
     } else if (sentvia === "email") {
       emailLinkEl.setAttribute("href", `mailto:${email}`);
       emailLinkContainerEl.classList.remove("d-none");
-      headlineFollowUpEl.innerText = getPhrase("headlineFollowUp");
+      headlineFollowUpEl.innerText = getPhrase("headlineFollowUp").replaceAll(
+        "{RECIPIENT-NAME}",
+        name
+      );
       followupEl.classList.remove("d-none");
     } else if (sentvia === "qrcode") {
       headlineFollowUpEl.innerText = getPhrase("headlineFollowUpInPerson");

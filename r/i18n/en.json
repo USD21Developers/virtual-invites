@@ -85,8 +85,8 @@
     },
     {
       "key": "headlineFollowUp",
-      "original": "Follow Up:",
-      "translated": "Follow Up:"
+      "original": "Follow Up with {RECIPIENT-NAME}:",
+      "translated": "Follow Up with {RECIPIENT-NAME}:"
     },
     {
       "key": "headlineFollowUpInPerson",
