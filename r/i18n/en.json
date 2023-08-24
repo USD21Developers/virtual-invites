@@ -55,8 +55,8 @@
     },
     {
       "key": "timezone-notice",
-      "original": "Times shown above are in the {EVENT-TIMEZONE} time zone.",
-      "translated": "Times shown above are in the {EVENT-TIMEZONE} time zone."
+      "original": "All times shown above are in the {EVENT-TIMEZONE} time zone.",
+      "translated": "All times shown above are in the {EVENT-TIMEZONE} time zone."
     },
     {
       "key": "follow-up",
