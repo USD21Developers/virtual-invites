@@ -58,7 +58,7 @@ async function renderRecipient(invite) {
     dateStyle: "short",
     timeStyle: "short",
     timeZone: userTimezone,
-  }).format(new Date(utctime));
+  }).format(new Date(moment(utctime).utc().tz(timezone)._d));
 
   const events = await localforage.getItem("eventsFromMyInvites");
   const event = events.find((item) => item.eventid === eventid);
