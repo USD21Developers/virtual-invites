@@ -185,6 +185,10 @@ async function renderRecipient(invite) {
       headlineFollowUpEl.innerText = getPhrase("headlineFollowUp");
       phoneLinkContainerEl.classList.remove("d-none");
       smsLinkContainerEl.classList.remove("d-none");
+      addToPhonebookLinkEl.innerText = getPhrase("addToPhonebook").replaceAll(
+        "{RECIPIENT-NAME}",
+        name
+      );
       addToPhonebookLinkContainerEl.classList.remove("d-none");
       followupEl.classList.remove("d-none");
     } else if (sentvia === "email") {
