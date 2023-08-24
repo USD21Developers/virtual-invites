@@ -172,7 +172,7 @@ async function renderRecipient(invite) {
       headlineFollowUpEl.innerText = getPhrase("headlineFollowUp");
       phoneLinkContainerEl.classList.remove("d-none");
       smsLinkContainerEl.classList.remove("d-none");
-      addToPhonebookLinkContainerEl.remove("d-none");
+      addToPhonebookLinkContainerEl.classList.remove("d-none");
       followupEl.classList.remove("d-none");
     } else if (sentvia === "email") {
       emailLinkEl.setAttribute("href", `mailto:${email}`);
