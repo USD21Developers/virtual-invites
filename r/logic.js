@@ -136,7 +136,7 @@ async function renderRecipient(invite) {
         directionsLink = `http://maps.apple.com/?daddr=${latitude},${longitude}&t=m`;
       } else {
         // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
-        mapLink = `https://www.google.com/maps/search/?api=1&query=${latitude}%2C${longitude}`;
+        mapLink = `https://www.google.com/maps/place/${mapPointLabel}/search/?api=1&query=${latitude}%2C${longitude}`;
         directionsLink = `https://www.google.com/maps/place/${mapPointLabel}/@${latitude}%2C${longitude}`;
       }
 
