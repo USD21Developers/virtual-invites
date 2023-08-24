@@ -136,8 +136,8 @@ async function renderRecipient(invite) {
         directionsLink = `http://maps.apple.com/?daddr=${latitude},${longitude}&t=m`;
       } else {
         // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
-        mapLink = `https://www.google.com/maps/search/?api=1&query=${latitude}%2C${longitude}`;
-        directionsLink = mapLink;
+        mapLink = `https://www.google.com/maps/search/?api=1&query=${mapPointLabel},${latitude}%2C${longitude}`;
+        directionsLink = `https://www.google.com/maps/dir/?api=1&query=${mapPointLabel},${latitude}%2C${longitude}`;
       }
 
       invitedFromLocationEl.setAttribute("href", mapLink);
