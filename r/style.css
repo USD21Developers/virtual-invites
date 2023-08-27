@@ -21,6 +21,6 @@ html {
 }
 
 .table td {
-  padding-left: .5rem;
-  padding-right: .5rem;
+  padding-left: .5rem !important;
+  padding-right: .5rem !important;
 }
