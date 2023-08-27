@@ -22,7 +22,7 @@ html {
 
 .table tr > td {
   padding-left: 5px;
-  padding-right: 5px;
+  padding-right: 0;
 }
 
 .table td:first-child {
