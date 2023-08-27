@@ -10,3 +10,7 @@
 #followup li {
   margin-bottom: 1rem;
 }
+
+#timezoneNotice {
+  font-size: 12px;
+}
