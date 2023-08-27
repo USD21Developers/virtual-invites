@@ -20,7 +20,7 @@ html {
   width: auto !important;
 }
 
-.table tr > td {
+.table td {
   padding-left: 5px;
   padding-right: 0;
 }
