@@ -21,11 +21,6 @@ html {
 }
 
 .table td {
-  padding-left: 5px;
-  padding-right: 0;
-}
-
-.table td:first-child {
-  padding-left: 0;
-  padding-right: 5px;
+  padding-left: .5rem;
+  padding-right: .5rem;
 }
