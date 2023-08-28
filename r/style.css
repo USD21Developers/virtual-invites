@@ -10,3 +10,17 @@
 #followup li {
   margin-bottom: 1rem;
 }
+
+#timezoneNotice {
+  font-size: 12px;
+}
+
+html {
+  overflow-x: hidden !important;
+  width: auto !important;
+}
+
+.table td {
+  padding-left: .5rem !important;
+  padding-right: .5rem !important;
+}
