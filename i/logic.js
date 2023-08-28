@@ -1356,7 +1356,9 @@ function attachListeners() {
 
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") {
-      window.location.reload();
+      const video = document.getElementById("video");
+      video.currentTime = video.duration;
+      video.pause();
     }
   });
 }
