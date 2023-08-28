@@ -1353,14 +1353,6 @@ function attachListeners() {
   $(".collapse").on("hidden.bs.collapse", () => {
     document.querySelector("#atcbOptions").classList.remove("d-none");
   });
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible") {
-      const video = document.getElementById("video");
-      video.currentTime = video.duration;
-      video.pause();
-    }
-  });
 }
 
 async function init() {
