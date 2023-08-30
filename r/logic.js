@@ -256,18 +256,17 @@ async function onAddToPhoneBook(e) {
       return "";
     }
   };
-  const makeVCardLang = (langIso = "en", countryIso = "US") =>
-    `LANG:${langIso.toLowerCase()}-${countryIso.toUpperCase()}`;
+  const makeVCardLang = (locale) => `LANG:${locale}`;
   const makeVCardURL = (url = window.location.href) => `URL:${url}`;
   const makeVCardTimeStamp = () => {
     const dateNow = moment.tz(moment(), "UTC").format();
     return `REV:${dateNow}`;
   };
-  const makeVCardNote = (event) => {
+  const makeVCardNote = (invite, event, locale) => {
     const invitedDateIso = moment
-      .tz(moment("2023-08-29T22:35:01").utc(), userDateTimePrefs.timeZone)
+      .tz(moment(invite.recipient.utcdate).utc(), userDateTimePrefs.timeZone)
       .format();
-    const dateInvited = Intl.DateTimeFormat("en-US", {
+    const dateInvited = Intl.DateTimeFormat(locale, {
       dateStyle: "long",
     }).format(new Date(invitedDateIso));
     let note = getPhrase("addToPhonebookNote");
@@ -316,15 +315,16 @@ async function onAddToPhoneBook(e) {
   if (!event) return;
   const countryIso = event.country;
   const langIso = event.lang;
+  const locale = `${langIso.toLowerCase()}-${countryIso.toUpperCase()}}`;
 
   const vcard = `BEGIN:VCARD
 ${makeVCardVersion()}
 ${makeVCardName(invite.recipient.name)}
 ${makeVCardFormattedName(invite.recipient.name)}
 ${makeVCardTel(invite.recipient.sms)}
-${makeVCardLang(langIso, countryIso)}
+${makeVCardLang(locale)}
 ${makeVCardURL()}
-${makeVCardNote(event)}
+${makeVCardNote(invite, event, locale)}
 ${makeVCardTimeStamp()}
 ${makeVCardGeo(lat, long)}
 END:VCARD`;
