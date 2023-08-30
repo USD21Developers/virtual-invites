@@ -137,6 +137,11 @@
       "key": "addToPhonebook",
       "original": "Add {RECIPIENT-NAME} to my phonebook",
       "translated": "Add {RECIPIENT-NAME} to my phonebook"
+    },
+    {
+      "key": "addToPhonebookNote",
+      "original": "Invited to {EVENT-TITLE} on {INVITATION-DATE}",
+      "translated": "Invited to {EVENT-TITLE} on {INVITATION-DATE}"
     }
   ],
 

@@ -225,10 +225,120 @@ async function renderRecipient(invite) {
   if (interactionViewsEl) interactionViewsEl.innerHTML = inviteViewsHTML;
 }
 
+async function onAddToPhoneBook(e) {
+  e.preventDefault();
+
+  // vCard 3.0 spec:  https://www.evenx.com/vcard-3-0-format-specification
+
+  const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
+  const makeVCardVersion = () => `VERSION:3.0`;
+  const makeVCardName = (theName) => {
+    let name = theName;
+    name = name.replaceAll(",", ",");
+    name = name.replaceAll(";", ";");
+    name = name.replaceAll('"', '"');
+    name = name.replaceAll("\\", "\\\\");
+    return `N:${name}`;
+  };
+  const makeVCardFormattedName = (theName) => {
+    let name = theName;
+    name = name.replaceAll(",", ",");
+    name = name.replaceAll(";", ";");
+    name = name.replaceAll('"', '"');
+    name = name.replaceAll("\\", "\\\\");
+    return `FN:${name}`;
+  };
+  const makeVCardTel = (phone) => `TEL;TYPE=CELL:${phone}`;
+  const makeVCardGeo = (lat, long) => {
+    if (lat && long) {
+      return `GEO:${lat};${long}`;
+    } else {
+      return "";
+    }
+  };
+  const makeVCardLang = (langIso = "en", countryIso = "US") =>
+    `LANG:${langIso.toLowerCase()}-${countryIso.toUpperCase()}`;
+  const makeVCardURL = (url = window.location.href) => `URL:${url}`;
+  const makeVCardTimeStamp = () => {
+    const dateNow = moment.tz(moment(), "UTC").format();
+    return `REV:${dateNow}`;
+  };
+  const makeVCardNote = (event) => {
+    const invitedDateIso = moment
+      .tz(moment("2023-08-29T22:35:01").utc(), userDateTimePrefs.timeZone)
+      .format();
+    const dateInvited = Intl.DateTimeFormat("en-US", {
+      dateStyle: "long",
+    }).format(new Date(invitedDateIso));
+    let note = getPhrase("addToPhonebookNote");
+    note = note.replaceAll("{EVENT-TITLE}", event.title);
+    note = note.replaceAll("{INVITATION-DATE}", dateInvited);
+    note = note.replaceAll(",", ",");
+    note = note.replaceAll(";", ";");
+    note = note.replaceAll('"', '"');
+    note = note.replaceAll("\\", "\\\\");
+    return `NOTE:${note}`;
+  };
+
+  const downloadToFile = (content, filename, contentType) => {
+    const a = document.createElement("a");
+    const file = new Blob([content], { type: contentType });
+
+    a.href = URL.createObjectURL(file);
+    a.download = filename;
+    a.click();
+
+    URL.revokeObjectURL(a.href);
+  };
+
+  const inviteId = Number(getHash().split("/")[1]);
+  const invites = await localforage.getItem("invites");
+  if (!invites) return;
+  if (!Array.isArray(invites)) return;
+  const invite = invites.find((item) => item.invitationid === inviteId);
+  if (!invite) return;
+
+  const lat = invite.coords ? invite.coords.x : null;
+  const long = invite.coords ? invite.coords.y : null;
+  const eventid = invite.eventid || null;
+
+  const events = await localforage.getItem("events");
+  const eventsByFollowedUsers = await localforage.getItem(
+    "eventsByFollowedUsers"
+  );
+  if (!events) return;
+  if (!Array.isArray(events)) return;
+  let event;
+  event = events.find((item) => item.eventid === eventid);
+  if (!event && eventsByFollowedUsers) {
+    event = eventsByFollowedUsers.find((item) => item.eventid === eventid);
+  }
+  if (!event) return;
+  const countryIso = event.country;
+  const langIso = event.lang;
+
+  const vcard = `BEGIN:VCARD
+${makeVCardVersion()}
+${makeVCardName(invite.recipient.name)}
+${makeVCardFormattedName(invite.recipient.name)}
+${makeVCardTel(invite.recipient.sms)}
+${makeVCardLang(langIso, countryIso)}
+${makeVCardURL()}
+${makeVCardNote(event)}
+${makeVCardTimeStamp()}
+${makeVCardGeo(lat, long)}
+END:VCARD`;
+  downloadToFile(vcard, "vcard.vcf", "text/vcard");
+}
+
 function attachListeners() {
   window.addEventListener("hashchange", () => {
     window.location.reload();
   });
+
+  document
+    .querySelector("#addToPhonebookLink")
+    .addEventListener("click", onAddToPhoneBook);
 }
 
 async function init() {
