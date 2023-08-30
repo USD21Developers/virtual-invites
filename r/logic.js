@@ -238,7 +238,7 @@ async function onAddToPhoneBook(e) {
     name = name.replaceAll(";", ";");
     name = name.replaceAll('"', '"');
     name = name.replaceAll("\\", "\\\\");
-    return `N:${name}`;
+    return `N:;${name};`;
   };
   const makeVCardFormattedName = (theName) => {
     let name = theName;
