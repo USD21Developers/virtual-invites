@@ -315,7 +315,7 @@ async function onAddToPhoneBook(e) {
   if (!event) return;
   const countryIso = event.country;
   const langIso = event.lang;
-  const locale = `${langIso.toLowerCase()}-${countryIso.toUpperCase()}}`;
+  const locale = `${langIso.toLowerCase()}-${countryIso.toUpperCase()}`;
 
   const vcard = `BEGIN:VCARD
 ${makeVCardVersion()}
