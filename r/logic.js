@@ -331,6 +331,47 @@ END:VCARD`;
   downloadToFile(vcard, "vcard.vcf", "text/vcard");
 }
 
+async function populateResendInvite(e) {
+  const resendLinkEl = document.querySelector("#resendLink");
+  const inviteid = Number(getHash().split("/")[1]) || null;
+  if (!inviteid) return;
+  const invites = await localforage.getItem("invites");
+  if (!invites) return;
+  const invite = invites.find((item) => item.invitationid === inviteid);
+  if (!invite) return;
+  const eventid = invite.eventid;
+  const events = await localforage.getItem("events");
+  const eventsByFollowedUsers = await localforage.getItem(
+    "eventsByFollowedUsers"
+  );
+  if (!events && !eventsByFollowedUsers) return;
+  let event = events.find((item) => item.eventid === eventid);
+  if (!event) {
+    event = eventsByFollowedUsers.find((item) => item.eventid === eventid);
+  }
+  if (!event) return;
+  const eventTitle = event.title;
+  const userid = getUserId();
+  const recipientid = invite.recipient.id;
+  const phrasesForSendInvite = await fetch(
+    `../send/i18n/${event.lang}.json`
+  ).then((res) => res.json());
+  const clickBelowTranslationObject = phrasesForSendInvite.phrases.find(
+    (item) => item.key === "clickBelow"
+  );
+  if (!clickBelowTranslationObject) return;
+  const clickBelow = clickBelowTranslationObject.translated;
+  const inviteLink =
+    window.location.hostname === "localhost"
+      ? `${window.location.origin}/i/#/${eventid}/${userid}/${recipientid}`
+      : `${window.location.origin}/i/${eventid}/${userid}/${recipientid}`;
+  const sendBody = `${eventTitle} ${clickBelow} \r\n\r\n${inviteLink}`;
+  resendLinkEl.setAttribute(
+    "href",
+    `sms:${invite.recipient.sms};?&body=${sendBody}`
+  );
+}
+
 function attachListeners() {
   window.addEventListener("hashchange", () => {
     window.location.reload();
@@ -344,6 +385,7 @@ function attachListeners() {
 async function init() {
   await populateContent();
   await getRecipient();
+  populateResendInvite();
   attachListeners();
   globalHidePageSpinner();
 }
