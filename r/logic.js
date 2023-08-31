@@ -370,20 +370,19 @@ async function populateResendInvite(e) {
     const sendBody = eventTitle + " " + clickBelow + " \r\n\r\n" + inviteLink;
     resendLinkEl.setAttribute(
       "href",
-      "sms:" + invite.recipient.sms + ";?&body=" + sendBody
+      "sms:" + invite.recipient.sms + ";?&body=" + encodeURI(sendBody)
     );
   } else if (invite.recipient.email) {
     const invitationToTranslationObject = phrasesForSendInvite.phrases.find(
       (item) => item.key === "invitationto"
     );
     const invitationTo = invitationToTranslationObject.translated;
-    let sendBody = `${invitationTo}: \r\n\r\n${inviteLink}`;
     const emailSubjectLine =
       localStorage.getItem("subjectLineEmail") ||
       `${invitationTo} ${eventTitle}`;
     const emailBodyText = localStorage.getItem("bodyTextEmail") || "";
 
-    sendBody = `${emailBodyText} \r\n\r\n${inviteLink}`;
+    let sendBody = `${eventTitle} \r\n\r\n${inviteLink}`;
     if (emailBodyText.length) {
       sendBody += `\r\n\r\n${emailBodyText}\r\n\r\n`;
     }
@@ -395,7 +394,7 @@ async function populateResendInvite(e) {
         "?subject=" +
         encodeURI(emailSubjectLine) +
         "&body=" +
-        sendBody
+        encodeURI(sendBody)
     );
   }
 }
