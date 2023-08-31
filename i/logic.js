@@ -613,6 +613,12 @@ async function getInvite() {
           case "invite retrieved":
             sessionStorage.setItem("loaded", true);
             renderInvite(data.invite);
+            const topOfEnvelopeEl = document.querySelector("#topOfEnvelope");
+            try {
+              topOfEnvelopeEl.scrollIntoView({ behavior: "smooth" });
+            } catch (err) {
+              topOfEnvelopeEl.scrollIntoView();
+            }
             resolve();
             break;
           default:
