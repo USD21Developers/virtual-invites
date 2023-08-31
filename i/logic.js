@@ -562,6 +562,31 @@ async function getInvite() {
 
     const endpoint = `${getApiHost()}/invite`;
 
+    const refreshToken = localStorage.getItem("refreshToken");
+    let isUser = false;
+    if (refreshToken) {
+      if (refreshToken.indexOf(".") >= 0) {
+        const tokenArray = refreshToken.split(".");
+        if (Array.isArray(tokenArray)) {
+          if (tokenArray.length === 3) {
+            const arrayItem = tokenArray[1];
+            try {
+              const parsedUser = JSON.parse(atob(arrayItem)) || null;
+              if (typeof parsedUser === "object") {
+                if (parsedUser.hasOwnProperty("userid")) {
+                  if (parsedUser.userid === userid) {
+                    isUser = true;
+                  }
+                }
+              }
+            } catch (e) {
+              //
+            }
+          }
+        }
+      }
+    }
+
     showSpinner();
 
     fetch(endpoint, {
@@ -575,6 +600,7 @@ async function getInvite() {
         emailHtml: emailHtml,
         emailPhrases: emailPhrases,
         loadedAlready: loadedAlready,
+        isUser: isUser,
       }),
       headers: new Headers({
         "Content-Type": "application/json",
