@@ -356,20 +356,48 @@ async function populateResendInvite(e) {
   const phrasesForSendInvite = await fetch(
     `../send/i18n/${event.lang}.json`
   ).then((res) => res.json());
-  const clickBelowTranslationObject = phrasesForSendInvite.phrases.find(
-    (item) => item.key === "clickBelow"
-  );
-  if (!clickBelowTranslationObject) return;
-  const clickBelow = clickBelowTranslationObject.translated;
   const inviteLink =
     window.location.hostname === "localhost"
       ? `${window.location.origin}/i/#/${eventid}/${userid}/${recipientid}`
       : `${window.location.origin}/i/${eventid}/${userid}/${recipientid}`;
-  const sendBody = `${eventTitle} ${clickBelow} \r\n\r\n${inviteLink}`;
-  resendLinkEl.setAttribute(
-    "href",
-    `sms:${invite.recipient.sms};?&body=${sendBody}`
-  );
+
+  if (invite.recipient.sms) {
+    const clickBelowTranslationObject = phrasesForSendInvite.phrases.find(
+      (item) => item.key === "clickBelow"
+    );
+    if (!clickBelowTranslationObject) return;
+    const clickBelow = clickBelowTranslationObject.translated;
+    const sendBody = eventTitle + " " + clickBelow + " \r\n\r\n" + inviteLink;
+    resendLinkEl.setAttribute(
+      "href",
+      "sms:" + invite.recipient.sms + ";?&body=" + sendBody
+    );
+  } else if (invite.recipient.email) {
+    const invitationToTranslationObject = phrasesForSendInvite.phrases.find(
+      (item) => item.key === "invitationto"
+    );
+    const invitationTo = invitationToTranslationObject.translated;
+    let sendBody = `${invitationTo}: \r\n\r\n${inviteLink}`;
+    const emailSubjectLine =
+      localStorage.getItem("subjectLineEmail") ||
+      `${invitationTo} ${eventTitle}`;
+    const emailBodyText = localStorage.getItem("bodyTextEmail") || "";
+
+    sendBody = `${emailBodyText}:\r\n\r\n${inviteLink}`;
+    if (emailBodyText.length) {
+      sendBody += `\r\n\r\n${emailBodyText}\r\n\r\n`;
+    }
+
+    resendLinkEl.setAttribute(
+      "href",
+      "mailto:" +
+        invite.recipient.email +
+        "?subject=" +
+        encodeURI(emailSubjectLine) +
+        "&body=" +
+        sendBody
+    );
+  }
 }
 
 function attachListeners() {
