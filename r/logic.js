@@ -383,7 +383,7 @@ async function populateResendInvite(e) {
       `${invitationTo} ${eventTitle}`;
     const emailBodyText = localStorage.getItem("bodyTextEmail") || "";
 
-    sendBody = `${emailBodyText}\r\n\r\n${inviteLink}`;
+    sendBody = `${emailBodyText} \r\n\r\n${inviteLink}`;
     if (emailBodyText.length) {
       sendBody += `\r\n\r\n${emailBodyText}\r\n\r\n`;
     }
