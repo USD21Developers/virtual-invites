@@ -1346,7 +1346,9 @@ function onCalendarExpand() {
 }
 
 function onVideoEnded() {
-  customScrollTo("#topOfEnvelope");
+  document
+    .querySelector("#topOfEnvelope")
+    .scrollIntoView({ behavior: "smooth" });
 
   video.removeEventListener("ended", onVideoEnded, true);
 }
