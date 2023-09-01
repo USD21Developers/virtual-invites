@@ -21,6 +21,19 @@ html {
 }
 
 .table td {
-  padding-left: .5rem !important;
-  padding-right: .5rem !important;
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#modal {
+  animation: fadeIn 0.25s;
 }
