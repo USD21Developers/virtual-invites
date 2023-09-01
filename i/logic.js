@@ -4,6 +4,7 @@ let inviteObject = {
   recipient: null,
 };
 let iti;
+const video = document.getElementById("video");
 
 function buildCalendarDescription(event) {
   let locationName =
@@ -885,13 +886,6 @@ function renderInvite(invite) {
 
   // Show invite
   hideSpinner();
-
-  const topOfEnvelopeEl = document.querySelector("#topOfEnvelope");
-  try {
-    topOfEnvelopeEl.scrollIntoView({ behavior: "smooth" });
-  } catch (err) {
-    topOfEnvelopeEl.scrollIntoView();
-  }
 }
 
 function hideSpinner() {
@@ -1351,6 +1345,12 @@ function onCalendarExpand() {
   addToCalendar.scrollIntoView({ behavior: "smooth" });
 }
 
+function onVideoEnded() {
+  customScrollTo("#topOfEnvelope");
+
+  video.removeEventListener("ended", onVideoEnded, true);
+}
+
 function attachListeners() {
   window.addEventListener("hashchange", () => {
     sessionStorage.removeItem("loaded");
@@ -1386,6 +1386,8 @@ function attachListeners() {
   $(".collapse").on("hidden.bs.collapse", () => {
     document.querySelector("#atcbOptions").classList.remove("d-none");
   });
+
+  video.addEventListener("ended", onVideoEnded, true);
 }
 
 async function init() {
