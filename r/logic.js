@@ -264,7 +264,7 @@ async function onAddToPhoneBook(e) {
   };
   const makeVCardNote = (invite, event, locale) => {
     const invitedDateIso = moment
-      .tz(moment(invite.recipient.utcdate).utc(), userDateTimePrefs.timeZone)
+      .tz(moment(invite.utctime).utc(), userDateTimePrefs.timeZone)
       .format();
     const dateInvited = Intl.DateTimeFormat(locale, {
       dateStyle: "long",
