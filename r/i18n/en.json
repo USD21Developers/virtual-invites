@@ -142,6 +142,11 @@
       "key": "addToPhonebookNote",
       "original": "Invited to {EVENT-TITLE} on {INVITATION-DATE}",
       "translated": "Invited to {EVENT-TITLE} on {INVITATION-DATE}"
+    },
+    {
+      "key": "followUpReminder",
+      "original": "Follow Up Reminder",
+      "translated": "Follow Up Reminder"
     }
   ],
 

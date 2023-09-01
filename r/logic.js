@@ -399,6 +399,12 @@ async function populateResendInvite(e) {
   }
 }
 
+function onSetFollowupReminder(e) {
+  e.preventDefault();
+  const followUpReminder = getPhrase("followUpReminder");
+  showModal("Hello World", followUpReminder, true);
+}
+
 function attachListeners() {
   window.addEventListener("hashchange", () => {
     window.location.reload();
@@ -407,6 +413,10 @@ function attachListeners() {
   document
     .querySelector("#addToPhonebookLink")
     .addEventListener("click", onAddToPhoneBook);
+
+  document
+    .querySelector("#addCalendarReminderLink")
+    .addEventListener("click", onSetFollowupReminder);
 }
 
 async function init() {
