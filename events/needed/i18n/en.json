@@ -106,30 +106,24 @@
         "translated": "You should add an event in these scenarios:"
       },
       {
+        "key": "bullet1AddHeading",
+        "original": "To personalize it.",
+        "translated": "To personalize it."
+      },
+      {
         "key": "bullet1Add",
-        "original": "To personalize it. Add an event when you want to describe it in your own writing style, emphasizing whatever personally resonates with you. If you have a highly distinct personality (and if it closely matches your writing style), a personalized invite might seem more authentic to its recipients.",
-        "translated": "To personalize it. Add an event when you want to describe it in your own writing style, emphasizing whatever personally resonates with you. If you have a highly distinct personality (and if it closely matches your writing style), a personalized invite might seem more authentic to its recipients.",
-        "changes": [
-          {
-            "original": "To personalize it.",
-            "translated": "To personalize it.",
-            "bold": true,
-            "italic": false,
-            "link": ""
-          },
-          {
-            "original": "highly distinct",
-            "translated": "highly distinct",
-            "bold": false,
-            "italic": true,
-            "link": ""
-          }
-        ]
+        "original": "Add an event when you want to describe it in your own writing style, emphasizing whatever personally resonates with you. Or, if you have a highly distinct personality (and it closely matches your writing style), a personalized invite might seem more authentic to its recipients.",
+        "translated": "Add an event when you want to describe it in your own writing style, emphasizing whatever personally resonates with you. Or, if you have a highly distinct personality (and it closely matches your writing style), a personalized invite might seem more authentic to its recipients."
+      },
+      {
+        "key": "bullet2AddHeading",
+        "original": "To lead your group.",
+        "translated": "To lead your group."
       },
       {
         "key": "bullet2Add",
-        "original": "To lead your group. Add an event when you intend for the people who follow you to use it in their invites. If you are a Bible Talk Leader (or higher), then this is definitely the right option.",
-        "translated": "To lead your group. Add an event when you intend for the people who follow you to use it in their invites. If you are a Bible Talk Leader (or higher), then this is definitely the right option.",
+        "original": "Add an event when you intend for the people who follow you to use it in their invites. If you are a Bible Talk Leader (or higher), then this is definitely the right option.",
+        "translated": "Add an event when you intend for the people who follow you to use it in their invites. If you are a Bible Talk Leader (or higher), then this is definitely the right option.",
         "changes": [
           {
             "original": "To lead your group.",
