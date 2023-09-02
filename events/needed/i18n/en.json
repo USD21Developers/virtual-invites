@@ -122,8 +122,8 @@
       },
       {
         "key": "bullet2Add",
-        "original": "Add an event when you intend for the members of your group to use it in their invites. If you are a Bible Talk Leader (or higher), then this is definitely the right option.",
-        "translated": "Add an event when you intend for the members of your group to use it in their invites. If you are a Bible Talk Leader (or higher), then this is definitely the right option.",
+        "original": "Add an event to enable the members of your group to use it in their invites. If you are a Bible Talk Leader (or higher), then this is definitely the right option.",
+        "translated": "Add an event to enable the members of your group to use it in their invites. If you are a Bible Talk Leader (or higher), then this is definitely the right option.",
         "changes": [
           {
             "original": "To lead your group.",
