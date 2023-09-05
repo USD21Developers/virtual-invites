@@ -281,11 +281,18 @@
               aria-describedby="nameHelpBlock"
               required
             />
-            <div
-              id="nameHelpBlock"
-              class="form-text text-dark"
-              data-i18n="warningSpellNameAccurately"
-            ></div>
+            <div id="nameHelpBlock" class="form-text text-dark">
+              <div class="d-inline-block">
+                <span class="material-icons material-symbols-outlined">
+                  error
+                </span>
+              </div>
+              <div
+                class="d-inline-block"
+                data-i18n="warningSpellNameAccurately"
+                style="vertical-align: top"
+              ></div>
+            </div>
             <div class="invalid-feedback"></div>
           </div>
         </div>
