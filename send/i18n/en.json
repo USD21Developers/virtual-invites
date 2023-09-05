@@ -300,8 +300,8 @@
     },
     {
       "key": "warningSpellNameAccurately",
-      "original": "Name will be displayed on recipient's invite",
-      "translated": "Name will be displayed on recipient's invite"
+      "original": "Recipient's name will be displayed on their invite",
+      "translated": "Recipient's name will be displayed on their invite"
     }
   ],
 
