@@ -297,6 +297,11 @@
       "key": "linkCopied",
       "original": "Invite link copied!",
       "translated": "Invite link copied!"
+    },
+    {
+      "key": "warningSpellNameAccurately",
+      "original": "Name above will be displayed on recipient's invite. Please spell it accurately.",
+      "translated": "Name above will be displayed on recipient's invite. Please spell it accurately."
     }
   ],
 
