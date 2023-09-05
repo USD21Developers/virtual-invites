@@ -301,7 +301,17 @@
     {
       "key": "warningSpellNameAccurately",
       "original": "Recipient's name will be displayed on their invite.",
-      "translated": "Recipient's name will be displayed on their invite."
+      "translated": "Recipient's name will be displayed on their invite.",
+      "changes": [
+        {
+          "original": "will be displayed",
+          "translated": "will be displayed",
+          "bold": false,
+          "italic": true,
+          "underline": false,
+          "link": ""
+        }
+      ]
     }
   ],
 
