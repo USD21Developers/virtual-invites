@@ -610,21 +610,6 @@
       "translated": "It seems that you have already added this event. The event's type, title and dates must be distinct from events that you've added previously."
     },
     {
-      "key": "overlappingRecurringEvent",
-      "original": "This repeating event overlaps with another on the same weekday, entitled {EVENT-TITLE}. You can either cancel, or revise it to correct the overlap.",
-      "translated": "This repeating event overlaps with another on the same weekday, entitled {EVENT-TITLE}. You can either cancel, or revise it to correct the overlap.",
-      "changes": [
-        {
-          "original": "{EVENT-TITLE}",
-          "translated": "{EVENT-TITLE}",
-          "bold": true,
-          "italic": false,
-          "link": ""
-        }
-      ]
-    },
-
-    {
       "key": "headlineFollowers",
       "original": "Share With My Followers:",
       "translated": "Share With My Followers:"

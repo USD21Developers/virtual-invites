@@ -993,11 +993,6 @@ async function onSubmit(e) {
           case "duplicate event":
             showError(getPhrase("duplicateEvent"));
             break;
-          case "overlapping recurring event":
-            let errorPhrase = getPhrase("overlappingRecurringEvent");
-            errorPhrase = errorPhrase.replaceAll("{EVENT-TITLE}", data.title);
-            showError(errorPhrase);
-            break;
           case "invalid phone number":
             showError(
               getPhrase("validateInvalidPhoneNumber"),
