@@ -399,16 +399,34 @@ async function populateResendInvite(e) {
   }
 }
 
+function onClickAway(event) {
+  const addToCalendar = document.querySelector("#addToCalendar");
+  const clickedCalendar = addToCalendar.contains(event.target);
+  const addToCalendarButton = addToCalendar.querySelector(
+    "#addToCalendarButton"
+  );
+  if (!clickedCalendar) {
+    $(".collapse").collapse("hide");
+  }
+
+  if (!clickedCalendar) {
+    addToCalendarButton.classList.add("collapsed");
+    addToCalendarButton.setAttribute("aria-expanded", "false");
+  }
+}
+
 function onSetFollowupReminder(e) {
   e.preventDefault();
-  const followUpReminder = getPhrase("followUpReminder");
-  showModal("Hello World", followUpReminder, true);
+
+  $("#modal").modal();
 }
 
 function attachListeners() {
   window.addEventListener("hashchange", () => {
     window.location.reload();
   });
+
+  document.addEventListener("click", onClickAway);
 
   document
     .querySelector("#addToPhonebookLink")

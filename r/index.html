@@ -323,12 +323,12 @@
 
     <br /><br /><br /><br />
 
-    <!-- Modal -->
+    <!-- Follow up reminder modal -->
     <div id="modal" class="modal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title"></h5>
+            <h5 class="modal-title" data-i18n="followUpReminder"></h5>
             <button
               type="button"
               class="close"
@@ -338,7 +338,117 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body"></div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="followUpDate" data-i18n="date"></label>
+                <input
+                  type="date"
+                  class="form-control-file"
+                  id="followUpDate"
+                />
+              </div>
+
+              <div class="form-group mt-4">
+                <label for="followUpTime" data-i18n="time"></label>
+                <input
+                  type="time"
+                  class="form-control-file"
+                  id="followUpTime"
+                />
+              </div>
+
+              <div class="text-center mt-5 mb-2">
+                <div
+                  style="max-width: 320px; scroll-margin: 40px"
+                  class="d-inline-block"
+                  id="addToCalendar"
+                >
+                  <button
+                    id="addToCalendarButton"
+                    class="p-3 btn btn-info font-weight-bold"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#atcbOptions"
+                    aria-expanded="false"
+                    aria-controls="atcbOptions"
+                  >
+                    <img
+                      src="/_assets/svg/icons/calendar.svg"
+                      width="18"
+                      height="20"
+                      alt="Invitation icon"
+                    />
+                    <span
+                      class="ml-2 defaultContent"
+                      data-i18n="add-to-my-calendar"
+                      style="text-transform: initial; white-space: initial"
+                    ></span>
+                  </button>
+                  <div class="collapse" id="atcbOptions">
+                    <div
+                      class="list-group border border-info text-center list-atcb"
+                    >
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action"
+                        data-destination="apple"
+                      >
+                        <span class="atcb_icon atcb_icon-apple">
+                          <img
+                            src="/_assets/svg/icons/addToCalendar-Apple.svg"
+                            width="24"
+                            height="24"
+                            alt=""
+                          />
+                        </span>
+                        <span
+                          class="ml-1 defaultContent"
+                          data-i18n-global="addToCalendarApple"
+                        ></span>
+                      </a>
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action"
+                        data-destination="google"
+                      >
+                        <span class="atcb_icon atcb_icon-google">
+                          <img
+                            src="/_assets/svg/icons/addToCalendar-Google.svg"
+                            width="24"
+                            height="24"
+                            alt=""
+                          />
+                        </span>
+                        <span
+                          class="ml-1 defaultContent"
+                          data-i18n-global="addToCalendarGoogle"
+                        ></span>
+                      </a>
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action"
+                        data-destination="ical"
+                      >
+                        <span class="atcb_icon atcb_icon-ical">
+                          <img
+                            src="/_assets/svg/icons/addToCalendar-iCalFile.svg"
+                            width="24"
+                            height="24"
+                            alt=""
+                          />
+                        </span>
+                        <span
+                          class="ml-1 defaultContent"
+                          data-i18n-global="addToCalendarIcalFile"
+                        ></span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
           <div class="modal-footer">
             <button
               type="button"

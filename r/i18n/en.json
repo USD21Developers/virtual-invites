@@ -147,6 +147,21 @@
       "key": "followUpReminder",
       "original": "Set a Reminder",
       "translated": "Set a Reminder"
+    },
+    {
+      "key": "date",
+      "original": "Date:",
+      "translated": "Date:"
+    },
+    {
+      "key": "time",
+      "original": "Time:",
+      "translated": "Time:"
+    },
+    {
+      "key": "add-to-my-calendar",
+      "original": "Add to my calendar",
+      "translated": "Add to my calendar"
     }
   ],
 
