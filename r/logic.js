@@ -399,6 +399,27 @@ async function populateResendInvite(e) {
   }
 }
 
+async function populateFollowUpReminder() {
+  const inviteid = Number(getHash().split("/")[1]) || null;
+  if (!inviteid) return;
+  const invites = await localforage.getItem("invites");
+  if (!invites) return;
+  const invite = invites.find((item) => item.invitationid === inviteid);
+  if (!invite) {
+    const addCalendarReminderLinkContainerEl = document.querySelector(
+      "#addCalendarReminderLinkContainer"
+    );
+    addCalendarReminderLinkContainerEl.classList.add("d-none");
+    return;
+  }
+  const followUpParagraphEl = document.querySelector("#followUpParagraph");
+  const followUpParagraphContent = getPhrase("followUpParagraph").replaceAll(
+    "{RECIPIENT-NAME}",
+    invite.recipient.name
+  );
+  followUpParagraphEl.innerText = followUpParagraphContent;
+}
+
 function onClickAway(event) {
   const addToCalendar = document.querySelector("#addToCalendar");
   const clickedCalendar = addToCalendar.contains(event.target);
@@ -441,6 +462,7 @@ async function init() {
   await populateContent();
   await getRecipient();
   populateResendInvite();
+  populateFollowUpReminder();
   attachListeners();
   globalHidePageSpinner();
 }

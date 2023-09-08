@@ -145,8 +145,13 @@
     },
     {
       "key": "followUpReminder",
-      "original": "Follow up",
-      "translated": "Follow up"
+      "original": "Follow up reminder",
+      "translated": "Follow up reminder"
+    },
+    {
+      "key": "followUpParagraph",
+      "original": "Choose a date and time below to follow up with {RECIPIENT-NAME}:",
+      "translated": "Choose a date and time below to follow up with {RECIPIENT-NAME}:"
     },
     {
       "key": "date",
