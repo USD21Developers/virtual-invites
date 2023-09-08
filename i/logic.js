@@ -4,7 +4,7 @@ let inviteObject = {
   recipient: null,
 };
 let iti;
-const video = document.getElementById("video");
+const video = document.querySelector("#video");
 
 function buildCalendarDescription(event) {
   let locationName =
@@ -1351,6 +1351,7 @@ function onVideoEnded() {
     .scrollIntoView({ behavior: "smooth" });
 
   video.removeEventListener("ended", onVideoEnded, true);
+  video.removeAttribute("autoplay");
 }
 
 function attachListeners() {
