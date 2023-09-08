@@ -1346,12 +1346,12 @@ function onCalendarExpand() {
 }
 
 function onVideoEnded() {
+  video.removeEventListener("ended", onVideoEnded, true);
+  video.removeAttribute("autoplay");
+
   document
     .querySelector("#topOfEnvelope")
     .scrollIntoView({ behavior: "smooth" });
-
-  video.removeEventListener("ended", onVideoEnded, true);
-  video.removeAttribute("autoplay");
 }
 
 function attachListeners() {
