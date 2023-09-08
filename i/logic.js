@@ -1353,10 +1353,6 @@ function onVideoEnded() {
   video.removeEventListener("ended", onVideoEnded, true);
 }
 
-function playVideo() {
-  video.play();
-}
-
 function attachListeners() {
   window.addEventListener("hashchange", () => {
     sessionStorage.removeItem("loaded");
@@ -1407,7 +1403,6 @@ async function init() {
   populateQuestionsSection();
   // hideSpinner();
   warnIfEventIsPast();
-  playVideo();
 }
 
 init();
