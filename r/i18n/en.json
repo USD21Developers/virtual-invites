@@ -150,8 +150,8 @@
     },
     {
       "key": "followUpParagraph",
-      "original": "Choose a date and time below to follow up with {RECIPIENT-NAME}:",
-      "translated": "Choose a date and time below to follow up with {RECIPIENT-NAME}:"
+      "original": "Choose a date and time to follow up with {RECIPIENT-NAME}:",
+      "translated": "Choose a date and time to follow up with {RECIPIENT-NAME}:"
     },
     {
       "key": "date",
