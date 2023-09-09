@@ -890,14 +890,14 @@ function renderInvite(invite) {
 
 function hideSpinner() {
   const spinnerEl = document.querySelector("#pageSpinner");
-  const contentEl = document.querySelector("#pageContent");
+  const contentContainerEl = document.querySelector("#pageContentContainer");
   spinnerEl.classList.add("d-none");
-  contentEl.classList.remove("d-none");
+  contentContainerEl.classList.remove("d-none");
 }
 
 function showSpinner() {
   const spinnerEl = document.querySelector("#pageSpinner");
-  const pageEl = document.querySelector("#pageContent");
+  const pageEl = document.querySelector("#pageContentContainer");
   spinnerEl.classList.remove("d-none");
   pageEl.classList.add("d-none");
 }
@@ -1345,13 +1345,11 @@ function onCalendarExpand() {
   addToCalendar.scrollIntoView({ behavior: "smooth" });
 }
 
-function onVideoEnded() {
+function onVideoEnded(e) {
   video.removeEventListener("ended", onVideoEnded, true);
   video.removeAttribute("autoplay");
-
-  document
-    .querySelector("#topOfEnvelope")
-    .scrollIntoView({ behavior: "smooth" });
+  e.preventDefault();
+  document.querySelector("#topOfEnvelope").scrollIntoView();
 }
 
 function attachListeners() {

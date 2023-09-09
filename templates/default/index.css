@@ -266,7 +266,6 @@ a:hover {
 
 #paper {
   animation: fadeIn 0.5s;
-  background-color: #f7f5f6;
   left: 4%;
   margin-bottom: 50px;
   min-height: calc(100% - 38%);
@@ -276,12 +275,17 @@ a:hover {
   width: calc(100% - 8%);
 }
 
+#pageContent {
+  background-color: #f7f5f6;
+}
+
 #topOfEnvelope {
   height: 1px;
   left: 4%;
   position: absolute;
   top: calc(100% - 83%);
   width: calc(100% - 8%);
+  scroll-behavior: smooth !important;
 }
 
 @keyframes fadeIn {
