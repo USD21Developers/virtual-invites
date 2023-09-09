@@ -109,7 +109,10 @@ async function renderRecipient(invite) {
     inviteViewsHTML = `<details><summary class="mb-2">${phraseTotalViews}</summary>${inviteViewsHTML}</details>`;
   }
 
-  if (eventNameEl && eventName) eventNameEl.innerText = eventName;
+  if (eventNameEl && eventName)
+    eventNameEl.innerHTML = `<a href="../i/#/${eventid}/${getUserId()}/${
+      invite.recipient.id
+    }">${eventName}</a>`;
   if (dateInvitedEl) dateInvitedEl.innerText = whenInvited;
   if (invitedFromLocationEl) {
     let latitude;
