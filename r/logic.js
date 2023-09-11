@@ -1,5 +1,31 @@
 let syncedInvites = false;
 
+function closeModal() {
+  const followUpFormEl = document.querySelector("#followUpForm");
+  const mainContent = document.querySelector(".mainContent");
+  window.scrollTo(0, 0);
+  mainContent.click();
+  $("#modal").modal("hide");
+  followUpFormEl.reset();
+}
+
+function getFollowUpDateTime() {
+  const followUpDateEl = document.querySelector("#followUpDate");
+  const followUpTimeEl = document.querySelector("#followUpTime");
+  const followUpDate = followUpDateEl ? followUpDateEl.value || "" : false;
+  const followUpTime = followUpTimeEl ? followUpTimeEl.value || "" : false;
+
+  if (followUpDate && followUpTime) {
+    const dateTimeLocal = `${followUpDate}T${followUpTime}`;
+    const dateTimeUTC = moment
+      .tz(moment.tz(dateTimeLocal, moment.tz.guess()).format(), "UTC")
+      .format();
+    return dateTimeUTC;
+  } else {
+    // TODO:  validate missing date and/or time
+  }
+}
+
 function getRecipient() {
   return new Promise(async (resolve, reject) => {
     const hash = window.location.hash;
@@ -441,8 +467,25 @@ function onClickAway(event) {
 
 function onSetFollowupReminder(e) {
   e.preventDefault();
-
   $("#modal").modal();
+}
+
+function onAtcbApple(e) {
+  e.preventDefault();
+  const dateTime = getFollowUpDateTime();
+  closeModal();
+}
+
+function onAtcbGoogle(e) {
+  e.preventDefault();
+  const dateTime = getFollowUpDateTime();
+  closeModal();
+}
+
+function onAtcbIcal(e) {
+  e.preventDefault();
+  const dateTime = getFollowUpDateTime();
+  closeModal();
 }
 
 function attachListeners() {
@@ -459,6 +502,22 @@ function attachListeners() {
   document
     .querySelector("#addCalendarReminderLink")
     .addEventListener("click", onSetFollowupReminder);
+
+  document
+    .querySelector("#addToCalendarButton")
+    .addEventListener("click", (e) => {
+      e.target.scrollIntoView();
+    });
+
+  document
+    .querySelector(".list-atcb > a[data-destination='apple']")
+    .addEventListener("click", onAtcbApple);
+  document
+    .querySelector(".list-atcb > a[data-destination='google']")
+    .addEventListener("click", onAtcbGoogle);
+  document
+    .querySelector(".list-atcb > a[data-destination='ical']")
+    .addEventListener("click", onAtcbIcal);
 }
 
 async function init() {
