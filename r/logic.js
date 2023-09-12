@@ -508,6 +508,7 @@ function onSetFollowupReminder(e) {
 }
 
 function onAtcbApple(e) {
+  const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
   e.preventDefault();
   const title = getPhrase("followUpAppointmentTitle").replaceAll(
     "{RECIPIENT-NAME}",
@@ -515,7 +516,10 @@ function onAtcbApple(e) {
   );
   const description = getFollowUpDescription();
   const utcDateTimeStart = getFollowUpDateTime();
-  const utcDateTimeEnd = moment(utcDateTime).add(15, "minutes").format();
+  const utcDateTimeEnd = moment(utcDateTimeStart)
+    .add(15, "minutes")
+    .utc()
+    .format();
   const options = {
     start: new Date(utcDateTimeStart),
     end: new Date(utcDateTimeEnd),
