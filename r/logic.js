@@ -521,7 +521,9 @@ function onClickAway(event) {
     "#interactionViews > details"
   );
   const clickedCalendar = addToCalendar.contains(event.target);
-  const clickedViews = interactionViews.contains(event.target);
+  const clickedViews = interactionViews
+    ? interactionViews.contains(event.target)
+    : false;
   const addToCalendarButton = addToCalendar.querySelector(
     "#addToCalendarButton"
   );
@@ -532,7 +534,7 @@ function onClickAway(event) {
   }
 
   if (!clickedViews) {
-    interactionViews.removeAttribute("open");
+    if (interactionViews) interactionViews.removeAttribute("open");
   }
 }
 
