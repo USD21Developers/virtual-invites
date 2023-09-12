@@ -493,17 +493,22 @@ async function populateFollowUpReminder() {
 
 function onClickAway(event) {
   const addToCalendar = document.querySelector("#addToCalendar");
+  const interactionViews = document.querySelector(
+    "#interactionViews > details"
+  );
   const clickedCalendar = addToCalendar.contains(event.target);
+  const clickedViews = interactionViews.contains(event.target);
   const addToCalendarButton = addToCalendar.querySelector(
     "#addToCalendarButton"
   );
   if (!clickedCalendar) {
     $(".collapse").collapse("hide");
-  }
-
-  if (!clickedCalendar) {
     addToCalendarButton.classList.add("collapsed");
     addToCalendarButton.setAttribute("aria-expanded", "false");
+  }
+
+  if (!clickedViews) {
+    interactionViews.removeAttribute("open");
   }
 }
 
