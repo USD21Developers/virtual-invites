@@ -514,10 +514,11 @@ function onAtcbApple(e) {
     inviteObj.recipient.name
   );
   const description = getFollowUpDescription();
-  const utcDateTime = getFollowUpDateTime();
+  const utcDateTimeStart = getFollowUpDateTime();
+  const utcDateTimeEnd = moment(utcDateTime).add(15, "minutes").format();
   const options = {
-    start: new Date(`${utcDateTime}`),
-    end: null,
+    start: new Date(utcDateTimeStart),
+    end: new Date(utcDateTimeEnd),
     title: title,
     description: description,
   };
