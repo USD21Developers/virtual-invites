@@ -495,7 +495,7 @@ function onAtcbApple(e) {
   e.preventDefault();
   const title = getPhrase("followUpAppointmentTitle").replaceAll(
     "{RECIPIENT-NAME}",
-    recipientObj.name
+    inviteObj.recipient.name
   );
   const description = getFollowUpDescription();
   const utcDateTime = getFollowUpDateTime();
