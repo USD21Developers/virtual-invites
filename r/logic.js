@@ -552,17 +552,57 @@ function onAtcbApple(e) {
 
 function onAtcbGoogle(e) {
   e.preventDefault();
-  const title = getPhrase("followUpAppointmentTitle");
+  const title = getPhrase("followUpAppointmentTitle").replaceAll(
+    "{RECIPIENT-NAME}",
+    inviteObj.recipient.name
+  );
   const description = getFollowUpDescription();
-  const utcDateTime = getFollowUpDateTime();
+  const utcDateTimeStart = getFollowUpDateTime();
+  const utcDateTimeEnd = moment(utcDateTimeStart)
+    .add(15, "minutes")
+    .utc()
+    .format();
+
+  // TODO:  build options that are unique to Google Calendar
+  const options = {
+    start: new Date(utcDateTimeStart),
+    end: new Date(utcDateTimeEnd),
+    title: title,
+    description: description,
+  };
   closeModal();
 }
 
 function onAtcbIcal(e) {
   e.preventDefault();
-  const title = getPhrase("followUpAppointmentTitle");
+  const title = getPhrase("followUpAppointmentTitle").replaceAll(
+    "{RECIPIENT-NAME}",
+    inviteObj.recipient.name
+  );
   const description = getFollowUpDescription();
-  const utcDateTime = getFollowUpDateTime();
+  const utcDateTimeStart = getFollowUpDateTime();
+  const utcDateTimeEnd = moment(utcDateTimeStart)
+    .add(15, "minutes")
+    .utc()
+    .format();
+  const options = {
+    start: new Date(utcDateTimeStart),
+    end: new Date(utcDateTimeEnd),
+    title: title,
+    description: description,
+  };
+  const calendar = new datebook.ICalendar(options);
+  const appleCalContent = calendar.render();
+  const appleCalLink = document.createElement("a");
+  const appleCalFile = new Blob([appleCalContent], {
+    type: "text/calendar",
+  });
+
+  appleCalLink.href = URL.createObjectURL(appleCalFile);
+  appleCalLink.download = "appleCal.ics";
+  appleCalLink.click();
+  URL.revokeObjectURL(appleCalLink.href);
+
   closeModal();
 }
 
