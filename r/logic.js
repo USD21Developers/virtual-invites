@@ -33,11 +33,17 @@ function getFollowUpDescription() {
   const inviteDateTimeLocal = moment
     .tz(moment(inviteObj.utctime), userDateTimePrefs.timeZone)
     .format();
-  const inviteDateTime = Intl.DateTimeFormat(userDateTimePrefs.locale, {
+  const utcDateTime = moment
+    .tz(
+      moment.tz(inviteObj.utctime, "UTC").format(),
+      userDateTimePrefs.timeZone
+    )
+    .format();
+  const inviteDateTime = Intl.DateTimeFormat(inviteDateTimeLocal.locale, {
     dateStyle: "full",
     timeStyle: "short",
-    timeZone: userDateTimePrefs.timeZone,
-  }).format(new Date(inviteDateTimeLocal));
+    timeZone: inviteDateTimeLocal.timezone,
+  }).format(new Date(utcDateTime));
   const paragraph1 = getPhrase("followUpAppointmentParagraph1").replaceAll(
     "{RECIPIENT-NAME}",
     inviteObj.recipient.name
@@ -508,7 +514,6 @@ function onSetFollowupReminder(e) {
 }
 
 function onAtcbApple(e) {
-  const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
   e.preventDefault();
   const title = getPhrase("followUpAppointmentTitle").replaceAll(
     "{RECIPIENT-NAME}",
