@@ -615,53 +615,7 @@ function onAtcbGoogle(e) {
 }
 
 function onAtcbIcal(e) {
-  e.preventDefault();
-  const title = getPhrase("followUpAppointmentTitle").replaceAll(
-    "{RECIPIENT-NAME}",
-    inviteObj.recipient.name
-  );
-  const description = getFollowUpDescription();
-  const utcDateTimeStart = getFollowUpDateTime();
-  const utcDateTimeEnd = moment(utcDateTimeStart)
-    .add(15, "minutes")
-    .utc()
-    .format();
-  const options = {
-    start: new Date(utcDateTimeStart),
-    end: new Date(utcDateTimeEnd),
-    title: title,
-    description: description,
-  };
-
-  const calendar = new datebook.ICalendar(options);
-
-  const alarm1Time = new Date(
-    moment(options.start).subtract(15, "minutes").format()
-  );
-  const alarm1 = {
-    action: "DISPLAY",
-    trigger: alarm1Time,
-    summary: title,
-    description: getFollowUpDescriptionWithoutURL(),
-    duration: {
-      after: true,
-      minutes: 3,
-    },
-  };
-  calendar.addAlarm(alarm1);
-
-  const appleCalContent = calendar.render();
-  const appleCalLink = document.createElement("a");
-  const appleCalFile = new Blob([appleCalContent], {
-    type: "text/calendar",
-  });
-
-  appleCalLink.href = URL.createObjectURL(appleCalFile);
-  appleCalLink.download = "appleCal.ics";
-  appleCalLink.click();
-  URL.revokeObjectURL(appleCalLink.href);
-
-  closeModal();
+  onAtcbApple(e);
 }
 
 function attachListeners() {
