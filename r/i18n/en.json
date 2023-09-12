@@ -167,6 +167,21 @@
       "key": "add-to-my-calendar",
       "original": "Add to my calendar",
       "translated": "Add to my calendar"
+    },
+    {
+      "key": "followUpAppointmentTitle",
+      "original": "Follow Up with {RECIPIENT-NAME}",
+      "translated": "Follow Up with {RECIPIENT-NAME}"
+    },
+    {
+      "key": "followUpAppointmentParagraph1",
+      "original": "It's time to follow up with {RECIPIENT-NAME}.",
+      "translated": "It's time to follow up with {RECIPIENT-NAME}."
+    },
+    {
+      "key": "followUpAppointmentParagraph2",
+      "original": "Click below to follow up:",
+      "translated": "Click below to follow up:"
     }
   ],
 

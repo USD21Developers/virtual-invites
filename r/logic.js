@@ -1,4 +1,5 @@
 let syncedInvites = false;
+let inviteObj = {};
 
 function closeModal() {
   const followUpFormEl = document.querySelector("#followUpForm");
@@ -26,6 +27,24 @@ function getFollowUpDateTime() {
   }
 }
 
+function getFollowUpDescription() {
+  const paragraph1 = getPhrase("followUpAppointmentParagraph1").replaceAll(
+    "{RECIPIENT-NAME}",
+    inviteObj.recipient.name
+  );
+  const paragraph2 = getPhrase("followUpAppointmentParagraph2");
+  const url = window.location.href;
+  const description = `
+${paragraph1}
+
+${paragraph2}
+
+${url}
+  `.trim();
+
+  return description;
+}
+
 function getRecipient() {
   return new Promise(async (resolve, reject) => {
     const hash = window.location.hash;
@@ -51,6 +70,8 @@ function getRecipient() {
     const invite = invites.find(
       (item) => item.invitationid === parseInt(Math.abs(invitationid))
     );
+
+    inviteObj = invite;
 
     if (invite) {
       renderRecipient(invite);
@@ -472,19 +493,45 @@ function onSetFollowupReminder(e) {
 
 function onAtcbApple(e) {
   e.preventDefault();
-  const dateTime = getFollowUpDateTime();
+  const title = getPhrase("followUpAppointmentTitle").replaceAll(
+    "{RECIPIENT-NAME}",
+    recipientObj.name
+  );
+  const description = getFollowUpDescription();
+  const utcDateTime = getFollowUpDateTime();
+  const options = {
+    start: new Date(`${utcDateTime}Z`),
+    title: title,
+    description: description,
+  };
+  const calendar = new datebook.ICalendar(options);
+  const appleCalContent = calendar.render();
+  const appleCalLink = document.createElement("a");
+  const appleCalFile = new Blob([appleCalContent], {
+    type: "text/calendar",
+  });
+
+  appleCalLink.href = URL.createObjectURL(appleCalFile);
+  appleCalLink.download = "appleCal.ics";
+  appleCalLink.click();
+  URL.revokeObjectURL(appleCalLink.href);
+
   closeModal();
 }
 
 function onAtcbGoogle(e) {
   e.preventDefault();
-  const dateTime = getFollowUpDateTime();
+  const title = getPhrase("followUpAppointmentTitle");
+  const description = getFollowUpDescription();
+  const utcDateTime = getFollowUpDateTime();
   closeModal();
 }
 
 function onAtcbIcal(e) {
   e.preventDefault();
-  const dateTime = getFollowUpDateTime();
+  const title = getPhrase("followUpAppointmentTitle");
+  const description = getFollowUpDescription();
+  const utcDateTime = getFollowUpDateTime();
   closeModal();
 }
 
@@ -518,6 +565,11 @@ function attachListeners() {
   document
     .querySelector(".list-atcb > a[data-destination='ical']")
     .addEventListener("click", onAtcbIcal);
+
+  $("#modal").on("hidden.bs.modal", (e) => {
+    const followUpFormEl = document.querySelector("#followUpForm");
+    followUpFormEl.reset();
+  });
 }
 
 async function init() {
