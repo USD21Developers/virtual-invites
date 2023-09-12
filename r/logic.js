@@ -500,7 +500,8 @@ function onAtcbApple(e) {
   const description = getFollowUpDescription();
   const utcDateTime = getFollowUpDateTime();
   const options = {
-    start: new Date(`${utcDateTime}Z`),
+    start: new Date(`${utcDateTime}`),
+    end: null,
     title: title,
     description: description,
   };
