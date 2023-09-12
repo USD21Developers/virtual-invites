@@ -175,13 +175,13 @@
     },
     {
       "key": "followUpAppointmentParagraph1",
-      "original": "It's time to follow up with {RECIPIENT-NAME}.",
-      "translated": "It's time to follow up with {RECIPIENT-NAME}."
+      "original": "Click below to follow up with {RECIPIENT-NAME}:",
+      "translated": "Click below to follow up with {RECIPIENT-NAME}:"
     },
     {
       "key": "followUpAppointmentParagraph2",
-      "original": "Click below to follow up:",
-      "translated": "Click below to follow up:"
+      "original": "You invited {RECIPIENT-NAME} to {EVENT-NAME} on {INVITED-DATE}.",
+      "translated": "You invited {RECIPIENT-NAME} to {EVENT-NAME} on {INVITED-DATE}."
     }
   ],
 

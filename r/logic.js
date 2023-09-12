@@ -1,5 +1,6 @@
 let syncedInvites = false;
 let inviteObj = {};
+let eventObj = {};
 
 function closeModal() {
   const followUpFormEl = document.querySelector("#followUpForm");
@@ -28,18 +29,31 @@ function getFollowUpDateTime() {
 }
 
 function getFollowUpDescription() {
+  const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
+  const inviteDateTimeLocal = moment
+    .tz(moment(inviteObj.utctime), userDateTimePrefs.timeZone)
+    .format();
+  const inviteDateTime = Intl.DateTimeFormat(userDateTimePrefs.locale, {
+    dateStyle: "full",
+    timeStyle: "short",
+    timeZone: userDateTimePrefs.timeZone,
+  }).format(new Date(inviteDateTimeLocal));
   const paragraph1 = getPhrase("followUpAppointmentParagraph1").replaceAll(
     "{RECIPIENT-NAME}",
     inviteObj.recipient.name
   );
-  const paragraph2 = getPhrase("followUpAppointmentParagraph2");
+  const paragraph2 = getPhrase("followUpAppointmentParagraph2")
+    .replaceAll("{RECIPIENT-NAME}", inviteObj.recipient.name)
+    .replaceAll("{EVENT-NAME}", eventObj.title)
+    .replaceAll("{INVITED-DATE}", inviteDateTime);
   const url = window.location.href;
   const description = `
 ${paragraph1}
 
-${paragraph2}
-
 ${url}
+
+
+${paragraph2}
   `.trim();
 
   return description;
@@ -111,6 +125,8 @@ async function renderRecipient(invite) {
 
   const events = await localforage.getItem("eventsFromMyInvites");
   const event = events.find((item) => item.eventid === eventid);
+
+  eventObj = event;
 
   const inviteViews = interactions.length
     ? interactions.filter((item) => item.action === "viewed invite")
