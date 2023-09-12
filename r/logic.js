@@ -58,9 +58,8 @@ ${paragraph1}
 
 ${url}
 
-
 ${paragraph2}
-  `.trim();
+`.trim();
 
   return description;
 }
