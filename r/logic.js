@@ -547,6 +547,9 @@ function onAtcbApple(e) {
     "{RECIPIENT-NAME}",
     inviteObj.recipient.name
   );
+  const titleComingUp = getPhrase(
+    "followUpAppointmentTitleComingUp"
+  ).replaceAll("{RECIPIENT-NAME}", inviteObj.recipient.name);
   const description = getFollowUpDescription();
   const utcDateTimeStart = getFollowUpDateTime();
   const utcDateTimeEnd = moment(utcDateTimeStart)
@@ -568,7 +571,7 @@ function onAtcbApple(e) {
   const alarm1 = {
     action: "DISPLAY",
     trigger: alarm1Time,
-    summary: title,
+    summary: titleComingUp,
     description: getFollowUpDescriptionWithoutURL(),
     duration: {
       after: true,

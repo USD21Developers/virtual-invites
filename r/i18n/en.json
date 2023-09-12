@@ -145,8 +145,8 @@
     },
     {
       "key": "followUpReminder",
-      "original": "Follow up reminder",
-      "translated": "Follow up reminder"
+      "original": "Follow Up Reminder",
+      "translated": "Follow Up Reminder"
     },
     {
       "key": "followUpParagraph",
@@ -172,6 +172,11 @@
       "key": "followUpAppointmentTitle",
       "original": "Follow Up with {RECIPIENT-NAME}",
       "translated": "Follow Up with {RECIPIENT-NAME}"
+    },
+    {
+      "key": "followUpAppointmentTitleComingUp",
+      "original": "Coming up: follow Up with {RECIPIENT-NAME}",
+      "translated": "Coming up: follow Up with {RECIPIENT-NAME}"
     },
     {
       "key": "followUpAppointmentParagraph1",
