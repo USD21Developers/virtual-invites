@@ -64,6 +64,30 @@ ${paragraph2}
   return description;
 }
 
+function getFollowUpDescriptionWithoutURL() {
+  const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
+  const inviteDateTimeLocal = moment
+    .tz(moment(inviteObj.utctime), userDateTimePrefs.timeZone)
+    .format();
+  const utcDateTime = moment
+    .tz(
+      moment.tz(inviteObj.utctime, "UTC").format(),
+      userDateTimePrefs.timeZone
+    )
+    .format();
+  const inviteDateTime = Intl.DateTimeFormat(inviteDateTimeLocal.locale, {
+    dateStyle: "full",
+    timeStyle: "short",
+    timeZone: inviteDateTimeLocal.timezone,
+  }).format(new Date(utcDateTime));
+  const description = getPhrase("followUpAppointmentParagraph2")
+    .replaceAll("{RECIPIENT-NAME}", inviteObj.recipient.name)
+    .replaceAll("{EVENT-NAME}", eventObj.title)
+    .replaceAll("{INVITED-DATE}", inviteDateTime);
+
+  return description;
+}
+
 function getRecipient() {
   return new Promise(async (resolve, reject) => {
     const hash = window.location.hash;
@@ -535,7 +559,24 @@ function onAtcbApple(e) {
     title: title,
     description: description,
   };
+
   const calendar = new datebook.ICalendar(options);
+
+  const alarm1Time = new Date(
+    moment(options.start).subtract(15, "minutes").format()
+  );
+  const alarm1 = {
+    action: "DISPLAY",
+    trigger: alarm1Time,
+    summary: title,
+    description: getFollowUpDescriptionWithoutURL(),
+    duration: {
+      after: true,
+      minutes: 3,
+    },
+  };
+  calendar.addAlarm(alarm1);
+
   const appleCalContent = calendar.render();
   const appleCalLink = document.createElement("a");
   const appleCalFile = new Blob([appleCalContent], {
@@ -591,7 +632,24 @@ function onAtcbIcal(e) {
     title: title,
     description: description,
   };
+
   const calendar = new datebook.ICalendar(options);
+
+  const alarm1Time = new Date(
+    moment(options.start).subtract(15, "minutes").format()
+  );
+  const alarm1 = {
+    action: "DISPLAY",
+    trigger: alarm1Time,
+    summary: title,
+    description: getFollowUpDescriptionWithoutURL(),
+    duration: {
+      after: true,
+      minutes: 3,
+    },
+  };
+  calendar.addAlarm(alarm1);
+
   const appleCalContent = calendar.render();
   const appleCalLink = document.createElement("a");
   const appleCalFile = new Blob([appleCalContent], {
