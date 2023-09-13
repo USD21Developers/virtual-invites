@@ -339,6 +339,23 @@
             </button>
           </div>
           <div class="modal-body">
+            <div
+              id="followUpAlert"
+              class="alert alert-danger fade show mb-4 d-none"
+              role="alert"
+            >
+              <button
+                type="button"
+                class="close"
+                data-i18n-global-aria-label="close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <div id="modalAlertContent">
+                <strong data-i18n="invalidDate"></strong>
+                <p class="mt-2 mb-0" data-i18n="notPast"></p>
+              </div>
+            </div>
             <p id="followUpParagraph"></p>
             <form id="followUpForm">
               <div class="form-group mt-4">
@@ -348,6 +365,10 @@
                   class="form-control-file datetime-field"
                   id="followUpDate"
                 />
+                <div
+                  class="invalid-feedback"
+                  data-i18n="followUpDateRequired"
+                ></div>
               </div>
 
               <div class="form-group mt-5">
@@ -357,6 +378,10 @@
                   class="form-control-file datetime-field"
                   id="followUpTime"
                 />
+                <div
+                  class="invalid-feedback"
+                  data-i18n="followUpTimeRequired"
+                ></div>
               </div>
 
               <div class="text-center mt-5 mb-4">

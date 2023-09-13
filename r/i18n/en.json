@@ -187,6 +187,31 @@
       "key": "followUpAppointmentParagraph2",
       "original": "You invited {RECIPIENT-NAME} to {EVENT-NAME} on {INVITED-DATE}.",
       "translated": "You invited {RECIPIENT-NAME} to {EVENT-NAME} on {INVITED-DATE}."
+    },
+    {
+      "key": "followUpDateRequired",
+      "original": "Date is required.",
+      "translated": "Date is required."
+    },
+    {
+      "key": "followUpTimeRequired",
+      "original": "Time is required.",
+      "translated": "Time is required."
+    },
+    {
+      "key": "followUpDateInvalid",
+      "original": "Date must be valid.",
+      "translated": "Date must be valid."
+    },
+    {
+      "key": "invalidDate",
+      "original": "Invalid Date",
+      "translated": "Invalid Date"
+    },
+    {
+      "key": "notPast",
+      "original": "Date and time must not be in the past.",
+      "translated": "Date and time must not be in the past."
     }
   ],
 

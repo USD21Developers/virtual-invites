@@ -23,8 +23,6 @@ function getFollowUpDateTime() {
       .tz(moment.tz(dateTimeLocal, moment.tz.guess()).format(), "UTC")
       .format();
     return dateTimeUTC;
-  } else {
-    // TODO:  validate missing date and/or time
   }
 }
 
@@ -515,6 +513,50 @@ async function populateFollowUpReminder() {
   followUpParagraphEl.innerText = followUpParagraphContent;
 }
 
+function validateFollowupForm() {
+  const followUpDateEl = document.querySelector("#followUpDate");
+  const followUpTimeEl = document.querySelector("#followUpTime");
+  if (!followUpDateEl) return false;
+  if (!followUpTimeEl) return false;
+  const followUpDate = followUpDateEl.value;
+  const followUpTime = followUpTimeEl.value;
+
+  formErrorsReset();
+
+  if (!followUpDate.length) {
+    formError("#followUpDate", getPhrase("followUpDateRequired"));
+    return false;
+  }
+
+  if (!followUpTime.length) {
+    formError("#followUpTime", getPhrase("followUpTimeRequired"));
+    return false;
+  }
+
+  const dateTime = moment(`${followUpDate} ${followUpTime}`);
+  const isDateTimeValid = dateTime.isValid();
+  if (!isDateTimeValid) {
+    return false;
+  }
+
+  // Verify that date is not in the past
+  const now = moment();
+  if (dateTime.isBefore(now)) {
+    formErrorsReset();
+    const alertEl = document.querySelector("#modal .alert");
+    const alertContentEl = document.querySelector("#modalAlertContent");
+    alertContentEl.innerHTML = `
+      <strong>${getPhrase("invalidDate")}</strong>
+      <p class="mt-2 mb-0">${getPhrase("notPast")}</p>
+    `;
+    alertEl.classList.remove("d-none");
+    alertEl.scrollIntoView();
+    return false;
+  }
+
+  return true;
+}
+
 function onClickAway(event) {
   const addToCalendar = document.querySelector("#addToCalendar");
   const interactionViews = document.querySelector(
@@ -545,6 +587,10 @@ function onSetFollowupReminder(e) {
 
 function onAtcbApple(e) {
   e.preventDefault();
+
+  const isFormValid = validateFollowupForm();
+  if (!isFormValid) return;
+
   const title = getPhrase("followUpAppointmentTitle").replaceAll(
     "{RECIPIENT-NAME}",
     inviteObj.recipient.name
@@ -598,6 +644,10 @@ function onAtcbApple(e) {
 
 function onAtcbGoogle(e) {
   e.preventDefault();
+
+  const isFormValid = validateFollowupForm();
+  if (!isFormValid) return;
+
   const title = getPhrase("followUpAppointmentTitle").replaceAll(
     "{RECIPIENT-NAME}",
     inviteObj.recipient.name
@@ -658,6 +708,12 @@ function attachListeners() {
     const followUpFormEl = document.querySelector("#followUpForm");
     followUpFormEl.reset();
   });
+
+  document
+    .querySelector("#followUpAlert button")
+    .addEventListener("click", () => {
+      document.querySelector("#followUpAlert").classList.add("d-none");
+    });
 }
 
 async function init() {
