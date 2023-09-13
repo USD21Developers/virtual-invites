@@ -514,6 +514,7 @@ async function populateFollowUpReminder() {
 }
 
 function validateFollowupForm() {
+  const alertEl = document.querySelector("#modal .alert");
   const followUpDateEl = document.querySelector("#followUpDate");
   const followUpTimeEl = document.querySelector("#followUpTime");
   if (!followUpDateEl) return false;
@@ -522,6 +523,7 @@ function validateFollowupForm() {
   const followUpTime = followUpTimeEl.value;
 
   formErrorsReset();
+  if (alertEl) alertEl.classList.add("d-none");
 
   if (!followUpDate.length) {
     formError("#followUpDate", getPhrase("followUpDateRequired"));
@@ -543,7 +545,7 @@ function validateFollowupForm() {
   const now = moment();
   if (dateTime.isBefore(now)) {
     formErrorsReset();
-    const alertEl = document.querySelector("#modal .alert");
+
     const alertContentEl = document.querySelector("#modalAlertContent");
     alertContentEl.innerHTML = `
       <strong>${getPhrase("invalidDate")}</strong>
