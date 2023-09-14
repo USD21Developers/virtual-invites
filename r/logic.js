@@ -621,22 +621,22 @@ function onAtcbApple(e) {
 
   const alarm1 = {
     action: "DISPLAY",
-    trigger: alarmWarningTime,
-    summary: titleComingUp,
+    trigger: options.start,
+    summary: title,
     description: getFollowUpDescriptionWithoutURL(),
     duration: {
-      before: true,
+      after: true,
       minutes: 3,
     },
   };
 
   const alarm2 = {
     action: "DISPLAY",
-    trigger: options.start,
-    summary: title,
+    trigger: alarmWarningTime,
+    summary: titleComingUp,
     description: getFollowUpDescriptionWithoutURL(),
     duration: {
-      after: true,
+      before: true,
       minutes: 3,
     },
   };
