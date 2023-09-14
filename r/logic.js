@@ -641,7 +641,7 @@ function onAtcbApple(e) {
     },
   };
 
-  let alarmAudioHost = "https://invites.mobi";
+  /* let alarmAudioHost = "https://invites.mobi";
   if (
     window.location.hostname === "staging.invites.mobi" ||
     window.location.hostname === "localhost"
@@ -674,12 +674,12 @@ function onAtcbApple(e) {
       params: "FMTTYPE=audio/mp3",
       url: `${alarmAudioHost}/_assets/audio/reminders/Check-mark-ding-sound-effect/Check-mark-ding-sound-effect.mp3`,
     },
-  };
+  }; */
 
   calendar.addAlarm(alarm1);
-  calendar.addAlarm(alarm1Audio);
+  /* calendar.addAlarm(alarm1Audio); */
   calendar.addAlarm(alarm2);
-  calendar.addAlarm(alarm2Audio);
+  /* calendar.addAlarm(alarm2Audio); */
 
   const appleCalContent = calendar.render();
   const appleCalLink = document.createElement("a");
