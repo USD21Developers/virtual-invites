@@ -209,9 +209,9 @@
       "translated": "Invalid Date"
     },
     {
-      "key": "notPast",
-      "original": "Date and time must not be in the past.",
-      "translated": "Date and time must not be in the past."
+      "key": "futureOnly",
+      "original": "Date and time must be in the future.",
+      "translated": "Date and time must be in the future."
     }
   ],
 

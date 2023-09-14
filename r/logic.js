@@ -549,7 +549,7 @@ function validateFollowupForm() {
     const alertContentEl = document.querySelector("#modalAlertContent");
     alertContentEl.innerHTML = `
       <strong>${getPhrase("invalidDate")}</strong>
-      <p class="mt-2 mb-0">${getPhrase("notPast")}</p>
+      <p class="mt-2 mb-0">${getPhrase("futureOnly")}</p>
     `;
     alertEl.classList.remove("d-none");
     alertEl.scrollIntoView();
