@@ -656,7 +656,7 @@ function onAtcbApple(e) {
     trigger: alarm1Time,
     duration: {
       after: true,
-      minutes: 3,
+      seconds: 2,
     },
     attach: {
       params: "FMTTYPE=audio/mp3",
@@ -669,8 +669,9 @@ function onAtcbApple(e) {
     trigger: alarm2Time,
     duration: {
       after: true,
-      minutes: 3,
+      seconds: 2,
     },
+    repeat: 2,
     attach: {
       params: "FMTTYPE=audio/mp3",
       url: `${alarmAudioHost}/_assets/audio/reminders/Check-mark-ding-sound-effect/Check-mark-ding-sound-effect.mp3`,
