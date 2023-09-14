@@ -679,7 +679,7 @@ function onAtcbApple(e) {
 
   calendar.addAlarm(alarm1);
   calendar.addAlarm(alarm1Audio);
-  calendar.addAlert(alarm2);
+  calendar.addAlarm(alarm2);
   calendar.addAlarm(alarm2Audio);
 
   const appleCalContent = calendar.render();
