@@ -641,45 +641,8 @@ function onAtcbApple(e) {
     },
   };
 
-  /* let alarmAudioHost = "https://invites.mobi";
-  if (
-    window.location.hostname === "staging.invites.mobi" ||
-    window.location.hostname === "localhost"
-  ) {
-    alarmAudioHost = "https://staging.invites.mobi";
-  }
-
-  const alarm1Audio = {
-    action: "AUDIO",
-    trigger: alarmWarningTime,
-    duration: {
-      after: true,
-      seconds: 2,
-    },
-    attach: {
-      params: "FMTTYPE=audio/mp3",
-      url: `${alarmAudioHost}/_assets/audio/reminders/Check-mark-ding-sound-effect/Check-mark-ding-sound-effect.mp3`,
-    },
-  };
-
-  const alarm2Audio = {
-    action: "AUDIO",
-    trigger: options.start,
-    duration: {
-      after: true,
-      seconds: 2,
-    },
-    repeat: 2,
-    attach: {
-      params: "FMTTYPE=audio/mp3",
-      url: `${alarmAudioHost}/_assets/audio/reminders/Check-mark-ding-sound-effect/Check-mark-ding-sound-effect.mp3`,
-    },
-  }; */
-
   calendar.addAlarm(alarm1);
-  /* calendar.addAlarm(alarm1Audio); */
   calendar.addAlarm(alarm2);
-  /* calendar.addAlarm(alarm2Audio); */
 
   const appleCalContent = calendar.render();
   const appleCalLink = document.createElement("a");
