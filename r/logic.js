@@ -572,7 +572,7 @@ function onClickAway(event) {
     "#addToCalendarButton"
   );
   if (!clickedCalendar) {
-    $(".collapse").collapse("hide");
+    $("#modal .collapse").collapse("hide");
     addToCalendarButton.classList.add("collapsed");
     addToCalendarButton.setAttribute("aria-expanded", "false");
   }
@@ -716,6 +716,11 @@ function attachListeners() {
     .addEventListener("click", () => {
       document.querySelector("#followUpAlert").classList.add("d-none");
     });
+
+  $("#modal .collapse").on("show.bs.collapse", function (e) {
+    const isFormValid = validateFollowupForm();
+    if (!isFormValid) return false;
+  });
 }
 
 async function init() {
