@@ -660,7 +660,7 @@ function onAtcbApple(e) {
     },
     attach: {
       params: "FMTTYPE=audio/mp3",
-      url: `${alarmAudioHost}/_assets/audio/reminders/Check-mark-ding-sound-effect.mp3`,
+      url: `${alarmAudioHost}/_assets/audio/reminders/Check-mark-ding-sound-effect/Check-mark-ding-sound-effect.mp3`,
     },
   };
 
@@ -673,7 +673,7 @@ function onAtcbApple(e) {
     },
     attach: {
       params: "FMTTYPE=audio/mp3",
-      url: `${alarmAudioHost}/_assets/audio/reminders/Check-mark-ding-sound-effect.mp3`,
+      url: `${alarmAudioHost}/_assets/audio/reminders/Check-mark-ding-sound-effect/Check-mark-ding-sound-effect.mp3`,
     },
   };
 
