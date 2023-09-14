@@ -615,26 +615,24 @@ function onAtcbApple(e) {
 
   const calendar = new datebook.ICalendar(options);
 
-  const alarm1Time = new Date(
+  const alarmWarningTime = new Date(
     moment(options.start).subtract(15, "minutes").format()
   );
 
-  const alarm2Time = new Date(moment(options.start).format());
-
   const alarm1 = {
     action: "DISPLAY",
-    trigger: alarm1Time,
+    trigger: alarmWarningTime,
     summary: titleComingUp,
     description: getFollowUpDescriptionWithoutURL(),
     duration: {
-      after: true,
+      before: true,
       minutes: 3,
     },
   };
 
   const alarm2 = {
     action: "DISPLAY",
-    trigger: alarm2Time,
+    trigger: options.start,
     summary: title,
     description: getFollowUpDescriptionWithoutURL(),
     duration: {
@@ -653,7 +651,7 @@ function onAtcbApple(e) {
 
   const alarm1Audio = {
     action: "AUDIO",
-    trigger: alarm1Time,
+    trigger: alarmWarningTime,
     duration: {
       after: true,
       seconds: 2,
@@ -666,7 +664,7 @@ function onAtcbApple(e) {
 
   const alarm2Audio = {
     action: "AUDIO",
-    trigger: alarm2Time,
+    trigger: options.start,
     duration: {
       after: true,
       seconds: 2,
