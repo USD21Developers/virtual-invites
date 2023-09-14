@@ -643,6 +643,16 @@ function onAtcbApple(e) {
     },
   };
 
+  let alarmAudioHost =
+    "https://invites.mobi/_assets/audio/Check-mark-ding-sound-effect.mp3";
+  if (
+    window.location.hostname === "staging.invites.mobi" ||
+    window.location.hostname === "localhost"
+  ) {
+    alarmAudioHost =
+      "https://staging.invites.mobi/_assets/audio/Check-mark-ding-sound-effect.mp3";
+  }
+
   const alarm1Audio = {
     action: "AUDIO",
     trigger: alarm1Time,
@@ -652,7 +662,7 @@ function onAtcbApple(e) {
     },
     attach: {
       params: "FMTTYPE=audio/mp3",
-      url: `${window.location.origin}/_assets/audio/Check-mark-ding-sound-effect.mp3`,
+      url: `${alarmAudioHost}/_assets/audio/Check-mark-ding-sound-effect.mp3`,
     },
   };
 
@@ -665,7 +675,7 @@ function onAtcbApple(e) {
     },
     attach: {
       params: "FMTTYPE=audio/mp3",
-      url: `${window.location.origin}/_assets/audio/Check-mark-ding-sound-effect.mp3`,
+      url: `${alarmAudioHost}/_assets/audio/Check-mark-ding-sound-effect.mp3`,
     },
   };
 
