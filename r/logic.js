@@ -618,6 +618,9 @@ function onAtcbApple(e) {
   const alarm1Time = new Date(
     moment(options.start).subtract(15, "minutes").format()
   );
+
+  const alarm2Time = new Date(moment(options.start).format());
+
   const alarm1 = {
     action: "DISPLAY",
     trigger: alarm1Time,
@@ -628,7 +631,20 @@ function onAtcbApple(e) {
       minutes: 3,
     },
   };
+
+  const alarm2 = {
+    action: "DISPLAY",
+    trigger: alarm2Time,
+    summary: title,
+    description: getFollowUpDescriptionWithoutURL(),
+    duration: {
+      after: true,
+      minutes: 3,
+    },
+  };
+
   calendar.addAlarm(alarm1);
+  calendar.addAlert(alarm2);
 
   const appleCalContent = calendar.render();
   const appleCalLink = document.createElement("a");
