@@ -643,14 +643,12 @@ function onAtcbApple(e) {
     },
   };
 
-  let alarmAudioHost =
-    "https://invites.mobi/_assets/audio/Check-mark-ding-sound-effect.mp3";
+  let alarmAudioHost = "https://invites.mobi";
   if (
     window.location.hostname === "staging.invites.mobi" ||
     window.location.hostname === "localhost"
   ) {
-    alarmAudioHost =
-      "https://staging.invites.mobi/_assets/audio/Check-mark-ding-sound-effect.mp3";
+    alarmAudioHost = "https://staging.invites.mobi";
   }
 
   const alarm1Audio = {
