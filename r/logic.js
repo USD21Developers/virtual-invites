@@ -643,8 +643,36 @@ function onAtcbApple(e) {
     },
   };
 
+  const alarm1Audio = {
+    action: "AUDIO",
+    trigger: alarm1Time,
+    duration: {
+      after: true,
+      minutes: 3,
+    },
+    attach: {
+      params: "FMTTYPE=audio/mp3",
+      url: `${window.location.origin}/_assets/audio/Check-mark-ding-sound-effect.mp3`,
+    },
+  };
+
+  const alarm2Audio = {
+    action: "AUDIO",
+    trigger: alarm2Time,
+    duration: {
+      after: true,
+      minutes: 3,
+    },
+    attach: {
+      params: "FMTTYPE=audio/mp3",
+      url: `${window.location.origin}/_assets/audio/Check-mark-ding-sound-effect.mp3`,
+    },
+  };
+
   calendar.addAlarm(alarm1);
+  calendar.addAlarm(alarm1Audio);
   calendar.addAlert(alarm2);
+  calendar.addAlarm(alarm2Audio);
 
   const appleCalContent = calendar.render();
   const appleCalLink = document.createElement("a");
@@ -677,14 +705,20 @@ function onAtcbGoogle(e) {
     .utc()
     .format();
 
-  // TODO:  build options that are unique to Google Calendar
   const options = {
     start: new Date(utcDateTimeStart),
     end: new Date(utcDateTimeEnd),
     title: title,
     description: description,
   };
+
+  const googleCal = new datebook.GoogleCalendar(options);
+
+  googleCal.setParam("crm", "AVAILABLE").setParam("trp", "false");
+
   closeModal();
+
+  window.location.href = googleCal.render();
 }
 
 function onAtcbIcal(e) {
