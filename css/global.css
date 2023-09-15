@@ -269,3 +269,7 @@ strong {
 .balancedTextWrap {
   text-wrap: balance;
 }
+
+.prettyTextWrap {
+  text-wrap: pretty;
+}

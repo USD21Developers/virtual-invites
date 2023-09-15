@@ -212,6 +212,26 @@
       "key": "futureOnly",
       "original": "Date and time must be in the future.",
       "translated": "Date and time must be in the future."
+    },
+    {
+      "key": "headlineNotes",
+      "original": "Follow Up Notes",
+      "translated": "Follow Up Notes"
+    },
+    {
+      "key": "notesSubhead",
+      "original": "Notes can help you remember important details from your previous follow-up conversations.",
+      "translated": "Notes can help you remember important details from your previous follow-up conversations."
+    },
+    {
+      "key": "no-notes",
+      "original": "(You don't have any notes for {RECIPIENT-NAME})",
+      "translated": "(You don't have any notes for {RECIPIENT-NAME})"
+    },
+    {
+      "key": "addNote",
+      "original": "Add a Note",
+      "translated": "Add a Note"
     }
   ],
 

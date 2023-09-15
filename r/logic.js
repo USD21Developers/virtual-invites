@@ -559,6 +559,14 @@ function validateFollowupForm() {
   return true;
 }
 
+async function populateNotes() {
+  const noNotesEl = document.querySelector("#no-notes");
+  noNotesEl.innerText = getPhrase("no-notes").replaceAll(
+    "{RECIPIENT-NAME}",
+    inviteObj.recipient.name
+  );
+}
+
 function onClickAway(event) {
   const addToCalendar = document.querySelector("#addToCalendar");
   const interactionViews = document.querySelector(
@@ -748,6 +756,7 @@ async function init() {
   await getRecipient();
   populateResendInvite();
   populateFollowUpReminder();
+  populateNotes();
   attachListeners();
   globalHidePageSpinner();
 }
