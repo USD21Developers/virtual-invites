@@ -247,6 +247,16 @@
       "key": "saveNote",
       "original": "Save Note",
       "translated": "Save Note"
+    },
+    {
+      "key": "addToFollowUpList",
+      "original": "Add to my Follow Up list",
+      "translated": "Add to my Follow Up list"
+    },
+    {
+      "key": "removeFromFollowUpList",
+      "original": "Remove from my Follow Up list",
+      "translated": "Remove from my Follow Up list"
     }
   ],
 
