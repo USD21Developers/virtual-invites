@@ -250,13 +250,13 @@
     },
     {
       "key": "addToFollowUpList",
-      "original": "Add to my Follow Up list",
-      "translated": "Add to my Follow Up list"
+      "original": "Add {RECIPIENT-NAME} to my Follow Up list",
+      "translated": "Add {RECIPIENT-NAME} to my Follow Up list"
     },
     {
       "key": "removeFromFollowUpList",
-      "original": "Remove from my Follow Up list",
-      "translated": "Remove from my Follow Up list"
+      "original": "Remove {RECIPIENT-NAME} from my Follow Up list",
+      "translated": "Remove {RECIPIENT-NAME} from my Follow Up list"
     }
   ],
 

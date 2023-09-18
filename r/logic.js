@@ -492,6 +492,22 @@ async function populateResendInvite(e) {
   }
 }
 
+function populateAddToFollowupLinks() {
+  const addToFollowUpListEl = document.querySelector("#addToFollowUpList");
+  const removeFromFollowUpListEl = document.querySelector(
+    "#removeFromFollowUpList"
+  );
+
+  addToFollowUpListEl.innerText = getPhrase("addToFollowUpList").replaceAll(
+    "{RECIPIENT-NAME}",
+    inviteObj.recipient.name
+  );
+
+  removeFromFollowUpListEl.innerText = getPhrase(
+    "removeFromFollowUpList"
+  ).replaceAll("{RECIPIENT-NAME}", inviteObj.recipient.name);
+}
+
 async function populateFollowUpReminder() {
   const inviteid = Number(getHash().split("/")[1]) || null;
   if (!inviteid) return;
@@ -699,6 +715,14 @@ function onAtcbGoogle(e) {
   window.location.href = googleCal.render();
 }
 
+async function onAddToFollowupList(e) {
+  e.preventDefault();
+}
+
+async function onRemoveFromFollowupList(e) {
+  e.preventDefault();
+}
+
 function onAtcbIcal(e) {
   onAtcbApple(e);
 }
@@ -734,6 +758,14 @@ function attachListeners() {
     .querySelector(".list-atcb > a[data-destination='ical']")
     .addEventListener("click", onAtcbIcal);
 
+  document
+    .querySelector("#addToFollowUpList")
+    .addEventListener("click", onAddToFollowupList);
+
+  document
+    .querySelector("#removeFromFollowUpList")
+    .addEventListener("click", onRemoveFromFollowupList);
+
   $("#modal").on("hidden.bs.modal", (e) => {
     const followUpFormEl = document.querySelector("#followUpForm");
     followUpFormEl.reset();
@@ -756,6 +788,7 @@ async function init() {
   await getRecipient();
   populateResendInvite();
   populateFollowUpReminder();
+  populateAddToFollowupLinks();
   populateNotes();
   attachListeners();
   globalHidePageSpinner();
