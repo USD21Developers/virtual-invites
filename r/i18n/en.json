@@ -219,11 +219,6 @@
       "translated": "Notes"
     },
     {
-      "key": "notesSubhead",
-      "original": "Notes can help you remember important details from your previous follow-up conversations.",
-      "translated": "Notes can help you remember important details from your previous follow-up conversations."
-    },
-    {
       "key": "no-notes",
       "original": "(You don't have any notes for {RECIPIENT-NAME})",
       "translated": "(You don't have any notes for {RECIPIENT-NAME})"
@@ -232,6 +227,26 @@
       "key": "addNote",
       "original": "Add a Note",
       "translated": "Add a Note"
+    },
+    {
+      "key": "summaryLabel",
+      "original": "Summary:",
+      "translated": "Summary:"
+    },
+    {
+      "key": "summaryRequired",
+      "original": "Summary is required",
+      "translated": "Summary is required"
+    },
+    {
+      "key": "noteLabel",
+      "original": "Note:",
+      "translated": "Note:"
+    },
+    {
+      "key": "saveNote",
+      "original": "Save Note",
+      "translated": "Save Note"
     }
   ],
 

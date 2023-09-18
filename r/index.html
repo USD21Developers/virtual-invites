@@ -229,9 +229,9 @@
         </div>
       </div>
 
-      <div class="row mt-5">
+      <div class="row mt-5 mb-3">
         <div class="col col-md-6 offset-md-3 text-center">
-          <h3 id="headlineFollowUp" class="mb-3"></h3>
+          <h3 id="headlineFollowUp"></h3>
         </div>
       </div>
 
@@ -305,29 +305,32 @@
         </div>
       </div>
 
-      <div class="row mt-4 mb-3">
-        <div class="col col-md-8 offset-md-2 col-xl-10 offset-xl-1">
-          <h3 data-i18n="headlineNotes" class="text-center mb-3"></h3>
-          <p
-            class="mb-3 prettyTextWrap text-xl-center"
-            data-i18n="notesSubhead"
-          ></p>
-          <p
-            class="prettyTextWrap text-xl-center"
-            data-i18n="notesEncryptionNotice"
-          ></p>
+      <!-- Notes -->
+      <div class="mb-5">
+        <div class="row mt-4 mb-3">
+          <div class="col col-md-8 offset-md-2 col-xl-10 offset-xl-1">
+            <h3 data-i18n="headlineNotes" class="text-center mb-3"></h3>
+          </div>
         </div>
-      </div>
 
-      <div class="row my-3">
-        <div class="col col-md-8 offset-md-2 col-xl-10 offset-xl-1">
-          <p class="text-center text-muted" id="no-notes"></p>
+        <div class="row my-3">
+          <div class="col col-md-8 offset-md-2 col-xl-10 offset-xl-1">
+            <p class="text-center text-muted" id="no-notes"></p>
+          </div>
         </div>
-      </div>
 
-      <div class="row my-3">
-        <div class="text-center col col-md-8 offset-md-2 col-xl-10 offset-xl-1">
-          <button class="btn btn-primary" data-i18n="addNote"></button>
+        <div class="row my-3">
+          <div
+            class="text-center col col-md-8 offset-md-2 col-xl-10 offset-xl-1"
+          >
+            <button
+              class="btn btn-primary"
+              data-i18n="addNote"
+              data-toggle="modal"
+              data-target="#addNoteModal"
+              data-backdrop="static"
+            ></button>
+          </div>
         </div>
       </div>
 
@@ -499,6 +502,73 @@
                 </div>
               </div>
             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Note Modal -->
+    <div id="addNoteModal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" data-i18n="addNote"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="addNoteForm">
+              <div class="form-group mt-2 mb-5">
+                <label
+                  for="noteSummary"
+                  class="col-form-label"
+                  data-i18n="summaryLabel"
+                ></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="noteSummary"
+                  maxlength="255"
+                />
+                <div class="invalid-feedback" data-i18n="summaryRequired"></div>
+              </div>
+
+              <div class="form-group mb-0">
+                <label
+                  for="noteDescription"
+                  class="col-form-label"
+                  data-i18n="noteLabel"
+                ></label>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  id="noteDescription"
+                  rows="5"
+                ></textarea>
+                <div class="invalid-feedback"></div>
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer px-3 pt-0 pb-3">
+            <a
+              href="#"
+              class="btn btn-link not-bold"
+              data-dismiss="modal"
+              data-i18n-global="cancel"
+            ></a>
+
+            <button
+              type="button"
+              class="ml-5 btn btn-primary"
+              data-i18n="saveNote"
+            ></button>
           </div>
         </div>
       </div>
