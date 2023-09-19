@@ -748,7 +748,10 @@ function onSaveNote(e) {
       return false;
     }
 
+    const noteid = self.crypto.randomUUID();
+
     const note = {
+      noteid: noteid,
       summary: noteSummaryEl.value.trim(),
       text: noteTextEl.value.trim(),
       date: new Date().toISOString(),
