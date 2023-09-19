@@ -835,7 +835,6 @@ function attachListeners() {
 
   $("#addNoteModal").on("hide.bs.modal", (e) => {
     e.target.querySelector("#addNoteForm").reset();
-    window.scrollTo(0, 0);
     showToast(getPhrase("noteAdded"), 2500, "success");
   });
 
