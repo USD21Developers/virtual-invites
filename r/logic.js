@@ -785,7 +785,9 @@ function onSaveNote(e) {
 
     $("#addNoteModal").modal("hide");
 
-    showToast(getPhrase("noteAdded"), 2500, "success");
+    setTimeout(() => {
+      showToast(getPhrase("noteAdded"), 2500, "success");
+    }, 1000);
 
     resolve(note);
   });
