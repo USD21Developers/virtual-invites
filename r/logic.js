@@ -785,6 +785,8 @@ function onSaveNote(e) {
 
     $("#addNoteModal").modal("hide");
 
+    showToast(getPhrase("noteAdded"), 2500, "success");
+
     resolve(note);
   });
 }
@@ -835,7 +837,6 @@ function attachListeners() {
 
   $("#addNoteModal").on("hide.bs.modal", (e) => {
     e.target.querySelector("#addNoteForm").reset();
-    showToast(getPhrase("noteAdded"), 2500, "success");
   });
 
   document
