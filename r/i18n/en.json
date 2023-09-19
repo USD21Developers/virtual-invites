@@ -262,6 +262,11 @@
       "key": "removeFromFollowUpList",
       "original": "Remove {RECIPIENT-NAME} from my Follow Up list",
       "translated": "Remove {RECIPIENT-NAME} from my Follow Up list"
+    },
+    {
+      "key": "noteAdded",
+      "original": "Note added.",
+      "translated": "Note added."
     }
   ],
 
