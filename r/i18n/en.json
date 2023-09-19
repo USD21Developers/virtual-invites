@@ -244,6 +244,11 @@
       "translated": "Note:"
     },
     {
+      "key": "noteRequired",
+      "original": "Note is required",
+      "translated": "Note is required"
+    },
+    {
       "key": "saveNote",
       "original": "Save Note",
       "translated": "Save Note"

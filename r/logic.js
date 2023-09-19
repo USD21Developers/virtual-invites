@@ -727,6 +727,65 @@ function onAtcbIcal(e) {
   onAtcbApple(e);
 }
 
+function onSaveNote(e) {
+  return new Promise(async (resolve, reject) => {
+    const noteSummaryEl = document.querySelector("#noteSummary");
+    const noteTextEl = document.querySelector("#noteText");
+    const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
+
+    noteSummaryEl.classList.remove("is-invalid");
+    noteTextEl.classList.remove("is-invalid");
+
+    if (noteSummaryEl.value.trim() === "") {
+      noteSummaryEl.classList.add("is-invalid");
+      noteSummaryEl.scrollIntoView();
+      return false;
+    }
+
+    if (noteTextEl.value.trim() === "") {
+      noteTextEl.classList.add("is-invalid");
+      noteTextEl.scrollIntoView();
+      return false;
+    }
+
+    const note = {
+      summary: noteSummaryEl.value.trim(),
+      text: noteTextEl.value.trim(),
+      date: new Date().toISOString(),
+      timezone: userDateTimePrefs.timeZone,
+      eventid: eventObj.eventid,
+      inviteid: inviteObj.invitationid,
+      recipient: inviteObj.recipient,
+    };
+
+    // Encrypt note
+    const datakey = localStorage.getItem("datakey");
+    const noteEncrypted = await invitesCrypto.encrypt(
+      datakey,
+      JSON.stringify(note)
+    );
+
+    // Get stored notes from IndexedDB
+    const notes = (await localforage.getItem("notes")) || [];
+    const unsyncedNotes = (await localforage.getItem("unsyncedNotes")) || [];
+
+    // Add new note to stored notes
+    notes.push(note);
+    unsyncedNotes.push(noteEncrypted);
+
+    // Overwrite previous notes in IndexedDB
+    await localforage.setItem("notes", notes);
+    await localforage.setItem("unsyncedNotes", unsyncedNotes);
+
+    // TODO:  sync notes
+    // syncNotes(); // Do not await this!
+
+    $("#addNoteModal").modal("hide");
+
+    resolve(note);
+  });
+}
+
 function attachListeners() {
   window.addEventListener("hashchange", () => {
     window.location.reload();
@@ -771,6 +830,10 @@ function attachListeners() {
     followUpFormEl.reset();
   });
 
+  $("#addNoteModal").on("hide.bs.modal", (e) => {
+    e.target.querySelector("#addNoteForm").reset();
+  });
+
   document
     .querySelector("#followUpAlert button")
     .addEventListener("click", () => {
@@ -781,6 +844,10 @@ function attachListeners() {
     const isFormValid = validateFollowupForm();
     if (!isFormValid) return false;
   });
+
+  document
+    .querySelector("#saveNoteButton")
+    .addEventListener("click", onSaveNote);
 }
 
 async function init() {
