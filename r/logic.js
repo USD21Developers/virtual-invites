@@ -780,6 +780,9 @@ function onSaveNote(e) {
     // TODO:  sync notes
     // syncNotes(); // Do not await this!
 
+    // TODO:  rerender notes
+    // await renderNotes();
+
     $("#addNoteModal").modal("hide");
 
     resolve(note);
