@@ -612,7 +612,7 @@ async function renderNotes() {
               </div>
             </summary>
             <div class="noteContent mt-2 p-3 bg-light border border-dark">
-              ${note.text}
+              ${breakify(note.text)}
             </div>
           </details>
         </div>
