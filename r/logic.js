@@ -581,6 +581,55 @@ async function populateNotes() {
     "{RECIPIENT-NAME}",
     inviteObj.recipient.name
   );
+
+  renderNotes();
+}
+
+async function renderNotes() {
+  const notes = await localforage.getItem("notes");
+  const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
+  const notesEl = document.querySelector("#notes");
+  let notesHTML = "";
+
+  if (!Array.isArray(notes)) return (notesEl.innerHTML = "");
+  if (!notes.length) return (notesEl.innerHTML = "");
+
+  notes.forEach((note) => {
+    const date = Intl.DateTimeFormat(userDateTimePrefs.locale, {
+      dateStyle: "full",
+      timeStyle: "short",
+    }).format(new Date(note.date));
+    notesHTML += `
+      <div class="note row mb-4">
+        <div class="col col-md-8 offset-md-2 col-xl-8 offset-xl-2">
+          <details class="mb-3">
+            <summary class="text-center">
+              <strong class="text-dark">${note.summary}</strong>
+              <div>
+                <small class="text-muted">
+                  ${date}
+                </small>
+              </div>
+            </summary>
+            <div class="noteContent mt-2 p-3 bg-light border border-dark">
+              ${note.text}
+            </div>
+          </details>
+        </div>
+      </div>
+    `;
+  });
+
+  notesEl.innerHTML = notesHTML;
+
+  const onToggleNoteContent = (e) => {
+    e.target.parentElement.removeAttribute("open");
+  };
+
+  document.querySelectorAll(".noteContent").forEach((noteContent) => {
+    noteContent.removeEventListener("click", onToggleNoteContent, true);
+    noteContent.addEventListener("click", onToggleNoteContent, true);
+  });
 }
 
 function onClickAway(event) {
@@ -784,7 +833,7 @@ function onSaveNote(e) {
     // syncNotes(); // Do not await this!
 
     // TODO:  rerender notes
-    // await renderNotes();
+    await renderNotes();
 
     $("#addNoteModal").modal("hide");
 
