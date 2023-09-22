@@ -822,9 +822,18 @@ function onSaveNote(e) {
 
     // Encrypt note
     const datakey = localStorage.getItem("datakey");
-    const noteEncrypted = await invitesCrypto.encrypt(
+    let noteEncrypted = note;
+    noteEncrypted.summary = await invitesCrypto.encrypt(
       datakey,
-      JSON.stringify(note)
+      JSON.stringify(noteEncrypted.summary)
+    );
+    noteEncrypted.text = await invitesCrypto.encrypt(
+      datakey,
+      JSON.stringify(noteEncrypted.text)
+    );
+    noteEncrypted.recipient = await invitesCrypto.encrypt(
+      datakey,
+      JSON.stringify(noteEncrypted.recipient)
     );
 
     // Get stored notes from IndexedDB
