@@ -640,7 +640,7 @@ async function renderNotes() {
               <div class="noteFooter mt-4">
                 <div class="container-fluid p-0">
                   <div class="row">
-                    <div class="col text-right">
+                    <div class="col text-left">
                       <button class="btn btn-sm btn-flat-danger" type="button" onclick="deleteNote('${
                         note.noteid
                       }')">
@@ -649,7 +649,9 @@ async function renderNotes() {
                         </span>
                         ${getPhrase("deleteNote")}
                       </button>
+                    </div>
 
+                    <div class="col text-right">
                       <button class="btn btn-sm btn-flat-primary" type="button" onclick="editNote('${
                         note.noteid
                       }')">
