@@ -38,3 +38,7 @@ html {
 #addNoteModal {
   animation: fadeIn 0.25s;
 }
+
+.noteFooter *:not(.material-icons) {
+  font-size: 12px !important;
+}
