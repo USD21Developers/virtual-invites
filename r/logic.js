@@ -821,8 +821,9 @@ function onSaveNote(e) {
     };
 
     // Encrypt note
+    const noteEncrypted = note;
     const datakey = localStorage.getItem("datakey");
-    let noteEncrypted = note;
+
     noteEncrypted.summary = await invitesCrypto.encrypt(
       datakey,
       JSON.stringify(noteEncrypted.summary)
@@ -837,12 +838,23 @@ function onSaveNote(e) {
     );
 
     // Get stored notes from IndexedDB
-    const notes = (await localforage.getItem("notes")) || [];
-    const unsyncedNotes = (await localforage.getItem("unsyncedNotes")) || [];
+    let notes = (await localforage.getItem("notes")) || [];
+    let unsyncedNotes = (await localforage.getItem("unsyncedNotes")) || [];
 
     // Add new note to stored notes
     notes.push(note);
     unsyncedNotes.push(noteEncrypted);
+
+    // Sort by date
+    const compareDates = (a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateA - dateB;
+    };
+    const notesSorted = notes.slice().sort(compareDates);
+    const unsyncedNotesSorted = unsyncedNotes.slice().sort(compareDates);
+    notes = notesSorted;
+    unsyncedNotes = unsyncedNotesSorted;
 
     // Overwrite previous notes in IndexedDB
     await localforage.setItem("notes", notes);
