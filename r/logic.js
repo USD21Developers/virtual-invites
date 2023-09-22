@@ -922,7 +922,8 @@ function attachListeners() {
         if (index === nodeList.length - 1) {
           item.setAttribute("open", "");
           customScrollTo(
-            `[data-note-id="${item.getAttribute("data-note-id")}"]`
+            `[data-note-id="${item.getAttribute("data-note-id")}"]`,
+            "instant"
           );
         }
       });
