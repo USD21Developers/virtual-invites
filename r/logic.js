@@ -586,7 +586,7 @@ async function populateNotes() {
 }
 
 async function renderNotes() {
-  const notesAllRecipients = await localforage.getItem("notes");
+  const notesAllRecipients = (await localforage.getItem("notes")) || [];
   let notes;
   if (inviteObj.recipient.email) {
     notes = notesAllRecipients.filter(
@@ -612,7 +612,7 @@ async function renderNotes() {
     notesHTML += `
       <div class="note row mb-4">
         <div class="col col-md-8 offset-md-2 col-xl-8 offset-xl-2">
-          <details class="mb-3">
+          <details class="mb-3" data-note-id="${note.noteid}">
             <summary class="text-center">
               <strong class="text-dark">${note.summary}</strong>
               <div>
@@ -820,8 +820,8 @@ function onSaveNote(e) {
       recipient: inviteObj.recipient,
     };
 
-    // Encrypt note
-    const noteEncrypted = note;
+    // Create an encrypted copy of the note
+    const noteEncrypted = JSON.parse(JSON.stringify(note));
     const datakey = localStorage.getItem("datakey");
 
     noteEncrypted.summary = await invitesCrypto.encrypt(
@@ -837,11 +837,11 @@ function onSaveNote(e) {
       JSON.stringify(noteEncrypted.recipient)
     );
 
-    // Get stored notes from IndexedDB
+    // Get existing notes from IndexedDB
     let notes = (await localforage.getItem("notes")) || [];
     let unsyncedNotes = (await localforage.getItem("unsyncedNotes")) || [];
 
-    // Add new note to stored notes
+    // Add the new note to existing notes
     notes.push(note);
     unsyncedNotes.push(noteEncrypted);
 
@@ -853,24 +853,17 @@ function onSaveNote(e) {
     };
     const notesSorted = notes.slice().sort(compareDates);
     const unsyncedNotesSorted = unsyncedNotes.slice().sort(compareDates);
-    notes = notesSorted;
-    unsyncedNotes = unsyncedNotesSorted;
 
     // Overwrite previous notes in IndexedDB
-    await localforage.setItem("notes", notes);
-    await localforage.setItem("unsyncedNotes", unsyncedNotes);
+    await localforage.setItem("notes", notesSorted);
+    await localforage.setItem("unsyncedNotes", unsyncedNotesSorted);
 
     // TODO:  sync notes
     // syncNotes(); // Do not await this!
 
-    // TODO:  rerender notes
     await renderNotes();
 
     $("#addNoteModal").modal("hide");
-
-    setTimeout(() => {
-      showToast(getPhrase("noteAdded"), 2500, "success");
-    }, 1000);
 
     resolve(note);
   });
@@ -920,8 +913,19 @@ function attachListeners() {
     followUpFormEl.reset();
   });
 
-  $("#addNoteModal").on("hide.bs.modal", (e) => {
+  $("#addNoteModal").on("hidden.bs.modal", (e) => {
     e.target.querySelector("#addNoteForm").reset();
+
+    document
+      .querySelectorAll("#notes details")
+      .forEach((item, index, nodeList) => {
+        if (index === nodeList.length - 1) {
+          item.setAttribute("open", "");
+          customScrollTo(
+            `[data-note-id="${item.getAttribute("data-note-id")}"]`
+          );
+        }
+      });
   });
 
   document
