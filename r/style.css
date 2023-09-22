@@ -37,7 +37,6 @@ html {
 #modal,
 #addNoteModal {
   animation: fadeIn 0.25s;
-  filter: grayscale(1);
 }
 
 .noteFooter .btn,
@@ -47,7 +46,6 @@ html {
 
 .noteFooter .btn:active,
 .noteFooter .btn:hover {
-  background-color: white !important;
   filter: grayscale(0);
 }
 
