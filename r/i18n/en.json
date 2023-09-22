@@ -267,6 +267,16 @@
       "key": "noteAdded",
       "original": "Note added.",
       "translated": "Note added."
+    },
+    {
+      "key": "deleteNote",
+      "original": "Delete",
+      "translated": "Delete"
+    },
+    {
+      "key": "editNote",
+      "original": "Edit",
+      "translated": "Edit"
     }
   ],
 

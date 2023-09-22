@@ -11,6 +11,14 @@ function closeModal() {
   followUpFormEl.reset();
 }
 
+function editNote(noteid) {
+  //
+}
+
+function deleteNote(noteid) {
+  //
+}
+
 function getFollowUpDateTime() {
   const followUpDateEl = document.querySelector("#followUpDate");
   const followUpTimeEl = document.querySelector("#followUpTime");
@@ -626,8 +634,34 @@ async function renderNotes() {
                 </small>
               </div>
             </summary>
-            <div class="noteContent mt-2 p-3 bg-light border border-dark">
+            <div class="noteContent mt-2 px-3 pt-3 pb-1 bg-light border border-dark">
               ${breakify(note.text)}
+
+              <div class="noteFooter mt-4">
+                <div class="container-fluid p-0">
+                  <div class="row">
+                    <div class="col text-right">
+                      <button class="btn btn-sm btn-flat-danger" type="button" onclick="deleteNote('${
+                        note.noteid
+                      }')">
+                        <span class="material-icons material-symbols-outlined mr-1">
+                          delete
+                        </span>
+                        ${getPhrase("deleteNote")}
+                      </button>
+
+                      <button class="btn btn-sm btn-flat-primary" type="button" onclick="editNote('${
+                        note.noteid
+                      }')">
+                        <span class="material-icons material-symbols-outlined mr-1">
+                          edit
+                        </span>                     
+                        ${getPhrase("editNote")}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </details>
         </div>
@@ -636,6 +670,8 @@ async function renderNotes() {
   });
 
   notesEl.innerHTML = notesHTML;
+
+  showMaterialIcons();
 
   const onToggleNoteContent = (e) => {
     e.target.parentElement.removeAttribute("open");
