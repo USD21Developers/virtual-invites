@@ -37,6 +37,18 @@ html {
 #modal,
 #addNoteModal {
   animation: fadeIn 0.25s;
+  filter: grayscale(1);
+}
+
+.noteFooter .btn,
+.noteFooter .btn:visited {
+  filter: grayscale(1);
+}
+
+.noteFooter .btn:active,
+.noteFooter .btn:hover {
+  background-color: white !important;
+  filter: grayscale(0);
 }
 
 .noteFooter *:not(.material-icons) {
