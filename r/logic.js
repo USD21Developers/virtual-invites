@@ -611,7 +611,7 @@ async function renderNotes() {
     }).format(new Date(note.date));
     notesHTML += `
       <div class="note row mb-4">
-        <div class="col col-md-8 offset-md-2 col-xl-8 offset-xl-2">
+        <div class="col col-md-8 offset-md-2">
           <details class="mb-3" data-note-id="${note.noteid}">
             <summary class="text-center">
               <strong class="text-dark">${note.summary}</strong>
