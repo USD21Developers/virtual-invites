@@ -604,10 +604,10 @@ async function renderNotes() {
 
   if (!Array.isArray(notes)) return (notesEl.innerHTML = "");
   if (!notes.length) {
-    noNotesEl.classList.add("d-none");
-    notesEl.innerHTML = "";
-    return;
+    return (notesEl.innerHTML = "");
   }
+
+  noNotesEl.classList.add("d-none");
 
   notes.forEach((note) => {
     const date = Intl.DateTimeFormat(userDateTimePrefs.locale, {
