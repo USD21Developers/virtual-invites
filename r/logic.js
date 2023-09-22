@@ -586,6 +586,7 @@ async function populateNotes() {
 }
 
 async function renderNotes() {
+  const noNotesEl = document.querySelector("#no-notes-container");
   const notesAllRecipients = (await localforage.getItem("notes")) || [];
   let notes;
   if (inviteObj.recipient.email) {
@@ -602,7 +603,11 @@ async function renderNotes() {
   let notesHTML = "";
 
   if (!Array.isArray(notes)) return (notesEl.innerHTML = "");
-  if (!notes.length) return (notesEl.innerHTML = "");
+  if (!notes.length) {
+    noNotesEl.classList.add("d-none");
+    notesEl.innerHTML = "";
+    return;
+  }
 
   notes.forEach((note) => {
     const date = Intl.DateTimeFormat(userDateTimePrefs.locale, {
