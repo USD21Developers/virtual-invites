@@ -39,16 +39,6 @@ html {
   animation: fadeIn 0.25s;
 }
 
-.noteFooter .btn,
-.noteFooter .btn:visited {
-  filter: grayscale(1);
-}
-
-.noteFooter .btn:active,
-.noteFooter .btn:hover {
-  filter: grayscale(0);
-}
-
 .noteFooter {
   border-top: 1px solid #999;
   margin-top: 40px !important;

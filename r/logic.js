@@ -641,7 +641,7 @@ async function renderNotes() {
                 <div class="container-fluid p-0">
                   <div class="row">
                     <div class="col text-left">
-                      <button class="btn btn-sm btn-flat-danger" type="button" onclick="deleteNote('${
+                      <button class="btn btn-sm btn-flat-dark" type="button" onclick="deleteNote('${
                         note.noteid
                       }')">
                         <span class="mr-1">
@@ -652,7 +652,7 @@ async function renderNotes() {
                     </div>
 
                     <div class="col text-right">
-                      <button class="btn btn-sm btn-flat-primary" type="button" onclick="editNote('${
+                      <button class="btn btn-sm btn-flat-dark" type="button" onclick="editNote('${
                         note.noteid
                       }')">
                         <span class="mr-1">
