@@ -647,7 +647,7 @@ async function renderNotes() {
                       <button class="btn btn-sm btn-flat-dark" type="button" onclick="editNote('${
                         note.noteid
                       }')">
-                        <span class="mr-1">
+                        <span class="ml-1">
                         <img src="../_assets/svg/icons/edit.svg" width="20" height="20" alt="" />
                         </span>                     
                         ${getPhrase("editNote")}
