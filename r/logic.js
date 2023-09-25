@@ -641,7 +641,7 @@ async function renderNotes() {
                         <span class="mr-1">
                           <img src="../_assets/svg/icons/delete.svg" width="20" height="20" alt="" />
                         </span>
-                        ${getPhrase("deleteNote")}
+                        ${getGlobalPhrase("delete")}
                       </button>
                     </div>
 
@@ -652,7 +652,7 @@ async function renderNotes() {
                         <span class="mr-1">
                           <img src="../_assets/svg/icons/edit.svg" width="20" height="20" alt="" />
                         </span>                     
-                        ${getPhrase("editNote")}
+                        ${getGlobalPhrase("edit")}
                       </button>
                     </div>
                   </div>

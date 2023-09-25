@@ -267,6 +267,16 @@
       "key": "update",
       "original": "Update",
       "translated": "Update"
+    },
+    {
+      "key": "delete",
+      "original": "Delete",
+      "translated": "Delete"
+    },
+    {
+      "key": "edit",
+      "original": "Edit",
+      "translated": "Edit"
     }
   ],
 
