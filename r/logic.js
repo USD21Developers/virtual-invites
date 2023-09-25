@@ -626,8 +626,10 @@ async function renderNotes() {
                 </small>
               </div>
             </summary>
-            <div class="noteContent mt-2 px-3 pt-3 pb-1 bg-light border border-dark">
-              ${breakify(note.text)}
+            <div class="noteContentContainer mt-2 px-3 pt-3 pb-1 bg-light border border-dark">
+              <div class="noteContent">
+                ${breakify(note.text)}
+              </div>
 
               <div class="noteFooter mt-4">
                 <div class="container-fluid p-0">
@@ -671,7 +673,7 @@ async function renderNotes() {
     e.target.parentElement.removeAttribute("open");
   };
 
-  document.querySelectorAll(".noteContent").forEach((noteContent) => {
+  document.querySelectorAll(".noteContentContainer").forEach((noteContent) => {
     noteContent.removeEventListener("click", onToggleNoteContent, true);
     noteContent.addEventListener("click", onToggleNoteContent, true);
   });

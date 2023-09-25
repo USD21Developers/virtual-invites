@@ -39,6 +39,10 @@ html {
   animation: fadeIn 0.25s;
 }
 
+.noteContent {
+  font-size: 1rem;
+}
+
 .noteFooter {
   border-top: 1px solid #999;
   margin-top: 30px !important;
