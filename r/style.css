@@ -49,6 +49,9 @@ html {
   filter: grayscale(0);
 }
 
-.noteFooter *:not(.material-icons) {
+.noteFooter {
+  border-top: 1px solid #999;
   font-size: 12px !important;
+  margin-top: 40px !important;
+  padding-top: 5px;
 }
