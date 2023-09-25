@@ -632,8 +632,8 @@ async function renderNotes() {
               <div class="noteFooter mt-4">
                 <div class="container-fluid p-0">
                   <div class="row">
-                    <div class="col text-left">
-                      <button class="btn btn-sm btn-flat-dark" type="button" onclick="deleteNote('${
+                    <div class="col-6 text-left px-0">
+                      <button class="btn btn-sm btn-flat-dark ml-1" type="button" onclick="deleteNote('${
                         note.noteid
                       }')">
                         <span class="mr-1">
@@ -643,12 +643,12 @@ async function renderNotes() {
                       </button>
                     </div>
 
-                    <div class="col text-right">
-                      <button class="btn btn-sm btn-flat-dark" type="button" onclick="editNote('${
+                    <div class="col-6 text-right px-0">
+                      <button class="btn btn-sm btn-flat-dark mr-1" type="button" onclick="editNote('${
                         note.noteid
                       }')">
-                        <span class="ml-1">
-                        <img src="../_assets/svg/icons/edit.svg" width="20" height="20" alt="" />
+                        <span class="mr-1">
+                          <img src="../_assets/svg/icons/edit.svg" width="20" height="20" alt="" />
                         </span>                     
                         ${getPhrase("editNote")}
                       </button>
