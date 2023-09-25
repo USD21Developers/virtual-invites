@@ -262,6 +262,11 @@
       "key": "addToCalendarIcalFile",
       "original": "iCal file",
       "translated": "iCal file"
+    },
+    {
+      "key": "update",
+      "original": "Update",
+      "translated": "Update"
     }
   ],
 
