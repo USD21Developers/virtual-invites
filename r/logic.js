@@ -902,6 +902,10 @@ function onSaveNote(e) {
 
     $("#addNoteModal").modal("hide");
 
+    showToast(getPhrase("noteAdded"), 2500, "success");
+
+    document.querySelector(`[data-note-id="${noteid}"]`).scrollIntoView();
+
     resolve(note);
   });
 }
