@@ -644,8 +644,8 @@ async function renderNotes() {
                       <button class="btn btn-sm btn-flat-danger" type="button" onclick="deleteNote('${
                         note.noteid
                       }')">
-                        <span class="material-icons material-symbols-outlined mr-1">
-                          delete
+                        <span class="mr-1">
+                          <img src="../_assets/svg/icons/delete.svg" width="20" height="20" alt="" />
                         </span>
                         ${getPhrase("deleteNote")}
                       </button>
@@ -655,8 +655,8 @@ async function renderNotes() {
                       <button class="btn btn-sm btn-flat-primary" type="button" onclick="editNote('${
                         note.noteid
                       }')">
-                        <span class="material-icons material-symbols-outlined mr-1">
-                          edit
+                        <span class="mr-1">
+                        <img src="../_assets/svg/icons/edit.svg" width="20" height="20" alt="" />
                         </span>                     
                         ${getPhrase("editNote")}
                       </button>
