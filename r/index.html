@@ -597,6 +597,75 @@
       </div>
     </div>
 
+    <!-- Edit Note Modal -->
+    <div id="editNoteModal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" data-i18n="editNote"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="editNoteForm">
+              <input type="hidden" name="noteid" id="editNoteId" />
+              <div class="form-group mt-2 mb-5">
+                <label
+                  for="editNoteSummary"
+                  class="col-form-label"
+                  data-i18n="summaryLabel"
+                ></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editNoteSummary"
+                  maxlength="255"
+                />
+                <div class="invalid-feedback" data-i18n="summaryRequired"></div>
+              </div>
+
+              <div class="form-group mb-0">
+                <label
+                  for="editNoteText"
+                  class="col-form-label"
+                  data-i18n="noteLabel"
+                ></label>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  id="editNoteText"
+                  rows="5"
+                ></textarea>
+                <div class="invalid-feedback" data-i18n="noteRequired"></div>
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer px-3 pt-0 pb-3">
+            <a
+              href="#"
+              class="btn btn-link not-bold"
+              data-dismiss="modal"
+              data-i18n-global="cancel"
+            ></a>
+
+            <button
+              type="submit"
+              class="ml-5 btn btn-primary"
+              data-i18n-global="update"
+              id="editNoteButton"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/datebook/dist/datebook.min.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"

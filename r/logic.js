@@ -11,14 +11,6 @@ function closeModal() {
   followUpFormEl.reset();
 }
 
-function editNote(noteid) {
-  //
-}
-
-function deleteNote(noteid) {
-  //
-}
-
 function getFollowUpDateTime() {
   const followUpDateEl = document.querySelector("#followUpDate");
   const followUpTimeEl = document.querySelector("#followUpTime");
@@ -912,6 +904,136 @@ function onSaveNote(e) {
   });
 }
 
+async function editNote(noteid) {
+  const noteSummaryEl = document.querySelector("#editNoteSummary");
+  const noteTextEl = document.querySelector("#editNoteText");
+  const noteIdEl = document.querySelector("#editNoteId");
+
+  // Get existing notes from IndexedDB
+  let notes = (await localforage.getItem("notes")) || [];
+  let note = notes.find((item) => item.noteid === noteid);
+
+  // Close modal if note was not found
+  if (!note) {
+    $("#editNoteModal").modal("hide");
+    console.error(`Note for noteid "${noteid}" was not found in IndexedDB`);
+    return;
+  }
+
+  // Populate form
+  noteSummaryEl.value = note.summary;
+  noteTextEl.value = note.text;
+  noteIdEl.value = noteid;
+
+  // Clear error messages
+  noteSummaryEl.classList.remove("is-invalid");
+  noteTextEl.classList.remove("is-invalid");
+
+  // Show Edit modal
+  $("#editNoteModal").modal("show");
+}
+
+function onEditNote() {
+  return new Promise(async (resolve, reject) => {
+    const noteSummaryEl = document.querySelector("#editNoteSummary");
+    const noteTextEl = document.querySelector("#editNoteText");
+    const noteIdEl = document.querySelector("#editNoteId");
+    const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
+    let notes = (await localforage.getItem("notes")) || [];
+    let unsyncedNotes = (await localforage.getItem("unsyncedNotes")) || [];
+    const noteid = noteIdEl.value;
+
+    // Validate form
+
+    if (noteSummaryEl.value.trim() === "") {
+      noteSummaryEl.classList.add("is-invalid");
+      noteSummaryEl.scrollIntoView();
+      return false;
+    }
+
+    if (noteTextEl.value.trim() === "") {
+      noteTextEl.classList.add("is-invalid");
+      noteTextEl.scrollIntoView();
+      return false;
+    }
+
+    if (noteIdEl.value.trim() === "") {
+      $("#editNoteModal").modal("hide");
+      return false;
+    }
+
+    // Rebuild note
+    const updatedNote = {
+      noteid: noteIdEl.value.trim(),
+      summary: noteSummaryEl.value.trim(),
+      text: noteTextEl.value.trim(),
+      date: new Date().toISOString(),
+      timezone: userDateTimePrefs.timeZone,
+      eventid: eventObj.eventid,
+      inviteid: inviteObj.invitationid,
+      recipient: inviteObj.recipient,
+    };
+
+    // Create an encrypted copy of the note
+    const noteEncrypted = JSON.parse(JSON.stringify(updatedNote));
+    const datakey = localStorage.getItem("datakey");
+
+    noteEncrypted.summary = await invitesCrypto.encrypt(
+      datakey,
+      JSON.stringify(noteEncrypted.summary)
+    );
+    noteEncrypted.text = await invitesCrypto.encrypt(
+      datakey,
+      JSON.stringify(noteEncrypted.text)
+    );
+    noteEncrypted.recipient = await invitesCrypto.encrypt(
+      datakey,
+      JSON.stringify(noteEncrypted.recipient)
+    );
+
+    // Update the note
+
+    notes = notes.filter((item) => item.noteid !== updatedNote.noteid);
+    notes.push(updatedNote);
+
+    unsyncedNotes = unsyncedNotes.filter(
+      (item) => item.nodeid !== updatedNote.noteid
+    );
+    unsyncedNotes.push(noteEncrypted);
+
+    // Sort by date
+    const compareDates = (a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateA - dateB;
+    };
+    const notesSorted = notes.slice().sort(compareDates);
+    const unsyncedNotesSorted = unsyncedNotes.slice().sort(compareDates);
+
+    // Overwrite previous notes in IndexedDB
+    await localforage.setItem("notes", notesSorted);
+    await localforage.setItem("unsyncedNotes", unsyncedNotesSorted);
+
+    // TODO:  sync notes
+    // syncNotes(); // Do not await this!
+
+    await renderNotes();
+
+    const renderedNote = document.querySelector(`[data-note-id='${noteid}']`);
+    if (renderedNote) renderedNote.setAttribute("open", "");
+
+    $("#editNoteModal").modal("hide");
+
+    showToast(getPhrase("noteUpdated"), 2500, "success");
+
+    resolve(updatedNote);
+  });
+}
+
+async function onDeleteNote(noteid) {
+  console.log(noteid);
+}
+
 function attachListeners() {
   window.addEventListener("hashchange", () => {
     window.location.reload();
@@ -986,6 +1108,14 @@ function attachListeners() {
   document
     .querySelector("#saveNoteButton")
     .addEventListener("click", onSaveNote);
+
+  document
+    .querySelector("#editNoteButton")
+    .addEventListener("click", onEditNote);
+
+  /* document
+    .querySelector("#deleteNoteButton")
+    .addEventListener("click", onDeleteNote); */
 }
 
 async function init() {

@@ -229,6 +229,11 @@
       "translated": "Add a Note"
     },
     {
+      "key": "deleteNote",
+      "original": "Delete Note",
+      "translated": "Delete Note"
+    },
+    {
       "key": "summaryLabel",
       "original": "Summary:",
       "translated": "Summary:"
@@ -269,14 +274,24 @@
       "translated": "Note added."
     },
     {
+      "key": "noteUpdated",
+      "original": "Note updated.",
+      "translated": "Note updated."
+    },
+    {
       "key": "deleteNote",
       "original": "Delete",
       "translated": "Delete"
     },
     {
       "key": "editNote",
-      "original": "Edit",
-      "translated": "Edit"
+      "original": "Edit Note",
+      "translated": "Edit Note"
+    },
+    {
+      "key": "noteUpdated",
+      "original": "Note updated.",
+      "translated": "Note updated."
     }
   ],
 
