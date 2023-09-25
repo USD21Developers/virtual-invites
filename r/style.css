@@ -51,8 +51,11 @@ html {
 
 .noteFooter {
   border-top: 1px solid #999;
-  font-size: 12px !important;
-  font-weight: 100;
   margin-top: 40px !important;
   padding-top: 5px;
+}
+
+.noteFooter .btn {
+  font-size: 12px !important;
+  font-weight: 100;
 }
