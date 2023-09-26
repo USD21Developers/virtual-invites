@@ -9,6 +9,7 @@
 
 #followup li > a {
   display: block;
+  font-weight: 600;
   padding: 1rem;
   text-decoration: none !important;
 }
