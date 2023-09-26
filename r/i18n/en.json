@@ -254,6 +254,11 @@
       "translated": "Save Note"
     },
     {
+      "key": "editNote",
+      "original": "Edit Note",
+      "translated": "Edit Note"
+    },
+    {
       "key": "addToFollowUpList",
       "original": "Add {RECIPIENT-NAME} to my Follow Up list",
       "translated": "Add {RECIPIENT-NAME} to my Follow Up list"
