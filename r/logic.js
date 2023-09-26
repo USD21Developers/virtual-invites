@@ -1030,10 +1030,10 @@ function onEditNote() {
 
     await renderNotes();
 
+    $("#editNoteModal").modal("hide");
+
     const renderedNote = document.querySelector(`[data-note-id='${noteid}']`);
     if (renderedNote) renderedNote.setAttribute("open", "");
-
-    $("#editNoteModal").modal("hide");
 
     resolve(updatedNote);
   });
