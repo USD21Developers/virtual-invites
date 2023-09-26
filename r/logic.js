@@ -902,7 +902,7 @@ function onSaveNote(e) {
 
     $("#addNoteModal").modal("hide");
 
-    showToast(getPhrase("noteAdded"), 2500, "success");
+    showToast(getPhrase("noteAdded"), 4000, "success");
 
     document.querySelector(`[data-note-id="${noteid}"]`).scrollIntoView();
 
@@ -1030,7 +1030,7 @@ function onEditNote() {
 
     $("#editNoteModal").modal("hide");
 
-    showToast(getPhrase("noteUpdated"), 2500, "success");
+    showToast(getPhrase("noteUpdated"), 4000, "success");
 
     resolve(updatedNote);
   });
