@@ -969,15 +969,16 @@ function onEditNote() {
     }
 
     // Rebuild note
+    const note = notes.find((item) => item.noteid === noteid);
     const updatedNote = {
-      noteid: noteIdEl.value.trim(),
+      noteid: note.noteid,
       summary: noteSummaryEl.value.trim(),
       text: noteTextEl.value.trim(),
-      date: new Date().toISOString(),
-      timezone: userDateTimePrefs.timeZone,
-      eventid: eventObj.eventid,
-      inviteid: inviteObj.invitationid,
-      recipient: inviteObj.recipient,
+      date: note.date,
+      timezone: note.timezone,
+      eventid: note.eventid,
+      inviteid: note.inviteid,
+      recipient: note.recipient,
     };
 
     // Create an encrypted copy of the note
