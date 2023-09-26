@@ -908,8 +908,6 @@ function onSaveNote(e) {
 
     $("#addNoteModal").modal("hide");
 
-    showToast(getPhrase("noteAdded"), 4000, "success");
-
     document.querySelector(`[data-note-id="${noteid}"]`).scrollIntoView();
 
     resolve(note);
@@ -1037,8 +1035,6 @@ function onEditNote() {
 
     $("#editNoteModal").modal("hide");
 
-    showToast(getPhrase("noteUpdated"), 4000, "success");
-
     resolve(updatedNote);
   });
 }
@@ -1092,19 +1088,21 @@ function attachListeners() {
   });
 
   $(".modal").on("hidden.bs.modal", (e) => {
-    e.target.querySelector("#addNoteForm").reset();
-
-    document
-      .querySelectorAll("#notes details")
-      .forEach((item, index, nodeList) => {
-        if (index === nodeList.length - 1) {
-          item.setAttribute("open", "");
-          customScrollTo(
-            `[data-note-id="${item.getAttribute("data-note-id")}"]`,
-            "instant"
-          );
-        }
-      });
+    const addNoteFormEl = e.target.querySelector("#addNoteForm");
+    if (addNoteFormEl) {
+      addNoteFormEl.reset();
+      document
+        .querySelectorAll("#notes details")
+        .forEach((item, index, nodeList) => {
+          if (index === nodeList.length - 1) {
+            item.setAttribute("open", "");
+            customScrollTo(
+              `[data-note-id="${item.getAttribute("data-note-id")}"]`,
+              "instant"
+            );
+          }
+        });
+    }
   });
 
   document
