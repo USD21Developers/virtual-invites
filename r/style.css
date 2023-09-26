@@ -3,12 +3,18 @@
   font-variant-numeric: tabular-nums;
 }
 
-.underline {
-  text-decoration: underline !important;
+#followup li {
+  padding: 0;
 }
 
-#followup li {
-  margin-bottom: 1rem;
+#followup li > a {
+  display: block;
+  padding: 1rem;
+  text-decoration: none !important;
+}
+
+.underline {
+  text-decoration: underline !important;
 }
 
 #timezoneNotice {
