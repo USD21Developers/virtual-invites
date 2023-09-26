@@ -626,7 +626,9 @@ async function renderNotes() {
                 </small>
               </div>
             </summary>
-            <div class="noteContentContainer mt-2 px-3 pt-3 pb-1 bg-light border border-dark">
+            <div class="noteContentContainer mt-2 px-3 pt-3 pb-1 bg-light border border-dark" data-note-container-id="${
+              note.noteid
+            }">
               <div class="noteContent">
                 ${breakify(note.text)}
               </div>
@@ -670,10 +672,14 @@ async function renderNotes() {
   showMaterialIcons();
 
   const onToggleNoteContent = (e) => {
-    e.target.parentElement.removeAttribute("open");
+    const noteid = e.currentTarget.getAttribute("data-note-container-id");
+    document
+      .querySelector(`[data-note-id='${noteid}']`)
+      ?.removeAttribute("open");
   };
 
   document.querySelectorAll(".noteContentContainer").forEach((noteContent) => {
+    const noteid = noteContent.getAttribute("data-note-container-id");
     noteContent.removeEventListener("click", onToggleNoteContent, true);
     noteContent.addEventListener("click", onToggleNoteContent, true);
   });
@@ -1085,7 +1091,7 @@ function attachListeners() {
     followUpFormEl.reset();
   });
 
-  $("#addNoteModal").on("hidden.bs.modal", (e) => {
+  $(".modal").on("hidden.bs.modal", (e) => {
     e.target.querySelector("#addNoteForm").reset();
 
     document
