@@ -960,7 +960,7 @@ function collapseAllNotesExceptLast() {
 }
 
 function resetAddNoteForm() {
-  const addNoteFormEl = e.target.querySelector("#addNoteForm");
+  const addNoteFormEl = document.querySelector("#addNoteForm");
   if (addNoteFormEl) {
     addNoteFormEl.reset();
   }
@@ -1105,27 +1105,9 @@ function attachListeners() {
     .querySelector("#removeFromFollowUpList")
     .addEventListener("click", onRemoveFromFollowupList);
 
-  $("#modal").on("hidden.bs.modal", (e) => {
+  $("#addNoteModal").on("hidden.bs.modal", (e) => {
     resetAddNoteForm();
   });
-
-  /* $(".modal").on("hidden.bs.modal", (e) => {
-    const addNoteFormEl = e.target.querySelector("#addNoteForm");
-    if (addNoteFormEl) {
-      addNoteFormEl.reset();
-      document
-        .querySelectorAll("#notes details")
-        .forEach((item, index, nodeList) => {
-          if (index === nodeList.length - 1) {
-            item.setAttribute("open", "");
-            customScrollTo(
-              `[data-note-id="${item.getAttribute("data-note-id")}"]`,
-              "instant"
-            );
-          }
-        });
-    }
-  }); */
 
   document
     .querySelector("#followUpAlert button")
