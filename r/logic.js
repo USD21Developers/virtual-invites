@@ -906,6 +906,8 @@ function onSaveNote(e) {
 
     await renderNotes();
 
+    collapseAllNotesExceptLast();
+
     $("#addNoteModal").modal("hide");
 
     document.querySelector(`[data-note-id="${noteid}"]`).scrollIntoView();
@@ -941,6 +943,27 @@ async function editNote(noteid) {
 
   // Show Edit modal
   $("#editNoteModal").modal("show");
+}
+
+function collapseAllNotesExceptLast() {
+  document
+    .querySelectorAll("#notes details")
+    .forEach((item, index, nodeList) => {
+      if (index === nodeList.length - 1) {
+        item.setAttribute("open", "");
+        customScrollTo(
+          `[data-note-id="${item.getAttribute("data-note-id")}"]`,
+          "instant"
+        );
+      }
+    });
+}
+
+function resetAddNoteForm() {
+  const addNoteFormEl = e.target.querySelector("#addNoteForm");
+  if (addNoteFormEl) {
+    addNoteFormEl.reset();
+  }
 }
 
 function onEditNote() {
@@ -1083,11 +1106,10 @@ function attachListeners() {
     .addEventListener("click", onRemoveFromFollowupList);
 
   $("#modal").on("hidden.bs.modal", (e) => {
-    const followUpFormEl = document.querySelector("#followUpForm");
-    followUpFormEl.reset();
+    resetAddNoteForm();
   });
 
-  $(".modal").on("hidden.bs.modal", (e) => {
+  /* $(".modal").on("hidden.bs.modal", (e) => {
     const addNoteFormEl = e.target.querySelector("#addNoteForm");
     if (addNoteFormEl) {
       addNoteFormEl.reset();
@@ -1103,7 +1125,7 @@ function attachListeners() {
           }
         });
     }
-  });
+  }); */
 
   document
     .querySelector("#followUpAlert button")
