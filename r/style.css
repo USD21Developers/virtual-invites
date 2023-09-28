@@ -62,3 +62,7 @@ html {
   font-size: 12px !important;
   font-family: "Inter", sans-serif;
 }
+
+#deleteNoteModal [data-i18n="deleteThisNote"] {
+  font-size: larger;
+}

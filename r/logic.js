@@ -604,7 +604,9 @@ async function renderNotes() {
 
   if (!Array.isArray(notes)) return (notesEl.innerHTML = "");
   if (!notes.length) {
-    return (notesEl.innerHTML = "");
+    notesEl.innerHTML = "";
+    noNotesEl.classList.remove("d-none");
+    return;
   }
 
   noNotesEl.classList.add("d-none");
@@ -923,6 +925,10 @@ async function editNote(noteid) {
 
   // Get existing notes from IndexedDB
   let notes = (await localforage.getItem("notes")) || [];
+
+  if (!Array.isArray(notes)) return;
+  if (!notes.length) return;
+
   let note = notes.find((item) => item.noteid === noteid);
 
   // Close modal if note was not found
@@ -943,6 +949,34 @@ async function editNote(noteid) {
 
   // Show Edit modal
   $("#editNoteModal").modal("show");
+}
+
+async function deleteNote(noteid) {
+  const notes = (await localforage.getItem("notes")) || [];
+  const deleteNoteButtonEl = document.querySelector("#deleteNoteButton");
+
+  if (!Array.isArray(notes)) return;
+  if (!notes.length) return;
+
+  const note = notes.find((item) => item.noteid === noteid);
+
+  deleteNoteButtonEl.setAttribute("data-note-id", noteid);
+
+  // Close modal if note was not found
+  if (!note) {
+    $("#deleteNoteModal").modal("hide");
+    console.error(`Note for noteid "${noteid}" was not found in IndexedDB`);
+    return;
+  }
+
+  // Populate confirmation message
+
+  // Populate note summary
+  const noteSummaryEl = document.querySelector("#deleteNoteSummary");
+  noteSummaryEl.innerHTML = `<strong>${note.summary}</strong>`;
+
+  // Show Delete modal
+  $("#deleteNoteModal").modal("show");
 }
 
 function collapseAllNotesExceptLast() {
@@ -1062,8 +1096,28 @@ function onEditNote() {
   });
 }
 
-async function onDeleteNote(noteid) {
-  console.log(noteid);
+async function onDeleteNote(evt) {
+  const noteid = evt.target.getAttribute("data-note-id");
+  let notes = await localforage.getItem("notes");
+  let unsyncedNotes = await localforage.getItem("unsyncedNotes");
+
+  // Delete from IndexedDB
+  notes = notes.filter((item) => item.noteid !== noteid);
+  unsyncedNotes = unsyncedNotes.map((item) => {
+    if (item.noteid === noteid) {
+      item.delete = true;
+    }
+    return item;
+  });
+  await localforage.setItem("unsyncedNotes", unsyncedNotes);
+  await localforage.setItem("notes", notes);
+
+  renderNotes();
+
+  // TODO:  sync notes
+  // syncNotes(); // Do not await this!
+
+  $("#deleteNoteModal").modal("hide");
 }
 
 function attachListeners() {
@@ -1128,9 +1182,9 @@ function attachListeners() {
     .querySelector("#editNoteButton")
     .addEventListener("click", onEditNote);
 
-  /* document
+  document
     .querySelector("#deleteNoteButton")
-    .addEventListener("click", onDeleteNote); */
+    .addEventListener("click", onDeleteNote);
 }
 
 async function init() {

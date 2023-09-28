@@ -259,6 +259,11 @@
       "translated": "Edit Note"
     },
     {
+      "key": "deleteNote",
+      "original": "Confirm Delete",
+      "translated": "Confirm Delete"
+    },
+    {
       "key": "addToFollowUpList",
       "original": "Add {RECIPIENT-NAME} to my Follow Up list",
       "translated": "Add {RECIPIENT-NAME} to my Follow Up list"
@@ -287,6 +292,11 @@
       "key": "noteUpdated",
       "original": "Note updated.",
       "translated": "Note updated."
+    },
+    {
+      "key": "deleteThisNote",
+      "original": "Delete this note?",
+      "translated": "Delete this note?"
     }
   ],
 

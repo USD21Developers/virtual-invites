@@ -388,8 +388,6 @@
       <div class="snackbar-body"></div>
     </div>
 
-    <br /><br /><br /><br />
-
     <!-- Follow up reminder modal -->
     <div id="modal" class="modal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -685,6 +683,55 @@
               class="ml-5 btn btn-primary float-right mr-2"
               data-i18n-global="update"
               id="editNoteButton"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Note Modal -->
+    <div id="deleteNoteModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" data-i18n="deleteNote"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="deleteNoteForm">
+              <input type="hidden" name="noteid" id="deleteNoteId" />
+              <div class="text-center text-danger mb-4">
+                <strong data-i18n="deleteThisNote"></strong>
+              </div>
+
+              <div
+                class="border border-dark p-3 bg-light text-dark text-center mb-2"
+                id="deleteNoteSummary"
+              ></div>
+            </form>
+          </div>
+
+          <div class="px-3 pt-0 pb-3">
+            <a
+              href="#"
+              class="btn btn-link not-bold float-left pl-0"
+              data-dismiss="modal"
+              data-i18n-global="cancel"
+            ></a>
+
+            <button
+              type="submit"
+              class="ml-5 btn btn-danger float-right mr-2"
+              data-i18n-global="delete"
+              data-note-id=""
+              id="deleteNoteButton"
             ></button>
           </div>
         </div>
