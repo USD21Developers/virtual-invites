@@ -606,23 +606,9 @@ async function populateNotes() {
 
 async function renderNotes() {
   const noNotesEl = document.querySelector("#no-notes-container");
-  const notesAllRecipients = (await localforage.getItem("notes")) || [];
-  let notes;
-  if (inviteObj.recipient.email) {
-    notes = notesAllRecipients.filter(
-      (item) => item.recipient.email === inviteObj.recipient.email
-    );
-  } else if (inviteObj.recipient.sms) {
-    notes = notesAllRecipients.filter(
-      (item) => item.recipient.sms === inviteObj.recipient.sms
-    );
-  } else {
-    notes = notesAllRecipients.filter(
-      (item) => item.invitationid === inviteObj.invitationid
-    );
-  }
   const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
   const notesEl = document.querySelector("#notes");
+  const notes = notesObj;
   let notesHTML = "";
 
   if (!Array.isArray(notes)) return (notesEl.innerHTML = "");
