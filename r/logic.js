@@ -690,7 +690,6 @@ async function renderNotes() {
   };
 
   document.querySelectorAll(".noteContentContainer").forEach((noteContent) => {
-    const noteid = noteContent.getAttribute("data-note-container-id");
     noteContent.removeEventListener("click", onToggleNoteContent, true);
     noteContent.addEventListener("click", onToggleNoteContent, true);
   });
@@ -912,6 +911,9 @@ function onSaveNote(e) {
     await localforage.setItem("notes", notesSorted);
     await localforage.setItem("unsyncedNotes", unsyncedNotesSorted);
 
+    // Overwrite notesObj variable
+    notesObj = notesSorted;
+
     // TODO:  sync notes
     // syncNotes(); // Do not await this!
 
@@ -1091,6 +1093,9 @@ function onEditNote() {
     await localforage.setItem("notes", notesSorted);
     await localforage.setItem("unsyncedNotes", unsyncedNotesSorted);
 
+    // Overwrite notesObj variable
+    notesObj = notesSorted;
+
     // TODO:  sync notes
     // syncNotes(); // Do not await this!
 
@@ -1120,6 +1125,9 @@ async function onDeleteNote(evt) {
   });
   await localforage.setItem("unsyncedNotes", unsyncedNotes);
   await localforage.setItem("notes", notes);
+
+  // Overwrite notesObj variable
+  notesObj = notes;
 
   renderNotes();
 
