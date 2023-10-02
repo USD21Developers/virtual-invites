@@ -1187,13 +1187,11 @@ function attachListeners() {
     .addEventListener("click", onDeleteNote);
 
   document.querySelector("#addNoteForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    onSaveNote();
+    onSaveNote(e);
   });
 
   document.querySelector("#editNoteForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    onEditNote();
+    onEditNote(e);
   });
 }
 
