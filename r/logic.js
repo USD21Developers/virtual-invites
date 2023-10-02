@@ -12,6 +12,29 @@ function closeModal() {
   followUpFormEl.reset();
 }
 
+function filterNotes(allNotes) {
+  if (!Array.isArray(allNotes)) return;
+  if (!inviteObj.hasOwnProperty("invitationid")) return;
+
+  const notes = allNotes.filter((item) => {
+    if (item.sms) {
+      if (item.sms === inviteObj.recipient.sms) {
+        return item;
+      }
+    } else if (item.email) {
+      if (item.email === inviteObj.recipient.email) {
+        return item;
+      }
+    } else {
+      if (item.invitationid === inviteObj.invitationid) {
+        return item;
+      }
+    }
+  });
+
+  return notes;
+}
+
 function getFollowUpDateTime() {
   const followUpDateEl = document.querySelector("#followUpDate");
   const followUpTimeEl = document.querySelector("#followUpTime");
@@ -583,21 +606,7 @@ async function populateNotes() {
     "{RECIPIENT-NAME}",
     inviteObj.recipient.name
   );
-  let notes = allNotes.filter((item) => {
-    if (item.sms) {
-      if (item.sms === inviteObj.recipient.sms) {
-        return item;
-      }
-    } else if (item.email) {
-      if (item.email === inviteObj.recipient.email) {
-        return item;
-      }
-    } else {
-      if (item.invitationid === inviteObj.invitationid) {
-        return item;
-      }
-    }
-  });
+  let notes = filterNotes(allNotes);
 
   notesObj = notes;
 
@@ -912,7 +921,7 @@ function onSaveNote(e) {
     await localforage.setItem("unsyncedNotes", unsyncedNotesSorted);
 
     // Overwrite notesObj variable
-    notesObj = notesSorted;
+    notesObj = filterNotes(notesSorted);
 
     // TODO:  sync notes
     // syncNotes(); // Do not await this!
@@ -1094,7 +1103,7 @@ function onEditNote() {
     await localforage.setItem("unsyncedNotes", unsyncedNotesSorted);
 
     // Overwrite notesObj variable
-    notesObj = notesSorted;
+    notesObj = filterNotes(notesSorted);
 
     // TODO:  sync notes
     // syncNotes(); // Do not await this!
@@ -1127,7 +1136,7 @@ async function onDeleteNote(evt) {
   await localforage.setItem("notes", notes);
 
   // Overwrite notesObj variable
-  notesObj = notes;
+  notesObj = filterNotes(notes);
 
   renderNotes();
 
