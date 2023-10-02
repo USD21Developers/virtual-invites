@@ -597,6 +597,10 @@ async function renderNotes() {
     notes = notesAllRecipients.filter(
       (item) => item.recipient.sms === inviteObj.recipient.sms
     );
+  } else {
+    notes = notesAllRecipients.filter(
+      (item) => item.invitationid === inviteObj.invitationid
+    );
   }
   const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
   const notesEl = document.querySelector("#notes");
@@ -861,7 +865,7 @@ function onSaveNote(e) {
       date: new Date().toISOString(),
       timezone: userDateTimePrefs.timeZone,
       eventid: eventObj.eventid,
-      inviteid: inviteObj.invitationid,
+      invitationid: inviteObj.invitationid,
       recipient: inviteObj.recipient,
     };
 
@@ -912,7 +916,7 @@ function onSaveNote(e) {
 
     $("#addNoteModal").modal("hide");
 
-    document.querySelector(`[data-note-id="${noteid}"]`).scrollIntoView();
+    document.querySelector(`[data-note-id="${noteid}"]`)?.scrollIntoView();
 
     resolve(note);
   });
@@ -1038,7 +1042,7 @@ function onEditNote() {
       date: note.date,
       timezone: note.timezone,
       eventid: note.eventid,
-      inviteid: note.inviteid,
+      invitationid: note.invitationid,
       recipient: note.recipient,
     };
 
