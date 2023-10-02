@@ -1189,6 +1189,14 @@ function attachListeners() {
   document
     .querySelector("#deleteNoteButton")
     .addEventListener("click", onDeleteNote);
+
+  document.querySelector("#addNoteForm").addEventListener("submit", (e) => {
+    onSaveNote(e);
+  });
+
+  document.querySelector("#editNoteForm").addEventListener("submit", (e) => {
+    onEditNote(e);
+  });
 }
 
 async function init() {
