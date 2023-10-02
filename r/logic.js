@@ -1,6 +1,7 @@
 let syncedInvites = false;
 let inviteObj = {};
 let eventObj = {};
+let notesObj = [];
 
 function closeModal() {
   const followUpFormEl = document.querySelector("#followUpForm");
@@ -576,11 +577,14 @@ function validateFollowupForm() {
 }
 
 async function populateNotes() {
+  const notes = (await localforage.getItem("notes")) || [];
   const noNotesEl = document.querySelector("#no-notes");
   noNotesEl.innerText = getPhrase("no-notes").replaceAll(
     "{RECIPIENT-NAME}",
     inviteObj.recipient.name
   );
+
+  notesObj = notes;
 
   renderNotes();
 }
