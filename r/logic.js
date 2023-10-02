@@ -577,12 +577,27 @@ function validateFollowupForm() {
 }
 
 async function populateNotes() {
-  const notes = (await localforage.getItem("notes")) || [];
+  const allNotes = (await localforage.getItem("notes")) || [];
   const noNotesEl = document.querySelector("#no-notes");
   noNotesEl.innerText = getPhrase("no-notes").replaceAll(
     "{RECIPIENT-NAME}",
     inviteObj.recipient.name
   );
+  let notes = allNotes.filter((item) => {
+    if (item.sms) {
+      if (item.sms === inviteObj.recipient.sms) {
+        return item;
+      }
+    } else if (item.email) {
+      if (item.email === inviteObj.recipient.email) {
+        return item;
+      }
+    } else {
+      if (item.invitationid === inviteObj.invitationid) {
+        return item;
+      }
+    }
+  });
 
   notesObj = notes;
 
