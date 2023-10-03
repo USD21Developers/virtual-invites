@@ -21,6 +21,7 @@ var hidden, visibilityChange;
   breakify
   clearErrorMessages
   clearStorage
+  compareDates
   customScrollTo
   enableTooltips
   formError
@@ -263,6 +264,12 @@ async function clearStorage() {
   localStorage.removeItem("refreshToken");
   localStorage.removeItem("datakey");
   sessionStorage.removeItem("accessToken");
+}
+
+function compareDates(a, b) {
+  const dateA = new Date(a.date);
+  const dateB = new Date(b.date);
+  return dateA - dateB;
 }
 
 function configureLocalForage() {
