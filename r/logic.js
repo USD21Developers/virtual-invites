@@ -887,12 +887,14 @@ function onSaveNote(e) {
     }
 
     const noteid = self.crypto.randomUUID();
+    const lastModified = new Date().toISOString();
 
     const note = {
       noteid: noteid,
       summary: noteSummaryEl.value.trim(),
       text: noteTextEl.value.trim(),
-      date: new Date().toISOString(),
+      date: lastModified,
+      lastModified: lastModified,
       timezone: userDateTimePrefs.timeZone,
       eventid: eventObj.eventid,
       invitationid: inviteObj.invitationid,
@@ -1068,11 +1070,13 @@ function onEditNote() {
 
     // Rebuild note
     const note = notes.find((item) => item.noteid === noteid);
+    const lastModified = new Date().toISOString();
     const updatedNote = {
       noteid: note.noteid,
       summary: noteSummaryEl.value.trim(),
       text: noteTextEl.value.trim(),
       date: note.date,
+      lastModified: lastModified,
       timezone: note.timezone,
       eventid: note.eventid,
       invitationid: note.invitationid,
