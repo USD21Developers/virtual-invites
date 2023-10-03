@@ -600,15 +600,32 @@ function validateFollowupForm() {
 }
 
 async function populateNotes() {
-  const allNotes = (await localforage.getItem("notes")) || [];
+  const allNotesLocal = (await localforage.getItem("notes")) || [];
   const noNotesEl = document.querySelector("#no-notes");
   noNotesEl.innerText = getPhrase("no-notes").replaceAll(
     "{RECIPIENT-NAME}",
     inviteObj.recipient.name
   );
-  let notes = filterNotes(allNotes);
+  const notesLocal = filterNotes(allNotesLocal);
+  const invitationid = Number(getHash().split("/")[1]);
+  const unsyncedNotes = (await localforage.getItem("unsyncedNotes")) || [];
+  const notesSyncedForInviteId = await syncNotesForInvite(
+    invitationid,
+    unsyncedNotes
+  );
+  const notesLocalForInviteId = notesLocal.filter(
+    (item) => item.invitationid === invitationid
+  );
+  const notesLocalOtherInvites = notesLocal.filter(
+    (item) => item.invitationid !== invitationid
+  );
 
-  notesObj = notes;
+  // TODO:
+  // Do a hash comparison between "notesSyncedForInviteId" and "notesLocalForInviteId".
+  // If there's no difference, then overwrite "notesObj" with notesLocal.
+  // If there IS a difference, then (a) combine "notesLocalForInviteId" and "notesLocalOtherInvites" into a single array, and overwrite notesObj with it.
+
+  notesObj = notesLocal;
 
   renderNotes();
 }
