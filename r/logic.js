@@ -609,16 +609,34 @@ async function populateNotes() {
   const notesLocal = filterNotes(allNotesLocal);
   const invitationid = Number(getHash().split("/")[1]);
   const unsyncedNotes = (await localforage.getItem("unsyncedNotes")) || [];
-  const notesSyncedForInviteId = await syncNotesForInvite(
+
+  let notesSyncedForInviteId = await syncNotesForInvite(
     invitationid,
     unsyncedNotes
   );
-  const notesLocalForInviteId = notesLocal.filter(
+  notesSyncedForInviteId.sort((a, b) => {
+    const dateA = new Date(a.lastModified);
+    const dateB = new Date(b.lastModified);
+    return dateA > dateB ? 1 : -1;
+  });
+
+  let notesLocalForInviteId = notesLocal.filter(
     (item) => item.invitationid === invitationid
   );
-  const notesLocalOtherInvites = notesLocal.filter(
+  notesLocalForInviteId.sort((a, b) => {
+    const dateA = new Date(a.lastModified);
+    const dateB = new Date(b.lastModified);
+    return dateA > dateB ? 1 : -1;
+  });
+
+  let notesLocalOtherInvites = notesLocal.filter(
     (item) => item.invitationid !== invitationid
   );
+  notesLocalOtherInvites.sort((a, b) => {
+    const dateA = new Date(a.lastModified);
+    const dateB = new Date(b.lastModified);
+    return dateA > dateB ? 1 : -1;
+  });
 
   // TODO:
   // Do a hash comparison between "notesSyncedForInviteId" and "notesLocalForInviteId".
@@ -927,11 +945,6 @@ function onSaveNote(e) {
     unsyncedNotes.push(noteEncrypted);
 
     // Sort by date
-    const compareDates = (a, b) => {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
-      return dateA - dateB;
-    };
     const notesSorted = notes.slice().sort(compareDates);
     const unsyncedNotesSorted = unsyncedNotes.slice().sort(compareDates);
 
@@ -1106,16 +1119,11 @@ function onEditNote() {
     notes.push(updatedNote);
 
     unsyncedNotes = unsyncedNotes.filter(
-      (item) => item.nodeid !== updatedNote.noteid
+      (item) => item.noteid !== updatedNote.noteid
     );
     unsyncedNotes.push(noteEncrypted);
 
     // Sort by date
-    const compareDates = (a, b) => {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
-      return dateA - dateB;
-    };
     const notesSorted = notes.slice().sort(compareDates);
     const unsyncedNotesSorted = unsyncedNotes.slice().sort(compareDates);
 
