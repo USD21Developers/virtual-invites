@@ -1170,9 +1170,10 @@ async function onDeleteNote(evt) {
   renderNotes();
 
   // TODO:  sync notes
-  // syncNotes(); // Do not await this!
-
-  $("#deleteNoteModal").modal("hide");
+  syncNotesForInvite()
+    .then(() => renderNotes())
+    .finally(() => $("#deleteNoteModal").modal("hide"));
+  // syncAllNotes(); // Do not await this!
 }
 
 function attachListeners() {
