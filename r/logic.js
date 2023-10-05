@@ -956,7 +956,10 @@ function onSaveNote(e) {
     notesObj = filterNotes(notesSorted);
 
     // TODO:  sync notes
-    // syncNotes(); // Do not await this!
+    syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted)
+      .then(() => renderNotes())
+      .finally(() => $("#deleteNoteModal").modal("hide"));
+    // syncAllNotes(); // Do not await this!
 
     await renderNotes();
 
@@ -1135,7 +1138,10 @@ function onEditNote() {
     notesObj = filterNotes(notesSorted);
 
     // TODO:  sync notes
-    // syncNotes(); // Do not await this!
+    syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted)
+      .then(() => renderNotes())
+      .finally(() => $("#deleteNoteModal").modal("hide"));
+    // syncAllNotes(); // Do not await this!
 
     await renderNotes();
 
@@ -1170,7 +1176,7 @@ async function onDeleteNote(evt) {
   renderNotes();
 
   // TODO:  sync notes
-  syncNotesForInvite()
+  syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted)
     .then(() => renderNotes())
     .finally(() => $("#deleteNoteModal").modal("hide"));
   // syncAllNotes(); // Do not await this!
