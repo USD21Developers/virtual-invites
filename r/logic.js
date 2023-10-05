@@ -948,26 +948,22 @@ function onSaveNote(e) {
     const notesSorted = notes.slice().sort(compareDates);
     const unsyncedNotesSorted = unsyncedNotes.slice().sort(compareDates);
 
-    // Overwrite previous notes in IndexedDB
+    // Overwrite previous notes
     await localforage.setItem("notes", notesSorted);
     await localforage.setItem("unsyncedNotes", unsyncedNotesSorted);
-
-    // Overwrite notesObj variable
     notesObj = filterNotes(notesSorted);
 
-    // TODO:  sync notes
-    syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted)
-      .then(() => renderNotes())
-      .finally(() => $("#deleteNoteModal").modal("hide"));
-    // syncAllNotes(); // Do not await this!
-
-    await renderNotes();
-
     collapseAllNotesExceptLast();
+
+    renderNotes();
 
     $("#addNoteModal").modal("hide");
 
     document.querySelector(`[data-note-id="${noteid}"]`)?.scrollIntoView();
+
+    // TODO:  sync notes
+    syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
+    // syncAllNotes(); // Do not await this!
 
     resolve(note);
   });
@@ -1130,25 +1126,24 @@ function onEditNote() {
     const notesSorted = notes.slice().sort(compareDates);
     const unsyncedNotesSorted = unsyncedNotes.slice().sort(compareDates);
 
-    // Overwrite previous notes in IndexedDB
+    // Overwrite previous notes
     await localforage.setItem("notes", notesSorted);
     await localforage.setItem("unsyncedNotes", unsyncedNotesSorted);
-
-    // Overwrite notesObj variable
     notesObj = filterNotes(notesSorted);
 
-    // TODO:  sync notes
-    syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted)
-      .then(() => renderNotes())
-      .finally(() => $("#deleteNoteModal").modal("hide"));
-    // syncAllNotes(); // Do not await this!
+    // Expand just-edited note
+    const renderedNote = document.querySelector(`[data-note-id='${noteid}']`);
+    if (renderedNote) renderedNote.setAttribute("open", "");
 
-    await renderNotes();
+    renderNotes();
 
     $("#editNoteModal").modal("hide");
 
-    const renderedNote = document.querySelector(`[data-note-id='${noteid}']`);
-    if (renderedNote) renderedNote.setAttribute("open", "");
+    document.querySelector(`[data-note-id="${noteid}"]`)?.scrollIntoView();
+
+    // TODO:  sync notes
+    syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
+    // syncAllNotes(); // Do not await this!
 
     resolve(updatedNote);
   });
@@ -1157,28 +1152,51 @@ function onEditNote() {
 async function onDeleteNote(evt) {
   const noteid = evt.target.getAttribute("data-note-id");
   let notes = await localforage.getItem("notes");
-  let unsyncedNotes = await localforage.getItem("unsyncedNotes");
+  let unsyncedNotes = (await localforage.getItem("unsyncedNotes")) || [];
 
-  // Delete from IndexedDB
-  notes = notes.filter((item) => item.noteid !== noteid);
-  unsyncedNotes = unsyncedNotes.map((item) => {
-    if (item.noteid === noteid) {
-      item.delete = true;
-    }
-    return item;
-  });
-  await localforage.setItem("unsyncedNotes", unsyncedNotes);
-  await localforage.setItem("notes", notes);
+  // Create an encrypted copy of the note
+  const updatedNote = notes.find((item) => item.noteid === noteid);
+  if (!updatedNote) return;
+  const noteEncrypted = JSON.parse(JSON.stringify(updatedNote));
+  const datakey = localStorage.getItem("datakey");
 
-  // Overwrite notesObj variable
-  notesObj = filterNotes(notes);
+  // Even though we're deleting, encrypt the note anyway, for consistency's sake on the server
+  noteEncrypted.summary = await invitesCrypto.encrypt(
+    datakey,
+    JSON.stringify(noteEncrypted.summary)
+  );
+  noteEncrypted.text = await invitesCrypto.encrypt(
+    datakey,
+    JSON.stringify(noteEncrypted.text)
+  );
+  noteEncrypted.recipient = await invitesCrypto.encrypt(
+    datakey,
+    JSON.stringify(noteEncrypted.recipient)
+  );
+
+  // Add note with its deleted state to unsyncedNotes
+  noteEncrypted.deleted = true;
+  unsyncedNotes = unsyncedNotes.filter((item) => item.noteid !== noteid);
+  unsyncedNotes.push(noteEncrypted);
+
+  // Sort by date
+  let notesSorted = notes.slice().sort(compareDates);
+  let unsyncedNotesSorted = unsyncedNotes.slice().sort(compareDates);
+
+  // Delete the note
+  notesObj = notesObj.filter((item) => item.noteid !== noteid);
+  notesSorted = notesSorted.filter((item) => item.noteid !== noteid);
+
+  // Update IndexedDB
+  await localforage.setItem("unsyncedNotes", unsyncedNotesSorted);
+  await localforage.setItem("notes", notesSorted);
 
   renderNotes();
 
+  $("#deleteNoteModal").modal("hide");
+
   // TODO:  sync notes
-  syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted)
-    .then(() => renderNotes())
-    .finally(() => $("#deleteNoteModal").modal("hide"));
+  // syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
   // syncAllNotes(); // Do not await this!
 }
 
