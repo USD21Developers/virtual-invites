@@ -1175,7 +1175,7 @@ async function onDeleteNote(evt) {
   );
 
   // Add note with its deleted state to unsyncedNotes
-  noteEncrypted.deleted = true;
+  noteEncrypted.delete = true;
   unsyncedNotes = unsyncedNotes.filter((item) => item.noteid !== noteid);
   unsyncedNotes.push(noteEncrypted);
 
@@ -1196,7 +1196,7 @@ async function onDeleteNote(evt) {
   $("#deleteNoteModal").modal("hide");
 
   // TODO:  sync notes
-  // syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
+  syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
   // syncAllNotes(); // Do not await this!
 }
 
