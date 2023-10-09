@@ -9,17 +9,7 @@
       name="viewport"
     />
     <title data-i18n="pagetitle"></title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Oswald:wght@200;400&display=swap" rel="stylesheet">
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="../../css/daemonite-material.css"
-    />
+    <link rel="stylesheet" href="../../css/daemonite-material.css" />
     <link
       href="../../js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
       rel="stylesheet"
@@ -147,16 +137,27 @@
 
     <nav aria-label="breadcrumb" id="breadcrumbs" class="d-none">
       <ol class="breadcrumb bg-white my-0">
-        <li class="breadcrumb-item"><a href="../../" data-i18n="breadcrumbHome"></a></li>
-        <li class="breadcrumb-item firstOnMobile"><a href="../" data-i18n="breadcrumbEvents"></a></li>
-        <li class="breadcrumb-item active"><a href="./" data-i18n="breadcrumbEdit"></a></li>
+        <li class="breadcrumb-item">
+          <a href="../../" data-i18n="breadcrumbHome"></a>
+        </li>
+        <li class="breadcrumb-item firstOnMobile">
+          <a href="../" data-i18n="breadcrumbEvents"></a>
+        </li>
+        <li class="breadcrumb-item active">
+          <a href="./" data-i18n="breadcrumbEdit"></a>
+        </li>
       </ol>
     </nav>
 
     <div class="container" id="pageSpinner">
       <div class="row">
         <div class="col col-md-10 offset-md-1 mt-3 mb-4 text-center">
-          <img src="/_assets/img/spinner.svg" width="200" height="200" style="max-width: 100%" />
+          <img
+            src="/_assets/img/spinner.svg"
+            width="200"
+            height="200"
+            style="max-width: 100%"
+          />
         </div>
       </div>
     </div>
@@ -184,9 +185,18 @@
                 <label for="eventtype" data-i18n="labelEventType"></label>
                 <select class="form-control" id="eventtype">
                   <option label=" "></option>
-                  <option value="bible talk" data-i18n="optionEventTypeBT"></option>
-                  <option value="church" data-i18n="optionEventTypeChurch"></option>
-                  <option value="other" data-i18n="optionEventTypeCustom"></option>
+                  <option
+                    value="bible talk"
+                    data-i18n="optionEventTypeBT"
+                  ></option>
+                  <option
+                    value="church"
+                    data-i18n="optionEventTypeChurch"
+                  ></option>
+                  <option
+                    value="other"
+                    data-i18n="optionEventTypeCustom"
+                  ></option>
                 </select>
                 <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
               </div>
@@ -208,9 +218,11 @@
                 <h4 data-i18n="labelDescriptionHeadline">
                   <label for="descriptionHeadline"></label>
                 </h4>
-                <input type="text"
+                <input
+                  type="text"
                   class="form-control"
-                  id="descriptionHeadline" />
+                  id="descriptionHeadline"
+                />
                 <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
               </div>
               <div class="form-group">
@@ -226,7 +238,10 @@
                     id="eventdescription"
                     rows="6"
                   ></textarea>
-                  <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                  <div
+                    class="invalid-feedback"
+                    data-i18n="fieldIsRequired"
+                  ></div>
                 </div>
               </div>
             </fieldset>
@@ -287,9 +302,21 @@
               <h4 class="mt-5 mb-2" data-i18n="durationInHours"></h4>
               <div class="form-group mt-2 mb-5">
                 <div class="mt-0 mb-5">
-                  <output id="durationInHoursDisplayed" class="font-weight-bold text-dark bg-light px-2 py-1 rounded border border-secondary d-inline-block text-center" style="min-width: 4em"></output>
+                  <output
+                    id="durationInHoursDisplayed"
+                    class="font-weight-bold text-dark bg-light px-2 py-1 rounded border border-secondary d-inline-block text-center"
+                    style="min-width: 4em"
+                  ></output>
                   <div class="form-group mt-3">
-                    <input type="range" class="custom-range" id="durationInHours" value="2" step="0.5" min="0.5" max="8">
+                    <input
+                      type="range"
+                      class="custom-range"
+                      id="durationInHours"
+                      value="2"
+                      step="0.5"
+                      min="0.5"
+                      max="8"
+                    />
                   </div>
                 </div>
                 <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
@@ -302,23 +329,45 @@
                   <legend data-i18n="nextOccurrence"></legend>
                   <div class="form-group">
                     <div class="mt-2 mb-5">
-                      <label for="startdate" data-i18n="labelDate" class="datetime-label"></label>
-                      <input type="date" class="form-control datetime-field" id="startdate" />
-                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                      <label
+                        for="startdate"
+                        data-i18n="labelDate"
+                        class="datetime-label"
+                      ></label>
+                      <input
+                        type="date"
+                        class="form-control datetime-field"
+                        id="startdate"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        data-i18n="fieldIsRequired"
+                      ></div>
                     </div>
                   </div>
-    
+
                   <div class="form-group">
                     <div class="mt-5 mb-4">
-                      <label for="starttime" data-i18n="labelStartTime" class="datetime-label"></label>
-                      <input type="time" class="form-control datetime-field" id="starttime" />
-                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                      <label
+                        for="starttime"
+                        data-i18n="labelStartTime"
+                        class="datetime-label"
+                      ></label>
+                      <input
+                        type="time"
+                        class="form-control datetime-field"
+                        id="starttime"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        data-i18n="fieldIsRequired"
+                      ></div>
                     </div>
                   </div>
                 </fieldset>
               </div>
             </div>
-            
+
             <div class="row mt-2 mb-5 d-none" id="multidayBeginInfo">
               <div class="col-md-6">
                 <fieldset>
@@ -335,7 +384,10 @@
                         class="form-control datetime-field"
                         id="multidayBeginDate"
                       />
-                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                      <div
+                        class="invalid-feedback"
+                        data-i18n="fieldIsRequired"
+                      ></div>
                     </div>
                   </div>
 
@@ -351,7 +403,10 @@
                         class="form-control datetime-field"
                         id="multidayBeginTime"
                       />
-                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                      <div
+                        class="invalid-feedback"
+                        data-i18n="fieldIsRequired"
+                      ></div>
                     </div>
                   </div>
                 </fieldset>
@@ -364,13 +419,20 @@
                   <legend data-i18n="legendMultidayEnds"></legend>
                   <div class="form-group">
                     <div class="mt-2 mb-5">
-                      <label for="multidayEndDate" data-i18n="labelDate" class="datetime-label"></label>
+                      <label
+                        for="multidayEndDate"
+                        data-i18n="labelDate"
+                        class="datetime-label"
+                      ></label>
                       <input
                         type="date"
                         class="form-control datetime-field"
                         id="multidayEndDate"
                       />
-                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                      <div
+                        class="invalid-feedback"
+                        data-i18n="fieldIsRequired"
+                      ></div>
                     </div>
                   </div>
 
@@ -386,7 +448,10 @@
                         class="form-control datetime-field"
                         id="multidayEndTime"
                       />
-                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                      <div
+                        class="invalid-feedback"
+                        data-i18n="fieldIsRequired"
+                      ></div>
                     </div>
                   </div>
                 </fieldset>
@@ -403,16 +468,33 @@
               <legend data-i18n="headlineLocation"></legend>
               <div class="my-4">
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="locationvisibility" id="locationIsPublic" value="public" checked>
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="locationvisibility"
+                    id="locationIsPublic"
+                    value="public"
+                    checked
+                  />
                   <label class="form-check-label" for="locationIsPublic">
-                    <div><strong data-i18n="locationIsPublicLine1"></strong></div>
+                    <div>
+                      <strong data-i18n="locationIsPublicLine1"></strong>
+                    </div>
                     <div data-i18n="locationIsPublicLine2"></div>
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="locationvisibility" id="locationIsDiscreet" value="discreet">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="locationvisibility"
+                    id="locationIsDiscreet"
+                    value="discreet"
+                  />
                   <label class="form-check-label" for="locationIsDiscreet">
-                    <div><strong data-i18n="locationIsDiscreetLine1"></strong></div>
+                    <div>
+                      <strong data-i18n="locationIsDiscreetLine1"></strong>
+                    </div>
                     <div data-i18n="locationIsDiscreetLine2"></div>
                   </label>
                 </div>
@@ -420,7 +502,7 @@
               <div id="locationInfo">
                 <div class="mb-5 hideIfDiscreetLocation">
                   <h4>
-                    <span data-i18n="locationName"></span> 
+                    <span data-i18n="locationName"></span>
                     <span data-i18n="optional" class="font-weight-light"></span>
                   </h4>
                   <data class="form-group mb-3">
@@ -438,7 +520,10 @@
                         id="addressLine1"
                         data-i18n-placeholder="addressLine1"
                       />
-                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                      <div
+                        class="invalid-feedback"
+                        data-i18n="fieldIsRequired"
+                      ></div>
                     </div>
                     <div class="my-3">
                       <label for="addressLine2"></label>
@@ -448,7 +533,10 @@
                         id="addressLine2"
                         data-i18n-placeholder="addressLine2"
                       />
-                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                      <div
+                        class="invalid-feedback"
+                        data-i18n="fieldIsRequired"
+                      ></div>
                     </div>
                     <div class="my-3">
                       <label for="addressLine3"></label>
@@ -458,14 +546,20 @@
                         id="addressLine3"
                         data-i18n-placeholder="addressLine3"
                       />
-                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                      <div
+                        class="invalid-feedback"
+                        data-i18n="fieldIsRequired"
+                      ></div>
                     </div>
 
                     <div class="my-4 form-group">
                       <select class="form-control" id="country">
                         <option value="" data-i18n="selectCountry"></option>
                       </select>
-                      <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                      <div
+                        class="invalid-feedback"
+                        data-i18n="fieldIsRequired"
+                      ></div>
                     </div>
 
                     <div id="coordinatesContainer">
@@ -491,7 +585,10 @@
                         <div class="col">
                           <div class="form-group">
                             <div class="floating-label">
-                              <label for="longitude" data-i18n="longitude"></label>
+                              <label
+                                for="longitude"
+                                data-i18n="longitude"
+                              ></label>
                               <input
                                 id="longitude"
                                 type="number"
@@ -503,7 +600,10 @@
                         </div>
                       </div>
                       <div id="detectCoordinates" class="mt-3 d-none">
-                        <p data-i18n="coordinatesDetectionExplanation" class="my-4"></p>
+                        <p
+                          data-i18n="coordinatesDetectionExplanation"
+                          class="my-4"
+                        ></p>
                         <div class="text-center my-4">
                           <button
                             class="btn btn-info p-3"
@@ -516,23 +616,34 @@
                   </div>
                   <h4 class="mb-0 hideIfDiscreetLocation">
                     <span data-i18n="headlineOtherLocationDetails"></span>
-                    <span
-                      data-i18n="optional"
-                      class="font-weight-light"
-                    ></span>
+                    <span data-i18n="optional" class="font-weight-light"></span>
                   </h4>
                   <div class="form-group hideIfDiscreetLocation">
                     <table class="text-muted mt-1 mb-2" cellpadding="3">
                       <tbody>
                         <tr>
-                          <td valign="top" rowspan="4" class="pr-2" data-i18n="otherLocationDetailsForExample"></td>
-                          <td class="text-muted" data-i18n="otherLocationDetailsExample1"></td>
+                          <td
+                            valign="top"
+                            rowspan="4"
+                            class="pr-2"
+                            data-i18n="otherLocationDetailsForExample"
+                          ></td>
+                          <td
+                            class="text-muted"
+                            data-i18n="otherLocationDetailsExample1"
+                          ></td>
                         </tr>
                         <tr>
-                          <td class="text-muted" data-i18n="otherLocationDetailsExample2"></td>
+                          <td
+                            class="text-muted"
+                            data-i18n="otherLocationDetailsExample2"
+                          ></td>
                         </tr>
                         <tr>
-                          <td class="text-muted" data-i18n="otherLocationDetailsExample3"></td>
+                          <td
+                            class="text-muted"
+                            data-i18n="otherLocationDetailsExample3"
+                          ></td>
                         </tr>
                       </tbody>
                     </table>
@@ -549,7 +660,7 @@
                       ></textarea>
                       <div class="invalid-feedback"></div>
                     </div>
-                  </div>    
+                  </div>
                 </div>
               </div>
             </fieldset>
@@ -585,17 +696,32 @@
               <div class="mt-1 mb-4">
                 <p class="mt-0" data-i18n="bylineFollowers"></p>
                 <div class="form-check mb-3">
-                  <input class="form-check-input" type="radio" name="sharewithfollowers" id="shareWithFollowersYes" value="yes">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="sharewithfollowers"
+                    id="shareWithFollowersYes"
+                    value="yes"
+                  />
                   <label class="form-check-label" for="shareWithFollowersYes">
                     <div>
                       <strong data-i18n-global="yes"></strong>
-                      <span class="ml-3 text-success small font-weight-bold" data-i18n="recommended"></span>
+                      <span
+                        class="ml-3 text-success small font-weight-bold"
+                        data-i18n="recommended"
+                      ></span>
                     </div>
                     <div data-i18n="shareWithFollowersYesExplanation"></div>
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="sharewithfollowers" id="shareWithFollowersNo" value="no">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="sharewithfollowers"
+                    id="shareWithFollowersNo"
+                    value="no"
+                  />
                   <label class="form-check-label" for="shareWithFollowersNo">
                     <div><strong data-i18n-global="no"></strong></div>
                     <div data-i18n="shareWithFollowersNoExplanation"></div>
@@ -618,7 +744,10 @@
                     id="contactFirstName"
                     autocomplete="given-name"
                   />
-                  <div class="invalid-feedback" data-i18n="fieldIsRequired"></div>
+                  <div
+                    class="invalid-feedback"
+                    data-i18n="fieldIsRequired"
+                  ></div>
                 </div>
               </div>
 
@@ -640,10 +769,7 @@
 
               <div class="form-group">
                 <div class="floating-label my-5">
-                  <label
-                    for="contactPhone"
-                    data-i18n="contactPhone"
-                  ></label>
+                  <label for="contactPhone" data-i18n="contactPhone"></label>
                   <input
                     type="tel"
                     class="form-control"
@@ -657,10 +783,7 @@
 
               <div class="form-group">
                 <div class="floating-label mt-5 mb-4">
-                  <label
-                    for="contactEmail"
-                    data-i18n="contactEmail"
-                  ></label>
+                  <label for="contactEmail" data-i18n="contactEmail"></label>
                   <input
                     type="email"
                     class="form-control"
@@ -675,7 +798,10 @@
             <div class="row d-none" id="progressbar">
               <div class="col">
                 <div class="progress">
-                  <div class="progress-bar progress-bar-indeterminate" role="progressbar"></div>
+                  <div
+                    class="progress-bar progress-bar-indeterminate"
+                    role="progressbar"
+                  ></div>
                 </div>
               </div>
             </div>
@@ -683,7 +809,10 @@
             <div id="submitbuttons">
               <div class="row">
                 <div class="col col-6 text-center">
-                  <a id="previewbutton" class="p-3 btn btn-success text-white spinner_container">
+                  <a
+                    id="previewbutton"
+                    class="p-3 btn btn-success text-white spinner_container"
+                  >
                     <span class="material-icons material-icons-outlined mr-2">
                       preview
                     </span>
@@ -695,18 +824,24 @@
 
               <div class="row my-5 d-none" id="submitrow">
                 <div class="col col-6 text-center">
-                  <button id="submitbutton" class="p-3 btn btn-primary btn-lg" data-i18n="submitButton"></a>
+                  <button
+                    id="submitbutton"
+                    class="p-3 btn btn-primary btn-lg"
+                    data-i18n="submitButton"
+                  ></button>
                 </div>
                 <div class="col col-6 text-center">
-                  <a href="../" class="p-3 btn btn-light btn-link btn-lg" data-i18n="cancelLink"></a>
+                  <a
+                    href="../"
+                    class="p-3 btn btn-light btn-link btn-lg"
+                    data-i18n="cancelLink"
+                  ></a>
                 </div>
               </div>
             </div>
-
           </form>
         </div>
       </div>
-
 
       <div class="snackbar">
         <div class="snackbar-body"></div>
@@ -725,7 +860,11 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="previewtitle" data-i18n="previewTitle"></h5>
+            <h5
+              class="modal-title"
+              id="previewtitle"
+              data-i18n="previewTitle"
+            ></h5>
             <button
               type="button"
               class="close"
@@ -737,7 +876,12 @@
           </div>
           <div class="modal-body py-4"></div>
           <div class="modal-footer justify-content-center bg-light border-top">
-            <button type="button" class="close" data-dismiss="modal" aria-label="">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -775,13 +919,29 @@
 
     <br /><br /><br /><br />
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data-10-year-range.min.js" integrity="sha512-d11VXfxQMn+sZuIgzHITdIuInr4cVRGV/uLiSI643WH/J+p4gPFYSHXRMR2v+w4Rn2TSyzJjsZjc0M7+Qd+UXw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/datebook@8.0.0/dist/datebook.min.js" type="module"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js" integrity="sha512-+BMamP0e7wn39JGL8nKAZ3yAQT2dL5oaXWr4ZYlTGkKOaoXM/Yj7c4oy50Ngz5yoUutAG17flueD4F6QpTlPng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/cdnjs.cloudflare.com_ajax_libs_popper.js_1.14.3_umd_popper.min.js"></script>
+    <script src="/js/stackpath.bootstrapcdn.com_bootstrap_4.1.1_js_bootstrap.min.js"></script>
+    <script
+      src="/js/cdnjs.cloudflare.com_ajax_libs_moment.js_2.29.1_moment.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="/js/cdnjs.cloudflare.com_ajax_libs_moment-timezone_0.5.34_moment-timezone-with-data-10-year-range.min.js"
+      integrity="sha512-d11VXfxQMn+sZuIgzHITdIuInr4cVRGV/uLiSI643WH/J+p4gPFYSHXRMR2v+w4Rn2TSyzJjsZjc0M7+Qd+UXw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="/js/cdn.jsdelivr.net_npm_datebook@8.0.0_dist_datebook.min.js"
+      type="module"
+    ></script>
+    <script
+      src="/js/cdnjs.cloudflare.com_ajax_libs_localforage_1.10.0_localforage.min.js"
+      integrity="sha512-+BMamP0e7wn39JGL8nKAZ3yAQT2dL5oaXWr4ZYlTGkKOaoXM/Yj7c4oy50Ngz5yoUutAG17flueD4F6QpTlPng=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="../../css/material-4.1.1-dist/js/material.min.js"></script>
     <script src="../../js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
     <script src="../../css/material-4.1.1-dist/js/material.min.js"></script>
