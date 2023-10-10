@@ -16,6 +16,15 @@
   text-decoration: none !important;
 }
 
+#followUpParagraph {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+}
+
+#modal .modal-title {
+  font-weight: inherit;
+}
+
 .underline {
   text-decoration: underline !important;
 }
