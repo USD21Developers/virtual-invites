@@ -376,6 +376,9 @@ function syncNotesForInvite(
           return reject(new Error(errorMessage));
         }
 
+        // Hide notes spinner
+        notesSpinnerEl.classList.add("d-none");
+
         const notes = data.notes.map(async (note) => {
           const decryptedNote = note;
 
@@ -467,6 +470,12 @@ function syncNotesForInvite(
           if (allNotesHashBefore !== allNotesHashAfter) {
             const msgNotesUpdated = getGlobalPhrase("notesUpdatedReload");
             showToast(msgNotesUpdated, null, "info");
+          }
+
+          // If no notes were found, update UI accordingly
+          if (!allNotesSorted.length) {
+            if (notesEl) notesEl.innerHTML = "";
+            if (noNotesEl) noNotesEl.classList.remove("d-none");
           }
 
           // Overwrite notes
