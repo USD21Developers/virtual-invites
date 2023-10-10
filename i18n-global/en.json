@@ -277,6 +277,20 @@
       "key": "edit",
       "original": "Edit",
       "translated": "Edit"
+    },
+    {
+      "key": "notesUpdatedReload",
+      "original": "Notes were updated. Reload?",
+      "translated": "Notes were updated. Reload?",
+      "changes": [
+        {
+          "original": "Reload?",
+          "translated": "Reload?",
+          "bold": false,
+          "italic": false,
+          "link": "javascript: window.reload()"
+        }
+      ]
     }
   ],
 

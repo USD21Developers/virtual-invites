@@ -323,11 +323,28 @@ function syncInvites() {
   });
 }
 
-function syncNotesForInvite(invitationid, unsyncedNotes = []) {
+function syncNotesForInvite(
+  invitationid,
+  unsyncedNotes = [],
+  notesSelector = "#notes",
+  notesSpinnerSelector = "#notes-spinner",
+  noNotesSelector = "#no-notes-container"
+) {
   return new Promise(async (resolve, reject) => {
+    const notesEl = document.querySelector(notesSelector);
+    const notesSpinnerEl = document.querySelector(notesSpinnerSelector);
+    const noNotesEl = document.querySelector(noNotesSelector);
+    const allNotesLocal = (await localforage.getItem("notes")) || [];
     const endpoint = `${getApiHost()}/notes-for-invite`;
     const controller = new AbortController();
     const accessToken = await getAccessToken();
+
+    // Show spinner if no notes were found
+    if (!allNotesLocal.length) {
+      if (notesEl) notesEl.innerHTML = "";
+      if (notesSpinnerEl) notesSpinnerEl.classList.remove("d-none");
+      if (noNotesEl) noNotesEl.classList.add("d-none");
+    }
 
     fetch(endpoint, {
       mode: "cors",
@@ -342,7 +359,7 @@ function syncNotesForInvite(invitationid, unsyncedNotes = []) {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(async (data) => {
         const datakey = localStorage.getItem("datakey") || "";
 
         if (!datakey.length) {
@@ -393,11 +410,67 @@ function syncNotesForInvite(invitationid, unsyncedNotes = []) {
         });
 
         // Remove unsyncedNotes because sync succeeded
-        localforage.removeItem("unsyncedNotes");
+        await localforage.removeItem("unsyncedNotes");
 
         // Overwrite notes with response from the server
-        Promise.all(notes).then((notes) => {
-          localforage.setItem("notes", notes).then(() => {
+        Promise.all(notes).then(async (notesForThisInvite) => {
+          const allInvites = (await localforage.getItem("invites")) || [];
+          const thisInvite =
+            allInvites.find((item) => item.invitationid === invitationid) ||
+            null;
+          const allNotes = (await localforage.getItem("notes")) || [];
+          const allNotesHashBefore = await invitesCrypto.hash(
+            JSON.stringify(allNotes)
+          );
+
+          if (!thisInvite) {
+            return reject(
+              new Error("cannot sync notes because invite was not found")
+            );
+          }
+
+          const notesForOtherInvites = allNotes.filter((item) => {
+            if (item.invitationid !== invitationid) {
+              if (item.recipient.sms && thisInvite.recipient.sms) {
+                if (thisInvite.recipient.sms === item.recipient.sms) {
+                  return true;
+                }
+              } else if (item.recipient.email && thisInvite.recipient.email) {
+                if (thisInvite.recipient.email === item.recipient.email) {
+                  return true;
+                }
+              } else {
+                return false;
+              }
+            } else {
+              return false;
+            }
+          });
+
+          // Combine notes for this invite with notes for other invites
+          if (notesForThisInvite.length) {
+            allNotes.concat(notesForThisInvite);
+          }
+          if (notesForOtherInvites.length) {
+            allNotes.concat(notesForOtherInvites);
+          }
+
+          // Sort all notes by date
+          const allNotesSorted = allNotes.length
+            ? allNotes.slice().sort(compareDates)
+            : [];
+
+          // Determine whether it's necessary to show a toast saying that notes were updated
+          const allNotesHashAfter = await invitesCrypto.hash(
+            JSON.stringify(allNotesSorted)
+          );
+          if (allNotesHashBefore !== allNotesHashAfter) {
+            const msgNotesUpdated = getGlobalPhrase("notesUpdatedReload");
+            showToast(msgNotesUpdated, null, "info");
+          }
+
+          // Overwrite notes
+          localforage.setItem("notes", allNotesSorted).then(() => {
             resolve(notes);
           });
         });

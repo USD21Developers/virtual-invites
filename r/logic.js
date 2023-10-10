@@ -610,38 +610,13 @@ async function populateNotes() {
   const invitationid = Number(getHash().split("/")[1]);
   const unsyncedNotes = (await localforage.getItem("unsyncedNotes")) || [];
 
-  let notesSyncedForInviteId = await syncNotesForInvite(
+  syncNotesForInvite(
     invitationid,
-    unsyncedNotes
+    unsyncedNotes,
+    "#notes",
+    "#notes-spinner",
+    "#no-notes-container"
   );
-  notesSyncedForInviteId.sort((a, b) => {
-    const dateA = new Date(a.lastModified);
-    const dateB = new Date(b.lastModified);
-    return dateA > dateB ? 1 : -1;
-  });
-
-  let notesLocalForInviteId = notesLocal.filter(
-    (item) => item.invitationid === invitationid
-  );
-  notesLocalForInviteId.sort((a, b) => {
-    const dateA = new Date(a.lastModified);
-    const dateB = new Date(b.lastModified);
-    return dateA > dateB ? 1 : -1;
-  });
-
-  let notesLocalOtherInvites = notesLocal.filter(
-    (item) => item.invitationid !== invitationid
-  );
-  notesLocalOtherInvites.sort((a, b) => {
-    const dateA = new Date(a.lastModified);
-    const dateB = new Date(b.lastModified);
-    return dateA > dateB ? 1 : -1;
-  });
-
-  // TODO:
-  // Do a hash comparison between "notesSyncedForInviteId" and "notesLocalForInviteId".
-  // If there's no difference, then overwrite "notesObj" with notesLocal.
-  // If there IS a difference, then (a) combine "notesLocalForInviteId" and "notesLocalOtherInvites" into a single array, and overwrite notesObj with it.
 
   notesObj = notesLocal;
 
