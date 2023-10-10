@@ -377,7 +377,7 @@ function syncNotesForInvite(
         }
 
         // Hide notes spinner
-        notesSpinnerEl.classList.add("d-none");
+        if (notesSpinnerEl) notesSpinnerEl.classList.add("d-none");
 
         const notes = data.notes.map(async (note) => {
           const decryptedNote = note;
@@ -485,11 +485,13 @@ function syncNotesForInvite(
         });
       })
       .catch((err) => {
+        if (notesSpinnerEl) notesSpinnerEl.classList.add("d-none");
         reject(new Error(err));
       });
 
     setTimeout(() => {
       controller.abort();
+      if (notesSpinnerEl) notesSpinnerEl.classList.add("d-none");
       reject(new Error("Sync of notes for an invite timed out"));
     }, 30000);
   });
