@@ -668,6 +668,7 @@ async function renderNotes() {
     const date = Intl.DateTimeFormat(userDateTimePrefs.locale, {
       dateStyle: "full",
       timeStyle: "short",
+      timeZone: userDateTimePrefs.timeZone,
     }).format(new Date(note.date));
     notesHTML += `
       <div class="note row mb-4">
