@@ -677,7 +677,7 @@ async function renderNotes() {
             <summary class="text-center">
               <strong class="text-dark">${note.summary}</strong>
               <div>
-                <small class="text-muted">
+                <small class="text-muted note_date">
                   ${date}
                 </small>
               </div>

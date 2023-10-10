@@ -25,6 +25,11 @@
   font-weight: inherit;
 }
 
+.note_date {
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+}
+
 .underline {
   text-decoration: underline !important;
 }
