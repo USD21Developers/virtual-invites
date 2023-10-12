@@ -19,17 +19,18 @@ function filterNotes(allNotes) {
   const notes = allNotes.filter((item) => {
     if (item.sms) {
       if (item.sms === inviteObj.recipient.sms) {
-        return item;
+        return true;
       }
     } else if (item.email) {
       if (item.email === inviteObj.recipient.email) {
-        return item;
+        return true;
       }
     } else {
       if (item.invitationid === inviteObj.invitationid) {
-        return item;
+        return true;
       }
     }
+    return false;
   });
 
   return notes;
@@ -606,8 +607,8 @@ async function populateNotes() {
     "{RECIPIENT-NAME}",
     inviteObj.recipient.name
   );
-  const notesLocal = filterNotes(allNotesLocal);
   const invitationid = Number(getHash().split("/")[1]);
+  const notesLocal = filterNotes(allNotesLocal);
   const unsyncedNotes = (await localforage.getItem("unsyncedNotes")) || [];
 
   syncNotesForInvite(
