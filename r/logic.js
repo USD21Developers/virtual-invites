@@ -18,11 +18,11 @@ function filterNotes(allNotes) {
 
   const notes = allNotes.filter((item) => {
     if (item.recipient.sms) {
-      if (item.sms === inviteObj.recipient.sms) {
+      if (item.recipient.sms === inviteObj.recipient.sms) {
         return true;
       }
     } else if (item.recipient.email) {
-      if (item.email === inviteObj.recipient.email) {
+      if (item.recipient.email === inviteObj.recipient.email) {
         return true;
       }
     } else {
