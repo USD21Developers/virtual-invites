@@ -17,11 +17,11 @@ function filterNotes(allNotes) {
   if (!inviteObj.hasOwnProperty("invitationid")) return;
 
   const notes = allNotes.filter((item) => {
-    if (item.sms) {
+    if (item.recipient.sms) {
       if (item.sms === inviteObj.recipient.sms) {
         return true;
       }
-    } else if (item.email) {
+    } else if (item.recipient.email) {
       if (item.email === inviteObj.recipient.email) {
         return true;
       }
