@@ -616,30 +616,24 @@ async function populateNotes() {
 
   renderNotes();
 
-  syncNotesForInvite(
-    invitationid,
-    unsyncedNotes,
-    "#notes",
-    "#notes-spinner",
-    "#no-notes-container"
-  ).then(async (notesForInvitePromises) => {
-    const notesForInvite = await Promise.all(notesForInvitePromises);
-    const otherNotes = notesObj.length
-      ? notesObj.filter((item) => item.invitationid !== invitationid)
-      : [];
+  syncNotesForInvite(invitationid, unsyncedNotes).then(
+    async (notesForInvite) => {
+      const otherNotes = notesObj.length
+        ? notesObj.filter((item) => item.invitationid !== invitationid)
+        : [];
 
-    const combinedNotesUnsorted = notesForInvite.concat(otherNotes);
-    const combinedNotesSorted = combinedNotesUnsorted
-      .slice()
-      .sort(compareDates);
+      const combinedNotesUnsorted = notesForInvite.concat(otherNotes);
+      const combinedNotesSorted = combinedNotesUnsorted
+        .slice()
+        .sort(compareDates);
 
-    const hashBeforeSync = await invitesCrypto.hash(JSON.stringify(notesObj));
-    const hashAfterSync = await invitesCrypto.hash(
-      JSON.stringify(combinedNotesSorted)
-    );
+      const hashBeforeSync = await invitesCrypto.hash(JSON.stringify(notesObj));
+      const hashAfterSync = await invitesCrypto.hash(
+        JSON.stringify(combinedNotesSorted)
+      );
+      const hashesAreIdentical = hashBeforeSync === hashAfterSync;
 
-    if (hashBeforeSync !== hashAfterSync) {
-      localforage.setItem("notes", combinedNotesSorted).then(() => {
+      if (!hashesAreIdentical) {
         const pageLoadCurrentTime = performance.now();
         const timeSincePageLoad = pageLoadCurrentTime - pageLoadStartTime;
         const minSeconds = 10;
@@ -650,9 +644,9 @@ async function populateNotes() {
         } else {
           renderNotes();
         }
-      });
+      }
     }
-  });
+  );
 }
 
 async function renderNotes() {

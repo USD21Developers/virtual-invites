@@ -323,28 +323,11 @@ function syncInvites() {
   });
 }
 
-function syncNotesForInvite(
-  invitationid,
-  unsyncedNotes = [],
-  notesSelector = "#notes",
-  notesSpinnerSelector = "#notes-spinner",
-  noNotesSelector = "#no-notes-container"
-) {
+function syncNotesForInvite(invitationid, unsyncedNotes = []) {
   return new Promise(async (resolve, reject) => {
-    const notesEl = document.querySelector(notesSelector);
-    const notesSpinnerEl = document.querySelector(notesSpinnerSelector);
-    const noNotesEl = document.querySelector(noNotesSelector);
-    const allNotesLocal = (await localforage.getItem("notes")) || [];
     const endpoint = `${getApiHost()}/notes-for-invite`;
     const controller = new AbortController();
     const accessToken = await getAccessToken();
-
-    // Show spinner if no notes were found
-    if (!allNotesLocal.length) {
-      if (notesEl) notesEl.innerHTML = "";
-      if (notesSpinnerEl) notesSpinnerEl.classList.remove("d-none");
-      if (noNotesEl) noNotesEl.classList.add("d-none");
-    }
 
     fetch(endpoint, {
       mode: "cors",
@@ -375,9 +358,6 @@ function syncNotesForInvite(
           console.error(errorMessage);
           return reject(new Error(errorMessage));
         }
-
-        // Hide notes spinner
-        if (notesSpinnerEl) notesSpinnerEl.classList.add("d-none");
 
         const notes = data.notes.map(async (note) => {
           const decryptedNote = note;
@@ -413,85 +393,19 @@ function syncNotesForInvite(
         });
 
         // Remove unsyncedNotes because sync succeeded
-        await localforage.removeItem("unsyncedNotes");
+        localforage.removeItem("unsyncedNotes");
 
         // Overwrite notes with response from the server
-        Promise.all(notes).then(async (notesForThisInvite) => {
-          const allInvites = (await localforage.getItem("invites")) || [];
-          const thisInvite =
-            allInvites.find((item) => item.invitationid === invitationid) ||
-            null;
-          const allNotes = (await localforage.getItem("notes")) || [];
-          const allNotesHashBefore = await invitesCrypto.hash(
-            JSON.stringify(allNotes)
-          );
-
-          if (!thisInvite) {
-            return reject(
-              new Error("cannot sync notes because invite was not found")
-            );
-          }
-
-          const notesForOtherInvites = allNotes.filter((item) => {
-            if (item.invitationid !== invitationid) {
-              if (item.recipient.sms && thisInvite.recipient.sms) {
-                if (thisInvite.recipient.sms === item.recipient.sms) {
-                  return true;
-                }
-              } else if (item.recipient.email && thisInvite.recipient.email) {
-                if (thisInvite.recipient.email === item.recipient.email) {
-                  return true;
-                }
-              } else {
-                return false;
-              }
-            } else {
-              return false;
-            }
-          });
-
-          // Combine notes for this invite with notes for other invites
-          if (notesForThisInvite.length) {
-            allNotes.concat(notesForThisInvite);
-          }
-          if (notesForOtherInvites.length) {
-            allNotes.concat(notesForOtherInvites);
-          }
-
-          // Sort all notes by date
-          const allNotesSorted = allNotes.length
-            ? allNotes.slice().sort(compareDates)
-            : [];
-
-          // Determine whether it's necessary to show a toast saying that notes were updated
-          const allNotesHashAfter = await invitesCrypto.hash(
-            JSON.stringify(allNotesSorted)
-          );
-          if (allNotesHashBefore !== allNotesHashAfter) {
-            const msgNotesUpdated = getGlobalPhrase("notesUpdatedReload");
-            showToast(msgNotesUpdated, null, "info");
-          }
-
-          // If no notes were found, update UI accordingly
-          if (!allNotesSorted.length) {
-            if (notesEl) notesEl.innerHTML = "";
-            if (noNotesEl) noNotesEl.classList.remove("d-none");
-          }
-
-          // Overwrite notes
-          localforage.setItem("notes", allNotesSorted).then(() => {
-            resolve(notes);
-          });
+        Promise.all(notes).then((notesForThisInvite) => {
+          return resolve(notesForThisInvite);
         });
       })
       .catch((err) => {
-        if (notesSpinnerEl) notesSpinnerEl.classList.add("d-none");
         reject(new Error(err));
       });
 
     setTimeout(() => {
       controller.abort();
-      if (notesSpinnerEl) notesSpinnerEl.classList.add("d-none");
       reject(new Error("Sync of notes for an invite timed out"));
     }, 30000);
   });
