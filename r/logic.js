@@ -1,3 +1,4 @@
+const pageLoadStartTime = performance.now();
 let syncedInvites = false;
 let inviteObj = {};
 let eventObj = {};
@@ -611,17 +612,44 @@ async function populateNotes() {
   const notesLocal = filterNotes(allNotesLocal);
   const unsyncedNotes = (await localforage.getItem("unsyncedNotes")) || [];
 
+  notesObj = notesLocal;
+
+  renderNotes();
+
   syncNotesForInvite(
     invitationid,
     unsyncedNotes,
     "#notes",
     "#notes-spinner",
     "#no-notes-container"
-  );
+  ).then(async (notesForInvite) => {
+    const otherNotes = notesObj.filter(
+      (item) => item.invitationid !== invitationid
+    );
+    const combinedNotesUnsorted = notesForInvite.concat(otherNotes);
+    const combinedNotesSorted = compareDates(combinedNotesUnsorted);
 
-  notesObj = notesLocal;
+    const hashBefore = await invitesCrypto.hash(notesObj);
+    const hashAfter = await invitesCrypto.hash(combinedNotesSorted);
 
-  renderNotes();
+    if (hashBefore === hashAfter) {
+      return;
+    } else {
+      localforage.setItem("notes", combinedNotesSorted).then(() => {
+        const pageLoadCurrentTime = performance.now();
+        const timeSincePageLoad = pageLoadStartTime - pageLoadCurrentTime;
+        const numSeconds = 10 * 1000;
+        localforage.removeItem("unsynecedNotes").then(() => {
+          if (timeSincePageLoad > numSeconds) {
+            const msgNotesUpdated = getGlobalPhrase("notesUpdatedReload");
+            showToast(msgNotesUpdated, null, "info");
+          } else {
+            renderNotes();
+          }
+        });
+      });
+    }
+  });
 }
 
 async function renderNotes() {
