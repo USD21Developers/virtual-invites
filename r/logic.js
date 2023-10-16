@@ -622,31 +622,34 @@ async function populateNotes() {
     "#notes",
     "#notes-spinner",
     "#no-notes-container"
-  ).then(async (notesForInvite) => {
-    const otherNotes = notesObj.filter(
-      (item) => item.invitationid !== invitationid
-    );
+  ).then(async (notesForInvitePromises) => {
+    const notesForInvite = await Promise.all(notesForInvitePromises);
+    const otherNotes = notesObj.length
+      ? notesObj.filter((item) => item.invitationid !== invitationid)
+      : [];
+
     const combinedNotesUnsorted = notesForInvite.concat(otherNotes);
-    const combinedNotesSorted = compareDates(combinedNotesUnsorted);
+    const combinedNotesSorted = combinedNotesUnsorted
+      .slice()
+      .sort(compareDates);
 
-    const hashBefore = await invitesCrypto.hash(notesObj);
-    const hashAfter = await invitesCrypto.hash(combinedNotesSorted);
+    const hashBeforeSync = await invitesCrypto.hash(JSON.stringify(notesObj));
+    const hashAfterSync = await invitesCrypto.hash(
+      JSON.stringify(combinedNotesSorted)
+    );
 
-    if (hashBefore === hashAfter) {
-      return;
-    } else {
+    if (hashBeforeSync !== hashAfterSync) {
       localforage.setItem("notes", combinedNotesSorted).then(() => {
         const pageLoadCurrentTime = performance.now();
-        const timeSincePageLoad = pageLoadStartTime - pageLoadCurrentTime;
-        const numSeconds = 10 * 1000;
-        localforage.removeItem("unsynecedNotes").then(() => {
-          if (timeSincePageLoad > numSeconds) {
-            const msgNotesUpdated = getGlobalPhrase("notesUpdatedReload");
-            showToast(msgNotesUpdated, null, "info");
-          } else {
-            renderNotes();
-          }
-        });
+        const timeSincePageLoad = pageLoadCurrentTime - pageLoadStartTime;
+        const minSeconds = 10;
+        const minMilliseconds = minSeconds * 1000;
+        if (timeSincePageLoad > minMilliseconds) {
+          const msgNotesUpdated = getGlobalPhrase("notesUpdatedReload");
+          showToast(msgNotesUpdated, null, "info");
+        } else {
+          renderNotes();
+        }
       });
     }
   });
