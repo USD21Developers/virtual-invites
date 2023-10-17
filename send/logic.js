@@ -825,7 +825,7 @@ function prepopulateInvite() {
     const inviteRecipientJSON = sessionStorage.getItem("inviteRecipientObj");
 
     const clearInviteRecipientJSON = () => {
-      // sessionStorage.removeItem("inviteRecipientObj");
+      sessionStorage.removeItem("inviteRecipientObj");
     };
 
     if (!inviteRecipientJSON) return;
@@ -859,7 +859,6 @@ function prepopulateInvite() {
       selectSendVia("qrcode");
     }
 
-    // Clear "inviteRecipientObj" from session storage
     clearInviteRecipientJSON();
   }, 1000);
 }
