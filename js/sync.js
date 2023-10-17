@@ -395,7 +395,7 @@ function syncNotesForInvite(invitationid, unsyncedNotes = []) {
         // Remove unsyncedNotes because sync succeeded
         localforage.removeItem("unsyncedNotes");
 
-        // Overwrite notes with response from the server
+        // Wait for notes to be decrypted then return them, just for this invite
         Promise.all(notes).then((notesForThisInvite) => {
           return resolve(notesForThisInvite);
         });
@@ -407,6 +407,90 @@ function syncNotesForInvite(invitationid, unsyncedNotes = []) {
     setTimeout(() => {
       controller.abort();
       reject(new Error("Sync of notes for an invite timed out"));
+    }, 30000);
+  });
+}
+
+function syncAllNotes() {
+  return new Promise(async (resolve, reject) => {
+    const endpoint = `${getApiHost()}/sync-notes`;
+    const controller = new AbortController();
+    const unsyncedNotes = (await localforage.getItem("unsyncedNotes")) || [];
+    const accessToken = await getAccessToken();
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify({
+        unsyncedNotes: unsyncedNotes,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then(async (data) => {
+        const datakey = localStorage.getItem("datakey") || "";
+
+        if (!datakey.length) {
+          const errorMessage =
+            "Sync of notes for an invite failed:  datakey is missing";
+          console.error(errorMessage);
+          return reject(new Error(errorMessage));
+        }
+
+        if (!Array.isArray(data.notes)) {
+          const errorMessage =
+            "Sync of notes for an invite failed:  returned notes key is not an array";
+          console.error(errorMessage);
+          return reject(new Error(errorMessage));
+        }
+
+        const notes = data.notes.map(async (note) => {
+          const decryptedNote = note;
+
+          if (note.recipient) {
+            const encryptionObject = note.recipient;
+            const decrypted = await invitesCrypto.decrypt(
+              datakey,
+              encryptionObject
+            );
+            decryptedNote.recipient = JSON.parse(decrypted);
+          }
+
+          if (note.summary) {
+            const encryptionObject = note.summary;
+            const decrypted = await invitesCrypto.decrypt(
+              datakey,
+              encryptionObject
+            );
+            decryptedNote.summary = JSON.parse(decrypted);
+          }
+
+          if (note.text) {
+            const encryptionObject = note.text;
+            const decrypted = await invitesCrypto.decrypt(
+              datakey,
+              encryptionObject
+            );
+            decryptedNote.text = JSON.parse(decrypted);
+          }
+
+          return decryptedNote;
+        });
+
+        // Overwrite notes with response from the server
+        Promise.all(notes).then((notes) => {
+          localforage.setItem("notes", notes).then(() => {
+            return resolve(notes);
+          });
+        });
+      });
+
+    setTimeout(() => {
+      controller.abort();
+      reject(new Error("Sync of all notes timed out"));
     }, 30000);
   });
 }

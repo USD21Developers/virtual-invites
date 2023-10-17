@@ -288,7 +288,7 @@
           "translated": "Reload?",
           "bold": false,
           "italic": false,
-          "link": "javascript: window.reload()"
+          "link": "javascript: window.location.reload()"
         }
       ]
     }

@@ -616,8 +616,8 @@ async function populateNotes() {
 
   renderNotes();
 
-  syncNotesForInvite(invitationid, unsyncedNotes).then(
-    async (notesForInvite) => {
+  syncNotesForInvite(invitationid, unsyncedNotes)
+    .then(async (notesForInvite) => {
       const otherNotes = notesObj.length
         ? notesObj.filter((item) => item.invitationid !== invitationid)
         : [];
@@ -634,19 +634,15 @@ async function populateNotes() {
       const hashesAreIdentical = hashBeforeSync === hashAfterSync;
 
       if (!hashesAreIdentical) {
-        const pageLoadCurrentTime = performance.now();
-        const timeSincePageLoad = pageLoadCurrentTime - pageLoadStartTime;
-        const minSeconds = 10;
-        const minMilliseconds = minSeconds * 1000;
-        if (timeSincePageLoad > minMilliseconds) {
-          const msgNotesUpdated = getGlobalPhrase("notesUpdatedReload");
-          showToast(msgNotesUpdated, null, "info");
-        } else {
-          renderNotes();
-        }
+        notesObj = filterNotes(combinedNotesSorted);
+        renderNotes();
       }
-    }
-  );
+    })
+    .then(() => {
+      syncAllNotes().then((allNotes) => {
+        onAfterAllNotesSynced(allNotes);
+      });
+    });
 }
 
 async function renderNotes() {
@@ -739,6 +735,20 @@ async function renderNotes() {
     noteContent.removeEventListener("click", onToggleNoteContent, true);
     noteContent.addEventListener("click", onToggleNoteContent, true);
   });
+}
+
+function onAfterAllNotesSynced(allNotes) {
+  const pageLoadCurrentTime = performance.now();
+  const timeSincePageLoad = pageLoadCurrentTime - pageLoadStartTime;
+  const minSeconds = 10;
+  const minMilliseconds = minSeconds * 1000;
+  if (timeSincePageLoad > minMilliseconds) {
+    const msgNotesUpdated = getGlobalPhrase("notesUpdatedReload");
+    showToast(msgNotesUpdated, null, "info");
+  } else {
+    notesObj = filterNotes(allNotes);
+    renderNotes();
+  }
 }
 
 function onClickAway(event) {
@@ -963,9 +973,7 @@ function onSaveNote(e) {
 
     document.querySelector(`[data-note-id="${noteid}"]`)?.scrollIntoView();
 
-    // TODO:  sync notes
     syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
-    // syncAllNotes(); // Do not await this!
 
     resolve(note);
   });
@@ -1143,9 +1151,7 @@ function onEditNote() {
 
     document.querySelector(`[data-note-id="${noteid}"]`)?.scrollIntoView();
 
-    // TODO:  sync notes
     syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
-    // syncAllNotes(); // Do not await this!
 
     resolve(updatedNote);
   });
@@ -1197,9 +1203,7 @@ async function onDeleteNote(evt) {
 
   $("#deleteNoteModal").modal("hide");
 
-  // TODO:  sync notes
   syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
-  // syncAllNotes(); // Do not await this!
 }
 
 function attachListeners() {
