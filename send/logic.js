@@ -846,6 +846,10 @@ function prepopulateInvite() {
   const name = inviteRecipientObj.name || "";
   const email = inviteRecipientObj.email || null;
   const sms = inviteRecipientObj.sms || null;
+  const eventsDropdownEl = (document.querySelector(
+    "#events_dropdown"
+  )[0].selected = true);
+  const meetingDetailsEl = document.querySelector("#meetingDetailsContainer");
 
   if (!name.length) {
     clearInviteRecipientJSON();
@@ -855,6 +859,12 @@ function prepopulateInvite() {
   if (!sendvia) {
     clearInviteRecipientJSON();
     return;
+  }
+
+  // Set events to unselected
+  if (eventsDropdownEl && meetingDetailsEl) {
+    eventsDropdownEl[0].selected = true;
+    meetingDetailsEl.classList.add("d-none");
   }
 
   // Populate name
