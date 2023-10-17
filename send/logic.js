@@ -863,7 +863,7 @@ function prepopulateInvite() {
 
   // Set events to unselected
   if (eventsDropdownEl && meetingDetailsEl) {
-    eventsDropdownEl[0].selected = true;
+    eventsDropdownEl.selectedOptions[0].selected = true;
     meetingDetailsEl.classList.add("d-none");
   }
 
