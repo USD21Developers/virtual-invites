@@ -340,6 +340,7 @@ function syncNotesForInvite(invitationid, unsyncedNotes = []) {
         "Content-Type": "application/json",
         authorization: `Bearer ${accessToken}`,
       }),
+      keepalive: true,
     })
       .then((res) => res.json())
       .then(async (data) => {
@@ -428,6 +429,7 @@ function syncAllNotes() {
         "Content-Type": "application/json",
         authorization: `Bearer ${accessToken}`,
       }),
+      keepalive: true,
     })
       .then((res) => res.json())
       .then(async (data) => {
