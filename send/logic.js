@@ -824,7 +824,7 @@ function prepopulateInvite() {
   const inviteRecipientJSON = sessionStorage.getItem("inviteRecipientObj");
 
   const clearInviteRecipientJSON = () => {
-    sessionStorage.removeItem("inviteRecipientObj");
+    // sessionStorage.removeItem("inviteRecipientObj");
   };
 
   if (!inviteRecipientJSON) return;
@@ -843,47 +843,45 @@ function prepopulateInvite() {
     return;
   }
 
-  setTimeout(() => {
-    const name = inviteRecipientObj.name || "";
-    const email = inviteRecipientObj.email || null;
-    const sms = inviteRecipientObj.sms || null;
-    const eventsDropdownEl = document.querySelector("#events_dropdown");
-    const meetingDetailsEl = document.querySelector("#meetingDetailsContainer");
+  const name = inviteRecipientObj.name || "";
+  const email = inviteRecipientObj.email || null;
+  const sms = inviteRecipientObj.sms || null;
+  const eventsDropdownEl = document.querySelector("#events_dropdown");
+  const meetingDetailsEl = document.querySelector("#meetingDetailsContainer");
 
-    if (!name.length) {
-      clearInviteRecipientJSON();
-      return;
-    }
-
-    if (!sendvia) {
-      clearInviteRecipientJSON();
-      return;
-    }
-
-    // Set events to unselected
-    if (eventsDropdownEl) eventsDropdownEl.selectedOptions[0].selected = true;
-    if (meetingDetailsEl) meetingDetailsEl.classList.add("d-none");
-
-    // Populate name
-    const nameEl = document.querySelector("#recipientname");
-    if (nameEl) nameEl.value = name;
-
-    // Populate contact method
-    if (email) {
-      const emailEl = document.querySelector("#sendto_email");
-      if (emailEl) emailEl.value = email;
-      selectSendVia("email");
-    } else if (sms) {
-      const smsEl = document.querySelector("#sendto_sms");
-      if (smsEl) smsEl.value = sms;
-      selectSendVia("sms");
-    } else if (sendvia === "qrcode") {
-      selectSendVia("qrcode");
-    }
-
-    // Clear "inviteRecipientObj" from session storage
+  if (!name.length) {
     clearInviteRecipientJSON();
-  }, 3000);
+    return;
+  }
+
+  if (!sendvia) {
+    clearInviteRecipientJSON();
+    return;
+  }
+
+  // Set events to unselected
+  if (eventsDropdownEl) eventsDropdownEl.selectedOptions[0].selected = true;
+  if (meetingDetailsEl) meetingDetailsEl.classList.add("d-none");
+
+  // Populate name
+  const nameEl = document.querySelector("#recipientname");
+  if (nameEl) nameEl.value = name;
+
+  // Populate contact method
+  if (email) {
+    const emailEl = document.querySelector("#sendto_email");
+    if (emailEl) emailEl.value = email;
+    selectSendVia("email");
+  } else if (sms) {
+    const smsEl = document.querySelector("#sendto_sms");
+    if (smsEl) smsEl.value = sms;
+    selectSendVia("sms");
+  } else if (sendvia === "qrcode") {
+    selectSendVia("qrcode");
+  }
+
+  // Clear "inviteRecipientObj" from session storage
+  clearInviteRecipientJSON();
 }
 
 async function resetSendButtonText() {
