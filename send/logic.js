@@ -820,6 +820,64 @@ function populateSaveButtonData() {
   );
 }
 
+function prepopulateInvite() {
+  const inviteRecipientJSON = sessionStorage.getItem("inviteRecipientObj");
+
+  const clearInviteRecipientJSON = () => {
+    sessionStorage.removeItem("inviteRecipientObj");
+  };
+
+  if (!inviteRecipientJSON) return;
+
+  let inviteRecipientObj = null;
+
+  try {
+    inviteRecipientObj = JSON.parse(inviteRecipientJSON);
+  } catch (e) {
+    clearInviteRecipientJSON();
+    return;
+  }
+
+  if (!inviteRecipientObj) {
+    clearInviteRecipientJSON();
+    return;
+  }
+
+  const name = inviteRecipientObj.name || "";
+  const email = inviteRecipientObj.email || null;
+  const sms = inviteRecipientObj.sms || null;
+
+  if (!name.length) {
+    clearInviteRecipientJSON();
+    return;
+  }
+
+  if (!sendvia) {
+    clearInviteRecipientJSON();
+    return;
+  }
+
+  // Populate name
+  const nameEl = document.querySelector("#recipientname");
+  if (nameEl) nameEl.value = name;
+
+  // Populate contact method
+  if (email) {
+    const emailEl = document.querySelector("#sendto_email");
+    if (emailEl) emailEl.value = email;
+    selectSendVia("email");
+  } else if (sms) {
+    const smsEl = document.querySelector("#sendto_sms");
+    if (smsEl) smsEl.value = sms;
+    selectSendVia("sms");
+  } else if (sendvia === "qrcode") {
+    selectSendVia("qrcode");
+  }
+
+  // Clear "inviteRecipientObj" from session storage
+  clearInviteRecipientJSON();
+}
+
 async function resetSendButtonText() {
   const sendButton = document.querySelector("#btnSendInvite");
   const sendvia = getSendVia();
@@ -868,6 +926,7 @@ function selectSendVia(method) {
       containerSms.classList.remove("d-none");
       isMobile && containerTagWithLocation.classList.remove("d-none");
       btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-defaulttext");
+      document.querySelector("#sendvia").value = "sms";
       break;
     case "email":
       emailField.setAttribute("required", "");
@@ -875,6 +934,7 @@ function selectSendVia(method) {
       containerEmail.classList.remove("d-none");
       isMobile && containerTagWithLocation.classList.remove("d-none");
       btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-defaulttext");
+      document.querySelector("#sendvia").value = "email";
       break;
     case "qrcode":
       const eventid = getInviteToId();
@@ -888,12 +948,14 @@ function selectSendVia(method) {
         containerQRCode.classList.add("d-none");
         containerQRCodeInstructions.classList.add("d-none");
       }
+      document.querySelector("#sendvia").value = "qrcode";
       break;
     case "otherapps":
       localStorage.setItem("lastSendMethodSelected", "otherapps");
       isMobile && containerTagWithLocation.classList.remove("d-none");
       btnSendInvite.innerHTML =
         btnSendInvite.getAttribute("data-otherappstext");
+      document.querySelector("#sendvia").value = "otherapps";
       break;
   }
 }
@@ -1091,6 +1153,7 @@ async function init() {
   eventDetails();
   getCoordinatesOnLoad();
   showTagInviteWithLocation();
+  prepopulateInvite();
   setEventListeners();
   globalHidePageSpinner();
   syncInvites(); // Don't put an "await" on this; let it succeed or fail without blocking.

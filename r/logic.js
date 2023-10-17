@@ -1206,6 +1206,22 @@ async function onDeleteNote(evt) {
   syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
 }
 
+function onInviteToDifferentEvent(e) {
+  const sms = inviteObj.recipient.sms || null;
+  const email = inviteObj.recipient.email || null;
+  const inviteRecipientObj = {
+    name: inviteObj.recipient.name,
+    email: email,
+    sms: sms,
+    sendvia: inviteObj.sentvia,
+  };
+
+  sessionStorage.setItem(
+    "inviteRecipientObj",
+    JSON.stringify(inviteRecipientObj)
+  );
+}
+
 function attachListeners() {
   window.addEventListener("hashchange", () => {
     window.location.reload();
@@ -1220,6 +1236,10 @@ function attachListeners() {
   document
     .querySelector("#addCalendarReminderLink")
     .addEventListener("click", onSetFollowupReminder);
+
+  document
+    .querySelector("#inviteToDifferentEventLink")
+    .addEventListener("click", onInviteToDifferentEvent);
 
   document
     .querySelector("#addToCalendarButton")

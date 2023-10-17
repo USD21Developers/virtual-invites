@@ -134,6 +134,11 @@
       "translated": "Resend the invite"
     },
     {
+      "key": "inviteToDifferentEvent",
+      "original": "Invite to a different event",
+      "translated": "Invite to a different event"
+    },
+    {
       "key": "addToPhonebook",
       "original": "Add {RECIPIENT-NAME} to my phonebook",
       "translated": "Add {RECIPIENT-NAME} to my phonebook"
