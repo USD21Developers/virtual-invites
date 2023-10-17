@@ -1154,7 +1154,7 @@ async function init() {
   clearForm();
   await populateContent();
   populateSaveButtonData();
-  await loadEvents();
+  await loadEvents().then(() => prepopulateInvite());
   setDefaultSendMethod();
   initIntlTelInput();
   eventDetails();
@@ -1162,7 +1162,6 @@ async function init() {
   showTagInviteWithLocation();
   setEventListeners();
   globalHidePageSpinner();
-  prepopulateInvite();
   syncInvites(); // Don't put an "await" on this; let it succeed or fail without blocking.
 }
 
