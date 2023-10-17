@@ -1161,9 +1161,9 @@ async function init() {
   eventDetails();
   getCoordinatesOnLoad();
   showTagInviteWithLocation();
-  prepopulateInvite();
   setEventListeners();
   globalHidePageSpinner();
+  prepopulateInvite();
   syncInvites(); // Don't put an "await" on this; let it succeed or fail without blocking.
 }
 
