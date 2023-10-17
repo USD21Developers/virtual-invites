@@ -862,10 +862,8 @@ function prepopulateInvite() {
   }
 
   // Set events to unselected
-  if (eventsDropdownEl && meetingDetailsEl) {
-    eventsDropdownEl.selectedOptions[0].selected = true;
-    meetingDetailsEl.classList.add("d-none");
-  }
+  if (eventsDropdownEl) eventsDropdownEl.selectedOptions[0].selected = true;
+  if (meetingDetailsEl) meetingDetailsEl.classList.add("d-none");
 
   // Populate name
   const nameEl = document.querySelector("#recipientname");
