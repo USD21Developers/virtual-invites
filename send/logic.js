@@ -821,45 +821,47 @@ function populateSaveButtonData() {
 }
 
 function prepopulateInvite() {
-  const inviteRecipientJSON = sessionStorage.getItem("inviteRecipientObj");
+  setTimeout(() => {
+    const inviteRecipientJSON = sessionStorage.getItem("inviteRecipientObj");
 
-  const clearInviteRecipientJSON = () => {
-    // sessionStorage.removeItem("inviteRecipientObj");
-  };
+    const clearInviteRecipientJSON = () => {
+      // sessionStorage.removeItem("inviteRecipientObj");
+    };
 
-  if (!inviteRecipientJSON) return;
+    if (!inviteRecipientJSON) return;
 
-  const inviteRecipientObj = JSON.parse(inviteRecipientJSON);
-  const name = inviteRecipientObj.name || "";
-  const email = inviteRecipientObj.email || null;
-  const sms = inviteRecipientObj.sms || null;
-  const sendvia = inviteRecipientObj.sendvia;
-  const eventsDropdownEl = document.querySelector("#events_dropdown");
-  const meetingDetailsEl = document.querySelector("#meetingDetailsContainer");
+    const inviteRecipientObj = JSON.parse(inviteRecipientJSON);
+    const name = inviteRecipientObj.name || "";
+    const email = inviteRecipientObj.email || null;
+    const sms = inviteRecipientObj.sms || null;
+    const sendvia = inviteRecipientObj.sendvia;
+    const eventsDropdownEl = document.querySelector("#events_dropdown");
+    const meetingDetailsEl = document.querySelector("#meetingDetailsContainer");
 
-  // Set events to unselected
-  if (eventsDropdownEl) eventsDropdownEl.selectedOptions[0].selected = true;
-  if (meetingDetailsEl) meetingDetailsEl.classList.add("d-none");
+    // Set events to unselected
+    if (eventsDropdownEl) eventsDropdownEl.selectedOptions[0].selected = true;
+    if (meetingDetailsEl) meetingDetailsEl.classList.add("d-none");
 
-  // Populate name
-  const nameEl = document.querySelector("#recipientname");
-  if (nameEl) nameEl.value = name;
+    // Populate name
+    const nameEl = document.querySelector("#recipientname");
+    if (nameEl) nameEl.value = name;
 
-  // Populate contact method
-  if (email) {
-    const emailEl = document.querySelector("#sendto_email");
-    if (emailEl) emailEl.value = email;
-    selectSendVia("email");
-  } else if (sms) {
-    const smsEl = document.querySelector("#sendto_sms");
-    if (smsEl) smsEl.value = sms;
-    selectSendVia("sms");
-  } else if (sendvia === "qrcode") {
-    selectSendVia("qrcode");
-  }
+    // Populate contact method
+    if (email) {
+      const emailEl = document.querySelector("#sendto_email");
+      if (emailEl) emailEl.value = email;
+      selectSendVia("email");
+    } else if (sms) {
+      const smsEl = document.querySelector("#sendto_sms");
+      if (smsEl) smsEl.value = sms;
+      selectSendVia("sms");
+    } else if (sendvia === "qrcode") {
+      selectSendVia("qrcode");
+    }
 
-  // Clear "inviteRecipientObj" from session storage
-  clearInviteRecipientJSON();
+    // Clear "inviteRecipientObj" from session storage
+    clearInviteRecipientJSON();
+  }, 5000);
 }
 
 async function resetSendButtonText() {
@@ -1041,8 +1043,6 @@ function setDefaultSendMethod() {
     document.querySelector("#sendvia").value = defaultSendMethod;
     selectSendVia(defaultSendMethod);
   }
-
-  prepopulateInvite();
 }
 
 function setRecipientID() {
@@ -1142,6 +1142,7 @@ async function init() {
   setEventListeners();
   globalHidePageSpinner();
   syncInvites(); // Don't put an "await" on this; let it succeed or fail without blocking.
+  prepopulateInvite();
 }
 
 init();
