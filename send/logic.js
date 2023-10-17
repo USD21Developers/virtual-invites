@@ -846,6 +846,7 @@ function prepopulateInvite() {
   const name = inviteRecipientObj.name || "";
   const email = inviteRecipientObj.email || null;
   const sms = inviteRecipientObj.sms || null;
+  const sendvia = inviteRecipientObj.sendvia;
   const eventsDropdownEl = document.querySelector("#events_dropdown");
   const meetingDetailsEl = document.querySelector("#meetingDetailsContainer");
 
