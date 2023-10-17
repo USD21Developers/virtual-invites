@@ -861,7 +861,7 @@ function prepopulateInvite() {
 
     // Clear "inviteRecipientObj" from session storage
     clearInviteRecipientJSON();
-  }, 5000);
+  }, 1000);
 }
 
 async function resetSendButtonText() {
