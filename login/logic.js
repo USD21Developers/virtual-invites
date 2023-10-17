@@ -69,7 +69,7 @@ function onSubmit(e) {
           const churchesPromise = syncChurches();
           const eventsPromise = syncEvents();
           const invitesPromise = syncInvites();
-          const notesPromise = syncNotes();
+          const notesPromise = syncAllNotes();
           await Promise.all([
             countriesPromise,
             churchesPromise,
