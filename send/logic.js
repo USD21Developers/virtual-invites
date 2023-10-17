@@ -829,36 +829,13 @@ function prepopulateInvite() {
 
   if (!inviteRecipientJSON) return;
 
-  let inviteRecipientObj = null;
-
-  try {
-    inviteRecipientObj = JSON.parse(inviteRecipientJSON);
-  } catch (e) {
-    clearInviteRecipientJSON();
-    return;
-  }
-
-  if (!inviteRecipientObj) {
-    clearInviteRecipientJSON();
-    return;
-  }
-
+  const inviteRecipientObj = JSON.parse(inviteRecipientJSON);
   const name = inviteRecipientObj.name || "";
   const email = inviteRecipientObj.email || null;
   const sms = inviteRecipientObj.sms || null;
   const sendvia = inviteRecipientObj.sendvia;
   const eventsDropdownEl = document.querySelector("#events_dropdown");
   const meetingDetailsEl = document.querySelector("#meetingDetailsContainer");
-
-  if (!name.length) {
-    clearInviteRecipientJSON();
-    return;
-  }
-
-  if (!sendvia) {
-    clearInviteRecipientJSON();
-    return;
-  }
 
   // Set events to unselected
   if (eventsDropdownEl) eventsDropdownEl.selectedOptions[0].selected = true;
@@ -1064,6 +1041,8 @@ function setDefaultSendMethod() {
     document.querySelector("#sendvia").value = defaultSendMethod;
     selectSendVia(defaultSendMethod);
   }
+
+  prepopulateInvite();
 }
 
 function setRecipientID() {
@@ -1154,7 +1133,7 @@ async function init() {
   clearForm();
   await populateContent();
   populateSaveButtonData();
-  await loadEvents().then(() => prepopulateInvite());
+  await loadEvents();
   setDefaultSendMethod();
   initIntlTelInput();
   eventDetails();
