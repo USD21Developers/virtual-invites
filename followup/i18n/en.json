@@ -1,0 +1,117 @@
+{
+  "metadata": {
+    "description": "Follow Up",
+    "path": "/followup/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "pagetitle",
+      "original": "Follow Up",
+      "translated": "Follow Up"
+    },
+    {
+      "key": "breadcrumbFollowUp",
+      "original": "Follow Up",
+      "translated": "Follow Up"
+    },
+    {
+      "key": "recipientsByActivity",
+      "original": "Search Recipients by Activity:",
+      "translated": "Search Recipients by Activity:"
+    },
+    {
+      "key": "findRecipientsWho",
+      "original": "Find recipients who:",
+      "translated": "Find recipients who:"
+    },
+    {
+      "key": "haveNotViewedInvite",
+      "original": "Haven't viewed the invite yet",
+      "translated": "Haven't viewed the invite yet"
+    },
+    {
+      "key": "haveViewedInvite",
+      "original": "Have viewed the invite",
+      "translated": "Have viewed the invite"
+    },
+    {
+      "key": "clickedAddToMyCalendar",
+      "original": "Clicked \"Add to my Calendar\"",
+      "translated": "Clicked \"Add to my Calendar\""
+    },
+    {
+      "key": "clickedRSVP",
+      "original": "Clicked \"RSVP\"",
+      "translated": "Clicked \"RSVP\""
+    },
+    {
+      "key": "anyOfTheAbove",
+      "original": "Any of the above",
+      "translated": "Any of the above"
+    },
+    {
+      "key": "btnSearchByActivity",
+      "original": "Search",
+      "translated": "Search"
+    },
+    {
+      "key": "findSpecificRecipient",
+      "original": "Find a Specific Recipient:",
+      "translated": "Find a Specific Recipient:"
+    },
+    {
+      "key": "labelName",
+      "original": "Name:",
+      "translated": "Name:"
+    },
+    {
+      "key": "labelPhone",
+      "original": "Phone:",
+      "translated": "Phone:"
+    },
+    {
+      "key": "labelEmail",
+      "original": "E-mail:",
+      "translated": "E-mail:"
+    },
+    {
+      "key": "btnFindSpecific",
+      "original": "Search",
+      "translated": "Search"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

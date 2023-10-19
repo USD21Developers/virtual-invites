@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <script id="enforceaccess" src="../js/enforceaccess.js"></script>
+    <meta charset="utf-8" />
+    <meta
+      content="initial-scale=1, shrink-to-fit=no, width=device-width"
+      name="viewport"
+    />
+    <title data-i18n="pagetitle"></title>
+    <link rel="stylesheet" href="../css/daemonite-material.css" />
+    <link
+      href="../js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
+      rel="stylesheet"
+    />
+    <link href="../css/global.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar bg-white sticky-top">
+      <a class="navbar-brand" href="/">
+        <img src="/_assets/img/logo.svg" width="133" height="50" alt="logo" />
+      </a>
+      <div class="align-items-end">
+        <a href="/profile/" class="d-none">
+          <img class="profileImageNav" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="navdrawer"
+          data-target="#navdrawerDefault"
+          aria-controls="navdrawerDefault"
+          aria-expanded="false"
+          aria-label=""
+          data-i18n-global-aria-label="toggleNavigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+    <div
+      aria-hidden="true"
+      class="navdrawer navdrawer-right navbar-collapse collapse"
+      id="navdrawerDefault"
+      tabindex="-1"
+    >
+      <div class="navdrawer-content">
+        <div class="navdrawer-header">
+          <div class="row">
+            <div class="col-9 d-flex justify-content-start">
+              <a
+                class="navbar-brand px-0"
+                href="../"
+                data-i18n-global="menuHeadline"
+              ></a>
+            </div>
+            <div class="col-3 d-flex justify-content-end align-items-center">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="navdrawer"
+                data-target="#navdrawerDefault"
+                aria-controls="navdrawerDefault"
+                aria-expanded="false"
+                aria-label=""
+                data-i18n-global-aria-label="toggleNavigation"
+              >
+                <span class="material-icons material-icons-outlined">
+                  close
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <nav class="navdrawer-nav">
+          <a class="nav-item nav-link" href="../">
+            <span class="material-icons mr-3 material-icons-outlined">
+              home
+            </span>
+            <span data-i18n-global="menuHome"></span>
+          </a>
+          <a class="nav-item nav-link" href="../send/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              send
+            </span>
+            <span data-i18n-global="menuSendInvite"></span>
+          </a>
+          <a class="nav-item nav-link active" href="../followup/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              people
+            </span>
+            <span data-i18n-global="menuFollowUp"></span>
+          </a>
+          <a class="nav-item nav-link" href="../events/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              event
+            </span>
+            <span data-i18n-global="menuEventsImSharing"></span>
+          </a>
+          <a class="nav-item nav-link" href="../maps/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              place
+            </span>
+            <span data-i18n-global="menuMaps"></span>
+          </a>
+          <div class="navdrawer-divider"></div>
+          <a class="nav-item nav-link" href="../settings/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              settings
+            </span>
+            <span data-i18n-global="menuSettings"></span>
+          </a>
+          <a class="nav-item nav-link" href="../profile/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              account_circle
+            </span>
+            <span data-i18n-global="menuMyProfile"></span>
+          </a>
+          <a class="nav-item nav-link" href="../support/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              contact_support
+            </span>
+            <span data-i18n-global="menuSupport"></span>
+          </a>
+          <a class="nav-item nav-link" href="../logout/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              logout
+            </span>
+            <span data-i18n-global="menuLogOut"></span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <nav aria-label="breadcrumb" id="breadcrumbs" class="d-none">
+      <ol class="breadcrumb bg-white my-0">
+        <li class="breadcrumb-item">
+          <a href="../" data-i18n="breadcrumbHome"></a>
+        </li>
+        <li class="breadcrumb-item active">
+          <span data-i18n="breadcrumbFollowUp"></span>
+        </li>
+      </ol>
+    </nav>
+
+    <div class="container" id="pageSpinner">
+      <div class="row">
+        <div class="col col-sm-10 offset-sm-1 mt-3 mb-4 text-center">
+          <img
+            src="/_assets/img/spinner.svg"
+            width="200"
+            height="200"
+            style="max-width: 100%"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-none mainContent pb-5" id="pageContent">
+      <div class="row">
+        <div class="col col-sm-10 offset-sm-1">
+          <h1 data-i18n="pagetitle" class="text-center my-4"></h1>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div
+          class="col col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4 my-4 text-center"
+        >
+          <div class="list-group" id="followUpList">
+            <a href="#" class="list-group-item list-group-item-action">
+              Aaron
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              Jack
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              Zack
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row my-4">
+        <div class="col col-lg-6 offset-lg-3">
+          <hr />
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col col-lg-6 offset-lg-3">
+          <h3 data-i18n="recipientsByActivity" class="text-center"></h3>
+          <div class="justify-content-center">
+            <p class="mt-4">
+              <strong data-i18n="findRecipientsWho"></strong>
+            </p>
+            <form id="formShowByActivity" class="mb-2">
+              <div class="pl-3">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="show"
+                    id="searchHaveNotViewedInvite"
+                    value="have not viewed invite"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="searchHaveNotViewedInvite"
+                    data-i18n="haveNotViewedInvite"
+                  ></label>
+                </div>
+
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="show"
+                    id="searchHaveViewedInvite"
+                    value="have viewed invite"
+                    checked
+                  />
+                  <label
+                    class="form-check-label"
+                    for="searchHaveViewedInvite"
+                    data-i18n="haveViewedInvite"
+                  ></label>
+                </div>
+
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="show"
+                    id="searchClickedAddToMyCalendar"
+                    value="clicked add to calendar"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="searchClickedAddToMyCalendar"
+                    data-i18n="clickedAddToMyCalendar"
+                  ></label>
+                </div>
+
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="show"
+                    id="searchClickedRSVP"
+                    value="clicked rsvp"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="searchClickedRSVP"
+                    data-i18n="clickedRSVP"
+                  ></label>
+                </div>
+
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="show"
+                    id="searchAnyOfTheAbove"
+                    value="any of the above"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="searchAnyOfTheAbove"
+                    data-i18n="anyOfTheAbove"
+                  ></label>
+                </div>
+              </div>
+              <div class="mt-4">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  data-i18n="btnSearchByActivity"
+                ></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col col-lg-6 offset-lg-3">
+          <h3 data-i18n="findSpecificRecipient" class="text-center"></h3>
+          <form id="formShowByActivity" class="mb-2">
+            <div class="form-group my-4">
+              <label for="specificRecipientName" data-i18n="labelName"></label>
+              <input
+                type="text"
+                class="form-control"
+                id="specificRecipientName"
+                maxlength="100"
+              />
+            </div>
+
+            <div class="form-group my-4">
+              <label
+                for="specificRecipientPhone"
+                data-i18n="labelPhone"
+              ></label>
+              <input
+                type="tel"
+                class="form-control"
+                id="specificRecipientPhone"
+                maxlength="100"
+                inputmode="numeric"
+                pattern="[0-9]*"
+              />
+            </div>
+
+            <div class="form-group my-4">
+              <label
+                for="specificRecipientEmail"
+                data-i18n="labelEmail"
+              ></label>
+              <input
+                type="email"
+                class="form-control"
+                id="specificRecipientEmail"
+                maxlength="255"
+              />
+            </div>
+
+            <div class="mt-4">
+              <button
+                type="submit"
+                class="btn btn-primary mt-3"
+                data-i18n="btnFindSpecific"
+              ></button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="snackbar">
+        <div class="snackbar-body"></div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modaltitle"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-0"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              data-i18n="btnCloseModal"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/cdnjs.cloudflare.com_ajax_libs_popper.js_1.14.3_umd_popper.min.js"></script>
+    <script src="/js/stackpath.bootstrapcdn.com_bootstrap_4.1.1_js_bootstrap.min.js"></script>
+    <script
+      src="/js/cdnjs.cloudflare.com_ajax_libs_moment.js_2.29.1_moment.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="/js/cdnjs.cloudflare.com_ajax_libs_moment-timezone_0.5.34_moment-timezone-with-data-10-year-range.min.js"
+      integrity="sha512-d11VXfxQMn+sZuIgzHITdIuInr4cVRGV/uLiSI643WH/J+p4gPFYSHXRMR2v+w4Rn2TSyzJjsZjc0M7+Qd+UXw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="/js/cdnjs.cloudflare.com_ajax_libs_localforage_1.10.0_localforage.min.js"
+      integrity="sha512-+BMamP0e7wn39JGL8nKAZ3yAQT2dL5oaXWr4ZYlTGkKOaoXM/Yj7c4oy50Ngz5yoUutAG17flueD4F6QpTlPng=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../js/global.js"></script>
+    <script src="../js/sync.js"></script>
+    <script src="logic.js"></script>
+  </body>
+</html>
