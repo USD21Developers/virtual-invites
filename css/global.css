@@ -108,7 +108,8 @@ nav .breadcrumb {
 }
 
 u,
-u a {
+u a,
+.underline {
   text-decoration: underline !important;
 }
 
