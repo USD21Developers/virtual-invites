@@ -15,13 +15,23 @@
     },
     {
       "key": "pagetitle",
-      "original": "Follow Up",
-      "translated": "Follow Up"
+      "original": "Follow Up List",
+      "translated": "Follow Up List"
     },
     {
       "key": "breadcrumbFollowUp",
       "original": "Follow Up",
       "translated": "Follow Up"
+    },
+    {
+      "key": "addToList",
+      "original": "Add to my list",
+      "translated": "Add to my list"
+    },
+    {
+      "key": "invitedOn",
+      "original": "Invited on {INVITED-ON-DATE}",
+      "translated": "Invited on {INVITED-ON-DATE}"
     },
     {
       "key": "recipientsByActivity",
