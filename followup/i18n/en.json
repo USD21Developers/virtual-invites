@@ -25,8 +25,13 @@
     },
     {
       "key": "addToList",
-      "original": "Add to my list",
-      "translated": "Add to my list"
+      "original": "Add to My List",
+      "translated": "Add to My List"
+    },
+    {
+      "key": "paragraph1AddToList",
+      "original": "You can search through your past invites to find invite recipients to add to your follow up list.",
+      "translated": "You can search through your past invites to find invite recipients to add to your follow up list."
     },
     {
       "key": "invitedOn",
@@ -35,13 +40,13 @@
     },
     {
       "key": "recipientsByActivity",
-      "original": "Search Recipients by Activity:",
-      "translated": "Search Recipients by Activity:"
+      "original": "Search by Activity:",
+      "translated": "Search by Activity:"
     },
     {
       "key": "findRecipientsWho",
-      "original": "Find recipients who:",
-      "translated": "Find recipients who:"
+      "original": "Show all recipients who:",
+      "translated": "Show all recipients who:"
     },
     {
       "key": "haveNotViewedInvite",
@@ -55,13 +60,13 @@
     },
     {
       "key": "clickedAddToMyCalendar",
-      "original": "Clicked \"Add to my Calendar\"",
-      "translated": "Clicked \"Add to my Calendar\""
+      "original": "Clicked on \"Add to my Calendar\"",
+      "translated": "Clicked on \"Add to my Calendar\""
     },
     {
       "key": "clickedRSVP",
-      "original": "Clicked \"RSVP\"",
-      "translated": "Clicked \"RSVP\""
+      "original": "Clicked on \"RSVP\"",
+      "translated": "Clicked on \"RSVP\""
     },
     {
       "key": "anyOfTheAbove",

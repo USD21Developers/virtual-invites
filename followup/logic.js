@@ -54,7 +54,26 @@ function populateFollowUpList() {
 }
 
 function attachListeners() {
-  //
+  document
+    .querySelector("#searchHaveViewedInvite")
+    .addEventListener("click", (e) => {
+      if (!e.target.checked) {
+        document
+          .querySelectorAll(".subitemHaveViewedInvite")
+          .forEach((item) => {
+            item.checked = false;
+          });
+      }
+    });
+
+  document.querySelectorAll(".subitemHaveViewedInvite").forEach((item) => {
+    item.addEventListener("click", (e) => {
+      const parentEl = document.querySelector("#searchHaveViewedInvite");
+      if (item.checked) {
+        parentEl.checked = true;
+      }
+    });
+  });
 }
 
 async function init() {
