@@ -30,8 +30,8 @@
     },
     {
       "key": "paragraph1AddToList",
-      "original": "Search through invites you've sent to find recipients to add to your follow up list.",
-      "translated": "Search through invites you've sent to find recipients to add to your follow up list."
+      "original": "Search through invites you've sent to add a recipient to your follow up list:",
+      "translated": "Search through invites you've sent to add a recipient to your follow up list:"
     },
     {
       "key": "invitedOn",
