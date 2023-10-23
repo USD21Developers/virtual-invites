@@ -85,8 +85,8 @@
     },
     {
       "key": "findSpecificRecipient",
-      "original": "Find a Specific Recipient:",
-      "translated": "Find a Specific Recipient:"
+      "original": "Search for a Specific Recipient:",
+      "translated": "Search for a Specific Recipient:"
     },
     {
       "key": "labelName",
