@@ -24,6 +24,11 @@
       "translated": "Follow Up"
     },
     {
+      "key": "emptyFollowUpList",
+      "original": "You don't have anyone on your follow up list.",
+      "translated": "You don't have anyone on your follow up list."
+    },
+    {
       "key": "addToList",
       "original": "Add to My List",
       "translated": "Add to My List"
