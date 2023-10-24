@@ -180,7 +180,7 @@
           <div class="row">
             <div class="col">
               <div
-                class="text-left text-sm-center my-4 large"
+                class="text-left text-sm-center mt-4 large"
                 data-i18n="emptyFollowUpList"
               ></div>
             </div>
@@ -204,7 +204,29 @@
         <div class="col col-lg-6 offset-lg-3">
           <h3 data-i18n="recipientsByActivity" class="text-center"></h3>
           <div class="text-center">
-            <p class="mt-4">
+            <div class="container p-0 my-4">
+              <div class="row mb-3">
+                <div class="col">
+                  <strong data-i18n="betweenDates"></strong>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="text-left">
+                    <label for="fromDate" data-i18n="fromDate"></label>
+                    <input type="date" id="fromDate" class="form-control" />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="text-left">
+                    <label for="toDate" data-i18n="toDate"></label>
+                    <input type="date" id="toDate" class="form-control" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="mt-4 pt-1">
               <strong data-i18n="findRecipientsWho"></strong>
             </p>
             <form id="formShowByActivity" class="mb-2 d-inline-block mx-auto">

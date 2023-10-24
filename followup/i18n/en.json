@@ -107,6 +107,30 @@
       "key": "btnFindSpecific",
       "original": "Search",
       "translated": "Search"
+    },
+    {
+      "key": "fromDate",
+      "original": "From date:",
+      "translated": "From date:"
+    },
+    {
+      "key": "toDate",
+      "original": "To date:",
+      "translated": "To date:"
+    },
+    {
+      "key": "betweenDates",
+      "original": "Between these dates (optional):",
+      "translated": "Between these dates (optional):",
+      "changes": [
+        {
+          "original": "(optional)",
+          "translated": "(optional)",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
     }
   ],
 
