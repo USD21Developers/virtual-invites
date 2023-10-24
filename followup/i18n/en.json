@@ -44,7 +44,7 @@
       "translated": "Invited on {INVITED-ON-DATE}"
     },
     {
-      "key": "recipientsByActivity",
+      "key": "searchByActivity",
       "original": "Search by Activity:",
       "translated": "Search by Activity:"
     },
