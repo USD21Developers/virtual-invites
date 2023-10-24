@@ -53,7 +53,54 @@ function populateFollowUpList() {
   });
 }
 
-function attachListeners() {}
+function onSubmitByActivity(e) {
+  e.preventDefault();
+
+  const fromDateEl = e.target.fromDate;
+  const fromDate = fromDateEl.value;
+  fromDateEl.classList.add("is-invalid");
+
+  const toDateEl = e.target.toDate;
+  const toDate = toDateEl.value;
+
+  const haventViewedInviteEl = e.target.searchHaveNotViewedInvite;
+  const haventViewedInvite = haventViewedInviteEl.checked;
+
+  const haveViewedInviteEl = e.target.searchHaveViewedInvite;
+  const haveViewedInvite = haveViewedInviteEl.checked;
+
+  const clickedRSVPEl = e.target.searchClickedRSVP;
+  const clickedRSVP = clickedRSVPEl.checked;
+
+  const clickedAddToCalendarEl = e.target.searchClickedAddToMyCalendar;
+  const clickedAddToCalendar = clickedAddToCalendarEl.checked;
+
+  // TODO: Process form
+}
+
+function onSubmitSpecificRecipient(e) {
+  e.preventDefault();
+
+  const recipientNameEl = e.target.specificRecipientName;
+  const recipientName = recipientNameEl.value;
+
+  const recipientPhoneEl = e.target.specificRecipientPhone;
+  const recipientPhone = recipientPhoneEl.value;
+
+  const recipientEmailEl = e.target.specificRecipientEmail;
+  const recipientEmail = recipientEmailEl.value;
+
+  // TODO: Process form
+}
+
+function attachListeners() {
+  document
+    .querySelector("#formSearchByActivity")
+    .addEventListener("submit", onSubmitByActivity);
+  document
+    .querySelector("#formSpecificRecipient")
+    .addEventListener("submit", onSubmitSpecificRecipient);
+}
 
 async function init() {
   await populateContent();
