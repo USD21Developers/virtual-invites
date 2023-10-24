@@ -25,8 +25,8 @@
     },
     {
       "key": "emptyFollowUpList",
-      "original": "You don't have anyone on your follow up list.",
-      "translated": "You don't have anyone on your follow up list."
+      "original": "You don't have anyone in your follow up list.",
+      "translated": "You don't have anyone in your follow up list."
     },
     {
       "key": "addToList",
@@ -35,8 +35,8 @@
     },
     {
       "key": "paragraph1AddToList",
-      "original": "Search through invites you've sent to add a recipient to your follow up list:",
-      "translated": "Search through invites you've sent to add a recipient to your follow up list:"
+      "original": "To add a recipient to your follow up list, search through invites you've sent below.",
+      "translated": "To add a recipient to your follow up list, search through invites you've sent below."
     },
     {
       "key": "invitedOn",
@@ -120,17 +120,8 @@
     },
     {
       "key": "betweenDates",
-      "original": "Between these dates (optional):",
-      "translated": "Between these dates (optional):",
-      "changes": [
-        {
-          "original": "(optional)",
-          "translated": "(optional)",
-          "bold": false,
-          "italic": true,
-          "link": ""
-        }
-      ]
+      "original": "Between these dates:",
+      "translated": "Between these dates:"
     }
   ],
 
