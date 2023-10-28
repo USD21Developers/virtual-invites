@@ -97,9 +97,39 @@ function attachListeners() {
   document
     .querySelector("#formSearchByActivity")
     .addEventListener("submit", onSubmitByActivity);
+
   document
     .querySelector("#formSpecificRecipient")
     .addEventListener("submit", onSubmitSpecificRecipient);
+
+  document.querySelector("#searchHaveViewedInvite").addEventListener("click", (e) => {
+    const searchClickedAddToMyCalendarEl = document.querySelector("#searchClickedAddToMyCalendar");
+    const searchClickedRSVPEl = document.querySelector("#searchClickedRSVP");
+    const isChecked = e.target.checked ? true : false;
+
+    if (isChecked) {
+      searchClickedAddToMyCalendarEl.checked = false;
+      searchClickedRSVPEl.checked = false;
+    }
+  });
+
+  document.querySelector("#searchClickedRSVP").addEventListener("click", (e) => {
+    const searchHaveViewedInviteEl = document.querySelector("#searchHaveViewedInvite");
+    const isChecked = e.target.checked ? true : false;
+
+    if (isChecked) {
+      searchHaveViewedInviteEl.checked = false;
+    }
+  });
+
+  document.querySelector("#searchClickedAddToMyCalendar").addEventListener("click", (e) => {
+    const searchHaveViewedInviteEl = document.querySelector("#searchHaveViewedInvite");
+    const isChecked = e.target.checked ? true : false;
+
+    if (isChecked) {
+      searchHaveViewedInviteEl.checked = false;
+    }
+  });
 }
 
 async function init() {
