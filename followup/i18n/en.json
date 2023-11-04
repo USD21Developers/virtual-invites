@@ -30,8 +30,8 @@
     },
     {
       "key": "addToList",
-      "original": "Add to My List",
-      "translated": "Add to My List"
+      "original": "Add to Follow Up List",
+      "translated": "Add to Follow Up List"
     },
     {
       "key": "paragraph1AddToList",
@@ -65,8 +65,8 @@
     },
     {
       "key": "clickedAddToMyCalendar",
-      "original": "Clicked on \"Add to my Calendar\"",
-      "translated": "Clicked on \"Add to my Calendar\""
+      "original": "Clicked on \"Add to my calendar\"",
+      "translated": "Clicked on \"Add to my calendar\""
     },
     {
       "key": "clickedRSVP",
@@ -85,8 +85,8 @@
     },
     {
       "key": "findSpecificRecipient",
-      "original": "Search for a Specific Recipient:",
-      "translated": "Search for a Specific Recipient:"
+      "original": "Search by Contact Info:",
+      "translated": "Search by Contact Info:"
     },
     {
       "key": "labelName",
