@@ -35,8 +35,18 @@
     },
     {
       "key": "paragraph1AddToList",
-      "original": "To add a recipient to your follow up list, search through your invites below.",
-      "translated": "To add a recipient to your follow up list, search through your invites below."
+      "original": "To add an invite recipient to your follow up list, choose an option below.",
+      "translated": "To add an invite recipient to your follow up list, choose an option below."
+    },
+    {
+      "key": "btnFindSpecificRecipient",
+      "original": "Find a Specific Recipient",
+      "translated": "Find a Specific Recipient"
+    },
+    {
+      "key": "btnListByActivity",
+      "original": "List Recipients by their Activity",
+      "translated": "List Recipients by their Activity"
     },
     {
       "key": "invitedOn",
