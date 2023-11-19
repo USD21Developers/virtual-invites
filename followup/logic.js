@@ -114,7 +114,7 @@ async function onSubmitSpecificRecipient(e) {
 
   if (!Array.isArray(invites)) return;
 
-  if (invites.length) {
+  if (!invites.length) {
     noSearchResultsEl.classList.remove("d-none");
     noSearchResultsEl.scrollIntoView({ behavior: "smooth" });
     $("#modalFindSpecificRecipient").modal("handleUpdate");
@@ -157,7 +157,7 @@ async function onSubmitByActivity(e) {
 
   if (!Array.isArray(invites)) return;
 
-  if (invites.length) {
+  if (!invites.length) {
     noSearchResultsEl.classList.remove("d-none");
     noSearchResultsEl.scrollIntoView({ behavior: "smooth" });
     $("#modalListRecipients").modal("handleUpdate");
