@@ -53,8 +53,86 @@ function populateFollowUpList() {
   });
 }
 
-function onSubmitByActivity(e) {
+function resetModals() {
+  const modalSpecificRecipient = document.querySelector(
+    "#modalFindSpecificRecipient"
+  );
+  const modalByActivity = document.querySelector("#modalListRecipients");
+  const formSpecificRecipient = modalSpecificRecipient.querySelector(
+    "#formSpecificRecipient"
+  );
+  const formByActivity = modalByActivity.querySelector("#formSearchByActivity");
+
+  const noResultsSpecificRecipient = modalSpecificRecipient.querySelector(
+    "#noSearchResultsSpecificRecipient"
+  );
+  const foundResultsSpecificRecipient = modalSpecificRecipient.querySelector(
+    "#searchResultsSpecificRecipient"
+  );
+
+  const noResultsByActivity = modalByActivity.querySelector(
+    "#noSearchResultsByActivity"
+  );
+  const foundResultsByActivity = modalByActivity.querySelector(
+    "#searchResultsByActivity"
+  );
+
+  formSpecificRecipient.reset();
+  formByActivity.reset();
+
+  noResultsSpecificRecipient.classList.add("d-none");
+  foundResultsSpecificRecipient.classList.add("d-none");
+  foundResultsSpecificRecipient.innerHTML = "";
+
+  noResultsByActivity.classList.add("d-none");
+  foundResultsByActivity.classList.add("d-none");
+  foundResultsByActivity.innerHTML = "";
+}
+
+async function onSubmitSpecificRecipient(e) {
   e.preventDefault();
+
+  const modalEl = document.querySelector("#modalFindSpecificRecipient");
+
+  const noSearchResultsEl = modalEl.querySelector(
+    "#noSearchResultsSpecificRecipient"
+  );
+  const foundSearchResultsEl = modalEl.querySelector(
+    "#searchResultsSpecificRecipient"
+  );
+
+  const recipientNameEl = e.target.specificRecipientName;
+  const recipientName = recipientNameEl.value;
+
+  const recipientPhoneEl = e.target.specificRecipientPhone;
+  const recipientPhone = recipientPhoneEl.value;
+
+  const recipientEmailEl = e.target.specificRecipientEmail;
+  const recipientEmail = recipientEmailEl.value;
+
+  const invites = await localforage.getItem("invites");
+
+  if (!Array.isArray(invites)) return;
+
+  if (invites.length) {
+    noSearchResultsEl.classList.remove("d-none");
+    noSearchResultsEl.scrollIntoView({ behavior: "smooth" });
+    $("#modalFindSpecificRecipient").modal("handleUpdate");
+  }
+}
+
+async function onSubmitByActivity(e) {
+  e.preventDefault();
+
+  const modalEl = document.querySelector("#modalListRecipients");
+  const noSearchResultsEl = modalEl.querySelector("#noSearchResultsByActivity");
+  const foundSearchResultsEl = modalEl.querySelector(
+    "#searchResultsByActivity"
+  );
+
+  noSearchResultsEl.classList.add("d-none");
+  foundSearchResultsEl.classList.add("d-none");
+  foundSearchResultsEl.innerHTML = "";
 
   const fromDateEl = e.target.fromDate;
   const fromDate = fromDateEl.value;
@@ -75,22 +153,15 @@ function onSubmitByActivity(e) {
   const clickedAddToCalendarEl = e.target.searchClickedAddToMyCalendar;
   const clickedAddToCalendar = clickedAddToCalendarEl.checked;
 
-  // TODO: Process form
-}
+  const invites = await localforage.getItem("invites");
 
-function onSubmitSpecificRecipient(e) {
-  e.preventDefault();
+  if (!Array.isArray(invites)) return;
 
-  const recipientNameEl = e.target.specificRecipientName;
-  const recipientName = recipientNameEl.value;
-
-  const recipientPhoneEl = e.target.specificRecipientPhone;
-  const recipientPhone = recipientPhoneEl.value;
-
-  const recipientEmailEl = e.target.specificRecipientEmail;
-  const recipientEmail = recipientEmailEl.value;
-
-  // TODO: Process form
+  if (invites.length) {
+    noSearchResultsEl.classList.remove("d-none");
+    noSearchResultsEl.scrollIntoView({ behavior: "smooth" });
+    $("#modalListRecipients").modal("handleUpdate");
+  }
 }
 
 function attachListeners() {
@@ -102,33 +173,61 @@ function attachListeners() {
     .querySelector("#formSpecificRecipient")
     .addEventListener("submit", onSubmitSpecificRecipient);
 
-  document.querySelector("#searchHaveViewedInvite").addEventListener("click", (e) => {
-    const searchClickedAddToMyCalendarEl = document.querySelector("#searchClickedAddToMyCalendar");
-    const searchClickedRSVPEl = document.querySelector("#searchClickedRSVP");
-    const isChecked = e.target.checked ? true : false;
+  document
+    .querySelector("#searchHaveViewedInvite")
+    .addEventListener("click", (e) => {
+      const searchClickedAddToMyCalendarEl = document.querySelector(
+        "#searchClickedAddToMyCalendar"
+      );
+      const searchClickedRSVPEl = document.querySelector("#searchClickedRSVP");
+      const isChecked = e.target.checked ? true : false;
 
-    if (isChecked) {
-      searchClickedAddToMyCalendarEl.checked = false;
-      searchClickedRSVPEl.checked = false;
-    }
+      if (isChecked) {
+        searchClickedAddToMyCalendarEl.checked = false;
+        searchClickedRSVPEl.checked = false;
+      }
+    });
+
+  document
+    .querySelector("#searchClickedRSVP")
+    .addEventListener("click", (e) => {
+      const searchHaveViewedInviteEl = document.querySelector(
+        "#searchHaveViewedInvite"
+      );
+      const isChecked = e.target.checked ? true : false;
+
+      if (isChecked) {
+        searchHaveViewedInviteEl.checked = false;
+      }
+    });
+
+  document
+    .querySelector("#searchClickedAddToMyCalendar")
+    .addEventListener("click", (e) => {
+      const searchHaveViewedInviteEl = document.querySelector(
+        "#searchHaveViewedInvite"
+      );
+      const isChecked = e.target.checked ? true : false;
+
+      if (isChecked) {
+        searchHaveViewedInviteEl.checked = false;
+      }
+    });
+
+  $("#modalFindSpecificRecipient").on("show.bs.modal", function (e) {
+    resetModals();
   });
 
-  document.querySelector("#searchClickedRSVP").addEventListener("click", (e) => {
-    const searchHaveViewedInviteEl = document.querySelector("#searchHaveViewedInvite");
-    const isChecked = e.target.checked ? true : false;
-
-    if (isChecked) {
-      searchHaveViewedInviteEl.checked = false;
-    }
+  $("#modalListRecipients").on("show.bs.modal", function (e) {
+    resetModals();
   });
 
-  document.querySelector("#searchClickedAddToMyCalendar").addEventListener("click", (e) => {
-    const searchHaveViewedInviteEl = document.querySelector("#searchHaveViewedInvite");
-    const isChecked = e.target.checked ? true : false;
+  $("#modalFindSpecificRecipient").on("hide.bs.modal", function (e) {
+    resetModals();
+  });
 
-    if (isChecked) {
-      searchHaveViewedInviteEl.checked = false;
-    }
+  $("#modalListRecipients").on("hide.bs.modal", function (e) {
+    resetModals();
   });
 }
 
@@ -137,6 +236,7 @@ async function init() {
   globalHidePageSpinner();
   populateFollowUpList();
   attachListeners();
+  syncInvites();
 }
 
 init();

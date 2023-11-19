@@ -15,8 +15,8 @@
     },
     {
       "key": "pagetitle",
-      "original": "Follow Up List",
-      "translated": "Follow Up List"
+      "original": "Follow Up",
+      "translated": "Follow Up"
     },
     {
       "key": "breadcrumbFollowUp",
@@ -24,39 +24,34 @@
       "translated": "Follow Up"
     },
     {
-      "key": "emptyFollowUpList",
-      "original": "You don't have anyone in your follow up list.",
-      "translated": "You don't have anyone in your follow up list."
-    },
-    {
-      "key": "addToList",
-      "original": "Add to Follow Up List",
-      "translated": "Add to Follow Up List"
-    },
-    {
-      "key": "paragraph1AddToList",
-      "original": "To add an invite recipient to your follow up list, choose an option below.",
-      "translated": "To add an invite recipient to your follow up list, choose an option below."
-    },
-    {
       "key": "btnFindSpecificRecipient",
       "original": "Find a Specific Recipient",
       "translated": "Find a Specific Recipient"
     },
     {
-      "key": "btnListByActivity",
-      "original": "List Recipients by their Activity",
-      "translated": "List Recipients by their Activity"
+      "key": "labelName",
+      "original": "Name:",
+      "translated": "Name:"
+    },
+    {
+      "key": "labelPhone",
+      "original": "Phone:",
+      "translated": "Phone:"
+    },
+    {
+      "key": "labelEmail",
+      "original": "E-mail:",
+      "translated": "E-mail:"
+    },
+    {
+      "key": "btnFindSpecific",
+      "original": "Search",
+      "translated": "Search"
     },
     {
       "key": "invitedOn",
       "original": "Invited on {INVITED-ON-DATE}",
       "translated": "Invited on {INVITED-ON-DATE}"
-    },
-    {
-      "key": "searchByActivity",
-      "original": "Search by Activity:",
-      "translated": "Search by Activity:"
     },
     {
       "key": "findRecipientsWho",
@@ -94,31 +89,6 @@
       "translated": "Search"
     },
     {
-      "key": "findSpecificRecipient",
-      "original": "Search by Contact Info:",
-      "translated": "Search by Contact Info:"
-    },
-    {
-      "key": "labelName",
-      "original": "Name:",
-      "translated": "Name:"
-    },
-    {
-      "key": "labelPhone",
-      "original": "Phone:",
-      "translated": "Phone:"
-    },
-    {
-      "key": "labelEmail",
-      "original": "E-mail:",
-      "translated": "E-mail:"
-    },
-    {
-      "key": "btnFindSpecific",
-      "original": "Search",
-      "translated": "Search"
-    },
-    {
       "key": "fromDate",
       "original": "From date:",
       "translated": "From date:"
@@ -132,6 +102,26 @@
       "key": "betweenDates",
       "original": "Between these dates:",
       "translated": "Between these dates:"
+    },
+    {
+      "key": "btnListByActivity",
+      "original": "List Recipients by their Activity",
+      "translated": "List Recipients by their Activity"
+    },
+    {
+      "key": "followUpList",
+      "original": "Follow Up List",
+      "translated": "Follow Up List"
+    },
+    {
+      "key": "emptyFollowUpList",
+      "original": "You don't have anyone in your follow up list.",
+      "translated": "You don't have anyone in your follow up list."
+    },
+    {
+      "key": "noRecordsFound",
+      "original": "No records found.",
+      "translated": "No records found."
     }
   ],
 
