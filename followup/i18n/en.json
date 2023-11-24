@@ -24,104 +24,14 @@
       "translated": "Follow Up"
     },
     {
-      "key": "btnFindSpecificRecipient",
-      "original": "Find a Specific Recipient",
-      "translated": "Find a Specific Recipient"
-    },
-    {
-      "key": "labelName",
-      "original": "Name:",
-      "translated": "Name:"
-    },
-    {
-      "key": "labelPhone",
-      "original": "Phone:",
-      "translated": "Phone:"
-    },
-    {
-      "key": "labelEmail",
-      "original": "E-mail:",
-      "translated": "E-mail:"
-    },
-    {
-      "key": "btnFindSpecific",
-      "original": "Search",
-      "translated": "Search"
-    },
-    {
-      "key": "invitedOn",
-      "original": "Invited on {INVITED-ON-DATE}",
-      "translated": "Invited on {INVITED-ON-DATE}"
-    },
-    {
-      "key": "findRecipientsWho",
-      "original": "Show all recipients who:",
-      "translated": "Show all recipients who:"
-    },
-    {
-      "key": "haveNotViewedInvite",
-      "original": "Haven't viewed the invite yet",
-      "translated": "Haven't viewed the invite yet"
-    },
-    {
-      "key": "haveViewedInvite",
-      "original": "Have viewed the invite",
-      "translated": "Have viewed the invite"
-    },
-    {
-      "key": "clickedAddToMyCalendar",
-      "original": "Clicked on \"Add to my calendar\"",
-      "translated": "Clicked on \"Add to my calendar\""
-    },
-    {
-      "key": "clickedRSVP",
-      "original": "Clicked on \"RSVP\"",
-      "translated": "Clicked on \"RSVP\""
-    },
-    {
-      "key": "anyOfTheAbove",
-      "original": "Any of the above",
-      "translated": "Any of the above"
-    },
-    {
-      "key": "btnSearchByActivity",
-      "original": "Search",
-      "translated": "Search"
-    },
-    {
-      "key": "fromDate",
-      "original": "From date:",
-      "translated": "From date:"
-    },
-    {
-      "key": "toDate",
-      "original": "To date:",
-      "translated": "To date:"
-    },
-    {
-      "key": "betweenDates",
-      "original": "Between these dates:",
-      "translated": "Between these dates:"
-    },
-    {
-      "key": "btnListByActivity",
-      "original": "List Recipients by their Activity",
-      "translated": "List Recipients by their Activity"
-    },
-    {
       "key": "followUpList",
       "original": "Follow Up List",
       "translated": "Follow Up List"
     },
     {
       "key": "emptyFollowUpList",
-      "original": "You don't have anyone in your follow up list.",
-      "translated": "You don't have anyone in your follow up list."
-    },
-    {
-      "key": "noRecordsFound",
-      "original": "No records found.",
-      "translated": "No records found."
+      "original": "You don't have any invite recipients in your follow up list.",
+      "translated": "You don't have any invite recipients in your follow up list."
     }
   ],
 
