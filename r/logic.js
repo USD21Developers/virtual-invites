@@ -518,7 +518,7 @@ async function populateResendInvite(e) {
   }
 }
 
-function populateAddToFollowupLinks() {
+async function populateAddToFollowupLinks() {
   const addToFollowUpListEl = document.querySelector("#addToFollowUpList");
   const removeFromFollowUpListEl = document.querySelector(
     "#removeFromFollowUpList"
@@ -532,6 +532,27 @@ function populateAddToFollowupLinks() {
   removeFromFollowUpListEl.innerText = getPhrase(
     "removeFromFollowUpList"
   ).replaceAll("{RECIPIENT-NAME}", inviteObj.recipient.name);
+
+  const id = Number(getHash().split("/")[1]);
+  const addToFollowUpListContainerEl = document.querySelector("#addToFollowUpListContainer");
+  const removeFromFollowUpListContainerEl = document.querySelector("#removeFromFollowUpListContainer");
+
+  const invites = await localforage.getItem("invites");
+
+  if (!invites) return;
+  if (!Array.isArray) return;
+
+  const invite = invites.find((item) => item.invitationid === id);
+  
+  if (!invite) return;
+
+  if (invite.followup === 0) {
+    removeFromFollowUpListContainerEl.classList.add("d-none");
+    addToFollowUpListContainerEl.classList.remove("d-none");
+  } else if (invite.followup === 1) {
+    addToFollowUpListContainerEl.classList.add("d-none");
+    removeFromFollowUpListContainerEl.classList.remove("d-none");
+  }
 }
 
 async function populateFollowUpReminder() {
@@ -885,10 +906,92 @@ function onAtcbGoogle(e) {
 
 async function onAddToFollowupList(e) {
   e.preventDefault();
+  const id = Number(getHash().split("/")[1]);
+  const invites = await localforage.getItem("invites");
+
+  if (!invites) return;
+  if (!Array.isArray) return;
+
+  const invitesNew = invites.map((invite) => {
+    if (invite.invitationid === id) {
+      invite.followup = 1;
+      return invite;
+    }
+
+    return invite;
+  });
+
+  await localforage.setItem("invites", invitesNew);
+
+  const addToFollowUpListContainerEl = document.querySelector("#addToFollowUpListContainer");
+  const removeFromFollowUpListContainerEl = document.querySelector("#removeFromFollowUpListContainer");
+
+  addToFollowUpListContainerEl.classList.add("d-none");
+  removeFromFollowUpListContainerEl.classList.remove("d-none");
+
+  const endpoint = `${getApiHost()}/followup`;
+  const accessToken = await getAccessToken();
+
+  if (!accessToken) return;
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "POST",
+    body: JSON.stringify({
+      invitationid: id,
+      followup: 1
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`
+    }),
+    keepalive: true
+  });
 }
 
 async function onRemoveFromFollowupList(e) {
   e.preventDefault();
+  const id = Number(getHash().split("/")[1]);
+  const invites = await localforage.getItem("invites");
+
+  if (!invites) return;
+  if (!Array.isArray) return;
+
+  const invitesNew = invites.map((invite) => {
+    if (invite.invitationid === id) {
+      invite.followup = 0;
+      return invite;
+    }
+
+    return invite;
+  });
+
+  await localforage.setItem("invites", invitesNew);
+
+  const addToFollowUpListContainerEl = document.querySelector("#addToFollowUpListContainer");
+  const removeFromFollowUpListContainerEl = document.querySelector("#removeFromFollowUpListContainer");
+
+  removeFromFollowUpListContainerEl.classList.add("d-none");
+  addToFollowUpListContainerEl.classList.remove("d-none");
+
+  const endpoint = `${getApiHost()}/followup`;
+  const accessToken = await getAccessToken();
+
+  if (!accessToken) return;
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "POST",
+    body: JSON.stringify({
+      invitationid: id,
+      followup: 0
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`
+    }),
+    keepalive: true
+  });
 }
 
 function onAtcbIcal(e) {
