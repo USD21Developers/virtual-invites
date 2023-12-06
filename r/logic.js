@@ -949,7 +949,7 @@ async function onAddToFollowupList(e) {
   removeFromFollowUpListContainerEl.classList.remove("d-none");
 
   // Sync
-  syncInvites();
+  syncUpdatedInvites();
 }
 
 async function onRemoveFromFollowupList(e) {
@@ -993,7 +993,7 @@ async function onRemoveFromFollowupList(e) {
   addToFollowUpListContainerEl.classList.remove("d-none");
 
   // Sync
-  syncInvites();
+  syncUpdatedInvites();
 }
 
 function onAtcbIcal(e) {

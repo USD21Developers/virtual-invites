@@ -212,6 +212,49 @@ function syncFollowing() {
   });
 }
 
+async function syncUpdatedInvites() {
+  const unsyncedFollowups =
+    (await localforage.getItem("unsyncedFollowups")) || [];
+  const isOnline = navigator.onLine;
+  const controller = new AbortController();
+  const timeout = 60000;
+  const endpoint = `${getApiHost()}/sync-updated-invites`;
+
+  if (!isOnline) {
+    return reject(new Error("Updated invites sync failed:  user is offline"));
+  }
+
+  const accessToken = await getAccessToken();
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "POST",
+    body: JSON.stringify({
+      unsyncedFollowups: unsyncedFollowups,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+    keepalive: true,
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      // Remove unsynced updates because sync succeeded
+      localforage.removeItem("unsyncedFollowups");
+
+      resolve();
+    })
+    .catch((err) => {
+      reject(new Error(err));
+    });
+
+  setTimeout(() => {
+    controller.abort();
+    reject(new Error("Updated invites sync timed out"));
+  }, timeout);
+}
+
 function syncInvites() {
   return new Promise(async (resolve, reject) => {
     const isOnline = navigator.onLine;
@@ -219,8 +262,7 @@ function syncInvites() {
     const timeout = 60000;
     const unsyncedInvites =
       (await localforage.getItem("unsyncedInvites")) || [];
-    const unsyncedFollowups =
-      (await localforage.getItem("unsyncedFollowups")) || [];
+
     const endpoint = `${getApiHost()}/sync-invites`;
 
     if (!isOnline) {
@@ -234,7 +276,6 @@ function syncInvites() {
       method: "POST",
       body: JSON.stringify({
         unsyncedInvites: unsyncedInvites,
-        unsyncedFollowups: unsyncedFollowups,
       }),
       headers: new Headers({
         "Content-Type": "application/json",
@@ -299,9 +340,6 @@ function syncInvites() {
 
         // Remove unsyncedInvites because sync succeeded
         localforage.removeItem("unsyncedInvites");
-
-        // Remove unsyncedFollowups because sync succeeded
-        localforage.removeItem("unsyncedFollowups");
 
         // Overwrite invites with response from the server
         Promise.all(invites).then((invites) => {
