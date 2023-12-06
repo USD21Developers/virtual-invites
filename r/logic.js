@@ -534,8 +534,12 @@ async function populateAddToFollowupLinks() {
   ).replaceAll("{RECIPIENT-NAME}", inviteObj.recipient.name);
 
   const id = Number(getHash().split("/")[1]);
-  const addToFollowUpListContainerEl = document.querySelector("#addToFollowUpListContainer");
-  const removeFromFollowUpListContainerEl = document.querySelector("#removeFromFollowUpListContainer");
+  const addToFollowUpListContainerEl = document.querySelector(
+    "#addToFollowUpListContainer"
+  );
+  const removeFromFollowUpListContainerEl = document.querySelector(
+    "#removeFromFollowUpListContainer"
+  );
 
   const invites = await localforage.getItem("invites");
 
@@ -543,7 +547,7 @@ async function populateAddToFollowupLinks() {
   if (!Array.isArray) return;
 
   const invite = invites.find((item) => item.invitationid === id);
-  
+
   if (!invite) return;
 
   if (invite.followup === 0) {
@@ -912,6 +916,7 @@ async function onAddToFollowupList(e) {
   if (!invites) return;
   if (!Array.isArray) return;
 
+  // Update "invites" in IndexedDB
   const invitesNew = invites.map((invite) => {
     if (invite.invitationid === id) {
       invite.followup = 1;
@@ -920,33 +925,31 @@ async function onAddToFollowupList(e) {
 
     return invite;
   });
-
   await localforage.setItem("invites", invitesNew);
 
-  const addToFollowUpListContainerEl = document.querySelector("#addToFollowUpListContainer");
-  const removeFromFollowUpListContainerEl = document.querySelector("#removeFromFollowUpListContainer");
+  // Update "unsyncedFollowups" in IndexedDB
+  let unsyncedFollowups =
+    (await localforage.getItem("unsyncedFollowups")) || [];
+  if (unsyncedFollowups.length) {
+    unsyncedFollowups = unsyncedFollowups.filter(
+      (item) => item.invitationid !== id
+    );
+  }
+  unsyncedFollowups.push({ invitationid: id, followup: 1 });
+  await localforage.setItem("unsyncedFollowups", unsyncedFollowups);
 
+  // Update UI
+  const addToFollowUpListContainerEl = document.querySelector(
+    "#addToFollowUpListContainer"
+  );
+  const removeFromFollowUpListContainerEl = document.querySelector(
+    "#removeFromFollowUpListContainer"
+  );
   addToFollowUpListContainerEl.classList.add("d-none");
   removeFromFollowUpListContainerEl.classList.remove("d-none");
 
-  const endpoint = `${getApiHost()}/followup`;
-  const accessToken = await getAccessToken();
-
-  if (!accessToken) return;
-
-  fetch(endpoint, {
-    mode: "cors",
-    method: "POST",
-    body: JSON.stringify({
-      invitationid: id,
-      followup: 1
-    }),
-    headers: new Headers({
-      "Content-Type": "application/json",
-      authorization: `Bearer ${accessToken}`
-    }),
-    keepalive: true
-  });
+  // Sync
+  syncInvites();
 }
 
 async function onRemoveFromFollowupList(e) {
@@ -957,6 +960,7 @@ async function onRemoveFromFollowupList(e) {
   if (!invites) return;
   if (!Array.isArray) return;
 
+  // Update "invites" in IndexedDB
   const invitesNew = invites.map((invite) => {
     if (invite.invitationid === id) {
       invite.followup = 0;
@@ -965,33 +969,31 @@ async function onRemoveFromFollowupList(e) {
 
     return invite;
   });
-
   await localforage.setItem("invites", invitesNew);
 
-  const addToFollowUpListContainerEl = document.querySelector("#addToFollowUpListContainer");
-  const removeFromFollowUpListContainerEl = document.querySelector("#removeFromFollowUpListContainer");
+  // Update "unsyncedFollowups" in IndexedDB
+  let unsyncedFollowups =
+    (await localforage.getItem("unsyncedFollowups")) || [];
+  if (unsyncedFollowups.length) {
+    unsyncedFollowups = unsyncedFollowups.filter(
+      (item) => item.invitationid !== id
+    );
+  }
+  unsyncedFollowups.push({ invitationid: id, followup: 1 });
+  await localforage.setItem("unsyncedFollowups", unsyncedFollowups);
 
+  // Update UI
+  const addToFollowUpListContainerEl = document.querySelector(
+    "#addToFollowUpListContainer"
+  );
+  const removeFromFollowUpListContainerEl = document.querySelector(
+    "#removeFromFollowUpListContainer"
+  );
   removeFromFollowUpListContainerEl.classList.add("d-none");
   addToFollowUpListContainerEl.classList.remove("d-none");
 
-  const endpoint = `${getApiHost()}/followup`;
-  const accessToken = await getAccessToken();
-
-  if (!accessToken) return;
-
-  fetch(endpoint, {
-    mode: "cors",
-    method: "POST",
-    body: JSON.stringify({
-      invitationid: id,
-      followup: 0
-    }),
-    headers: new Headers({
-      "Content-Type": "application/json",
-      authorization: `Bearer ${accessToken}`
-    }),
-    keepalive: true
-  });
+  // Sync
+  syncInvites();
 }
 
 function onAtcbIcal(e) {

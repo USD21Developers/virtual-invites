@@ -219,6 +219,8 @@ function syncInvites() {
     const timeout = 60000;
     const unsyncedInvites =
       (await localforage.getItem("unsyncedInvites")) || [];
+    const unsyncedFollowups =
+      (await localforage.getItem("unsyncedFollowups")) || [];
     const endpoint = `${getApiHost()}/sync-invites`;
 
     if (!isOnline) {
@@ -232,6 +234,7 @@ function syncInvites() {
       method: "POST",
       body: JSON.stringify({
         unsyncedInvites: unsyncedInvites,
+        unsyncedFollowups: unsyncedFollowups,
       }),
       headers: new Headers({
         "Content-Type": "application/json",
@@ -296,6 +299,9 @@ function syncInvites() {
 
         // Remove unsyncedInvites because sync succeeded
         localforage.removeItem("unsyncedInvites");
+
+        // Remove unsyncedFollowups because sync succeeded
+        localforage.removeItem("unsyncedFollowups");
 
         // Overwrite invites with response from the server
         Promise.all(invites).then((invites) => {
