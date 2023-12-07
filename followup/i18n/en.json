@@ -30,8 +30,13 @@
     },
     {
       "key": "emptyFollowUpList",
-      "original": "You don't have any invite recipients in your follow up list.",
-      "translated": "You don't have any invite recipients in your follow up list."
+      "original": "There are no recipients in your follow up list.",
+      "translated": "There are no recipients in your follow up list."
+    },
+    {
+      "key": "invitedOn",
+      "original": "Invited on {INVITED-ON-DATE}",
+      "translated": "Invited on {INVITED-ON-DATE}"
     }
   ],
 
