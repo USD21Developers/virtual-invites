@@ -222,7 +222,7 @@ function syncUpdatedInvites() {
     const endpoint = `${getApiHost()}/sync-updated-invites`;
 
     if (!isOnline) {
-      return reject(new Error("Updated invites sync failed:  user is offline"));
+      return reject(new Error("Updated invites sync failed: user is offline"));
     }
 
     const accessToken = await getAccessToken();
