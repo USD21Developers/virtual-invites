@@ -46,7 +46,15 @@ async function populateFollowUpList() {
   followUpListEl.classList.remove("d-none");
 }
 
-function attachListeners() {}
+function onPageShow(event) {
+  if (event.persisted) {
+    window.location.reload();
+  }
+}
+
+function attachListeners() {
+  window.addEventListener("pageshow", onPageShow);
+}
 
 async function init() {
   await populateContent();
