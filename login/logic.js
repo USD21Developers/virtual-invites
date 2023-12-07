@@ -69,12 +69,14 @@ function onSubmit(e) {
           const churchesPromise = syncChurches();
           const eventsPromise = syncEvents();
           const invitesPromise = syncInvites();
+          const updatedInvitesPromise = syncUpdatedInvites();
           const notesPromise = syncAllNotes();
           await Promise.all([
             countriesPromise,
             churchesPromise,
             eventsPromise,
             invitesPromise,
+            updatedInvitesPromise,
             notesPromise,
           ]);
 
