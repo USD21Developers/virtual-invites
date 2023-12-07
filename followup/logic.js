@@ -46,14 +46,14 @@ async function populateFollowUpList() {
   followUpListEl.classList.remove("d-none");
 }
 
-function attachListeners() {
-}
+function attachListeners() {}
 
 async function init() {
   await populateContent();
   globalHidePageSpinner();
   populateFollowUpList();
   attachListeners();
+  syncUpdatedInvites();
   syncInvites();
 }
 
