@@ -979,7 +979,7 @@ async function onRemoveFromFollowupList(e) {
       (item) => item.invitationid !== id
     );
   }
-  unsyncedFollowups.push({ invitationid: id, followup: 1 });
+  unsyncedFollowups.push({ invitationid: id, followup: 0 });
   await localforage.setItem("unsyncedFollowups", unsyncedFollowups);
 
   // Update UI
