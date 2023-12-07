@@ -9,6 +9,7 @@ function syncChurches() {
   const isOnline = navigator.onLine;
   const controller = new AbortController();
   const timeout = 60000;
+  let syncSuccessful = false;
 
   return new Promise((resolve, reject) => {
     if (!isOnline)
@@ -38,6 +39,8 @@ function syncChurches() {
           localStorage.setItem("churches", churchesJSON);
         }
 
+        syncSuccessful = true;
+
         resolve({
           churchesHaveChanged: churchesHaveChanged,
           churches: churches,
@@ -49,8 +52,10 @@ function syncChurches() {
       });
 
     setTimeout(() => {
-      controller.abort();
-      reject(new Error("Churches sync timed out"));
+      if (!syncSuccessful) {
+        controller.abort();
+        reject(new Error("Churches sync timed out"));
+      }
     }, timeout);
   });
 }
@@ -61,6 +66,7 @@ async function syncEvents() {
   const isOnline = navigator.onLine;
   const controller = new AbortController();
   const timeout = 60000;
+  let syncSuccessful = false;
 
   return new Promise((resolve, reject) => {
     if (!isOnline)
@@ -146,6 +152,8 @@ async function syncEvents() {
           eventsHaveChanged = true;
         }
 
+        syncSuccessful = true;
+
         resolve({
           eventsHaveChanged: eventsHaveChanged,
           events: events,
@@ -160,8 +168,10 @@ async function syncEvents() {
       });
 
     setTimeout(() => {
-      controller.abort();
-      reject(new Error("Events sync timed out"));
+      if (!syncSuccessful) {
+        controller.abort();
+        reject(new Error("Events sync timed out"));
+      }
     }, timeout);
   });
 }
@@ -174,6 +184,7 @@ function syncFollowing() {
     const userid = getUserId();
     const accessToken = await getAccessToken();
     const endpoint = `${getApiHost()}/following/${userid}`;
+    let syncSuccessful = false;
 
     if (!isOnline)
       return reject(new Error("Following sync failed because user is offline"));
@@ -194,6 +205,7 @@ function syncFollowing() {
 
         if (msg === "retrieved list of users following") {
           await localforage.setItem("following", following);
+          syncSuccessful = true;
           return resolve(following);
         }
 
@@ -206,8 +218,10 @@ function syncFollowing() {
       });
 
     setTimeout(() => {
-      controller.abort();
-      reject(new Error("Following sync timed out"));
+      if (!syncSuccessful) {
+        controller.abort();
+        reject(new Error("Following sync timed out"));
+      }
     }, timeout);
   });
 }
@@ -226,6 +240,7 @@ function syncUpdatedInvites() {
     }
 
     const accessToken = await getAccessToken();
+    let syncSuccessful = false;
 
     fetch(endpoint, {
       mode: "cors",
@@ -243,6 +258,7 @@ function syncUpdatedInvites() {
       .then((data) => {
         // Remove unsynced updates because sync succeeded
         localforage.removeItem("unsyncedFollowups");
+        syncSuccessful = true;
 
         resolve();
       })
@@ -251,8 +267,10 @@ function syncUpdatedInvites() {
       });
 
     setTimeout(() => {
-      controller.abort();
-      reject(new Error("Updated invites sync timed out"));
+      if (!syncSuccessful) {
+        controller.abort();
+        reject(new Error("Updated invites sync timed out"));
+      }
     }, timeout);
   });
 }
@@ -272,6 +290,7 @@ function syncInvites() {
     }
 
     const accessToken = await getAccessToken();
+    let syncSuccessful = false;
 
     fetch(endpoint, {
       mode: "cors",
@@ -354,6 +373,7 @@ function syncInvites() {
               );
             })
             .then(() => {
+              syncSuccessful = true;
               resolve(invites);
             });
         });
@@ -363,8 +383,10 @@ function syncInvites() {
       });
 
     setTimeout(() => {
-      controller.abort();
-      reject(new Error("Invites sync timed out"));
+      if (!syncSuccessful) {
+        controller.abort();
+        reject(new Error("Invites sync timed out"));
+      }
     }, timeout);
   });
 }
@@ -374,6 +396,7 @@ function syncNotesForInvite(invitationid, unsyncedNotes = []) {
     const endpoint = `${getApiHost()}/notes-for-invite`;
     const controller = new AbortController();
     const accessToken = await getAccessToken();
+    let syncSuccessful = false;
 
     fetch(endpoint, {
       mode: "cors",
@@ -444,6 +467,7 @@ function syncNotesForInvite(invitationid, unsyncedNotes = []) {
 
         // Wait for notes to be decrypted then return them, just for this invite
         Promise.all(notes).then((notesForThisInvite) => {
+          syncSuccessful = true;
           return resolve(notesForThisInvite);
         });
       })
@@ -452,8 +476,10 @@ function syncNotesForInvite(invitationid, unsyncedNotes = []) {
       });
 
     setTimeout(() => {
-      controller.abort();
-      reject(new Error("Sync of notes for an invite timed out"));
+      if (!syncSuccessful) {
+        controller.abort();
+        reject(new Error("Sync of notes for an invite timed out"));
+      }
     }, 30000);
   });
 }
@@ -464,6 +490,7 @@ function syncAllNotes() {
     const controller = new AbortController();
     const unsyncedNotes = (await localforage.getItem("unsyncedNotes")) || [];
     const accessToken = await getAccessToken();
+    let syncSuccessful = false;
 
     fetch(endpoint, {
       mode: "cors",
@@ -531,14 +558,17 @@ function syncAllNotes() {
         // Overwrite notes with response from the server
         Promise.all(notes).then((notes) => {
           localforage.setItem("notes", notes).then(() => {
+            syncSuccessful = true;
             return resolve(notes);
           });
         });
       });
 
     setTimeout(() => {
-      controller.abort();
-      reject(new Error("Sync of all notes timed out"));
+      if (!syncSuccessful) {
+        controller.abort();
+        reject(new Error("Sync of all notes timed out"));
+      }
     }, 30000);
   });
 }
