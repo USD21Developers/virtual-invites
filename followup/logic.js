@@ -1,3 +1,8 @@
+function styleLinkToRecipients() {
+  const el = document.querySelector("[data-i18n='toAddNames'] > a");
+  el.classList.add("text-primary", "underline");
+}
+
 async function populateFollowUpList() {
   const followUpListEl = document.querySelector("#followUpList");
   const msgEmptyListEl = document.querySelector("#msgEmptyList");
@@ -63,6 +68,7 @@ async function init() {
   await populateContent();
   globalHidePageSpinner();
   populateFollowUpList();
+  styleLinkToRecipients();
   attachListeners();
   syncUpdatedInvites();
   syncInvites();

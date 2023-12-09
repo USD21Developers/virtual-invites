@@ -37,6 +37,20 @@
       "key": "invitedOn",
       "original": "Invited on {INVITED-ON-DATE}",
       "translated": "Invited on {INVITED-ON-DATE}"
+    },
+    {
+      "key": "toAddNames",
+      "original": "To add names to your list, see Recipients.",
+      "translated": "To add names to your list, see Recipients.",
+      "changes": [
+        {
+          "original": "Recipients",
+          "translated": "Recipients",
+          "bold": false,
+          "italic": false,
+          "link": "../recipients/"
+        }
+      ]
     }
   ],
 
