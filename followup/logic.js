@@ -47,7 +47,10 @@ async function populateFollowUpList() {
 }
 
 function onPageShow(event) {
-  if (event.persisted) {
+  if (
+    event.persisted ||
+    performance.getEntriesByType("navigation")[0].type === "back_forward"
+  ) {
     window.location.reload();
   }
 }

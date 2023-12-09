@@ -2024,7 +2024,10 @@ function attachListeners() {
   $("#addressLine1").on("input change", onAddressChanged);
 
   window.addEventListener("pageshow", (event) => {
-    if (event.persisted) {
+    if (
+      event.persisted ||
+      performance.getEntriesByType("navigation")[0].type === "back_forward"
+    ) {
       hideSpinner();
     }
   });
