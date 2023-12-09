@@ -34,6 +34,11 @@
       "translated": "Follow Up"
     },
     {
+      "key": "menuRecipients",
+      "original": "Recipients",
+      "translated": "Recipients"
+    },
+    {
       "key": "menuEventsImSharing",
       "original": "Events",
       "translated": "Events"
