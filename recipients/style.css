@@ -1,15 +1,16 @@
 #recipients td a {
-  color: blue;
+  color: var(--primary);
   text-decoration: underline;
 }
 
 #recipients th {
-  font-size: 1.2rem !important;
+  color: var(--dark);
+  font-size: 1.1rem !important;
   text-decoration: underline;
   vertical-align: middle;
 }
 #recipients td {
-  font-size: 1.2rem !important;
+  font-size: 1.1rem !important;
 }
 
 #recipients td small {
