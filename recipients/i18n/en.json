@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "description": "Recipients",
+    "path": "/recipients/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Recipients",
+      "translated": "Recipients"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbRecipients",
+      "original": "Recipients",
+      "translated": "Recipients"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

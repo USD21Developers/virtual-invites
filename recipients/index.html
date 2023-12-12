@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <script id="enforceaccess" src="../js/enforceaccess.js"></script>
+    <meta charset="utf-8" />
+    <meta
+      content="initial-scale=1, shrink-to-fit=no, width=device-width"
+      name="viewport"
+    />
+    <title data-i18n="pagetitle"></title>
+    <link rel="stylesheet" href="../css/daemonite-material.css" />
+    <link
+      href="../js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"
+    />
+    <link href="../css/global.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar bg-white sticky-top">
+      <a class="navbar-brand" href="/">
+        <img src="/_assets/img/logo.svg" width="133" height="50" alt="logo" />
+      </a>
+      <div class="align-items-end">
+        <a href="/profile/" class="d-none">
+          <img class="profileImageNav" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="navdrawer"
+          data-target="#navdrawerDefault"
+          aria-controls="navdrawerDefault"
+          aria-expanded="false"
+          aria-label=""
+          data-i18n-global-aria-label="toggleNavigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+    <div
+      aria-hidden="true"
+      class="navdrawer navdrawer-right navbar-collapse collapse"
+      id="navdrawerDefault"
+      tabindex="-1"
+    >
+      <div class="navdrawer-content">
+        <div class="navdrawer-header">
+          <div class="row">
+            <div class="col-9 d-flex justify-content-start">
+              <a
+                class="navbar-brand px-0"
+                href="../"
+                data-i18n-global="menuHeadline"
+              ></a>
+            </div>
+            <div class="col-3 d-flex justify-content-end align-items-center">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="navdrawer"
+                data-target="#navdrawerDefault"
+                aria-controls="navdrawerDefault"
+                aria-expanded="false"
+                aria-label=""
+                data-i18n-global-aria-label="toggleNavigation"
+              >
+                <span class="material-icons material-icons-outlined">
+                  close
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <nav class="navdrawer-nav">
+          <a class="nav-item nav-link" href="../">
+            <span class="material-icons mr-3 material-icons-outlined">
+              home
+            </span>
+            <span data-i18n-global="menuHome"></span>
+          </a>
+          <a class="nav-item nav-link" href="../send/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              send
+            </span>
+            <span data-i18n-global="menuSendInvite"></span>
+          </a>
+          <a class="nav-item nav-link" href="../followup/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              list_alt
+            </span>
+            <span data-i18n-global="menuFollowUp"></span>
+          </a>
+          <a class="nav-item nav-link active" href="../recipients/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              people
+            </span>
+            <span data-i18n-global="menuRecipients"></span>
+          </a>
+          <a class="nav-item nav-link" href="../events/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              event
+            </span>
+            <span data-i18n-global="menuEventsImSharing"></span>
+          </a>
+          <a class="nav-item nav-link" href="../maps/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              place
+            </span>
+            <span data-i18n-global="menuMaps"></span>
+          </a>
+          <div class="navdrawer-divider"></div>
+          <a class="nav-item nav-link" href="../settings/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              settings
+            </span>
+            <span data-i18n-global="menuSettings"></span>
+          </a>
+          <a class="nav-item nav-link" href="../profile/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              account_circle
+            </span>
+            <span data-i18n-global="menuMyProfile"></span>
+          </a>
+          <a class="nav-item nav-link" href="../support/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              contact_support
+            </span>
+            <span data-i18n-global="menuSupport"></span>
+          </a>
+          <a class="nav-item nav-link" href="../logout/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              logout
+            </span>
+            <span data-i18n-global="menuLogOut"></span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <nav aria-label="breadcrumb" id="breadcrumbs" class="d-none">
+      <ol class="breadcrumb bg-white my-0">
+        <li class="breadcrumb-item">
+          <a href="../" data-i18n="breadcrumbHome"></a>
+        </li>
+        <li class="breadcrumb-item active">
+          <span data-i18n="breadcrumbRecipients"></span>
+        </li>
+      </ol>
+    </nav>
+
+    <div class="container" id="pageSpinner">
+      <div class="row">
+        <div class="col col-sm-10 offset-sm-1 mt-3 mb-4 text-center">
+          <img
+            src="/_assets/img/spinner.svg"
+            width="200"
+            height="200"
+            style="max-width: 100%"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-none mainContent pb-5" id="pageContent">
+      <div class="row mt-2 mb-2 pb-2">
+        <div class="col col-sm-10 offset-sm-1">
+          <h2 data-i18n="pagetitle" class="text-center text-uppercase m-0"></h2>
+        </div>
+      </div>
+
+      <div class="row mt-4 mb-4">
+        <div class="col col-sm-10 offset-sm-1">
+          <table id="recipients" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Last Interaction</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-search="Jason">
+                  <a href="/r/#/5">Jason</a>
+                </td>
+                <td
+                  data-order="1700682960000"
+                  data-search="invited to bible talk"
+                >
+                  11/22/23, 12:56 PM
+                  <div>
+                    <small class="text-muted">Invited to Bible Talk</small>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td data-search="Jeremy">
+                  <a href="/r/#/52">Jeremy</a>
+                </td>
+                <td data-order="1700070960000" data-search="invited to church">
+                  11/15/23, 10:56 AM
+                  <div><small class="text-muted">Invited to Church</small></div>
+                </td>
+              </tr>
+              <tr>
+                <td data-search="Jake">
+                  <a href="/r/#/37">Jake</a>
+                </td>
+                <td
+                  data-order="1698804083000"
+                  data-search="viewed invite to church"
+                >
+                  10/31/23, 7:01 PM
+                  <div>
+                    <small class="text-muted">Viewed invite to Church</small>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td data-search="Craig">
+                  <a href="/r/#/48">Craig</a>
+                </td>
+                <td data-order="1700683500000" data-search="clicked rsvp">
+                  11/22/23, 1:05 PM
+                  <div>
+                    <small class="text-muted">Clicked RSVP for Church</small>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="snackbar">
+        <div class="snackbar-body"></div>
+      </div>
+    </div>
+
+    <script src="/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/cdnjs.cloudflare.com_ajax_libs_popper.js_1.14.3_umd_popper.min.js"></script>
+    <script src="/js/stackpath.bootstrapcdn.com_bootstrap_4.1.1_js_bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script
+      src="/js/cdnjs.cloudflare.com_ajax_libs_moment.js_2.29.1_moment.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="/js/cdnjs.cloudflare.com_ajax_libs_moment-timezone_0.5.34_moment-timezone-with-data-10-year-range.min.js"
+      integrity="sha512-d11VXfxQMn+sZuIgzHITdIuInr4cVRGV/uLiSI643WH/J+p4gPFYSHXRMR2v+w4Rn2TSyzJjsZjc0M7+Qd+UXw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="/js/cdnjs.cloudflare.com_ajax_libs_localforage_1.10.0_localforage.min.js"
+      integrity="sha512-+BMamP0e7wn39JGL8nKAZ3yAQT2dL5oaXWr4ZYlTGkKOaoXM/Yj7c4oy50Ngz5yoUutAG17flueD4F6QpTlPng=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../js/global.js"></script>
+    <script src="../js/sync.js"></script>
+    <script src="logic.js"></script>
+  </body>
+</html>
