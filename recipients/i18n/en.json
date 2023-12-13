@@ -22,6 +22,36 @@
       "key": "breadcrumbRecipients",
       "original": "Recipients",
       "translated": "Recipients"
+    },
+    {
+      "key": "colHeadName",
+      "original": "Name",
+      "translated": "Name"
+    },
+    {
+      "key": "colHeadLastInteraction",
+      "original": "Last Interaction",
+      "translated": "Last Interaction"
+    },
+    {
+      "key": "clickedRsvp",
+      "original": "Clicked RSVP for {EVENT}",
+      "translated": "Clicked RSVP for {EVENT}"
+    },
+    {
+      "key": "clickedAddToCalendar",
+      "original": "Clicked Add to Calendar for {EVENT}",
+      "translated": "Clicked Add to Calendar for {EVENT}"
+    },
+    {
+      "key": "viewedInvite",
+      "original": "Viewed invite to {EVENT}",
+      "translated": "Viewed invite to {EVENT}"
+    },
+    {
+      "key": "wasInvited",
+      "original": "Was invited to {EVENT}",
+      "translated": "Was invited to {EVENT}"
     }
   ],
 

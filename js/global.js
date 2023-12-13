@@ -32,6 +32,7 @@ var hidden, visibilityChange;
   getApiServicesHost
   getCountryName
   getCountries
+  getDatatablesTranslationURL
   getFollowedUser
   getHash
   getLang
@@ -592,6 +593,120 @@ function getCountries(lang) {
         reject(err);
       });
   });
+}
+
+function getDatatablesTranslationURL() {
+  const langs = [
+    ["af", "Afrikaans", "af.json"],
+    ["am", "Amharic", "am.json"],
+    ["ar", "Arabic", "ar.json"],
+    ["az", "Azerbaijani", "az-AZ.json"],
+    ["be", "Belarusian", "be.json"],
+    ["bg", "Bulgarian", "bg.json"],
+    ["bn", "Bengali", "bn.json"],
+    ["bs", "Bosnian", "bs-BA.json"],
+    ["ca", "Catalan, Valencian", "ca.json"],
+    ["co", "Corsican", "co.json"],
+    ["cs", "Czech", "cs.json"],
+    ["cy", "Welsh", "cy.json"],
+    ["da", "Danish", "da.json"],
+    ["de", "German", "de-DE.json"],
+    ["el", "Greek", "el.json"],
+    ["en", "English", "en-GB.json"],
+    ["eo", "Esperanto", "eo.json"],
+    ["es", "Spanish", "es-ES.json"],
+    ["es-AR", "Spanish (Argentina)", "es-AR.json"],
+    ["es-CL", "Spanish (Chile)", "es-CL.json"],
+    ["es-CO", "Spanish (Colombia)", "es-CO.json"],
+    ["es-MX", "Spanish (Mexico)", "es-MX.json"],
+    ["et", "Estonian", "et.json"],
+    ["eu", "Basque", "eu.json"],
+    ["fa", "Farsi", "fa.json"],
+    ["fi", "Finnish", "fi.json"],
+    ["tl", "Tagalog", "fil.json"],
+    ["fr", "French", "fr-FR.json"],
+    ["ga", "Irish", "ga.json"],
+    ["lg", "Ganda", "Ganda.json"],
+    ["gl", "Galician", "gl.json"],
+    ["gu", "Gujarati", "gu.json"],
+    ["he", "Hebrew", "he.json"],
+    ["hi", "Hindi", "hi.json"],
+    ["hr", "Croatian", "hr.json"],
+    ["hu", "Hungarian", "hu.json"],
+    ["hy", "Armenian", "hy.json"],
+    ["id", "Indonesian", "id.json"],
+    ["id-ALT", "Indonesian", "id-ALT.json"],
+    ["is", "Icelandic", "is.json"],
+    ["it", "Italian", "it-IT.json"],
+    ["ja", "Japanese", "ja.json"],
+    ["jv", "Javanese", "jv.json"],
+    ["ka", "Georgian", "ka.json"],
+    ["kk", "Kazakh", "kk.json"],
+    ["km", "Central Khmer", "km.json"],
+    ["kn", "Kannada", "kn.json"],
+    ["ko", "Korean", "ko.json"],
+    ["ku", "Kurdish", "ku.json"],
+    ["ky", "Kirghiz", "ky.json"],
+    ["lo", "Lao", "lo.json"],
+    ["lt", "Lithuanian", "lt.json"],
+    ["lv", "Latvian", "lv.json"],
+    ["mk", "Macedonian", "mk.json"],
+    ["mn", "Mongolian", "mn.json"],
+    ["mr", "Marathi", "mr.json"],
+    ["ms", "Malay", "ms.json"],
+    ["ne", "Nepali", "ne.json"],
+    ["nl", "Dutch", "nl-NL.json"],
+    ["no", "Norwegian", "no-NO.json"],
+    ["no-NB", "Norwegian Bokmål", "no-NB.json"],
+    ["no-NO", "Norwegian", "no-NO.json"],
+    ["pa", "Punjabi", "pa.json"],
+    ["pl", "Polish", "pl.json"],
+    ["ps", "Pashto", "ps.json"],
+    ["pt", "Portuguese", "pt-PT.json"],
+    ["pt-BR", "Portuguese	(Brazil)", "pt-BR.json"],
+    ["pt-PT", "Portuguese", "pt-PT.json"],
+    ["rm", "Romansh", "rm.json"],
+    ["ro", "Romanian", "ro.json"],
+    ["ru", "Russian", "ru.json"],
+    ["si", "Sinhala", "si.json"],
+    ["sk", "Slovak", "sk.json"],
+    ["sl", "Slovenian", "sl.json"],
+    ["sd", "Sindhi", "snd.json"],
+    ["sq", "Albanian", "sq.json"],
+    ["sr", "Serbian - Cyrillic", "sr.json"],
+    ["sr-SP", "Serbian - Latin", "sr-SP.json"],
+    ["sv", "Swedish", "sv-SE.json"],
+    ["sw", "Swahili", "sw.json"],
+    ["ta", "Tamil", "ta.json"],
+    ["te", "Telugu", "te.json"],
+    ["tg", "Tajik", "tg.json"],
+    ["th", "Thai", "th.json"],
+    ["tk", "Turkmen", "tk.json"],
+    ["tr", "Turkish", "tr.json"],
+    ["ug", "Uighur", "ug.json"],
+    ["uk", "Ukrainian", "uk.json"],
+    ["ur", "Urdu", "ur.json"],
+    ["uz", "Uzbek (Latin)", "uz.json"],
+    ["uz-CR", "Uzbek (Cyrillic)", "uz-CR.json"],
+    ["vi", "Vietnamese", "vi.json"],
+    ["zh", "Chinese (Simplified)", "zh.json"],
+    ["zh-HK", "Chinese (Traditional)", "zh-HANT.json"],
+  ];
+
+  const lang = getLang();
+  const locale = getLocale();
+
+  let translationFileInfo = langs.find((item) => item[0] === locale);
+  if (!translationFileInfo) {
+    translationFileInfo = langs.find((item) => item[0] === lang);
+  }
+  if (!translationFileInfo) {
+    translationFileInfo = langs.find((item) => item[0] === "en");
+  }
+
+  const endpoint = `/js/datatables.net/i18n/${translationFileInfo[2]}`;
+
+  return endpoint;
 }
 
 function getFollowedUser(userid) {

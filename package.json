@@ -31,5 +31,8 @@
   "homepage": "https://invites.mobi/",
   "devDependencies": {
     "serve": "^14.1.2"
+  },
+  "dependencies": {
+    "datatables.net-plugins": "^1.13.6"
   }
 }
