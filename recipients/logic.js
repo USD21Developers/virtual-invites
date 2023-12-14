@@ -8,6 +8,7 @@ function getMaxUtcDate(interactions) {
 async function populateRecipientsTable() {
   const recipientsEl = document.querySelector("#recipients");
   const noRecipientsEl = document.querySelector("#norecipients");
+  const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
   const translationURL = getDatatablesTranslationURL();
   const languageData = await fetch(translationURL).then((res) => res.json());
   let invites = (await localforage.getItem("invites")) || [];
@@ -78,13 +79,12 @@ async function populateRecipientsTable() {
     const epochTime = new Date(lastInteractionUtcDate).getTime();
     const recipientName = item.recipient.name;
     const invitationid = item.invitationid;
-    const timezone = item.timezone;
     const localDateTime = Intl.DateTimeFormat(
-      getLocale(),
+      userDateTimePrefs.locale,
       {
         dateStyle: "short",
         timeStyle: "short",
-        timeZone: timezone,
+        timeZone: userDateTimePrefs.timeZone,
       },
       new Date(lastInteractionUtcDate)
     );
