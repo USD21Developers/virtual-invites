@@ -39,6 +39,11 @@
       "translated": "Clicked RSVP for {EVENT}"
     },
     {
+      "key": "rescindedRsvp",
+      "original": "Rescinded RSVP for {EVENT}",
+      "translated": "Rescinded RSVP for {EVENT}"
+    },
+    {
       "key": "clickedAddToCalendar",
       "original": "Clicked Add to Calendar for {EVENT}",
       "translated": "Clicked Add to Calendar for {EVENT}"
@@ -52,6 +57,16 @@
       "key": "wasInvited",
       "original": "Was invited to {EVENT}",
       "translated": "Was invited to {EVENT}"
+    },
+    {
+      "key": "church",
+      "original": "church",
+      "translated": "church"
+    },
+    {
+      "key": "norecipients",
+      "original": "You have no recipients because you have not sent any invites yet.",
+      "translated": "You have no recipients because you have not sent any invites yet."
     }
   ],
 

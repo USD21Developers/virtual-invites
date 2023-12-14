@@ -184,14 +184,20 @@
 
       <div class="row mt-4 mb-4">
         <div class="col col-sm-10 offset-sm-1">
-          <table id="recipients" class="table table-striped">
+          <div
+            id="norecipients"
+            class="text-center balancedTextWrap d-none"
+            data-i18n="norecipients"
+          ></div>
+          <table id="recipients" class="table table-striped d-none">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Last Interaction</th>
+                <th data-i18n="colHeadName"></th>
+                <th data-i18n="colHeadLastInteraction"></th>
               </tr>
             </thead>
             <tbody>
+              <!-- 
               <tr>
                 <td data-search="Jason">
                   <a href="/r/#/5">Jason</a>
@@ -248,7 +254,7 @@
                     >
                   </div>
                 </td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>
