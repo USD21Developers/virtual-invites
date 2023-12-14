@@ -74,11 +74,14 @@ async function populateRecipientsTable() {
       }
     }
 
+    if (!lastInteractionUtcDate) return;
+
     action = action.replaceAll("{EVENT}", eventTitle);
 
     const epochTime = new Date(lastInteractionUtcDate).getTime();
     const recipientName = item.recipient.name;
     const invitationid = item.invitationid;
+
     const localDateTime = Intl.DateTimeFormat(userDateTimePrefs.locale, {
       dateStyle: "short",
       timeStyle: "short",
