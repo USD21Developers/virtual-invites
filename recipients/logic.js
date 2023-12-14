@@ -79,15 +79,11 @@ async function populateRecipientsTable() {
     const epochTime = new Date(lastInteractionUtcDate).getTime();
     const recipientName = item.recipient.name;
     const invitationid = item.invitationid;
-    const localDateTime = Intl.DateTimeFormat(
-      userDateTimePrefs.locale,
-      {
-        dateStyle: "short",
-        timeStyle: "short",
-        timeZone: userDateTimePrefs.timeZone,
-      },
-      new Date(lastInteractionUtcDate)
-    );
+    const localDateTime = Intl.DateTimeFormat(userDateTimePrefs.locale, {
+      dateStyle: "short",
+      timeStyle: "short",
+      timeZone: userDateTimePrefs.timeZone,
+    }).format(new Date(lastInteractionUtcDate));
 
     const row = `
         <tr>
