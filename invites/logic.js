@@ -25,8 +25,11 @@ async function populateRecipientsTable() {
     return new Date(maxUtcDateB) - new Date(maxUtcDateA);
   });
   let rows = "";
-  const events = (await localforage.getItem("events")) || [];
-  if (!events.length) {
+  const eventsFromMyInvites =
+    (await localforage.getItem("eventsFromMyInvites")) || [];
+  const eventsByFollowedUsers =
+    (await localforage.getItem("eventsByFollowedUsers")) || [];
+  if (!eventsFromMyInvites.length && !eventsByFollowedUsers.length) {
     recipientsEl.classList.add("d-none");
     noRecipientsEl.classList.remove("d-none");
     return;
@@ -35,9 +38,14 @@ async function populateRecipientsTable() {
     let lastInteractionUtcTime = item.utctime;
     let lastInteractionTimezone = item.timezone;
     let action = getPhrase("wasInvited");
-    const event = events.find(
+    let event = eventsFromMyInvites.find(
       (eventItem) => eventItem.eventid === item.eventid
     );
+    if (!event) {
+      event = eventsByFollowedUsers.find(
+        (eventItem) => eventItem.eventid === item.eventid
+      );
+    }
     if (!event) return;
     const eventType = event.type;
     let eventTitle = "";
