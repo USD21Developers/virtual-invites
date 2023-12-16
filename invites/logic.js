@@ -84,8 +84,6 @@ async function populateRecipientsTable() {
 
     if (!lastInteractionUtcTime) return;
 
-    action = action.replaceAll("{EVENT}", eventTitle);
-
     const epochTime = new Date(lastInteractionUtcTime).getTime();
     const recipientName = item.recipient.name;
     const invitationid = item.invitationid;
