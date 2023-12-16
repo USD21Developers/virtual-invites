@@ -32,7 +32,7 @@ async function populateRecipientsTable() {
     return;
   }
   invites.forEach((item) => {
-    let lastInteractionUtcDate = item.utcdate;
+    let lastInteractionUtcTime = item.utctime;
     let lastInteractionTimezone = item.timezone;
     let action = getPhrase("wasInvited");
     const event = events.find(
@@ -53,9 +53,9 @@ async function populateRecipientsTable() {
         break;
     }
     if (item.interactions.length) {
-      lastInteractionUtcDate = getMaxUtcDate(item.interactions);
+      lastInteractionUtcTime = getMaxUtcDate(item.interactions);
       const lastInteractionObj = item.interactions.find(
-        (item) => item.utcdate === lastInteractionUtcDate
+        (item) => item.utcdate === lastInteractionUtcTime
       );
       lastInteractionTimezone = lastInteractionObj.recipienttimezone;
       switch (lastInteractionObj.action) {
@@ -74,11 +74,11 @@ async function populateRecipientsTable() {
       }
     }
 
-    if (!lastInteractionUtcDate) return;
+    if (!lastInteractionUtcTime) return;
 
     action = action.replaceAll("{EVENT}", eventTitle);
 
-    const epochTime = new Date(lastInteractionUtcDate).getTime();
+    const epochTime = new Date(lastInteractionUtcTime).getTime();
     const recipientName = item.recipient.name;
     const invitationid = item.invitationid;
 
@@ -86,7 +86,7 @@ async function populateRecipientsTable() {
       dateStyle: "short",
       timeStyle: "short",
       timeZone: userDateTimePrefs.timeZone,
-    }).format(new Date(lastInteractionUtcDate));
+    }).format(new Date(lastInteractionUtcTime));
 
     const row = `
         <tr>
