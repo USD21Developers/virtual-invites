@@ -17,7 +17,7 @@ async function populateRecipientsTable() {
     noRecipientsEl.classList.remove("d-none");
     return;
   }
-  // invites = invites.filter((item) => !!!item.deleted);
+  invites = invites.filter((item) => !!!item.deleted);
   invites = invites.sort((a, b) => {
     const maxUtcDateA = getMaxUtcDate(a.interactions);
     const maxUtcDateB = getMaxUtcDate(b.interactions);

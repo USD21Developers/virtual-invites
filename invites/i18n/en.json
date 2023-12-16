@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "description": "Recipients",
-    "path": "/recipients/",
+    "description": "My Invites",
+    "path": "/invites/",
     "lang": {
       "original": "en",
       "translated": "en"
@@ -10,8 +10,8 @@
   "phrases": [
     {
       "key": "pagetitle",
-      "original": "Recipients",
-      "translated": "Recipients"
+      "original": "My Invites",
+      "translated": "My Invites"
     },
     {
       "key": "breadcrumbHome",
@@ -19,9 +19,9 @@
       "translated": "Home"
     },
     {
-      "key": "breadcrumbRecipients",
-      "original": "Recipients",
-      "translated": "Recipients"
+      "key": "breadcrumbMyInvites",
+      "original": "My Invites",
+      "translated": "My Invites"
     },
     {
       "key": "colHeadName",
@@ -65,8 +65,8 @@
     },
     {
       "key": "norecipients",
-      "original": "You have no recipients because you have not sent any invites yet.",
-      "translated": "You have no recipients because you have not sent any invites yet."
+      "original": "You have not sent any invites yet.",
+      "translated": "You have not sent any invites yet."
     }
   ],
 

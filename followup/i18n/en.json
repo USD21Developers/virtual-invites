@@ -40,15 +40,15 @@
     },
     {
       "key": "toAddNames",
-      "original": "To add names to your list, see Recipients.",
-      "translated": "To add names to your list, see Recipients.",
+      "original": "To add names to your list, see My Invites.",
+      "translated": "To add names to your list, see My Invites.",
       "changes": [
         {
-          "original": "Recipients",
-          "translated": "Recipients",
+          "original": "My Invites",
+          "translated": "My Invites",
           "bold": false,
           "italic": false,
-          "link": "../recipients/"
+          "link": "../invites/"
         }
       ]
     }
