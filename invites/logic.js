@@ -57,7 +57,7 @@ async function populateRecipientsTable() {
       const lastInteractionObj = item.interactions.find(
         (item) => item.utcdate === lastInteractionUtcDate
       );
-      lastInteractionTimezone = lastInteractionObj.timezone;
+      lastInteractionTimezone = lastInteractionObj.recipienttimezone;
       switch (lastInteractionObj.action) {
         case "viewed invite":
           action = getPhrase("viewedInvite");
