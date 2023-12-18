@@ -88,13 +88,11 @@ async function syncEvents() {
           events,
           eventsByFollowedUsers,
           followedUsers,
-          eventsForAllInvites,
+          eventsFromMyInvites,
         } = data;
         let localEvents = (await localforage.getItem("events")) || [];
         let localEventsByFollowedUsers =
           (await localforage.getItem("eventsByFollowedUsers")) || [];
-        let localEventsForAllInvites =
-          (await localforage.getItem("eventsForAllInvites")) || [];
 
         // Validate sync response
         if (!Array.isArray(events)) {
@@ -109,11 +107,11 @@ async function syncEvents() {
             )
           );
         }
-        if (!Array.isArray(eventsForAllInvites)) {
+        if (!Array.isArray(eventsFromMyInvites)) {
           hideToast();
           reject(
             new Error(
-              "'eventsForAllInvites' in sync response must be an array."
+              "'eventsFromMyInvites' in sync response must be an array."
             )
           );
         }
@@ -143,17 +141,17 @@ async function syncEvents() {
           JSON.stringify([]);
 
         // Compare local vs. remote events for all invites, and update the UI only if a change occurred
-        const hashEventsForAllInvites = {};
-        const eventsForAllInvitesLocalJSON = JSON.stringify(
-          localEventsForAllInvites
+        const hasheventsFromMyInvites = {};
+        const eventsFromMyInvitesLocalJSON = JSON.stringify(
+          localeventsFromMyInvites
         );
-        const eventsForAllInvitesRemoteJSON =
-          JSON.stringify(eventsForAllInvites);
-        hashEventsForAllInvites.local =
-          (await invitesCrypto.hash(eventsForAllInvitesLocalJSON)) ||
+        const eventsFromMyInvitesRemoteJSON =
+          JSON.stringify(eventsFromMyInvites);
+        hasheventsFromMyInvites.local =
+          (await invitesCrypto.hash(eventsFromMyInvitesLocalJSON)) ||
           JSON.stringify([]);
-        hashEventsForAllInvites.remote =
-          (await invitesCrypto.hash(eventsForAllInvitesRemoteJSON)) ||
+        hasheventsFromMyInvites.remote =
+          (await invitesCrypto.hash(eventsFromMyInvitesRemoteJSON)) ||
           JSON.stringify([]);
 
         // Update IndexedDB
@@ -171,7 +169,7 @@ async function syncEvents() {
           await localforage.setItem("eventsByFollowedUsers", []);
         }
         await localforage.setItem("followedUsers", followedUsers);
-        await localforage.setItem("eventsForAllInvites", eventsForAllInvites);
+        await localforage.setItem("eventsFromMyInvites", eventsFromMyInvites);
 
         // Update the view if events have changed
         let eventsHaveChanged = false;
@@ -179,7 +177,7 @@ async function syncEvents() {
           hashEvents.local !== hashEvents.remote ||
           hashEventsByFollowedUsers.local !==
             hashEventsByFollowedUsers.remote ||
-          hashEventsForAllInvites.local !== hashEventsForAllInvites.remote
+          hasheventsFromMyInvites.local !== hasheventsFromMyInvites.remote
         ) {
           eventsHaveChanged = true;
         }
