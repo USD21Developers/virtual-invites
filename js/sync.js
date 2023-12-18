@@ -142,8 +142,11 @@ async function syncEvents() {
 
         // Compare local vs. remote events for all invites, and update the UI only if a change occurred
         const hasheventsFromMyInvites = {};
+        const localEventsFromMyInvites = await localforage.getItem(
+          "eventsFromMyInvites"
+        );
         const eventsFromMyInvitesLocalJSON = JSON.stringify(
-          localeventsFromMyInvites
+          localEventsFromMyInvites
         );
         const eventsFromMyInvitesRemoteJSON =
           JSON.stringify(eventsFromMyInvites);
