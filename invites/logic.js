@@ -74,8 +74,10 @@ async function populateRecipientsTable() {
     const invitationid = item.invitationid;
 
     const localDateTime = Intl.DateTimeFormat(userDateTimePrefs.locale, {
-      dateStyle: "short",
-      timeStyle: "short",
+      day: "numeric",
+      month: "short",
+      day: "numeric",
+      year: "numeric",
       timeZone: userDateTimePrefs.timeZone,
     }).format(new Date(lastInteractionUtcTime));
 
@@ -93,9 +95,7 @@ async function populateRecipientsTable() {
           >
             ${localDateTime}
             <div>
-              <small class="text-secondary">
-                ${action}
-              </small>
+              <small class="text-secondary">${action}</small>
             </div>
           </td>
         </tr>
