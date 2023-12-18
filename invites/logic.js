@@ -25,26 +25,12 @@ async function populateRecipientsTable() {
     return new Date(maxUtcDateB) - new Date(maxUtcDateA);
   });
   let rows = "";
-  const events = (await localforage.getItem("eventsForAllInvites")) || [];
 
   invites.forEach((item) => {
     let lastInteractionUtcTime = item.utctime;
     let lastInteractionTimezone = item.timezone;
     let action = getPhrase("wasInvited");
-    let event = events.find((eventItem) => eventItem.eventid === item.eventid);
-    const eventType = event.type;
-    let eventTitle = "";
-    switch (eventType) {
-      case "bible talk":
-        eventTitle = getGlobalPhrase("bibletalk");
-        break;
-      case "church":
-        eventTitle = getPhrase("church");
-        break;
-      default:
-        eventTitle = event.title;
-        break;
-    }
+
     if (item.interactions.length) {
       lastInteractionUtcTime = getMaxUtcDate(item.interactions);
       const lastInteractionObj = item.interactions.find(
