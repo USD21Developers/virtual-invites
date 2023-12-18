@@ -74,8 +74,7 @@ async function populateRecipientsTable() {
     const invitationid = item.invitationid;
 
     const localDateTime = Intl.DateTimeFormat(userDateTimePrefs.locale, {
-      day: "numeric",
-      month: "short",
+      month: "long",
       day: "numeric",
       year: "numeric",
       timeZone: userDateTimePrefs.timeZone,
