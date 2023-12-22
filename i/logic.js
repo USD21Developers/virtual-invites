@@ -150,20 +150,8 @@ ${textQuestions}
 }
 
 function fixVideo() {
-  if (isVideoLoaded && isPageVisibilityRestored) {
-    video.currentTime = video.duration;
-    video.pause();
-  }
-
-  return;
-
-  const playedVideo = sessionStorage.getItem("playedVideo") || null;
-  if (playedVideo) {
-    if (isVideoLoaded && isPageVisibilityRestored) {
-      video.currentTime = video.duration;
-      video.pause();
-    }
-  }
+  video.currentTime = video.duration;
+  video.pause();
 }
 
 function getAddressForMaps(event) {
@@ -1380,7 +1368,7 @@ function onVideoLoadedMetadata() {
 }
 
 function onVisibilityChange() {
-  if (document.visibilityState === "visible") {
+  if (document.visibilityState === "hidden") {
     isPageVisibilityRestored = true;
     fixVideo();
   }
