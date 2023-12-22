@@ -1423,6 +1423,7 @@ function attachListeners() {
 }
 
 async function init() {
+  sessionStorage.removeItem("playedVideo");
   await populateTemplate();
   attachListeners();
   await populateContent();
@@ -1433,8 +1434,6 @@ async function init() {
   populateQuestionsSection();
   // hideSpinner();
   warnIfEventIsPast();
-
-  Promise.all([onVisibilityChange(), onVideoLoadedMetadata()]).then(fixVideo);
 }
 
 init();
