@@ -153,6 +153,7 @@ function fixVideo() {
   if (isVideoLoaded && isPageVisibilityRestored) {
     video.currentTime = video.duration;
     video.pause();
+    alert("Paused");
   }
 }
 
