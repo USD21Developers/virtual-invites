@@ -1412,7 +1412,18 @@ function attachListeners() {
 
   video.addEventListener("ended", onVideoEnded, true);
 
-  document.addEventListener("visibilitychange", onVisibilityChange, false);
+  // document.addEventListener("visibilitychange", onVisibilityChange, false);
+
+  window.addEventListener("blur", () => {
+    isPageVisibilityRestored = false;
+    fixVideo();
+  });
+
+  window.addEventListener("focus"),
+    () => {
+      isPageVisibilityRestored = true;
+      fixVideo();
+    };
 
   video.addEventListener("loadedmetadata", onVideoLoadedMetadata);
 }
