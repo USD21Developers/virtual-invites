@@ -6,6 +6,7 @@ let inviteObject = {
 let iti;
 let isVideoLoaded = false;
 let isPageVisibilityRestored = false;
+let playedVideo = false;
 const video = document.querySelector("#video");
 
 function buildCalendarDescription(event) {
@@ -150,9 +151,11 @@ ${textQuestions}
 }
 
 function fixVideo() {
-  if (isVideoLoaded && isPageVisibilityRestored) {
-    video.currentTime = video.duration;
-    video.pause();
+  if (playedVideo) {
+    if (isVideoLoaded && isPageVisibilityRestored) {
+      video.currentTime = video.duration;
+      video.pause();
+    }
   }
 }
 
@@ -1361,6 +1364,7 @@ function onVideoEnded(e) {
   document
     .querySelector("#topOfEnvelope")
     .scrollIntoView({ behavior: "smooth" });
+  playedVideo = true;
 }
 
 function onVideoLoadedMetadata() {
@@ -1413,7 +1417,7 @@ function attachListeners() {
 
   video.addEventListener("ended", onVideoEnded, true);
 
-  document.addEventListener("visibilitychange", onVisibilityChange, true);
+  document.addEventListener("visibilitychange", onVisibilityChange, false);
 
   video.addEventListener("loadedmetadata", onVideoLoadedMetadata);
 }
