@@ -6,7 +6,6 @@ let inviteObject = {
 let iti;
 let isVideoLoaded = false;
 let isPageVisibilityRestored = false;
-let playedVideo = false;
 const video = document.querySelector("#video");
 
 function buildCalendarDescription(event) {
@@ -151,6 +150,7 @@ ${textQuestions}
 }
 
 function fixVideo() {
+  const playedVideo = sessionStorage.getItem("playedVideo") || null;
   if (playedVideo) {
     if (isVideoLoaded && isPageVisibilityRestored) {
       video.currentTime = video.duration;
@@ -1364,7 +1364,7 @@ function onVideoEnded(e) {
   document
     .querySelector("#topOfEnvelope")
     .scrollIntoView({ behavior: "smooth" });
-  playedVideo = true;
+  sessionStorage.setItem("playedVideo", "true");
 }
 
 function onVideoLoadedMetadata() {
