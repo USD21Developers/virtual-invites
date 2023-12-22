@@ -1413,7 +1413,7 @@ function attachListeners() {
 
   video.addEventListener("ended", onVideoEnded, true);
 
-  document.addEventListener("visibilitychange", onVisibilityChange, false);
+  document.addEventListener("visibilitychange", onVisibilityChange, true);
 
   video.addEventListener("loadedmetadata", onVideoLoadedMetadata);
 }
