@@ -153,7 +153,6 @@ function fixVideo() {
   if (isVideoLoaded && isPageVisibilityRestored) {
     video.currentTime = video.duration;
     video.pause();
-    alert("Paused");
   }
 }
 
@@ -1414,7 +1413,7 @@ function attachListeners() {
 
   video.addEventListener("ended", onVideoEnded, true);
 
-  document.addEventListener("visibilitychange", onVisibilityChange);
+  document.addEventListener("visibilitychange", onVisibilityChange, false);
 
   video.addEventListener("loadedmetadata", onVideoLoadedMetadata);
 }
