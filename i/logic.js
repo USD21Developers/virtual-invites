@@ -1414,14 +1414,8 @@ function attachListeners() {
 
   // document.addEventListener("visibilitychange", onVisibilityChange, false);
 
-  window.addEventListener("blur", () => {
-    isPageVisibilityRestored = false;
-    fixVideo();
-  });
-
   window.addEventListener("focus", () => {
-    isPageVisibilityRestored = true;
-    fixVideo();
+    window.location.reload();
   });
 
   video.addEventListener("loadedmetadata", onVideoLoadedMetadata);
