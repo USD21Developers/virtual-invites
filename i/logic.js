@@ -1358,8 +1358,8 @@ function onCalendarExpand() {
 }
 
 function onVideoEnded(e) {
-  video.removeEventListener("ended", onVideoEnded, true);
-  video.removeAttribute("autoplay");
+  // video.removeEventListener("ended", onVideoEnded, true);
+  // video.removeAttribute("autoplay");
   e.preventDefault();
   document
     .querySelector("#topOfEnvelope")
@@ -1423,7 +1423,6 @@ function attachListeners() {
 }
 
 async function init() {
-  sessionStorage.removeItem("playedVideo");
   await populateTemplate();
   attachListeners();
   await populateContent();
