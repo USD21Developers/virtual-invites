@@ -4,6 +4,8 @@ let inviteObject = {
   recipient: null,
 };
 let iti;
+let isVideoLoaded = false;
+let isPageVisibilityRestored = false;
 const video = document.querySelector("#video");
 
 function buildCalendarDescription(event) {
@@ -145,6 +147,13 @@ ${textQuestions}
   // END CONTACT INFORMATION
 
   return description;
+}
+
+function fixVideo() {
+  if (isVideoLoaded && isPageVisibilityRestored) {
+    video.currentTime = video.duration;
+    video.pause();
+  }
 }
 
 function getAddressForMaps(event) {
@@ -1354,6 +1363,18 @@ function onVideoEnded(e) {
     .scrollIntoView({ behavior: "smooth" });
 }
 
+function onVideoLoadedMetadata() {
+  isVideoLoaded = true;
+  fixVideo();
+}
+
+function onVisibilityChange() {
+  if (document.visibilityState === "visible") {
+    isPageVisibilityRestored = true;
+    fixVideo();
+  }
+}
+
 function attachListeners() {
   window.addEventListener("hashchange", () => {
     sessionStorage.removeItem("loaded");
@@ -1391,6 +1412,10 @@ function attachListeners() {
   });
 
   video.addEventListener("ended", onVideoEnded, true);
+
+  document.addEventListener("visibilitychange", onVisibilityChange);
+
+  video.addEventListener("loadedmetadata", onVideoLoadedMetadata);
 }
 
 async function init() {
@@ -1404,6 +1429,8 @@ async function init() {
   populateQuestionsSection();
   // hideSpinner();
   warnIfEventIsPast();
+
+  Promise.all([onVisibilityChange(), onVideoLoadedMetadata()]).then(fixVideo);
 }
 
 init();
