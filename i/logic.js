@@ -150,6 +150,13 @@ ${textQuestions}
 }
 
 function fixVideo() {
+  if (isVideoLoaded && isPageVisibilityRestored) {
+    video.currentTime = video.duration;
+    video.pause();
+  }
+
+  return;
+
   const playedVideo = sessionStorage.getItem("playedVideo") || null;
   if (playedVideo) {
     if (isVideoLoaded && isPageVisibilityRestored) {
