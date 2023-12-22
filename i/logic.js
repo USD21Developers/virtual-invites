@@ -1358,8 +1358,8 @@ function onCalendarExpand() {
 }
 
 function onVideoEnded(e) {
-  // video.removeEventListener("ended", onVideoEnded, true);
-  // video.removeAttribute("autoplay");
+  video.removeEventListener("ended", onVideoEnded, true);
+  video.removeAttribute("autoplay");
   e.preventDefault();
   document
     .querySelector("#topOfEnvelope")
