@@ -1373,7 +1373,7 @@ function onVideoLoadedMetadata() {
 }
 
 function onVisibilityChange() {
-  if (!document.hidden) {
+  if (document.visibilityState === "visible") {
     isPageVisibilityRestored = true;
     fixVideo();
   }
