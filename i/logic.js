@@ -1419,11 +1419,10 @@ function attachListeners() {
     fixVideo();
   });
 
-  window.addEventListener("focus"),
-    () => {
-      isPageVisibilityRestored = true;
-      fixVideo();
-    };
+  window.addEventListener("focus", () => {
+    isPageVisibilityRestored = true;
+    fixVideo();
+  });
 
   video.addEventListener("loadedmetadata", onVideoLoadedMetadata);
 }
