@@ -1394,7 +1394,7 @@ function attachListeners() {
   video.addEventListener("ended", onVideoEnded, true);
 
   window.addEventListener("focus", () => {
-    window.location.reload();
+    //window.location.reload();
   });
 }
 
