@@ -40,24 +40,6 @@
         <source src="/i/video/envelope.webm" type="video/webm" />
       </video>
 
-      <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", () => {
-          var video = document.getElementById("video");
-          video.currentTime = 0;
-
-          var src1 = document.createElement("source");
-          src1.addAttribute("src", "/i/video/envelope.mp4");
-          src1.addAttribute("type", "video/mp4");
-
-          var src2 = document.createElement("source");
-          src2.addAttribute("src", "/i/video/envelope.webm");
-          src2.addAttribute("type", "video/webm");
-
-          video.appendChild(src1);
-          video.appendChild(src2);
-        });
-      </script>
-
       <div id="topOfEnvelope"></div>
       <div id="paper" class="d-none">
         <main>
