@@ -1421,7 +1421,7 @@ function attachListeners() {
     fixVideoBug();
   });
 
-  document.addEventListener("canplay", () => {
+  document.addEventListener("loadedmetadata", () => {
     fixVideoBug();
   });
 }
