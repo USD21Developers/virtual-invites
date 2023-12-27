@@ -1419,11 +1419,6 @@ function attachListeners() {
   });
 }
 
-function testFixVideoBug() {
-  pageRestored = true;
-  fixVideoBug();
-}
-
 function showVideo() {
   const paper = document.querySelector("#paper");
   paper.classList.remove("d-none");
