@@ -821,46 +821,58 @@ function populateSaveButtonData() {
 }
 
 function prepopulateInvite() {
-  setTimeout(() => {
+  const myInterval = setInterval(() => {
     const inviteRecipientJSON = sessionStorage.getItem("inviteRecipientObj");
 
     const clearInviteRecipientJSON = () => {
       sessionStorage.removeItem("inviteRecipientObj");
     };
 
-    if (!inviteRecipientJSON) return;
+    if (!inviteRecipientJSON) {
+      myInterval.clearInterval();
+      return;
+    }
 
     const inviteRecipientObj = JSON.parse(inviteRecipientJSON);
-    const name = inviteRecipientObj.name || "";
-    const email = inviteRecipientObj.email || null;
-    const sms = inviteRecipientObj.sms || null;
-    const sendvia = inviteRecipientObj.sendvia;
+    const { name, email, sms, sendvia } = inviteRecipientObj;
+
     const eventsDropdownEl = document.querySelector("#events_dropdown");
     const meetingDetailsEl = document.querySelector("#meetingDetailsContainer");
+    const nameEl = document.querySelector("#recipientname");
+
+    if (!eventsDropdownEl) return;
+    if (!eventsDropdownEl.options.length <= 1) return;
+    if (!meetingDetailsEl) return;
+    if (!nameEl) return;
+    if (!name) return;
+    if (!sendvia) return;
+    if (!email && !sms) return;
 
     // Set events to unselected
-    if (eventsDropdownEl) eventsDropdownEl.selectedOptions[0].selected = true;
-    if (meetingDetailsEl) meetingDetailsEl.classList.add("d-none");
+    eventsDropdownEl.selectedOptions[0].selected = true;
+    meetingDetailsEl.classList.add("d-none");
 
     // Populate name
-    const nameEl = document.querySelector("#recipientname");
-    if (nameEl) nameEl.value = name;
+    nameEl.value = name;
 
     // Populate contact method
     if (email) {
       const emailEl = document.querySelector("#sendto_email");
-      if (emailEl) emailEl.value = email;
+      if (!emailEl) return;
+      emailEl.value = email;
       selectSendVia("email");
     } else if (sms) {
       const smsEl = document.querySelector("#sendto_sms");
-      if (smsEl) smsEl.value = sms;
+      if (!smsEl) return;
+      smsEl.value = sms;
       selectSendVia("sms");
     } else if (sendvia === "qrcode") {
       selectSendVia("qrcode");
     }
 
     clearInviteRecipientJSON();
-  }, 1000);
+    myInterval.clearInterval();
+  }, 250);
 }
 
 async function resetSendButtonText() {
