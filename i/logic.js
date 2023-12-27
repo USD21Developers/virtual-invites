@@ -1421,6 +1421,11 @@ function attachListeners() {
   });
 }
 
+function testFixVideoBug() {
+  pageRestored = true;
+  fixVideoBug();
+}
+
 async function init() {
   await populateTemplate();
   attachListeners();
