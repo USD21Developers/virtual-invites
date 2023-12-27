@@ -44,6 +44,31 @@
       "translated": "Last Interaction"
     },
     {
+      "key": "clickedRsvp",
+      "original": "Clicked RSVP",
+      "translated": "Clicked RSVP"
+    },
+    {
+      "key": "rescindedRsvp",
+      "original": "Rescinded RSVP",
+      "translated": "Rescinded RSVP"
+    },
+    {
+      "key": "clickedAddToCalendar",
+      "original": "Clicked Add to Calendar",
+      "translated": "Clicked Add to Calendar"
+    },
+    {
+      "key": "viewedInvite",
+      "original": "Viewed invite",
+      "translated": "Viewed invite"
+    },
+    {
+      "key": "wasInvited",
+      "original": "Was invited",
+      "translated": "Was invited"
+    },
+    {
       "key": "toAddNames",
       "original": "To add names to your list, see My Invites.",
       "translated": "To add names to your list, see My Invites.",
