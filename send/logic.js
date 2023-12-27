@@ -822,6 +822,7 @@ function populateSaveButtonData() {
 
 function prepopulateInvite() {
   const myInterval = setInterval(() => {
+    console.log("Still in the interval");
     const inviteRecipientJSON = sessionStorage.getItem("inviteRecipientObj");
 
     const clearInviteRecipientJSON = () => {
