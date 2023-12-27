@@ -148,10 +148,8 @@ ${textQuestions}
 }
 
 function fixVideoBug() {
-  video.onloadedmetadata = () => {
-    video.currentTime = video.duration;
-    video.pause();
-  };
+  video.currentTime = video.duration;
+  video.pause();
 }
 
 function getAddressForMaps(event) {
