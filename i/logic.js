@@ -150,9 +150,13 @@ ${textQuestions}
 
 function fixVideoBug() {
   if (pageRestored) {
+    console.log(`pageRestored: ${pageRestored}`);
     video.currentTime = video.duration;
     video.pause();
     pageRestored = false;
+    video.scrollIntoView({ behavior: "smooth" });
+  } else {
+    console.log(`pageRestored: ${pageRestored}`);
   }
 }
 
