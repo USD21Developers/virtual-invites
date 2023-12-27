@@ -148,10 +148,10 @@ ${textQuestions}
 }
 
 function fixVideoBug() {
-  setTimeout(() => {
+  video.oncanplay = () => {
     video.currentTime = video.duration;
     video.pause();
-  }, 500);
+  };
 }
 
 function getAddressForMaps(event) {
