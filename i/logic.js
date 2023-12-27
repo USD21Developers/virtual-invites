@@ -1360,9 +1360,11 @@ function onCalendarExpand() {
 
 function onVideoEnded(e) {
   const topOfEnvelope = document.querySelector("#topOfEnvelope");
+  const paper = document.querySelector("#paper");
   video.removeEventListener("ended", onVideoEnded, true);
   video.removeAttribute("autoplay");
   fixVideoBug();
+  paper.removeClass("d-none");
   topOfEnvelope.scrollIntoView({ behavior: "smooth" });
   e.preventDefault();
 }
