@@ -154,7 +154,7 @@ function fixVideoBug() {
     video.currentTime = video.duration;
     video.pause();
     pageRestored = false;
-    video.scrollIntoView({ behavior: "smooth" });
+    video.scrollIntoView();
   } else {
     console.log(`pageRestored: ${pageRestored}`);
   }
