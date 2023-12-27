@@ -1359,13 +1359,12 @@ function onCalendarExpand() {
 }
 
 function onVideoEnded(e) {
+  const topOfEnvelope = document.querySelector("#topOfEnvelope");
   video.removeEventListener("ended", onVideoEnded, true);
   video.removeAttribute("autoplay");
   fixVideoBug();
+  topOfEnvelope.scrollIntoView({ behavior: "smooth" });
   e.preventDefault();
-  document
-    .querySelector("#topOfEnvelope")
-    .scrollIntoView({ behavior: "smooth" });
 }
 
 function attachListeners() {
@@ -1424,6 +1423,11 @@ function attachListeners() {
 function testFixVideoBug() {
   pageRestored = true;
   fixVideoBug();
+}
+
+function showVideo() {
+  const paper = document.querySelector("#paper");
+  paper.classList.remove("d-none");
 }
 
 async function init() {
