@@ -4,6 +4,7 @@ let inviteObject = {
   recipient: null,
 };
 let iti;
+let pageRestored = false;
 const video = document.querySelector("#video");
 
 function buildCalendarDescription(event) {
@@ -148,10 +149,10 @@ ${textQuestions}
 }
 
 function fixVideoBug() {
-  video.oncanplay = () => {
+  if (pageRestored) {
     video.currentTime = video.duration;
     video.pause();
-  };
+  }
 }
 
 function getAddressForMaps(event) {
@@ -1407,6 +1408,10 @@ function attachListeners() {
 
 async function init() {
   document.addEventListener("visibilitychange", () => {
+    pageRestored = true;
+    fixVideoBug();
+  });
+  document.addEventListener("canplay", () => {
     fixVideoBug();
   });
   await populateTemplate();
