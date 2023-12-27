@@ -59,7 +59,10 @@ async function populateFollowUpList() {
       dateStyle: "long",
     }).format(new Date(invite.utctime));
     const lastInteractionDate = Intl.DateTimeFormat(userDateTimePrefs.locale, {
-      dateStyle: "full",
+      dateStyle: "short",
+      timeZone: userDateTimePrefs.timeZone,
+      hour: "numeric",
+      minute: "numeric",
     }).format(new Date(lastInteractionUtcDate));
     const invitedOnText = getPhrase("lastInteraction").replaceAll(
       "{INVITED-ON-DATE}",
