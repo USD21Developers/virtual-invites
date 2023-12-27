@@ -160,7 +160,7 @@ function fixVideoBug() {
       if (video.currentTime !== video.duration) {
         video.currentTime = video.duration;
         video.pause();
-        myInterval.clearInterval();
+        clearInterval(myInterval);
       }
     }, 10);
   }
