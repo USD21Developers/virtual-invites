@@ -152,6 +152,7 @@ function fixVideoBug() {
   if (pageRestored) {
     video.currentTime = video.duration;
     video.pause();
+    pageRestored = false;
   }
 }
 
