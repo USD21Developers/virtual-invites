@@ -153,7 +153,7 @@ function fixVideoBug() {
   if (pageRestored) {
     video.currentTime = video.duration;
     video.pause();
-    topOfEnvelope.scrollIntoView({ behavior: "smooth" });
+    topOfEnvelope.scrollIntoView();
     pageRestored = false;
   }
 }
