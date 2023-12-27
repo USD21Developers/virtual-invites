@@ -1364,7 +1364,7 @@ function onVideoEnded(e) {
   video.removeEventListener("ended", onVideoEnded, true);
   video.removeAttribute("autoplay");
   fixVideoBug();
-  paper.removeClass("d-none");
+  paper.classList.remove("d-none");
   topOfEnvelope.scrollIntoView({ behavior: "smooth" });
   e.preventDefault();
 }
