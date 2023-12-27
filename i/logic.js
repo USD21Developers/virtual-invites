@@ -147,6 +147,15 @@ ${textQuestions}
   return description;
 }
 
+function fixVideoBug() {
+  document.addEventListener("visibilitychange", () => {
+    video.onloadedmetadata = () => {
+      video.currentTime = video.duration;
+      video.pause();
+    };
+  });
+}
+
 function getAddressForMaps(event) {
   const {
     locationaddressline1: addressLine1,
@@ -1348,10 +1357,7 @@ function onCalendarExpand() {
 function onVideoEnded(e) {
   video.removeEventListener("ended", onVideoEnded, true);
   video.removeAttribute("autoplay");
-  video.onloadedmetadata = function () {
-    video.currentTime = video.duration;
-    video.pause();
-  };
+  fixVideoBug();
   document
     .querySelector("#topOfEnvelope")
     .scrollIntoView({ behavior: "smooth" });
@@ -1397,18 +1403,12 @@ function attachListeners() {
   video.addEventListener("ended", onVideoEnded, true);
 
   /* window.addEventListener("focus", () => {
-    window.location.reload();
+    fixVideoBug();
   }); */
 }
 
 async function init() {
-  document.addEventListener("visibilitychange", () => {
-    video.onloadedmetadata = () => {
-      video.currentTime = video.duration;
-      video.pause();
-    };
-  });
-
+  fixVideoBug();
   await populateTemplate();
   attachListeners();
   await populateContent();
