@@ -1353,13 +1353,13 @@ function onCalendarExpand() {
 }
 
 function onVideoEnded(e) {
-  video.removeEventListener("ended", onVideoEnded, true);
-  video.removeAttribute("autoplay");
+  // video.removeEventListener("ended", onVideoEnded, true);
+  // video.removeAttribute("autoplay");
   fixVideoBug();
-  e.preventDefault();
   document
     .querySelector("#topOfEnvelope")
     .scrollIntoView({ behavior: "smooth" });
+  e.preventDefault();
 }
 
 function attachListeners() {
