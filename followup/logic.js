@@ -60,7 +60,11 @@ async function populateFollowUpList() {
     }).format(new Date(invite.utctime));
     const lastInteractionDate = Intl.DateTimeFormat(userDateTimePrefs.locale, {
       dateStyle: "short",
+      timeStyle: "short",
       timeZone: userDateTimePrefs.timeZone,
+      month: "long",
+      day: "numeric",
+      year: "numeric",
       hour: "numeric",
       minute: "numeric",
     }).format(new Date(lastInteractionUtcDate));
