@@ -1349,6 +1349,7 @@ function onVideoEnded(e) {
   video.removeEventListener("ended", onVideoEnded, true);
   video.removeAttribute("autoplay");
   video.currentTime = video.duration;
+  video.pause();
   e.preventDefault();
   document
     .querySelector("#topOfEnvelope")
