@@ -156,12 +156,13 @@ function fixVideoBug() {
     topOfEnvelope.scrollIntoView();
     pageRestored = false;
 
-    setInterval(() => {
+    const myInterval = setInterval(() => {
       if (video.currentTime !== video.duration) {
         video.currentTime = video.duration;
         video.pause();
+        myInterval.clearInterval();
       }
-    }, 1000);
+    }, 10);
   }
 }
 
