@@ -830,7 +830,7 @@ function prepopulateInvite() {
     };
 
     if (!inviteRecipientJSON) {
-      myInterval.clearInterval();
+      clearInterval(myInverval);
       return;
     }
 
@@ -872,7 +872,7 @@ function prepopulateInvite() {
     }
 
     clearInviteRecipientJSON();
-    myInterval.clearInterval();
+    clearInterval(myInterval);
   }, 250);
 }
 
