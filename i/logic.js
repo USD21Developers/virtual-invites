@@ -148,12 +148,10 @@ ${textQuestions}
 }
 
 function fixVideoBug() {
-  document.addEventListener("visibilitychange", () => {
-    video.onloadedmetadata = () => {
-      video.currentTime = video.duration;
-      video.pause();
-    };
-  });
+  video.onloadedmetadata = () => {
+    video.currentTime = video.duration;
+    video.pause();
+  };
 }
 
 function getAddressForMaps(event) {
@@ -1408,7 +1406,9 @@ function attachListeners() {
 }
 
 async function init() {
-  fixVideoBug();
+  document.addEventListener("visibilitychange", () => {
+    fixVideoBug();
+  });
   await populateTemplate();
   attachListeners();
   await populateContent();
