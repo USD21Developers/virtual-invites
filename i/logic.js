@@ -1394,9 +1394,9 @@ function attachListeners() {
 
   video.addEventListener("ended", onVideoEnded, true);
 
-  window.addEventListener("focus", () => {
-    //window.location.reload();
-  });
+  /* window.addEventListener("focus", () => {
+    window.location.reload();
+  }); */
 }
 
 async function init() {
