@@ -1413,6 +1413,12 @@ function attachListeners() {
 
 async function init() {
   document.addEventListener("visibilitychange", () => {
+    try {
+      video.currentTime = video.duration;
+      video.pause();
+    } catch (e) {
+      console.error(e);
+    }
     pageRestored = true;
     fixVideoBug();
   });
