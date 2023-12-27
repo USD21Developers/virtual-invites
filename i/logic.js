@@ -155,6 +155,13 @@ function fixVideoBug() {
     video.pause();
     topOfEnvelope.scrollIntoView();
     pageRestored = false;
+
+    setInterval(() => {
+      if (video.currentTime !== video.duration) {
+        video.currentTime = video.duration;
+        video.pause();
+      }
+    }, 1000);
   }
 }
 
