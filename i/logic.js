@@ -1406,25 +1406,22 @@ function attachListeners() {
 
   video.addEventListener("ended", onVideoEnded, true);
 
-  /* window.addEventListener("focus", () => {
-    fixVideoBug();
-  }); */
-}
-
-async function init() {
-  document.addEventListener("visibilitychange", () => {
-    try {
-      video.currentTime = video.duration;
-      video.pause();
-    } catch (e) {
-      console.error(e);
-    }
+  window.addEventListener("focus", () => {
     pageRestored = true;
     fixVideoBug();
   });
+
+  document.addEventListener("visibilitychange", () => {
+    pageRestored = true;
+    fixVideoBug();
+  });
+
   document.addEventListener("canplay", () => {
     fixVideoBug();
   });
+}
+
+async function init() {
   await populateTemplate();
   attachListeners();
   await populateContent();
