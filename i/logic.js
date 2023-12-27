@@ -1355,11 +1355,11 @@ function onCalendarExpand() {
 function onVideoEnded(e) {
   video.removeEventListener("ended", onVideoEnded, true);
   video.removeAttribute("autoplay");
-  fixVideoBug();
+  // fixVideoBug();
+  e.preventDefault();
   document
     .querySelector("#topOfEnvelope")
     .scrollIntoView({ behavior: "smooth" });
-  e.preventDefault();
 }
 
 function attachListeners() {
