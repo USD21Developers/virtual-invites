@@ -6,6 +6,7 @@ let inviteObject = {
 let iti;
 let pageRestored = false;
 const video = document.querySelector("#video");
+const topOfEnvelope = document.querySelector("#topOfEnvelope");
 
 function buildCalendarDescription(event) {
   let locationName =
@@ -150,13 +151,10 @@ ${textQuestions}
 
 function fixVideoBug() {
   if (pageRestored) {
-    console.log(`pageRestored: ${pageRestored}`);
     video.currentTime = video.duration;
     video.pause();
+    topOfEnvelope.scrollIntoView({ behavior: "smooth" });
     pageRestored = false;
-    video.scrollIntoView();
-  } else {
-    console.log(`pageRestored: ${pageRestored}`);
   }
 }
 
@@ -1359,7 +1357,6 @@ function onCalendarExpand() {
 }
 
 function onVideoEnded(e) {
-  const topOfEnvelope = document.querySelector("#topOfEnvelope");
   const paper = document.querySelector("#paper");
   video.removeEventListener("ended", onVideoEnded, true);
   video.removeAttribute("autoplay");
