@@ -69,28 +69,6 @@
       <div class="snackbar-body"></div>
     </div>
 
-    <script>
-      (() => {
-        const video = document.querySelector("#video");
-        const paper = document.querySelector("#paper");
-        const topOfEnvelope = document.querySelector("#topOfEnvelope");
-
-        video.addEventListener("ended", () => {
-          topOfEnvelope.scrollIntoView({ behavior: "smooth" });
-          paper.classList.remove("d-none");
-          video.currentTime = video.duration;
-          video.pause();
-        });
-      })();
-
-      document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "visible") {
-          video.currentTime = video.duration;
-          video.pause();
-        }
-      });
-    </script>
-
     <script src="https://cdn.jsdelivr.net/npm/datebook/dist/datebook.min.js"></script>
     <script
       src="/js/cdnjs.cloudflare.com_ajax_libs_moment.js_2.29.1_moment.min.js"
