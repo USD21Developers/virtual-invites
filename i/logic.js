@@ -1353,8 +1353,8 @@ function onCalendarExpand() {
 }
 
 function onVideoEnded(e) {
-  // video.removeEventListener("ended", onVideoEnded, true);
-  // video.removeAttribute("autoplay");
+  video.removeEventListener("ended", onVideoEnded, true);
+  video.removeAttribute("autoplay");
   fixVideoBug();
   document
     .querySelector("#topOfEnvelope")
