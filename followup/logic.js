@@ -29,13 +29,18 @@ async function populateFollowUpList() {
   let listHTML = "";
 
   followUpsSorted.forEach((invite) => {
+    const lastInteractionUtcDate =
+      invite.interactions[invite.interactions.length - 1].utcdate;
     const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
     const invitedOnDate = Intl.DateTimeFormat(userDateTimePrefs.locale, {
       dateStyle: "long",
     }).format(new Date(invite.utctime));
-    const invitedOnText = getPhrase("invitedOn").replaceAll(
+    const lastInteractionDate = Intl.DateTimeFormat(userDateTimePrefs.locale, {
+      dateStyle: "long",
+    }).format(new Date(lastInteractionUtcDate));
+    const invitedOnText = getPhrase("lastInteraction").replaceAll(
       "{INVITED-ON-DATE}",
-      invitedOnDate
+      lastInteractionDate
     );
     listHTML += `
       <a href="../r/#/${invite.invitationid}" class="list-group-item list-group-item-action">
