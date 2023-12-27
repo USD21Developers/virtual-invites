@@ -841,7 +841,7 @@ function prepopulateInvite() {
     const nameEl = document.querySelector("#recipientname");
 
     if (!eventsDropdownEl) return;
-    if (!eventsDropdownEl.options.length <= 1) return;
+    if (eventsDropdownEl.options.length <= 1) return;
     if (!meetingDetailsEl) return;
     if (!nameEl) return;
     if (!name) return;
