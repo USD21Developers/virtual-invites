@@ -1400,6 +1400,13 @@ function attachListeners() {
 }
 
 async function init() {
+  document.addEventListener("visibilitychange", () => {
+    video.onloadedmetadata = () => {
+      video.currentTime = video.duration;
+      video.pause();
+    };
+  });
+
   await populateTemplate();
   attachListeners();
   await populateContent();
