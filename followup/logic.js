@@ -64,6 +64,8 @@ async function populateFollowUpList() {
       day: "numeric",
       hour: "numeric",
       minute: "numeric",
+      dateStyle: "short",
+      timeStyle: "short",
       timeZone: userDateTimePrefs.timeZone,
     }).format(new Date(lastInteractionUtcDate));
     const invitedOnText = getPhrase("lastInteraction").replaceAll(
