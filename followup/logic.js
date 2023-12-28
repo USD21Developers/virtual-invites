@@ -56,7 +56,7 @@ async function populateFollowUpList() {
 
     const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
     const lastInteractionDate = Intl.DateTimeFormat(userDateTimePrefs.locale, {
-      dateStyle: "full",
+      dateStyle: "long",
       timeStyle: "short",
       timeZone: userDateTimePrefs.timeZone,
     }).format(new Date(lastInteractionUtcDate));
