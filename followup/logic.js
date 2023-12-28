@@ -55,23 +55,17 @@ async function populateFollowUpList() {
     }
 
     const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
-    const invitedOnDate = Intl.DateTimeFormat(userDateTimePrefs.locale, {
-      dateStyle: "long",
-    }).format(new Date(invite.utctime));
     const lastInteractionDate = Intl.DateTimeFormat(userDateTimePrefs.locale, {
       dateStyle: "short",
       timeStyle: "short",
       timeZone: userDateTimePrefs.timeZone,
     }).format(new Date(lastInteractionUtcDate));
-    const invitedOnText = getPhrase("lastInteraction").replaceAll(
-      "{INVITED-ON-DATE}",
-      lastInteractionDate
-    );
+
+    action = action.replaceAll("{DATETIME}", `<br>${lastInteractionDate}`);
     listHTML += `
       <a href="../r/#/${invite.invitationid}" class="list-group-item list-group-item-action">
         <strong>${invite.recipient.name}</strong>
         <div class="text-secondary"><small>${action}</small></div>
-        <div class="text-secondary"><small>${lastInteractionDate}</small></div>
       </a>
     `;
   });

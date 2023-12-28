@@ -35,8 +35,8 @@
     },
     {
       "key": "invitedOn",
-      "original": "Invited on {INVITED-ON-DATE}",
-      "translated": "Invited on {INVITED-ON-DATE}"
+      "original": "Was invited on {INVITED-ON-DATE}",
+      "translated": "Was invited on {INVITED-ON-DATE}"
     },
     {
       "key": "lastInteraction",
@@ -45,28 +45,28 @@
     },
     {
       "key": "clickedRsvp",
-      "original": "Clicked RSVP on",
-      "translated": "Clicked RSVP on"
+      "original": "Clicked RSVP on {DATETIME}",
+      "translated": "Clicked RSVP on {DATETIME}"
     },
     {
       "key": "rescindedRsvp",
-      "original": "Rescinded RSVP on",
-      "translated": "Rescinded RSVP on"
+      "original": "Rescinded RSVP on {DATETIME}",
+      "translated": "Rescinded RSVP on {DATETIME}"
     },
     {
       "key": "clickedAddToCalendar",
-      "original": "Clicked Add to My Calendar on",
-      "translated": "Clicked Add to My Calendar on"
+      "original": "Clicked Add to My Calendar on {DATETIME}",
+      "translated": "Clicked Add to My Calendar on {DATETIME}"
     },
     {
       "key": "viewedInvite",
-      "original": "Viewed invite on",
-      "translated": "Viewed invite on"
+      "original": "Viewed invite on {DATETIME}",
+      "translated": "Viewed invite on {DATETIME}"
     },
     {
       "key": "wasInvited",
-      "original": "Was invited on",
-      "translated": "Was invited on"
+      "original": "Was invited on {DATETIME}",
+      "translated": "Was invited on {DATETIME}"
     },
     {
       "key": "toAddNames",
