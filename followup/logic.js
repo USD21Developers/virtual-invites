@@ -71,7 +71,7 @@ async function populateFollowUpList() {
       <a href="../r/#/${invite.invitationid}" class="list-group-item list-group-item-action">
         <strong>${invite.recipient.name}</strong>
         <div class="text-secondary"><small>${action}</small></div>
-        <div class="text-secondary"><small>${invitedOnDate}</small></div>
+        <div class="text-secondary"><small>${lastInteractionDate}</small></div>
       </a>
     `;
   });
