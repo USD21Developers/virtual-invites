@@ -45,28 +45,28 @@
     },
     {
       "key": "clickedRsvp",
-      "original": "Clicked RSVP",
-      "translated": "Clicked RSVP"
+      "original": "Clicked RSVP on",
+      "translated": "Clicked RSVP on"
     },
     {
       "key": "rescindedRsvp",
-      "original": "Rescinded RSVP",
-      "translated": "Rescinded RSVP"
+      "original": "Rescinded RSVP on",
+      "translated": "Rescinded RSVP on"
     },
     {
       "key": "clickedAddToCalendar",
-      "original": "Clicked Add to Calendar",
-      "translated": "Clicked Add to Calendar"
+      "original": "Clicked Add to Calendar on",
+      "translated": "Clicked Add to Calendar on"
     },
     {
       "key": "viewedInvite",
-      "original": "Viewed invite",
-      "translated": "Viewed invite"
+      "original": "Viewed invite on",
+      "translated": "Viewed invite on"
     },
     {
       "key": "wasInvited",
-      "original": "Was invited",
-      "translated": "Was invited"
+      "original": "Was invited on",
+      "translated": "Was invited on"
     },
     {
       "key": "toAddNames",
