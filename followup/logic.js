@@ -59,11 +59,6 @@ async function populateFollowUpList() {
       dateStyle: "long",
     }).format(new Date(invite.utctime));
     const lastInteractionDate = Intl.DateTimeFormat(userDateTimePrefs.locale, {
-      year: "numeric",
-      month: "numeric",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
       dateStyle: "short",
       timeStyle: "short",
       timeZone: userDateTimePrefs.timeZone,
@@ -75,7 +70,8 @@ async function populateFollowUpList() {
     listHTML += `
       <a href="../r/#/${invite.invitationid}" class="list-group-item list-group-item-action">
         <strong>${invite.recipient.name}</strong>
-        <div class="text-secondary"><small>${action} ${invitedOnDate}</small></div>
+        <div class="text-secondary"><small>${action}</small></div>
+        <div class="text-secondary"><small>${invitedOnDate}</small></div>
       </a>
     `;
   });
