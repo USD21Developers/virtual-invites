@@ -158,8 +158,18 @@
     },
     {
       "key": "publicProfileExplanation2",
-      "original": "Your public profile Web page is a potential way to passively invite people to a wider variety of events, because the events that you can invite people to are listed on your public profile. By promoting the link to your public profile in various ways, you can evangelize more effectively.",
-      "translated": "Your public profile Web page is a potential way to passively invite people to a wider variety of events, because the events that you can invite people to are listed on your public profile. By promoting the link to your public profile in various ways, you can evangelize more effectively."
+      "original": "Your public profile Web page is a potential way to evangelize passively, because all of the events that you're inviting people to are listed there, along with their details.",
+      "translated": "Your public profile Web page is a potential way to evangelize passively, because all of the events that you can invite people to are listed there, along with their details.",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": true,
+          "italic": true,
+          "underline": false,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "heresTheLink",
