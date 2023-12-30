@@ -70,13 +70,13 @@
     },
     {
       "key": "notifyViaEmail",
-      "original": "E-mail notifications:",
-      "translated": "E-mail notifications:"
+      "original": "Via e-mail:",
+      "translated": "Via e-mail:"
     },
     {
       "key": "notifyViaPush",
-      "original": "Push message notifications:",
-      "translated": "Push message notifications:"
+      "original": "Via push message:",
+      "translated": "Via push message:"
     },
     {
       "key": "enabled",
