@@ -34,11 +34,6 @@
       "translated": "When you send an invite by text message or e-mail, by default the message only contains the name of the event and a link. But you can add additional text below the link, for a more personal touch."
     },
     {
-      "key": "when-sending-by-sms",
-      "original": "For text messages:",
-      "translated": "For text messages:"
-    },
-    {
       "key": "inviteTextExampleHeading",
       "original": "For example:",
       "translated": "For example:"
@@ -49,9 +44,14 @@
       "translated": "Hi, it's {NAME}. Nice to meet you. I hope you can join us."
     },
     {
+      "key": "when-sending-by-sms",
+      "original": "For invites sent via text message:",
+      "translated": "For invites sent via text message:"
+    },
+    {
       "key": "when-sending-by-email",
-      "original": "For e-mails:",
-      "translated": "For e-mails:"
+      "original": "For invites sent via e-mail:",
+      "translated": "For invites sent via e-mail:"
     },
     {
       "key": "preview",
