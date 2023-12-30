@@ -97,6 +97,56 @@
       "key": "autoAddToFollowUpList",
       "original": "Automatically add invite recipients to my Follow Up List",
       "translated": "Automatically add invite recipients to my Follow Up List"
+    },
+    {
+      "key": "publicProfileHeadline",
+      "original": "My Public Profile",
+      "translated": "My Public Profile"
+    },
+    {
+      "key": "publicProfileExplanation1",
+      "original": "As a registered user, you not only have the ability to invite people to specific events, but also to let them see your public profile. Your public profile is a Web page that is specific and unique to you. It has its own Web page address (below), which you can promote for evangelistic purposes in multiple ways:",
+      "translated": "As a registered user, you not only have the ability to invite people to specific events, but also to let them see your public profile. Your public profile is a Web page that is specific and unique to you. It has its own Web page address (below), which you can promote for evangelistic purposes in multiple ways:"
+    },
+    {
+      "key": "bulletPointEmailSignature",
+      "original": "in your e-mail signature",
+      "translated": "in your e-mail signature"
+    },
+    {
+      "key": "bulletPointBusinessCards",
+      "original": "evangelism business cards",
+      "translated": "evangelism business cards"
+    },
+    {
+      "key": "bulletPointFliers",
+      "original": "evangelism fliers",
+      "translated": "evangelism fliers"
+    },
+    {
+      "key": "bulletPointStickers",
+      "original": "stickers",
+      "translated": "stickers"
+    },
+    {
+      "key": "bulletPointStamps",
+      "original": "stamps",
+      "translated": "stamps"
+    },
+    {
+      "key": "bulletPointQRCode",
+      "original": "as a QR code",
+      "translated": "as a QR code"
+    },
+    {
+      "key": "publicProfileExplanation2",
+      "original": "Your public profile Web page is a potential way to passively invite people to a wider variety of events, because the events that you can invite people to are listed on your public profile. By promoting the link to your public profile in various ways, you can evangelize more effectively.",
+      "translated": "Your public profile Web page is a potential way to passively invite people to a wider variety of events, because the events that you can invite people to are listed on your public profile. By promoting the link to your public profile in various ways, you can evangelize more effectively."
+    },
+    {
+      "key": "heresTheLink",
+      "original": "Here's the Web page address to your public profile:",
+      "translated": "Here's the Web page address to your public profile:"
     }
   ],
 
