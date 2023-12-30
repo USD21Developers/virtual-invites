@@ -24,29 +24,29 @@
       "translated": "Settings"
     },
     {
-      "key": "invite-text-headline",
-      "original": "Text below the invite link",
-      "translated": "Text below the invite link"
+      "key": "customInviteTextHeadline",
+      "original": "Custom Invite Text",
+      "translated": "Custom Invite Text"
     },
     {
-      "key": "invite-text-explanation",
+      "key": "customInviteTextExplanation",
       "original": "When you send an invite by text message or e-mail, by default your message will only contain the name of the event and a link. But you can add additional text below the link, for a more personal touch.",
       "translated": "When you send an invite by text message or e-mail, by default your message will only contain the name of the event and a link. But you can add additional text below the link, for a more personal touch."
     },
     {
-      "key": "inviteTextExampleHeading",
+      "key": "customInviteTextExampleHeading",
       "original": "For example:",
       "translated": "For example:"
     },
     {
-      "key": "inviteTextExample",
+      "key": "customInviteTextExample",
       "original": "Hi, it's {NAME}. Nice to meet you. I hope you can join us.",
       "translated": "Hi, it's {NAME}. Nice to meet you. I hope you can join us."
     },
     {
-      "key": "when-sending-by-sms",
-      "original": "For invites sent via text message:",
-      "translated": "For invites sent via text message:"
+      "key": "customInviteText",
+      "original": "Custom text:",
+      "translated": "Custom text:"
     },
     {
       "key": "when-sending-by-email",
@@ -65,18 +65,18 @@
     },
     {
       "key": "notifications-explanation",
-      "original": "You can be notified when an invite recipient views or interacts with their invite. This enables you to promptly follow up.",
-      "translated": "You can be notified when an invite recipient views or interacts with their invite. This enables you to promptly follow up."
+      "original": "You can be immediately notified if someone you invited views or interacts with their invite. This allows you to follow up with them in a timely manner.",
+      "translated": "You can be immediately notified if someone you invited views or interacts with their invite. This allows you to follow up with them in a timely manner."
     },
     {
       "key": "notifyViaEmail",
-      "original": "E-mail:",
-      "translated": "E-mail:"
+      "original": "Enable e-mail notifications",
+      "translated": "Enable e-mail notifications"
     },
     {
       "key": "notifyViaPush",
-      "original": "Push message:",
-      "translated": "Push message:"
+      "original": "Enable push notifications",
+      "translated": "Enable push notifications"
     },
     {
       "key": "enabled",
