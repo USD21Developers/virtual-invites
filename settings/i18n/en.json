@@ -65,8 +65,8 @@
     },
     {
       "key": "notifications-explanation",
-      "original": "When someone that you have invited views or interacts with their invite we can notify you, enabling you to promptly follow up.",
-      "translated": "When someone that you have invited views or interacts with their invite we can notify you, enabling you to promptly follow up."
+      "original": "You can be notified when an invite recipient views or interacts with their invite. This enables you to promptly follow up.",
+      "translated": "You can be notified when an invite recipient views or interacts with their invite. This enables you to promptly follow up."
     },
     {
       "key": "notifyViaEmail",
