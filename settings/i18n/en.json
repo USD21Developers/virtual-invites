@@ -81,7 +81,17 @@
     {
       "key": "notificationClarification",
       "original": "Note: the above notification settings apply to every single invite you have sent, or will send. A more precise alternative is to unsubscribe from notifications about a specific invite. The link to do this is within the e-mail notification.",
-      "translated": "Note: the above notification settings apply to every single invite you have sent, or will send. A more precise alternative is to unsubscribe from notifications about a specific invite. The link to do this is within the e-mail notification."
+      "translated": "Note: the above notification settings apply to every single invite you have sent, or will send. A more precise alternative is to unsubscribe from notifications about a specific invite. The link to do this is within the e-mail notification.",
+      "changes": [
+        {
+          "original": "every single invite",
+          "translated": "every single invite",
+          "bold": true,
+          "italic": true,
+          "underline": false,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "followUpListHeadline",
