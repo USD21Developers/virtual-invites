@@ -86,17 +86,17 @@
         {
           "original": "every single invite",
           "translated": "every single invite",
-          "bold": false,
-          "italic": false,
+          "bold": true,
+          "italic": true,
           "underline": true,
           "link": ""
         },
         {
           "original": "My Invites",
           "translated": "My Invites",
-          "bold": true,
-          "italic": true,
-          "underline": false,
+          "bold": false,
+          "italic": false,
+          "underline": true,
           "link": "../invites/"
         }
       ]
