@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="initial-scale=1, shrink-to-fit=no, width=device-width"
+      name="viewport"
+    />
+    <title data-i18n="pagetitle"></title>
+    <script id="enforceaccess" src="../js/enforceaccess.js"></script>
+    <link rel="stylesheet" href="../css/daemonite-material.css" />
+    <link href="../css/global.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar bg-white sticky-top">
+      <a class="navbar-brand" href="/">
+        <img src="/_assets/img/logo.svg" width="133" height="50" alt="logo" />
+      </a>
+      <div class="align-items-end">
+        <a href="/profile/" class="d-none">
+          <img class="profileImageNav" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="navdrawer"
+          data-target="#navdrawerDefault"
+          aria-controls="navdrawerDefault"
+          aria-expanded="false"
+          aria-label=""
+          data-i18n-global-aria-label="toggleNavigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+    <div
+      aria-hidden="true"
+      class="navdrawer navdrawer-right navbar-collapse collapse"
+      id="navdrawerDefault"
+      tabindex="-1"
+    >
+      <div class="navdrawer-content">
+        <div class="navdrawer-header">
+          <div class="row">
+            <div class="col-9 d-flex justify-content-start">
+              <a
+                class="navbar-brand px-0"
+                href="../"
+                data-i18n-global="menuHeadline"
+              ></a>
+            </div>
+            <div class="col-3 d-flex justify-content-end align-items-center">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="navdrawer"
+                data-target="#navdrawerDefault"
+                aria-controls="navdrawerDefault"
+                aria-expanded="false"
+                aria-label=""
+                data-i18n-global-aria-label="toggleNavigation"
+              >
+                <span class="material-icons material-icons-outlined">
+                  close
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <nav class="navdrawer-nav">
+          <a class="nav-item nav-link" href="../">
+            <span class="material-icons mr-3 material-icons-outlined">
+              home
+            </span>
+            <span data-i18n-global="menuHome"></span>
+          </a>
+          <a class="nav-item nav-link" href="../send/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              send
+            </span>
+            <span data-i18n-global="menuSendInvite"></span>
+          </a>
+          <a class="nav-item nav-link" href="../invites/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              people
+            </span>
+            <span data-i18n-global="menuMyInvites"></span>
+          </a>
+          <a class="nav-item nav-link" href="../followup/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              list_alt
+            </span>
+            <span data-i18n-global="menuFollowUp"></span>
+          </a>
+          <a class="nav-item nav-link" href="../events/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              event
+            </span>
+            <span data-i18n-global="menuEventsImSharing"></span>
+          </a>
+          <a class="nav-item nav-link" href="../maps/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              place
+            </span>
+            <span data-i18n-global="menuMaps"></span>
+          </a>
+          <!-- <a class="nav-item nav-link" href="../authorize/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              approval
+            </span>
+            <span data-i18n-global="menuAuthorizeUser"></span>
+          </a> -->
+          <div class="navdrawer-divider"></div>
+          <a class="nav-item nav-link active" href="../settings/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              settings
+            </span>
+            <span data-i18n-global="menuSettings"></span>
+          </a>
+          <a class="nav-item nav-link" href="../profile/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              account_circle
+            </span>
+            <span data-i18n-global="menuMyProfile"></span>
+          </a>
+          <a class="nav-item nav-link" href="../support/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              contact_support
+            </span>
+            <span data-i18n-global="menuSupport"></span>
+          </a>
+          <a class="nav-item nav-link" href="../logout/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              logout
+            </span>
+            <span data-i18n-global="menuLogOut"></span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <nav aria-label="breadcrumb" id="breadcrumbs" class="d-none">
+      <ol class="breadcrumb bg-white my-0">
+        <li class="breadcrumb-item">
+          <a href="../" data-i18n="breadcrumbHome"></a>
+        </li>
+        <li class="breadcrumb-item active">
+          <a href="./" data-i18n="breadcrumbSettings"></a>
+        </li>
+      </ol>
+    </nav>
+
+    <div class="container" id="pageSpinner">
+      <div class="row">
+        <div class="col col-sm-10 offset-sm-1 mt-3 mb-4 text-center">
+          <img
+            src="/_assets/img/spinner.svg"
+            width="200"
+            height="200"
+            style="max-width: 100%"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-none mainContent">
+      <div class="row">
+        <div class="col col-sm-10 offset-sm-1">
+          <h2
+            class="text-center text-uppercase my-4"
+            data-i18n="pagetitle"
+          ></h2>
+        </div>
+      </div>
+
+      <form id="settingsForm">
+        <div class="row mt-3 mb-5">
+          <div class="col-12 col-md-8 offset-md-2">
+            <h3
+              class="bg-light border px-2"
+              data-i18n="invite-text-headline"
+            ></h3>
+            <p class="mt-3 px-2" data-i18n="invite-text-explanation"></p>
+            <p class="mt-3 mb-4 px-2">
+              <span data-i18n="inviteTextExampleHeading"></span><br />
+              <span class="text-primary" data-i18n="inviteTextExample"></span>
+            </p>
+          </div>
+
+          <!-- SMS -->
+          <div class="col-12 col-md-8 offset-md-2 mb-4">
+            <div class="form-group px-2">
+              <label
+                for="bodyTextSms"
+                data-i18n="when-sending-by-sms"
+                class="font-weight-bold"
+              ></label>
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="bodyTextSms"
+                  maxlength="255"
+                />
+
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-sm btn-info"
+                    type="button"
+                    data-i18n="preview"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="col-12 col-md-8 offset-md-2">
+            <div class="form-group px-2">
+              <label
+                for="bodyTextEmail"
+                data-i18n="when-sending-by-email"
+                class="font-weight-bold"
+              ></label>
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="bodyTextEmail"
+                  maxlength="255"
+                />
+
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-sm btn-info"
+                    type="button"
+                    data-i18n="preview"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-5">
+          <div class="col-12 col-md-8 offset-md-2">
+            <h3
+              class="bg-light border px-2"
+              data-i18n="notifications-headline"
+            ></h3>
+            <p class="mt-3 px-2" data-i18n="notifications-explanation"></p>
+          </div>
+
+          <!-- Notify via e-mail -->
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-8 col-md-6 offset-md-2 col-lg-6 offset-lg-2">
+                <strong class="px-2" data-i18n="notifyViaEmail"></strong>
+              </div>
+              <div class="col-4 col-md-2 col-lg-2">
+                <div class="float-right">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="notifyByEmail"
+                      id="notifyByEmailEnabled"
+                      value="true"
+                      checked
+                    />
+                    <label
+                      class="form-check-label"
+                      for="notifyByEmailEnabled"
+                      data-i18n="enabled"
+                    ></label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="notifyByEmail"
+                      id="notifyByEmailDisabled"
+                      value="false"
+                    />
+                    <label
+                      class="form-check-label"
+                      for="notifyByEmailDisabled"
+                      data-i18n="disabled"
+                    ></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notify via push message -->
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 col-md-8 offset-md-2">
+                <hr />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-8 col-md-6 offset-md-2 col-lg-6 offset-lg-2">
+                <strong class="px-2" data-i18n="notifyViaPush"></strong>
+              </div>
+              <div class="col-4 col-md-2 col-lg-2">
+                <div class="float-right">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="notifyByPush"
+                      id="notifyByPushEnabled"
+                      value="true"
+                    />
+                    <label
+                      class="form-check-label"
+                      for="notifyByPushEnabled"
+                      data-i18n="enabled"
+                    ></label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="notifyByPush"
+                      id="notifyByPushDisabled"
+                      value="false"
+                      checked
+                    />
+                    <label
+                      class="form-check-label"
+                      for="notifyByPushDisabled"
+                      data-i18n="disabled"
+                    ></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="snackbar">
+          <div class="snackbar-body"></div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modaltitle"></h5>
+            <button
+              type="button"
+              class="close"
+              aria-label=""
+              onclick="location.href = '../'"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-3"></div>
+          <div class="modal-footer modal-footer-stacked">
+            <button
+              class="btn btn-outline-info font-weight-bold"
+              data-dismiss="modal"
+              type="button"
+              data-i18n="btnRetry"
+            ></button>
+            <button
+              class="btn btn-outline-info font-weight-bold"
+              id="btnFinish"
+              type="button"
+              data-i18n="btnFinish"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br /><br /><br /><br />
+
+    <script src="/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/cdnjs.cloudflare.com_ajax_libs_popper.js_1.14.3_umd_popper.min.js"></script>
+    <script src="/js/stackpath.bootstrapcdn.com_bootstrap_4.1.1_js_bootstrap.min.js"></script>
+    <script
+      src="/js/cdnjs.cloudflare.com_ajax_libs_localforage_1.10.0_localforage.min.js"
+      integrity="sha512-+BMamP0e7wn39JGL8nKAZ3yAQT2dL5oaXWr4ZYlTGkKOaoXM/Yj7c4oy50Ngz5yoUutAG17flueD4F6QpTlPng=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../js/global.js"></script>
+    <script src="../js/sync.js"></script>
+    <script src="logic.js"></script>
+  </body>
+</html>

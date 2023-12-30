@@ -1,0 +1,118 @@
+{
+  "metadata": {
+    "description": "Settings",
+    "path": "/settings/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Settings",
+      "translated": "Settings"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbSettings",
+      "original": "Settings",
+      "translated": "Settings"
+    },
+    {
+      "key": "invite-text-headline",
+      "original": "Text below the invite link",
+      "translated": "Text below the invite link"
+    },
+    {
+      "key": "invite-text-explanation",
+      "original": "When you send an invite by text message or e-mail, by default the message only contains the name of the event and a link. But you can add additional text below the link, for a more personal touch.",
+      "translated": "When you send an invite by text message or e-mail, by default the message only contains the name of the event and a link. But you can add additional text below the link, for a more personal touch."
+    },
+    {
+      "key": "when-sending-by-sms",
+      "original": "For text messages:",
+      "translated": "For text messages:"
+    },
+    {
+      "key": "inviteTextExampleHeading",
+      "original": "For example:",
+      "translated": "For example:"
+    },
+    {
+      "key": "inviteTextExample",
+      "original": "Hi, it's {NAME}. Nice to meet you. I hope you can join us.",
+      "translated": "Hi, it's {NAME}. Nice to meet you. I hope you can join us."
+    },
+    {
+      "key": "when-sending-by-email",
+      "original": "For e-mails:",
+      "translated": "For e-mails:"
+    },
+    {
+      "key": "preview",
+      "original": "Preview",
+      "translated": "Preview"
+    },
+    {
+      "key": "notifications-headline",
+      "original": "Notifications",
+      "translated": "Notifications"
+    },
+    {
+      "key": "notifications-explanation",
+      "original": "When someone that you have invited views or interacts with their invite, this shows that they are interested. We can send you a notification when this happens, enabling you to promptly follow up.",
+      "translated": "When someone that you have invited views or interacts with their invite, this shows that they are interested. We can send you a notification when this happens, enabling you to promptly follow up."
+    },
+    {
+      "key": "notifyViaEmail",
+      "original": "E-mail notifications:",
+      "translated": "E-mail notifications:"
+    },
+    {
+      "key": "notifyViaPush",
+      "original": "Push messages:",
+      "translated": "Push messages:"
+    },
+    {
+      "key": "enabled",
+      "original": "Enabled",
+      "translated": "Enabled"
+    },
+    {
+      "key": "disabled",
+      "original": "Disabled",
+      "translated": "Disabled"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
