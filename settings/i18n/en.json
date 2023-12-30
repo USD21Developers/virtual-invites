@@ -79,9 +79,9 @@
       "translated": "Enable push notifications"
     },
     {
-      "key": "whatArePushNotifications",
-      "original": "What are push notifications?",
-      "translated": "What are push notifications?"
+      "key": "notificationClarification",
+      "original": "Note: the above settings apply to all recipients. Another option is to unsubscribe from notifications about a specific invite. The link to do this is within the e-mail notification.",
+      "translated": "Note: the above settings apply to all recipients. Another option is to unsubscribe from notifications about a specific invite. The link to do this is within the e-mail notification."
     },
     {
       "key": "followUpListHeadline",
