@@ -40,8 +40,8 @@
     },
     {
       "key": "customInviteTextExample",
-      "original": "Hi, it's {NAME}. Nice talking with you. I hope you can join us.",
-      "translated": "Hi, it's {NAME}. Nice talking with you. I hope you can join us."
+      "original": "Hi, it's {NAME}. It was nice talking with you. I hope you can join us.",
+      "translated": "Hi, it's {NAME}. It was nice talking with you. I hope you can join us."
     },
     {
       "key": "customInviteText",
