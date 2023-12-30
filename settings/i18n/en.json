@@ -164,7 +164,7 @@
         {
           "original": "passively,",
           "translated": "passively,",
-          "bold": true,
+          "bold": false,
           "italic": true,
           "underline": false,
           "link": ""
