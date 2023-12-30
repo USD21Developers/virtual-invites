@@ -88,7 +88,7 @@
           "translated": "every single invite",
           "bold": true,
           "italic": true,
-          "underline": true,
+          "underline": false,
           "link": ""
         },
         {
