@@ -216,11 +216,11 @@
           <div class="col-12 col-md-8 offset-md-2">
             <h3
               class="bg-light border px-3 py-2"
-              data-i18n="notifications-headline"
+              data-i18n="notificationsHeadline"
             ></h3>
 
             <div class="px-3">
-              <p class="mt-3" data-i18n="notifications-explanation"></p>
+              <p class="mt-3" data-i18n="notificationsExplanation"></p>
 
               <!-- Notify via e-mail -->
               <div class="form-check mt-2 mb-3">
@@ -230,6 +230,7 @@
                     type="checkbox"
                     value="true"
                     id="notifyViaEmail"
+                    name="notifyViaEmail"
                     checked
                   />
                   <span
@@ -247,11 +248,38 @@
                     type="checkbox"
                     value="true"
                     id="notifyViaPush"
+                    name="notifyViaPush"
                   />
                   <span
                     data-i18n="notifyViaPush"
                     class="font-weight-bold"
                   ></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUTOMATICALLY ADD TO FOLLOW UP LIST -->
+        <div class="row mb-5">
+          <div class="col-12 col-md-8 offset-md-2">
+            <h3
+              class="bg-light border px-3 py-2"
+              data-i18n="followUpListHeadline"
+            ></h3>
+
+            <div class="px-3">
+              <p class="mt-3" data-i18n="followUpListExplanation"></p>
+              <div class="form-check mt-2 mb-3">
+                <label for="autoAddToFollowUpList" class="d-block">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="true"
+                    id="autoAddToFollowUpList"
+                    name="notifyViaEmail"
+                  />
+                  <strong data-i18n="autoAddToFollowUpList"></strong>
                 </label>
               </div>
             </div>

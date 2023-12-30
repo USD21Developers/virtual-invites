@@ -59,12 +59,12 @@
       "translated": "Preview"
     },
     {
-      "key": "notifications-headline",
+      "key": "notificationsHeadline",
       "original": "Notifications",
       "translated": "Notifications"
     },
     {
-      "key": "notifications-explanation",
+      "key": "notificationsExplanation",
       "original": "You can be immediately notified if someone you invited views or interacts with their invite. This allows you to follow up with them in a timely manner.",
       "translated": "You can be immediately notified if someone you invited views or interacts with their invite. This allows you to follow up with them in a timely manner."
     },
@@ -79,14 +79,24 @@
       "translated": "Enable push notifications"
     },
     {
-      "key": "enabled",
-      "original": "Enabled",
-      "translated": "Enabled"
+      "key": "whatArePushNotifications",
+      "original": "What are push notifications?",
+      "translated": "What are push notifications?"
     },
     {
-      "key": "disabled",
-      "original": "Disabled",
-      "translated": "Disabled"
+      "key": "followUpListHeadline",
+      "original": "Follow Up List",
+      "translated": "Follow Up List"
+    },
+    {
+      "key": "followUpListExplanation",
+      "original": "When you send an invite, you can automatically add the recipient to your Follow Up List. This setting only applies to future invites, and not retroactively.",
+      "translated": "When you send an invite, you can automatically add the recipient to your Follow Up List. This setting only applies to future invites, and not retroactively."
+    },
+    {
+      "key": "autoAddToFollowUpList",
+      "original": "Automatically add invite recipients to my Follow Up List",
+      "translated": "Automatically add invite recipients to my Follow Up List"
     }
   ],
 
