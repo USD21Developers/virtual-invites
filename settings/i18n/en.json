@@ -80,8 +80,8 @@
     },
     {
       "key": "notificationClarification",
-      "original": "Note: the above notification settings apply to every single invite you have sent. A more precise alternative is to enable notifications for all invites, but unsubscribe from notifications about a specific invite. The link to unsubscribe from notifications for a specific invite is within the e-mail notification itself.",
-      "translated": "Note: the above notification settings apply to every single invite you have sent. A more precise alternative is to enable notifications for all invites, but unsubscribe from notifications about a specific invite. The link to unsubscribe from notifications for a specific invite is within the e-mail notification itself.",
+      "original": "Note: the above notification settings apply to every single invite you have sent. A more precise alternative is to enable notifications for all invites, but unsubscribe from notifications about a specific invite. The link to unsubscribe from notifications for a specific invite is found through the My Invites page.",
+      "translated": "Note: the above notification settings apply to every single invite you have sent. A more precise alternative is to enable notifications for all invites, but unsubscribe from notifications about a specific invite. The link to unsubscribe from notifications for a specific invite is found through the My Invites page.",
       "changes": [
         {
           "original": "every single invite",
@@ -90,6 +90,14 @@
           "italic": true,
           "underline": false,
           "link": ""
+        },
+        {
+          "original": "My Invites",
+          "translated": "My Invites",
+          "bold": true,
+          "italic": true,
+          "underline": false,
+          "link": "../invites/"
         }
       ]
     },
