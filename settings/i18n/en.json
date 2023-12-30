@@ -80,8 +80,8 @@
     },
     {
       "key": "notificationClarification",
-      "original": "Note: the above settings apply to all recipients. Another option is to unsubscribe from notifications about a specific invite. The link to do this is within the e-mail notification.",
-      "translated": "Note: the above settings apply to all recipients. Another option is to unsubscribe from notifications about a specific invite. The link to do this is within the e-mail notification."
+      "original": "Note: the above notification settings apply to all invites. An alternative option is to unsubscribe from notifications about a specific invite. The link to do this is within the e-mail notification.",
+      "translated": "Note: the above notification settings apply to all invites. An alternative option is to unsubscribe from notifications about a specific invite. The link to do this is within the e-mail notification."
     },
     {
       "key": "followUpListHeadline",
