@@ -80,8 +80,8 @@
     },
     {
       "key": "notificationClarification",
-      "original": "Note: disabling either setting above will apply to notifications for every invite you have sent. A less drastic alternative is to enable notifications for all invites, but unsubscribe from notifications about a specific invite. The link to unsubscribe from notifications for a specific invite is found through the My Invites page.",
-      "translated": "Note: disabling either setting above will apply to notifications for every invite you have sent. A less drastic alternative is to enable notifications for all invites, but unsubscribe from notifications about a specific invite. The link to unsubscribe from notifications for a specific invite is found through the My Invites page.",
+      "original": "Note: disabling either setting above will apply to notifications for every invite you have sent. A less drastic alternative is to enable notifications for all invites, but unsubscribe from notifications about a specific invite. The link to unsubscribe from notifications for a specific invite is found through the My Invites page. Just click on the link for the particular invite, then unsubscribe from its page.",
+      "translated": "Note: disabling either setting above will apply to notifications for every invite you have sent. A less drastic alternative is to enable notifications for all invites, but unsubscribe from notifications about a specific invite. The link to unsubscribe from notifications for a specific invite is found through the My Invites page. Just click on the link for the particular invite, then unsubscribe from its page.",
       "changes": [
         {
           "original": "every invite",
