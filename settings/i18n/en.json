@@ -80,8 +80,8 @@
     },
     {
       "key": "notificationClarification",
-      "original": "Note: disabling either setting above will apply to notifications for every invite you have sent. A less drastic alternative is to enable notifications for all invites, but unsubscribe from notifications about a specific invite. The link to do so is found through the My Invites page. Just click on the pertinent invite and select the option to unsubscribe.",
-      "translated": "Note: disabling either setting above will apply to notifications for every invite you have sent. A less drastic alternative is to enable notifications for all invites, but unsubscribe from notifications about a specific invite. The link to do so is found through the My Invites page. Just click on the pertinent invite and select the option to unsubscribe.",
+      "original": "Note: disabling either setting above will apply to notifications for every invite you have sent. A less drastic alternative is to enable notifications, but unsubscribe from the ones about a specific invite. The link to do so is found through the My Invites page. Just click on the pertinent invite and select the option to unsubscribe.",
+      "translated": "Note: disabling either setting above will apply to notifications for every invite you have sent. A less drastic alternative is to enable notifications, but unsubscribe from the ones about a specific invite. The link to do so is found through the My Invites page. Just click on the pertinent invite and select the option to unsubscribe.",
       "changes": [
         {
           "original": "every invite",
@@ -123,8 +123,8 @@
     },
     {
       "key": "publicProfileExplanation1",
-      "original": "As a registered user, you not only have the ability to invite people to specific events, but also to let them see your public profile. Your public profile is a Web page that is specific and unique to you. It has its own Web page address (below), which you can promote for evangelistic purposes in multiple ways:",
-      "translated": "As a registered user, you not only have the ability to invite people to specific events, but also to let them see your public profile. Your public profile is a Web page that is specific and unique to you. It has its own Web page address (below), which you can promote for evangelistic purposes in multiple ways:"
+      "original": "You have your own personal Web page on the Invites app, known as a profile, which is accessible to the public. It has a unique address (shown below), which you can promote for evangelistic purposes in several ways:",
+      "translated": "You have your own personal Web page on the Invites app, known as a profile, which is accessible to the public. It has a unique address (shown below), which you can promote for evangelistic purposes in several ways:"
     },
     {
       "key": "bulletPointEmailSignature",
@@ -157,9 +157,14 @@
       "translated": "as a QR code"
     },
     {
+      "key": "heresTheLink",
+      "original": "Here's the address to your public profile:",
+      "translated": "Here's the address to your public profile:"
+    },
+    {
       "key": "publicProfileExplanation2",
-      "original": "Your public profile Web page is a potential way to evangelize passively, because all of the events that you're inviting people to are listed there, including the event details.",
-      "translated": "Your public profile Web page is a potential way to evangelize passively, because all of the events that you can invite people to are listed there, including the event details.",
+      "original": "Your public profile is a potential way to evangelize passively, because it lets people discover our events at their own convenience and initiative. All of the events that you're normally able to send are listed there for them.",
+      "translated": "Your public profile is a potential way to evangelize passively, because it lets people discover our events at their own convenience and initiative. All of the events that you're normally able to send are listed there for them.",
       "changes": [
         {
           "original": "passively,",
@@ -172,9 +177,9 @@
       ]
     },
     {
-      "key": "heresTheLink",
-      "original": "Here's the Web page address to your public profile:",
-      "translated": "Here's the Web page address to your public profile:"
+      "key": "whatYouCanCustomize",
+      "original": "The following settings allow you to customize your public profile:",
+      "translated": "The following settings allow you to customize your public profile:"
     }
   ],
 

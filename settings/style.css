@@ -2,3 +2,8 @@ label {
   color: var(--dark);
   font-size: 0.9rem;
 }
+
+#publicProfileLinkText {
+  color: var(--primary-dark);
+  font-family: consolas, monospace;
+}
