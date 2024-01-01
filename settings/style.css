@@ -7,3 +7,7 @@ label {
   color: var(--primary-dark);
   font-family: consolas, monospace;
 }
+
+[data-i18n="notificationClarification"] a {
+  color: var(--primary);
+}
