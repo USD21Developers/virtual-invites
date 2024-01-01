@@ -16,6 +16,12 @@
   cursor: pointer;
 }
 
-a[href='#howtoscan'] {
+a[href="#howtoscan"] {
   color: var(--primary);
+}
+
+span.material-icons.material-symbols-outlined.text-info {
+  color: var(--indigo) !important;
+  font-size: 18px;
+  margin-right: 0.2rem;
 }
