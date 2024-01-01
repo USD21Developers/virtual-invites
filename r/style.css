@@ -80,3 +80,8 @@ html {
 #deleteNoteModal [data-i18n="deleteThisNote"] {
   font-size: larger;
 }
+
+#settingsForm label {
+  color: var(--dark);
+  font-size: 0.9rem;
+}

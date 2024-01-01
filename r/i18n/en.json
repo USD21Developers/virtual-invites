@@ -302,6 +302,21 @@
       "key": "deleteThisNote",
       "original": "Delete this note?",
       "translated": "Delete this note?"
+    },
+    {
+      "key": "headlineNotifications",
+      "original": "Notifications:",
+      "translated": "Notifications:"
+    },
+    {
+      "key": "unsubscribeFromEmailNotifications",
+      "original": "Unsubscribe from e-mail notifications",
+      "translated": "Unsubscribe from e-mail notifications"
+    },
+    {
+      "key": "unsubscribeFromPushNotifications",
+      "original": "Unsubscribe from push notifications",
+      "translated": "Unsubscribe from push notifications"
     }
   ],
 
