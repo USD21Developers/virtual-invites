@@ -829,7 +829,7 @@ function prepopulateInvite() {
     };
 
     if (!inviteRecipientJSON) {
-      clearInterval(myInverval);
+      clearInterval(myInterval);
       return;
     }
 
