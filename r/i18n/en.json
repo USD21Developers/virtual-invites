@@ -330,23 +330,23 @@
     },
     {
       "key": "unsubscribeFromBoth",
-      "original": "This action will prevent you from receiving both e-mail and push notifications about this invite.",
-      "translated": "This action will prevent you from receiving both e-mail and push notifications about this invite."
+      "original": "By confirming, you will be prevented from receiving both e-mail and push notifications about this invite.",
+      "translated": "By confirming, you will be prevented from receiving both e-mail and push notifications about this invite."
     },
     {
       "key": "unsubscribeFromEmail",
-      "original": "This action will prevent you from receiving e-mail notifications about this invite.",
-      "translated": "This action will prevent you from receiving e-mail notifications about this invite."
+      "original": "By confirming, you will be prevented from receiving e-mail notifications about this invite.",
+      "translated": "By confirming, you will be prevented from receiving e-mail notifications about this invite."
     },
     {
       "key": "unsubscribeFromPush",
-      "original": "This action will prevent you from receiving push notifications about this invite.",
-      "translated": "This action will prevent you from receiving push notifications about this invite."
+      "original": "By confirming, you will be prevented from receiving push notifications about this invite.",
+      "translated": "By confirming, you will be prevented from receiving push notifications about this invite."
     },
     {
       "key": "unsubscribeFromNeither",
-      "original": "This action will enable you to receive both e-mail and push notifications about this invite.",
-      "translated": "This action will enable you to receive both e-mail and push notifications about this invite."
+      "original": "By confirming, you will be able to receive both e-mail and push notifications about this invite.",
+      "translated": "By confirming, you will be able to receive both e-mail and push notifications about this invite."
     },
     {
       "key": "notificationsUpdated",
