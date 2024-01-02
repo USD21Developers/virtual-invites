@@ -305,8 +305,8 @@
     },
     {
       "key": "headlineNotifications",
-      "original": "Notifications:",
-      "translated": "Notifications:"
+      "original": "Notifications for this Invite:",
+      "translated": "Notifications for this Invite:"
     },
     {
       "key": "unsubscribeFromEmailNotifications",
