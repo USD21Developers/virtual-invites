@@ -1476,7 +1476,7 @@ async function onConfirmNotifications(e) {
   setTimeout(() => {
     const toastMessage = getPhrase("notificationsUpdated");
     showToast(toastMessage, 5000, "success");
-  }, 1500);
+  }, 800);
 
   syncInviteNotifications();
 }
