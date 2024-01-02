@@ -1,5 +1,6 @@
 const pageLoadStartTime = performance.now();
 let syncedInvites = false;
+let syncedInviteNotifications = false;
 let inviteObj = {};
 let eventObj = {};
 let notesObj = [];
@@ -1470,11 +1471,12 @@ async function onConfirmNotifications(e) {
 
   e.preventDefault();
 
-  $("#notificationsModal").on("hidden.bs.modal", (e) => {
+  $("#notificationsModal").modal("hide");
+
+  setTimeout(() => {
     const toastMessage = getPhrase("notificationsUpdated");
     showToast(toastMessage, 5000, "success");
-  });
-  $("#notificationsModal").modal("hide");
+  }, 1500);
 
   syncInviteNotifications();
 }
