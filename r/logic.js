@@ -451,6 +451,17 @@ END:VCARD`;
   downloadToFile(vcard, "vcard.vcf", "text/vcard");
 }
 
+async function populateNotificationsExplanation() {
+  let text = getPhrase("notificationsExplanation").replaceAll(
+    "{RECIPIENT-NAME}",
+    inviteObj.recipient.name
+  );
+  const notificationsExplanationEl = document.querySelector(
+    "#notificationsExplanation"
+  );
+  notificationsExplanationEl.innerHTML = text;
+}
+
 async function populateNotificationsSettings() {
   const invites = await localforage.getItem("invites");
   const inviteid = Number(getHash().split("/")[1]) || null;
@@ -1559,6 +1570,7 @@ async function init() {
   syncUpdatedInvites();
   await populateContent();
   await getRecipient();
+  populateNotificationsExplanation();
   populateResendInvite();
   populateFollowUpReminder();
   populateAddToFollowupLinks();

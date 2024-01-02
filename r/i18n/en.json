@@ -305,8 +305,13 @@
     },
     {
       "key": "headlineNotifications",
-      "original": "Notifications for This Invite:",
-      "translated": "Notifications for This Invite:"
+      "original": "Notifications for This Invite",
+      "translated": "Notifications for This Invite"
+    },
+    {
+      "key": "notificationsExplanation",
+      "original": "You can be immediately notified if {RECIPIENT-NAME} views or interacts with this invite. Being notified will enable you to follow up with {RECIPIENT-NAME} in a timely manner. However, you can also disable these notifications below, if you prefer.",
+      "translated": "You can be immediately notified if {RECIPIENT-NAME} views or interacts with this invite. Being notified will enable you to follow up with {RECIPIENT-NAME} in a timely manner. However, you can also disable these notifications below, if you prefer."
     },
     {
       "key": "unsubscribeFromEmailNotifications",
