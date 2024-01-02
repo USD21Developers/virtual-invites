@@ -130,6 +130,7 @@ function getRecipient() {
 
     let invites = (await localforage.getItem("invites")) || null;
 
+    await unsyncedInviteNotifications();
     await syncInvites();
     syncedInvites = true;
     invites = await localforage.getItem("invites");
@@ -448,6 +449,32 @@ ${makeVCardTimeStamp()}
 ${makeVCardGeo(lat, long)}
 END:VCARD`;
   downloadToFile(vcard, "vcard.vcf", "text/vcard");
+}
+
+async function populateNotificationsSettings() {
+  const invites = await localforage.getItem("invites");
+  const inviteid = Number(getHash().split("/")[1]) || null;
+
+  if (!invites) return;
+  if (!Array.isArray(invites)) return;
+  if (!invites.length) return;
+  if (typeof inviteid !== "number") return;
+
+  const unsubscribeFromEmailNotificationsEl = document.querySelector(
+    "#unsubscribeFromEmailNotifications"
+  );
+  const unsubscribeFromPushNotificationsEl = document.querySelector(
+    "#unsubscribeFromPushNotifications"
+  );
+
+  const invite = invites.find((item) => item.invitationid === inviteid);
+
+  if (!invite) return;
+  if (!invite.unsubscribedFromEmail) return;
+  if (!invite.unsubscribedFromPush) return;
+
+  unsubscribeFromEmailNotificationsEl.checked = invite.unsubscribedFromEmail;
+  unsubscribeFromPushNotificationsEl.checked = invite.unsubscribedFromPush;
 }
 
 async function populateResendInvite(e) {
@@ -1327,6 +1354,120 @@ function onInviteToDifferentEvent(e) {
   );
 }
 
+function onUpdateNotifications(e) {
+  const bodyEl = document.querySelector("#notificationsModal .modal-body");
+  const unsubFromEmail = document.querySelector(
+    "#unsubscribeFromEmailNotifications"
+  ).checked
+    ? true
+    : false;
+  const unsubFromPush = document.querySelector(
+    "#unsubscribeFromPushNotifications"
+  ).checked
+    ? true
+    : false;
+  const unsubFromBoth = unsubFromEmail && unsubFromPush;
+  const unsubFromNeither = !unsubFromEmail && !unsubFromPush;
+  let confirmMessage = "";
+
+  if (unsubFromBoth) {
+    confirmMessage = getPhrase("unsubscribeFromBoth");
+  } else if (unsubFromEmail) {
+    confirmMessage = getPhrase("unsubscribeFromEmail");
+  } else if (unsubFromPush) {
+    confirmMessage = getPhrase("unsubscribeFromPush");
+  } else if (unsubFromNeither) {
+    confirmMessage = getPhrase("unsubscribeFromNeither");
+  }
+
+  bodyEl.innerHTML = confirmMessage;
+
+  $("#notificationsModal").modal({
+    show: true,
+  });
+
+  e.preventDefault();
+}
+
+async function onConfirmNotifications(e) {
+  const now = new Date().toISOString();
+  const unsubFromEmail = document.querySelector(
+    "#unsubscribeFromEmailNotifications"
+  ).checked
+    ? true
+    : false;
+  const unsubFromPush = document.querySelector(
+    "#unsubscribeFromPushNotifications"
+  ).checked
+    ? true
+    : false;
+  const inviteId = Number(getHash().split("/")[1]);
+
+  if (typeof inviteId !== "number") {
+    return;
+  }
+
+  // Update IndexedDB
+  let invites = (await localforage.getItem("invites")) || [];
+  invites = invites.map((invite) => {
+    if (!invite) return;
+    if (invite.invitationid === inviteId) {
+      if (unsubFromEmail) {
+        invite.unsubscribedFromEmail = true;
+        invite.unsubscribedFromEmailAt = now;
+      } else {
+        invite.unsubscribedFromEmail = false;
+        invite.unsubscribedFromEmailAt = null;
+      }
+
+      if (unsubFromPush) {
+        invite.unsubscribedFromPush = true;
+        invite.unsubscribedFromPushAt = now;
+      } else {
+        invite.unsubscribedFromPush = false;
+        invite.unsubscribedFromPushAt = null;
+      }
+
+      return invite;
+    }
+    return invite;
+  });
+  await localforage.setItem("invites", invites);
+
+  // Create value in IndexedDB to be synced
+  let unsyncedInviteNotifications =
+    (await localforage.getItem("unsyncedInviteNotifications")) || [];
+  if (unsyncedInviteNotifications && unsyncedInviteNotifications.length) {
+    unsyncedInviteNotifications = unsyncedInviteNotifications.filter(
+      (item) => item.invitationid !== inviteId
+    );
+  }
+  const unsubFromEmailAt = unsubFromEmail ? now : null;
+  const unsubFromPushAt = unsubFromPush ? now : null;
+  const newItem = {
+    invitationid: inviteId,
+    unsubscribedFromEmail: unsubFromEmail,
+    unsubscribedFromPush: unsubFromPush,
+    unsubscribedFromEmailAt: unsubFromEmailAt,
+    unsubscribedFromPushAt: unsubFromPushAt,
+  };
+  unsyncedInviteNotifications.push(newItem);
+  await localforage.setItem(
+    "unsyncedInviteNotifications",
+    unsyncedInviteNotifications
+  );
+
+  e.preventDefault();
+
+  $("#notificationsModal").on("hidden.bs.modal", (e) => {
+    const toastMessage = getPhrase("notificationsUpdated");
+    showToast(toastMessage, 5000, "success");
+  });
+  $("#notificationsModal").modal("hide");
+
+  syncInviteNotifications();
+}
+
 function attachListeners() {
   window.addEventListener("hashchange", () => {
     window.location.reload();
@@ -1404,6 +1545,14 @@ function attachListeners() {
   document.querySelector("#editNoteForm").addEventListener("submit", (e) => {
     onEditNote(e);
   });
+
+  document
+    .querySelector("#settingsForm")
+    .addEventListener("submit", onUpdateNotifications);
+
+  document
+    .querySelector("#notificationsConfirmForm")
+    .addEventListener("submit", onConfirmNotifications);
 }
 
 async function init() {
@@ -1413,6 +1562,7 @@ async function init() {
   populateResendInvite();
   populateFollowUpReminder();
   populateAddToFollowupLinks();
+  populateNotificationsSettings();
   populateNotes();
   attachListeners();
   globalHidePageSpinner();

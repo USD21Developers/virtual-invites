@@ -317,6 +317,41 @@
       "key": "unsubscribeFromPushNotifications",
       "original": "Unsubscribe from push notifications",
       "translated": "Unsubscribe from push notifications"
+    },
+    {
+      "key": "notificationsSubmitButton",
+      "original": "Update Notifications",
+      "translated": "Update Notifications"
+    },
+    {
+      "key": "areYouSure",
+      "original": "Are You Sure?",
+      "translated": "Are You Sure?"
+    },
+    {
+      "key": "unsubscribeFromBoth",
+      "original": "This action will prevent you from receiving both e-mail and push notifications about this invite.",
+      "translated": "This action will prevent you from receiving both e-mail and push notifications about this invite."
+    },
+    {
+      "key": "unsubscribeFromEmail",
+      "original": "This action will prevent you from receiving e-mail notifications about this invite.",
+      "translated": "This action will prevent you from receiving e-mail notifications about this invite."
+    },
+    {
+      "key": "unsubscribeFromPush",
+      "original": "This action will prevent you from receiving push notifications about this invite.",
+      "translated": "This action will prevent you from receiving push notifications about this invite."
+    },
+    {
+      "key": "unsubscribeFromNeither",
+      "original": "This action will enable you to receive both e-mail and push notifications about this invite.",
+      "translated": "This action will enable you to receive both e-mail and push notifications about this invite."
+    },
+    {
+      "key": "notificationsUpdated",
+      "original": "Notifications Updated",
+      "translated": "Notifications Updated"
     }
   ],
 

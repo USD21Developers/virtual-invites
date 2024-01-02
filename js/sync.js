@@ -605,3 +605,11 @@ function syncAllNotes() {
     }, 30000);
   });
 }
+
+function syncInviteNotifications() {
+  return new Promise((resolve, reject) => {
+    // TODO:  build API endpoint
+    // TODO:  build out this function
+    resolve();
+  });
+}
