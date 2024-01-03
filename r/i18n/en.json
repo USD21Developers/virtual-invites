@@ -310,8 +310,8 @@
     },
     {
       "key": "notificationsExplanation",
-      "original": "Normally you will be immediately notified when {RECIPIENT-NAME} views or interacts with this invite, enabling you to follow up in a timely manner. But if you prefer, you can also unsubscribe from these notifications below. These settings only apply to this particular invite, and not necessarily every invite that you have ever sent to {RECIPIENT-NAME}.",
-      "translated": "Normally you will be immediately notified when {RECIPIENT-NAME} views or interacts with this invite, enabling you to follow up in a timely manner. But if you prefer, you can also unsubscribe from these notifications below. These settings only apply to this particular invite, and not necessarily every invite that you have ever sent to {RECIPIENT-NAME}."
+      "original": "Normally you will be immediately notified when {RECIPIENT-NAME} views or interacts with this invite, enabling you to follow up in a timely manner. But if you prefer, you can unsubscribe from notifications for this particular invite.",
+      "translated": "Normally you will be immediately notified when {RECIPIENT-NAME} views or interacts with this invite, enabling you to follow up in a timely manner. But if you prefer, you can unsubscribe from notifications for this particular invite."
     },
     {
       "key": "unsubscribeFromEmailNotifications",
