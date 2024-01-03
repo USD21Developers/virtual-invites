@@ -305,13 +305,13 @@
     },
     {
       "key": "headlineNotifications",
-      "original": "Notifications for This Invite",
-      "translated": "Notifications for This Invite"
+      "original": "To Unsubscribe:",
+      "translated": "To Unsubscribe:"
     },
     {
       "key": "notificationsExplanation",
-      "original": "You can be immediately notified if {RECIPIENT-NAME} views or interacts with this invite, enabling you to follow up in a timely manner. However, if you prefer, you can also unsubscribe from these notifications below.",
-      "translated": "You can be immediately notified if {RECIPIENT-NAME} views or interacts with this invite, enabling you to follow up in a timely manner. However, if you prefer, you can also unsubscribe from these notifications below."
+      "original": "Normally you will be immediately notified when {RECIPIENT-NAME} views or interacts with this invite, enabling you to follow up in a timely manner. But if you prefer, you can also unsubscribe from these notifications below. These settings only apply to this particular invite, and not necessarily every invite that you have ever sent to {RECIPIENT-NAME}.",
+      "translated": "Normally you will be immediately notified when {RECIPIENT-NAME} views or interacts with this invite, enabling you to follow up in a timely manner. But if you prefer, you can also unsubscribe from these notifications below. These settings only apply to this particular invite, and not necessarily every invite that you have ever sent to {RECIPIENT-NAME}."
     },
     {
       "key": "unsubscribeFromEmailNotifications",
@@ -325,8 +325,8 @@
     },
     {
       "key": "notificationsSubmitButton",
-      "original": "Update Notifications",
-      "translated": "Update Notifications"
+      "original": "Update",
+      "translated": "Update"
     },
     {
       "key": "areYouSure",
