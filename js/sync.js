@@ -607,9 +607,37 @@ function syncAllNotes() {
 }
 
 function syncInviteNotifications() {
-  return new Promise((resolve, reject) => {
-    // TODO:  build API endpoint
-    // TODO:  build out this function
-    resolve();
+  return new Promise(async (resolve, reject) => {
+    const unsyncedInviteNotifications = await localforage.getItem(
+      "unsyncedInviteNotifications"
+    );
+    const endpoint = `${getApiHost()}/sync-notifications`;
+    const accessToken = await getAccessToken();
+
+    if (!unsyncedInviteNotifications) return resolve();
+    if (!Array.isArray(unsyncedInviteNotifications)) return resolve();
+    if (!unsyncedInviteNotifications.length) return resolve();
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify({
+        unsyncedInviteNotifications: unsyncedInviteNotifications,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then(async (data) => {
+        if (data.msgType && data.msgType === "error") {
+          return reject(new Error(data.msg));
+        }
+
+        await localforage.removeItem("unsyncedInviteNotifications");
+
+        return resolve();
+      });
   });
 }
