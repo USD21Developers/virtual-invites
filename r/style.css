@@ -85,3 +85,7 @@ html {
   color: var(--dark);
   font-size: 0.9rem;
 }
+
+.mainContent {
+  overscroll-behavior-x: none !important;
+}
