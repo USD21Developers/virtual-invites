@@ -1402,6 +1402,7 @@ function onUpdateNotifications(e) {
 }
 
 async function onConfirmNotifications(e) {
+  e.preventDefault();
   const now = new Date().toISOString();
   const unsubFromEmail = document.querySelector(
     "#unsubscribeFromEmailNotifications"
