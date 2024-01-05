@@ -482,8 +482,6 @@ async function populateNotificationsSettings() {
   const invite = invites.find((item) => item.invitationid === inviteid);
 
   if (!invite) return;
-  if (!invite.unsubscribedFromEmail) return;
-  if (!invite.unsubscribedFromPush) return;
 
   unsubscribeFromEmailNotificationsEl.checked = invite.unsubscribedFromEmail;
   unsubscribeFromPushNotificationsEl.checked = invite.unsubscribedFromPush;
@@ -1476,7 +1474,7 @@ async function onConfirmNotifications(e) {
 
   setTimeout(() => {
     const toastMessage = getPhrase("notificationsUpdated");
-    showToast(toastMessage, 5000, "success");
+    showToast(toastMessage, 3000, "success");
   }, 800);
 
   syncInviteNotifications();
