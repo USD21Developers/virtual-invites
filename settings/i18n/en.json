@@ -40,13 +40,124 @@
     },
     {
       "key": "customInviteTextExample",
-      "original": "Hi, it's {NAME}. It was nice talking with you. I hope you can join us.",
-      "translated": "Hi, it's {NAME}. It was nice talking with you. I hope you can join us."
+      "original": "Hi, it's {SENDER-FIRST-NAME}. It was nice talking with you. I hope you can join us.",
+      "translated": "Hi, it's {SENDER-FIRST-NAME}. It was nice talking with you. I hope you can join us."
+    },
+    {
+      "key": "optional",
+      "original": "Optional:",
+      "translated": "Optional:"
+    },
+    {
+      "key": "templatePlaceholderExplanation1",
+      "original": "Within your Custom Text above, you can include template placeholders. Just like variables in a template, these placeholders (shown in square brackets below) will be automatically converted for you. They can enable you to greet the invite recipient by their actual name, or refer to the event's title.",
+      "translated": "Within your Custom Text above, you can include template placeholders. Just like variables in a template, these placeholders (shown in square brackets below) will be automatically converted for you. They can enable you to greet the invite recipient by their actual name, or refer to the event's title."
+    },
+    {
+      "key": "templatePlaceholderExplanation2",
+      "original": "For example, if the recipient's name was John, and the event was a Bible Talk, you could type the following Custom Text into the form field above...",
+      "translated": "For example, if the recipient's name was John, and the event was a Bible Talk, you could type the following Custom Text into the form field above...",
+      "changes": [
+        {
+          "original": "John",
+          "translated": "John",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        },
+        {
+          "original": "Bible Talk",
+          "translated": "Bible Talk",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "templatePlaceholderBefore",
+      "original": "Hi, [NAME]. It's {SENDER-FIRST-NAME}. Looking forward to seeing you at [EVENT]. It was nice talking with you. I hope you can join us.",
+      "translated": "Hi, [NAME]. It's {SENDER-FIRST-NAME}. Looking forward to seeing you at [EVENT]. It was nice talking with you. I hope you can join us.",
+      "changes": [
+        {
+          "original": "[NAME]",
+          "translated": "[NAME]",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        },
+        {
+          "original": "[EVENT]",
+          "translated": "[EVENT]",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "templatePlaceholderWillBeConvertedTo",
+      "original": "...and it would be converted to this:",
+      "translated": "...and it would be converted to this:"
+    },
+    {
+      "key": "templatePlaceholderAfter",
+      "original": "Hi, John. It's {SENDER-FIRST-NAME}. Looking forward to seeing you at Bible Talk. It was nice talking with you. I hope you can join us.",
+      "translated": "Hi, John. It's {SENDER-FIRST-NAME}. Looking forward to seeing you at Bible Talk. It was nice talking with you. I hope you can join us."
+    },
+    {
+      "key": "placeholderColumnHeading1",
+      "original": "Placeholder:",
+      "translated": "Placeholder:"
+    },
+    {
+      "key": "placeholderColumnHeading2",
+      "original": "Gets converted to:",
+      "translated": "Gets converted to:"
+    },
+    {
+      "key": "namePlaceholderConverted",
+      "original": "(the recipient's name)",
+      "translated": "(the recipient's name)"
+    },
+    {
+      "key": "eventTitlePlaceholderConverted",
+      "original": "(the title of the event)",
+      "translated": "(the title of the event)"
+    },
+    {
+      "key": "openingPage",
+      "original": "Opening Page",
+      "translated": "Opening Page"
+    },
+    {
+      "key": "openingPageExplanation",
+      "original": "You can set the page to be be shown whenever you open the Invites app.",
+      "translated": "You can set the page to be be shown whenever you open the Invites app."
+    },
+    {
+      "key": "openingPageHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "openingPageSendAnInvite",
+      "original": "Send an Invite",
+      "translated": "Send an Invite"
+    },
+    {
+      "key": "openingPageMyInvites",
+      "original": "My Invites",
+      "translated": "My Invites"
     },
     {
       "key": "customInviteText",
-      "original": "Custom text:",
-      "translated": "Custom text:"
+      "original": "Custom Text:",
+      "translated": "Custom Text:"
     },
     {
       "key": "when-sending-by-email",
@@ -79,9 +190,14 @@
       "translated": "Enable push notifications"
     },
     {
+      "key": "onThisDevice",
+      "original": "(on this device)",
+      "translated": "(on this device)"
+    },
+    {
       "key": "notificationClarification",
-      "original": "Note: You can also disable notifications about specific invites (instead of all of them). To do so, just visit My Invites, click on a name, then unsubscribe from notifications.",
-      "translated": "Note: You can also disable notifications about specific invites (instead of all of them). To do so, just visit My Invites, click on a name, then unsubscribe from notifications.",
+      "original": "Note: You can also disable notifications about a particular invite. To do so, just visit My Invites, click on a name, then scroll to the pertinent section to unsubscribe.",
+      "translated": "Note: You can also disable notifications about a particular invite. To do so, just visit My Invites, click on a name, then scroll to the pertinent section to unsubscribe.",
       "changes": [
         {
           "original": "My Invites",

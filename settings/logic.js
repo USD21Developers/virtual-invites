@@ -6,8 +6,23 @@ function populateInviteTextExample() {
   document
     .querySelectorAll("[data-i18n='customInviteTextExample']")
     .forEach((el) => {
-      const rawText = el.innerText;
-      const fixedText = rawText.replaceAll("{NAME}", firstName);
+      const rawText = el.innerHTML;
+      const fixedText = rawText.replaceAll("{SENDER-FIRST-NAME}", firstName);
+      el.innerHTML = fixedText;
+    });
+  document
+    .querySelectorAll("[data-i18n='templatePlaceholderBefore']")
+    .forEach((el) => {
+      const rawText = el.innerHTML;
+      let fixedText;
+      fixedText = rawText.replaceAll("{SENDER-FIRST-NAME}", firstName);
+      el.innerHTML = fixedText;
+    });
+  document
+    .querySelectorAll("[data-i18n='templatePlaceholderAfter']")
+    .forEach((el) => {
+      const rawText = el.innerHTML;
+      const fixedText = rawText.replaceAll("{SENDER-FIRST-NAME}", firstName);
       el.innerHTML = fixedText;
     });
 }

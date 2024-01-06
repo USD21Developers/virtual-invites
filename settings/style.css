@@ -11,3 +11,25 @@ label {
 [data-i18n="notificationClarification"] a {
   color: var(--primary);
 }
+
+#placeholderTable th {
+  font-size: 0.85rem !important;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+#placeholderTable tr > th,
+#placeholderTable tr > td {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.customTextPlaceholder {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.text-primary-dark {
+  color: var(--primary-dark);
+}

@@ -178,6 +178,67 @@
       </div>
 
       <form id="settingsForm">
+        <!-- OPENING PAGE -->
+        <div class="row mb-5">
+          <div class="col-12 col-md-8 offset-md-2">
+            <h3 class="bg-light border px-3 py-2" data-i18n="openingPage"></h3>
+
+            <div class="px-3">
+              <p class="mt-3" data-i18n="openingPageExplanation"></p>
+              <br />
+
+              <!-- Home -->
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="openingPage"
+                  id="openingPageHome"
+                  value="home"
+                  checked
+                />
+                <label
+                  class="form-check-label font-weight-bold d-block"
+                  for="openingPageHome"
+                  data-i18n="openingPageHome"
+                ></label>
+              </div>
+
+              <!-- Send an Invite -->
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="openingPage"
+                  id="openingPageSendAnInvite"
+                  value="send an invite"
+                />
+                <label
+                  class="form-check-label font-weight-bold d-block"
+                  for="openingPageSendAnInvite"
+                  data-i18n="openingPageSendAnInvite"
+                ></label>
+              </div>
+
+              <!-- My Invites -->
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="openingPage"
+                  id="openingPageMyInvites"
+                  value="my invites"
+                />
+                <label
+                  class="form-check-label font-weight-bold d-block"
+                  for="openingPageMyInvites"
+                  data-i18n="openingPageMyInvites"
+                ></label>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- CUSTOM TEXT -->
         <div class="row mt-3 mb-4">
           <div class="col-12 col-md-8 offset-md-2">
@@ -187,11 +248,11 @@
             ></h3>
             <div class="px-3">
               <p class="mt-3" data-i18n="customInviteTextExplanation"></p>
-              <p class="mt-3 mb-4">
+              <p class="mt-4 mb-4">
                 <span data-i18n="customInviteTextExampleHeading"></span><br />
                 <span
-                  class="text-primary"
                   data-i18n="customInviteTextExample"
+                  class="text-primary-dark"
                 ></span>
               </p>
               <div class="form-group">
@@ -207,6 +268,68 @@
                   maxlength="255"
                 />
               </div>
+
+              <div class="mt-5 bg-light border border-dark p-4">
+                <div>
+                  <strong><em data-i18n="optional"></em></strong>
+                </div>
+                <div
+                  class="mt-2"
+                  data-i18n="templatePlaceholderExplanation1"
+                ></div>
+                <div
+                  class="mt-2 mb-4"
+                  data-i18n="templatePlaceholderExplanation2"
+                ></div>
+                <div
+                  class="text-primary-dark"
+                  data-i18n="templatePlaceholderBefore"
+                ></div>
+                <div
+                  class="my-4 mb-2"
+                  data-i18n="templatePlaceholderWillBeConvertedTo"
+                ></div>
+                <div
+                  class="mb-4 text-primary-dark"
+                  data-i18n="templatePlaceholderAfter"
+                ></div>
+                <table class="table border border-dark" id="placeholderTable">
+                  <thead>
+                    <tr>
+                      <th
+                        class="text-dark"
+                        data-i18n="placeholderColumnHeading1"
+                      ></th>
+                      <th
+                        class="text-dark"
+                        data-i18n="placeholderColumnHeading2"
+                      ></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <span
+                          class="text-dark font-weight-bold customTextPlaceholder"
+                        >
+                          [NAME]
+                        </span>
+                      </td>
+                      <td data-i18n="namePlaceholderConverted"></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span
+                          class="text-dark font-weight-bold customTextPlaceholder"
+                        >
+                          [EVENT]
+                        </span>
+                      </td>
+                      <td data-i18n="eventTitlePlaceholderConverted"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -221,9 +344,10 @@
 
             <div class="px-3">
               <p class="mt-3" data-i18n="notificationsExplanation"></p>
+              <br />
 
               <!-- Notify via e-mail -->
-              <div class="form-check mt-2 mb-3">
+              <div class="form-check mb-3">
                 <label for="notifyViaEmail" class="d-block">
                   <input
                     class="form-check-input"
@@ -254,11 +378,13 @@
                     data-i18n="notifyViaPush"
                     class="font-weight-bold"
                   ></span>
+                  <span data-i18n="onThisDevice" class="ml-1"> </span>
                 </label>
               </div>
 
               <!-- Disabling vs. Unsubscribing -->
-              <p class="mt-3" data-i18n="notificationClarification"></p>
+              <br />
+              <p data-i18n="notificationClarification"></p>
             </div>
           </div>
         </div>
