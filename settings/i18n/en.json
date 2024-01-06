@@ -81,8 +81,8 @@
     },
     {
       "key": "templatePlaceholderExplanation1",
-      "original": "Within your Custom Text above, you can include dynamic values called placeholders. Just like a template, these placeholders (shown in square brackets below) will be automatically converted for you in the moment that you send someone an invite. They can enable you to greet the invite recipient by their actual name, or refer to the event's title.",
-      "translated": "Within your Custom Text above, you can include dynamic values called placeholders. Just like a template, these placeholders (shown in square brackets below) will be automatically converted for you in the moment that you send someone an invite. They can enable you to greet the invite recipient by their actual name, or refer to the event's title."
+      "original": "Within your Custom Text above, you can include dynamic values called placeholders (which are listed in the table below). Just like a template, these placeholders will be automatically converted for you in the moment that you send someone an invite. They can enable you to greet the invite recipient by their actual name, or refer to the event's title.",
+      "translated": "Within your Custom Text above, you can include dynamic values called placeholders (which are listed in the table below). Just like a template, these placeholders will be automatically converted for you in the moment that you send someone an invite. They can enable you to greet the invite recipient by their actual name, or refer to the event's title."
     },
     {
       "key": "templatePlaceholderExplanation2",
