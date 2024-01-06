@@ -29,6 +29,37 @@
       "translated": "Custom Invite Text"
     },
     {
+      "key": "openingPage",
+      "original": "Opening Page",
+      "translated": "Opening Page"
+    },
+    {
+      "key": "openingPageExplanation",
+      "original": "You can set which page to be be shown whenever you open the Invites app.",
+      "translated": "You can set which page to be be shown whenever you open the Invites app."
+    },
+    {
+      "key": "openingPageHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "openingPageSendAnInvite",
+      "original": "Send an Invite",
+      "translated": "Send an Invite"
+    },
+    {
+      "key": "openingPageMyInvites",
+      "original": "My Invites",
+      "translated": "My Invites"
+    },
+    {
+      "key": "customInviteText",
+      "original": "Custom Text:",
+      "translated": "Custom Text:"
+    },
+
+    {
       "key": "customInviteTextExplanation",
       "original": "When you send an invite by text message or e-mail, by default your message will only contain the name of the event and a link for the recipient to click on. But you can add additional text below the link, for a more personal touch.",
       "translated": "When you send an invite by text message or e-mail, by default your message will only contain the name of the event and a link for the recipient to click on. But you can add additional text below the link, for a more personal touch."
@@ -50,8 +81,8 @@
     },
     {
       "key": "templatePlaceholderExplanation1",
-      "original": "Within your Custom Text above, you can include template placeholders. Just like variables in a template, these placeholders (shown in square brackets below) will be automatically converted for you. They can enable you to greet the invite recipient by their actual name, or refer to the event's title.",
-      "translated": "Within your Custom Text above, you can include template placeholders. Just like variables in a template, these placeholders (shown in square brackets below) will be automatically converted for you. They can enable you to greet the invite recipient by their actual name, or refer to the event's title."
+      "original": "Within your Custom Text above, you can include dynamic values called placeholders. Just like a template, these placeholders (shown in square brackets below) will be automatically converted for you in the moment that you send someone an invite. They can enable you to greet the invite recipient by their actual name, or refer to the event's title.",
+      "translated": "Within your Custom Text above, you can include dynamic values called placeholders. Just like a template, these placeholders (shown in square brackets below) will be automatically converted for you in the moment that you send someone an invite. They can enable you to greet the invite recipient by their actual name, or refer to the event's title."
     },
     {
       "key": "templatePlaceholderExplanation2",
@@ -101,8 +132,8 @@
     },
     {
       "key": "templatePlaceholderWillBeConvertedTo",
-      "original": "...and it would be converted to this:",
-      "translated": "...and it would be converted to this:"
+      "original": "...and in the moment that you send the actual invite, it would be converted to this:",
+      "translated": "...and in the moment that you send the actual invite, it would be converted to this:"
     },
     {
       "key": "templatePlaceholderAfter",
@@ -128,46 +159,6 @@
       "key": "eventTitlePlaceholderConverted",
       "original": "(the title of the event)",
       "translated": "(the title of the event)"
-    },
-    {
-      "key": "openingPage",
-      "original": "Opening Page",
-      "translated": "Opening Page"
-    },
-    {
-      "key": "openingPageExplanation",
-      "original": "You can set the page to be be shown whenever you open the Invites app.",
-      "translated": "You can set the page to be be shown whenever you open the Invites app."
-    },
-    {
-      "key": "openingPageHome",
-      "original": "Home",
-      "translated": "Home"
-    },
-    {
-      "key": "openingPageSendAnInvite",
-      "original": "Send an Invite",
-      "translated": "Send an Invite"
-    },
-    {
-      "key": "openingPageMyInvites",
-      "original": "My Invites",
-      "translated": "My Invites"
-    },
-    {
-      "key": "customInviteText",
-      "original": "Custom Text:",
-      "translated": "Custom Text:"
-    },
-    {
-      "key": "when-sending-by-email",
-      "original": "For invites sent via e-mail:",
-      "translated": "For invites sent via e-mail:"
-    },
-    {
-      "key": "preview",
-      "original": "Preview",
-      "translated": "Preview"
     },
     {
       "key": "notificationsHeadline",
