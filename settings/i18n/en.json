@@ -109,12 +109,12 @@
     },
     {
       "key": "templatePlaceholderBefore",
-      "original": "Hi, [NAME]. It's {SENDER-FIRST-NAME}. Looking forward to seeing you at [EVENT]. It was nice talking with you. I hope you can join us.",
-      "translated": "Hi, [NAME]. It's {SENDER-FIRST-NAME}. Looking forward to seeing you at [EVENT]. It was nice talking with you. I hope you can join us.",
+      "original": "Hi, [RECIPIENT]. It's {SENDER-FIRST-NAME}. Looking forward to seeing you at [EVENT]. It was nice talking with you. I hope you can join us.",
+      "translated": "Hi, [RECIPIENT]. It's {SENDER-FIRST-NAME}. Looking forward to seeing you at [EVENT]. It was nice talking with you. I hope you can join us.",
       "changes": [
         {
-          "original": "[NAME]",
-          "translated": "[NAME]",
+          "original": "[RECIPIENT]",
+          "translated": "[RECIPIENT]",
           "bold": true,
           "italic": false,
           "underline": false,
@@ -151,7 +151,7 @@
       "translated": "Gets converted to:"
     },
     {
-      "key": "namePlaceholderConverted",
+      "key": "recipientPlaceholderConverted",
       "original": "(the recipient's name)",
       "translated": "(the recipient's name)"
     },
