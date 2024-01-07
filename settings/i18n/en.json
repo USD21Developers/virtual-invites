@@ -54,6 +54,11 @@
       "translated": "My Invites"
     },
     {
+      "key": "openingPageFollowUpList",
+      "original": "Follow Up List",
+      "translated": "Follow Up List"
+    },
+    {
       "key": "customInviteText",
       "original": "Custom Text:",
       "translated": "Custom Text:"
@@ -61,8 +66,8 @@
 
     {
       "key": "customInviteTextExplanation",
-      "original": "When you send an invite by text message or e-mail, by default your message will only contain the name of the event and a link for the recipient to click on. But you can add additional text below the link, for a more personal touch.",
-      "translated": "When you send an invite by text message or e-mail, by default your message will only contain the name of the event and a link for the recipient to click on. But you can add additional text below the link, for a more personal touch."
+      "original": "When you send a new invite by text message or e-mail, by default your message will only contain the name of the event and a link for the recipient to click on. But you can add additional text below the link, for a more personal touch.",
+      "translated": "When you send a new invite by text message or e-mail, by default your message will only contain the name of the event and a link for the recipient to click on. But you can add additional text below the link, for a more personal touch."
     },
     {
       "key": "customInviteTextExampleHeading",
@@ -207,8 +212,8 @@
     },
     {
       "key": "followUpListExplanation",
-      "original": "When you send an invite, you can automatically add the recipient to your Follow Up List. This setting only applies to future invites, and not retroactively.",
-      "translated": "When you send an invite, you can automatically add the recipient to your Follow Up List. This setting only applies to future invites, and not retroactively."
+      "original": "When you send a new invite, you can automatically add the recipient to your Follow Up List. This setting only applies to future invites, and not retroactively.",
+      "translated": "When you send a new invite, you can automatically add the recipient to your Follow Up List. This setting only applies to future invites, and not retroactively."
     },
     {
       "key": "autoAddToFollowUpList",
