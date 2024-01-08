@@ -1,6 +1,6 @@
 function populateForm() {
-  return new Promise((resolve, reject) => {
-    const settings = localforage.getItem("settings") || null;
+  return new Promise(async (resolve, reject) => {
+    const settings = (await localforage.getItem("settings")) || null;
     if (!settings) return reject();
     const {
       autoAddToFollowupList,
@@ -25,7 +25,7 @@ function populateForm() {
 
     // Custom Invite Text
     if (customInviteText) {
-      document.querySelector("#bodyText").value = customInviteText;
+      document.querySelector("#bodyText").value = customInviteText.trim();
     }
 
     // Enable Email Notifications
