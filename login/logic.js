@@ -72,7 +72,7 @@ function onSubmit(e) {
           const updatedInvitesPromise = syncUpdatedInvites();
           const notesPromise = syncAllNotes();
           const settingsPromise = syncSettings();
-          await Promise.all([
+          await Promise.allSettled([
             countriesPromise,
             churchesPromise,
             eventsPromise,
