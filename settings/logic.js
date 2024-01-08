@@ -95,10 +95,10 @@ function onEnablePushClicked(e) {
       } else if (Notification.permission === "denied") {
         e.target.checked = false;
       } else {
-        e.target.checked = false;
+        e.target.checked = isChecked;
       }
     } else {
-      e.target.checked = false;
+      e.target.checked = isChecked;
     }
   }
 }
