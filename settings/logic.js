@@ -148,6 +148,10 @@ async function onSubmit(e) {
 
   await localforage.setItem("settings", settings);
 
+  document.querySelector("body").scrollIntoView();
+
+  showToast(getPhrase("settingsUpdated"), 3000, "success");
+
   syncSettings();
 }
 

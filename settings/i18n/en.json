@@ -219,6 +219,11 @@
       "key": "autoAddToFollowUpList",
       "original": "Automatically add invite recipients to my Follow Up List",
       "translated": "Automatically add invite recipients to my Follow Up List"
+    },
+    {
+      "key": "settingsUpdated",
+      "original": "Settings updated.",
+      "translated": "Settings updated."
     }
   ],
 
