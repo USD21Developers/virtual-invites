@@ -695,7 +695,7 @@ function syncSettings() {
       .then((res) => res.json())
       .then(async (data) => {
         if (data.msgType === "success") {
-          const settings = JSON.parse(data.settings);
+          const settings = JSON.parse(data.settings.settings);
           await localforage.setItem("settings", settings);
           return resolve();
         } else {
