@@ -71,6 +71,7 @@ function onSubmit(e) {
           const invitesPromise = syncInvites();
           const updatedInvitesPromise = syncUpdatedInvites();
           const notesPromise = syncAllNotes();
+          const settingsPromise = syncSettings();
           await Promise.all([
             countriesPromise,
             churchesPromise,
@@ -78,6 +79,7 @@ function onSubmit(e) {
             invitesPromise,
             updatedInvitesPromise,
             notesPromise,
+            settingsPromise,
           ]);
 
           let redirectUrl = "../";
