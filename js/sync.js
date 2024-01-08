@@ -677,7 +677,7 @@ function syncSettings() {
       }
     }
 
-    const endpoint = `${getAPIHost()}/invites/sync-settings`;
+    const endpoint = `${getApiHost()}/invites/sync-settings`;
     const accessToken = await getAccessToken();
 
     fetch(endpoint, {
