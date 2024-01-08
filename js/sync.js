@@ -693,8 +693,10 @@ function syncSettings() {
       keepalive: true,
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(async (data) => {
         if (data.msgType === "success") {
+          const settings = JSON.parse(data.settings);
+          await localforage.setItem("settings", settings);
           return resolve();
         } else {
           return reject();
