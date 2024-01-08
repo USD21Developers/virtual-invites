@@ -1,3 +1,42 @@
+function populateForm() {
+  return new Promise((resolve, reject) => {
+    const settings = localforage.getItem("settings") || null;
+    if (!settings) return reject();
+    const {
+      autoAddToFollowupList,
+      customInviteText,
+      enableEmailNotifications,
+      enablePushNotifications,
+      openingPage,
+    } = settings;
+
+    // Opening Page
+    document.querySelectorAll("[name='openingPage']").forEach((item) => {
+      if (item.value === openingPage) {
+        item.checked = true;
+      } else {
+        item.checked = false;
+      }
+    });
+
+    // Custom Invite Text
+    document.querySelector("#bodyText").value = customInviteText;
+
+    // Enable Email Notifications
+    document.querySelector("#notifyViaEmail").checked =
+      enableEmailNotifications;
+
+    // Enable Push Notificadtions
+    document.querySelector("#notifyViaPush").checked = enablePushNotifications;
+
+    // Auto-add to follow up list
+    document.querySelector("#autoAddToFollowUpList").checked =
+      autoAddToFollowupList;
+
+    return resolve();
+  });
+}
+
 function populateInviteTextExample() {
   const userData = JSON.parse(
     atob(localStorage.getItem("refreshToken").split(".")[1])
@@ -101,8 +140,10 @@ function attachListeners() {
 }
 
 async function init() {
+  syncSettings();
   await populateContent();
   populateInviteTextExample();
+  await populateForm();
   attachListeners();
   globalHidePageSpinner();
 }
