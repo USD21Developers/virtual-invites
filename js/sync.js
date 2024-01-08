@@ -641,3 +641,68 @@ function syncInviteNotifications() {
       });
   });
 }
+
+function syncSettings() {
+  return new Promise(async (resolve, reject) => {
+    let settings = {
+      openingPage: "home",
+      customInviteText: "",
+      enableEmailNotifications: false,
+      enablePushNotifications: false,
+      autoAddToFollowupList: false,
+    };
+    const storedSettings = (await localforage.getItem("settings")) || null;
+
+    if (storedSettings) {
+      if (storedSettings.hasOwnProperty("openingPage")) {
+        settings.openingPage = storedSettings.openingPage;
+      }
+
+      if (storedSettings.hasOwnProperty("customInviteText")) {
+        settings.customInviteText = storedSettings.customInviteText;
+      }
+
+      if (storedSettings.hasOwnProperty("enableEmailNotifications")) {
+        settings.enableEmailNotifications =
+          storedSettings.enableEmailNotifications;
+      }
+
+      if (storedSettings.hasOwnProperty("enablePushNotifications")) {
+        settings.enablePushNotifications =
+          storedSettings.enablePushNotifications;
+      }
+
+      if (storedSettings.hasOwnProperty("autoAddToFollowupList")) {
+        settings.autoAddToFollowupList = storedSettings.autoAddToFollowupList;
+      }
+    }
+
+    const endpoint = `${getAPIHost()}/invites/sync-settings`;
+    const accessToken = await getAccessToken();
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify({
+        settings: settings,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+      keepalive: true,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.msgType === "success") {
+          return resolve();
+        } else {
+          return reject();
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        return reject(err);
+      });
+  });
+}
