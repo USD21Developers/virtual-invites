@@ -137,8 +137,8 @@
     },
     {
       "key": "templatePlaceholderWillBeConvertedTo",
-      "original": "...and in the moment that you send the actual invite, it would be converted to this:",
-      "translated": "...and in the moment that you send the actual invite, it would be converted to this:"
+      "original": "Later, in the moment when you send the actual invite, it would be converted to this:",
+      "translated": "Later, in the moment that you send the actual invite, it would be converted to this:"
     },
     {
       "key": "templatePlaceholderAfter",
