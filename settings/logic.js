@@ -11,27 +11,46 @@ function populateForm() {
     } = settings;
 
     // Opening Page
-    document.querySelectorAll("[name='openingPage']").forEach((item) => {
-      if (item.value === openingPage) {
-        item.checked = true;
-      } else {
-        item.checked = false;
-      }
-    });
+    if (!openingPage) {
+      document.querySelector("#openingPageHome").checked = true;
+    } else {
+      document.querySelectorAll("[name='openingPage']").forEach((item) => {
+        if (item.value === openingPage) {
+          item.checked = true;
+        } else {
+          item.checked = false;
+        }
+      });
+    }
 
     // Custom Invite Text
-    document.querySelector("#bodyText").value = customInviteText;
+    if (customInviteText) {
+      document.querySelector("#bodyText").value = customInviteText;
+    }
 
     // Enable Email Notifications
-    document.querySelector("#notifyViaEmail").checked =
-      enableEmailNotifications;
+    if (!enableEmailNotifications) {
+      document.querySelector("#notifyViaEmail").checked = true;
+    } else {
+      document.querySelector("#notifyViaEmail").checked =
+        enableEmailNotifications;
+    }
 
     // Enable Push Notificadtions
-    document.querySelector("#notifyViaPush").checked = enablePushNotifications;
+    if (!enablePushNotifications) {
+      document.querySelector("#notifyViaPush").checked = false;
+    } else {
+      document.querySelector("#notifyViaPush").checked =
+        enablePushNotifications;
+    }
 
     // Auto-add to follow up list
-    document.querySelector("#autoAddToFollowUpList").checked =
-      autoAddToFollowupList;
+    if (!autoAddToFollowupList) {
+      document.querySelector("#autoAddToFollowUpList").checked = false;
+    } else {
+      document.querySelector("#autoAddToFollowUpList").checked =
+        autoAddToFollowupList;
+    }
 
     return resolve();
   });
