@@ -1,36 +1,30 @@
 async function redirectIfNecessary() {
-  let redirectedOnOpen = sessionStorage.getItem("redirectedOnOpen") || null;
-
-  // If we've already redirected, bail out here.
-  if (redirectedOnOpen) {
-    return;
-  }
-
+  const launchedFromHomescreen =
+    window.location.search === "?utm_source=homescreen" ? true : false;
   const settings = await localforage.getItem("settings");
   const { openingPage } = settings;
+  let redirectUrl = "/";
 
-  switch (openingPage) {
-    case "home":
-      redirectedOnOpen = "/";
-      break;
-    case "send an invite":
-      redirectedOnOpen = "/send/";
-      break;
-    case "my invites":
-      redirectedOnOpen = "/invites/";
-      break;
-    case "follow up list":
-      redirectedOnOpen = "/followup/";
-      break;
-    default:
-      redirectedOnOpen = "/";
+  if (launchedFromHomescreen) {
+    switch (openingPage) {
+      case "home":
+        redirectUrl = "/";
+        break;
+      case "send an invite":
+        redirectUrl = "/send/";
+        break;
+      case "my invites":
+        redirectUrl = "/invites/";
+        break;
+      case "follow up list":
+        redirectUrl = "/followup/";
+        break;
+      default:
+        redirectUrl = "/";
+    }
+
+    window.location.href = redirectUrl;
   }
-
-  // Save the fact (and the place) that we redirected
-  sessionStorage.setItem("redirectedOnOpen", redirectedOnOpen);
-
-  // Must be the "Opening Page," so redirect.
-  window.location.href = redirectedOnOpen;
 }
 
 async function init() {
