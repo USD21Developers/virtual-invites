@@ -91,8 +91,8 @@
     },
     {
       "key": "templatePlaceholderExplanation2",
-      "original": "For example, if the recipient's name was John, and the event was a Bible Talk, you could type the following Custom Text into the form field above...",
-      "translated": "For example, if the recipient's name was John, and the event was a Bible Talk, you could type the following Custom Text into the form field above...",
+      "original": "For example, if the recipient's name was John, and the event was a Bible Talk, before you ever meet him you could type the following Custom Text into the form field above...",
+      "translated": "For example, if the recipient's name was John, and the event was a Bible Talk, before you ever meet him you could type the following Custom Text into the form field above...",
       "changes": [
         {
           "original": "John",
