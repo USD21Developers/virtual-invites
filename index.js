@@ -1,8 +1,9 @@
 async function redirectIfNecessary() {
   let redirectedOnOpen = sessionStorage.getItem("redirectedOnOpen") || null;
 
+  // If we've already redirected, bail out here.
   if (redirectedOnOpen) {
-    return (window.location.href = redirectedOnOpen);
+    return;
   }
 
   const settings = await localforage.getItem("settings");
@@ -25,7 +26,10 @@ async function redirectIfNecessary() {
       redirectedOnOpen = "/";
   }
 
+  // Save the fact (and the place) that we redirected
   sessionStorage.setItem("redirectedOnOpen", redirectedOnOpen);
+
+  // Must be the "Opening Page," so redirect.
   window.location.href = redirectedOnOpen;
 }
 
