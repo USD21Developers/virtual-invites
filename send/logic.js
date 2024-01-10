@@ -637,6 +637,7 @@ function onSubmit(e) {
 }
 
 async function onSubmitButtonClick(e) {
+  e.preventDefault();
   const sendVia = getSendVia();
   const btnSendInvite = document.querySelector("#btnSendInvite");
   const sendTo = getSendTo();
@@ -696,6 +697,8 @@ async function onSubmitButtonClick(e) {
 
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
 
+      window.location.href = e.target.href;
+
       showForwardingMessage(sendVia);
 
       await sleep(2000);
@@ -730,6 +733,8 @@ async function onSubmitButtonClick(e) {
         "href",
         `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`
       );
+
+      window.location.href = e.target.href;
 
       showForwardingMessage(sendVia);
 
