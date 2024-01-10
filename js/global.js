@@ -443,13 +443,12 @@ function getAccessToken() {
 }
 
 function getBodyText(placeholderData) {
-  return new Promise(async (resolve, reject) => {
-    const { recipientName, eventName } = placeholderData;
-    const settings = await localforage.getItem("settings");
-    if (!settings) return resolve("");
+  const { recipientName, eventName } = placeholderData;
+  localforage.getItem("settings").then((settings) => {
+    if (!settings) return "";
 
     const { customInviteText } = settings;
-    if (!customInviteText) return resolve("");
+    if (!customInviteText) return "";
 
     const placeholders = [
       {
@@ -468,7 +467,7 @@ function getBodyText(placeholderData) {
       bodyText = bodyText.replaceAll(item.placeholder, item.replaceWith);
     });
 
-    return resolve(bodyText);
+    return bodyText;
   });
 }
 
