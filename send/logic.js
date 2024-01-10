@@ -235,22 +235,28 @@ function getPlaceholderData() {
   };
 }
 
-async function getSmsBodyText() {
-  const placeholderData = getPlaceholderData();
-  const bodyText = await getBodyText(placeholderData);
-  return bodyText;
+function getSmsBodyText() {
+  return new Promise(async (resolve, reject) => {
+    const placeholderData = getPlaceholderData();
+    const bodyText = await getBodyText(placeholderData);
+    return resolve(bodyText);
+  });
 }
 
 async function getEmailBodyText() {
-  const placeholderData = getPlaceholderData();
-  const bodyText = getBodyText(placeholderData);
-  return bodyText;
+  return new Promise(async (resolve, reject) => {
+    const placeholderData = getPlaceholderData();
+    const bodyText = await getBodyText(placeholderData);
+    return resolve(bodyText);
+  });
 }
 
 async function getOtherAppsBodyText() {
-  const placeholderData = getPlaceholderData();
-  const bodyText = getBodyText(placeholderData);
-  return bodyText;
+  return new Promise(async (resolve, reject) => {
+    const placeholderData = getPlaceholderData();
+    const bodyText = await getBodyText(placeholderData);
+    return resolve(bodyText);
+  });
 }
 
 function getEmailSubjectLine() {
