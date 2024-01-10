@@ -237,7 +237,7 @@ function getPlaceholderData() {
 
 async function getSmsBodyText() {
   const placeholderData = getPlaceholderData();
-  const bodyText = getBodyText(placeholderData);
+  const bodyText = await getBodyText(placeholderData);
   return bodyText;
 }
 
@@ -303,9 +303,9 @@ async function getSendBody() {
   const finalURL = getFinalURL() || "";
   const inviteToText = getInviteToText() || "";
   const clickBelow = getPhrase("clickBelow");
-  const smsBodyText = (await getSmsBodyText()) || "";
-  const emailBodyText = (await getEmailBodyText()) || "";
-  const otherAppsBodyText = (await getOtherAppsBodyText()) || "";
+  const smsBodyText = getSmsBodyText() || "";
+  const emailBodyText = getEmailBodyText() || "";
+  const otherAppsBodyText = getOtherAppsBodyText() || "";
   let sendBody = "";
 
   switch (sendVia) {
