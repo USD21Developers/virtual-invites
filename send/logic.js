@@ -641,7 +641,7 @@ async function onSubmitButtonClick(e) {
   const sendVia = getSendVia();
   const btnSendInvite = document.querySelector("#btnSendInvite");
   const sendTo = getSendTo();
-  const sendBody = getSendBody();
+  const sendBody = await getSendBody();
   const emailSubjectLine = getEmailSubjectLine();
   const recipientName =
     document.querySelector("#recipientname").value.trim() || "";
