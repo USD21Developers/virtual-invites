@@ -225,13 +225,18 @@ async function getCoordinatesOnLoad() {
   }
 }
 
-function getOtherAppsBodyText() {
-  const text = localStorage.getItem("bodyTextOtherApps") || "";
+function getSmsBodyText() {
+  const text = localStorage.getItem("bodyTextSms") || "";
   return text;
 }
 
 function getEmailBodyText() {
   const text = localStorage.getItem("bodyTextEmail") || "";
+  return text;
+}
+
+function getOtherAppsBodyText() {
+  const text = localStorage.getItem("bodyTextOtherApps") || "";
   return text;
 }
 
@@ -338,11 +343,6 @@ function getSendTo() {
 function getSendVia() {
   const value = document.querySelector("#sendvia").selectedOptions[0].value;
   return value;
-}
-
-function getSmsBodyText() {
-  const text = localStorage.getItem("bodyTextSms") || "";
-  return text;
 }
 
 function getUserId() {
