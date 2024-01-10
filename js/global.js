@@ -443,31 +443,33 @@ function getAccessToken() {
 }
 
 function getBodyText(placeholderData) {
-  const { recipientName, eventName } = placeholderData;
-  localforage.getItem("settings").then((settings) => {
-    if (!settings) return "";
+  return new Promise((resolve, reject) => {
+    const { recipientName, eventName } = placeholderData;
+    localforage.getItem("settings").then((settings) => {
+      if (!settings) return resolve("");
 
-    const { customInviteText } = settings;
-    if (!customInviteText) return "";
+      const { customInviteText } = settings;
+      if (!customInviteText) return resolve("");
 
-    const placeholders = [
-      {
-        placeholder: "[RECIPIENT]",
-        replaceWith: recipientName,
-      },
-      {
-        placeholder: "[EVENT]",
-        replaceWith: eventName,
-      },
-    ];
+      const placeholders = [
+        {
+          placeholder: "[RECIPIENT]",
+          replaceWith: recipientName,
+        },
+        {
+          placeholder: "[EVENT]",
+          replaceWith: eventName,
+        },
+      ];
 
-    let bodyText = customInviteText.trim();
+      let bodyText = customInviteText.trim();
 
-    placeholders.forEach((item) => {
-      bodyText = bodyText.replaceAll(item.placeholder, item.replaceWith);
+      placeholders.forEach((item) => {
+        bodyText = bodyText.replaceAll(item.placeholder, item.replaceWith);
+      });
+
+      return resolve(bodyText);
     });
-
-    return bodyText;
   });
 }
 

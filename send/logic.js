@@ -235,21 +235,21 @@ function getPlaceholderData() {
   };
 }
 
-function getSmsBodyText() {
+async function getSmsBodyText() {
   const placeholderData = getPlaceholderData();
-  const bodyText = getBodyText(placeholderData);
+  const bodyText = await getBodyText(placeholderData);
   return bodyText;
 }
 
-function getEmailBodyText() {
+async function getEmailBodyText() {
   const placeholderData = getPlaceholderData();
-  const bodyText = getBodyText(placeholderData);
+  const bodyText = await getBodyText(placeholderData);
   return bodyText;
 }
 
-function getOtherAppsBodyText() {
+async function getOtherAppsBodyText() {
   const placeholderData = getPlaceholderData();
-  const bodyText = getBodyText(placeholderData);
+  const bodyText = await getBodyText(placeholderData);
   return bodyText;
 }
 
