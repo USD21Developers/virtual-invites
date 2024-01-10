@@ -298,14 +298,14 @@ function getRecipientId(numChars = 5) {
   return recipientId;
 }
 
-function getSendBody() {
+async function getSendBody() {
   const sendVia = getSendVia() || "";
   const finalURL = getFinalURL() || "";
   const inviteToText = getInviteToText() || "";
   const clickBelow = getPhrase("clickBelow");
-  const smsBodyText = getSmsBodyText() || "";
-  const emailBodyText = getEmailBodyText() || "";
-  const otherAppsBodyText = getOtherAppsBodyText() || "";
+  const smsBodyText = (await getSmsBodyText()) || "";
+  const emailBodyText = (await getEmailBodyText()) || "";
+  const otherAppsBodyText = (await getOtherAppsBodyText()) || "";
   let sendBody = "";
 
   switch (sendVia) {
