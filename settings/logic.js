@@ -147,6 +147,7 @@ async function onSubmit(e) {
   };
 
   await localforage.setItem("settings", settings);
+  await localforage.setItem("unsyncedSettings", settings);
 
   document.querySelector("body").scrollIntoView();
 

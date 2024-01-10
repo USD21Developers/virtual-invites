@@ -644,39 +644,8 @@ function syncInviteNotifications() {
 
 function syncSettings() {
   return new Promise(async (resolve, reject) => {
-    let settings = {
-      openingPage: "home",
-      customInviteText: "",
-      enableEmailNotifications: false,
-      enablePushNotifications: false,
-      autoAddToFollowupList: false,
-    };
-    const storedSettings = (await localforage.getItem("settings")) || null;
-
-    if (storedSettings) {
-      if (storedSettings.hasOwnProperty("openingPage")) {
-        settings.openingPage = storedSettings.openingPage;
-      }
-
-      if (storedSettings.hasOwnProperty("customInviteText")) {
-        settings.customInviteText = storedSettings.customInviteText;
-      }
-
-      if (storedSettings.hasOwnProperty("enableEmailNotifications")) {
-        settings.enableEmailNotifications =
-          storedSettings.enableEmailNotifications;
-      }
-
-      if (storedSettings.hasOwnProperty("enablePushNotifications")) {
-        settings.enablePushNotifications =
-          storedSettings.enablePushNotifications;
-      }
-
-      if (storedSettings.hasOwnProperty("autoAddToFollowupList")) {
-        settings.autoAddToFollowupList = storedSettings.autoAddToFollowupList;
-      }
-    }
-
+    const unsyncedSettings =
+      (await localforage.getItem("unsyncedSettings")) || false;
     const endpoint = `${getApiHost()}/sync-settings`;
     const accessToken = await getAccessToken();
 
@@ -684,7 +653,7 @@ function syncSettings() {
       mode: "cors",
       method: "POST",
       body: JSON.stringify({
-        settings: settings,
+        unsyncedSettings: unsyncedSettings,
       }),
       headers: new Headers({
         "Content-Type": "application/json",
@@ -695,7 +664,8 @@ function syncSettings() {
       .then((res) => res.json())
       .then(async (data) => {
         if (data.msgType === "success") {
-          const settings = JSON.parse(data.settings.settings);
+          const settings = data.settings;
+          localforage.removeItem("unsyncedSettings");
           await localforage.setItem("settings", settings);
           return resolve();
         } else {
