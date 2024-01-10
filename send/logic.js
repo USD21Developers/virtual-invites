@@ -225,19 +225,32 @@ async function getCoordinatesOnLoad() {
   }
 }
 
-function getSmsBodyText() {
-  const text = localStorage.getItem("bodyTextSms") || "";
-  return text;
+function getPlaceholderData() {
+  const recipientName = document.querySelector("#recipientname").value.trim();
+  const eventName = getInviteToText().trim();
+
+  return {
+    recipientName: recipientName,
+    eventName: eventName,
+  };
 }
 
-function getEmailBodyText() {
-  const text = localStorage.getItem("bodyTextEmail") || "";
-  return text;
+async function getSmsBodyText() {
+  const placeholderData = getPlaceholderData();
+  const bodyText = getBodyText(placeholderData);
+  return bodyText;
 }
 
-function getOtherAppsBodyText() {
-  const text = localStorage.getItem("bodyTextOtherApps") || "";
-  return text;
+async function getEmailBodyText() {
+  const placeholderData = getPlaceholderData();
+  const bodyText = getBodyText(placeholderData);
+  return bodyText;
+}
+
+async function getOtherAppsBodyText() {
+  const placeholderData = getPlaceholderData();
+  const bodyText = getBodyText(placeholderData);
+  return bodyText;
 }
 
 function getEmailSubjectLine() {

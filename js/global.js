@@ -27,6 +27,7 @@ var hidden, visibilityChange;
   formError
   formErrorsReset
   getAccessToken
+  getBodyText
   getChurches
   getApiHost
   getApiServicesHost
@@ -439,6 +440,34 @@ function getAccessToken() {
         console.error(error);
       });
   });
+}
+
+async function getBodyText(placeholderData) {
+  const { recipientName, eventName } = placeholderData;
+  const settings = localforage.getItem("settings");
+  if (!settings) return "";
+
+  const { customInviteText } = settings;
+  if (!customInviteText) return "";
+
+  const placeholders = [
+    {
+      placeholder: "[RECIPIENT]",
+      replaceWith: recipientName,
+    },
+    {
+      placeholder: "[EVENT]",
+      replaceWith: eventName,
+    },
+  ];
+
+  let bodyText = customInviteText.trim();
+
+  placeholders.forEach((item) => {
+    bodyText = bodyText.replaceAll(item.placeholder, item.replaceWith);
+  });
+
+  return bodyText;
 }
 
 function getChurches() {
