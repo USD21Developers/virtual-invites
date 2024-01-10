@@ -302,10 +302,10 @@ async function getSendBody() {
   const sendVia = getSendVia() || "";
   const finalURL = getFinalURL() || "";
   const inviteToText = getInviteToText() || "";
-  const clickBelow = await getPhrase("clickBelow");
+  const clickBelow = getPhrase("clickBelow");
   const smsBodyText = await getSmsBodyText();
   const emailBodyText = await getEmailBodyText();
-  const otherAppsBodyText = getOtherAppsBodyText();
+  const otherAppsBodyText = await getOtherAppsBodyText();
   let sendBody = "";
 
   switch (sendVia) {
