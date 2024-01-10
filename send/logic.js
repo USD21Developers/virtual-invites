@@ -298,7 +298,7 @@ function getRecipientId(numChars = 5) {
   return recipientId;
 }
 
-async function getSendBody() {
+function getSendBody() {
   const sendVia = getSendVia() || "";
   const finalURL = getFinalURL() || "";
   const inviteToText = getInviteToText() || "";
