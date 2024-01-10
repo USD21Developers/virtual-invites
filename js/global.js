@@ -444,7 +444,7 @@ function getAccessToken() {
 
 async function getBodyText(placeholderData) {
   const { recipientName, eventName } = placeholderData;
-  const settings = localforage.getItem("settings");
+  const settings = await localforage.getItem("settings");
   if (!settings) return "";
 
   const { customInviteText } = settings;
