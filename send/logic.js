@@ -1,6 +1,7 @@
 let coordinates;
 let iti;
 let recipientIdGlobal = "";
+let settingsObj = {};
 const geoLocationOptions = {
   enableHighAccuracy: true,
   timeout: 5000,
@@ -431,6 +432,15 @@ function loadDummyEvents() {
   ];
 
   return JSON.stringify(events);
+}
+
+function getSettings() {
+  return new Promise((resolve, reject) => {
+    localforage.getItem("settings").then((settings) => {
+      settingsObj = settings;
+      resolve();
+    });
+  });
 }
 
 async function loadEvents() {
@@ -1019,10 +1029,9 @@ function saveAndSync(sendvia) {
     const tagWithLocationCheckbox = document.querySelector("#tagwithlocation");
     const okToUseCoordinates = tagWithLocationCheckbox?.checked ? true : false;
     const coords = okToUseCoordinates && coordinates ? coordinates : null;
-    const settings = await localforage.getItem("settings");
     let followup = 0;
-    if (settings && settings.hasOwnProperty("autoAddToFollowupList")) {
-      followup = settings.autoAddToFollowupList ? 1 : 0;
+    if (settingsObj.hasOwnProperty("autoAddToFollowupList")) {
+      followup = settingsObj.autoAddToFollowupList ? 1 : 0;
     }
 
     const invite = {
@@ -1204,6 +1213,7 @@ async function init() {
   getCoordinatesOnLoad();
   showTagInviteWithLocation();
   setEventListeners();
+  await getSettings();
   globalHidePageSpinner();
   syncInvites(); // Don't put an "await" on this; let it succeed or fail without blocking.
   prepopulateInvite();
