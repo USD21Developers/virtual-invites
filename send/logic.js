@@ -7,6 +7,26 @@ const geoLocationOptions = {
   maximumAge: 0,
 };
 
+function addToFollowUps() {
+  return new Promise(async (resolve, reject) => {
+    const inviteid = getInviteId();
+    const followUpObj = {
+      invitationid: inviteid,
+      followup: 1,
+    };
+    let unsyncedFollowups =
+      (await localforage.getItem("unsyncedFollowups")) || [];
+    if (unsyncedFollowups) {
+      unsyncedFollowups = unsyncedFollowups.filter(
+        (item) => item.invitationid !== invitationid
+      );
+    }
+    unsyncedFollowups.push(followUpObj);
+    await localforage.setItem("unsyncedFollowups", unsyncedFollowups);
+    resolve();
+  });
+}
+
 async function checkForEvents() {
   let events = await localforage.getItem("events");
   let eventsByFollowedUsers = await localforage.getItem(
@@ -272,6 +292,13 @@ function getFinalURL() {
       ? `${window.location.origin}/i/#/${eventId}/${userId}/${recipientId}`
       : `${window.location.origin}/i/${eventId}/${userId}/${recipientId}`;
   return finalUrl;
+}
+
+function getInviteId() {
+  const inviteURL = getFinalURL();
+  const lastSlashIndex = inviteURL.lastIndexOf("/");
+  const inviteid = inviteURL.substring(lastSlashIndex + 1);
+  return inviteid;
 }
 
 function getInviteToId() {
@@ -647,6 +674,8 @@ async function onSubmitButtonClick(e) {
     document.querySelector("#recipientname").value.trim() || "";
   const events_dropdown = document.querySelector("#events_dropdown");
   const eventid = events_dropdown.selectedOptions[0].value;
+  const settings = await localforage.getItem("settings");
+  const { autoAddToFollowupList } = settings;
 
   clearErrorMessages();
 
@@ -697,6 +726,10 @@ async function onSubmitButtonClick(e) {
 
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
 
+      if (autoAddToFollowupList) {
+        await addToFollowUps();
+      }
+
       window.location.href = e.target.href;
 
       showForwardingMessage(sendVia);
@@ -734,6 +767,10 @@ async function onSubmitButtonClick(e) {
         `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`
       );
 
+      if (autoAddToFollowupList) {
+        await addToFollowUps();
+      }
+
       window.location.href = e.target.href;
 
       showForwardingMessage(sendVia);
@@ -755,6 +792,10 @@ async function onSubmitButtonClick(e) {
         url: url,
       };
 
+      if (autoAddToFollowupList) {
+        await addToFollowUps();
+      }
+
       saveAndSync(sendVia);
 
       try {
@@ -775,6 +816,9 @@ async function onSubmitButtonClick(e) {
       // Probably a QR Code
       e.preventDefault();
       globalShowPageSpinner();
+      if (autoAddToFollowupList) {
+        await addToFollowUps();
+      }
       saveAndSync(sendVia);
       setTimeout(() => {
         globalHidePageSpinner();
