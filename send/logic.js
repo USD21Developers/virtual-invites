@@ -23,6 +23,7 @@ function addToFollowUps() {
     }
     unsyncedFollowups.push(followUpObj);
     await localforage.setItem("unsyncedFollowups", unsyncedFollowups);
+    syncUpdatedInvites();
     resolve();
   });
 }
