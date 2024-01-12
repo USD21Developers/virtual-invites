@@ -675,8 +675,6 @@ async function onSubmitButtonClick(e) {
     document.querySelector("#recipientname").value.trim() || "";
   const events_dropdown = document.querySelector("#events_dropdown");
   const eventid = events_dropdown.selectedOptions[0].value;
-  const settings = await localforage.getItem("settings");
-  const { autoAddToFollowupList } = settings;
 
   clearErrorMessages();
 
@@ -727,10 +725,6 @@ async function onSubmitButtonClick(e) {
 
       btnSendInvite.setAttribute("href", `sms:${sendTo};?&body=${sendBody}`);
 
-      if (autoAddToFollowupList) {
-        await addToFollowUps();
-      }
-
       window.location.href = e.target.href;
 
       showForwardingMessage(sendVia);
@@ -768,10 +762,6 @@ async function onSubmitButtonClick(e) {
         `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`
       );
 
-      if (autoAddToFollowupList) {
-        await addToFollowUps();
-      }
-
       window.location.href = e.target.href;
 
       showForwardingMessage(sendVia);
@@ -793,10 +783,6 @@ async function onSubmitButtonClick(e) {
         url: url,
       };
 
-      if (autoAddToFollowupList) {
-        await addToFollowUps();
-      }
-
       saveAndSync(sendVia);
 
       try {
@@ -817,9 +803,6 @@ async function onSubmitButtonClick(e) {
       // Probably a QR Code
       e.preventDefault();
       globalShowPageSpinner();
-      if (autoAddToFollowupList) {
-        await addToFollowUps();
-      }
       saveAndSync(sendVia);
       setTimeout(() => {
         globalHidePageSpinner();
@@ -1036,9 +1019,15 @@ function saveAndSync(sendvia) {
     const tagWithLocationCheckbox = document.querySelector("#tagwithlocation");
     const okToUseCoordinates = tagWithLocationCheckbox?.checked ? true : false;
     const coords = okToUseCoordinates && coordinates ? coordinates : null;
+    const settings = await localforage.getItem("settings");
+    let followup = 0;
+    if (settings && settings.hasOwnProperty("autoAddToFollowupList")) {
+      followup = settings.autoAddToFollowupList ? 1 : 0;
+    }
 
     const invite = {
       eventid: eventid,
+      followup: followup,
       sentvia: sendvia,
       coords: coords,
       utctime: invitedAtUtcTime,
@@ -1053,6 +1042,7 @@ function saveAndSync(sendvia) {
 
     const unsyncedInvite = {
       eventid: eventid,
+      followup: followup,
       sentvia: sendvia,
       coords: coords,
       utctime: invitedAtUtcTime,
