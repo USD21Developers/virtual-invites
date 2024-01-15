@@ -357,6 +357,11 @@
       "key": "notificationsUpdated",
       "original": "Notifications updated.",
       "translated": "Notifications updated."
+    },
+    {
+      "key": "eventIsDeleted",
+      "original": "(inactive)",
+      "translated": "(inactive)"
     }
   ],
 

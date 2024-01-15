@@ -228,8 +228,20 @@ async function renderRecipient(invite) {
   }
 
   if (eventNameEl && eventName) {
+    const txtEventIsDeleted = getPhrase("eventIsDeleted");
     const url = `../i/#/${eventid}/${getUserId()}/${invite.recipient.id}`;
-    eventNameEl.innerHTML = `<a href="${url}" class="text-underline">${eventName}</a>`;
+
+    if (eventObj.isDeleted === 1) {
+      eventNameEl.innerHTML = `
+        <a href="${url}" class="text-underline text-danger"><strike>${eventName}</strike></a>
+        <span class="text-nowrap">
+          &nbsp;
+          <span class="text-danger">${txtEventIsDeleted}</span>
+        </span>
+      `;
+    } else {
+      eventNameEl.innerHTML = `<a href="${url}" class="text-underline">${eventName}</a>`;
+    }
   }
   if (dateInvitedEl) dateInvitedEl.innerText = whenInvited;
   if (invitedFromLocationEl) {
