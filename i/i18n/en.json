@@ -252,6 +252,30 @@
       "key": "email-timezone-notice",
       "original": "Times shown above are in the {EVENT-TIMEZONE} time zone.",
       "translated": "Times shown above are in the {EVENT-TIMEZONE} time zone."
+    },
+    {
+      "key": "eventNoLongerActive",
+      "original": "This event is no longer active.",
+      "translated": "This event is no longer active."
+    },
+    {
+      "key": "eventHasAlternatives",
+      "original": "But there are alternatives!",
+      "translated": "But there are alternatives!",
+      "changes": [
+        {
+          "original": "alternatives",
+          "translated": "alternatives",
+          "bold": true,
+          "italic": false,
+          "link": "javascript:showEventAlternatives()"
+        }
+      ]
+    },
+    {
+      "key": "eventIsDeleted",
+      "original": "(inactive)",
+      "translated": "(inactive)"
     }
   ],
 

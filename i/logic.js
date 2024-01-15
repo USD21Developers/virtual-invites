@@ -574,6 +574,7 @@ async function getInvite() {
       "email-unsubscribe": getPhrase("email-unsubscribe"),
       "email-message-id-text": getPhrase("email-message-id-text"),
       "email-timezone-notice": getPhrase("email-timezone-notice"),
+      "email-event-is-deleted": getPhrase("eventIsDeleted"),
     };
 
     const loadedAlready = sessionStorage.getItem("loaded") ? true : false;
@@ -1315,6 +1316,16 @@ function removeDefaultContent() {
     .forEach((item) => (item.innerHTML = ""));
 }
 
+async function showEventAlternatives() {
+  console.log("Showing event alternatives");
+
+  // TODO:  Add modal to show alternative events
+  // TODO:  Show modal, with default HTML being a spinner
+  // TODO:  Implement logic to retrieve alternative events from API
+  // TODO:  Build UI (an accordion?) to display alternative events
+  // TODO:  Hide spinner within modal
+}
+
 function implementDiscreetLocation(event) {
   const inviteLocationInfo = document.querySelector("#inviteLocationInfo");
   const requestLocationInfo = document.querySelector("#requestLocationInfo");
@@ -1329,10 +1340,36 @@ function implementDiscreetLocation(event) {
   }
 }
 
+function warnIfEventIsDeleted() {
+  const { event } = inviteObject;
+  const isDeleted =
+    event.hasOwnProperty("isDeleted") && event.isDeleted === 1 ? true : false;
+
+  if (!isDeleted) return;
+
+  const txtNoLongerActive = getPhrase("eventNoLongerActive");
+  const txtAlternatives = getPhrase("eventHasAlternatives");
+  const toastHTML = `
+    ${txtNoLongerActive}<br>
+    ${txtAlternatives}
+  `;
+
+  showToast(toastHTML, 0, "warning");
+
+  const toastEl = document.querySelector(".snackbar a");
+  toastEl.setAttribute(
+    "style",
+    "color: white; text-decoration: underline; font-weight: bold"
+  );
+}
+
 function warnIfEventIsPast() {
   const expiredMessage = getPhrase("eventExpired");
   const { event } = inviteObject;
   const isRecurring = event.frequency === "once" ? false : true;
+  const isDeleted = event.isDeleted === 1 ? true : false;
+
+  if (isDeleted) return; // will be handled by warnIfEventIsDeleted()
 
   if (!isRecurring) {
     const isPast = inviteObject.event.isPast === 1 ? true : false;
@@ -1371,6 +1408,7 @@ function onVideoEnded(e) {
   fixVideoBug();
   paper.classList.remove("d-none");
   topOfEnvelope.scrollIntoView({ behavior: "smooth" });
+  warnIfEventIsDeleted();
   e.preventDefault();
 }
 
