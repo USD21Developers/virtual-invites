@@ -10,4 +10,10 @@ $secondary: (
   light: lighten(#6c757d, 10%),
 );
 
+$warning: (
+  color: #f57c00,
+  dark: darken(#f57c00, 10%),
+  light: lighten(#f57c00, 10%),
+);
+
 @import "../node_modules/daemonite-material/assets/scss/material.scss";
