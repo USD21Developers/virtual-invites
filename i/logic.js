@@ -1316,14 +1316,15 @@ function removeDefaultContent() {
     .forEach((item) => (item.innerHTML = ""));
 }
 
-async function showEventAlternatives() {
-  console.log("Showing event alternatives");
+function getAlternativesURL() {
+  const { hash, origin, pathname } = window.location;
+  const url = `${origin}${pathname}alt/${hash}`;
+  return url;
+}
 
-  // TODO:  Add modal to show alternative events
-  // TODO:  Show modal, with default HTML being a spinner
-  // TODO:  Implement logic to retrieve alternative events from API
-  // TODO:  Build UI (an accordion?) to display alternative events
-  // TODO:  Hide spinner within modal
+async function goToEventAlternatives() {
+  const alternativesUrl = getAlternativesURL();
+  window.location.href = alternativesUrl;
 }
 
 function implementDiscreetLocation(event) {
@@ -1354,6 +1355,19 @@ function warnIfEventIsDeleted() {
     ${txtAlternatives}
   `;
 
+  const modalTitle = getPhrase("headlineEventNoLongerActive");
+  const linkURL = getAlternativesURL();
+  const linkText = getPhrase("buttonViewEvents");
+  const linkHTML = `<a href="${linkURL}" class="btn btn-primary mt-2">${linkText}</a>`;
+  const p1 = getPhrase("noLongerActiveP1");
+  const p2 = getPhrase("noLongerActiveP2");
+  const bodyHTML = `
+    <p>${p1}</p>
+    <p>${p2}</p>
+    <p class="text-center mb-0">${linkHTML}</p>
+  `;
+  showModal(bodyHTML, modalTitle);
+
   showToast(toastHTML, 0, "warning");
 
   const toastEl = document.querySelector(".snackbar a");
@@ -1364,7 +1378,12 @@ function warnIfEventIsDeleted() {
 }
 
 function warnIfEventIsPast() {
-  const expiredMessage = getPhrase("eventExpired");
+  const txtNoLongerActive = getPhrase("eventExpired");
+  const txtAlternatives = getPhrase("eventHasAlternatives");
+  const toastHTML = `
+    ${txtNoLongerActive}<br>
+    ${txtAlternatives}
+  `;
   const { event } = inviteObject;
   const isRecurring = event.frequency === "once" ? false : true;
   const isDeleted = event.isDeleted === 1 ? true : false;
@@ -1374,7 +1393,7 @@ function warnIfEventIsPast() {
   if (!isRecurring) {
     const isPast = inviteObject.event.isPast === 1 ? true : false;
     if (isPast) {
-      showToast(expiredMessage, 0, "danger");
+      showToast(toastHTML, 0, "danger");
     }
   }
 }
@@ -1408,6 +1427,7 @@ function onVideoEnded(e) {
   fixVideoBug();
   paper.classList.remove("d-none");
   topOfEnvelope.scrollIntoView({ behavior: "smooth" });
+  warnIfEventIsPast();
   warnIfEventIsDeleted();
   e.preventDefault();
 }
@@ -1480,7 +1500,6 @@ async function init() {
   populateEventDescription();
   populateQuestionsSection();
   // hideSpinner();
-  warnIfEventIsPast();
 }
 
 init();

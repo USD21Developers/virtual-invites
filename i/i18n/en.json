@@ -268,7 +268,7 @@
           "translated": "alternatives",
           "bold": true,
           "italic": false,
-          "link": "javascript:showEventAlternatives()"
+          "link": "javascript:goToEventAlternatives()"
         }
       ]
     },
@@ -276,6 +276,26 @@
       "key": "eventIsDeleted",
       "original": "(inactive)",
       "translated": "(inactive)"
+    },
+    {
+      "key": "headlineEventNoLongerActive",
+      "original": "Event no longer active",
+      "translated": "Event no longer active"
+    },
+    {
+      "key": "buttonViewEvents",
+      "original": "View Events",
+      "translated": "View Events"
+    },
+    {
+      "key": "noLongerActiveP1",
+      "original": "Hello!  It looks like this event is no longer active.",
+      "translated": "Hello!  It looks like this event is no longer active."
+    },
+    {
+      "key": "noLongerActiveP2",
+      "original": "Fortunately, there are some alternative events that are coming up soon, and you might enjoy them. So please have a look!",
+      "translated": "Fortunately, there are some alternative events that are coming up soon, and you might enjoy them. So please have a look!"
     }
   ],
 
