@@ -1440,7 +1440,8 @@ function showToast(
   message,
   duration = 5000,
   type = "dark",
-  selector = ".snackbar"
+  selector = ".snackbar",
+  multiline = true
 ) {
   const snackbar = document.querySelector(selector);
   const body = snackbar.querySelector(".snackbar-body");
@@ -1461,6 +1462,10 @@ function showToast(
     "border-secondary",
     "border-warning",
   ].forEach((item) => snackbar.classList.remove(item));
+
+  if (multiline) {
+    snackbar.classList.add("snackbar-multi-line");
+  }
 
   body.innerHTML = message;
 
