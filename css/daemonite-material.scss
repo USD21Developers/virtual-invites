@@ -16,4 +16,8 @@ $warning: (
   light: lighten(#f57c00, 10%),
 );
 
+$font-size-root: 18px;
+
+$btn-font-weight: 600;
+
 @import "../node_modules/daemonite-material/assets/scss/material.scss";
