@@ -1368,7 +1368,7 @@ function warnIfEventIsDeleted() {
   `;
   showModal(bodyHTML, modalTitle);
 
-  showToast(toastHTML, 0, "warning");
+  showToast(toastHTML, 0, "danger");
 
   const toastEl = document.querySelector(".snackbar a");
   toastEl.setAttribute(
