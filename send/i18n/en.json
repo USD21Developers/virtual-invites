@@ -302,6 +302,11 @@
       "key": "warningSpellNameAccurately",
       "original": "Will be displayed on recipient's invite",
       "translated": "Will be displayed on recipient's invite"
+    },
+    {
+      "key": "btnAddNote",
+      "original": "Add a note",
+      "translated": "Add a note"
     }
   ],
 
