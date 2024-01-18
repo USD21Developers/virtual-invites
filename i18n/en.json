@@ -24,6 +24,11 @@
       "translated": "Send an Invite"
     },
     {
+      "key": "myinviteslink",
+      "original": "My Invites",
+      "translated": "My Invites"
+    },
+    {
       "key": "eventslink",
       "original": "Events",
       "translated": "Events"
