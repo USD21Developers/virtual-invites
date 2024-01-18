@@ -217,7 +217,7 @@ const invitesCrypto = {
 
     deserialize: (strKey) => {
       return new Promise(async (resolve, reject) => {
-        const array = atob(strKey).split(",").map(Number);
+        const array = strKey.split(",").map(Number);
         const key = await window.crypto.subtle.importKey(
           "raw",
           new Uint8Array(array),
