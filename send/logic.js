@@ -557,7 +557,7 @@ async function onAfterSubmitted(sendvia) {
       ${getPhrase("afterSentParagraph1QRCode")}
       <p class="mt-4">
         <hr class="my-3" />
-        <strong>${getPhrase("problemsScanning")}</strong> &nbsp; 
+        <strong>${getPhrase("problemsScanning")}</strong>
         ${getPhrase("problemsScanningSuggestion")}
       </p>
     `;
@@ -566,7 +566,7 @@ async function onAfterSubmitted(sendvia) {
       ${getPhrase("afterSentParagraph1OtherApps")}
       <p class="mt-4">
         <hr class="my-3" />
-        <strong>${getPhrase("problemsSending")}</strong> &nbsp; 
+        <strong>${getPhrase("problemsSending")}</strong> 
         ${getPhrase("problemsSendingSuggestion")}
       </p>
     `;
@@ -575,7 +575,7 @@ async function onAfterSubmitted(sendvia) {
       ${getPhrase("afterSentParagraph1")}
       <p class="mt-4">
         <hr class="my-3" />
-        <strong>${getPhrase("problemsSending")}</strong> &nbsp; 
+        <strong>${getPhrase("problemsSending")}</strong>
         ${getPhrase("problemsSendingSuggestion")}
       </p>
     `;

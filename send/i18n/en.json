@@ -215,13 +215,13 @@
     },
     {
       "key": "problemsSending",
-      "original": "In case you had any problems sending...",
-      "translated": "In case you had any problems sending..."
+      "original": "In case you had any problems sending,",
+      "translated": "In case you had any problems sending,"
     },
     {
       "key": "problemsSendingSuggestion",
-      "original": "Retry, perhaps using another sending method.",
-      "translated": "Retry, perhaps using another sending method."
+      "original": "click Retry, perhaps using another sending method.",
+      "translated": "click Retry, perhaps using another sending method."
     },
     {
       "key": "problemsScanning",
@@ -230,8 +230,8 @@
     },
     {
       "key": "problemsScanningSuggestion",
-      "original": "Retry, perhaps using another sending method.",
-      "translated": "Retry, perhaps using another sending method."
+      "original": "click Retry, perhaps using another sending method.",
+      "translated": "click Retry, perhaps using another sending method."
     },
     {
       "key": "cancel",
