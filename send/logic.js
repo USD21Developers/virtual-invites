@@ -557,8 +557,10 @@ async function onAfterSubmitted(sendvia) {
       ${getPhrase("afterSentParagraph1QRCode")}
       <p class="mt-4">
         <hr class="my-3" />
-        <strong>${getPhrase("problemsScanning")}</strong>
-        ${getPhrase("problemsScanningSuggestion")}
+        <em>
+          ${getPhrase("problemsScanning")}
+          ${getPhrase("problemsScanningSuggestion")}
+        </em>
       </p>
     `;
   } else if (sendvia === "otherapps") {
@@ -566,8 +568,10 @@ async function onAfterSubmitted(sendvia) {
       ${getPhrase("afterSentParagraph1OtherApps")}
       <p class="mt-4">
         <hr class="my-3" />
-        <strong>${getPhrase("problemsSending")}</strong> 
-        ${getPhrase("problemsSendingSuggestion")}
+        <em>
+          ${getPhrase("problemsSending")}
+          ${getPhrase("problemsSendingSuggestion")}
+        </em>
       </p>
     `;
   } else {
@@ -575,8 +579,10 @@ async function onAfterSubmitted(sendvia) {
       ${getPhrase("afterSentParagraph1")}
       <p class="mt-4">
         <hr class="my-3" />
-        <strong>${getPhrase("problemsSending")}</strong>
-        ${getPhrase("problemsSendingSuggestion")}
+        <em>
+          ${getPhrase("problemsSending")}
+          ${getPhrase("problemsSendingSuggestion")}
+        </em>
       </p>
     `;
   }
