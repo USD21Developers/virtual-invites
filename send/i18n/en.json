@@ -220,8 +220,8 @@
     },
     {
       "key": "problemsSendingSuggestion",
-      "original": "click Retry, perhaps using another sending method.",
-      "translated": "click Retry, perhaps using another sending method."
+      "original": "click Retry, and maybe consider using another sending method.",
+      "translated": "click Retry, and maybe consider using another sending method."
     },
     {
       "key": "problemsScanning",
