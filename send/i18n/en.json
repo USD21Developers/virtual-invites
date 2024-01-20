@@ -315,8 +315,18 @@
     },
     {
       "key": "notNotified",
-      "original": "Your settings currently have all notifications turned off, so you won't be notified when this recipient has viewed the invite. But you can reenable notifications at any time.",
-      "translated": "Your settings currently have all notifications turned off, so you won't be notified when this recipient has viewed the invite. But you can reenable notifications at any time."
+      "original": "You have disabled all notifications, so you won't be notified when this recipient has viewed the invite. But you can reenable notifications at any time, in your Settings.",
+      "translated": "You have disabled all notifications, so you won't be notified when this recipient has viewed the invite. But you can reenable notifications at any time, in your Settings.",
+      "changes": [
+        {
+          "original": "Settings",
+          "translated": "Settings",
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "link": "../settings/"
+        }
+      ]
     }
   ],
 
