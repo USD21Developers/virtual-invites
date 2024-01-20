@@ -200,18 +200,18 @@
     },
     {
       "key": "afterSentParagraph1",
-      "original": "This invite has been saved to your account, enabling you to follow up. You will be notified by e-mail when the recipient has clicked on and viewed the invite.",
-      "translated": "This invite has been saved to your account, enabling you to follow up. You will be notified by e-mail when the recipient has clicked on and viewed the invite."
+      "original": "This invite has been saved to your account, enabling you to follow up.",
+      "translated": "This invite has been saved to your account, enabling you to follow up."
     },
     {
       "key": "afterSentParagraph1QRCode",
-      "original": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked on and viewed the invite.",
-      "translated": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked on and viewed the invite."
+      "original": "This invite has been saved to your account.",
+      "translated": "This invite has been saved to your account."
     },
     {
       "key": "afterSentParagraph1OtherApps",
-      "original": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked on and viewed the invite.",
-      "translated": "This invite has been saved to your account. You will be notified by e-mail when the recipient has clicked on and viewed the invite."
+      "original": "This invite has been saved to your account.",
+      "translated": "This invite has been saved to your account."
     },
     {
       "key": "problemsSending",
@@ -307,6 +307,16 @@
       "key": "btnAddNote",
       "original": "Add a note",
       "translated": "Add a note"
+    },
+    {
+      "key": "notified",
+      "original": "You will be notified when the recipient has clicked on and viewed the invite.",
+      "translated": "You will be notified when the recipient has clicked on and viewed the invite."
+    },
+    {
+      "key": "notNotified",
+      "original": "Your settings currently have all notifications turned off, so you won't be notified when this recipient has viewed the invite. But you can reenable notificadtions at any time.",
+      "translated": "Your settings currently have all notifications turned off, so you won't be notified when this recipient has viewed the invite. But you can reenable notificadtions at any time."
     }
   ],
 

@@ -547,6 +547,18 @@ async function loadEvents() {
 async function onAfterSubmitted(sendvia) {
   const modalFooter = document.querySelector(".modal-footer");
   modalFooter.classList.remove("d-none");
+  const settings = await localforage.getItem("settings");
+
+  let notifications = false;
+
+  if (settings) {
+    if (settings.enableEmailNotifications) notifications = true;
+    if (settings.enablePushNotifications) notifications = true;
+  }
+
+  let notificationAdvisory = notifications
+    ? getPhrase("notified")
+    : getPhrase("notNotified");
 
   resetSendButtonText();
 
@@ -555,6 +567,7 @@ async function onAfterSubmitted(sendvia) {
   if (sendvia === "qrcode") {
     modalContent = `
       ${getPhrase("afterSentParagraph1QRCode")}
+      ${notificationAdvisory}
       <p class="mt-4">
         <hr class="my-3" />
         <em>
@@ -566,6 +579,7 @@ async function onAfterSubmitted(sendvia) {
   } else if (sendvia === "otherapps") {
     modalContent = `
       ${getPhrase("afterSentParagraph1OtherApps")}
+      ${notificationAdvisory}
       <p class="mt-4">
         <hr class="my-3" />
         <em>
@@ -577,6 +591,7 @@ async function onAfterSubmitted(sendvia) {
   } else {
     modalContent = `
       ${getPhrase("afterSentParagraph1")}
+      ${notificationAdvisory}
       <p class="mt-4">
         <hr class="my-3" />
         <em>
