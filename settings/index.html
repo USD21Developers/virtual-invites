@@ -284,67 +284,73 @@
                 ></textarea>
               </div>
 
-              <div class="mt-5 bg-light border border-dark p-4">
-                <div>
-                  <strong><em data-i18n="optional"></em></strong>
+              <details class="mt-4 pt-3" id="toggleCustomTextInstructions">
+                <summary class="text-center">
+                  <strong>Advanced:</strong>
+                  persononalize your custom text
+                </summary>
+                <div class="mt-3 bg-light border border-dark p-4">
+                  <div>
+                    <strong><em data-i18n="optional"></em></strong>
+                  </div>
+                  <div
+                    class="mt-2"
+                    data-i18n="templatePlaceholderExplanation1"
+                  ></div>
+                  <div
+                    class="mt-2 mb-4"
+                    data-i18n="templatePlaceholderExplanation2"
+                  ></div>
+                  <div
+                    class="text-primary-dark"
+                    data-i18n="templatePlaceholderBefore"
+                  ></div>
+                  <div
+                    class="my-4 mb-2"
+                    data-i18n="templatePlaceholderWillBeConvertedTo"
+                  ></div>
+                  <div
+                    class="mb-4 pb-3 text-primary-dark"
+                    data-i18n="templatePlaceholderAfter"
+                  ></div>
+                  <table class="table border border-dark" id="placeholderTable">
+                    <thead>
+                      <tr>
+                        <th
+                          class="text-dark"
+                          data-i18n="placeholderColumnHeading1"
+                        ></th>
+                        <th
+                          class="text-dark"
+                          data-i18n="placeholderColumnHeading2"
+                        ></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span
+                            class="text-dark font-weight-bold customTextPlaceholder"
+                          >
+                            [RECIPIENT]
+                          </span>
+                        </td>
+                        <td data-i18n="recipientPlaceholderConverted"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span
+                            class="text-dark font-weight-bold customTextPlaceholder"
+                          >
+                            [EVENT]
+                          </span>
+                        </td>
+                        <td data-i18n="eventTitlePlaceholderConverted"></td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-                <div
-                  class="mt-2"
-                  data-i18n="templatePlaceholderExplanation1"
-                ></div>
-                <div
-                  class="mt-2 mb-4"
-                  data-i18n="templatePlaceholderExplanation2"
-                ></div>
-                <div
-                  class="text-primary-dark"
-                  data-i18n="templatePlaceholderBefore"
-                ></div>
-                <div
-                  class="my-4 mb-2"
-                  data-i18n="templatePlaceholderWillBeConvertedTo"
-                ></div>
-                <div
-                  class="mb-4 pb-3 text-primary-dark"
-                  data-i18n="templatePlaceholderAfter"
-                ></div>
-                <table class="table border border-dark" id="placeholderTable">
-                  <thead>
-                    <tr>
-                      <th
-                        class="text-dark"
-                        data-i18n="placeholderColumnHeading1"
-                      ></th>
-                      <th
-                        class="text-dark"
-                        data-i18n="placeholderColumnHeading2"
-                      ></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <span
-                          class="text-dark font-weight-bold customTextPlaceholder"
-                        >
-                          [RECIPIENT]
-                        </span>
-                      </td>
-                      <td data-i18n="recipientPlaceholderConverted"></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <span
-                          class="text-dark font-weight-bold customTextPlaceholder"
-                        >
-                          [EVENT]
-                        </span>
-                      </td>
-                      <td data-i18n="eventTitlePlaceholderConverted"></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              </details>
             </div>
           </div>
         </div>

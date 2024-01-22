@@ -148,6 +148,11 @@ function attachListeners() {
   document
     .querySelector("#notifyViaPush")
     .addEventListener("click", onEnablePushClicked);
+  document
+    .querySelector("#toggleCustomTextInstructions")
+    .addEventListener("toggle", (e) => {
+      console.log(e);
+    });
 }
 
 async function init() {
