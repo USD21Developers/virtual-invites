@@ -1440,7 +1440,7 @@ function showToast(
   duration = 5000,
   type = "dark",
   selector = ".snackbar",
-  multiline = true
+  multiline = false
 ) {
   const snackbar = document.querySelector(selector);
   const body = snackbar.querySelector(".snackbar-body");
