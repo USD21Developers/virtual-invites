@@ -3,11 +3,11 @@ function populateForm() {
     const settings = (await localforage.getItem("settings")) || null;
     if (!settings) return reject();
     const {
-      autoAddToFollowupList,
-      customInviteText,
-      enableEmailNotifications,
-      enablePushNotifications,
-      openingPage,
+      autoAddToFollowupList = false,
+      customInviteText = "",
+      enableEmailNotifications = true,
+      enablePushNotifications = false,
+      openingPage = "home",
     } = settings;
 
     // Opening Page
