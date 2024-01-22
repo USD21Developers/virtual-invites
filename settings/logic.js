@@ -29,28 +29,15 @@ function populateForm() {
     }
 
     // Enable Email Notifications
-    if (!enableEmailNotifications) {
-      document.querySelector("#notifyViaEmail").checked = true;
-    } else {
-      document.querySelector("#notifyViaEmail").checked =
-        enableEmailNotifications;
-    }
+    document.querySelector("#notifyViaEmail").checked =
+      enableEmailNotifications;
 
     // Enable Push Notificadtions
-    if (!enablePushNotifications) {
-      document.querySelector("#notifyViaPush").checked = false;
-    } else {
-      document.querySelector("#notifyViaPush").checked =
-        enablePushNotifications;
-    }
+    document.querySelector("#notifyViaPush").checked = enablePushNotifications;
 
     // Auto-add to follow up list
-    if (!autoAddToFollowupList) {
-      document.querySelector("#autoAddToFollowUpList").checked = false;
-    } else {
-      document.querySelector("#autoAddToFollowUpList").checked =
-        autoAddToFollowupList;
-    }
+    document.querySelector("#autoAddToFollowUpList").checked =
+      autoAddToFollowupList;
 
     return resolve();
   });
