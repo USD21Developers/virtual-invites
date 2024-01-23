@@ -689,6 +689,9 @@ function renderInvite(invite) {
   inviteObject.user = user;
   inviteObject.recipient = recipient;
 
+  warnIfEventIsPast();
+  warnIfEventIsDeleted();
+
   // Hide by default
   timeAndDateRepeatingEl.classList.add("d-none");
   timeAndDateSingleDayEl.classList.add("d-none");
@@ -1427,8 +1430,6 @@ function onVideoEnded(e) {
   fixVideoBug();
   paper.classList.remove("d-none");
   topOfEnvelope.scrollIntoView({ behavior: "smooth" });
-  warnIfEventIsPast();
-  warnIfEventIsDeleted();
   e.preventDefault();
 }
 
