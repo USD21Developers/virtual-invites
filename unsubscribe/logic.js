@@ -25,17 +25,15 @@ function loadContent() {
       mode: "cors",
       method: "POST",
       body: JSON.stringify({
-        invitationid: jwt.invitationid,
-        userid: jwt.userid,
+        jwt: jwt,
       }),
       headers: new Headers({
         "Content-Type": "application/json",
-        authorization: `Bearer ${jwt}`,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.msg && data.msg === "invite not retrieved") {
+        if (data.msgType === "error") {
           document
             .querySelector("#invalidUnsubscribe")
             .classList.remove("d-none");
