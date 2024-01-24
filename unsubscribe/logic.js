@@ -15,7 +15,7 @@ function loadContent() {
     let jwt;
 
     try {
-      jwt = JSON.parse(atob(unsubscribeToken));
+      jwt = atob(unsubscribeToken);
     } catch (e) {
       return reject(e);
     }
@@ -32,9 +32,13 @@ function loadContent() {
         "Content-Type": "application/json",
         authorization: `Bearer ${jwt}`,
       }),
-    });
-
-    resolve();
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // TODO:  validate data
+        // TODO:  create a render function and pass this data into it
+        resolve();
+      });
   }).catch(() => {
     const el = document.querySelector("#invalidUnsubscribe");
     if (el) el.classList.remove("d-none");
