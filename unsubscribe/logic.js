@@ -5,6 +5,19 @@ function hideErrorMessage() {
     .forEach((item) => item.classList.remove("d-none"));
 }
 
+function getNextOccurrence(startdate) {
+  const startDateObj = new Date(startdate);
+  const currentDate = new Date();
+  const timeDifference = startDateObj - currentDate;
+  const daysUntilNextOccurrence =
+    7 - ((timeDifference / (1000 * 3600 * 24)) % 7);
+  const nextOccurrenceDate = new Date(currentDate);
+
+  nextOccurrenceDate.setDate(currentDate.getDate() + daysUntilNextOccurrence);
+
+  return nextOccurrenceDate.toISOString().split("T")[0];
+}
+
 function showErrorMessage() {
   document.querySelector("#invalidUnsubscribe").classList.remove("d-none");
   document
@@ -78,6 +91,10 @@ function renderContent(inviteData) {
     let startdate = event.startdate;
     if (event.multidaybegindate) {
       startdate = event.multidaybegindate;
+    }
+
+    if (event.frequency !== "once") {
+      startdate = getNextOccurrence(startdate);
     }
 
     const eventDate = Intl.DateTimeFormat(prefs.locale, {
