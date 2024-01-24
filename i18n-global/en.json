@@ -301,6 +301,16 @@
       "key": "confirm",
       "original": "Confirm",
       "translated": "Confirm"
+    },
+    {
+      "key": "textmessage",
+      "original": "text message",
+      "translated": "text message"
+    },
+    {
+      "key": "email",
+      "original": "e-mail",
+      "translated": "e-mail"
     }
   ],
 
