@@ -54,46 +54,34 @@
       "translated": "To process your unsubscription, select an option below then click on the Unsubscribe button."
     },
     {
+      "key": "headerJustThisInvite",
+      "original": "This Invite Only",
+      "translated": "This Invite Only"
+    },
+    {
+      "key": "headerRecipient",
+      "original": "{RECIPIENT-NAME}",
+      "translated": "{RECIPIENT-NAME}"
+    },
+    {
+      "key": "headerEntireApp",
+      "original": "Entire App",
+      "translated": "Entire App"
+    },
+    {
       "key": "optionJustThisInvite",
       "original": "Unsubscribe only from notifications about the particular invite shown above.",
-      "translated": "Unsubscribe only from notifications about the particular invite shown above.",
-      "changes": [
-        {
-          "original": "particular",
-          "translated": "particular",
-          "bold": true,
-          "italic": false,
-          "link": ""
-        }
-      ]
+      "translated": "Unsubscribe only from notifications about the particular invite shown above."
     },
     {
       "key": "optionRecipient",
       "original": "Unsubscribe from notifications about all invites sent (via {SENT-VIA}) to {RECIPIENT-NAME}",
-      "translated": "Unsubscribe from notifications about all invites sent (via {SENT-VIA}) to {RECIPIENT-NAME}",
-      "changes": [
-        {
-          "original": "all invites",
-          "translated": "all invites",
-          "bold": false,
-          "italic": true,
-          "link": ""
-        }
-      ]
+      "translated": "Unsubscribe from notifications about all invites sent (via {SENT-VIA}) to {RECIPIENT-NAME}"
     },
     {
       "key": "optionEntireApp",
       "original": "Unsubscribe from notifications about all recipients (not just {RECIPIENT-NAME})",
-      "translated": "Unsubscribe from notifications about all recipients (not just {RECIPIENT-NAME})",
-      "changes": [
-        {
-          "original": "all recipients",
-          "translated": "all recipients",
-          "bold": true,
-          "italic": false,
-          "link": ""
-        }
-      ]
+      "translated": "Unsubscribe from notifications about all recipients (not just {RECIPIENT-NAME})"
     },
     {
       "key": "yourdevice",

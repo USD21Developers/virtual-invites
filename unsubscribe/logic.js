@@ -107,18 +107,25 @@ function renderContent(inviteData) {
     sharedVia = getPhrase("yourdevice");
   }
 
+  const headerRecipient = getPhrase("headerRecipient").replaceAll(
+    "{RECIPIENT-NAME}",
+    invite.recipientname
+  );
+  const headerEntireApp = getPhrase("headerEntireApp");
+
   const optionTextRecipient = getPhrase("optionRecipient")
     .replaceAll("{SENT-VIA}", sharedVia)
-    .replaceAll("{RECIPIENT-NAME}", `<strong>${invite.recipientname}</strong>`);
+    .replaceAll("{RECIPIENT-NAME}", invite.recipientname);
 
   const optionTextEntireApp = getPhrase("optionEntireApp").replaceAll(
     "{RECIPIENT-NAME}",
     invite.recipientname
   );
 
-  document.querySelector("label[for='unsub2']").innerHTML = optionTextRecipient;
-
-  document.querySelector("label[for='unsub3']").innerHTML = optionTextEntireApp;
+  document.querySelector("#unsub2Header").innerHTML = headerRecipient;
+  document.querySelector("#unsub2Text").innerHTML = optionTextRecipient;
+  document.querySelector("#unsub3Header").innerHTML = headerEntireApp;
+  document.querySelector("#unsub3Text").innerHTML = optionTextEntireApp;
 
   hideErrorMessage();
 }
