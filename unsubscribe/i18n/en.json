@@ -1,0 +1,52 @@
+{
+  "metadata": {
+    "description": "Unsubscribe",
+    "path": "/unsubscribe/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Unsubscribe",
+      "translated": "Unsubscribe"
+    },
+    {
+      "key": "invalidUnsubscribeLink",
+      "original": "Invalid unsubscribe link.",
+      "translated": "Invalid unsubscribe link."
+    },
+    {
+      "key": "invalidUnsubscribeExplanation",
+      "original": "Please check to ensure that the link has not been modified then try again.",
+      "translated": "Please check to ensure that the link has not been modified then try again."
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
