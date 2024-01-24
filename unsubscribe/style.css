@@ -1,3 +1,7 @@
 li {
   padding-bottom: 1rem;
 }
+
+.text-success {
+  color: var(--success-dark) !important;
+}
