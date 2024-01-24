@@ -22,6 +22,88 @@
       "key": "invalidUnsubscribeExplanation",
       "original": "Please check to ensure that the link has not been modified, then try again.",
       "translated": "Please check to ensure that the link has not been modified, then try again."
+    },
+    {
+      "key": "inviteDetails",
+      "original": "Invite Details",
+      "translated": "Invite Details"
+    },
+    {
+      "key": "recipient",
+      "original": "Recipient:",
+      "translated": "Recipient:"
+    },
+    {
+      "key": "event",
+      "original": "Event:",
+      "translated": "Event:"
+    },
+    {
+      "key": "dateInvited",
+      "original": "Date Invited:",
+      "translated": "Date Invited:"
+    },
+    {
+      "key": "timezoneText",
+      "original": "Times shown above are in the {TIME-ZONE} time zone",
+      "translated": "Times shown above are in the {TIME-ZONE} time zone"
+    },
+    {
+      "key": "explanationParagraph",
+      "original": "To process your unsubscription, select an option below, then click on the Unsubscribe button.",
+      "translated": "To process your unsubscription, select an option below, then click on the Unsubscribe button."
+    },
+    {
+      "key": "optionJustThisInvite",
+      "original": "Unsubscribe only from notifications about the particular invite shown above.",
+      "translated": "Unsubscribe only from notifications about the particular invite shown above.",
+      "changes": [
+        {
+          "original": "particular",
+          "translated": "particular",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "optionRecipient",
+      "original": "Unsubscribe from notifications about all invites sent (via {SENT-VIA}) to {RECIPIENT-NAME}",
+      "translated": "Unsubscribe from notifications about all invites sent (via {SENT-VIA}) to {RECIPIENT-NAME}",
+      "changes": [
+        {
+          "original": "all invites",
+          "translated": "all invites",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "optionEntireApp",
+      "original": "Unsubscribe from notifications about all recipients (not just {RECIPIENT-NAME})",
+      "translated": "Unsubscribe from notifications about all recipients (not just {RECIPIENT-NAME})",
+      "changes": [
+        {
+          "original": "all recipients",
+          "translated": "all recipients",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "yourdevice",
+      "original": "your device",
+      "translated": "your device"
+    },
+    {
+      "key": "unsubscribeButton",
+      "original": "Unsubscribe",
+      "translated": "Unsubscribe"
     }
   ],
 

@@ -1,3 +1,17 @@
+function hideErrorMessage() {
+  document.querySelector("#invalidUnsubscribe").classList.add("d-none");
+  document
+    .querySelectorAll(".invite")
+    .forEach((item) => item.classList.remove("d-none"));
+}
+
+function showErrorMessage() {
+  document.querySelector("#invalidUnsubscribe").classList.remove("d-none");
+  document
+    .querySelectorAll(".invite")
+    .forEach((item) => item.classList.add("d-none"));
+}
+
 function loadContent() {
   return new Promise((resolve, reject) => {
     let unsubscribeToken = window.location.search.split("?");
@@ -35,12 +49,7 @@ function loadContent() {
       .then((res) => res.json())
       .then((data) => {
         if (data.msgType === "error") {
-          document
-            .querySelector("#invalidUnsubscribe")
-            .classList.remove("d-none");
-          document
-            .querySelectorAll(".invite")
-            .forEach((item) => item.classList.add("d-none"));
+          showErrorMessage();
           reject();
         }
 
@@ -48,20 +57,89 @@ function loadContent() {
         resolve();
       });
   }).catch(() => {
-    const el = document.querySelector("#invalidUnsubscribe");
-    if (el) el.classList.remove("d-none");
+    showErrorMessage();
     globalHidePageSpinner();
   });
 }
 
 function renderContent(inviteData) {
   const { event, invite, user } = inviteData;
+  const prefs = Intl.DateTimeFormat().resolvedOptions();
   console.log(inviteData);
+
+  document.querySelector(
+    "#recipientName"
+  ).innerHTML = `${invite.recipientname}`;
+
+  document.querySelector("#eventTitle").innerHTML = `${event.title}`;
+
+  let startdate = event.startdate;
+  if (event.multidaybegindate) {
+    startdate = event.multidaybegindate;
+  }
+
+  const eventDate = Intl.DateTimeFormat(prefs.locale, {
+    dateStyle: "full",
+    timeStyle: "short",
+  }).format(new Date(startdate));
+
+  document.querySelector("#eventDate").innerHTML = eventDate;
+
+  const invitedDate = Intl.DateTimeFormat(prefs.locale, {
+    dateStyle: "full",
+    timeStyle: "short",
+  }).format(new Date(invite.invitedAt));
+
+  document.querySelector("#dateInvited").innerHTML = invitedDate;
+
+  const timezoneText = getPhrase("timezoneText").replaceAll(
+    "{TIME-ZONE}",
+    prefs.timeZone
+  );
+  document.querySelector("#timezone").innerHTML = timezoneText;
+
+  let sharedVia;
+  if (invite.sharedvia === "sms") {
+    sharedVia = getGlobalPhrase("textmessage");
+  } else if (invite.sharedvia === "email") {
+    sharedVia = getGlobalPhrase("email");
+  } else {
+    sharedVia = getPhrase("yourdevice");
+  }
+
+  const optionTextRecipient = getPhrase("optionRecipient")
+    .replaceAll("{SENT-VIA}", sharedVia)
+    .replaceAll("{RECIPIENT-NAME}", `<strong>${invite.recipientname}</strong>`);
+
+  const optionTextEntireApp = getPhrase("optionEntireApp").replaceAll(
+    "{RECIPIENT-NAME}",
+    invite.recipientname
+  );
+
+  document.querySelector("label[for='unsub2']").innerHTML = optionTextRecipient;
+
+  document.querySelector("label[for='unsub3']").innerHTML = optionTextEntireApp;
+
+  hideErrorMessage();
+}
+
+function onSubmit(e) {
+  e.preventDefault();
+  console.log("form submitted");
+  // TODO:  Create logic to submit the form via fetch (make sure to include the jwt in the body)
+  // TODO:  Make API endpoint
+}
+
+function attachListeners() {
+  document
+    .querySelector("#unsubscribeform")
+    .addEventListener("submit", onSubmit);
 }
 
 async function init() {
-  await loadContent();
   await populateContent();
+  await loadContent();
+  attachListeners();
   globalHidePageSpinner();
 }
 
