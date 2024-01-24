@@ -30,6 +30,7 @@ function loadContent() {
       headers: new Headers({
         "Content-Type": "application/json",
       }),
+      keepalive: true,
     })
       .then((res) => res.json())
       .then((data) => {
