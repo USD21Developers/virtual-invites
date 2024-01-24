@@ -97,6 +97,16 @@
       "key": "requiresLogin",
       "original": "NOTE: this option requires logging in.",
       "translated": "NOTE: this option requires logging in."
+    },
+    {
+      "key": "from",
+      "original": "From:",
+      "translated": "From:"
+    },
+    {
+      "key": "to",
+      "original": "To:",
+      "translated": "To:"
     }
   ],
 

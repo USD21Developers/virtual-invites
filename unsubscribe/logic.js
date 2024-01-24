@@ -75,20 +75,37 @@ function renderContent(inviteData) {
 
     document.querySelector("#eventTitle").innerHTML = `${event.title}`;
 
-    let startdate = event.startdate;
+    if (event.multidaybegindate && event.multidayenddate) {
+      const from = getPhrase("from");
+      const to = getPhrase("to");
+      const fromDate = Intl.DateTimeFormat(prefs.locale, {
+        dateStyle: "full",
+        timeStyle: "short",
+      }).format(new Date(multidaybegindate));
+      const toDate = Intl.DateTimeFormat(prefs.locale, {
+        dateStyle: "full",
+        timeStyle: "short",
+      }).format(new Date(multidayenddate));
+      document.querySelector("#eventDate").innerHTML = `
+        ${from} ${fromDate}<br>
+        ${to} ${toDate}
+      `;
+    } else {
+      let startdate = event.startdate; // Could be either recurring or one-time
 
-    if (event.frequency !== "once") {
-      const date = moment.tz(startdate, prefs.timeZone).format("YYYY-MM-DD");
-      const time = moment.tz(startdate, prefs.timeZone).format("HH:mm:ss");
-      startdate = `${getNextRecurringWeekday(date, time)}T${time}`;
+      if (event.frequency !== "once") {
+        // Handle if recurring
+        const date = moment.tz(startdate, prefs.timeZone).format("YYYY-MM-DD");
+        const time = moment.tz(startdate, prefs.timeZone).format("HH:mm:ss");
+        startdate = `${getNextRecurringWeekday(date, time)}T${time}`;
+      }
+
+      const eventDate = Intl.DateTimeFormat(prefs.locale, {
+        dateStyle: "full",
+        timeStyle: "short",
+      }).format(new Date(startdate));
+      document.querySelector("#eventDate").innerHTML = eventDate;
     }
-
-    const eventDate = Intl.DateTimeFormat(prefs.locale, {
-      dateStyle: "full",
-      timeStyle: "short",
-    }).format(new Date(startdate));
-
-    document.querySelector("#eventDate").innerHTML = eventDate;
 
     const invitedDate = Intl.DateTimeFormat(prefs.locale, {
       dateStyle: "full",
