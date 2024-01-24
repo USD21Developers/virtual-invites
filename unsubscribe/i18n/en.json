@@ -80,8 +80,8 @@
     },
     {
       "key": "optionEntireApp",
-      "original": "Unsubscribe from notifications about all recipients (not just {RECIPIENT-NAME})",
-      "translated": "Unsubscribe from notifications about all recipients (not just {RECIPIENT-NAME})"
+      "original": "Unsubscribe from notifications about all invite recipients (not just {RECIPIENT-NAME})",
+      "translated": "Unsubscribe from notifications about all invite recipients (not just {RECIPIENT-NAME})"
     },
     {
       "key": "yourdevice",
