@@ -15,13 +15,13 @@
     },
     {
       "key": "invalidUnsubscribeLink",
-      "original": "Invalid unsubscribe link.",
-      "translated": "Invalid unsubscribe link."
+      "original": "Unable to unsubscribe.",
+      "translated": "Unable to unsubscribe."
     },
     {
       "key": "invalidUnsubscribeExplanation",
-      "original": "Please check to ensure that the link has not been modified then try again.",
-      "translated": "Please check to ensure that the link has not been modified then try again."
+      "original": "Please check to ensure that the link has not been modified, then try again.",
+      "translated": "Please check to ensure that the link has not been modified, then try again."
     }
   ],
 
