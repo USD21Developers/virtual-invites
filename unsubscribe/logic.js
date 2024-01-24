@@ -35,15 +35,27 @@ function loadContent() {
     })
       .then((res) => res.json())
       .then((data) => {
-        // TODO:  validate data
-        // TODO:  create a render function and pass this data into it
-        resolve();
+        if (data.msg && data.msg === "invite not retrieved") {
+          document
+            .querySelector("#invalidUnsubscribe")
+            .classList.remove("d-none");
+          document
+            .querySelectorAll(".invite")
+            .forEach((item) => item.classList.add("d-none"));
+          reject();
+        }
+
+        resolve(data.invite);
       });
   }).catch(() => {
     const el = document.querySelector("#invalidUnsubscribe");
     if (el) el.classList.remove("d-none");
     globalHidePageSpinner();
   });
+}
+
+function renderContent(invite) {
+  console.log(invite);
 }
 
 async function init() {
