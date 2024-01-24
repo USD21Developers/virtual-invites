@@ -47,13 +47,14 @@ function loadContent() {
       keepalive: true,
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(async (data) => {
         if (data.msgType === "error") {
           showErrorMessage();
           reject();
         }
 
-        renderContent(data.inviteData);
+        await renderContent(data.inviteData);
+
         resolve();
       });
   }).catch(() => {
@@ -63,71 +64,75 @@ function loadContent() {
 }
 
 function renderContent(inviteData) {
-  const { event, invite, user } = inviteData;
-  const prefs = Intl.DateTimeFormat().resolvedOptions();
-  console.log(inviteData);
+  return new Promise((resolve, reject) => {
+    const { event, invite, user } = inviteData;
+    const prefs = Intl.DateTimeFormat().resolvedOptions();
+    // console.log(inviteData);
 
-  document.querySelector(
-    "#recipientName"
-  ).innerHTML = `${invite.recipientname}`;
+    document.querySelector(
+      "#recipientName"
+    ).innerHTML = `${invite.recipientname}`;
 
-  document.querySelector("#eventTitle").innerHTML = `${event.title}`;
+    document.querySelector("#eventTitle").innerHTML = `${event.title}`;
 
-  let startdate = event.startdate;
-  if (event.multidaybegindate) {
-    startdate = event.multidaybegindate;
-  }
+    let startdate = event.startdate;
+    if (event.multidaybegindate) {
+      startdate = event.multidaybegindate;
+    }
 
-  const eventDate = Intl.DateTimeFormat(prefs.locale, {
-    dateStyle: "full",
-    timeStyle: "short",
-  }).format(new Date(startdate));
+    const eventDate = Intl.DateTimeFormat(prefs.locale, {
+      dateStyle: "full",
+      timeStyle: "short",
+    }).format(new Date(startdate));
 
-  document.querySelector("#eventDate").innerHTML = eventDate;
+    document.querySelector("#eventDate").innerHTML = eventDate;
 
-  const invitedDate = Intl.DateTimeFormat(prefs.locale, {
-    dateStyle: "full",
-    timeStyle: "short",
-  }).format(new Date(invite.invitedAt));
+    const invitedDate = Intl.DateTimeFormat(prefs.locale, {
+      dateStyle: "full",
+      timeStyle: "short",
+    }).format(new Date(invite.invitedAt));
 
-  document.querySelector("#dateInvited").innerHTML = invitedDate;
+    document.querySelector("#dateInvited").innerHTML = invitedDate;
 
-  const timezoneText = getPhrase("timezoneText").replaceAll(
-    "{TIME-ZONE}",
-    prefs.timeZone
-  );
-  document.querySelector("#timezone").innerHTML = timezoneText;
+    const timezoneText = getPhrase("timezoneText").replaceAll(
+      "{TIME-ZONE}",
+      prefs.timeZone
+    );
+    document.querySelector("#timezone").innerHTML = timezoneText;
 
-  let sharedVia;
-  if (invite.sharedvia === "sms") {
-    sharedVia = getGlobalPhrase("textmessage");
-  } else if (invite.sharedvia === "email") {
-    sharedVia = getGlobalPhrase("email");
-  } else {
-    sharedVia = getPhrase("yourdevice");
-  }
+    let sharedVia;
+    if (invite.sharedvia === "sms") {
+      sharedVia = getGlobalPhrase("textmessage");
+    } else if (invite.sharedvia === "email") {
+      sharedVia = getGlobalPhrase("email");
+    } else {
+      sharedVia = getPhrase("yourdevice");
+    }
 
-  const headerRecipient = getPhrase("headerRecipient").replaceAll(
-    "{RECIPIENT-NAME}",
-    invite.recipientname
-  );
-  const headerEntireApp = getPhrase("headerEntireApp");
+    const headerRecipient = getPhrase("headerRecipient").replaceAll(
+      "{RECIPIENT-NAME}",
+      invite.recipientname
+    );
+    const headerEntireApp = getPhrase("headerEntireApp");
 
-  const optionTextRecipient = getPhrase("optionRecipient")
-    .replaceAll("{SENT-VIA}", sharedVia)
-    .replaceAll("{RECIPIENT-NAME}", invite.recipientname);
+    const optionTextRecipient = getPhrase("optionRecipient")
+      .replaceAll("{SENT-VIA}", sharedVia)
+      .replaceAll("{RECIPIENT-NAME}", invite.recipientname);
 
-  const optionTextEntireApp = getPhrase("optionEntireApp").replaceAll(
-    "{RECIPIENT-NAME}",
-    invite.recipientname
-  );
+    const optionTextEntireApp = getPhrase("optionEntireApp").replaceAll(
+      "{RECIPIENT-NAME}",
+      invite.recipientname
+    );
 
-  document.querySelector("#unsub2Header").innerHTML = headerRecipient;
-  document.querySelector("#unsub2Text").innerHTML = optionTextRecipient;
-  document.querySelector("#unsub3Header").innerHTML = headerEntireApp;
-  document.querySelector("#unsub3Text").innerHTML = optionTextEntireApp;
+    document.querySelector("#unsub2Header").innerHTML = headerRecipient;
+    document.querySelector("#unsub2Text").innerHTML = optionTextRecipient;
+    document.querySelector("#unsub3Header").innerHTML = headerEntireApp;
+    document.querySelector("#unsub3Text").innerHTML = optionTextEntireApp;
 
-  hideErrorMessage();
+    hideErrorMessage();
+
+    resolve();
+  });
 }
 
 function onSubmit(e) {
