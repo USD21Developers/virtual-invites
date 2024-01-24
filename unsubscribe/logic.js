@@ -43,7 +43,8 @@ function loadContent() {
           reject();
         }
 
-        resolve(data.invite);
+        renderContent(data.inviteData);
+        resolve();
       });
   }).catch(() => {
     const el = document.querySelector("#invalidUnsubscribe");
@@ -52,8 +53,9 @@ function loadContent() {
   });
 }
 
-function renderContent(invite) {
-  console.log(invite);
+function renderContent(inviteData) {
+  const { event, invite, user } = inviteData;
+  console.log(inviteData);
 }
 
 async function init() {
