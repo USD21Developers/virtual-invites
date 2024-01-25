@@ -1,3 +1,8 @@
+function clearObsoleteSessionStorage() {
+  sessionStorage.removeItem("unsubscribeFromNotifications");
+  sessionStorage.removeItem("redirectOnLogin");
+}
+
 function hideErrorMessage() {
   document.querySelector("#invalidUnsubscribe").classList.add("d-none");
   document
@@ -157,20 +162,73 @@ function renderContent(inviteData) {
 
 function onSubmit(e) {
   e.preventDefault();
-  console.log("form submitted");
-  // TODO:  Create logic to submit the form via fetch (make sure to include the jwt in the body)
-  // TODO:  Make API endpoint
+
+  const unsubscribeFrom = document.querySelector(
+    "[name='unsub']:checked"
+  ).value; // invite | recipient | app
+
+  if (!["invite", "recipient", "app"].includes(unsubscribeFrom)) return false;
+
+  const token = window.location.search.split("?")[1];
+  const jwt = atob(token);
+
+  if (unsubscribeFrom === "recipient") {
+    const unsubscribeFromNotifications = {
+      unsubscribeFrom: unsubscribeFrom,
+      jwt: jwt,
+    };
+
+    sessionStorage.setItem(
+      "unsubscribeFromNotifications",
+      JSON.stringify(unsubscribeFromNotifications)
+    );
+
+    sessionStorage.setItem("redirectOnLogin", "/unsubscribe/done");
+
+    window.location.href = "../logout/";
+    return;
+  }
+
+  const endpoint = `${getApiHost()}/unsubscribe`;
+
+  globalShowPageSpinner();
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "POST",
+    body: JSON.stringify({
+      jwt: jwt,
+      unsubscribeFrom: unsubscribeFrom,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.msgType !== "success") return;
+      globalHidePageSpinner();
+      window.location.href = "./success/";
+    })
+    .catch((err) => {
+      console.error(err);
+      globalHidePageSpinner();
+    });
 }
 
 function attachListeners() {
   document
     .querySelector("#unsubscribeform")
     .addEventListener("submit", onSubmit);
+
+  document.addEventListener("visibilitychange", (e) => {
+    if (document.visibilityState === "visible") {
+      clearObsoleteSessionStorage();
+    }
+  });
 }
 
 async function init() {
   await populateContent();
   await loadContent();
+  clearObsoleteSessionStorage();
   attachListeners();
   globalHidePageSpinner();
 }
