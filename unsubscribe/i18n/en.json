@@ -84,8 +84,8 @@
     },
     {
       "key": "optionRecipient",
-      "original": "Unsubscribe from notifications about all invites you have sent via {SENT-VIA} to {RECIPIENT-NAME}.",
-      "translated": "Unsubscribe from notifications about all invites you have sent via {SENT-VIA} to {RECIPIENT-NAME}.",
+      "original": "Unsubscribe from notifications about all invites you have sent to {RECIPIENT-NAME}, via {SENT-VIA}.",
+      "translated": "Unsubscribe from notifications about all invites you have sent to {RECIPIENT-NAME}, via {SENT-VIA}.",
       "changes": [
         {
           "original": "all ",
