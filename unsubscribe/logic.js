@@ -152,7 +152,7 @@ function renderContent(inviteData) {
 
     const optionTextEntireApp = getPhrase("optionEntireApp").replaceAll(
       "{RECIPIENT-NAME}",
-      invite.recipientname
+      invite.recipientname.trim()
     );
 
     document.querySelector("#unsub2Header").innerHTML = headerRecipient;

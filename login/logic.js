@@ -1,3 +1,25 @@
+function unsubscribeFromNotifications() {
+  return new Promise((resolve, reject) => {
+    const unsubscribeJSON = sessionStorage.getItem(
+      "unsubscribeFromNotifications"
+    );
+    if (!unsubscribeJSON) reject();
+
+    const unsubscribe = JSON.parse(unsubscribeJSON);
+    const { jwt, unsubscribeFrom } = unsubscribe;
+    const payload = jwt.split(".")[1];
+    const data = JSON.parse(atob(payload));
+    const { invitationid, userid } = data;
+
+    // TODO:  find the invitationid
+    // TODO:  decrypt the contact method (email or SMS)
+    // TODO:  compile an array of invitationids that correspond to the recipient's contact method
+    // TODO:  transmit those invitationids to the API and set them as unsubscribed in the database
+    // TODO:  sync invites
+    // TODO:  resolve this promise, so the user can be immediately redirected to the final unsubscribe page
+  });
+}
+
 function onSubmit(e) {
   e.preventDefault();
   const spinner = document.querySelector("#progressbar");
@@ -92,6 +114,10 @@ function onSubmit(e) {
             }
           }
 
+          if (sessionStorage.getItem("unsubscribeFromNotifications")) {
+            await unsubscribeFromNotifications();
+          }
+
           window.location.href = redirectUrl;
           break;
         default:
@@ -128,6 +154,9 @@ function attachListeners() {
 
 async function init() {
   const newUrl = sessionStorage.getItem("redirectOnLogin");
+  const unsubscribeFromNotifications = sessionStorage.getItem(
+    "unsubscribeFromNotifications"
+  );
   clearStorage();
   if (newUrl && newUrl.length) {
     sessionStorage.setItem("redirectOnLogin", newUrl);
