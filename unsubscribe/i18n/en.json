@@ -70,8 +70,8 @@
     },
     {
       "key": "optionJustThisInvite",
-      "original": "Unsubscribe from notifications only about the specific invite above. Any other invites you have sent to {RECIPIENT-NAME} will remain unchanged.",
-      "translated": "Unsubscribe from notifications only about the specific invite above. Any other invites you have sent to {RECIPIENT-NAME} will remain unchanged."
+      "original": "Unsubscribe from notifications only about the invite above. Any other invites you have sent to {RECIPIENT-NAME} will remain unchanged.",
+      "translated": "Unsubscribe from notifications only about the invite above. Any other invites you have sent to {RECIPIENT-NAME} will remain unchanged."
     },
     {
       "key": "optionRecipient",
