@@ -205,6 +205,10 @@ function onSubmit(e) {
     body: JSON.stringify({
       jwt: jwt,
       unsubscribeFrom: unsubscribeFrom,
+      invitationids: [],
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
     }),
   })
     .then((res) => res.json())
