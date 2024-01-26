@@ -5,3 +5,7 @@ li {
 .text-success {
   color: var(--success-dark) !important;
 }
+
+.requiresLogin {
+  font-weight: 500;
+}
