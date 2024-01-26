@@ -1,5 +1,5 @@
 function unsubscribeFromNotifications() {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     const unsubscribeJSON = sessionStorage.getItem(
       "unsubscribeFromNotifications"
     );
@@ -7,16 +7,59 @@ function unsubscribeFromNotifications() {
 
     const unsubscribe = JSON.parse(unsubscribeJSON);
     const { jwt, unsubscribeFrom } = unsubscribe;
+
+    if (unsubscribeFrom !== "recipient") reject();
+
     const payload = jwt.split(".")[1];
     const data = JSON.parse(atob(payload));
     const { invitationid, userid } = data;
 
-    // TODO:  find the invitationid
-    // TODO:  decrypt the contact method (email or SMS)
-    // TODO:  compile an array of invitationids that correspond to the recipient's contact method
-    // TODO:  transmit those invitationids to the API and set them as unsubscribed in the database
-    // TODO:  sync invites
-    // TODO:  resolve this promise, so the user can be immediately redirected to the final unsubscribe page
+    if (userid !== getUserId()) reject();
+
+    const invites = await localforage.getItem("invites");
+    if (!Array.isArray(invites)) reject();
+    if (!invites.length) reject();
+
+    const invite = invites.find((item) => (item.invitationid = invitationid));
+    if (!invite) reject();
+
+    const { email, sms } = invite.recipient;
+    let invitationids = [];
+
+    if (email) {
+      invitationids = invites.map((item) => {
+        if (item.recipient.email === email) return item.invitationid;
+        return;
+      });
+    } else if (sms) {
+      invitationids = invites.map((item) => {
+        if (item.recipient.sms === sms) return item.invitationid;
+        return;
+      });
+    }
+
+    const endpoint = `${getApiHost()}/unsubscribe`;
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify({
+        jwt: jwt,
+        unsubscribeFrom: unsubscribeFrom,
+        invitationids: invitationids,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((res) => res.json())
+      .then(async (data) => {
+        if (!data) return reject();
+        if (!data.msgType) return reject();
+        if (!data.msgType === "success") return reject();
+        syncInvites();
+        resolve();
+      });
   });
 }
 
@@ -116,6 +159,8 @@ function onSubmit(e) {
 
           if (sessionStorage.getItem("unsubscribeFromNotifications")) {
             await unsubscribeFromNotifications();
+            await syncInvites();
+            sessionStorage.removeItem("unsubscribeFromNotifications");
           }
 
           window.location.href = redirectUrl;
