@@ -127,7 +127,7 @@ function renderContent(inviteData) {
 
     const optionJustThisInviteTxt = getPhrase(
       "optionJustThisInvite"
-    ).replaceAll("{RECIPIENT-NAME}", invite.recipientname);
+    ).replaceAll("{RECIPIENT-NAME}", invite.recipientname.trim());
     document.querySelector("#optionJustThisInvite").innerHTML =
       optionJustThisInviteTxt;
 
@@ -142,13 +142,13 @@ function renderContent(inviteData) {
 
     const headerRecipient = getPhrase("headerRecipient").replaceAll(
       "{RECIPIENT-NAME}",
-      invite.recipientname
+      invite.recipientname.trim()
     );
     const headerEntireApp = getPhrase("headerEntireApp");
 
     const optionTextRecipient = getPhrase("optionRecipient")
       .replaceAll("{SENT-VIA}", sharedVia)
-      .replaceAll("{RECIPIENT-NAME}", invite.recipientname);
+      .replaceAll("{RECIPIENT-NAME}", invite.recipientname.trim());
 
     const optionTextEntireApp = getPhrase("optionEntireApp").replaceAll(
       "{RECIPIENT-NAME}",
