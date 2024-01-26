@@ -70,18 +70,45 @@
     },
     {
       "key": "optionJustThisInvite",
-      "original": "Unsubscribe only from notifications about the particular invite shown above",
-      "translated": "Unsubscribe only from notifications about the particular invite shown above"
+      "original": "Unsubscribe from notifications only about the specific invite above. Any other invites you have sent to {RECIPIENT-NAME} will remain unchanged.",
+      "translated": "Unsubscribe from notifications only about the specific invite above. Any other invites you have sent to {RECIPIENT-NAME} will remain unchanged.",
+      "changes": [
+        {
+          "original": "only",
+          "translated": "only",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "optionRecipient",
-      "original": "Unsubscribe from notifications about all invites sent to {RECIPIENT-NAME} via {SENT-VIA}",
-      "translated": "Unsubscribe from notifications about all invites sent to {RECIPIENT-NAME} via {SENT-VIA}"
+      "original": "Unsubscribe from notifications about all invites you have sent via {SENT-VIA} to {RECIPIENT-NAME}.",
+      "translated": "Unsubscribe from notifications about all invites you have sent via {SENT-VIA} to {RECIPIENT-NAME}.",
+      "changes": [
+        {
+          "original": "all ",
+          "translated": "all ",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "optionEntireApp",
-      "original": "Unsubscribe from notifications about all invite recipients (not just {RECIPIENT-NAME})",
-      "translated": "Unsubscribe from notifications about all invite recipients (not just {RECIPIENT-NAME})"
+      "original": "Unsubscribe from notifications about invites you have sent to any recipient (not just {RECIPIENT-NAME}).",
+      "translated": "Unsubscribe from notifications about invites you have sent to any recipient (not just {RECIPIENT-NAME}).",
+      "changes": [
+        {
+          "original": "any",
+          "translated": "any",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "yourdevice",

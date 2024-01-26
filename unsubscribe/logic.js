@@ -125,6 +125,12 @@ function renderContent(inviteData) {
     );
     document.querySelector("#timezone").innerHTML = timezoneText;
 
+    const optionJustThisInviteTxt = getPhrase(
+      "optionJustThisInvite"
+    ).replaceAll("{RECIPIENT-NAME}", invite.recipientname);
+    document.querySelector("#optionJustThisInvite").innerHTML =
+      optionJustThisInviteTxt;
+
     let sharedVia;
     if (invite.sharedvia === "sms") {
       sharedVia = getGlobalPhrase("textmessage");
