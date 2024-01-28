@@ -153,7 +153,7 @@ function fixVideoBug() {
   if (pageRestored) {
     video.currentTime = video.duration;
     video.pause();
-    topOfEnvelope.scrollIntoView();
+    // topOfEnvelope.scrollIntoView();
     pageRestored = false;
 
     const myInterval = setInterval(() => {
@@ -1414,7 +1414,7 @@ function onVideoEnded(e) {
   video.removeAttribute("autoplay");
   fixVideoBug();
   paper.classList.remove("d-none");
-  // topOfEnvelope.scrollIntoView({ behavior: "smooth" });
+  topOfEnvelope.scrollIntoView({ behavior: "smooth" });
   warnIfEventIsPast();
   warnIfEventIsDeleted();
 
