@@ -212,9 +212,18 @@ function onSubmit(e) {
     }),
   })
     .then((res) => res.json())
-    .then((data) => {
+    .then(async (data) => {
       if (data.msgType !== "success") return;
-      window.location.href = "done/";
+
+      try {
+        Promise.all([syncSettings(), syncInvites()]).then(() => {
+          window.location.href = "done/";
+        });
+      } catch (e) {
+        console.log(e);
+      } finally {
+        window.location.href = "done/";
+      }
     })
     .catch((err) => {
       console.error(err);
