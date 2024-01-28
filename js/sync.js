@@ -648,6 +648,8 @@ function syncSettings() {
       (await localforage.getItem("unsyncedSettings")) || false;
     const endpoint = `${getApiHost()}/sync-settings`;
     const accessToken = await getAccessToken();
+    const settingsBefore = await localforage.getItem("settings");
+    const hashBefore = await invitesCrypto.hash(JSON.stringify(settingsBefore));
 
     fetch(endpoint, {
       mode: "cors",
@@ -666,8 +668,10 @@ function syncSettings() {
         if (data.msgType === "success") {
           const settings = data.settings;
           localforage.removeItem("unsyncedSettings");
+          const hashAfter = await invitesCrypto.hash(JSON.stringify(settings));
+          const changed = hashBefore === hashAfter ? false : true;
           await localforage.setItem("settings", settings);
-          return resolve();
+          return resolve({ changed: changed });
         } else {
           return reject();
         }

@@ -233,6 +233,16 @@
       "key": "settingsUpdated",
       "original": "Settings updated.",
       "translated": "Settings updated."
+    },
+    {
+      "key": "settingsWereUpdated",
+      "original": "Settings were updated.",
+      "translated": "Settings were updated."
+    },
+    {
+      "key": "reload",
+      "original": "Reload?",
+      "translated": "Reload?"
     }
   ],
 

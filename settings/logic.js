@@ -156,7 +156,15 @@ function attachListeners() {
 }
 
 async function init() {
-  syncSettings();
+  syncSettings().then((result) => {
+    const { changed } = result;
+    const settingsWereUpdatedTxt = getPhrase("settingsWereUpdated");
+    const reloadTxt = getPhrase("reload");
+    const toastMessage = `${settingsWereUpdatedTxt} &nbsp; <a href="javascript:window.location.reload()" class="text-white underline">${reloadTxt}</a>`;
+    if (changed) {
+      showToast(toastMessage, 0, "info");
+    }
+  });
   await populateContent();
   populateInviteTextExample();
   await populateForm();
