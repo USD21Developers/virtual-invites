@@ -1355,7 +1355,7 @@ function warnIfEventIsDeleted() {
     ${txtAlternatives}
   `;
 
-  showToast(toastHTML, 0, "danger");
+  showToast(toastHTML, 0, "danger", ".snackbar", true);
 
   const toastEl = document.querySelector(".snackbar a");
   toastEl.setAttribute(
@@ -1380,7 +1380,7 @@ function warnIfEventIsPast() {
   if (!isRecurring) {
     const isPast = inviteObject.event.isPast === 1 ? true : false;
     if (isPast) {
-      showToast(toastHTML, 0, "danger");
+      showToast(toastHTML, 0, "danger", ".snackbar", true);
     }
   }
 }
