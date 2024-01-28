@@ -689,9 +689,6 @@ function renderInvite(invite) {
   inviteObject.user = user;
   inviteObject.recipient = recipient;
 
-  warnIfEventIsPast();
-  warnIfEventIsDeleted();
-
   // Hide by default
   timeAndDateRepeatingEl.classList.add("d-none");
   timeAndDateSingleDayEl.classList.add("d-none");
@@ -1412,11 +1409,15 @@ function onCalendarExpand() {
 
 function onVideoEnded(e) {
   const paper = document.querySelector("#paper");
+
   video.removeEventListener("ended", onVideoEnded, true);
   video.removeAttribute("autoplay");
   fixVideoBug();
   paper.classList.remove("d-none");
-  topOfEnvelope.scrollIntoView({ behavior: "smooth" });
+  // topOfEnvelope.scrollIntoView({ behavior: "smooth" });
+  warnIfEventIsPast();
+  warnIfEventIsDeleted();
+
   e.preventDefault();
 }
 
