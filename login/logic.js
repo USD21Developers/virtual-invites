@@ -163,7 +163,7 @@ function onSubmit(e) {
 
           if (sessionStorage.getItem("unsubscribeFromNotifications")) {
             await unsubscribeFromNotifications();
-            sessionStorage.remove("unsubscribeFromNotifications");
+            sessionStorage.removeItem("unsubscribeFromNotifications");
           }
 
           window.location.href = redirectUrl;
