@@ -214,8 +214,7 @@ function onSubmit(e) {
     .then((res) => res.json())
     .then((data) => {
       if (data.msgType !== "success") return;
-      globalHidePageSpinner();
-      window.location.href = "./success/";
+      window.location.href = "done/";
     })
     .catch((err) => {
       console.error(err);

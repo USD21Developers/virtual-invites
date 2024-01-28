@@ -57,8 +57,11 @@ function unsubscribeFromNotifications() {
         if (!data) return reject();
         if (!data.msgType) return reject();
         if (!data.msgType === "success") return reject();
-        syncInvites();
-        resolve();
+        const promise1 = syncSettings();
+        const promise2 = syncInvites();
+        Promise.all([promise1, promise2]).then(() => {
+          resolve();
+        });
       });
   });
 }
@@ -130,6 +133,7 @@ function onSubmit(e) {
           localStorage.setItem("datakey", data.datakey);
           localStorage.setItem("refreshToken", data.refreshToken);
           sessionStorage.setItem("accessToken", data.accessToken);
+
           const countriesPromise = getCountries(getLang());
           const churchesPromise = syncChurches();
           const eventsPromise = syncEvents();
@@ -159,8 +163,7 @@ function onSubmit(e) {
 
           if (sessionStorage.getItem("unsubscribeFromNotifications")) {
             await unsubscribeFromNotifications();
-            await syncInvites();
-            sessionStorage.removeItem("unsubscribeFromNotifications");
+            sessionStorage.remove("unsubscribeFromNotifications");
           }
 
           window.location.href = redirectUrl;
