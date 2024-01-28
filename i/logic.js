@@ -1358,19 +1358,6 @@ function warnIfEventIsDeleted() {
     ${txtAlternatives}
   `;
 
-  const modalTitle = getPhrase("headlineEventNoLongerActive");
-  const linkURL = getAlternativesURL();
-  const linkText = getPhrase("buttonViewEvents");
-  const linkHTML = `<a href="${linkURL}" class="btn btn-primary mt-2">${linkText}</a>`;
-  const p1 = getPhrase("noLongerActiveP1");
-  const p2 = getPhrase("noLongerActiveP2");
-  const bodyHTML = `
-    <p>${p1}</p>
-    <p>${p2}</p>
-    <p class="text-center mb-0">${linkHTML}</p>
-  `;
-  showModal(bodyHTML, modalTitle);
-
   showToast(toastHTML, 0, "danger");
 
   const toastEl = document.querySelector(".snackbar a");
