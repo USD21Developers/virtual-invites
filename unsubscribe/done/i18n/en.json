@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "description": "Unsubscribe success page",
+    "path": "/done/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Unsubscribed",
+      "translated": "Unsubscribed"
+    },
+    {
+      "key": "explanationParagraph1",
+      "original": "Your unsubscription was processed successfully!",
+      "translated": "Your unsubscription was processed successfully!"
+    },
+    {
+      "key": "explanationParagraph2",
+      "original": "You may either close this window, or return Home.",
+      "translated": "You may either close this window, or return Home.",
+      "changes": [
+        {
+          "original": "Home",
+          "translated": "Home",
+          "bold": false,
+          "italic": false,
+          "underline": true,
+          "link": "/"
+        }
+      ]
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
