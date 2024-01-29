@@ -33,3 +33,7 @@ label {
 .text-primary-dark {
   color: var(--primary-dark);
 }
+
+[data-i18n="notificationClarification"] a {
+  white-space: nowrap;
+}
