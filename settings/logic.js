@@ -156,13 +156,9 @@ function attachListeners() {
 }
 
 async function init() {
-  syncSettings().then((result) => {
-    const { changed } = result;
-    const settingsWereUpdatedTxt = getPhrase("settingsWereUpdated");
-    const reloadTxt = getPhrase("reload");
-    const toastMessage = `${settingsWereUpdatedTxt} &nbsp; <a href="javascript:window.location.reload()" class="text-white underline">${reloadTxt}</a>`;
-    if (changed) {
-      showToast(toastMessage, 0, "info");
+  syncSettings().then(async (result) => {
+    if (result.changed) {
+      await populateForm();
     }
   });
   await populateContent();
