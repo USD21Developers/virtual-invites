@@ -35,5 +35,5 @@ label {
 }
 
 #notificationClarification a {
-  white-space: nowrap;
+  white-space: nowrap !important;
 }
