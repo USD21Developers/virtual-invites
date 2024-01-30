@@ -1,0 +1,326 @@
+{
+  "metadata": {
+    "description": "Alternative Events",
+    "path": "/i/alt/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Alternative Events",
+      "translated": "Alternative Events"
+    },
+    {
+      "key": "you-are-invited-to",
+      "original": "You are invited to join us for",
+      "translated": "You are invited to join us for"
+    },
+    {
+      "key": "event-at",
+      "original": "@",
+      "translated": "@"
+    },
+    {
+      "key": "is-recurring",
+      "original": "This event repeats weekly.",
+      "translated": "This event repeats weekly."
+    },
+    {
+      "key": "map-and-directions",
+      "original": "Map and Directions",
+      "translated": "Map and Directions"
+    },
+    {
+      "key": "requestLocationInfo",
+      "original": "Please inquire below for location details and directions.",
+      "translated": "Please inquire below for location details and directions."
+    },
+    {
+      "key": "add-to-my-calendar",
+      "original": "Add to my calendar",
+      "translated": "Add to my calendar"
+    },
+    {
+      "key": "default-greeting-paragraph-1-bible-talk",
+      "original": "Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to Bible Talk. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to Bible Talk. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
+    },
+    {
+      "key": "default-greeting-paragraph-1-bible-talk-unknown-recipient",
+      "original": "Hi! It's {SENDER-FIRST-NAME}. I'm glad that I could invite you to Bible Talk. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi! It's {SENDER-FIRST-NAME}. I'm glad that I could invite you to Bible Talk. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
+    },
+    {
+      "key": "default-greeting-paragraph-1-bible-talk-unknown-sender-unknown-recipient",
+      "original": "Hi again! I'm glad that I could invite you to Bible Talk. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi again! I'm glad that I could invite you to Bible Talk. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
+    },
+    {
+      "key": "default-greeting-paragraph-1-church",
+      "original": "Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to church. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to church. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
+    },
+    {
+      "key": "default-greeting-paragraph-1-church-unknown-recipient",
+      "original": "Hi! It's {SENDER-FIRST-NAME}. I'm glad that I could invite you to church. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi! It's {SENDER-FIRST-NAME}. I'm glad that I could invite you to church. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
+    },
+    {
+      "key": "default-greeting-paragraph-1-church-unknown-sender-unknown-recipient",
+      "original": "Hi again! I'm glad that I could invite you to church. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi again! I'm glad that I could invite you to church. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
+    },
+    {
+      "key": "default-greeting-paragraph-1-other",
+      "original": "Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to {EVENT-TITLE}. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to {EVENT-TITLE}. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
+    },
+    {
+      "key": "default-greeting-paragraph-1-other-unknown-recipient",
+      "original": "Hi! It's {SENDER-FIRST-NAME}. I'm glad that I could invite you to {EVENT-TITLE}. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi! It's {SENDER-FIRST-NAME}. I'm glad that I could invite you to {EVENT-TITLE}. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
+    },
+    {
+      "key": "default-greeting-paragraph-1-other-unknown-sender-unknown-recipient",
+      "original": "Hi again! I'm glad that I could invite you to {EVENT-TITLE}. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi again! I'm glad that I could invite you to {EVENT-TITLE}. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
+    },
+    {
+      "key": "default-greeting-paragraph-2",
+      "original": "If you can attend, I recommend adding it to your calendar (above) to help you remember.",
+      "translated": "If you can attend, I recommend adding it to your calendar (above) to help you remember."
+    },
+    {
+      "key": "default-greeting-paragraph-3",
+      "original": "I hope to see you there!",
+      "translated": "I hope to see you there!"
+    },
+    {
+      "key": "headline-about-event",
+      "original": "About {EVENT-TITLE}",
+      "translated": "About {EVENT-TITLE}"
+    },
+    {
+      "key": "headlineLocationDetails",
+      "original": "Location Details:",
+      "translated": "Location Details:"
+    },
+    {
+      "key": "headline-cant-attend",
+      "original": "Can't Attend in Person?",
+      "translated": "Can't Attend in Person?"
+    },
+    {
+      "key": "text-cant-attend",
+      "original": "If you can't attend in person (e.g. for health or safety reasons), you can attend virtually.",
+      "translated": "If you can't attend in person (e.g. for health or safety reasons), you can attend virtually."
+    },
+    {
+      "key": "headline-how-to-connect",
+      "original": "Here's how to connect:",
+      "translated": "Here's how to connect:"
+    },
+    {
+      "key": "headline-questions",
+      "original": "Questions?",
+      "translated": "Questions?"
+    },
+    {
+      "key": "questions",
+      "original": "If you have any questions, or to RSVP, please reach out below:",
+      "translated": "If you have any questions, or to RSVP, please reach out below:"
+    },
+    {
+      "key": "questionsPlusLocation",
+      "original": "If you have any questions or feedback, please inquire below.  Also, don't forget to ask about the location of the meeting!",
+      "translated": "If you have any questions or feedback, please inquire below.  Also, don't forget to ask about the location of the meeting!"
+    },
+    {
+      "key": "phone-call",
+      "original": "Phone Call",
+      "translated": "Phone Call"
+    },
+    {
+      "key": "text-message",
+      "original": "Text Message",
+      "translated": "Text Message"
+    },
+    {
+      "key": "phone-call-or-text-message",
+      "original": "Phone or Text:",
+      "translated": "Phone or Text:"
+    },
+    {
+      "key": "email",
+      "original": "E-mail",
+      "translated": "E-mail"
+    },
+    {
+      "key": "multiDayFromLabel",
+      "original": "From",
+      "translated": "From"
+    },
+    {
+      "key": "multiDayToLabel",
+      "original": "To",
+      "translated": "To"
+    },
+    {
+      "key": "eventExpired",
+      "original": "This event has passed.",
+      "translated": "This event has passed."
+    },
+    {
+      "key": "email-subject-viewed-invite",
+      "original": "{RECIPIENT-NAME} viewed your invite to {EVENT-TITLE}",
+      "translated": "{RECIPIENT-NAME} viewed your invite to {EVENT-TITLE}"
+    },
+    {
+      "key": "email-recipient-viewed-your-invite",
+      "original": "{RECIPIENT-NAME} viewed your invite:",
+      "translated": "{RECIPIENT-NAME} viewed your invite:"
+    },
+    {
+      "key": "email-event-label",
+      "original": "Event:",
+      "translated": "Event:"
+    },
+    {
+      "key": "view-invite",
+      "original": "view invite",
+      "translated": "view invite"
+    },
+    {
+      "key": "email-date-sent-label",
+      "original": "Date Invited:",
+      "translated": "Date Invited:"
+    },
+    {
+      "key": "email-date-viewed-label",
+      "original": "Date Viewed:",
+      "translated": "Date Viewed:"
+    },
+    {
+      "key": "email-follow-up-link-text",
+      "original": "Follow up with {RECIPIENT-NAME}",
+      "translated": "Follow up with {RECIPIENT-NAME}"
+    },
+    {
+      "key": "email-timezone",
+      "original": "time zone",
+      "translated": "time zone"
+    },
+    {
+      "key": "email-about-app-headline",
+      "original": "About the Invites App",
+      "translated": "About the Invites App"
+    },
+    {
+      "key": "email-unsubscribe",
+      "original": "Unsubscribe",
+      "translated": "Unsubscribe"
+    },
+    {
+      "key": "email-message-id-text",
+      "original": "Message ID:",
+      "translated": "Message ID:"
+    },
+    {
+      "key": "headline-rsvp",
+      "original": "RSVP",
+      "translated": "RSVP"
+    },
+    {
+      "key": "recommended",
+      "original": "(recommended)",
+      "translated": "(recommended)"
+    },
+    {
+      "key": "rsvp-paragraph-1",
+      "original": "If you plan on attending, please RSVP (below) so that we can expect you.",
+      "translated": "If you plan on attending, please RSVP (below) so that we can expect you."
+    },
+    {
+      "key": "rsvp-paragraph-2",
+      "original": "Also, before traveling to the event you might want to call just before you leave, to confirm that there have been no last-minute changes.",
+      "translated": "Also, before traveling to the event you might want to call just before you leave, to confirm that there have been no last-minute changes."
+    },
+    {
+      "key": "email-timezone-notice",
+      "original": "Times shown above are in the {EVENT-TIMEZONE} time zone.",
+      "translated": "Times shown above are in the {EVENT-TIMEZONE} time zone."
+    },
+    {
+      "key": "eventNoLongerActive",
+      "original": "This event is no longer active.",
+      "translated": "This event is no longer active."
+    },
+    {
+      "key": "eventHasAlternatives",
+      "original": "But there are alternatives!",
+      "translated": "But there are alternatives!",
+      "changes": [
+        {
+          "original": "alternatives",
+          "translated": "alternatives",
+          "bold": true,
+          "italic": false,
+          "link": "javascript:goToEventAlternatives()"
+        }
+      ]
+    },
+    {
+      "key": "eventIsDeleted",
+      "original": "(inactive)",
+      "translated": "(inactive)"
+    },
+    {
+      "key": "headlineEventNoLongerActive",
+      "original": "Event no longer active",
+      "translated": "Event no longer active"
+    },
+    {
+      "key": "buttonViewEvents",
+      "original": "View Events",
+      "translated": "View Events"
+    },
+    {
+      "key": "noLongerActiveP1",
+      "original": "Hello!  This event is no longer active.",
+      "translated": "Hello!  This event is no longer active."
+    },
+    {
+      "key": "noLongerActiveP2",
+      "original": "But there are some alternative events that are coming up soon, and you might enjoy them. So please have a look!",
+      "translated": "But there are some alternative events that are coming up soon, and you might enjoy them. So please have a look!"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
