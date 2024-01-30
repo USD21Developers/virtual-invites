@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital@0;1&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap");
+
+html {
+  font-size: 20px;
+}
+
+body {
+  background-color: #2a2d54;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.container {
+  min-height: 92vh;
+}
+
+h1 {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1.8rem;
+}
+
+a {
+  color: #333333;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.purple-gradient {
+  background-image: linear-gradient(to right, #2a2d54 0%, #504390 100%);
+}
