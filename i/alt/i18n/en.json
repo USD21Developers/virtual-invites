@@ -10,13 +10,88 @@
   "phrases": [
     {
       "key": "pagetitle",
-      "original": "Alternative Events",
-      "translated": "Alternative Events"
+      "original": "Coming Events",
+      "translated": "Coming Events"
     },
     {
-      "key": "underconstruction",
-      "original": "Page under construction",
-      "translated": "Page under construction"
+      "key": "explainParagraph",
+      "original": "For a list of the closest events, please input your location:",
+      "translated": "For a list of the closest events, please input your location:"
+    },
+    {
+      "key": "labelMyLocation",
+      "original": "My Location:",
+      "translated": "My Location:"
+    },
+    {
+      "key": "originLocationHelp",
+      "original": "e.g. a postal code, cross streets, an address, or lat/long coordinates",
+      "translated": "e.g. a postal code, cross streets, an address, or lat/long coordinates"
+    },
+    {
+      "key": "detectMyLocation",
+      "original": "Detect my location",
+      "translated": "Detect my location"
+    },
+    {
+      "key": "searchOptions",
+      "original": "Options:",
+      "translated": "Options:"
+    },
+    {
+      "key": "labelLanguage",
+      "original": "Language:",
+      "translated": "Language:"
+    },
+    {
+      "key": "labelRadius",
+      "original": "Radius:",
+      "translated": "Radius:"
+    },
+    {
+      "key": "optionMiles",
+      "original": "miles",
+      "translated": "miles"
+    },
+    {
+      "key": "optionKilos",
+      "original": "kilometers",
+      "translated": "kilometers"
+    },
+    {
+      "key": "sortBy",
+      "original": "Sort By:",
+      "translated": "Sort By:"
+    },
+    {
+      "key": "sortByDate",
+      "original": "Date",
+      "translated": "Date"
+    },
+    {
+      "key": "sortByDistance",
+      "original": "Distance",
+      "translated": "Distance"
+    },
+    {
+      "key": "labelVirtualAttendance",
+      "original": "Virtual Bttendance:",
+      "translated": "Virtual Attendance:"
+    },
+    {
+      "key": "checkboxVirtualEvents",
+      "original": "Include events that can be attended online",
+      "translated": "Include events that can be attended online"
+    },
+    {
+      "key": "regardlessOfDistance",
+      "original": "(regardless of distance)",
+      "translated": "(regardless of distance)"
+    },
+    {
+      "key": "btnSubmit",
+      "original": "Show Events",
+      "translated": "Show Events"
     }
   ],
 

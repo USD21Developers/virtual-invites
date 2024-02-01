@@ -17,49 +17,215 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body class="purple-gradient">
-    <div id="inviteroot">
-      <main>
-        <div class="container bg-white mt-4 p-4">
-          <div class="row">
-            <div class="col">
-              <h1 data-i18n="pagetitle" class="text-center"></h1>
-              <p data-i18n="underconstruction" class="text-center"></p>
-            </div>
-          </div>
-        </div>
-      </main>
+    <div class="text-center mt-4 mb-4">
+      <img src="../img/envelope.png" width="150" height="104" alt="" />
+    </div>
 
-      <!-- Modal -->
-      <div
-        class="modal fade"
-        id="modal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="modaltitle"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modaltitle"></h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label=""
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
+    <div
+      class="container bg-white mt-4 mb-2 p-4"
+      style="max-width: calc(100% - 20px)"
+    >
+      <div class="row">
+        <div class="col">
+          <h1 data-i18n="pagetitle" class="text-center pb-2"></h1>
+          <p
+            data-i18n="explainParagraph"
+            class="text-center balancedTextWrap"
+          ></p>
+
+          <form id="formEventSearch">
+            <!-- My Location -->
+            <div class="my-4">
+              <div class="form-group">
+                <label for="originLocation" class="text-dark">
+                  <h5 data-i18n="labelMyLocation"></h5>
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="originLocation"
+                  aria-describedby="originLocationHelp"
+                />
+                <small
+                  id="originLocationHelp"
+                  class="form-text"
+                  data-i18n="originLocationHelp"
+                >
+                </small>
+              </div>
+
+              <div class="text-center text-md-left">
+                <a
+                  href="#"
+                  id="detectMyLocation"
+                  class="btn btn-sm btn-info"
+                  data-i18n="detectMyLocation"
+                ></a>
+              </div>
             </div>
-            <div class="modal-body pb-1"></div>
-            <div class="modal-footer">
+
+            <!-- Search options -->
+            <div class="my-4">
+              <h5 data-i18n="searchOptions"></h5>
+              <table border="1" compact>
+                <tbody>
+                  <!-- Language -->
+                  <tr>
+                    <td valign="top" class="p-3">
+                      <label
+                        for="lang"
+                        data-i18n="labelLanguage"
+                        class="text-primary"
+                      ></label>
+                    </td>
+                    <td valign="top" class="p-3">
+                      <select class="form-control form-control-sm" id="lang">
+                        <option value="en">English</option>
+                      </select>
+                    </td>
+                  </tr>
+
+                  <!-- Radius -->
+                  <tr>
+                    <td valign="top" class="p-3">
+                      <label
+                        for="radius"
+                        data-i18n="labelRadius"
+                        class="text-primary"
+                      ></label>
+                    </td>
+                    <td valign="top" class="p-3">
+                      <input
+                        class="form-control form-control-sm"
+                        type="number"
+                        pattern="[0-9]*"
+                        maxlength="2"
+                        id="radius"
+                        value="100"
+                      />
+                      <select
+                        class="form-control form-control-sm"
+                        id="distanceUnit"
+                      >
+                        <option value="miles" data-i18n="optionMiles"></option>
+                        <option
+                          value="kilometers"
+                          data-i18n="optionKilos"
+                        ></option>
+                      </select>
+                    </td>
+                  </tr>
+
+                  <!-- Sort By -->
+                  <tr>
+                    <td valign="top" class="p-3">
+                      <label data-i18n="sortBy" class="text-primary"></label>
+                    </td>
+                    <td valign="top" class="p-3">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="sortby"
+                          id="sortByDate"
+                          value="date"
+                          checked
+                        />
+                        <label
+                          class="form-check-label"
+                          for="sortByDate"
+                          data-i18n="sortByDate"
+                        ></label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="sortby"
+                          id="sortByDistance"
+                          value="distance"
+                        />
+                        <label
+                          class="form-check-label"
+                          for="sortByDistance"
+                          data-i18n="sortByDistance"
+                        ></label>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Include virtual events -->
+                  <tr>
+                    <td colspan="2" class="p-3">
+                      <div class="text-left mb-3">
+                        <label
+                          data-i18n="labelVirtualAttendance"
+                          class="text-primary"
+                        ></label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value="include"
+                          id="includeVirtualEvents"
+                          checked
+                        />
+                        <label
+                          class="form-check-label"
+                          for="includeVirtualEvents"
+                          data-i18n="checkboxVirtualEvents"
+                        ></label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Submit button -->
+            <div class="text-center text-md-left">
               <button
-                type="button"
+                type="submit"
+                data-i18n="btnSubmit"
                 class="btn btn-primary"
-                data-dismiss="modal"
-                data-i18n="btnCloseModal"
               ></button>
             </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modaltitle"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-1"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              data-i18n="btnCloseModal"
+            ></button>
           </div>
         </div>
       </div>
@@ -68,28 +234,11 @@
       <div class="snackbar-body"></div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/datebook/dist/datebook.min.js"></script>
-    <script
-      src="/js/cdnjs.cloudflare.com_ajax_libs_moment.js_2.29.1_moment.min.js"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script
-      src="/js/cdnjs.cloudflare.com_ajax_libs_moment-timezone_0.5.34_moment-timezone-with-data-10-year-range.min.js"
-      integrity="sha512-d11VXfxQMn+sZuIgzHITdIuInr4cVRGV/uLiSI643WH/J+p4gPFYSHXRMR2v+w4Rn2TSyzJjsZjc0M7+Qd+UXw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/libphonenumber-js/1.9.12/libphonenumber-js.min.js"></script>
     <script src="/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
     <script src="/js/cdnjs.cloudflare.com_ajax_libs_popper.js_1.14.3_umd_popper.min.js"></script>
     <script src="/js/stackpath.bootstrapcdn.com_bootstrap_4.1.1_js_bootstrap.min.js"></script>
     <script src="/css/material-4.1.1-dist/js/material.min.js"></script>
-    <script src="/js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
     <script src="/js/global.js"></script>
-    <script src="/js/getMobileOperatingSystem.js"></script>
-    <script src="/js/relativeTimeFormatPolyfill.js"></script>
-    <script src="/js/getRelativeDate.js"></script>
-    <script src="/js/to-title-case.js"></script>
     <script src="logic.js"></script>
   </body>
 </html>
