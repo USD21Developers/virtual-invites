@@ -15,8 +15,8 @@
     },
     {
       "key": "explainParagraph",
-      "original": "For a list of the closest events, please input your location:",
-      "translated": "For a list of the closest events, please input your location:"
+      "original": "For a list of events closest to you, please input your location:",
+      "translated": "For a list of events closest to you, please input your location:"
     },
     {
       "key": "labelMyLocation",
