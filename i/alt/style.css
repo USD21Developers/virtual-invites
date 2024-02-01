@@ -32,7 +32,10 @@ a:hover {
   background-image: linear-gradient(to right, #2a2d54 0%, #504390 100%);
 }
 
-form table,
+form table {
+  border: 1px solid #999;
+}
+
 form table td {
   border: 1px solid #ccc;
 }
