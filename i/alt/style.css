@@ -47,3 +47,15 @@ form table tr td:nth-child(1) {
 form table tr td:nth-child(2) {
   border-left: 0;
 }
+
+.optionsLabel {
+  font-weight: 600;
+}
+
+#detectMyLocation {
+  border-radius: 8px;
+}
+
+.text-dark {
+  color: var(--dark-dark) !important;
+}

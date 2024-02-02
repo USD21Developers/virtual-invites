@@ -17,13 +17,9 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body class="purple-gradient">
-    <div class="text-center mt-4 mb-4">
-      <img src="../img/envelope.png" width="150" height="104" alt="" />
-    </div>
-
     <div
-      class="container bg-white mt-4 mb-2 p-4"
-      style="max-width: calc(100% - 20px)"
+      class="container bg-white mt-3 mb-3 p-4"
+      style="max-width: calc(100% - 40px)"
     >
       <div class="row">
         <div class="col">
@@ -35,33 +31,38 @@
 
           <form id="formEventSearch">
             <!-- My Location -->
-            <div class="my-4 pb-2">
-              <div class="form-group">
-                <label for="originLocation" class="text-dark">
-                  <h5 data-i18n="labelMyLocation"></h5>
-                </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="originLocation"
-                  aria-describedby="originLocationHelp"
-                  data-i18n-placeholder="placeholderLocation"
-                />
-                <small
-                  id="originLocationHelp"
-                  class="form-text"
-                  data-i18n="originLocationHelp"
-                >
-                </small>
-              </div>
+            <div class="text-center">
+              <div class="my-4 pb-2 d-inline-block">
+                <div class="form-group text-center">
+                  <label for="originLocation" class="text-dark">
+                    <h5 data-i18n="labelMyLocation"></h5>
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="originLocation"
+                    aria-describedby="originLocationHelp"
+                    data-i18n-placeholder="placeholderLocation"
+                  />
+                  <small
+                    id="originLocationHelp"
+                    class="form-text"
+                    data-i18n="originLocationHelp"
+                  >
+                  </small>
+                </div>
 
-              <div class="text-center text-md-left">
-                <a
-                  href="#"
-                  id="detectMyLocation"
-                  class="btn btn-sm btn-info"
-                  data-i18n="detectMyLocation"
-                ></a>
+                <div class="text-center">
+                  <div class="mb-1 text-dark">
+                    <small data-i18n="detectLocationOptional"></small>
+                  </div>
+                  <a
+                    href="#"
+                    id="detectMyLocation"
+                    class="btn btn-sm btn-outline-info border border-info text-capitalize"
+                    data-i18n="detectMyLocation"
+                  ></a>
+                </div>
               </div>
             </div>
 
@@ -77,11 +78,14 @@
                         <label
                           for="lang"
                           data-i18n="labelLanguage"
-                          class="text-primary"
+                          class="text-dark optionsLabel"
                         ></label>
                       </td>
                       <td valign="top" class="p-3">
-                        <select class="form-control form-control-sm" id="lang">
+                        <select
+                          class="form-control form-control-sm pt-0"
+                          id="lang"
+                        >
                           <option value="en">English</option>
                         </select>
                       </td>
@@ -93,20 +97,20 @@
                         <label
                           for="radius"
                           data-i18n="labelRadius"
-                          class="text-primary"
+                          class="text-dark optionsLabel"
                         ></label>
                       </td>
                       <td valign="top" class="p-3">
                         <input
-                          class="form-control form-control-sm"
+                          class="form-control form-control-sm pt-0"
                           type="number"
                           pattern="[0-9]*"
                           maxlength="2"
                           id="radius"
-                          value="100"
+                          value="50"
                         />
                         <select
-                          class="form-control form-control-sm"
+                          class="form-control form-control-sm mt-1"
                           id="distanceUnit"
                         >
                           <option
@@ -124,7 +128,10 @@
                     <!-- Sort By -->
                     <tr>
                       <td valign="top" class="p-3 text-left">
-                        <label data-i18n="sortBy" class="text-primary"></label>
+                        <label
+                          data-i18n="sortBy"
+                          class="text-dark optionsLabel"
+                        ></label>
                       </td>
                       <td valign="top" class="p-3 text-left">
                         <div class="form-check">
@@ -165,7 +172,7 @@
                         <div class="text-left mb-3">
                           <label
                             data-i18n="labelVirtualAttendance"
-                            class="text-primary"
+                            class="text-dark optionsLabel"
                           ></label>
                         </div>
                         <div class="form-check">
@@ -190,7 +197,7 @@
             </div>
 
             <!-- Submit button -->
-            <div class="text-center text-md-left">
+            <div class="text-center mt-5 mb-4">
               <button
                 type="submit"
                 data-i18n="btnSubmit"
