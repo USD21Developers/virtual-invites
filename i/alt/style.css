@@ -53,9 +53,9 @@ form table tr td:nth-child(2) {
 }
 
 #detectMyLocation {
-  border-color: var(--info-dark);
+  border-color: var(--info-dark) !important;
   border-radius: 8px;
-  color: var(--info-dark);
+  color: var(--info-dark) !important;
   font-weight: 400;
 }
 
