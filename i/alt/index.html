@@ -66,122 +66,127 @@
             </div>
 
             <!-- Search options -->
-            <div class="my-4">
-              <h5 data-i18n="searchOptions"></h5>
-              <table border="1" compact>
-                <tbody>
-                  <!-- Language -->
-                  <tr>
-                    <td valign="top" class="p-3">
-                      <label
-                        for="lang"
-                        data-i18n="labelLanguage"
-                        class="text-primary"
-                      ></label>
-                    </td>
-                    <td valign="top" class="p-3">
-                      <select class="form-control form-control-sm" id="lang">
-                        <option value="en">English</option>
-                      </select>
-                    </td>
-                  </tr>
-
-                  <!-- Radius -->
-                  <tr>
-                    <td valign="top" class="p-3">
-                      <label
-                        for="radius"
-                        data-i18n="labelRadius"
-                        class="text-primary"
-                      ></label>
-                    </td>
-                    <td valign="top" class="p-3">
-                      <input
-                        class="form-control form-control-sm"
-                        type="number"
-                        pattern="[0-9]*"
-                        maxlength="2"
-                        id="radius"
-                        value="100"
-                      />
-                      <select
-                        class="form-control form-control-sm"
-                        id="distanceUnit"
-                      >
-                        <option value="miles" data-i18n="optionMiles"></option>
-                        <option
-                          value="kilometers"
-                          data-i18n="optionKilos"
-                        ></option>
-                      </select>
-                    </td>
-                  </tr>
-
-                  <!-- Sort By -->
-                  <tr>
-                    <td valign="top" class="p-3">
-                      <label data-i18n="sortBy" class="text-primary"></label>
-                    </td>
-                    <td valign="top" class="p-3">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="sortby"
-                          id="sortByDate"
-                          value="date"
-                          checked
-                        />
+            <div class="my-4 text-center">
+              <div class="d-inline-block">
+                <h5 data-i18n="searchOptions"></h5>
+                <table compact>
+                  <tbody>
+                    <!-- Language -->
+                    <tr>
+                      <td valign="top" class="p-3">
                         <label
-                          class="form-check-label"
-                          for="sortByDate"
-                          data-i18n="sortByDate"
-                        ></label>
-                      </div>
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="sortby"
-                          id="sortByDistance"
-                          value="distance"
-                        />
-                        <label
-                          class="form-check-label"
-                          for="sortByDistance"
-                          data-i18n="sortByDistance"
-                        ></label>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <!-- Include virtual events -->
-                  <tr>
-                    <td colspan="2" class="p-3">
-                      <div class="text-left mb-3">
-                        <label
-                          data-i18n="labelVirtualAttendance"
+                          for="lang"
+                          data-i18n="labelLanguage"
                           class="text-primary"
                         ></label>
-                      </div>
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value="include"
-                          id="includeVirtualEvents"
-                          checked
-                        />
+                      </td>
+                      <td valign="top" class="p-3">
+                        <select class="form-control form-control-sm" id="lang">
+                          <option value="en">English</option>
+                        </select>
+                      </td>
+                    </tr>
+
+                    <!-- Radius -->
+                    <tr>
+                      <td valign="top" class="p-3">
                         <label
-                          class="form-check-label"
-                          for="includeVirtualEvents"
-                          data-i18n="checkboxVirtualEvents"
+                          for="radius"
+                          data-i18n="labelRadius"
+                          class="text-primary"
                         ></label>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                      </td>
+                      <td valign="top" class="p-3">
+                        <input
+                          class="form-control form-control-sm"
+                          type="number"
+                          pattern="[0-9]*"
+                          maxlength="2"
+                          id="radius"
+                          value="100"
+                        />
+                        <select
+                          class="form-control form-control-sm"
+                          id="distanceUnit"
+                        >
+                          <option
+                            value="miles"
+                            data-i18n="optionMiles"
+                          ></option>
+                          <option
+                            value="kilometers"
+                            data-i18n="optionKilos"
+                          ></option>
+                        </select>
+                      </td>
+                    </tr>
+
+                    <!-- Sort By -->
+                    <tr>
+                      <td valign="top" class="p-3">
+                        <label data-i18n="sortBy" class="text-primary"></label>
+                      </td>
+                      <td valign="top" class="p-3">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="sortby"
+                            id="sortByDate"
+                            value="date"
+                            checked
+                          />
+                          <label
+                            class="form-check-label"
+                            for="sortByDate"
+                            data-i18n="sortByDate"
+                          ></label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="sortby"
+                            id="sortByDistance"
+                            value="distance"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="sortByDistance"
+                            data-i18n="sortByDistance"
+                          ></label>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <!-- Include virtual events -->
+                    <tr>
+                      <td colspan="2" class="p-3">
+                        <div class="text-left mb-3">
+                          <label
+                            data-i18n="labelVirtualAttendance"
+                            class="text-primary"
+                          ></label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value="include"
+                            id="includeVirtualEvents"
+                            checked
+                          />
+                          <label
+                            class="form-check-label"
+                            for="includeVirtualEvents"
+                            data-i18n="checkboxVirtualEvents"
+                          ></label>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
 
             <!-- Submit button -->
