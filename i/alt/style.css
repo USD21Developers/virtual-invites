@@ -39,3 +39,11 @@ form table {
 form table td {
   border: 1px solid #ccc;
 }
+
+form table tr td:nth-child(1) {
+  border-right: 0;
+}
+
+form table tr td:nth-child(2) {
+  border-left: 0;
+}
