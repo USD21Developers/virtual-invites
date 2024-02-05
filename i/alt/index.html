@@ -29,7 +29,7 @@
           <form id="formEventSearch">
             <!-- My Location -->
             <div class="text-center">
-              <div class="my-4 pb-2 d-inline-block">
+              <div class="mt-4 d-inline-block">
                 <div class="form-group text-center">
                   <label for="originLocation" class="text-dark">
                     <h5 data-i18n="labelNearLocation"></h5>
@@ -51,7 +51,10 @@
                   </div>
                 </div>
 
-                <div class="text-center">
+                <div
+                  class="text-center mt-3 mb-4 d-none"
+                  id="detectMyLocationContainer"
+                >
                   <div class="mb-1 text-dark">
                     <small data-i18n="detectLocationOptional"></small>
                   </div>
@@ -66,7 +69,7 @@
             </div>
 
             <!-- Search options -->
-            <div class="my-4 text-center">
+            <div class="my-4 pt-2 text-center">
               <div class="d-inline-block">
                 <h5 data-i18n="searchOptions"></h5>
                 <table compact>
@@ -247,6 +250,7 @@
       <div class="snackbar-body"></div>
     </div>
 
+    <script src="/js/getMobileOperatingSystem.js"></script>
     <script src="/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
     <script src="/js/cdnjs.cloudflare.com_ajax_libs_popper.js_1.14.3_umd_popper.min.js"></script>
     <script src="/js/stackpath.bootstrapcdn.com_bootstrap_4.1.1_js_bootstrap.min.js"></script>

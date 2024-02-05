@@ -102,6 +102,16 @@
       "key": "btnSubmit",
       "original": "Show Events",
       "translated": "Show Events"
+    },
+    {
+      "key": "geocoordinatesErrorMessage",
+      "original": "Unable to detect location",
+      "translated": "Unable to detect location"
+    },
+    {
+      "key": "geocoordinatesSuccessMessage",
+      "original": "Location found",
+      "translated": "Location found"
     }
   ],
 
