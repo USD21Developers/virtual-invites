@@ -16,8 +16,11 @@ body {
 }
 
 h1 {
-  font-family: "Nunito Sans", sans-serif;
-  font-size: 1.8rem;
+  color: #504390;
+  font-family: Castoro, serif;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 2.6rem;
 }
 
 a {
@@ -53,12 +56,21 @@ form table tr td:nth-child(2) {
 }
 
 #detectMyLocation {
-  border-color: var(--info-dark) !important;
+  border: 1px solid #504390 !important;
   border-radius: 8px;
-  color: var(--info-dark) !important;
+  color: #504390 !important;
   font-weight: 400;
 }
 
 .text-dark {
   color: var(--dark-dark) !important;
+}
+
+#altEventsSubmitButton {
+  background: linear-gradient(93.58deg, #504390 0%, #3f3973 100%);
+  border-radius: 10px;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 1;
 }

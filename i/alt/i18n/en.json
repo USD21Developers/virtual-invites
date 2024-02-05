@@ -19,9 +19,9 @@
       "translated": "For a list of events closest to you, please input your location below:"
     },
     {
-      "key": "labelMyLocation",
-      "original": "My Location:",
-      "translated": "My Location:"
+      "key": "labelNearLocation",
+      "original": "Near Location:",
+      "translated": "Near Location:"
     },
     {
       "key": "originLocationHelp",
