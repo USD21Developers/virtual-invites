@@ -1,3 +1,45 @@
+function getLanguagesOfEvents() {
+  return new Promise((resolve, reject) => {
+    let eventid;
+    let userid;
+    let recipientid;
+    const endpoint = `${getApiHost()}/languages-of-events`;
+
+    try {
+      const urlParts = window.location.hash.split("#")[1].split("/");
+      eventid = Number(urlParts[1]);
+      userid = Number(urlParts[2]);
+      recipientid = urlParts[3];
+    } catch (e) {
+      return reject(new Error("invalid URL parameters"));
+    }
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify({
+        eventid: eventid,
+        userid: userid,
+        recipientid: recipientid,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        return resolve(data);
+      });
+  });
+}
+
+async function populateLanguages() {
+  const selectEl = document.querySelector("#lang");
+  const langs = await getLanguagesOfEvents();
+
+  console.log(langs);
+}
+
 function toggleDetectLocationVisibility() {
   const isMobile = isMobileDevice();
   const detectMyLocationContainerEl = document.querySelector(
@@ -61,6 +103,7 @@ function attachListeners() {
 async function init() {
   attachListeners();
   await populateContent();
+  await populateLanguages();
   toggleDetectLocationVisibility();
 }
 
