@@ -30,8 +30,8 @@
     },
     {
       "key": "locationAllowedValues",
-      "original": "Allowed values:",
-      "translated": "Allowed values:"
+      "original": "Allowed locations:",
+      "translated": "Allowed locations:"
     },
     {
       "key": "locationPostalCode",
