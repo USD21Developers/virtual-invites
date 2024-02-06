@@ -121,6 +121,7 @@ async function init() {
   await populateContent();
   await populateLanguages();
   toggleDetectLocationVisibility();
+  globalHidePageSpinner();
 }
 
 init();
