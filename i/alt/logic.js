@@ -28,16 +28,32 @@ function getLanguagesOfEvents() {
     })
       .then((res) => res.json())
       .then((data) => {
-        return resolve(data);
+        return resolve(data.langs);
       });
   });
 }
 
 async function populateLanguages() {
   const selectEl = document.querySelector("#lang");
-  const langs = await getLanguagesOfEvents();
+  const langsOfEvents = await getLanguagesOfEvents();
+  const langs = await fetch("../../data/json/languages.json").then((res) =>
+    res.json()
+  );
+  const detectedLang = navigator.languages[0].substring(0, 2);
+  let selectedLang = langsOfEvents[detectedLang] ? detectedLang : "en";
 
-  console.log(langs);
+  if (!Array.isArray(langsOfEvents)) return;
+  if (!Object.keys(langs).length) return;
+
+  for (let i = 0; i < langsOfEvents.length; i++) {
+    const lang = langsOfEvents[i];
+    const option = document.createElement("option");
+    option.setAttribute("value", lang);
+    option.innerText =
+      lang === "en" ? langs[lang].name : langs[lang].nativeName;
+    if (selectedLang === lang) option.setAttribute("selected", "");
+    selectEl.appendChild(option);
+  }
 }
 
 function toggleDetectLocationVisibility() {

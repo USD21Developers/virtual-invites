@@ -117,6 +117,11 @@
       "key": "geocoordinatesSuccessMessage",
       "original": "Location detected successfully",
       "translated": "Location detected successfully"
+    },
+    {
+      "key": "selectLanguage",
+      "original": "(Select)",
+      "translated": "(Select)"
     }
   ],
 
