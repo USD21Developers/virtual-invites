@@ -115,8 +115,8 @@
     },
     {
       "key": "geocoordinatesSuccessMessage",
-      "original": "Location found!",
-      "translated": "Location found!"
+      "original": "Location detected successfully",
+      "translated": "Location detected successfully"
     }
   ],
 
