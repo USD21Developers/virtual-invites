@@ -78,3 +78,7 @@ form table tr td:nth-child(2) {
 #promptAdvisory {
   color: var(--danger-dark);
 }
+
+#originLocation {
+  font-size: 0.75rem;
+}
