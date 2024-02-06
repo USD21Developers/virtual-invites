@@ -23,8 +23,11 @@ function onDetectLocationClick(e) {
     const { latitude, longitude, timestamp } = pos.coords;
     const mapCoordinates = `${latitude},${longitude}`;
     const originLocationEl = document.querySelector("#originLocation");
+    const promptAdvisory = document.querySelector("#promptAdvisoryContainer");
 
     originLocationEl.value = mapCoordinates;
+
+    if (promptAdvisory) promptAdvisory.classList.add("d-none");
 
     showToast(getPhrase("geocoordinatesSuccessMessage"), 5000, "success");
   };

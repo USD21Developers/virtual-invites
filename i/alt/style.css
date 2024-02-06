@@ -74,3 +74,7 @@ form table tr td:nth-child(2) {
   text-decoration: none;
   z-index: 1;
 }
+
+#promptAdvisory {
+  color: var(--danger-dark);
+}
