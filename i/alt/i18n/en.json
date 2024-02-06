@@ -94,9 +94,14 @@
       "translated": "Virtual Attendance:"
     },
     {
-      "key": "checkboxVirtualEvents",
-      "original": "Include events that can be attended online (even if they are outside of the above radius)",
-      "translated": "Include events that can be attended online (even if they are outside of the above radius)"
+      "key": "includeVirtualEvents",
+      "original": "Include events that can be attended online",
+      "translated": "Include events that can be attended online"
+    },
+    {
+      "key": "includeVirtualEventsParenthesis",
+      "original": "(even if they are outside of the above radius)",
+      "translated": "(even if they are outside of the above radius)"
     },
     {
       "key": "regardlessOfDistance",
