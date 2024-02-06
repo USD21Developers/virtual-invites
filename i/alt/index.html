@@ -54,13 +54,21 @@
                     aria-describedby="originLocationHelp"
                     data-i18n-placeholder="placeholderLocation"
                   ></textarea>
-                  <div class="text-left">
-                    <small
-                      id="originLocationHelp"
-                      class="form-text"
-                      data-i18n="originLocationHelp"
-                    >
-                    </small>
+                  <div class="d-inline-block mt-3">
+                    <div class="text-left">
+                      <small style="color: var(--dark-light)">
+                        <div
+                          class="text-center border-bottom border-dark"
+                          data-i18n="locationAllowedValues"
+                        ></div>
+                        <ul class="pl-3">
+                          <li data-i18n="locationPostalCode"></li>
+                          <li data-i18n="locationCrossStreets"></li>
+                          <li data-i18n="locationAddress"></li>
+                          <li data-i18n="locationCoordinates"></li>
+                        </ul>
+                      </small>
+                    </div>
                   </div>
                 </div>
 

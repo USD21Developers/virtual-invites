@@ -29,6 +29,31 @@
       "translated": "e.g. a postal code, cross streets, an address, or latitude/longitude coordinates"
     },
     {
+      "key": "locationAllowedValues",
+      "original": "Allowed values:",
+      "translated": "Allowed values:"
+    },
+    {
+      "key": "locationPostalCode",
+      "original": "a postal code",
+      "translated": "a postal code"
+    },
+    {
+      "key": "locationCrossStreets",
+      "original": "cross streets",
+      "translated": "cross streets"
+    },
+    {
+      "key": "locationAddress",
+      "original": "an address",
+      "translated": "an address"
+    },
+    {
+      "key": "locationCoordinates",
+      "original": "latitude/longitude coordinates",
+      "translated": "latitude/longitude coordinates"
+    },
+    {
       "key": "detectMyLocation",
       "original": "Detect my location",
       "translated": "Detect my location"
