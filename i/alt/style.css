@@ -82,3 +82,7 @@ form table tr td:nth-child(2) {
 #originLocation {
   font-size: 0.75rem;
 }
+
+input:checked {
+  accent-color: #504390;
+}
