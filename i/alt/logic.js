@@ -96,11 +96,10 @@ function showMap() {
         mapContainerEl.innerHTML = "";
 
         const img = document.createElement("img");
-        img.setAttribute("src", "/_assets/img/spinner.svg");
+        img.setAttribute("src", data.imageURL);
         img.setAttribute("alt", getPhrase("mapLabelOrigin"));
-        img.setAttribute("width", 300);
-        img.setAttribute("height", 300);
-
+        img.setAttribute("width", data.width);
+        img.setAttribute("height", data.height);
         mapContainerEl.appendChild(img);
 
         customScrollTo("#mapContainer");
