@@ -73,6 +73,8 @@ function showMap() {
 
     mapContainerEl.classList.remove("d-none");
 
+    customScrollTo("#mapContainer");
+
     fetch(endpoint, {
       mode: "cors",
       method: "POST",
@@ -101,8 +103,6 @@ function showMap() {
         img.setAttribute("width", data.width);
         img.setAttribute("height", data.height);
         mapContainerEl.appendChild(img);
-
-        customScrollTo("#mapContainer");
       })
       .catch((err) => {
         console.error(err);
