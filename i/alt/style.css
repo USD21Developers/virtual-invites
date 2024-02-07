@@ -90,3 +90,7 @@ input:checked {
 #mapContainer {
   scroll-padding: 10px 0 0 0;
 }
+
+[data-i18n="includeVirtualEventsParenthesis"] {
+  font-size: 85%;
+}
