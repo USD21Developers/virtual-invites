@@ -97,5 +97,5 @@ input:checked {
 
 #detectMyLocation.btn:active,
 #detectMyLocation.btn:hover {
-  background-image: unset;
+  background-image: unset !important;
 }
