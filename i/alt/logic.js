@@ -100,14 +100,6 @@ function showMap() {
     const place = document.querySelector("#originLocation").value;
     const label = getPhrase("mapLabelOrigin");
 
-    const img = document.createElement("img");
-    img.setAttribute("src", "/_assets/img/spinner.svg");
-    img.setAttribute("alt", getPhrase("loadingMap"));
-    img.setAttribute("width", 200);
-    img.setAttribute("height", 200);
-
-    mapContainerEl.appendChild(img);
-
     mapContainerEl.classList.remove("d-none");
 
     customScrollTo("#mapContainer");
