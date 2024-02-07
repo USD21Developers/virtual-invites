@@ -132,6 +132,8 @@ function showMap() {
         img.setAttribute("width", data.width);
         img.setAttribute("height", data.height);
         mapContainerEl.appendChild(img);
+
+        showToast(getPhrase("geocoordinatesSuccessMessage"), 2000, "success");
       })
       .catch((err) => {
         console.error(err);
@@ -185,8 +187,6 @@ function onDetectLocationClick() {
     showMap();
 
     if (promptAdvisory) promptAdvisory.classList.add("d-none");
-
-    showToast(getPhrase("geocoordinatesSuccessMessage"), 2000, "success");
   };
 
   if (navigator.geolocation) {
