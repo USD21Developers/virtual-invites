@@ -162,6 +162,10 @@ function toggleDetectLocationVisibility() {
 function onDetectLocationClick() {
   // if (!isMobileDevice()) return;
 
+  const mapContainerEl = document.querySelector("#mapContainer");
+  mapContainerEl.innerHTML = "";
+  mapContainerEl.classList.add("d-none");
+
   const onGeoLocationError = (err) => {
     showToast(getPhrase("geocoordinatesErrorMessage"), 5000, "danger");
     console.error(err);
