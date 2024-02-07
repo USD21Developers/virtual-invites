@@ -165,6 +165,8 @@ function onDetectLocationClick() {
 
   mapContainerEl.classList.remove("d-none");
 
+  customScrollTo("#mapContainer");
+
   const onGeoLocationError = (err) => {
     mapContainerEl.innerHTML = "";
     mapContainerEl.classList.add("d-none");
