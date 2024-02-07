@@ -110,9 +110,7 @@ function toggleDetectLocationVisibility() {
   detectMyLocationContainerEl.classList.remove("d-none");
 }
 
-function onDetectLocationClick(e) {
-  e.preventDefault();
-
+function onDetectLocationClick() {
   // if (!isMobileDevice()) return;
 
   const onGeoLocationError = (err) => {
