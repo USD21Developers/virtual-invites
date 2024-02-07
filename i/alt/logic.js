@@ -147,7 +147,6 @@ function onDetectLocationClick(e) {
 }
 
 function onSearch(e) {
-  showMap();
   e.preventDefault();
 }
 
