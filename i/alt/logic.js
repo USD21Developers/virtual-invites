@@ -102,8 +102,6 @@ function showMap() {
 
     mapContainerEl.classList.remove("d-none");
 
-    customScrollTo("#mapContainer");
-
     fetch(endpoint, {
       mode: "cors",
       method: "POST",
