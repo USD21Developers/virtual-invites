@@ -160,11 +160,18 @@ function toggleDetectLocationVisibility() {
 }
 
 function onDetectLocationClick() {
-  // if (!isMobileDevice()) return;
-
   const mapContainerEl = document.querySelector("#mapContainer");
   mapContainerEl.innerHTML = "";
-  mapContainerEl.classList.add("d-none");
+
+  const img = document.createElement("img");
+  img.setAttribute("src", "/_assets/img/spinner.svg");
+  img.setAttribute("alt", getPhrase("loadingMap"));
+  img.setAttribute("width", 200);
+  img.setAttribute("height", 200);
+
+  mapContainerEl.appendChild(img);
+
+  mapContainerEl.classList.remove("d-none");
 
   const onGeoLocationError = (err) => {
     showToast(getPhrase("geocoordinatesErrorMessage"), 5000, "danger");
