@@ -66,8 +66,8 @@ function showMap() {
     const img = document.createElement("img");
     img.setAttribute("src", "/_assets/img/spinner.svg");
     img.setAttribute("alt", getPhrase("loadingMap"));
-    img.setAttribute("width", 300);
-    img.setAttribute("height", 300);
+    img.setAttribute("width", 200);
+    img.setAttribute("height", 200);
 
     mapContainerEl.appendChild(img);
 
