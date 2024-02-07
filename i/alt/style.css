@@ -95,7 +95,8 @@ input:checked {
   font-size: 85%;
 }
 
-#detectMyLocation.active,
-#detectMyLocation:active {
+.btn.active,
+.btn:active,
+.btn:hover {
   background-color: white !important;
 }
