@@ -131,7 +131,7 @@ function onDetectLocationClick(e) {
 
     if (promptAdvisory) promptAdvisory.classList.add("d-none");
 
-    // showToast(getPhrase("geocoordinatesSuccessMessage"), 3000, "success");
+    showToast(getPhrase("geocoordinatesSuccessMessage"), 3000, "success");
   };
 
   if (navigator.geolocation) {
