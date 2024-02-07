@@ -56,6 +56,47 @@ async function populateLanguages() {
   }
 }
 
+function showMap() {
+  return new Promise((resolve, reject) => {
+    const mapContainerEl = document.querySelector("#mapContainer");
+    const endpoint = `${getApiHost()}/map-static`;
+    const place = document.querySelector("#originLocation").value;
+    const label = getPhrase("mapLabelOrigin");
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify({
+        place: place,
+        label: label,
+        width: 400,
+        height: 400,
+        zoom: 12,
+        maptype: "roadmap" /* ["roadmap", "satellite", "hybrid", "terrain"] */,
+        markerColor:
+          "red" /* ["red", "blue", "green", "yellow", "purple", "orange", "pink", "white", "black", "brown"]; */,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const img = mapContainerEl.querySelector("img");
+        img.setAttribute("src", data.imageURL);
+        img.setAttribute("width", data.width);
+        img.setAttribute("height", data.height);
+        img.setAttribute("alt", getPhrase("mapLabelOrigin"));
+        mapContainerEl.classList.remove("d-none");
+      })
+      .catch((err) => {
+        console.error(err);
+        mapContainerEl.classList.add("d-none");
+      });
+  });
+}
+
 function toggleDetectLocationVisibility() {
   const isMobile = isMobileDevice();
   const detectMyLocationContainerEl = document.querySelector(
@@ -84,6 +125,8 @@ function onDetectLocationClick(e) {
     const promptAdvisory = document.querySelector("#promptAdvisoryContainer");
 
     originLocationEl.value = mapCoordinates;
+
+    showMap();
 
     if (promptAdvisory) promptAdvisory.classList.add("d-none");
 
