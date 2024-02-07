@@ -89,7 +89,8 @@ function showMap() {
         img.setAttribute("height", data.height);
         img.setAttribute("alt", getPhrase("mapLabelOrigin"));
         mapContainerEl.classList.remove("d-none");
-        mapContainerEl.scrollIntoView({ behavior: "smooth" });
+
+        customScrollTo("#mapContainer");
       })
       .catch((err) => {
         console.error(err);
