@@ -166,6 +166,8 @@ function onDetectLocationClick() {
   mapContainerEl.classList.remove("d-none");
 
   const onGeoLocationError = (err) => {
+    mapContainerEl.innerHTML = "";
+    mapContainerEl.classList.add("d-none");
     showToast(getPhrase("geocoordinatesErrorMessage"), 5000, "danger");
     console.error(err);
   };
@@ -182,7 +184,7 @@ function onDetectLocationClick() {
 
     if (promptAdvisory) promptAdvisory.classList.add("d-none");
 
-    showToast(getPhrase("geocoordinatesSuccessMessage"), 3000, "success");
+    showToast(getPhrase("geocoordinatesSuccessMessage"), 2000, "success");
   };
 
   if (navigator.geolocation) {
