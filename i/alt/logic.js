@@ -56,6 +56,45 @@ async function populateLanguages() {
   }
 }
 
+function setDefaultDates() {
+  const fromDateEl = document.querySelector("#dateFrom");
+  const toDateEl = document.querySelector("#dateTo");
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+  const day = String(currentDate.getDate()).padStart(2, "0");
+  const currentDateFormatted = `${year}-${month}-${day}`;
+
+  fromDateEl.value = currentDateFormatted;
+
+  function getFutureDateWithTwoSundays() {
+    const currentDate = new Date();
+    let futureDate = new Date(currentDate);
+
+    // Increment the future date until we find at least two Sundays
+    let sundayCount = 0;
+    while (sundayCount < 2) {
+      futureDate.setDate(futureDate.getDate() + 1); // Move to the next day
+      if (futureDate.getDay() === 0) {
+        // 0 represents Sunday
+        sundayCount++;
+      }
+    }
+
+    return futureDate;
+  }
+
+  // Get the future date with at least two Sundays
+  const futureDate = getFutureDateWithTwoSundays();
+
+  // Format the future date as YYYY-MM-DD
+  const formattedFutureDate = futureDate.toISOString().slice(0, 10);
+
+  console.log(formattedFutureDate); // Output: YYYY-MM-DD format of the future date
+
+  toDateEl.value = formattedFutureDate;
+}
+
 function showMap() {
   return new Promise((resolve, reject) => {
     const mapContainerEl = document.querySelector("#mapContainer");
@@ -175,6 +214,7 @@ async function init() {
   attachListeners();
   await populateContent();
   await populateLanguages();
+  setDefaultDates();
   toggleDetectLocationVisibility();
   globalHidePageSpinner();
 }

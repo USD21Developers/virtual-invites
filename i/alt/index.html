@@ -161,75 +161,41 @@
                       </td>
                     </tr>
 
-                    <!-- Sort By -->
+                    <!-- Dates -->
                     <tr>
                       <td valign="top" class="p-3 text-left">
                         <label
-                          data-i18n="sortBy"
+                          data-i18n="dates"
                           class="text-dark optionsLabel"
                         ></label>
                       </td>
                       <td valign="top" class="p-3 text-left">
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="sortby"
-                            id="sortByDate"
-                            value="date"
-                            checked
-                          />
-                          <label
-                            class="form-check-label"
-                            for="sortByDate"
-                            data-i18n="sortByDate"
-                          ></label>
-                        </div>
-                        <div class="form-check mb-0">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="sortby"
-                            id="sortByDistance"
-                            value="distance"
-                          />
-                          <label
-                            class="form-check-label"
-                            for="sortByDistance"
-                            data-i18n="sortByDistance"
-                          ></label>
-                        </div>
-                      </td>
-                    </tr>
+                        <div class="form-group mb-2">
+                          <div class="mb-4">
+                            <label
+                              for="dateFrom"
+                              data-i18n="dateFrom"
+                              class="datetime-label"
+                            ></label>
+                            <input
+                              type="date"
+                              class="form-control datetime-field"
+                              id="dateFrom"
+                            />
+                          </div>
 
-                    <!-- Include virtual events -->
-                    <tr>
-                      <td colspan="2" class="p-3">
-                        <div class="text-left mb-3">
-                          <label
-                            data-i18n="labelVirtualAttendance"
-                            class="text-dark optionsLabel"
-                          ></label>
-                        </div>
-                        <div class="form-check text-left">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value="include"
-                            id="includeVirtualEvents"
-                            checked
-                          />
-                          <label
-                            class="form-check-label"
-                            for="includeVirtualEvents"
-                          >
-                            <span data-i18n="includeVirtualEvents"></span>
-                            <div style="color: var(--dark-light)">
-                              <small
-                                data-i18n="includeVirtualEventsParenthesis"
-                              ></small>
-                            </div>
-                          </label>
+                          <div>
+                            <label
+                              for="dateTo"
+                              data-i18n="dateTo"
+                              class="datetime-label"
+                            ></label>
+                            <input
+                              type="date"
+                              class="form-control datetime-field"
+                              id="dateTo"
+                            />
+                          </div>
                         </div>
                       </td>
                     </tr>

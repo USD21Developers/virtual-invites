@@ -162,6 +162,21 @@
       "key": "loadingMap",
       "original": "Loading map...",
       "translated": "Loading map..."
+    },
+    {
+      "key": "dates",
+      "original": "Dates:",
+      "translated": "Dates:"
+    },
+    {
+      "key": "dateFrom",
+      "original": "From:",
+      "translated": "From:"
+    },
+    {
+      "key": "dateTo",
+      "original": "To:",
+      "translated": "To:"
     }
   ],
 

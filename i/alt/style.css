@@ -99,3 +99,7 @@ input:checked {
 #detectMyLocation.btn:hover {
   background-image: unset !important;
 }
+
+input[type="date"] {
+  font-size: 0.875rem;
+}
