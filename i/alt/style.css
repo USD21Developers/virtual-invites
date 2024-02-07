@@ -86,3 +86,7 @@ form table tr td:nth-child(2) {
 input:checked {
   accent-color: #504390;
 }
+
+#mapContainer {
+  scroll-padding: 10px 0 0 0;
+}
