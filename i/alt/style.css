@@ -94,3 +94,8 @@ input:checked {
 [data-i18n="includeVirtualEventsParenthesis"] {
   font-size: 85%;
 }
+
+#detectMyLocation.btn.active,
+#detectMyLocation.btn:active {
+  background-color: unset;
+}
