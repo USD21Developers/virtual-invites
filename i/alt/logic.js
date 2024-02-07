@@ -69,9 +69,9 @@ function showMap() {
       body: JSON.stringify({
         place: place,
         label: label,
-        width: 200,
-        height: 200,
-        zoom: 12,
+        width: 300,
+        height: 300,
+        zoom: 11,
         maptype: "roadmap" /* ["roadmap", "satellite", "hybrid", "terrain"] */,
         markerColor:
           "red" /* ["red", "blue", "green", "yellow", "purple", "orange", "pink", "white", "black", "brown"]; */,
