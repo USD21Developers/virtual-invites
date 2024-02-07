@@ -63,6 +63,16 @@ function showMap() {
     const place = document.querySelector("#originLocation").value;
     const label = getPhrase("mapLabelOrigin");
 
+    const img = document.createElement("img");
+    img.setAttribute("src", "/_assets/img/spinner.svg");
+    img.setAttribute("alt", getPhrase("loadingMap"));
+    img.setAttribute("width", 100);
+    img.setAttribute("height", 100);
+
+    mapContainerEl.appendChild(img);
+
+    mapContainerEl.classList.remove("d-none");
+
     fetch(endpoint, {
       mode: "cors",
       method: "POST",
@@ -83,12 +93,15 @@ function showMap() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        const img = mapContainerEl.querySelector("img");
-        img.setAttribute("src", data.imageURL);
-        img.setAttribute("width", data.width);
-        img.setAttribute("height", data.height);
+        mapContainerEl.innerHTML = "";
+
+        const img = document.createElement("img");
+        img.setAttribute("src", "/_assets/img/spinner.svg");
         img.setAttribute("alt", getPhrase("mapLabelOrigin"));
-        mapContainerEl.classList.remove("d-none");
+        img.setAttribute("width", 300);
+        img.setAttribute("height", 300);
+
+        mapContainerEl.appendChild(img);
 
         customScrollTo("#mapContainer");
       })

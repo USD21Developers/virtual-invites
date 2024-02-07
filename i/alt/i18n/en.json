@@ -157,6 +157,11 @@
       "key": "selectLanguage",
       "original": "(Select)",
       "translated": "(Select)"
+    },
+    {
+      "key": "loadingMap",
+      "original": "Loading map...",
+      "translated": "Loading map..."
     }
   ],
 
