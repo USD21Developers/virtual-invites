@@ -89,6 +89,7 @@ function showMap() {
         img.setAttribute("height", data.height);
         img.setAttribute("alt", getPhrase("mapLabelOrigin"));
         mapContainerEl.classList.remove("d-none");
+        mapContainerEl.scrollIntoView({ behavior: "smooth" });
       })
       .catch((err) => {
         console.error(err);
@@ -130,7 +131,7 @@ function onDetectLocationClick(e) {
 
     if (promptAdvisory) promptAdvisory.classList.add("d-none");
 
-    showToast(getPhrase("geocoordinatesSuccessMessage"), 3000, "success");
+    // showToast(getPhrase("geocoordinatesSuccessMessage"), 3000, "success");
   };
 
   if (navigator.geolocation) {
