@@ -217,7 +217,7 @@ async function init() {
   await populateContent();
   await populateLanguages();
   setDefaultDates();
-  toggleDetectLocationVisibility();
+  // toggleDetectLocationVisibility();
   globalHidePageSpinner();
 }
 
