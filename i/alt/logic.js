@@ -90,8 +90,6 @@ function setDefaultDates() {
   // Format the future date as YYYY-MM-DD
   const formattedFutureDate = futureDate.toISOString().slice(0, 10);
 
-  console.log(formattedFutureDate); // Output: YYYY-MM-DD format of the future date
-
   toDateEl.value = formattedFutureDate;
 }
 
