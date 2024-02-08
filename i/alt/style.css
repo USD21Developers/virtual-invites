@@ -105,9 +105,9 @@ input[type="date"] {
 }
 
 #searchOptionsContainer tr td:nth-child(1) {
-  padding-right: 10px !important;
+  padding-right: 11px !important;
 }
 
 #searchOptionsContainer tr td:nth-child(2) {
-  padding-left: 10px !important;
+  padding-left: 11px !important;
 }
