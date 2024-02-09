@@ -93,6 +93,57 @@ function setDefaultDates() {
   toDateEl.value = formattedFutureDate;
 }
 
+function setDefaultDistanceUnit() {
+  return new Promise((resolve, reject) => {
+    const endpoint = `${getApiServicesHost()}/geotagip`;
+    const radiusEl = document.querySelector("#radius");
+    const distanceUnitEl = document.querySelector("#distanceUnit");
+
+    // https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+    const placesThatUseMiles = [
+      { iso_3166_1_a2: "AI", name: "Anguilla" },
+      { iso_3166_1_a2: "AG", name: "Antigua and Barbuda" },
+      { iso_3166_1_a2: "BB", name: "Barbados" },
+      { iso_3166_1_a2: "KY", name: "Cayman Islands" },
+      {
+        iso_3166_1_a2: "GB",
+        name: "United Kingdom, England, Scotland, Wales, Northern Ireland",
+      },
+      { iso_3166_1_a2: "GU", name: "Guam" },
+      { iso_3166_1_a2: "IM", name: "Isle Of Man" },
+      { iso_3166_1_a2: "JE", name: "Jersey" },
+      { iso_3166_1_a2: "PR", name: "Puerto Rico" },
+      { iso_3166_1_a2: "US", name: "USA" },
+    ];
+
+    fetch(endpoint)
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.hasOwnProperty("geotaginfo")) return;
+        const { country_code } = data.geotaginfo;
+        let distanceUnit = "kilometers";
+        const radiusForKilos = 100;
+        const radiusForMiles = 65;
+
+        placesThatUseMiles.forEach((item) => {
+          if (item.iso_3166_1_a2 === country_code) {
+            distanceUnit = "miles";
+          }
+        });
+
+        distanceUnitEl.value = distanceUnit;
+        radiusEl.value =
+          distanceUnit === "miles" ? radiusForMiles : radiusForKilos;
+
+        return resolve(distanceUnit);
+      })
+      .catch((err) => {
+        console.error(err);
+        return reject(err);
+      });
+  });
+}
+
 function showMap() {
   return new Promise((resolve, reject) => {
     const mapContainerEl = document.querySelector("#mapContainer");
@@ -218,6 +269,7 @@ async function init() {
   await populateContent();
   await populateLanguages();
   setDefaultDates();
+  setDefaultDistanceUnit();
   // toggleDetectLocationVisibility();
   globalHidePageSpinner();
 }
