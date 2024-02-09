@@ -174,6 +174,13 @@ function setDefaultDistanceUnit() {
       distanceUnitEl.value = storedDistanceUnit;
     }
 
+    if (window.location.hostname === "localhost") {
+      radiusEl.value = 65;
+      distanceUnitEl.value = "miles";
+      originLocationEl.setAttribute("data-countryFromIP", "US");
+      return resolve("miles");
+    }
+
     fetch(endpoint)
       .then((res) => res.json())
       .then((data) => {
