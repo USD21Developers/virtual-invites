@@ -119,6 +119,11 @@ function setDefaultDistanceUnit() {
     fetch(endpoint)
       .then((res) => res.json())
       .then((data) => {
+        if (data && data.msgType) {
+          if (data.msgType !== "success") {
+            throw new Error(data.msg);
+          }
+        }
         if (!data.hasOwnProperty("geotaginfo")) return;
         const { country_code } = data.geotaginfo;
         let distanceUnit = "kilometers";
