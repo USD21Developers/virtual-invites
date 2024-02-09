@@ -274,7 +274,7 @@ async function init() {
   await populateContent();
   await populateLanguages();
   setDefaultDates();
-  setDefaultDistanceUnit();
+  setDefaultDistanceUnit(); // returns a promise but for now executes asynchronously
   // toggleDetectLocationVisibility();
   globalHidePageSpinner();
 }
