@@ -455,7 +455,6 @@ function onSearch(e) {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       // TODO:  DO STUFF (e.g. extract data, show search results, etc.)
       globalHidePageSpinner();
     })
