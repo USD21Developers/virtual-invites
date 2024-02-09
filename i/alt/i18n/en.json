@@ -177,6 +177,71 @@
       "key": "dateTo",
       "original": "To:",
       "translated": "To:"
+    },
+    {
+      "key": "pleaseProvideLocation",
+      "original": "Please provide a location.",
+      "translated": "Please provide a location."
+    },
+    {
+      "key": "pleaseSelectLanguage",
+      "original": "Please select your preferred language.",
+      "translated": "Please select your preferred language."
+    },
+    {
+      "key": "pleaseInputRadius",
+      "original": "Please input the radius from your location.",
+      "translated": "Please input the radius from your location."
+    },
+    {
+      "key": "radiusMustBeNumeric",
+      "original": "The radius must be a number.",
+      "translated": "The radius must be a number."
+    },
+    {
+      "key": "radiusMustBePositive",
+      "original": "The radius must be a positive number.",
+      "translated": "The radius must be a positive number."
+    },
+    {
+      "key": "radiusMustNotBeZero",
+      "original": "The radius must not be equal to zero.",
+      "translated": "The radius must not be equal to zero."
+    },
+    {
+      "key": "pleaseInputFromDate",
+      "original": "Please input the 'From' date.",
+      "translated": "Please input the 'From' date."
+    },
+    {
+      "key": "invalidFromDate",
+      "original": "Please input a valid 'From' date.",
+      "translated": "Please input a valid 'From' date."
+    },
+    {
+      "key": "fromDateMustNotBeInPast",
+      "original": "The 'From' date must not be in the past.",
+      "translated": "The 'From' date must not be in the past."
+    },
+    {
+      "key": "pleaseInputToDate",
+      "original": "Please input the 'To' date.",
+      "translated": "Please input the 'To' date."
+    },
+    {
+      "key": "invalidToDate",
+      "original": "Please input a valid 'To' date.",
+      "translated": "Please input a valid 'To' date."
+    },
+    {
+      "key": "toDateMustNotBeInPast",
+      "original": "The 'To' date must not be in the past.",
+      "translated": "The 'To' date must not be in the past."
+    },
+    {
+      "key": "fromDateMustPrecedeToDate",
+      "original": "The 'From' date must come before the 'To' date.",
+      "translated": "The 'From' date must come before the 'To' date."
     }
   ],
 

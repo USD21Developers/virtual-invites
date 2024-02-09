@@ -1,3 +1,49 @@
+let inviteObj;
+
+function getInviteInfo() {
+  return new Promise((resolve, reject) => {
+    let eventid;
+    let userid;
+    let recipientid;
+    const endpoint = `${getApiHost()}/alt-events-invite`;
+
+    try {
+      const urlParts = window.location.hash.split("#")[1].split("/");
+      eventid = Number(urlParts[1]);
+      userid = Number(urlParts[2]);
+      recipientid = urlParts[3];
+    } catch (e) {
+      return reject(new Error("invalid URL parameters"));
+    }
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify({
+        eventid: eventid,
+        userid: userid,
+        recipientid: recipientid,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data) reject();
+        if (!data.msg || !data.msgType) reject();
+        if (data.msgType === "error") reject(data.msg);
+        if (!data.invite) reject();
+        inviteObj = data.invite;
+        return resolve(data.invite);
+      })
+      .catch((err) => {
+        console.error(err);
+        return reject(err);
+      });
+  });
+}
+
 function getLanguagesOfEvents() {
   return new Promise((resolve, reject) => {
     let eventid;
@@ -29,6 +75,10 @@ function getLanguagesOfEvents() {
       .then((res) => res.json())
       .then((data) => {
         return resolve(data.langs);
+      })
+      .catch((err) => {
+        console.error(err);
+        return reject(err);
       });
   });
 }
@@ -98,6 +148,7 @@ function setDefaultDistanceUnit() {
     const endpoint = `${getApiServicesHost()}/geotagip`;
     const radiusEl = document.querySelector("#radius");
     const distanceUnitEl = document.querySelector("#distanceUnit");
+    const originLocationEl = document.querySelector("#originLocation");
 
     // https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
     const placesThatUseMiles = [
@@ -132,11 +183,15 @@ function setDefaultDistanceUnit() {
           }
         }
         if (!data.hasOwnProperty("geotaginfo")) return;
-        const { country_code } = data.geotaginfo;
+        const country_code = data.geotaginfo.country_code
+          ? data.geotaginfo.country_code
+          : "US";
         const radiusForKilos = 100;
         const radiusForMiles = 65;
         let radius = radiusForKilos;
         let distanceUnit = "kilometers";
+
+        originLocationEl.setAttribute("data-countryFromIP", country_code);
 
         placesThatUseMiles.forEach((item) => {
           if (item.iso_3166_1_a2 === country_code) {
@@ -188,17 +243,16 @@ function showMap() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         mapContainerEl.innerHTML = "";
 
         const img = document.createElement("img");
+
+        img.onload = onMapLoaded();
         img.setAttribute("src", data.imageURL);
         img.setAttribute("alt", getPhrase("mapLabelOrigin"));
         img.setAttribute("width", data.width);
         img.setAttribute("height", data.height);
         mapContainerEl.appendChild(img);
-
-        showToast(getPhrase("geocoordinatesSuccessMessage"), 2000, "success");
       })
       .catch((err) => {
         console.error(err);
@@ -207,20 +261,12 @@ function showMap() {
   });
 }
 
-function toggleDetectLocationVisibility() {
-  const isMobile = isMobileDevice();
-  const detectMyLocationContainerEl = document.querySelector(
-    "#detectMyLocationContainer"
-  );
-
-  if (!isMobile) return;
-
-  detectMyLocationContainerEl.classList.remove("d-none");
-}
-
 function onDetectLocationClick() {
   const mapContainerEl = document.querySelector("#mapContainer");
   mapContainerEl.innerHTML = "";
+
+  hideToast();
+  document.querySelector(".snackbar-body").innerHTML = "";
 
   const img = document.createElement("img");
   img.setAttribute("src", "/_assets/img/spinner.svg");
@@ -269,12 +315,157 @@ function onDetectLocationClick() {
 
 function onSearch(e) {
   e.preventDefault();
+
+  const originLocationEl = document.querySelector("#originLocation");
+  const countryFromIP = originLocationEl.getAttribute("data-countryFromIP");
+  const originLocation = originLocationEl.value.trim();
+  const txtPleaseProvideLocation = getPhrase("pleaseProvideLocation");
+  const txtPleaseSelectLanguage = getPhrase("pleaseSelectLanguage");
+  const txtPleaseInputRadius = getPhrase("pleaseInputRadius");
+  const txtRadiusMustBeNumeric = getPhrase("radiusMustBeNumeric");
+  const txtRadiusMustBePositive = getPhrase("radiusMustBePositive");
+  const txtRadiusMustNotBeZero = getPhrase("radiusMustNotBeZero");
+  const txtPleaseInputFromDate = getPhrase("pleaseInputFromDate");
+  const txtFromDateMustNotBeInPast = getPhrase("fromDateMustNotBeInPast");
+  const txtPleaseInputToDate = getPhrase("pleaseInputToDate");
+  const txtInvalidFromDate = getPhrase("invalidFromDate");
+  const txtInvalidToDate = getPhrase("invalidToDate");
+  const txtToDateMustNotBeInPast = getPhrase("toDateMustNotBeInPast");
+  const txtFromDateMustPrecedeToDate = getPhrase("fromDateMustPrecedeToDate");
+  const lang = document.querySelector("#lang").value;
+  const radius = document.querySelector("#radius").value;
+  const distanceUnit = document.querySelector("#distanceUnit").value;
+  const dateFrom = document.querySelector("#dateFrom").value;
+  const dateTo = document.querySelector("#dateTo").value;
+
+  // Validate
+
+  hideToast();
+
+  // Origin location
+  if (!originLocation.length) {
+    showToast(txtPleaseProvideLocation, 5000, "danger");
+    customScrollTo("label[for='originLocation']");
+    return;
+  }
+
+  // Language
+  if (lang === "") {
+    showToast(txtPleaseSelectLanguage, 5000, "danger");
+    customScrollTo("label[for='lang']");
+    return;
+  }
+
+  // Radius
+  if (radius.trim() === "") {
+    showToast(txtPleaseInputRadius, 5000, "danger");
+    customScrollTo("label[for='radius']");
+    return;
+  }
+  if (isNaN(radius.trim())) {
+    showToast(txtRadiusMustBeNumeric, 5000, "danger");
+    customScrollTo("label[for='radius']");
+    return;
+  }
+  if (radius < Math.abs(radius)) {
+    showToast(txtRadiusMustBePositive, 5000, "danger");
+    customScrollTo("label[for='radius']");
+    return;
+  }
+  if (Number(radius) === 0) {
+    showToast(txtRadiusMustNotBeZero, 5000, "danger");
+    customScrollTo("label[for='radius']");
+    return;
+  }
+
+  const momentNow = moment();
+
+  // "From" date
+  const momentFromStart = moment(dateFrom);
+  const momentFromEnd = momentFromStart.add(1, "days").subtract(1, "second");
+  if (dateFrom.trim() === "") {
+    showToast(txtPleaseInputFromDate, 5000, "danger");
+    customScrollTo("label[for='dateFrom']");
+    return;
+  }
+  if (!moment(dateFrom).isValid()) {
+    showToast(txtInvalidFromDate, 5000, "danger");
+    customScrollTo("label[for='dateFrom']");
+    return;
+  }
+  if (momentFromEnd.isBefore(momentNow)) {
+    showToast(txtFromDateMustNotBeInPast, 5000, "danger");
+    customScrollTo("label[for='dateFrom']");
+    return;
+  }
+
+  // "To" date
+  const momentToStart = moment(dateTo);
+  const momentToEnd = momentToStart.add(1, "days").subtract(1, "second");
+  if (dateTo.trim() === "") {
+    showToast(txtPleaseInputToDate, 5000, "danger");
+    customScrollTo("label[for='dateTo']");
+    return;
+  }
+  if (!moment(dateTo).isValid()) {
+    showToast(txtInvalidToDate);
+    customScrollTo("label[for='dateTo']");
+    return;
+  }
+  if (momentToEnd.isBefore(momentNow)) {
+    showToast(txtToDateMustNotBeInPast, 5000, "danger");
+    customScrollTo("label[for='dateTo']");
+    return;
+  }
+
+  // "From" date must precede "To" date
+  if (momentToEnd.isBefore(momentFromStart)) {
+    showToast(txtFromDateMustPrecedeToDate, 5000, "danger");
+    customScrollTo("label[for='dateFrom']");
+    return;
+  }
+
+  globalShowPageSpinner();
+
+  const endpoint = `${getApiHost()}/alt-events-search`;
+  fetch(endpoint, {
+    mode: "cors",
+    method: "POST",
+    body: JSON.stringify({
+      countryFromIP: countryFromIP,
+      lang: lang,
+      originLocation: originLocation,
+      radius: radius,
+      distanceUnit: distanceUnit,
+      eventid: inviteObj.event.eventid,
+      userid: inviteObj.user.userid,
+      recipientid: inviteObj.recipient.recipientid,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      // TODO:  DO STUFF (e.g. extract data, show search results, etc.)
+      globalHidePageSpinner();
+    })
+    .catch((err) => {
+      console.error(err);
+      globalHidePageSpinner();
+    });
+}
+
+function onMapLoaded() {
+  showToast(getPhrase("geocoordinatesSuccessMessage"), 2000, "success");
 }
 
 function attachListeners() {
   document
     .querySelector("#detectMyLocation")
     .addEventListener("click", onDetectLocationClick);
+
   document
     .querySelector("#formEventSearch")
     .addEventListener("submit", onSearch);
@@ -282,12 +473,13 @@ function attachListeners() {
 
 async function init() {
   attachListeners();
-  await populateContent();
-  await populateLanguages();
-  setDefaultDates();
-  setDefaultDistanceUnit(); // returns a promise but for now executes asynchronously
-  // toggleDetectLocationVisibility();
-  globalHidePageSpinner();
+  Promise.all([populateContent(), getInviteInfo(), populateLanguages()]).then(
+    () => {
+      setDefaultDates();
+      setDefaultDistanceUnit();
+      globalHidePageSpinner();
+    }
+  );
 }
 
 init();
