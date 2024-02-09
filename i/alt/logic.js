@@ -177,7 +177,7 @@ function setDefaultDistanceUnit() {
     if (window.location.hostname === "localhost") {
       radiusEl.value = 65;
       distanceUnitEl.value = "miles";
-      originLocationEl.value = "33.6578778,-112.1316507";
+      originLocationEl.value = "40.689247,-74.044502"; // Statue of Liberty
       originLocationEl.setAttribute("data-countryFromIP", "US");
       return resolve("miles");
     }
