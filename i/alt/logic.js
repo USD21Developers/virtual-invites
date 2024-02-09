@@ -116,6 +116,13 @@ function setDefaultDistanceUnit() {
       { iso_3166_1_a2: "US", name: "USA" },
     ];
 
+    const storedRadius = localStorage.getItem("radius");
+    const storedDistanceUnit = localStorage.getItem("distanceUnit");
+    if (storedRadius && storedDistanceUnit) {
+      radiusEl.value = storedRadius;
+      distanceUnitEl.value = storedDistanceUnit;
+    }
+
     fetch(endpoint)
       .then((res) => res.json())
       .then((data) => {
@@ -126,19 +133,23 @@ function setDefaultDistanceUnit() {
         }
         if (!data.hasOwnProperty("geotaginfo")) return;
         const { country_code } = data.geotaginfo;
-        let distanceUnit = "kilometers";
         const radiusForKilos = 100;
         const radiusForMiles = 65;
+        let radius = radiusForKilos;
+        let distanceUnit = "kilometers";
 
         placesThatUseMiles.forEach((item) => {
           if (item.iso_3166_1_a2 === country_code) {
+            radius = radiusForMiles;
             distanceUnit = "miles";
           }
         });
 
+        localStorage.setItem("radius", radius);
+        localStorage.setItem("distanceUnit", distanceUnit);
+
+        radiusEl.value = radius;
         distanceUnitEl.value = distanceUnit;
-        radiusEl.value =
-          distanceUnit === "miles" ? radiusForMiles : radiusForKilos;
 
         return resolve(distanceUnit);
       })
