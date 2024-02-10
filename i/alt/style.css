@@ -111,3 +111,14 @@ input[type="date"] {
 #searchOptionsContainer tr td:nth-child(2) {
   padding-left: 11px !important;
 }
+
+#allowedValues {
+  color: var(--dark-light);
+  font-size: 0.8rem;
+  text-wrap: balance;
+}
+
+[data-i18n="explainParagraph"] {
+  font-size: 1.1rem;
+  text-wrap: balance;
+}
