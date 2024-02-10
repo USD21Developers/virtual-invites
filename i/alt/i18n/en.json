@@ -19,11 +19,6 @@
       "translated": "For a list of events closest to you, please provide your location below:"
     },
     {
-      "key": "labelNearLocation",
-      "original": "Near Location:",
-      "translated": "Near Location:"
-    },
-    {
       "key": "mapLabelOrigin",
       "original": "My location",
       "translated": "My location"
