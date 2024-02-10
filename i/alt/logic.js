@@ -484,7 +484,6 @@ function attachListeners() {
     .addEventListener("submit", onSearch);
 
   document.querySelector("#originLocation").addEventListener("input", hideMap);
-  document.querySelector("#originLocation").addEventListener("change", hideMap);
 }
 
 async function init() {
