@@ -285,7 +285,6 @@ function configureLocalForage() {
 
 function customScrollTo(selector, scrollBehavior = "smooth", offset = 94) {
   const element = document.querySelector(selector);
-  const offset = 94;
   const bodyRect = document.body.getBoundingClientRect().top;
   const elementRect = element.getBoundingClientRect().top;
   const elementPosition = elementRect - bodyRect;
