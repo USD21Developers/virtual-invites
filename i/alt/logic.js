@@ -469,9 +469,7 @@ function onSearch(e) {
 }
 
 function onMapLoaded() {
-  document
-    .querySelector("#myLocationContainer")
-    .scrollIntoView({ behavior: "smooth" });
+  customScrollTo("#myLocationContainer", 10);
 
   showToast(getPhrase("geocoordinatesSuccessMessage"), 2000, "success");
 }
