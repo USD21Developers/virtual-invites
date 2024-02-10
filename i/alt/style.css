@@ -118,7 +118,7 @@ input[type="date"] {
   text-wrap: balance;
 }
 
-[data-i18n="explainParagraph"] {
-  font-size: 1rem;
+h2 {
+  font-size: 0.9rem;
   text-wrap: balance;
 }

@@ -20,8 +20,8 @@
     },
     {
       "key": "mapLabelOrigin",
-      "original": "My location",
-      "translated": "My location"
+      "original": "My location:",
+      "translated": "My location:"
     },
     {
       "key": "originLocationHelp",
