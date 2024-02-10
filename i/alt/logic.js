@@ -83,6 +83,12 @@ function getLanguagesOfEvents() {
   });
 }
 
+function hideMap() {
+  const mapContainerEl = document.querySelector("#mapContainer");
+  mapContainerEl.classList.add("d-none");
+  mapContainerEl.innerHTML = "";
+}
+
 async function populateLanguages() {
   const selectEl = document.querySelector("#lang");
   const langsOfEvents = await getLanguagesOfEvents();
@@ -476,6 +482,9 @@ function attachListeners() {
   document
     .querySelector("#formEventSearch")
     .addEventListener("submit", onSearch);
+
+  document.querySelector("#originLocation").addEventListener("input", hideMap);
+  document.querySelector("#originLocation").addEventListener("change", hideMap);
 }
 
 async function init() {
