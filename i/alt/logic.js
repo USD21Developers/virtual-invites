@@ -292,7 +292,7 @@ function onDetectLocationClick() {
 
   mapContainerEl.classList.remove("d-none");
 
-  customScrollTo("#mapContainer");
+  customScrollTo("label[for='originLocation']");
 
   const onGeoLocationError = (err) => {
     mapContainerEl.innerHTML = "";
