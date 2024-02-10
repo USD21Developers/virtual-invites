@@ -283,7 +283,7 @@ function configureLocalForage() {
   });
 }
 
-function customScrollTo(selector, scrollBehavior = "smooth", offset = 94) {
+function customScrollTo(selector, offset = 94) {
   const element = document.querySelector(selector);
   const bodyRect = document.body.getBoundingClientRect().top;
   const elementRect = element.getBoundingClientRect().top;
@@ -292,7 +292,7 @@ function customScrollTo(selector, scrollBehavior = "smooth", offset = 94) {
 
   window.scrollTo({
     top: offsetPosition,
-    behavior: scrollBehavior,
+    behavior: "smooth",
     block: "center",
   });
   if (!isMobileDevice()) element.focus();

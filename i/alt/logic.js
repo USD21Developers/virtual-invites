@@ -469,7 +469,7 @@ function onSearch(e) {
 }
 
 function onMapLoaded() {
-  customScrollTo("#myLocationContainer", 10);
+  customScrollTo("#myLocationContainer", 5);
 
   showToast(getPhrase("geocoordinatesSuccessMessage"), 2000, "success");
 }
