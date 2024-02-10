@@ -292,10 +292,6 @@ function onDetectLocationClick() {
 
   mapContainerEl.classList.remove("d-none");
 
-  document
-    .querySelector("#myLocationContainer")
-    .scrollIntoView({ behavior: "smooth" });
-
   const onGeoLocationError = (err) => {
     mapContainerEl.innerHTML = "";
     mapContainerEl.classList.add("d-none");
@@ -473,6 +469,10 @@ function onSearch(e) {
 }
 
 function onMapLoaded() {
+  document
+    .querySelector("#myLocationContainer")
+    .scrollIntoView({ behavior: "smooth" });
+
   showToast(getPhrase("geocoordinatesSuccessMessage"), 2000, "success");
 }
 
