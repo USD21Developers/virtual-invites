@@ -473,10 +473,6 @@ function onMapLoaded() {
     .querySelector("#myLocationContainer")
     .scrollIntoView({ behavior: "smooth" });
 
-  // Adjust the scroll position to include padding
-  const yOffset = -10; // Adjust as needed
-  window.scrollBy(0, yOffset);
-
   showToast(getPhrase("geocoordinatesSuccessMessage"), 2000, "success");
 }
 

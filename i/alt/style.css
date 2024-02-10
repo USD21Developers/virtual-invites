@@ -87,6 +87,7 @@ input:checked {
   accent-color: #504390;
 }
 
+#myLocationContainer,
 #mapContainer {
   scroll-padding: 10px 0 0 0;
 }
