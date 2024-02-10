@@ -292,7 +292,9 @@ function onDetectLocationClick() {
 
   mapContainerEl.classList.remove("d-none");
 
-  document.querySelector("#myLocationContainer").scrollIntoView();
+  document
+    .querySelector("#myLocationContainer")
+    .scrollIntoView({ behavior: "smooth" });
 
   const onGeoLocationError = (err) => {
     mapContainerEl.innerHTML = "";
