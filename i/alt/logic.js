@@ -358,36 +358,36 @@ function onSearch(e) {
   // Origin location
   if (!originLocation.length) {
     showToast(txtPleaseProvideLocation, 5000, "danger", ".snackbar", true);
-    customScrollTo("label[for='originLocation']");
+    customScrollTo("label[for='originLocation']", 10);
     return;
   }
 
   // Language
   if (lang === "") {
     showToast(txtPleaseSelectLanguage, 5000, "danger", ".snackbar", true);
-    customScrollTo("label[for='lang']");
+    customScrollTo("label[for='lang']", 10);
     return;
   }
 
   // Radius
   if (radius.trim() === "") {
     showToast(txtPleaseInputRadius, 5000, "danger", ".snackbar", true);
-    customScrollTo("label[for='radius']");
+    customScrollTo("label[for='radius']", 10);
     return;
   }
   if (isNaN(radius.trim())) {
     showToast(txtRadiusMustBeNumeric, 5000, "danger", ".snackbar", true);
-    customScrollTo("label[for='radius']");
+    customScrollTo("label[for='radius']", 10);
     return;
   }
   if (radius < Math.abs(radius)) {
     showToast(txtRadiusMustBePositive, 5000, "danger", ".snackbar", true);
-    customScrollTo("label[for='radius']");
+    customScrollTo("label[for='radius']", 10);
     return;
   }
   if (Number(radius) === 0) {
     showToast(txtRadiusMustNotBeZero, 5000, "danger", ".snackbar", true);
-    customScrollTo("label[for='radius']");
+    customScrollTo("label[for='radius']", 10);
     return;
   }
 
@@ -398,17 +398,17 @@ function onSearch(e) {
   const momentFromEnd = momentFromStart.add(1, "days").subtract(1, "second");
   if (dateFrom.trim() === "") {
     showToast(txtPleaseInputFromDate, 5000, "danger", ".snackbar", true);
-    customScrollTo("label[for='dateFrom']");
+    customScrollTo("label[for='dateFrom']", 10);
     return;
   }
   if (!moment(dateFrom).isValid()) {
     showToast(txtInvalidFromDate, 5000, "danger", ".snackbar", true);
-    customScrollTo("label[for='dateFrom']");
+    customScrollTo("label[for='dateFrom']", 10);
     return;
   }
   if (momentFromEnd.isBefore(momentNow)) {
     showToast(txtFromDateMustNotBeInPast, 5000, "danger", ".snackbar", true);
-    customScrollTo("label[for='dateFrom']");
+    customScrollTo("label[for='dateFrom']", 10);
     return;
   }
 
@@ -417,24 +417,24 @@ function onSearch(e) {
   const momentToEnd = momentToStart.add(1, "days").subtract(1, "second");
   if (dateTo.trim() === "") {
     showToast(txtPleaseInputToDate, 5000, "danger", ".snackbar", true);
-    customScrollTo("label[for='dateTo']");
+    customScrollTo("label[for='dateTo']", 10);
     return;
   }
   if (!moment(dateTo).isValid()) {
     showToast(txtInvalidToDate);
-    customScrollTo("label[for='dateTo']");
+    customScrollTo("label[for='dateTo']", 10);
     return;
   }
   if (momentToEnd.isBefore(momentNow)) {
     showToast(txtToDateMustNotBeInPast, 5000, "danger", ".snackbar", true);
-    customScrollTo("label[for='dateTo']");
+    customScrollTo("label[for='dateTo']", 10);
     return;
   }
 
   // "From" date must precede "To" date
   if (momentToEnd.isBefore(momentFromStart)) {
     showToast(txtFromDateMustPrecedeToDate, 5000, "danger", ".snackbar", true);
-    customScrollTo("label[for='dateFrom']");
+    customScrollTo("label[for='dateFrom']", 10);
     return;
   }
 
