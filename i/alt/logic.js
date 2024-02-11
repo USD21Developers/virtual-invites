@@ -266,6 +266,7 @@ function showMap() {
         img.setAttribute("alt", getPhrase("mapLabelOrigin"));
         img.setAttribute("width", data.width);
         img.setAttribute("height", data.height);
+        img.setAttribute("style", "max-width: 100%");
         mapContainerEl.appendChild(img);
       })
       .catch((err) => {
