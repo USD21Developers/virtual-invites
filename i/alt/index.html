@@ -36,7 +36,10 @@
       <div class="row mainContent d-none">
         <div class="col">
           <h1 data-i18n="pagetitle" class="text-center pb-0 mt-2 mb-0"></h1>
-          <h2 data-i18n="explainParagraph" class="text-center mt-3 mb-2"></h2>
+          <h3
+            data-i18n="explainParagraph"
+            class="text-center text-secondary mt-3 mb-2"
+          ></h3>
 
           <form id="formEventSearch">
             <!-- My Location -->
@@ -44,7 +47,10 @@
               <div class="mt-4 d-inline-block">
                 <div class="form-group text-center" id="myLocationContainer">
                   <label for="originLocation" class="text-dark">
-                    <h2 data-i18n="mapLabelOrigin"></h2>
+                    <h3
+                      data-i18n="mapLabelOrigin"
+                      class="balancedTextWrap"
+                    ></h3>
                   </label>
                   <textarea
                     rows="2"
@@ -218,6 +224,45 @@
               ></button>
             </div>
           </form>
+        </div>
+      </div>
+
+      <div class="row d-none" id="searchResultsSpinner">
+        <div class="col text-center">
+          <hr class="mt-4 pt-1 mb-4" />
+          <h2
+            class="text-center pt-2 mb-3"
+            data-i18n="headlineSearchResults"
+          ></h2>
+          <img
+            src="/_assets/img/spinner.svg"
+            width="100"
+            height="100"
+            style="max-width: 100%"
+          />
+        </div>
+      </div>
+
+      <div class="row d-none" id="searchResults">
+        <div class="col">
+          <hr class="mt-4 pt-1 mb-4" />
+          <h2
+            class="text-center pt-2 mb-3"
+            data-i18n="headlineSearchResults"
+          ></h2>
+
+          <div id="noResultsFound">
+            <p
+              class="text-danger text-center mb-3"
+              data-i18n="noResultsFound"
+            ></p>
+
+            <p
+              class="text-center"
+              data-i18n="noResultsParagraph"
+              style="text-wrap: balance"
+            ></p>
+          </div>
         </div>
       </div>
     </div>

@@ -438,21 +438,24 @@ function onSearch(e) {
     return;
   }
 
-  globalShowPageSpinner();
+  const dateFromUTC = moment(dateFrom).utc().format();
+  const dateToUTC = moment(`${dateTo}T23:59:59`).utc().format();
 
   const endpoint = `${getApiHost()}/alt-events-search`;
   fetch(endpoint, {
     mode: "cors",
     method: "POST",
     body: JSON.stringify({
+      eventid: inviteObj.event.eventid,
+      userid: inviteObj.user.userid,
+      recipientid: inviteObj.recipient.recipientid,
       countryFromIP: countryFromIP,
       lang: lang,
       originLocation: originLocation,
       radius: radius,
       distanceUnit: distanceUnit,
-      eventid: inviteObj.event.eventid,
-      userid: inviteObj.user.userid,
-      recipientid: inviteObj.recipient.recipientid,
+      dateFromUTC: dateFromUTC,
+      dateToUTC: dateToUTC,
     }),
     headers: new Headers({
       "Content-Type": "application/json",

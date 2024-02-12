@@ -237,6 +237,21 @@
       "key": "fromDateMustPrecedeToDate",
       "original": "The 'From' date must come before the 'To' date.",
       "translated": "The 'From' date must come before the 'To' date."
+    },
+    {
+      "key": "headlineSearchResults",
+      "original": "Matching Events:",
+      "translated": "Matching Events:"
+    },
+    {
+      "key": "noResultsFound",
+      "original": "No results found.",
+      "translated": "No results found."
+    },
+    {
+      "key": "noResultsParagraph",
+      "original": "Please revise your search criteria, then try again.",
+      "translated": "Please revise your search criteria, then try again."
     }
   ],
 
