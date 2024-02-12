@@ -316,6 +316,32 @@ function showMap() {
   });
 }
 
+function updateCountryToMatchCoordinates(latitude, longitude) {
+  return new Promise((resolve, reject) => {
+    const endpoint = `${getApiServicesHost()}/country-of-coordinates`;
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify({
+        latitude: latitude,
+        longitude: longitude,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.msgType || data.msgType !== "success") return reject();
+        if (!data.countryCode || !data.countryCode.length) return reject();
+        const countryEl = document.querySelector("#country");
+        countryEl.value = data.countryCode;
+        return resolve(data.countryCode);
+      });
+  });
+}
+
 function onDetectLocationClick() {
   const mapContainerEl = document.querySelector("#mapContainer");
   mapContainerEl.innerHTML = "";
@@ -347,6 +373,8 @@ function onDetectLocationClick() {
     const promptAdvisory = document.querySelector("#promptAdvisoryContainer");
 
     originLocationEl.value = mapCoordinates;
+
+    updateCountryToMatchCoordinates(latitude, longitude);
 
     showMap();
 
