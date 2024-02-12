@@ -575,9 +575,9 @@ async function init() {
     populateCountries(),
     populateLanguages(),
   ])
-    .then(() => {
+    .then(async () => {
       setDefaultDates();
-      setDefaultDistanceUnit();
+      await setDefaultDistanceUnit();
     })
     .finally(() => {
       globalHidePageSpinner();
