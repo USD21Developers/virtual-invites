@@ -546,11 +546,14 @@ async function init() {
     getInviteInfo(),
     populateCountries(),
     populateLanguages(),
-  ]).then(() => {
-    setDefaultDates();
-    setDefaultDistanceUnit();
-    globalHidePageSpinner();
-  });
+  ])
+    .then(() => {
+      setDefaultDates();
+      setDefaultDistanceUnit();
+    })
+    .finally(() => {
+      globalHidePageSpinner();
+    });
 }
 
 init();
