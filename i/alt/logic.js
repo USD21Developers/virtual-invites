@@ -113,7 +113,7 @@ function populateCountries() {
       selectEl.appendChild(country);
     }
 
-    return resolve();
+    return resolve(countries);
   });
 }
 
@@ -140,7 +140,7 @@ function populateLanguages() {
       selectEl.appendChild(option);
     }
 
-    return resolve();
+    return resolve(langs);
   });
 }
 
@@ -245,7 +245,7 @@ function setDefaultDistanceUnit() {
         );
 
         const countryEl = document.querySelector("#country");
-        countryEl.value = country_code;
+        countryEl.value = country_code.toLowerCase();
 
         placesThatUseMiles.forEach((item) => {
           if (item.iso_3166_1_a2 === country_code) {
