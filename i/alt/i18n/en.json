@@ -252,6 +252,21 @@
       "key": "noResultsParagraph",
       "original": "Please revise your search criteria, then try again.",
       "translated": "Please revise your search criteria, then try again."
+    },
+    {
+      "key": "selectCountry",
+      "original": "(Select country)",
+      "translated": "(Select country)"
+    },
+    {
+      "key": "country",
+      "original": "Country:",
+      "translated": "Country:"
+    },
+    {
+      "key": "pleaseProvideCountry",
+      "original": "Please select a country.",
+      "translated": "Please select a country."
     }
   ],
 

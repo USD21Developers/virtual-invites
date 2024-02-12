@@ -54,6 +54,11 @@ form table {
   border: 1px solid #999;
 }
 
+#country,
+label[for="country"] {
+  font-size: 0.75rem;
+}
+
 form table td {
   border: 1px solid #ccc;
 }

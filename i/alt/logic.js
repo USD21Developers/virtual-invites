@@ -89,27 +89,59 @@ function hideMap() {
   mapContainerEl.innerHTML = "";
 }
 
-async function populateLanguages() {
-  const selectEl = document.querySelector("#lang");
-  const langsOfEvents = await getLanguagesOfEvents();
-  const langs = await fetch("../../data/json/languages.json").then((res) =>
-    res.json()
-  );
-  const detectedLang = navigator.languages[0].substring(0, 2);
-  let selectedLang = langsOfEvents[detectedLang] ? detectedLang : "en";
+function populateCountries() {
+  return new Promise(async (resolve, reject) => {
+    const selectEl = document.querySelector("#country");
+    const detectedLang = navigator.languages[0].substring(0, 2);
+    const countries = await fetch(
+      `../../data/json/countries/${detectedLang}/world.json`
+    ).then((res) => res.json());
 
-  if (!Array.isArray(langsOfEvents)) return;
-  if (!Object.keys(langs).length) return;
+    if (!Array.isArray(countries)) return reject();
 
-  for (let i = 0; i < langsOfEvents.length; i++) {
-    const lang = langsOfEvents[i];
-    const option = document.createElement("option");
-    option.setAttribute("value", lang);
-    option.innerText =
-      lang === "en" ? langs[lang].name : langs[lang].nativeName;
-    if (selectedLang === lang) option.setAttribute("selected", "");
-    selectEl.appendChild(option);
-  }
+    const optionSelectCountry = document.createElement("option");
+    optionSelectCountry.setAttribute("value", "");
+    optionSelectCountry.innerText = getPhrase("selectCountry");
+    selectEl.appendChild(optionSelectCountry);
+
+    for (let i = 0; i < countries.length; i++) {
+      const alpha2 = countries[i].alpha2;
+      const countryName = countries[i].name;
+      const country = document.createElement("option");
+      country.setAttribute("value", alpha2);
+      country.innerText = countryName;
+      selectEl.appendChild(country);
+    }
+
+    return resolve();
+  });
+}
+
+function populateLanguages() {
+  return new Promise(async (resolve, rejecgt) => {
+    const selectEl = document.querySelector("#lang");
+    const langsOfEvents = await getLanguagesOfEvents();
+    const langs = await fetch("../../data/json/languages.json").then((res) =>
+      res.json()
+    );
+    const detectedLang = navigator.languages[0].substring(0, 2);
+    let selectedLang = langsOfEvents[detectedLang] ? detectedLang : "en";
+
+    if (!Array.isArray(langsOfEvents)) return reject();
+    if (!Object.keys(langs).length) return reject();
+
+    for (let i = 0; i < langsOfEvents.length; i++) {
+      const lang = langsOfEvents[i];
+      const option = document.createElement("option");
+      option.setAttribute("value", lang);
+      option.innerText =
+        lang === "en" ? langs[lang].name : langs[lang].nativeName;
+      if (selectedLang === lang) option.setAttribute("selected", "");
+      selectEl.appendChild(option);
+    }
+
+    return resolve();
+  });
 }
 
 function setDefaultDates() {
@@ -155,6 +187,7 @@ function setDefaultDistanceUnit() {
     const radiusEl = document.querySelector("#radius");
     const distanceUnitEl = document.querySelector("#distanceUnit");
     const originLocationEl = document.querySelector("#originLocation");
+    const countryEl = document.querySelector("#country");
 
     // https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
     const placesThatUseMiles = [
@@ -184,7 +217,8 @@ function setDefaultDistanceUnit() {
       radiusEl.value = 65;
       distanceUnitEl.value = "miles";
       originLocationEl.value = "40.689247,-74.044502"; // Statue of Liberty
-      originLocationEl.setAttribute("data-countryFromIP", "US");
+      originLocationEl.setAttribute("data-countryFromIP", "us");
+      countryEl.value = "us";
       return resolve("miles");
     }
 
@@ -205,7 +239,13 @@ function setDefaultDistanceUnit() {
         let radius = radiusForKilos;
         let distanceUnit = "kilometers";
 
-        originLocationEl.setAttribute("data-countryFromIP", country_code);
+        originLocationEl.setAttribute(
+          "data-countryFromIP",
+          country_code.toLowerCase()
+        );
+
+        const countryEl = document.querySelector("#country");
+        countryEl.value = country_code;
 
         placesThatUseMiles.forEach((item) => {
           if (item.iso_3166_1_a2 === country_code) {
@@ -331,8 +371,10 @@ function onSearch(e) {
 
   const originLocationEl = document.querySelector("#originLocation");
   const countryFromIP = originLocationEl.getAttribute("data-countryFromIP");
+  const country = document.querySelector("#country").selectedOptions[0].value;
   const originLocation = originLocationEl.value.trim();
   const txtPleaseProvideLocation = getPhrase("pleaseProvideLocation");
+  const txtPleaseProvideCountry = getPhrase("pleaseProvideCountry");
   const txtPleaseSelectLanguage = getPhrase("pleaseSelectLanguage");
   const txtPleaseInputRadius = getPhrase("pleaseInputRadius");
   const txtRadiusMustBeNumeric = getPhrase("radiusMustBeNumeric");
@@ -360,6 +402,12 @@ function onSearch(e) {
     showToast(txtPleaseProvideLocation, 5000, "danger", ".snackbar", true);
     customScrollTo("label[for='originLocation']", 10);
     return;
+  }
+
+  // Country
+  if (!country.length) {
+    showToast(txtPleaseProvideCountry, 5000, "danger", ".snackbar", true);
+    customScrollTo("#country", 10);
   }
 
   // Language
@@ -449,6 +497,7 @@ function onSearch(e) {
       eventid: inviteObj.event.eventid,
       userid: inviteObj.user.userid,
       recipientid: inviteObj.recipient.recipientid,
+      country: country,
       countryFromIP: countryFromIP,
       lang: lang,
       originLocation: originLocation,
@@ -492,13 +541,16 @@ function attachListeners() {
 
 async function init() {
   attachListeners();
-  Promise.all([populateContent(), getInviteInfo(), populateLanguages()]).then(
-    () => {
-      setDefaultDates();
-      setDefaultDistanceUnit();
-      globalHidePageSpinner();
-    }
-  );
+  Promise.all([
+    populateContent(),
+    getInviteInfo(),
+    populateCountries(),
+    populateLanguages(),
+  ]).then(() => {
+    setDefaultDates();
+    setDefaultDistanceUnit();
+    globalHidePageSpinner();
+  });
 }
 
 init();
