@@ -1040,7 +1040,7 @@ async function onSubmit(e) {
 function populateCountries() {
   const country = document.querySelector("#country");
   const lang = localStorage.getItem("lang") || "en";
-  const endpoint = `../../data/json/lang/${lang}/countries.json`;
+  const endpoint = `../../data/json/countries/${lang}/world.json`;
 
   fetch(endpoint)
     .then((res) => res.json())
