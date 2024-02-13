@@ -1032,7 +1032,14 @@ function randomIntFromInterval(min = 0, max = 500) {
 }
 
 function hide(selector) {
-  selector.classList.add("d-none");
+  if (typeof selector === "object") {
+    selector.classList.add("d-none");
+    return;
+  }
+
+  if (typeof selector !== "string") return;
+
+  document.querySelector(selector).classList.add("d-none");
 }
 
 function isMobileDevice() {
@@ -1270,7 +1277,14 @@ function setCountry(country) {
 }
 
 function show(selector) {
-  selector.classList.remove("d-none");
+  if (typeof selector === "object") {
+    selector.classList.remove("d-none");
+    return;
+  }
+
+  if (typeof selector !== "string") return;
+
+  document.querySelector(selector).classList.remove("d-none");
 }
 
 function showAlert(selectorObject, message, headline = "") {
