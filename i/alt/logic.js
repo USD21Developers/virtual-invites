@@ -516,8 +516,12 @@ function onSearch(e) {
 
   const dateFromUTC = moment(dateFrom).utc().format();
   const dateToUTC = moment(`${dateTo}T23:59:59`).utc().format();
-
   const endpoint = `${getApiHost()}/alt-events-search`;
+
+  hide("#searchResults");
+  show("#searchResultsSpinner");
+  customScrollTo("#searchResultsSpinner", 10);
+
   fetch(endpoint, {
     mode: "cors",
     method: "POST",
@@ -540,8 +544,21 @@ function onSearch(e) {
   })
     .then((res) => res.json())
     .then((data) => {
-      // TODO:  DO STUFF (e.g. extract data, show search results, etc.)
-      globalHidePageSpinner();
+      if (!data.msgType) return;
+      if (data.msgType !== "success") return;
+      if (!Array.isArray(data.events)) return;
+
+      if (!data.events.length) {
+        hide("#resultsFound");
+        show("#noResultsFound");
+      } else {
+        hide("#noResultsFound");
+        show("#resultsFound");
+      }
+
+      hide("#searchResultsSpinner");
+      show("#searchResults");
+      customScrollTo("#searchResults", 10);
     })
     .catch((err) => {
       console.error(err);
