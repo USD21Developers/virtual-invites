@@ -562,6 +562,9 @@ function onSearch(e) {
     })
     .catch((err) => {
       console.error(err);
+      hide("#searchResultsSpinner");
+      hide("#searchResults");
+      customScrollTo("#altEventsSubmitButton", 10);
       globalHidePageSpinner();
     });
 }
