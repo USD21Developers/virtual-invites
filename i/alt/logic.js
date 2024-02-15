@@ -546,9 +546,14 @@ function onSearch(e) {
     .then((data) => {
       if (!data.msgType) return;
       if (data.msgType !== "success") return;
-      if (!Array.isArray(data.events)) return;
+      if (!data.events) return;
+      if (!Array.isArray(data.events.inPerson)) return;
+      if (!Array.isArray(data.events.virtual)) return;
 
-      if (!data.events.length) {
+      const noEventsFound =
+        !data.events.inPerson.length && !data.events.virtual.length;
+
+      if (noEventsFound) {
         hide("#resultsFound");
         show("#noResultsFound");
       } else {
