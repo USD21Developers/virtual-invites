@@ -571,7 +571,7 @@ async function showEvent(event) {
   const userid = getUserId();
   const operatingSystem = getMobileOperatingSystem();
   const mapCoordinates = locationcoordinates
-    ? `${locationcoordinates.x}, ${locationcoordinates.y}`
+    ? `${locationcoordinates.y}, ${locationcoordinates.x}`
     : "";
   let coordinatesLink = "";
   if (operatingSystem === "iOS") {

@@ -527,11 +527,11 @@ async function loadEvent() {
   document.querySelector("#addressLine2").value = locationaddressline2;
   document.querySelector("#addressLine3").value = locationaddressline3;
   document.querySelector("#country").value = country;
-  document.querySelector("#latitude").value =
+  document.querySelector("#longitude").value =
     typeof coordinates === "object" && coordinates.hasOwnProperty("x")
       ? coordinates.x
       : "";
-  document.querySelector("#longitude").value =
+  document.querySelector("#latitude").value =
     typeof coordinates === "object" && coordinates.hasOwnProperty("y")
       ? coordinates.y
       : "";

@@ -250,10 +250,10 @@ async function renderRecipient(invite) {
 
     if (coords) {
       if (coords.hasOwnProperty("x")) {
-        latitude = coords.x;
+        longitude = coords.x;
       }
       if (coords.hasOwnProperty("y")) {
-        longitude = coords.y;
+        latitude = coords.y;
       }
     }
 
@@ -430,8 +430,8 @@ async function onAddToPhoneBook(e) {
   const invite = invites.find((item) => item.invitationid === inviteId);
   if (!invite) return;
 
-  const lat = invite.coords ? invite.coords.x : null;
-  const long = invite.coords ? invite.coords.y : null;
+  const lat = invite.coords ? invite.coords.y : null;
+  const long = invite.coords ? invite.coords.x : null;
   const eventid = invite.eventid || null;
 
   const events = await localforage.getItem("events");
