@@ -594,19 +594,13 @@ function attachListeners() {
 
 async function init() {
   attachListeners();
-  Promise.all([
-    populateContent(),
-    getInviteInfo(),
-    populateCountries(),
-    populateLanguages(),
-  ])
-    .then(async () => {
-      setDefaultDates();
-      await setDefaultDistanceUnit();
-    })
-    .finally(() => {
-      globalHidePageSpinner();
-    });
+  await populateContent();
+  await getInviteInfo();
+  await populateCountries();
+  await populateLanguages();
+  setDefaultDates();
+  setDefaultDistanceUnit();
+  globalHidePageSpinner();
 }
 
 init();
