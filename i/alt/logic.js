@@ -144,6 +144,84 @@ function populateLanguages() {
   });
 }
 
+function populateInPersonResults(events) {
+  const el = document.querySelector("#inPersonList");
+  const headlineInPersonEl = document.querySelector("#headlineInPerson");
+  const headlineInPersonEventsTxt = getPhrase(
+    "headlineInPersonEvents"
+  ).replaceAll("{QUANTITY}", events.length);
+  const prefs = Intl.DateTimeFormat().resolvedOptions();
+
+  headlineInPersonEl.innerText = headlineInPersonEventsTxt;
+
+  events.forEach((item) => {
+    const li = document.createElement("li");
+
+    const dateTime = Intl.DateTimeFormat(prefs.locale, {
+      dateStyle: "full",
+      timeStyle: "short",
+    }).format(new Date(item.eventDate));
+
+    const distanceUnit = document.querySelector("#distanceUnit").value;
+    const distance =
+      distanceUnit === "miles"
+        ? `${getMiles(item.distanceInMeters)} ${getPhrase("milesAbbreviation")}`
+        : `${getKilometers(item.distanceInMeters)} ${getPhrase(
+            "kilometersAbbreviation"
+          )}`;
+
+    li.innerHTML = `
+      <strong><a href="../#/${item.eventid}">${item.title}</a></strong>
+      <div class="datetime">${dateTime}</div>
+      <div class="distance">
+        ${getPhrase("resultsDistance")} 
+        <span class="distanceNumber">${distance}</span>
+      </div>
+    `;
+
+    el.appendChild(li);
+  });
+}
+
+function populateVirtualResults(events) {
+  const el = document.querySelector("#virtualList");
+  const headlineVirtualEl = document.querySelector("#headlineVirtual");
+  const headlineVirtualEventsTxt = getPhrase(
+    "headlineVirtualEvents"
+  ).replaceAll("{QUANTITY}", events.length);
+  const prefs = Intl.DateTimeFormat().resolvedOptions();
+
+  headlineVirtualEl.innerText = headlineVirtualEventsTxt;
+
+  events.forEach((item) => {
+    const li = document.createElement("li");
+
+    const dateTime = Intl.DateTimeFormat(prefs.locale, {
+      dateStyle: "full",
+      timeStyle: "short",
+    }).format(new Date(item.eventDate));
+
+    const distanceUnit = document.querySelector("#distanceUnit").value;
+    const distance =
+      distanceUnit === "miles"
+        ? `${getMiles(item.distanceInMeters)} ${getPhrase("milesAbbreviation")}`
+        : `${getKilometers(item.distanceInMeters)} ${getPhrase(
+            "kilometersAbbreviation"
+          )}`;
+
+    li.innerHTML = `
+      <strong><a href="../#/${item.eventid}">${item.title}</a></strong>
+      <div class="datetime">${dateTime}</div>
+      <div class="distance d-none">
+        ${getPhrase("resultsDistance")} 
+        <span class="distanceNumber">${distance}</span>
+      </div>
+    `;
+
+    el.appendChild(li);
+  });
+}
+
 function setDefaultDates() {
   const fromDateEl = document.querySelector("#dateFrom");
   const toDateEl = document.querySelector("#dateTo");
@@ -557,6 +635,8 @@ function onSearch(e) {
         hide("#resultsFound");
         show("#noResultsFound");
       } else {
+        populateInPersonResults(data.events.inPerson);
+        populateVirtualResults(data.events.virtual);
         hide("#noResultsFound");
         show("#resultsFound");
       }

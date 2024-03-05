@@ -240,8 +240,8 @@
     },
     {
       "key": "headlineSearchResults",
-      "original": "Matching Events:",
-      "translated": "Matching Events:"
+      "original": "Matching Events",
+      "translated": "Matching Events"
     },
     {
       "key": "noResultsFound",
@@ -267,6 +267,36 @@
       "key": "pleaseProvideCountry",
       "original": "Please select a country.",
       "translated": "Please select a country."
+    },
+    {
+      "key": "headlineInPersonEvents",
+      "original": "Events in person ({QUANTITY}):",
+      "translated": "Events in person ({QUANTITY}):"
+    },
+    {
+      "key": "headlineVirtualEvents",
+      "original": "Virtual events ({QUANTITY}):",
+      "translated": "Virtual events ({QUANTITY}):"
+    },
+    {
+      "key": "explanationVirtual",
+      "original": "You can attend a virtual event via the internet, by using streaming software such as Zoom or Google Meet.",
+      "translated": "You can attend a virtual event via the internet, by using streaming software such as Zoom or Google Meet."
+    },
+    {
+      "key": "resultsDistance",
+      "original": "Distance:",
+      "translated": "Distance:"
+    },
+    {
+      "key": "milesAbbreviation",
+      "original": "mi.",
+      "translated": "mi."
+    },
+    {
+      "key": "kilometersAbbreviation",
+      "original": "km.",
+      "translated": "km."
     }
   ],
 

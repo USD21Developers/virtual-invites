@@ -35,7 +35,7 @@ h2 {
 }
 
 h3 {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
 }
 
 a {
@@ -136,4 +136,35 @@ input[type="date"] {
   color: var(--dark-light);
   font-size: 0.8rem;
   text-wrap: balance;
+}
+
+#resultsFound h3 {
+  font-size: 1.1rem;
+}
+
+#resultsFound ul,
+#resultsFound ol {
+  margin-top: 1rem;
+}
+
+#resultsFound li {
+  margin-bottom: 1.2rem;
+}
+
+#resultsFound li a {
+  color: #504390;
+  text-decoration: underline;
+}
+
+.distance {
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.distanceNumber {
+  margin-left: 0.5rem;
+}
+
+#searchResults {
+  padding-bottom: 1rem;
 }
