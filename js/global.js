@@ -39,6 +39,8 @@ var hidden, visibilityChange;
   getLang
   getCountry
   getLocale
+  getKilometers
+  getMiles
   getNextRecurringWeekday
   getPhrase
   getGlobalPhrase
@@ -813,6 +815,18 @@ function getLocale() {
   }
 
   return locale;
+}
+
+function getKilometers(metersFloat) {
+  let kilometers = metersFloat / 1000;
+  kilometers = parseFloat(kilometers.toFixed(1));
+  return kilometers;
+}
+
+function getMiles(metersFloat) {
+  let miles = metersFloat * 0.000621371192;
+  miles = parseFloat(miles.toFixed(1));
+  return miles;
 }
 
 function getNextRecurringWeekday(date, time) {
