@@ -168,3 +168,8 @@ input[type="date"] {
 #searchResults {
   padding-bottom: 1rem;
 }
+
+hr {
+  border: 0;
+  border-top: 1px solid #504390;
+}
