@@ -297,6 +297,16 @@
       "key": "kilometersAbbreviation",
       "original": "km.",
       "translated": "km."
+    },
+    {
+      "key": "inPersonNoneFound",
+      "original": "No in-person events matched your search.",
+      "translated": "No in-person events matched your search."
+    },
+    {
+      "key": "virtualNoneFound",
+      "original": "No virtual events matched your search.",
+      "translated": "No virtual events matched your search."
     }
   ],
 

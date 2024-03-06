@@ -151,8 +151,19 @@ function populateInPersonResults(events) {
     "headlineInPersonEvents"
   ).replaceAll("{QUANTITY}", events.length);
   const prefs = Intl.DateTimeFormat().resolvedOptions();
+  const inPersonNoneFoundEl = document.querySelector("#inPersonNoneFound");
+  const inPersonListEl = document.querySelector("#inPersonList");
 
   headlineInPersonEl.innerText = headlineInPersonEventsTxt;
+  inPersonNoneFoundEl.classList.add("d-none");
+  el.innerHTML = "";
+
+  if (!events.length) {
+    inPersonNoneFoundEl.classList.remove("d-none");
+    inPersonListEl.classList.add("d-none");
+    inPersonListEl.innerHTML = "";
+    return;
+  }
 
   events.forEach((item) => {
     const li = document.createElement("li");
@@ -190,8 +201,19 @@ function populateVirtualResults(events) {
     "headlineVirtualEvents"
   ).replaceAll("{QUANTITY}", events.length);
   const prefs = Intl.DateTimeFormat().resolvedOptions();
+  const virtualNoneFoundEl = document.querySelector("#virtualNoneFound");
+  const virtualListEl = document.querySelector("#virtualList");
 
   headlineVirtualEl.innerText = headlineVirtualEventsTxt;
+  virtualNoneFoundEl.classList.add("d-none");
+  el.innerHTML = "";
+
+  if (!events.length) {
+    virtualNoneFoundEl.classList.remove("d-none");
+    virtualListEl.classList.add("d-none");
+    virtualListEl.innerHTML = "";
+    return;
+  }
 
   events.forEach((item) => {
     const li = document.createElement("li");
