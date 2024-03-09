@@ -657,8 +657,12 @@ function onSearch(e) {
       if (!data.msgType) return;
       if (data.msgType !== "success") return;
       if (!data.events) return;
-      if (!Array.isArray(data.events.inPerson)) return;
-      if (!Array.isArray(data.events.virtual)) return;
+      if (!Array.isArray(data.events.inPerson.multiday)) return;
+      if (!Array.isArray(data.events.inPerson.onetime)) return;
+      if (!Array.isArray(data.events.inPerson.recurring)) return;
+      if (!Array.isArray(data.events.virtual.multiday)) return;
+      if (!Array.isArray(data.events.virtual.onetime)) return;
+      if (!Array.isArray(data.events.virtual.recurring)) return;
 
       const noEventsFound =
         data.events.inPerson.multiday.length === 0 &&
