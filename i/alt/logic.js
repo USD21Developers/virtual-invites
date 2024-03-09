@@ -661,7 +661,14 @@ function onSearch(e) {
       if (!Array.isArray(data.events.virtual)) return;
 
       const noEventsFound =
-        !data.events.inPerson.length && !data.events.virtual.length;
+        data.events.inPerson.multiday.length === 0 &&
+        data.events.inPerson.onetime.length === 0 &&
+        data.events.inPerson.recurring.length === 0 &&
+        data.events.virtual.multiday.length === 0 &&
+        data.events.virtual.onetime.length === 0 &&
+        data.events.virtual.recurring.length === 0
+          ? true
+          : false;
 
       if (noEventsFound) {
         hide("#resultsFound");
