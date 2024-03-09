@@ -147,8 +147,8 @@ function populateLanguages() {
 function populateInPersonResults(events) {
   const el = document.querySelector("#inPersonList");
   const headlineInPersonEl = document.querySelector("#headlineInPerson");
-  const eventsQuantity =
-    events.multiday.length + events.onetime.length + events.recurring.length;
+  const { recurring, onetime, multiday } = events;
+  const eventsQuantity = recurring.length + onetime.length + multiday.length;
   const headlineInPersonEventsTxt = getPhrase(
     "headlineInPersonEvents"
   ).replaceAll("{QUANTITY}", eventsQuantity);
@@ -202,8 +202,8 @@ function populateInPersonResults(events) {
 function populateVirtualResults(events) {
   const el = document.querySelector("#virtualList");
   const headlineVirtualEl = document.querySelector("#headlineVirtual");
-  const eventsQuantity =
-    events.multiday.length + events.onetime.length + events.recurring.length;
+  const { recurring, onetime, multiday } = events;
+  const eventsQuantity = recurring.length + onetime.length + multiday.length;
   const headlineVirtualEventsTxt = getPhrase(
     "headlineVirtualEvents"
   ).replaceAll("{QUANTITY}", eventsQuantity);
