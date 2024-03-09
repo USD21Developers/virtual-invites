@@ -147,9 +147,11 @@ function populateLanguages() {
 function populateInPersonResults(events) {
   const el = document.querySelector("#inPersonList");
   const headlineInPersonEl = document.querySelector("#headlineInPerson");
+  const eventsQuantity =
+    events.multiday.length + events.onetime.length + events.recurring.length;
   const headlineInPersonEventsTxt = getPhrase(
     "headlineInPersonEvents"
-  ).replaceAll("{QUANTITY}", events.length);
+  ).replaceAll("{QUANTITY}", eventsQuantity);
   const prefs = Intl.DateTimeFormat().resolvedOptions();
   const inPersonNoneFoundEl = document.querySelector("#inPersonNoneFound");
   const inPersonListEl = document.querySelector("#inPersonList");
@@ -158,14 +160,17 @@ function populateInPersonResults(events) {
   inPersonNoneFoundEl.classList.add("d-none");
   el.innerHTML = "";
 
-  if (!events.length) {
+  if (!eventsQuantity) {
     inPersonNoneFoundEl.classList.remove("d-none");
     inPersonListEl.classList.add("d-none");
     inPersonListEl.innerHTML = "";
     return;
   }
 
-  events.forEach((item) => {
+  const allEvents = [...recurring, ...onetime, ...multiday];
+  allEvents.sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate));
+
+  allEvents.forEach((item) => {
     const li = document.createElement("li");
 
     const dateTime = Intl.DateTimeFormat(prefs.locale, {
@@ -197,9 +202,11 @@ function populateInPersonResults(events) {
 function populateVirtualResults(events) {
   const el = document.querySelector("#virtualList");
   const headlineVirtualEl = document.querySelector("#headlineVirtual");
+  const eventsQuantity =
+    events.multiday.length + events.onetime.length + events.recurring.length;
   const headlineVirtualEventsTxt = getPhrase(
     "headlineVirtualEvents"
-  ).replaceAll("{QUANTITY}", events.length);
+  ).replaceAll("{QUANTITY}", eventsQuantity);
   const prefs = Intl.DateTimeFormat().resolvedOptions();
   const virtualNoneFoundEl = document.querySelector("#virtualNoneFound");
   const virtualListEl = document.querySelector("#virtualList");
@@ -208,14 +215,17 @@ function populateVirtualResults(events) {
   virtualNoneFoundEl.classList.add("d-none");
   el.innerHTML = "";
 
-  if (!events.length) {
+  if (!eventsQuantity) {
     virtualNoneFoundEl.classList.remove("d-none");
     virtualListEl.classList.add("d-none");
     virtualListEl.innerHTML = "";
     return;
   }
 
-  events.forEach((item) => {
+  const allEvents = [...recurring, ...onetime, ...multiday];
+  allEvents.sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate));
+
+  allEvents.forEach((item) => {
     const li = document.createElement("li");
 
     const dateTime = Intl.DateTimeFormat(prefs.locale, {
