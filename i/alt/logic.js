@@ -151,12 +151,12 @@ function populateInPersonResults(events) {
   const eventsQuantity = recurring.length + onetime.length + multiday.length;
   const headlineInPersonEventsTxt = getPhrase(
     "headlineInPersonEvents"
-  ).replaceAll("{QUANTITY}", eventsQuantity);
+  ).replaceAll("{QUANTITY}", `<span class="numeral">${eventsQuantity}</span>`);
   const prefs = Intl.DateTimeFormat().resolvedOptions();
   const inPersonNoneFoundEl = document.querySelector("#inPersonNoneFound");
   const inPersonListEl = document.querySelector("#inPersonList");
 
-  headlineInPersonEl.innerText = headlineInPersonEventsTxt;
+  headlineInPersonEl.innerHTML = headlineInPersonEventsTxt;
   inPersonNoneFoundEl.classList.add("d-none");
   el.innerHTML = "";
 
@@ -206,12 +206,12 @@ function populateVirtualResults(events) {
   const eventsQuantity = recurring.length + onetime.length + multiday.length;
   const headlineVirtualEventsTxt = getPhrase(
     "headlineVirtualEvents"
-  ).replaceAll("{QUANTITY}", eventsQuantity);
+  ).replaceAll("{QUANTITY}", `<span class="numeral">${eventsQuantity}</span>`);
   const prefs = Intl.DateTimeFormat().resolvedOptions();
   const virtualNoneFoundEl = document.querySelector("#virtualNoneFound");
   const virtualListEl = document.querySelector("#virtualList");
 
-  headlineVirtualEl.innerText = headlineVirtualEventsTxt;
+  headlineVirtualEl.innerHTML = headlineVirtualEventsTxt;
   virtualNoneFoundEl.classList.add("d-none");
   el.innerHTML = "";
 

@@ -177,3 +177,8 @@ hr {
 .nonefound {
   color: var(--danger-dark);
 }
+
+.numeral {
+  font-family: Consolas, Menlo, sans-serif;
+  font-variant-numeric: slashed-zero;
+}
