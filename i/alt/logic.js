@@ -189,14 +189,35 @@ function populateInPersonResults(events) {
             "kilometersAbbreviation"
           )}`;
 
-    li.innerHTML = `
-      <strong><a href="../#/${item.eventid}">${item.title}</a></strong>
-      <div class="datetime">${dateTime}</div>
-      <div class="distance">
-        ${getPhrase("resultsDistance")} 
-        <span class="distanceNumber">${distance}</span>
-      </div>
-    `;
+    const isMultiDay =
+      item.multidaybegindate && item.multidayenddate ? true : false;
+
+    if (isMultiDay) {
+      let dateTimeEnd = Intl.DateTimeFormat(prefs.locale, {
+        dateStyle: "full",
+        timeStyle: "short",
+      }).format(new Date(item.multidayenddate));
+      li.innerHTML = `
+        <strong><a href="../#/${item.eventid}">${item.title}</a></strong>
+        <div class="multiDayLabel">${getGlobalPhrase("multidayFromLabel")}</div>
+        <div class="datetime">${dateTime}</div>
+        <div class="multiDayLabel">${getGlobalPhrase("multidayToLabel")}</div>
+        <div class="datetime">${dateTimeEnd}</div>
+        <div class="distance">
+          ${getPhrase("resultsDistance")} 
+          <span class="distanceNumber">${distance}</span>
+        </div>
+      `;
+    } else {
+      li.innerHTML = `
+        <strong><a href="../#/${item.eventid}">${item.title}</a></strong>
+        <div class="datetime">${dateTime}</div>
+        <div class="distance">
+          ${getPhrase("resultsDistance")} 
+          <span class="distanceNumber">${distance}</span>
+        </div>
+      `;
+    }
 
     el.appendChild(li);
   });
@@ -247,15 +268,36 @@ function populateVirtualResults(events) {
         : `${getKilometers(item.distanceInMeters)} ${getPhrase(
             "kilometersAbbreviation"
           )}`;
+    const isMultiDay =
+      item.multidaybegindate && item.multidayenddate ? true : false;
 
-    li.innerHTML = `
-      <strong><a href="../#/${item.eventid}">${item.title}</a></strong>
-      <div class="datetime">${dateTime}</div>
-      <div class="distance d-none">
-        ${getPhrase("resultsDistance")} 
-        <span class="distanceNumber">${distance}</span>
-      </div>
-    `;
+    if (isMultiDay) {
+      let dateTimeEnd = Intl.DateTimeFormat(prefs.locale, {
+        dateStyle: "full",
+        timeStyle: "short",
+      }).format(new Date(item.multidayenddate));
+
+      li.innerHTML = `
+        <strong><a href="../#/${item.eventid}">${item.title}</a></strong>
+        <div class="multiDayLabel">${getGlobalPhrase("multidayFromLabel")}</div>
+        <div class="datetime">${dateTime}</div>
+        <div class="multiDayLabel">${getGlobalPhrase("multidayToLabel")}</div>
+        <div class="datetime">${dateTimeEnd}</div>
+        <div class="distance">
+          ${getPhrase("resultsDistance")} 
+          <span class="distanceNumber">${distance}</span>
+        </div>
+      `;
+    } else {
+      li.innerHTML = `
+        <strong><a href="../#/${item.eventid}">${item.title}</a></strong>
+        <div class="datetime">${dateTime}</div>
+        <div class="distance d-none">
+          ${getPhrase("resultsDistance")} 
+          <span class="distanceNumber">${distance}</span>
+        </div>
+      `;
+    }
 
     el.appendChild(li);
   });

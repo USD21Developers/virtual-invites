@@ -311,6 +311,16 @@
       "key": "email",
       "original": "e-mail",
       "translated": "e-mail"
+    },
+    {
+      "key": "multidayFromLabel",
+      "original": "From:",
+      "translated": "From:"
+    },
+    {
+      "key": "multidayToLabel",
+      "original": "To:",
+      "translated": "To:"
     }
   ],
 
