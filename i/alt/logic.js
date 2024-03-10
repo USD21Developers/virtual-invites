@@ -198,12 +198,14 @@ function populateInPersonResults(events) {
         timeStyle: "short",
       }).format(new Date(item.multidayenddate));
       li.innerHTML = `
-        <strong><a href="../#/${item.eventid}">${item.title}</a></strong>
+        <div>
+          <strong><a href="../#/${item.eventid}">${item.title}</a></strong>
+        </div>
         <div class="multiDayLabel">${getGlobalPhrase("multidayFromLabel")}</div>
         <div class="datetime">${dateTime}</div>
         <div class="multiDayLabel">${getGlobalPhrase("multidayToLabel")}</div>
         <div class="datetime">${dateTimeEnd}</div>
-        <div class="distance">
+        <div class="distance mt-2">
           ${getPhrase("resultsDistance")} 
           <span class="distanceNumber">${distance}</span>
         </div>
@@ -278,12 +280,14 @@ function populateVirtualResults(events) {
       }).format(new Date(item.multidayenddate));
 
       li.innerHTML = `
-        <strong><a href="../#/${item.eventid}">${item.title}</a></strong>
+        <div>
+          <strong><a href="../#/${item.eventid}">${item.title}</a></strong>
+        </div>
         <div class="multiDayLabel">${getGlobalPhrase("multidayFromLabel")}</div>
         <div class="datetime">${dateTime}</div>
         <div class="multiDayLabel">${getGlobalPhrase("multidayToLabel")}</div>
         <div class="datetime">${dateTimeEnd}</div>
-        <div class="distance">
+        <div class="distance mt-2">
           ${getPhrase("resultsDistance")} 
           <span class="distanceNumber">${distance}</span>
         </div>
