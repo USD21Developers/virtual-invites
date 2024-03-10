@@ -144,7 +144,7 @@ function getRecipient() {
 
     if (invite) {
       renderRecipient(invite);
-      resolve();
+      return resolve();
     }
 
     return reject(new Error("invite not found"));
@@ -1129,7 +1129,7 @@ function onSaveNote(e) {
 
     syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
 
-    resolve(note);
+    return resolve(note);
   });
 }
 
@@ -1307,7 +1307,7 @@ function onEditNote() {
 
     syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
 
-    resolve(updatedNote);
+    return resolve(updatedNote);
   });
 }
 

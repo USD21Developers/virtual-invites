@@ -3,25 +3,25 @@ function unsubscribeFromNotifications() {
     const unsubscribeJSON = sessionStorage.getItem(
       "unsubscribeFromNotifications"
     );
-    if (!unsubscribeJSON) reject();
+    if (!unsubscribeJSON) return reject();
 
     const unsubscribe = JSON.parse(unsubscribeJSON);
     const { jwt, unsubscribeFrom } = unsubscribe;
 
-    if (unsubscribeFrom !== "recipient") reject();
+    if (unsubscribeFrom !== "recipient") return reject();
 
     const payload = jwt.split(".")[1];
     const data = JSON.parse(atob(payload));
     const { invitationid, userid } = data;
 
-    if (userid !== getUserId()) reject();
+    if (userid !== getUserId()) return reject();
 
     const invites = await localforage.getItem("invites");
-    if (!Array.isArray(invites)) reject();
-    if (!invites.length) reject();
+    if (!Array.isArray(invites)) return reject();
+    if (!invites.length) return reject();
 
     const invite = invites.find((item) => (item.invitationid = invitationid));
-    if (!invite) reject();
+    if (!invite) return reject();
 
     const { email, sms } = invite.recipient;
     let invitationids = [];
@@ -60,7 +60,7 @@ function unsubscribeFromNotifications() {
         const promise1 = syncSettings();
         const promise2 = syncInvites();
         Promise.all([promise1, promise2]).then(() => {
-          resolve();
+          return resolve();
         });
       });
   });

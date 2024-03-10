@@ -25,7 +25,7 @@ function addToFollowUps() {
     unsyncedFollowups.push(followUpObj);
     await localforage.setItem("unsyncedFollowups", unsyncedFollowups);
     syncUpdatedInvites();
-    resolve();
+    return resolve();
   });
 }
 
@@ -67,7 +67,7 @@ async function checkForEvents() {
           if (!hasEvents) {
             return (window.location.href = "../events/needed/");
           } else {
-            resolve();
+            return resolve();
           }
         })
         .catch((err) => {
@@ -438,7 +438,7 @@ function getSettings() {
   return new Promise((resolve, reject) => {
     localforage.getItem("settings").then((settings) => {
       settingsObj = settings;
-      resolve();
+      return resolve();
     });
   });
 }
@@ -461,11 +461,11 @@ async function loadEvents() {
       Array.isArray(followedUsers) && followedUsers.length > 0;
 
     if (!hasOwnEvents && !hasEventsByFollowedUsers) {
-      reject(new Error("no events in IndexedDB"));
+      return reject(new Error("no events in IndexedDB"));
     }
 
     if (hasEventsByFollowedUsers && !hasListOfFollowedUsers) {
-      reject(new Error("no followed users in IndexedDB"));
+      return reject(new Error("no followed users in IndexedDB"));
     }
 
     let optionsHTML = `
@@ -540,7 +540,7 @@ async function loadEvents() {
       localStorage.removeItem("lastEventSelected");
     }
 
-    resolve();
+    return resolve();
   });
 }
 
@@ -883,7 +883,7 @@ function populateQrCode() {
       containerSendToQRCode.classList.add("d-none");
       containerQRCodeInstructions.classList.add("d-none");
     }
-    resolve(qr);
+    return resolve(qr);
   });
 }
 
@@ -1121,7 +1121,7 @@ function saveAndSync(sendvia) {
     // Sync invites via fetch + keepalive
     const invitesSynced = await syncInvites();
 
-    resolve(invitesSynced);
+    return resolve(invitesSynced);
   });
 }
 

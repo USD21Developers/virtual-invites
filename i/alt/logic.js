@@ -30,10 +30,10 @@ function getInviteInfo() {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (!data) reject();
-        if (!data.msg || !data.msgType) reject();
-        if (data.msgType === "error") reject(data.msg);
-        if (!data.invite) reject();
+        if (!data) return reject();
+        if (!data.msg || !data.msgType) return reject();
+        if (data.msgType === "error") return reject(data.msg);
+        if (!data.invite) return reject();
         inviteObj = data.invite;
         return resolve(data.invite);
       })

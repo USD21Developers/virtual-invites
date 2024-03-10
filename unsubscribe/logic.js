@@ -55,12 +55,12 @@ function loadContent() {
       .then(async (data) => {
         if (data.msgType === "error") {
           showErrorMessage();
-          reject();
+          return reject();
         }
 
         await renderContent(data.inviteData);
 
-        resolve();
+        return resolve();
       });
   }).catch(() => {
     showErrorMessage();
@@ -162,7 +162,7 @@ function renderContent(inviteData) {
 
     hideErrorMessage();
 
-    resolve();
+    return resolve();
   });
 }
 

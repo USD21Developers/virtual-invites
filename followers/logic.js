@@ -51,7 +51,7 @@ function followUser(userIdToFollow, e) {
             showUserInResults();
             await syncEvents();
             popupQuantityOfEvents("follow");
-            resolve(data.msg);
+            return resolve(data.msg);
             break;
           default:
             e.target.setAttribute("data-status", "follow");
@@ -60,14 +60,14 @@ function followUser(userIdToFollow, e) {
             e.target.classList.add("btn-primary");
             await syncEvents();
             popupQuantityOfEvents("follow");
-            resolve(data.msg);
+            return resolve(data.msg);
         }
       })
       .catch(async (err) => {
         console.error(err);
         await syncEvents();
         popupQuantityOfEvents("follow");
-        reject(err);
+        return reject(err);
       });
   });
 }
@@ -91,11 +91,11 @@ async function getChurchInfo(churchid) {
           return reject(new Error(data.msg));
         }
 
-        resolve(data.info);
+        return resolve(data.info);
       })
       .catch((err) => {
         console.error(err);
-        reject(err);
+        return reject(err);
       });
   });
 }
@@ -123,14 +123,14 @@ async function getFollowers() {
       .then((data) => {
         if (data.msgType === "success") {
           showFollowers(data.followers);
-          resolve(data.followers);
+          return resolve(data.followers);
         } else {
-          reject(new Error(data.msg));
+          return reject(new Error(data.msg));
         }
       })
       .catch((err) => {
         console.error(err);
-        reject(err);
+        return reject(err);
       });
   });
 }
@@ -160,14 +160,14 @@ async function getFollowStatus() {
       .then((res) => res.json())
       .then((data) => {
         if (data.msgType === "error") {
-          reject(data.msg);
+          return reject(data.msg);
         } else {
-          resolve(data.followStatus);
+          return resolve(data.followStatus);
         }
       })
       .catch((err) => {
         console.error(err);
-        reject(err);
+        return reject(err);
       });
   });
 }
@@ -200,7 +200,7 @@ function getProfileInfo() {
         renderProfile(data.profile, churchinfo);
       })
       .then(() => {
-        resolve();
+        return resolve();
       })
       .catch((err) => {
         console.error(err);
@@ -224,7 +224,7 @@ function getProfileInfo() {
       .then(async (data) => {
         if (data.msgType !== "success") throw new Error(data.msg);
         loggedInUserProfileInfo = data.profile;
-        resolve();
+        return resolve();
       })
       .catch((err) => {
         console.error(err);
@@ -542,7 +542,7 @@ function unfollowUser(userid, e) {
             updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
             updateFollowCounts(data.otherUserNow);
             syncEvents();
-            resolve(data.msg);
+            return resolve(data.msg);
             break;
           default:
             e.target.setAttribute("data-status", "followed");
@@ -550,13 +550,13 @@ function unfollowUser(userid, e) {
             e.target.classList.add("btn-success");
             e.target.innerText = getPhrase("btnFollowing");
             syncEvents();
-            resolve(data.msg);
+            return resolve(data.msg);
         }
       })
       .catch((err) => {
         console.error(err);
         syncEvents();
-        reject(err);
+        return reject(err);
       });
   });
 }

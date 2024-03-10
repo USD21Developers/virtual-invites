@@ -29,21 +29,21 @@ function followUser(userid, e) {
             populateFollowingQuantity(quantityNowFollowing);
             await syncEvents();
             popupQuantityOfEvents("follow");
-            resolve(data.msg);
+            return resolve(data.msg);
             break;
           default:
             e.target.setAttribute("data-status", "follow");
             e.target.innerText = getPhrase("btnFollow");
             await syncEvents();
             popupQuantityOfEvents("follow");
-            resolve(data.msg);
+            return resolve(data.msg);
         }
       })
       .catch(async (err) => {
         console.error(err);
         await syncEvents();
         popupQuantityOfEvents("follow");
-        reject(err);
+        return reject(err);
       });
   });
 }
@@ -73,14 +73,14 @@ async function getFollowStatus() {
       .then((res) => res.json())
       .then((data) => {
         if (data.msgType === "error") {
-          reject(data.msg);
+          return reject(data.msg);
         } else {
-          resolve(data.followStatus);
+          return resolve(data.followStatus);
         }
       })
       .catch((err) => {
         console.error(err);
-        reject(err);
+        return reject(err);
       });
   });
 }
@@ -165,17 +165,17 @@ function populateFollowingQuantity() {
           case "retrieved quantity of users following":
             const quantity = data.quantity;
             showQuantityFollowing(quantity);
-            resolve();
+            return resolve();
             break;
           default:
             console.error(data.msg);
-            reject(data.msg);
+            return reject(data.msg);
         }
       })
       .catch((err) => {
         console.error(err);
         document.querySelector("#usersNowFollowing").classList.add("d-none");
-        reject(err);
+        return reject(err);
       });
   });
 }
@@ -442,7 +442,7 @@ function unfollowUser(userid, e) {
             updateFollowActivity(userUnfollowed, whenUnfollowed, "unfollowed");
             populateFollowingQuantity(quantityNowFollowing);
             syncEvents();
-            resolve(data.msg);
+            return resolve(data.msg);
             break;
           default:
             e.target.setAttribute("data-status", "followed");
@@ -450,13 +450,13 @@ function unfollowUser(userid, e) {
             e.target.classList.add("btn-success");
             e.target.innerText = getPhrase("btnFollowing");
             syncEvents();
-            resolve(data.msg);
+            return resolve(data.msg);
         }
       })
       .catch(async (err) => {
         console.error(err);
         syncEvents();
-        reject(err);
+        return reject(err);
       });
   });
 }

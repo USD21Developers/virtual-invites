@@ -634,11 +634,11 @@ async function getInvite() {
           case "invite retrieved":
             sessionStorage.setItem("loaded", true);
             renderInvite(data.invite);
-            resolve();
+            return resolve();
             break;
           default:
             showSpinner();
-            reject();
+            return reject();
         }
       })
       .catch((err) => {
@@ -1305,7 +1305,7 @@ function populateTemplate(version = "default") {
         const el = document.querySelector("#pageContent");
         el.appendChild(templateContent);
         removeDefaultContent();
-        resolve();
+        return resolve();
       });
   });
 }

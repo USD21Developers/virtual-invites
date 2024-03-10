@@ -166,11 +166,11 @@ function renderEvents() {
         });
         el.innerHTML = eventsHTML;
         showMaterialIcons();
-        resolve(myEvents);
+        return resolve(myEvents);
       })
       .catch((error) => {
         console.error(error);
-        reject(error);
+        return reject(error);
       });
   });
 }
@@ -214,7 +214,7 @@ async function renderFollowedEvents() {
       }
     });
 
-    resolve(html);
+    return resolve(html);
   });
 }
 
@@ -356,7 +356,7 @@ function renderListOfEvents(eventsByFollowedUser) {
     `;
     }
 
-    resolve(listHTML);
+    return resolve(listHTML);
   });
 }
 

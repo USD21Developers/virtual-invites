@@ -40,12 +40,12 @@ function followUser(userid, e) {
             syncEvents().then(() => {
               popupQuantityOfEvents("unfollow");
             });
-            resolve(data.msg);
+            return resolve(data.msg);
         }
       })
       .catch((err) => {
         console.error(err);
-        reject(err);
+        return reject(err);
       });
   });
 }
@@ -69,11 +69,11 @@ async function getChurchInfo(churchid) {
           return reject(new Error(data.msg));
         }
 
-        resolve(data.info);
+        return resolve(data.info);
       })
       .catch((err) => {
         console.error(err);
-        reject(err);
+        return reject(err);
       });
   });
 }
@@ -130,7 +130,7 @@ async function getUserInfo() {
         if (data.msgType !== "success") throw new Error(data.msg);
         const churchinfo = await getChurchInfo(data.profile.churchid);
         renderUserInfo(data.profile, churchinfo);
-        resolve(data.profile, churchinfo);
+        return resolve(data.profile, churchinfo);
       })
       .catch((err) => {
         console.error(err);
@@ -293,13 +293,13 @@ function unfollowUser(userid, e) {
             syncEvents().then(() => {
               popupQuantityOfEvents("unfollow");
             });
-            resolve(data.msg);
+            return resolve(data.msg);
         }
       })
       .catch((err) => {
         console.error(err);
         syncEvents();
-        reject(err);
+        return reject(err);
       });
   });
 }

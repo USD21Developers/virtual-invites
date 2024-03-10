@@ -41,20 +41,20 @@ function syncChurches() {
 
         syncSuccessful = true;
 
-        resolve({
+        return resolve({
           churchesHaveChanged: churchesHaveChanged,
           churches: churches,
         });
       })
       .catch((err) => {
         console.error(err);
-        reject(err);
+        return reject(err);
       });
 
     setTimeout(() => {
       if (!syncSuccessful) {
         controller.abort();
-        reject(new Error("Churches sync timed out"));
+        return reject(new Error("Churches sync timed out"));
       }
     }, timeout);
   });
@@ -97,11 +97,13 @@ async function syncEvents() {
         // Validate sync response
         if (!Array.isArray(events)) {
           hideToast();
-          reject(new Error("'events' in sync response must be an array."));
+          return reject(
+            new Error("'events' in sync response must be an array.")
+          );
         }
         if (!Array.isArray(eventsByFollowedUsers)) {
           hideToast();
-          reject(
+          return reject(
             new Error(
               "'eventsByFollowedUsers' in sync response must be an array."
             )
@@ -109,7 +111,7 @@ async function syncEvents() {
         }
         if (!Array.isArray(eventsFromMyInvites)) {
           hideToast();
-          reject(
+          return reject(
             new Error(
               "'eventsFromMyInvites' in sync response must be an array."
             )
@@ -187,7 +189,7 @@ async function syncEvents() {
 
         syncSuccessful = true;
 
-        resolve({
+        return resolve({
           eventsHaveChanged: eventsHaveChanged,
           events: events,
           eventsByFollowedUsers: eventsByFollowedUsers,
@@ -197,13 +199,13 @@ async function syncEvents() {
       .catch((err) => {
         console.error(err);
         // hideToast();
-        reject(err);
+        return reject(err);
       });
 
     setTimeout(() => {
       if (!syncSuccessful) {
         controller.abort();
-        reject(new Error("Events sync timed out"));
+        return reject(new Error("Events sync timed out"));
       }
     }, timeout);
   });
@@ -247,13 +249,13 @@ function syncFollowing() {
       .catch((err) => {
         console.error(err);
         // hideToast();
-        reject(err);
+        return reject(err);
       });
 
     setTimeout(() => {
       if (!syncSuccessful) {
         controller.abort();
-        reject(new Error("Following sync timed out"));
+        return reject(new Error("Following sync timed out"));
       }
     }, timeout);
   });
@@ -293,16 +295,16 @@ function syncUpdatedInvites() {
         localforage.removeItem("unsyncedFollowups");
         syncSuccessful = true;
 
-        resolve();
+        return resolve();
       })
       .catch((err) => {
-        reject(new Error(err));
+        return reject(new Error(err));
       });
 
     setTimeout(() => {
       if (!syncSuccessful) {
         controller.abort();
-        reject(new Error("Updated invites sync timed out"));
+        return reject(new Error("Updated invites sync timed out"));
       }
     }, timeout);
   });
@@ -407,18 +409,18 @@ function syncInvites() {
             })
             .then(() => {
               syncSuccessful = true;
-              resolve(invites);
+              return resolve(invites);
             });
         });
       })
       .catch((err) => {
-        reject(new Error(err));
+        return reject(new Error(err));
       });
 
     setTimeout(() => {
       if (!syncSuccessful) {
         controller.abort();
-        reject(new Error("Invites sync timed out"));
+        return reject(new Error("Invites sync timed out"));
       }
     }, timeout);
   });
@@ -505,13 +507,13 @@ function syncNotesForInvite(invitationid, unsyncedNotes = []) {
         });
       })
       .catch((err) => {
-        reject(new Error(err));
+        return reject(new Error(err));
       });
 
     setTimeout(() => {
       if (!syncSuccessful) {
         controller.abort();
-        reject(new Error("Sync of notes for an invite timed out"));
+        return reject(new Error("Sync of notes for an invite timed out"));
       }
     }, 30000);
   });
@@ -600,7 +602,7 @@ function syncAllNotes() {
     setTimeout(() => {
       if (!syncSuccessful) {
         controller.abort();
-        reject(new Error("Sync of all notes timed out"));
+        return reject(new Error("Sync of all notes timed out"));
       }
     }, 30000);
   });

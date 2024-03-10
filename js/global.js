@@ -163,10 +163,10 @@ const invitesCrypto = {
             cryptoKey
           );
           const strKey = invitesCrypto.key.serialize(arrayBuffer);
-          resolve(strKey);
+          return resolve(strKey);
         })
         .catch((err) => {
-          reject(new Error(err));
+          return reject(new Error(err));
         });
     });
   },
@@ -229,7 +229,7 @@ const invitesCrypto = {
           ["encrypt", "decrypt"]
         );
 
-        resolve(key);
+        return resolve(key);
       });
     },
   },
@@ -497,11 +497,11 @@ function getChurches() {
         switch (data.msgType) {
           case "success":
             localStorage.setItem("churches", JSON.stringify(data.churches));
-            resolve(data.churches);
+            return resolve(data.churches);
             break;
           default:
             console.error(data.msg);
-            reject(data.msg);
+            return reject(data.msg);
         }
       });
   });
@@ -594,7 +594,7 @@ function getCountries(lang) {
     }
 
     if (isOffline) {
-      reject(new Error("user is offline"));
+      return reject(new Error("user is offline"));
     }
 
     // Fetch data
@@ -617,12 +617,12 @@ function getCountries(lang) {
             );
             resolve(data.countryNames);
           default:
-            reject(new Error(data.msg));
+            return reject(new Error(data.msg));
         }
       })
       .catch((err) => {
         console.error(err);
-        reject(err);
+        return reject(err);
       });
   });
 }
@@ -744,7 +744,7 @@ function getDatatablesTranslationURL() {
 function getFollowedUser(userid) {
   return new Promise(async (resolve, reject) => {
     if (!typeof localforage)
-      reject(new Error("localforage is a required dependency"));
+      return reject(new Error("localforage is a required dependency"));
     const followedUsers = await localforage.getItem("followedUsers");
     if (!followedUsers)
       return new Error("missing followedUsers key in IndexedDB");
@@ -1118,10 +1118,10 @@ async function populateContent(customEndpoint, variable = "pageContent") {
         });
         await populateGlobalContent();
         refreshFloatingLabels();
-        resolve();
+        return resolve();
       })
       .catch((err) => {
-        reject(err);
+        return reject(err);
       });
   });
 }
@@ -1199,11 +1199,11 @@ function populateGlobalContent() {
             .setAttribute("src", profilePhotoNav);
           profileImageNav?.classList.remove("d-none");
         }
-        resolve();
+        return resolve();
       })
       .catch((err) => {
         console.error(err);
-        reject(err);
+        return reject(err);
       });
   });
 }
@@ -1421,7 +1421,7 @@ function showEventDateTime(eventObj) {
       `;
     }
 
-    resolve(html);
+    return resolve(html);
   });
 }
 

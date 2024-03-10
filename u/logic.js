@@ -39,14 +39,14 @@ function followUser(userid, e) {
             e.target.classList.add("btn-primary");
             await syncEvents();
             popupQuantityOfEvents("follow");
-            resolve(data.msg);
+            return resolve(data.msg);
         }
       })
       .catch(async (err) => {
         console.error(err);
         await syncEvents();
         popupQuantityOfEvents("follow");
-        reject(err);
+        return reject(err);
       });
   });
 }
@@ -70,11 +70,11 @@ async function getChurchInfo(churchid) {
           return reject(new Error(data.msg));
         }
 
-        resolve(data.info);
+        return resolve(data.info);
       })
       .catch((err) => {
         console.error(err);
-        reject(err);
+        return reject(err);
       });
   });
 }
@@ -104,14 +104,14 @@ async function getFollowStatus() {
       .then((res) => res.json())
       .then((data) => {
         if (data.msgType === "error") {
-          reject(data.msg);
+          return reject(data.msg);
         } else {
-          resolve(data.followStatus);
+          return resolve(data.followStatus);
         }
       })
       .catch((err) => {
         console.error(err);
-        reject(err);
+        return reject(err);
       });
   });
 }
@@ -144,10 +144,10 @@ function getUserEvents() {
         }
 
         renderEvents(data.events);
-        resolve(data.events);
+        return resolve(data.events);
       })
       .catch((err) => {
-        resolve(err);
+        return resolve(err);
       });
   });
 }
@@ -178,7 +178,7 @@ function getUserInfo() {
         if (data.msgType !== "success") throw new Error(data.msg);
         const churchinfo = await getChurchInfo(data.profile.churchid);
         renderProfile(data.profile, churchinfo);
-        resolve(data.profile, churchinfo);
+        return resolve(data.profile, churchinfo);
       })
       .catch((err) => {
         console.error(err);
@@ -631,13 +631,13 @@ function unfollowUser(userid, e) {
             e.target.classList.add("btn-success");
             e.target.innerText = getPhrase("btnFollowing");
             syncEvents();
-            resolve(data.msg);
+            return resolve(data.msg);
         }
       })
       .catch((err) => {
         console.error(err);
         syncEvents();
-        reject(err);
+        return reject(err);
       });
   });
 }

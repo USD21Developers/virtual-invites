@@ -43,10 +43,10 @@ function getCountries() {
         };
         localStorage.setItem("countries", JSON.stringify(storedCountries));
         countries = data.countryNames.names;
-        resolve(data.countryNames.names);
+        return resolve(data.countryNames.names);
       })
       .catch((err) => {
-        reject(err);
+        return reject(err);
       });
   });
 }
@@ -72,7 +72,7 @@ function initCroppie() {
       const heicToAnyJS = document.createElement("script");
       heicToAnyJS.setAttribute("src", url);
       heicToAnyJS.addEventListener("load", () => {
-        resolve();
+        return resolve();
       });
       document.querySelector("head").appendChild(heicToAnyJS);
     });

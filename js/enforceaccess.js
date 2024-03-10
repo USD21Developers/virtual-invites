@@ -45,7 +45,7 @@ function getAccessToken() {
             const country =
               JSON.parse(atob(accessToken.split(".")[1])).country || "us";
             setCountry(country);
-            resolve(accessToken);
+            return resolve(accessToken);
             break;
           default:
             setRedirectOnLogin();
