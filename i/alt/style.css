@@ -187,3 +187,8 @@ hr {
   font-weight: bold;
   margin-right: 0.75rem;
 }
+
+ol#virtualList,
+ol#inPersonList {
+  padding-left: 20px;
+}
