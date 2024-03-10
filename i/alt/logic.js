@@ -149,9 +149,12 @@ function populateInPersonResults(events) {
   const headlineInPersonEl = document.querySelector("#headlineInPerson");
   const { recurring, onetime, multiday } = events;
   const eventsQuantity = recurring.length + onetime.length + multiday.length;
-  const headlineInPersonEventsTxt = getPhrase(
+  let headlineInPersonEventsTxt = getPhrase(
     "headlineInPersonEvents"
-  ).replaceAll("{QUANTITY}", `<span class="numeral">${eventsQuantity}</span>`);
+  ).replaceAll("{QUANTITY}", eventsQuantity);
+  if (eventsQuantity === 0) {
+    headlineInPersonEventsTxt = getPhrase("headlineInPersonEventsZero");
+  }
   const prefs = Intl.DateTimeFormat().resolvedOptions();
   const inPersonNoneFoundEl = document.querySelector("#inPersonNoneFound");
   const inPersonListEl = document.querySelector("#inPersonList");
@@ -204,9 +207,13 @@ function populateVirtualResults(events) {
   const headlineVirtualEl = document.querySelector("#headlineVirtual");
   const { recurring, onetime, multiday } = events;
   const eventsQuantity = recurring.length + onetime.length + multiday.length;
-  const headlineVirtualEventsTxt = getPhrase(
-    "headlineVirtualEvents"
-  ).replaceAll("{QUANTITY}", `<span class="numeral">${eventsQuantity}</span>`);
+  let headlineVirtualEventsTxt = getPhrase("headlineVirtualEvents").replaceAll(
+    "{QUANTITY}",
+    eventsQuantity
+  );
+  if (eventsQuantity === 0) {
+    headlineVirtualEventsTxt = getPhrase("headlineVirtualEventsZero");
+  }
   const prefs = Intl.DateTimeFormat().resolvedOptions();
   const virtualNoneFoundEl = document.querySelector("#virtualNoneFound");
   const virtualListEl = document.querySelector("#virtualList");

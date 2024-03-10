@@ -274,9 +274,19 @@
       "translated": "Events in person ({QUANTITY}):"
     },
     {
+      "key": "headlineInPersonEventsZero",
+      "original": "Events in person:",
+      "translated": "Events in person:"
+    },
+    {
       "key": "headlineVirtualEvents",
       "original": "Virtual events ({QUANTITY}):",
       "translated": "Virtual events ({QUANTITY}):"
+    },
+    {
+      "key": "headlineVirtualEventsZero",
+      "original": "Virtual events:",
+      "translated": "Virtual events:"
     },
     {
       "key": "explanationVirtual",

@@ -179,6 +179,5 @@ hr {
 }
 
 .numeral {
-  font-family: Consolas, Menlo, sans-serif;
   font-variant-numeric: slashed-zero;
 }
