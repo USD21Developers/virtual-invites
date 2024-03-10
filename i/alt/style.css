@@ -185,4 +185,5 @@ hr {
 .multiDayLabel {
   font-style: italic;
   font-weight: bold;
+  margin-right: 0.75rem;
 }
