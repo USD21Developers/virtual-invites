@@ -317,6 +317,21 @@
       "key": "virtualNoneFound",
       "original": "No virtual events matched your search.",
       "translated": "No virtual events matched your search."
+    },
+    {
+      "key": "locationNotRecognized",
+      "original": "Your location could not be found. If possible, please revise it.",
+      "translated": "Your location could not be found. If possible, please revise it.",
+      "changes": [
+        {
+          "original": "please revise it",
+          "translated": "please revise it",
+          "bold": true,
+          "italic": false,
+          "underline": true,
+          "link": "javascript:customScrollTo('#myLocationContainer', 20); hideToast()"
+        }
+      ]
     }
   ],
 

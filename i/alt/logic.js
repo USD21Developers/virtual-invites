@@ -700,6 +700,9 @@ function onSearch(e) {
   hide("#searchResults");
   show("#searchResultsSpinner");
   customScrollTo("#searchResultsSpinner", 10);
+  document
+    .querySelectorAll(".is-invalid")
+    .forEach((item) => item.classList.remove("is-invalid"));
 
   fetch(endpoint, {
     mode: "cors",
@@ -723,15 +726,20 @@ function onSearch(e) {
   })
     .then((res) => res.json())
     .then((data) => {
-      if (!data.msgType) return;
-      if (data.msgType !== "success") return;
-      if (!data.events) return;
-      if (!Array.isArray(data.events.inPerson.multiday)) return;
-      if (!Array.isArray(data.events.inPerson.onetime)) return;
-      if (!Array.isArray(data.events.inPerson.recurring)) return;
-      if (!Array.isArray(data.events.virtual.multiday)) return;
-      if (!Array.isArray(data.events.virtual.onetime)) return;
-      if (!Array.isArray(data.events.virtual.recurring)) return;
+      const geocodeFailed =
+        data.msg === "unable to geocode this location" ? true : false;
+
+      if (geocodeFailed) {
+        const errorMessage = getPhrase("locationNotRecognized");
+        const el = document.querySelector("#myLocationContainer");
+        el.querySelector("#originLocation").classList.add("is-invalid");
+        showToast(errorMessage, 5000, "danger", ".snackbar", true);
+        hide("#searchResultsSpinner");
+        hide("#noResultsFound");
+        hide("#resultsFound");
+        hide("#searchResults");
+        return;
+      }
 
       const noEventsFound =
         data.events.inPerson.multiday.length === 0 &&
