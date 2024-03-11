@@ -683,6 +683,7 @@ function renderInvite(invite) {
   const timeAndDateMultipleDays = document.querySelector(
     "#timeAndDateMultipleDays"
   );
+  const hasVirtual = event.hasvirtual === 1 ? true : false;
 
   // Store invite in global scope
   inviteObject.event = event;
@@ -902,6 +903,16 @@ function renderInvite(invite) {
     const mapAndDirectionsEl = document.querySelector("#mapAndDirections");
     const addressObject = getAddressForMaps(event);
     mapAndDirectionsEl.setAttribute("href", addressObject.addressLink);
+  }
+
+  // VIRTUAL CONNECTION DETAILS
+  if (hasVirtual) {
+    const connectingVirtuallyEl = document.querySelector(
+      "#connectingVirtually"
+    );
+    const connectionContentEl = document.querySelector("#connectionContent");
+    connectionContentEl.innerHTML = event.virtualconnectiondetails.trim();
+    connectingVirtuallyEl.classList.remove("d-none");
   }
 
   // Show invite
