@@ -225,7 +225,10 @@ a:hover {
 }
 
 [data-i18n="headline-how-to-connect"] {
+  color: #2a2d54;
+  font-family: Castoro, serif;
   font-size: 1.1rem;
+  font-weight: 400;
 }
 
 #eventContactName {
