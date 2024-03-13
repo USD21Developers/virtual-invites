@@ -7,14 +7,15 @@ function showProfilePhoto() {
     atob(localStorage.getItem("refreshToken").split(".")[1])
   );
   const { firstname, lastname, profilephoto } = refreshToken;
-  const profilePhoto140 = profilephoto.replaceAll("400.jpg", "140.jpg");
+  const profilePhoto400 = profilephoto;
+  const profilePhoto140 = profilePhoto400.replaceAll("400.jpg", "140.jpg");
   const profilePhotoEl = document.querySelector("#profilePhoto");
   const altText = getPhrase("profilePhoto")
     .replaceAll("{FIRST-NAME}", firstname)
     .replaceAll("{LAST-NAME}", lastname);
 
   const img = document.createElement("img");
-  img.setAttribute("src", profilePhoto140);
+  img.setAttribute("src", profilePhoto400);
   img.setAttribute("width", 140);
   img.setAttribute("height", 140);
   img.setAttribute("alt", altText);
