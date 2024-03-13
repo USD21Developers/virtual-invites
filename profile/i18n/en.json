@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "description": "Profile",
+    "path": "/profile/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Profile",
+      "translated": "Profile"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbProfile",
+      "original": "Profile",
+      "translated": "Profile"
+    },
+    {
+      "key": "profilePhoto",
+      "original": "Photo of {FIRST-NAME} {LAST-NAME}",
+      "translated": "Photo of {FIRST-NAME} {LAST-NAME}"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
