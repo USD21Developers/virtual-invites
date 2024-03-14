@@ -1,9 +1,13 @@
 #profilePhoto {
-  border: 4px dashed #345593;
+  border: 4px solid #345593;
   border-radius: 50%;
   display: inline-block;
   height: auto;
   width: 200px;
+}
+
+#profilePhoto:hover {
+  border: 4px solid #345593;
 }
 
 #profilePhoto img {

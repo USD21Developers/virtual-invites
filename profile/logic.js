@@ -1,5 +1,5 @@
-function openPhotoUploadModal() {
-  console.log("Open modal");
+function openPhotoUploadModal(e) {
+  e.preventDefault();
 }
 
 function showProfilePhoto() {
