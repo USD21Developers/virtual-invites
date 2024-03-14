@@ -1491,6 +1491,8 @@ function showToast(
 
   if (multiline) {
     snackbar.classList.add("snackbar-multi-line");
+  } else {
+    snackbar.classList.remove("snackbar-multi-line");
   }
 
   body.innerHTML = message;
