@@ -454,8 +454,14 @@ function showMap() {
     const endpoint = `${getApiHost()}/map-static`;
     const place = document.querySelector("#originLocation").value;
     const label = getPhrase("mapLabelOrigin");
+    const searchResultsEl = document.querySelector("#searchResults");
+    const searchResultsSpinnerEl = document.querySelector(
+      "#searchResultsSpinner"
+    );
 
     mapContainerEl.classList.remove("d-none");
+    searchResultsEl.classList.add("d-none");
+    searchResultsSpinnerEl.classList.add("d-none");
 
     fetch(endpoint, {
       mode: "cors",
