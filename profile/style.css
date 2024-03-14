@@ -3,9 +3,7 @@
   border-radius: 50%;
   display: inline-block;
   height: auto;
-  width: 67%;
-  max-height: 200px;
-  max-width: 200px;
+  width: 200px;
 }
 
 #profilePhoto img {
@@ -17,5 +15,5 @@
 #profilePhoto,
 #cameraIcon {
   cursor: pointer;
-  margin-top: -16px;
+  margin-top: -24px;
 }
