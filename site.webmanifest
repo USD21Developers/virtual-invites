@@ -1,6 +1,7 @@
 {
   "name": "Invites",
   "short_name": "Invites",
+  "display": "browser",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -13,6 +14,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#2a2d54",
-  "background_color": "#2a2d54"
+  "theme_color": "#372c67",
+  "background_color": "#372c67",
+  "start_url": "https://invites.mobi/?utm_source=homepage"
 }
