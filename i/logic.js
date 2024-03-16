@@ -166,6 +166,19 @@ function fixVideoBug() {
   }
 }
 
+function iOSRemoveWebM() {
+  const webm = document.querySelector("source[type='video/webm']");
+  const os = getMobileOperatingSystem();
+  const isReproducibleURL =
+    window.location.hash === "#/19/1/9Veh8" ? true : false;
+
+  if (os === "iOS") {
+    if (webm && !isReproducibleURL) {
+      webm.remove();
+    }
+  }
+}
+
 function getAddressForMaps(event) {
   const {
     locationaddressline1: addressLine1,
@@ -1491,6 +1504,7 @@ function showVideo() {
 }
 
 async function init() {
+  iOSRemoveWebM();
   await populateTemplate();
   attachListeners();
   await populateContent();
