@@ -58,12 +58,12 @@
           mp4.setAttribute("src", "/i/video/envelope.mp4");
           mp4.setAttribute("type", "video/mp4");
 
-          if (os === "iOS") {
-            video.appendChild(mp4);
+          if (os !== "iOS" || isReportedBug) {
             video.appendChild(webm);
+            video.appendChild(mp4);
           } else {
-            video.appendChild(webm);
             video.appendChild(mp4);
+            video.appendChild(webm);
           }
         })();
       </script>
