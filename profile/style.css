@@ -1,5 +1,9 @@
 #profilePhoto {
-  background-color: #193e87;
+  background-color: #345593;
+  background-size: contain;
+  background-image: url("./stars.webp");
+  background-repeat: no-repeat;
+  background-position: top center;
   border: 2px solid #345593;
   border-radius: 50%;
   display: inline-block;
