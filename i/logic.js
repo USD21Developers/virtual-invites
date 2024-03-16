@@ -1491,7 +1491,6 @@ function showVideo() {
 }
 
 async function init() {
-  iOSRemoveWebM();
   await populateTemplate();
   attachListeners();
   await populateContent();
