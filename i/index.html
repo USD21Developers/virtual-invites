@@ -32,6 +32,7 @@
         width: 530px;
       }
     </style>
+    <script src="/js/getMobileOperatingSystem.js"></script>
   </head>
   <body class="purple-gradient">
     <div id="inviteroot">
@@ -39,6 +40,23 @@
         <source src="/i/video/envelope.webm" type="video/webm" />
         <source src="/i/video/envelope.mp4" type="video/mp4" />
       </video>
+      <script>
+        (() => {
+          const os = getMobileOperatingSystem();
+
+          if (os === "iOS") {
+            const webm = document.querySelector("source[type='video/webm']");
+            const isReproducibleURL =
+              window.location.hash === "#/19/1/9Veh8" &&
+              window.location.hostname === "staging.invites.mobi"
+                ? true
+                : false;
+            if (webm && !isReproducibleURL) {
+              webm.remove();
+            }
+          }
+        })();
+      </script>
 
       <div id="topOfEnvelope"></div>
       <div id="paper" class="d-none">
@@ -118,7 +136,6 @@
     <script src="/css/material-4.1.1-dist/js/material.min.js"></script>
     <script src="/js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
     <script src="/js/global.js"></script>
-    <script src="/js/getMobileOperatingSystem.js"></script>
     <script src="/js/relativeTimeFormatPolyfill.js"></script>
     <script src="/js/getRelativeDate.js"></script>
     <script src="/js/to-title-case.js"></script>
