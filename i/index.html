@@ -36,24 +36,34 @@
   </head>
   <body class="purple-gradient">
     <div id="inviteroot">
-      <video id="video" autoplay playsinline muted>
-        <source src="/i/video/envelope.webm" type="video/webm" />
-        <source src="/i/video/envelope.mp4" type="video/mp4" />
-      </video>
+      <video id="video" autoplay playsinline muted></video>
       <script>
         (() => {
+          const isReportedBug =
+            window.location.hash === "#/19/1/9Veh8" &&
+            window.location.hostname === "staging.invites.mobi"
+              ? true
+              : false;
+
+          if (isReportedBug) return;
+
           const os = getMobileOperatingSystem();
+          const video = document.querySelector("#video");
+
+          const webm = document.createElement("source");
+          webm.setAttribute("src", "/i/video/envelope.webm");
+          webm.setAttribute("type", "video/webm");
+
+          const mp4 = document.createElement("source");
+          mp4.setAttribute("src", "/i/video/envelope.mp4");
+          mp4.setAttribute("type", "video/mp4");
 
           if (os === "iOS") {
-            const webm = document.querySelector("source[type='video/webm']");
-            const isReproducibleURL =
-              window.location.hash === "#/19/1/9Veh8" &&
-              window.location.hostname === "staging.invites.mobi"
-                ? true
-                : false;
-            if (webm && !isReproducibleURL) {
-              webm.remove();
-            }
+            video.appendChild(mp4);
+            video.appendChild(webm);
+          } else {
+            video.appendChild(webm);
+            video.appendChild(mp4);
           }
         })();
       </script>
