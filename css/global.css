@@ -42,6 +42,10 @@ td {
   font-size: 0.9rem;
 }
 
+nav.navbar.bg-white.sticky-top {
+  margin-top: 20px;
+}
+
 nav .breadcrumb {
   display: none;
 }
