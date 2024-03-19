@@ -250,10 +250,10 @@ async function renderRecipient(invite) {
 
     if (coords) {
       if (coords.hasOwnProperty("x")) {
-        longitude = coords.x;
+        latitude = coords.x;
       }
       if (coords.hasOwnProperty("y")) {
-        latitude = coords.y;
+        longitude = coords.y;
       }
     }
 
