@@ -108,15 +108,7 @@ function verifyDataKey() {
 function verifyRefreshToken() {
   let logoutUrl = "/logout/";
   const refreshToken = localStorage.getItem("refreshToken") || "";
-  const launchedFromHomeScreen = (window.location.search =
-    "?utm_source=homepage" ? true : false);
   let isAuthorized = true;
-
-  if (window.location.pathname === "/") {
-    if (launchedFromHomeScreen) {
-      logoutUrl = logoutUrl + "?utm_source=homepage";
-    }
-  }
 
   if (!refreshToken.length) {
     setRedirectOnLogin();
