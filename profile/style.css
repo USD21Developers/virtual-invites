@@ -23,9 +23,13 @@
   margin-top: -24px;
 }
 
-.username {
+.usernameLabel {
   color: #333;
   font-size: small;
+}
+
+#username {
+  word-break: break-word;
 }
 
 label {
