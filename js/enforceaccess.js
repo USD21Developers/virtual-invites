@@ -112,8 +112,10 @@ function verifyRefreshToken() {
     "?utm_source=homepage" ? true : false);
   let isAuthorized = true;
 
-  if (launchedFromHomeScreen) {
-    logoutUrl = logoutUrl + "?utm_source=homepage";
+  if (window.location.pathname === "/") {
+    if (launchedFromHomeScreen) {
+      logoutUrl = logoutUrl + "?utm_source=homepage";
+    }
   }
 
   if (!refreshToken.length) {
