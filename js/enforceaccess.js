@@ -134,6 +134,8 @@ const isFromHomeScreen =
 
 if (isFromHomeScreen) {
   sessionStorage.setItem("isFromHomeScreen", "true");
+} else {
+  sessionStorage.removeItem("isFromHomeScreen");
 }
 
 framebuster();
