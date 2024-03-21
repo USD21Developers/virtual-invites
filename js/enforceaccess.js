@@ -93,6 +93,8 @@ function setRedirectOnLogin() {
       const isFromHomeScreen =
         redirectUrl.indexOf("utm_source=homescreen") >= 0 ? true : false;
 
+      debugger;
+
       if (isFromHomeScreen) {
         sessionStorage.setItem("isFromHomeScreen", "true");
       }
