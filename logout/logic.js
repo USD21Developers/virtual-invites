@@ -3,6 +3,8 @@ function init() {
   const isFromHomeScreen = sessionStorage.getItem("isFromHomeScreen");
   let loginURL = "../login/";
 
+  debugger;
+
   clearStorage();
 
   if (!!isFromHomeScreen) {
