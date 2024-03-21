@@ -130,7 +130,7 @@ function verifyRefreshToken() {
 }
 
 const isFromHomeScreen =
-  redirectUrl.indexOf("utm_source=homescreen") >= 0 ? true : false;
+  window.location.href.indexOf("utm_source=homescreen") >= 0 ? true : false;
 
 if (isFromHomeScreen) {
   sessionStorage.setItem("isFromHomeScreen", "true");
