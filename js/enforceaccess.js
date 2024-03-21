@@ -132,6 +132,8 @@ function verifyRefreshToken() {
 const isFromHomeScreen =
   window.location.href.indexOf("utm_source=homescreen") >= 0 ? true : false;
 
+debugger;
+
 if (isFromHomeScreen) {
   sessionStorage.setItem("isFromHomeScreen", "true");
 } else {
