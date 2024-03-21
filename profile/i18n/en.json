@@ -27,6 +27,36 @@
       "key": "profilePhoto",
       "original": "Photo of {FIRST-NAME} {LAST-NAME}",
       "translated": "Photo of {FIRST-NAME} {LAST-NAME}"
+    },
+    {
+      "key": "username",
+      "original": "Username:",
+      "translated": "Username:"
+    },
+    {
+      "key": "newpassword",
+      "original": "New password:",
+      "translated": "New password:"
+    },
+    {
+      "key": "email",
+      "original": "E-mail:",
+      "translated": "E-mail:"
+    },
+    {
+      "key": "firstname",
+      "original": "First name:",
+      "translated": "First name:"
+    },
+    {
+      "key": "lastname",
+      "original": "Last name:",
+      "translated": "Last name:"
+    },
+    {
+      "key": "church",
+      "original": "Church:",
+      "translated": "Church:"
     }
   ],
 
