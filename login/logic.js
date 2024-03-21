@@ -201,14 +201,22 @@ function attachListeners() {
 }
 
 async function init() {
-  const newUrl = sessionStorage.getItem("redirectOnLogin");
+  let redirectOnLogin = sessionStorage.getItem("redirectOnLogin");
+  const isFromHomeScreen = sessionStorage.getItem("isFromHomeScreen");
   const unsubscribeFromNotifications = sessionStorage.getItem(
     "unsubscribeFromNotifications"
   );
-  clearStorage();
-  if (newUrl && newUrl.length) {
-    sessionStorage.setItem("redirectOnLogin", newUrl);
+
+  if (isFromHomeScreen) {
+    redirectOnLogin = "/?utm_source=homescreen";
   }
+
+  clearStorage();
+
+  if (redirectOnLogin && redirectOnLogin.length) {
+    sessionStorage.setItem("redirectOnLogin", redirectOnLogin);
+  }
+
   await populateContent();
   attachListeners();
   globalHidePageSpinner();
