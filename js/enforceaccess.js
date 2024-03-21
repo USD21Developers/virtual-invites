@@ -90,15 +90,6 @@ function setRedirectOnLogin() {
   if (accessScriptEl) {
     if (accessScriptEl.hasAttribute("data-return-here")) {
       const redirectUrl = window.location.href;
-      const isFromHomeScreen =
-        redirectUrl.indexOf("utm_source=homescreen") >= 0 ? true : false;
-
-      debugger;
-
-      if (isFromHomeScreen) {
-        sessionStorage.setItem("isFromHomeScreen", "true");
-      }
-
       sessionStorage.setItem("redirectOnLogin", redirectUrl);
     }
   }
@@ -136,6 +127,13 @@ function verifyRefreshToken() {
     setRedirectOnLogin();
     window.location.href = logoutUrl;
   }
+}
+
+const isFromHomeScreen =
+  redirectUrl.indexOf("utm_source=homescreen") >= 0 ? true : false;
+
+if (isFromHomeScreen) {
+  sessionStorage.setItem("isFromHomeScreen", "true");
 }
 
 framebuster();
