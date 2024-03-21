@@ -1,5 +1,5 @@
 #profilePhoto {
-  background-color: #345593;
+  background-color: #ccc;
   background-size: contain;
   background-image: url("./stars.webp");
   background-repeat: no-repeat;
@@ -21,4 +21,15 @@
 #cameraIcon {
   cursor: pointer;
   margin-top: -24px;
+}
+
+.username {
+  color: #333;
+  font-size: small;
+}
+
+label {
+  color: #333;
+  font-size: small;
+  font-weight: bold;
 }
