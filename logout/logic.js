@@ -1,4 +1,5 @@
 function init() {
+  debugger;
   const redirectOnLogin = sessionStorage.getItem("redirectOnLogin");
   const isFromHomeScreen = sessionStorage.getItem("isFromHomeScreen");
   let newUrl = "../login/";
