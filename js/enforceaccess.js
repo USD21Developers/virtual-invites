@@ -106,9 +106,15 @@ function verifyDataKey() {
 }
 
 function verifyRefreshToken() {
-  const logoutUrl = "/logout/";
+  let logoutUrl = "/logout/";
   const refreshToken = localStorage.getItem("refreshToken") || "";
+  const launchedFromHomeScreen = (window.location.search =
+    "?utm_source=homepage" ? true : false);
   let isAuthorized = true;
+
+  if (launchedFromHomeScreen) {
+    logoutUrl = logoutUrl + "?utm_source=homepage";
+  }
 
   if (!refreshToken.length) {
     setRedirectOnLogin();
