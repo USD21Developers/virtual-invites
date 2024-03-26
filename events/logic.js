@@ -144,8 +144,8 @@ function renderEvents() {
                   href="edit/#${eventid}"
                   class="action_editLink d-inline-block text-center"
                 >
-                  <span class="material-icons material-symbols-outlined">
-                    edit
+                  <span>
+                    <img src="/_assets/svg/icons/edit-grey.svg">
                   </span>
                   <div class="mt-1 small">${getPhrase("btnEdit")}</div>
                 </a>
@@ -154,9 +154,9 @@ function renderEvents() {
                   href="delete/#${eventid}"
                   class="action_deleteLink danger d-inline-block text-center"
                 >
-                  <span class="material-icons material-symbols-outlined">
-                    delete
-                  </span>
+                <span>
+                  <img src="/_assets/svg/icons/delete-red.svg">
+                </span>
                   <div class="mt-1 small">${getPhrase("btnDelete")}</div>
                 </a>
               </div>
