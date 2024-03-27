@@ -176,10 +176,22 @@ function populateInPersonResults(events) {
   allEvents.forEach((item) => {
     const li = document.createElement("li");
 
-    const dateTime = Intl.DateTimeFormat(prefs.locale, {
+    let dateTime = Intl.DateTimeFormat(prefs.locale, {
       dateStyle: "full",
       timeStyle: "short",
     }).format(new Date(item.eventDate));
+
+    if (prefs.timeZone !== item.timezone) {
+      const timeZoneShort = moment
+        .tz(item.eventDate, item.timezone)
+        .format("z");
+      dateTime =
+        Intl.DateTimeFormat(prefs.locale, {
+          dateStyle: "full",
+          timeStyle: "short",
+          timeZone: item.timezone,
+        }).format(new Date(item.eventDate)) + ` (${timeZoneShort})`;
+    }
 
     const distanceUnit = document.querySelector("#distanceUnit").value;
     const distance =
@@ -266,10 +278,13 @@ function populateVirtualResults(events) {
   allEvents.forEach((item) => {
     const li = document.createElement("li");
 
-    const dateTime = Intl.DateTimeFormat(prefs.locale, {
-      dateStyle: "full",
-      timeStyle: "short",
-    }).format(new Date(item.eventDate));
+    const timeZoneShort = moment.tz(item.eventDate, item.timezone).format("z");
+
+    const dateTime =
+      Intl.DateTimeFormat(prefs.locale, {
+        dateStyle: "full",
+        timeStyle: "short",
+      }).format(new Date(item.eventDate)) + ` (${timeZoneShort})`;
 
     const distanceUnit = document.querySelector("#distanceUnit").value;
     const distance =
@@ -393,11 +408,26 @@ function setDefaultDistanceUnit() {
     }
 
     if (window.location.hostname === "localhost") {
+      // Statue of Liberty
+      let latitude = "40.689247";
+      let longitude = "-74.044502";
+      let countryCode = "us";
+
+      // Obtain and use saved location if exists
+      const localLatitude = localStorage.getItem("latitude");
+      const localLongitude = localStorage.getItem("longitude");
+      const localCountryCode = localStorage.getItem("countryCode");
+      if (localLatitude && localLongitude && localCountryCode) {
+        latitude = localLatitude;
+        longitude = localLongitude;
+        countryCode = localCountryCode;
+      }
+
       radiusEl.value = 65;
       distanceUnitEl.value = "miles";
-      originLocationEl.value = "40.689247,-74.044502"; // Statue of Liberty
-      originLocationEl.setAttribute("data-countryFromIP", "us");
-      countryEl.value = "us";
+      originLocationEl.value = `${latitude},${longitude}`;
+      originLocationEl.setAttribute("data-countryFromIP", countryCode);
+      countryEl.value = countryCode;
       return resolve("miles");
     }
 
@@ -522,6 +552,11 @@ function updateCountryToMatchCoordinates(latitude, longitude) {
         if (!data.countryCode || !data.countryCode.length) return reject();
         const countryEl = document.querySelector("#country");
         countryEl.value = data.countryCode;
+
+        if (window.location.hostname === "localhost") {
+          localStorage.setItem("countryCode", data.countryCode);
+        }
+
         return resolve(data.countryCode);
       });
   });
@@ -560,6 +595,11 @@ function onDetectLocationClick() {
     originLocationEl.value = mapCoordinates;
 
     updateCountryToMatchCoordinates(latitude, longitude);
+
+    if (window.location.hostname === "localhost") {
+      localStorage.setItem("originLatitude", latitude);
+      localStorage.setItem("originLongitude", longitude);
+    }
 
     showMap();
 
