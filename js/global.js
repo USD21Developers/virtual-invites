@@ -27,10 +27,10 @@ var hidden, visibilityChange;
   formError
   formErrorsReset
   getAccessToken
-  getBodyText
-  getChurches
   getApiHost
   getApiServicesHost
+  getBodyText
+  getChurches
   getCountryName
   getCountries
   getDatatablesTranslationURL
