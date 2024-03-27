@@ -911,7 +911,13 @@ function renderInvite(invite) {
       "#connectingVirtually"
     );
     const connectionContentEl = document.querySelector("#connectionContent");
-    connectionContentEl.innerHTML = event.virtualconnectiondetails.trim();
+
+    if (
+      event.virtualconnectiondetails &&
+      event.virtualconnectiondetails.length
+    ) {
+      connectionContentEl.innerHTML = event.virtualconnectiondetails.trim();
+    }
     connectingVirtuallyEl.classList.remove("d-none");
   }
 
