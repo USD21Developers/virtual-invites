@@ -178,8 +178,16 @@ function populateInPersonResults(events) {
 
     let timeZoneShort =
       "(" + moment.tz(item.eventDate, item.timezone).format("z") + ")";
-    if (prefs.locale.indexOf("-US") < 0) {
-      timeZoneShort = "";
+    const isOutsideUSA = prefs.locale.indexOf("-US") < 0 ? true : false;
+    if (isOutsideUSA) {
+      const localOffsetMinutes = utcDate.getTimezoneOffset();
+      const hours = Math.abs(Math.floor(localOffsetMinutes / 60));
+      const minutes = Math.abs(localOffsetMinutes % 60);
+      const sign = localOffsetMinutes < 0 ? "+" : "-";
+      const offsetString = `${sign}${hours
+        .toString()
+        .padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
+      timeZoneShort = offsetString;
     }
 
     let dateTime = Intl.DateTimeFormat(prefs.locale, {
@@ -283,8 +291,16 @@ function populateVirtualResults(events) {
 
     let timeZoneShort =
       "(" + moment.tz(item.eventDate, item.timezone).format("z") + ")";
-    if (prefs.locale.indexOf("-US") < 0) {
-      timeZoneShort = "";
+    const isOutsideUSA = prefs.locale.indexOf("-US") < 0 ? true : false;
+    if (isOutsideUSA) {
+      const localOffsetMinutes = utcDate.getTimezoneOffset();
+      const hours = Math.abs(Math.floor(localOffsetMinutes / 60));
+      const minutes = Math.abs(localOffsetMinutes % 60);
+      const sign = localOffsetMinutes < 0 ? "+" : "-";
+      const offsetString = `${sign}${hours
+        .toString()
+        .padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
+      timeZoneShort = offsetString;
     }
 
     let dateTime =
