@@ -176,7 +176,11 @@ function populateInPersonResults(events) {
   allEvents.forEach((item) => {
     const li = document.createElement("li");
 
-    const timeZoneShort = moment.tz(item.eventDate, item.timezone).format("z");
+    let timeZoneShort =
+      "(" + moment.tz(item.eventDate, item.timezone).format("z") + ")";
+    if (prefs.locale.indexOf("-US") < 0) {
+      timeZoneShort = "";
+    }
 
     let dateTime = Intl.DateTimeFormat(prefs.locale, {
       dateStyle: "full",
@@ -189,7 +193,7 @@ function populateInPersonResults(events) {
           dateStyle: "full",
           timeStyle: "short",
           timeZone: item.timezone,
-        }).format(new Date(item.eventDate)) + ` (${timeZoneShort})`;
+        }).format(new Date(item.eventDate)) + ` ${timeZoneShort}`;
     }
 
     const distanceUnit = document.querySelector("#distanceUnit").value;
@@ -277,13 +281,17 @@ function populateVirtualResults(events) {
   allEvents.forEach((item) => {
     const li = document.createElement("li");
 
-    const timeZoneShort = moment.tz(item.eventDate, item.timezone).format("z");
+    let timeZoneShort =
+      "(" + moment.tz(item.eventDate, item.timezone).format("z") + ")";
+    if (prefs.locale.indexOf("-US") < 0) {
+      timeZoneShort = "";
+    }
 
     let dateTime =
       Intl.DateTimeFormat(prefs.locale, {
         dateStyle: "full",
         timeStyle: "short",
-      }).format(new Date(item.eventDate)) + ` (${timeZoneShort})`;
+      }).format(new Date(item.eventDate)) + ` ${timeZoneShort}`;
 
     if (prefs.timeZone !== item.timezone) {
       dateTime =
@@ -291,7 +299,7 @@ function populateVirtualResults(events) {
           dateStyle: "full",
           timeStyle: "short",
           timeZone: item.timezone,
-        }).format(new Date(item.eventDate)) + ` (${timeZoneShort})`;
+        }).format(new Date(item.eventDate)) + ` ${timeZoneShort}`;
     }
 
     const distanceUnit = document.querySelector("#distanceUnit").value;

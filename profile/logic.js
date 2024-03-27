@@ -1,6 +1,12 @@
+let churches = [];
+
+let countries = [];
+
 function openPhotoUploadModal(e) {
   e.preventDefault();
 }
+
+
 
 function showProfilePhoto() {
   const refreshToken = JSON.parse(
