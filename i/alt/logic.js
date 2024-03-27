@@ -176,7 +176,7 @@ function populateInPersonResults(events) {
   allEvents.forEach((item) => {
     const li = document.createElement("li");
 
-    let timeZoneShort =
+    let timeZoneShortName =
       "(" + moment.tz(item.eventDate, item.timezone).format("z") + ")";
     const isOutsideUSA = prefs.locale.indexOf("-US") < 0 ? true : false;
     if (isOutsideUSA) {
@@ -187,7 +187,7 @@ function populateInPersonResults(events) {
       const offsetString = `${sign}${hours
         .toString()
         .padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
-      timeZoneShort = offsetString;
+      timeZoneShortName = offsetString;
     }
 
     let dateTime = Intl.DateTimeFormat(prefs.locale, {
@@ -201,7 +201,7 @@ function populateInPersonResults(events) {
           dateStyle: "full",
           timeStyle: "short",
           timeZone: item.timezone,
-        }).format(new Date(item.eventDate)) + ` ${timeZoneShort}`;
+        }).format(new Date(item.eventDate)) + ` ${timeZoneShortName}`;
     }
 
     const distanceUnit = document.querySelector("#distanceUnit").value;
@@ -289,7 +289,7 @@ function populateVirtualResults(events) {
   allEvents.forEach((item) => {
     const li = document.createElement("li");
 
-    let timeZoneShort =
+    let timeZoneShortName =
       "(" + moment.tz(item.eventDate, item.timezone).format("z") + ")";
     const isOutsideUSA = prefs.locale.indexOf("-US") < 0 ? true : false;
     if (isOutsideUSA) {
@@ -300,14 +300,13 @@ function populateVirtualResults(events) {
       const offsetString = `${sign}${hours
         .toString()
         .padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
-      timeZoneShort = offsetString;
+      timeZoneShortName = offsetString;
     }
 
-    let dateTime =
-      Intl.DateTimeFormat(prefs.locale, {
-        dateStyle: "full",
-        timeStyle: "short",
-      }).format(new Date(item.eventDate)) + ` ${timeZoneShort}`;
+    let dateTime = Intl.DateTimeFormat(prefs.locale, {
+      dateStyle: "full",
+      timeStyle: "short",
+    }).format(new Date(item.eventDate));
 
     if (prefs.timeZone !== item.timezone) {
       dateTime =
@@ -315,7 +314,7 @@ function populateVirtualResults(events) {
           dateStyle: "full",
           timeStyle: "short",
           timeZone: item.timezone,
-        }).format(new Date(item.eventDate)) + ` ${timeZoneShort}`;
+        }).format(new Date(item.eventDate)) + ` ${timeZoneShortName}`;
     }
 
     const distanceUnit = document.querySelector("#distanceUnit").value;
@@ -446,9 +445,9 @@ function setDefaultDistanceUnit() {
       let countryCode = "us";
 
       // Obtain and use saved location if exists
-      const localLatitude = localStorage.getItem("latitude");
-      const localLongitude = localStorage.getItem("longitude");
-      const localCountryCode = localStorage.getItem("countryCode");
+      const localLatitude = localStorage.getItem("originLatitude");
+      const localLongitude = localStorage.getItem("originLongitude");
+      const localCountryCode = localStorage.getItem("originCountryCode");
       if (localLatitude && localLongitude && localCountryCode) {
         latitude = localLatitude;
         longitude = localLongitude;
@@ -586,7 +585,7 @@ function updateCountryToMatchCoordinates(latitude, longitude) {
         countryEl.value = data.countryCode;
 
         if (window.location.hostname === "localhost") {
-          localStorage.setItem("countryCode", data.countryCode);
+          localStorage.setItem("originCountryCode", data.countryCode);
         }
 
         return resolve(data.countryCode);
