@@ -152,9 +152,10 @@ async function init() {
   TO DO:
   1.  * DONE *  Populate churches field from localStorage (sorted by country)
   2.  * DONE *  Sync churches with API asynchronously, with a callback that repopulates churches field again
-  3.  Populate form fields
-  4.  Enable changing profile photo
-  5.  Create API to save changes
+  3.  * DONE *  Populate form fields
+  4.  Replace refresh token with a new one in the API response
+  5.  Enable changing profile photo
+  6.  Create API to save changes
 */
 
 init();
