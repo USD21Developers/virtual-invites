@@ -176,15 +176,14 @@ function populateInPersonResults(events) {
   allEvents.forEach((item) => {
     const li = document.createElement("li");
 
+    const timeZoneShort = moment.tz(item.eventDate, item.timezone).format("z");
+
     let dateTime = Intl.DateTimeFormat(prefs.locale, {
       dateStyle: "full",
       timeStyle: "short",
     }).format(new Date(item.eventDate));
 
     if (prefs.timeZone !== item.timezone) {
-      const timeZoneShort = moment
-        .tz(item.eventDate, item.timezone)
-        .format("z");
       dateTime =
         Intl.DateTimeFormat(prefs.locale, {
           dateStyle: "full",
@@ -280,11 +279,20 @@ function populateVirtualResults(events) {
 
     const timeZoneShort = moment.tz(item.eventDate, item.timezone).format("z");
 
-    const dateTime =
+    let dateTime =
       Intl.DateTimeFormat(prefs.locale, {
         dateStyle: "full",
         timeStyle: "short",
       }).format(new Date(item.eventDate)) + ` (${timeZoneShort})`;
+
+    if (prefs.timeZone !== item.timezone) {
+      dateTime =
+        Intl.DateTimeFormat(prefs.locale, {
+          dateStyle: "full",
+          timeStyle: "short",
+          timeZone: item.timezone,
+        }).format(new Date(item.eventDate)) + ` (${timeZoneShort})`;
+    }
 
     const distanceUnit = document.querySelector("#distanceUnit").value;
     const distance =
