@@ -193,6 +193,7 @@ function populateInPersonResults(events) {
     let dateTime = Intl.DateTimeFormat(prefs.locale, {
       dateStyle: "full",
       timeStyle: "short",
+      timeZone: prefs.timeZone,
     }).format(new Date(item.eventDate));
 
     if (prefs.timeZone !== item.timezone) {
@@ -289,33 +290,11 @@ function populateVirtualResults(events) {
   allEvents.forEach((item) => {
     const li = document.createElement("li");
 
-    let timeZoneShortName =
-      "(" + moment.tz(item.eventDate, item.timezone).format("z") + ")";
-    const isOutsideUSA = prefs.locale.indexOf("-US") < 0 ? true : false;
-    if (isOutsideUSA) {
-      const localOffsetMinutes = utcDate.getTimezoneOffset();
-      const hours = Math.abs(Math.floor(localOffsetMinutes / 60));
-      const minutes = Math.abs(localOffsetMinutes % 60);
-      const sign = localOffsetMinutes < 0 ? "+" : "-";
-      const offsetString = `${sign}${hours
-        .toString()
-        .padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
-      timeZoneShortName = offsetString;
-    }
-
     let dateTime = Intl.DateTimeFormat(prefs.locale, {
       dateStyle: "full",
       timeStyle: "short",
+      timeZone: item.timezone,
     }).format(new Date(item.eventDate));
-
-    if (prefs.timeZone !== item.timezone) {
-      dateTime =
-        Intl.DateTimeFormat(prefs.locale, {
-          dateStyle: "full",
-          timeStyle: "short",
-          timeZone: item.timezone,
-        }).format(new Date(item.eventDate)) + ` ${timeZoneShortName}`;
-    }
 
     const distanceUnit = document.querySelector("#distanceUnit").value;
     const distance =
