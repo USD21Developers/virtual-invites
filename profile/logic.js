@@ -2,6 +2,8 @@ let churches = [];
 
 let countries = [];
 
+let regContent = null;
+
 function openPhotoUploadModal(e) {
   e.preventDefault();
 }
@@ -133,9 +135,11 @@ async function onSubmit(e) {
 
   formErrorsReset();
 
-  const regPhrases = await fetch(`../register/i18n/${getLang()}.json`).then(
-    (res) => res.json()
-  );
+  if (!regContent) {
+    regContent = await fetch(`../register/i18n/${getLang()}.json`).then((res) =>
+      res.json()
+    );
+  }
 
   const password = document.querySelector("#password").value.trim() || "";
   const email =
@@ -144,24 +148,20 @@ async function onSubmit(e) {
   const lastname = document.querySelector("#lastname").value.trim() || "";
   const churchid = document.querySelector("#churchid").value.trim() || "";
 
-  if (!password.length) {
-    return formError("#password", getPhrase("passwordrequired", regPhrases));
-  }
-
   if (!email.length) {
-    return formError("#email", getPhrase("emailrequired", regPhrases));
+    return formError("#email", getPhrase("emailrequired", regContent));
   }
 
   if (!firstname.length) {
-    return formError("#firstname", getPhrase("firstnamerequired", regPhrases));
+    return formError("#firstname", getPhrase("firstnamerequired", regContent));
   }
 
   if (!lastname.length) {
-    return formError("#lastname", getPhrase("lastnamerequired", regPhrases));
+    return formError("#lastname", getPhrase("lastnamerequired", regContent));
   }
 
   if (!churchid.length) {
-    return formError("#churchid", getPhrase("churchrequired", regPhrases));
+    return formError("#churchid", getPhrase("churchrequired", regContent));
   }
 
   // TODO:  now do server-side validation
