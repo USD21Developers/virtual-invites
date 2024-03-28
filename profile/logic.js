@@ -128,6 +128,45 @@ function showProfilePhoto() {
   profilePhotoEl.appendChild(img);
 }
 
+async function onSubmit(e) {
+  e.preventDefault();
+
+  formErrorsReset();
+
+  const regPhrases = await fetch(`../register/i18n/${getLang()}.json`).then(
+    (res) => res.json()
+  );
+
+  const password = document.querySelector("#password").value.trim() || "";
+  const email =
+    document.querySelector("#email").value.trim().toLowerCase() || "";
+  const firstname = document.querySelector("#firstname").value.trim() || "";
+  const lastname = document.querySelector("#lastname").value.trim() || "";
+  const churchid = document.querySelector("#churchid").value.trim() || "";
+
+  if (!password.length) {
+    return formError("#password", getPhrase("passwordrequired", regPhrases));
+  }
+
+  if (!email.length) {
+    return formError("#email", getPhrase("emailrequired", regPhrases));
+  }
+
+  if (!firstname.length) {
+    return formError("#firstname", getPhrase("firstnamerequired", regPhrases));
+  }
+
+  if (!lastname.length) {
+    return formError("#lastname", getPhrase("lastnamerequired", regPhrases));
+  }
+
+  if (!churchid.length) {
+    return formError("#churchid", getPhrase("churchrequired", regPhrases));
+  }
+
+  // TODO:  now do server-side validation
+}
+
 function attachListeners() {
   document
     .querySelector("#profilePhoto")
@@ -136,6 +175,8 @@ function attachListeners() {
   document
     .querySelector("#cameraIcon")
     .addEventListener("click", openPhotoUploadModal);
+
+  document.querySelector("#profileform").addEventListener("submit", onSubmit);
 }
 
 async function init() {
