@@ -130,6 +130,14 @@ function showProfilePhoto() {
   profilePhotoEl.appendChild(img);
 }
 
+function onChurchChanged() {
+  const churchEl = document.querySelector("#churchid");
+  const churchName = churchEl.selectedOptions[0].getAttribute("data-name");
+  const churchNameEl = document.querySelector("#selectedChurchName");
+
+  churchNameEl.innerText = churchName;
+}
+
 async function onSubmit(e) {
   e.preventDefault();
 
@@ -177,6 +185,10 @@ function attachListeners() {
     .addEventListener("click", openPhotoUploadModal);
 
   document.querySelector("#profileform").addEventListener("submit", onSubmit);
+
+  document
+    .querySelector("#churchid")
+    .addEventListener("change", onChurchChanged);
 }
 
 async function init() {
