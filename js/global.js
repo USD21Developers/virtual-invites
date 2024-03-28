@@ -858,13 +858,14 @@ function getNextRecurringWeekday(date, time) {
   return futureDateTime.format("YYYY-MM-DD");
 }
 
-function getPhrase(key) {
+function getPhrase(key, source) {
   let content = "";
   const errorMessage = `phrase key "${key}" was not found`;
+  if (!source) source = pageContent;
   if (!key) throw errorMessage;
-  if (!pageContent.hasOwnProperty("phrases")) throw errorMessage;
-  if (!Array.isArray(pageContent.phrases)) throw errorMessage;
-  const phrase = pageContent.phrases.find((item) => item.key == key);
+  if (!source.hasOwnProperty("phrases")) throw errorMessage;
+  if (!Array.isArray(source.phrases)) throw errorMessage;
+  const phrase = source.phrases.find((item) => item.key == key);
   if (!phrase) throw errorMessage;
   content = phrase.translated || "";
   const hasChanges = Array.isArray(phrase.changes);
