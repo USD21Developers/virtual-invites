@@ -4,10 +4,6 @@ let countries = [];
 
 let regContent = null;
 
-function openPhotoUploadModal(e) {
-  e.preventDefault();
-}
-
 async function populateChurches() {
   const churchDropdown = document.querySelector("#churchid");
   const countryData = await getCountries(getLang());
@@ -176,14 +172,6 @@ async function onSubmit(e) {
 }
 
 function attachListeners() {
-  document
-    .querySelector("#profilePhoto")
-    .addEventListener("click", openPhotoUploadModal);
-
-  document
-    .querySelector("#cameraIcon")
-    .addEventListener("click", openPhotoUploadModal);
-
   document.querySelector("#profileform").addEventListener("submit", onSubmit);
 
   document

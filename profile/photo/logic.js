@@ -1,7 +1,3 @@
-let churches = [];
-
-let countries = [];
-
 let photoData = {
   url: "",
   points: "",
@@ -10,46 +6,6 @@ let photoData = {
 };
 
 let vanilla;
-
-async function getChurches() {
-  const churchesObj = await syncChurches();
-  churches = churchesObj.churches;
-  return churches;
-}
-
-function getCountries() {
-  return new Promise((resolve, reject) => {
-    const lang = getLang();
-    const servicesHost = getApiServicesHost();
-    const endpoint = `${servicesHost}/country-names/${lang}`;
-    let storedCountries = localStorage.getItem("countries");
-
-    if (!!storedCountries) {
-      if (
-        storedCountries.lang === lang &&
-        Array.isArray(storedCountries.names)
-      ) {
-        countries = storedCountries.names;
-        return resolve(storedCountries.names);
-      }
-    }
-
-    fetch(endpoint)
-      .then((res) => res.json())
-      .then((data) => {
-        const storedCountries = {
-          lang: lang,
-          names: data.countryNames.names,
-        };
-        localStorage.setItem("countries", JSON.stringify(storedCountries));
-        countries = data.countryNames.names;
-        return resolve(data.countryNames.names);
-      })
-      .catch((err) => {
-        return reject(err);
-      });
-  });
-}
 
 function getProfileImage() {
   if (!vanilla) return "";
@@ -76,11 +32,6 @@ function initCroppie() {
       });
       document.querySelector("head").appendChild(heicToAnyJS);
     });
-  }
-
-  function showRotateButtons() {
-    const rotateButtons = document.querySelector("#rotateButtons");
-    rotateButtons.removeAttribute("hidden");
   }
 
   function showTakeASelfie() {
@@ -138,7 +89,6 @@ function initCroppie() {
         .then(() => {
           photoPreviewSpinner.classList.add("d-none");
           submitButton.removeAttribute("disabled");
-          showRotateButtons();
           croppieContainer.addEventListener("update", function (evt) {
             const { points, zoom, orientation } = vanilla.get();
 
@@ -190,11 +140,6 @@ function initCroppie() {
     }
   }
 
-  function onRotate(evt) {
-    const degrees = evt.target.getAttribute("data-deg");
-    vanilla.rotate(parseInt(degrees));
-  }
-
   function attachListeners() {
     document
       .querySelector("#photoUpload")
@@ -203,10 +148,6 @@ function initCroppie() {
     document
       .querySelector("#photoCapture")
       .addEventListener("change", onPhotoSelected);
-
-    document.querySelectorAll(".rotate").forEach((item) => {
-      item.addEventListener("click", onRotate);
-    });
 
     document.querySelector(".mirror")?.addEventListener("click", (evt) => {
       onMirror(photoData, vanilla);
@@ -575,22 +516,14 @@ async function onSubmit(e) {
 
 function attachListeners() {
   document
-    .querySelector("#country")
-    .addEventListener("change", onCountryChange);
-  document
-    .querySelector("#churchid")
-    .addEventListener("change", onChurchChange);
-  document.querySelector("#formlogin").addEventListener("submit", onSubmit);
+    .querySelector("#formUpdatePhoto")
+    .addEventListener("submit", onSubmit);
 }
 
 async function init() {
   await populateContent();
-  Promise.all([getChurches(), getCountries()]).then(() => {
-    populateCountries();
-    attachListeners();
-    globalHidePageSpinner();
-  });
-
+  attachListeners();
+  globalHidePageSpinner();
   initCroppie();
 }
 

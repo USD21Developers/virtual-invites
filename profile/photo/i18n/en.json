@@ -1,0 +1,67 @@
+{
+  "metadata": {
+    "description": "Profile Photo",
+    "path": "/profile/photo/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Profile Photo",
+      "translated": "Profile Photo"
+    },
+    {
+      "key": "photo-byline",
+      "original": "To update your profile photo, please click the button below.",
+      "translated": "To update your profile photo, please click the button below."
+    },
+    {
+      "key": "update-button",
+      "original": "UPDATE",
+      "translated": "UPDATE"
+    },
+    {
+      "key": "rotate",
+      "original": "Rotate",
+      "translated": "Rotate"
+    },
+    {
+      "key": "takeASelfie",
+      "original": "Take a selfie",
+      "translated": "Take a selfie"
+    },
+    {
+      "key": "selectAPhoto",
+      "original": "Select a photo",
+      "translated": "Select a photo"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
