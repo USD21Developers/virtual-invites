@@ -7,6 +7,25 @@ label {
   display: none;
 }
 
+#profilePhoto {
+  background-color: #ccc;
+  background-size: contain;
+  background-image: url("../stars.webp");
+  background-repeat: no-repeat;
+  background-position: top center;
+  border: 2px solid #345593;
+  border-radius: 50%;
+  display: inline-block;
+  height: auto;
+  width: 200px;
+}
+
+#profilePhoto img {
+  border-radius: 50%;
+  height: auto;
+  width: 100%;
+}
+
 /* label[for="photoUpload"],
 label[for="photoCapture"] {
   background-color: #006699;

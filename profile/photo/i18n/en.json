@@ -10,8 +10,8 @@
   "phrases": [
     {
       "key": "pagetitle",
-      "original": "Profile Photo",
-      "translated": "Profile Photo"
+      "original": "My Photo",
+      "translated": "My Photo"
     },
     {
       "key": "breadcrumbHome",
@@ -30,8 +30,8 @@
     },
     {
       "key": "photo-byline",
-      "original": "To update your profile photo, please click the button below.",
-      "translated": "To update your profile photo, please click the button below."
+      "original": "To change your photo, upload a new one below.",
+      "translated": "To change your photo, upload a new one below."
     },
     {
       "key": "update-button",
@@ -50,8 +50,13 @@
     },
     {
       "key": "selectAPhoto",
-      "original": "Select a photo",
-      "translated": "Select a photo"
+      "original": "Select photo",
+      "translated": "Select photo"
+    },
+    {
+      "key": "profilePhoto",
+      "original": "Photo of {FIRST-NAME} {LAST-NAME}",
+      "translated": "Photo of {FIRST-NAME} {LAST-NAME}"
     }
   ],
 
