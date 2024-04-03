@@ -226,208 +226,18 @@ function showProfilePhotoError() {
   customScrollTo("#profilePhotoHeadline");
 }
 
-function validate() {
-  document
-    .querySelectorAll(".is-invalid")
-    .forEach((item) => item.classList.remove("is-invalid"));
-  document
-    .querySelectorAll(".invalid-feedback")
-    .forEach((item) => (item.innerHTML = ""));
-  return new Promise(async (resolve, reject) => {
-    const username =
-      document.querySelector("#username").value.trim().toLowerCase() || "";
-    const password = document.querySelector("#password").value.trim() || "";
-    const email =
-      document.querySelector("#email").value.trim().toLowerCase() || "";
-    const firstname = document.querySelector("#firstname").value.trim() || "";
-    const lastname = document.querySelector("#lastname").value.trim() || "";
-    const gender = document.querySelector("input[name=gender]:checked")
-      ? document.querySelector("input[name=gender]:checked").value
-      : "";
-    const country = document.querySelector("#country").value.trim() || "";
-    const churchid = document.querySelector("#churchid").value.trim() || "";
-    const unlistedchurch =
-      document.querySelector("#unlistedchurch").value.trim() || "";
-    const profileImage = await getProfileImage();
-
-    if (!username.length) {
-      formError("#username", getPhrase("usernamerequired"));
-      return resolve(false);
-    }
-
-    if (!password.length) {
-      formError("#password", getPhrase("passwordrequired"));
-      return resolve(false);
-    }
-
-    if (!email.length) {
-      formError("#email", getPhrase("emailrequired"));
-      return resolve(false);
-    }
-
-    if (!firstname.length) {
-      formError("#firstname", getPhrase("firstnamerequired"));
-      return resolve(false);
-    }
-
-    if (!lastname.length) {
-      formError("#lastname", getPhrase("lastnamerequired"));
-      return resolve(false);
-    }
-
-    if (!gender.length) {
-      const invalidFeedbackGender = document.querySelector(
-        ".invalid-feedback-gender"
-      );
-      invalidFeedbackGender.innerText = getPhrase("genderrequired");
-      invalidFeedbackGender.style.display = "block";
-      customScrollTo("#gendercontainer");
-      return resolve(false);
-    }
-
-    if (!country.length) {
-      formError("#country", getPhrase("countryrequired"));
-      document
-        .querySelector("#country")
-        .parentElement.querySelector(".invalid-feedback").innerText =
-        getPhrase("countryrequired");
-      document.querySelector("#churchid").selectedIndex = 0;
-      document.querySelector("#churchcontainer").classList.add("d-none");
-      document.querySelector("#unlistedchurch").value = "";
-      document
-        .querySelector("#unlistedchurchcontainer")
-        .classList.add("d-none");
-      return resolve(false);
-    }
-
-    if (!churchid.length) {
-      formError("#churchid", getPhrase("churchrequired"));
-      return resolve(false);
-    }
-
-    if (churchid == 0 && !unlistedchurch.length) {
-      formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
-      return resolve(false);
-    }
-
-    if (profileImage === "") {
-      showProfilePhotoError();
-      return resolve(false);
-    }
-
-    return resolve(true);
-  });
-}
-
-function onChurchChange(e) {
-  const churchid = e.target.value;
-  const unlistedchurch = document.querySelector("#unlistedchurch");
-  const unlistedchurchcontainer = document.querySelector(
-    "#unlistedchurchcontainer"
-  );
-
-  unlistedchurch.value = "";
-  unlistedchurchcontainer.classList.add("d-none");
-
-  if (churchid == 0) {
-    unlistedchurchcontainer.classList.remove("d-none");
-  }
-}
-
-function onCountryChange(e) {
-  const countryCode = e.target.value;
-  const churchContainer = document.querySelector("#churchcontainer");
-  const churchSelect = document.querySelector("#churchid");
-  const churchesInCountry = churches.filter(
-    (item) => item.country == countryCode
-  );
-  const unlistedchurchcontainer = document.querySelector(
-    "#unlistedchurchcontainer"
-  );
-  const country = document.querySelector("#country");
-  const unlistedchurch = document.querySelector("#unlistedchurch");
-  const defaultOption = document.createElement("option");
-
-  // Sort churches alphabetically
-  churchesInCountry.sort((a, b) => (a.name > b.name ? 1 : -1));
-
-  // Clear existing church dropdown options
-  churchSelect.innerHTML = "";
-
-  // Add default church dropdown option
-  defaultOption.value = "";
-  defaultOption.innerText = getPhrase("selectchurch");
-  churchSelect.appendChild(defaultOption);
-
-  // Populate church dropdown options
-  churchesInCountry.forEach((item) => {
-    const option = document.createElement("option");
-    option.value = item.id;
-    option.innerText = item.name;
-    churchSelect.appendChild(option);
-  });
-
-  // Add option for ICC churches that aren't in our database yet
-  const unlistedOption = document.createElement("option");
-  unlistedOption.value = "0";
-  unlistedOption.innerText = getPhrase("notListedOption");
-  churchSelect.appendChild(unlistedOption);
-
-  churchSelect.parentElement.classList.add("has-value");
-
-  // Hide text input for unlisted church
-  unlistedchurchcontainer.classList.add("d-none");
-  unlistedchurch.value = "";
-
-  // Hide errors if a valid country was selected
-  if (country.selectedIndex !== 0) {
-    country.classList.remove("is-invalid");
-    country.parentElement.querySelector(".invalid-feedback").innerHTML = "";
-    churchContainer.classList.remove("d-none");
-    return;
-  }
-
-  churchContainer.classList.add("d-none");
-  unlistedchurch.value = "";
-}
-
 async function onSubmit(e) {
   e.preventDefault();
 
   formErrorsReset();
-  const isvalid = await validate();
-  if (!isvalid) return;
 
+  const profileImage = await getProfileImage();
   const spinner = document.querySelector("#progressbar");
   const submitButton = document.querySelector("#formsubmit");
-  const username =
-    document.querySelector("#username").value.trim().toLowerCase() || "";
-  const password = document.querySelector("#password").value.trim() || "";
-  const email =
-    document.querySelector("#email").value.trim().toLowerCase() || "";
-  const firstname = document.querySelector("#firstname").value.trim() || "";
-  const lastname = document.querySelector("#lastname").value.trim() || "";
-  const gender = document.querySelector("input[name='gender']:checked").value;
-  const country = document.querySelector("#country").value.trim() || "";
-  const churchid = document.querySelector("#churchid").value.trim() || "";
-  const unlistedchurch =
-    document.querySelector("#unlistedchurch").value.trim() || "";
-  const profileImage = await getProfileImage();
-  const emailSenderText = getPhrase("emailSenderText");
-  const emailSubject = getPhrase("emailSubject");
-  let emailParagraph1 = getPhrase("emailParagraph1");
-  const emailLinkText = getPhrase("emailLinkText");
-  const emailSignature = getPhrase("emailSignature");
-  const lang = getLang() || "en";
-  const endpoint = `${getApiHost()}/register`;
-  const dataKey = await invitesCrypto.generateKey();
   const controller = new AbortController();
   const signal = controller.signal;
-
-  emailParagraph1 = emailParagraph1.replaceAll(
-    "${fullname}",
-    `${firstname} ${lastname}`
-  );
+  const endpoint = `${getApiHost()}/profile-photo`;
+  const accessToken = await getAccessToken();
 
   hide(submitButton);
   show(spinner);
@@ -436,26 +246,11 @@ async function onSubmit(e) {
     mode: "cors",
     method: "POST",
     body: JSON.stringify({
-      username: username,
-      password: password,
-      email: email,
-      firstname: firstname,
-      lastname: lastname,
-      gender: gender,
-      country: country,
-      churchid: churchid,
-      unlistedchurch: unlistedchurch,
       profileImage: profileImage,
-      lang: lang,
-      emailSenderText: emailSenderText,
-      emailSubject: emailSubject,
-      emailParagraph1: emailParagraph1,
-      emailLinkText: emailLinkText,
-      emailSignature: emailSignature,
-      dataKey: dataKey,
     }),
     headers: new Headers({
       "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
     }),
     signal: signal,
   })
@@ -465,67 +260,13 @@ async function onSubmit(e) {
       hide(spinner);
 
       switch (data.msg) {
-        case "username missing":
-          formError("#username", getPhrase("usernamerequired"));
-          break;
-        case "password missing":
-          formError("#password", getPhrase("passwordrequired"));
-          break;
-        case "e-mail missing":
-          formError("#email", getPhrase("emailrequired"));
-          break;
-        case "invalid e-mail":
-          formError("#email", getPhrase("invalidemail"));
-          break;
-        case "first name missing":
-          formError("#firstname", getPhrase("firstnamerequired"));
-          break;
-        case "last name missing":
-          formError("#lastname", getPhrase("lastnamerequired"));
-          break;
-        case "gender missing":
-          const invalidFeedbackGender = document.querySelector(
-            ".invalid-feedback-gender"
-          );
-          invalidFeedbackGender.innerText = getPhrase("genderrequired");
-          invalidFeedbackGender.style.display = "block";
-          customScrollTo("#gendercontainer");
-          break;
-        case "country missing":
-          formError("#country", getPhrase("countryrequired"));
-          break;
-        case "churchid missing":
-          formError("#churchid", getPhrase("churchrequired"));
-          break;
-        case "unlisted church missing":
-          formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
-          break;
-        case "username already exists":
-          formError("#username", getPhrase("duplicateusername"));
-          break;
-        case "e-mail already exists":
-          formError("#email", getPhrase("duplicateemail"));
-          break;
-        case "password not complex enough":
-          formError("#password", getPhrase("passwordNotComplexEnough"));
-          const modalMessage = `
-            <p>${getPhrase("passwordNotComplexEnoughLine1")}</p>
-            <p>${getPhrase("passwordNotComplexEnoughLine2")}</p>
-          `;
-          showModal(modalMessage, getPhrase("invalidpassword"));
-          break;
         case "profile photo missing":
           showProfilePhotoError();
           break;
-        case "confirmation e-mail sent":
-          const defaultContent = document.querySelector("#contentdefault");
-          const doneContent = document.querySelector("#contentdone");
-
-          hide(defaultContent);
-          show(doneContent);
-          break;
-        default:
-          showModal(getPhrase("glitch"), getPhrase("glitchHeadline"));
+        case "photo updated":
+          sessionStorage.setItem("accessToken", data.accessToken);
+          localStorage.setItem("refreshToken", data.refreshToken);
+          window.location.href = "../";
           break;
       }
     });
