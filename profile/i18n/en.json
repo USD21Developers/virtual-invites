@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "description": "Profile",
+    "description": "My Profile",
     "path": "/profile/",
     "lang": {
       "original": "en",
@@ -10,8 +10,8 @@
   "phrases": [
     {
       "key": "pagetitle",
-      "original": "Profile",
-      "translated": "Profile"
+      "original": "My Profile",
+      "translated": "My Profile"
     },
     {
       "key": "breadcrumbHome",
