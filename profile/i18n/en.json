@@ -57,6 +57,11 @@
       "key": "church",
       "original": "Church:",
       "translated": "Church:"
+    },
+    {
+      "key": "updatephoto",
+      "original": "Update photo",
+      "translated": "Update photo"
     }
   ],
 

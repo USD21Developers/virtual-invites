@@ -4,7 +4,7 @@
   background-image: url("./stars.webp");
   background-repeat: no-repeat;
   background-position: top center;
-  border: 2px solid #345593;
+  border: 2px solid #1b2c4c;
   border-radius: 50%;
   display: inline-block;
   height: auto;
@@ -21,6 +21,12 @@
 #cameraIcon {
   cursor: pointer;
   margin-top: -24px;
+}
+
+#cameraIcon_label {
+  color: #1b2c4c;
+  font-size: 10px;
+  z-index: 2;
 }
 
 .usernameLabel {
