@@ -78,11 +78,6 @@ function initCroppie() {
     });
   }
 
-  function showRotateButtons() {
-    const rotateButtons = document.querySelector("#rotateButtons");
-    rotateButtons.removeAttribute("hidden");
-  }
-
   function showTakeASelfie() {
     const form = document.querySelector("#formTakeASelfie");
     const testElement = document.createElement("input");
@@ -138,7 +133,6 @@ function initCroppie() {
         .then(() => {
           photoPreviewSpinner.classList.add("d-none");
           submitButton.removeAttribute("disabled");
-          showRotateButtons();
           croppieContainer.addEventListener("update", function (evt) {
             const { points, zoom, orientation } = vanilla.get();
 
@@ -158,6 +152,7 @@ function initCroppie() {
         })
         .then((response) => {
           photoData.url = response;
+          customScrollTo("#photoPreviewContainer", 70);
         });
     };
 
@@ -170,6 +165,7 @@ function initCroppie() {
 
       submitButton.setAttribute("disabled", "disabled");
       photoPreviewSpinner.classList.remove("d-none");
+      customScrollTo("#photoPreviewSpinner", 70);
 
       await loadHeic2Any();
 
@@ -190,11 +186,6 @@ function initCroppie() {
     }
   }
 
-  function onRotate(evt) {
-    const degrees = evt.target.getAttribute("data-deg");
-    vanilla.rotate(parseInt(degrees));
-  }
-
   function attachListeners() {
     document
       .querySelector("#photoUpload")
@@ -204,10 +195,6 @@ function initCroppie() {
       .querySelector("#photoCapture")
       .addEventListener("change", onPhotoSelected);
 
-    document.querySelectorAll(".rotate").forEach((item) => {
-      item.addEventListener("click", onRotate);
-    });
-
     document.querySelector(".mirror")?.addEventListener("click", (evt) => {
       onMirror(photoData, vanilla);
     });
@@ -215,6 +202,7 @@ function initCroppie() {
 
   function init() {
     attachListeners();
+    showProfilePhoto();
     showTakeASelfie();
   }
 
@@ -259,7 +247,7 @@ function showProfilePhotoError() {
 
   photoIsRequired.classList.remove("d-none");
 
-  customScrollTo("#profilePhotoHeadline");
+  customScrollTo("#profilePhotoHeadline", 70);
 }
 
 function validate() {
