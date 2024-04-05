@@ -1,7 +1,12 @@
 #profilePhoto {
   background-color: #ccc;
   background-size: contain;
-  background-image: url("./stars.webp");
+  background: rgb(76, 123, 212);
+  background: radial-gradient(
+    circle,
+    rgba(76, 123, 212, 1) 0%,
+    rgba(52, 85, 147, 1) 90%
+  );
   background-repeat: no-repeat;
   background-position: top center;
   border: 2px solid #1b2c4c;
@@ -13,8 +18,8 @@
 
 #profilePhoto img {
   border-radius: 50%;
-  height: auto;
-  width: 100%;
+  height: 200px;
+  width: 200px;
 }
 
 #profilePhoto,

@@ -216,6 +216,7 @@ function showProfilePhoto() {
   img.setAttribute("height", 200);
   img.setAttribute("alt", altText);
   img.setAttribute("title", altText);
+  img.setAttribute("onerror", `this.onerror=null;this.src='';this.alt='';`);
 
   profilePhotoEl.appendChild(img);
 }

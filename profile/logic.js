@@ -68,12 +68,24 @@ function populateForm() {
 
         const photoLinkEl = document.querySelector("#profilePhoto");
 
+        const refreshTokenObject = JSON.parse(
+          atob(localStorage.getItem("refreshToken").split(".")[1])
+        );
+
+        const { gender } = refreshTokenObject;
+
+        const defaultImg =
+          gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
         const img = document.createElement("img");
         img.setAttribute("src", user.profilephoto);
         img.setAttribute("alt", altText);
         img.setAttribute("title", altText);
         img.setAttribute("width", 140);
         img.setAttribute("height", 140);
+        img.setAttribute(
+          "onerror",
+          `this.onerror=null;this.src='';this.alt='';`
+        );
 
         photoLinkEl.innerHTML = "";
         photoLinkEl.appendChild(img);
@@ -110,7 +122,6 @@ function showProfilePhoto() {
   );
   const { firstname, lastname, profilephoto } = refreshToken;
   const profilePhoto400 = profilephoto;
-  const profilePhoto140 = profilePhoto400.replaceAll("400.jpg", "140.jpg");
   const profilePhotoEl = document.querySelector("#profilePhoto");
   const altText = getPhrase("profilePhoto")
     .replaceAll("{FIRST-NAME}", firstname)
