@@ -108,6 +108,7 @@ function initCroppie() {
         })
         .then((response) => {
           photoData.url = response;
+          customScrollTo("#photoPreviewContainer", 70);
         });
     };
 
@@ -120,6 +121,7 @@ function initCroppie() {
 
       submitButton.setAttribute("disabled", "disabled");
       photoPreviewSpinner.classList.remove("d-none");
+      customScrollTo("#photoPreviewSpinner", 70);
 
       await loadHeic2Any();
 
@@ -223,7 +225,7 @@ function showProfilePhotoError() {
 
   photoIsRequired.classList.remove("d-none");
 
-  customScrollTo("#profilePhotoHeadline");
+  customScrollTo("#profilePhotoHeadline", 70);
 }
 
 async function onSubmit(e) {
