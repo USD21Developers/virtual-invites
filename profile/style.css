@@ -1,19 +1,13 @@
 #profilePhoto {
-  background-color: #ccc;
-  background-size: contain;
-  background: rgb(76, 123, 212);
+  background: rgb(45, 74, 126);
   background: radial-gradient(
     circle,
     rgba(76, 123, 212, 1) 0%,
     rgba(52, 85, 147, 1) 90%
   );
-  background-repeat: no-repeat;
-  background-position: top center;
-  border: 2px solid #1b2c4c;
+  border: 2px solid #5e7daf;
   border-radius: 50%;
   display: inline-block;
-  height: auto;
-  width: 200px;
 }
 
 #profilePhoto img {

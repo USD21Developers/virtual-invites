@@ -18,11 +18,9 @@ label {
   );
   background-repeat: no-repeat;
   background-position: top center;
-  border: 2px solid #345593;
+  border: 2px solid #5e7daf;
   border-radius: 50%;
   display: inline-block;
-  height: 200px;
-  width: 200px;
 }
 
 #profilePhoto img {
