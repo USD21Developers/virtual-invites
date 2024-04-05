@@ -200,15 +200,4 @@ async function init() {
   globalHidePageSpinner();
 }
 
-/*
-  TO DO:
-  1.  * DONE *  Populate churches field from localStorage (sorted by country)
-  2.  * DONE *  Sync churches with API asynchronously, with a callback that repopulates churches field again
-  3.  * DONE *  Populate form fields
-  4.  If user changes church, repopulate the full name of the church just beneath the <select> element
-  5.  Replace refresh token with a new one in the API response
-  6.  Enable changing profile photo
-  7.  Create API to save changes
-*/
-
 init();
