@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "An application to send virtual invites to church functions for the International Christian Churches (SoldOut Discipling Movement)",
   "scripts": {
+    "build": "workbox injectManifest workbox-config.js",
     "start": "serve -p 5555",
     "ssh:staging": "ssh staginginvites@usd21.org -i ~/.ssh/usd21/id_rsa -p 1773",
     "ssh:prod": "ssh invitesusd21@usd21.org -i ~/.ssh/usd21/id_rsa -p 1773",
@@ -31,7 +32,8 @@
   "homepage": "https://invites.mobi/",
   "devDependencies": {
     "daemonite-material": "^4.1.1",
-    "serve": "^14.1.2"
+    "serve": "^14.1.2",
+    "workbox-cli": "^7.0.0"
   },
   "dependencies": {
     "datatables.net-plugins": "^1.13.6"
