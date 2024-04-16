@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "An application to send virtual invites for church functions that are organized by the International Christian Churches (SoldOut Discipling Movement)",
   "scripts": {
-    "build": "node sw-generator.js",
     "start": "serve -p 5555",
+    "build": "node sw-generator.js",
     "ssh:staging": "ssh staginginvites@usd21.org -i ~/.ssh/usd21/id_rsa -p 1773",
     "ssh:prod": "ssh invitesusd21@usd21.org -i ~/.ssh/usd21/id_rsa -p 1773",
     "deploy:staging": "ssh staginginvites@usd21.org -i ~/.ssh/usd21/id_rsa -p 1773 \"bash /home/staginginvites/pull.sh\"",
