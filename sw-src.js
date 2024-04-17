@@ -1,6 +1,5 @@
 // Import Workbox libraries
 import { precacheAndRoute } from "workbox-precaching";
-import { StaleWhileRevalidate } from "workbox-strategies";
 
 // Precache and route all assets
 precacheAndRoute(self.__WB_MANIFEST);
