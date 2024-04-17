@@ -1,10 +1,10 @@
-const workbox = require("workbox-build");
+const { injectManifest } = require("workbox-build");
 
-workbox.generateSW({
-  cacheId: "Invites_v1",
+injectManifest({
   globDirectory: "./",
   globPatterns: ["**/*.{html,css,js}"],
   globIgnores: [
+    "sw-generator.js",
     "sw.js",
     "sw-src.js",
     "workbox-config.js",
@@ -50,17 +50,12 @@ workbox.generateSW({
     "css/material-4.1.1-dist/css/material.min.css",
     "css/material-4.1.1-dist/js/material.js",
   ],
+  swSrc: "./sw-src.js",
   swDest: "./sw.js",
-  runtimeCaching: [
-    {
-      urlPattern: /\/i18n\/..\.json/,
-      handler: "StaleWhileRevalidate",
-      options: {
-        cacheName: "translations",
-        expiration: {
-          maxAgeSeconds: 1800,
-        },
-      },
-    },
-  ],
-});
+})
+  .then(({ count, size, warnings }) => {
+    // Optionally, log any warnings or metrics.
+    warnings.forEach(console.warn);
+    console.log(`${count} files will be precached, totaling ${size} bytes.`);
+  })
+  .catch(console.error);
