@@ -196,8 +196,8 @@
     },
     {
       "key": "onThisDevice",
-      "original": "(on this device)",
-      "translated": "(on this device)"
+      "original": "on this device",
+      "translated": "on this device"
     },
     {
       "key": "notificationClarification",
