@@ -243,6 +243,61 @@
       "key": "reload",
       "original": "Reload?",
       "translated": "Reload?"
+    },
+    {
+      "key": "webPushPermissionHeadline",
+      "original": "Permission Request",
+      "translated": "Permission Request"
+    },
+    {
+      "key": "webPushPermissionParagraph1",
+      "original": "In order to receive push notifications, your device needs to obtain your permission first. This is necessary for your security.",
+      "translated": "In order to receive push notifications, your device needs to obtain your permission first. This is necessary for your security."
+    },
+    {
+      "key": "webPushPermissionParagraph2",
+      "original": "Your device will now prompt you for permission.",
+      "translated": "Your device will now prompt you for permission."
+    },
+    {
+      "key": "webPushPermissionParagraph3",
+      "original": "Ready?",
+      "translated": "Ready?"
+    },
+    {
+      "key": "webPushPermissionButton",
+      "original": "Grant permission",
+      "translated": "Grant permission"
+    },
+    {
+      "key": "webPushBlockedHeadline",
+      "original": "Push Notifications Blocked",
+      "translated": "Push Notifications Blocked"
+    },
+    {
+      "key": "webPushBlockedParagraph1",
+      "original": "You denied permission to enable push notifications. As a result, your device will now block all push notifications from this app.",
+      "translated": "You denied permission to enable push notifications. As a result, your device will now block all push notifications from this app.",
+      "changes": [
+        {
+          "original": "block",
+          "translated": "block",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "webPushUnblockHeadline",
+      "original": "How to Unblock Notifications",
+      "translated": "How to Unblock Notifications"
+    },
+    {
+      "key": "webPushBlockedParagraph2",
+      "original": "In case you change your mind, the only way to unblock push notifications on this device is by directly updating your browser's notification settings.",
+      "translated": "In case you change your mind, the only way to unblock push notifications on this device is by directly updating your browser's notification settings."
     }
   ],
 

@@ -37,3 +37,7 @@ label {
 #notificationClarification a {
   white-space: nowrap;
 }
+
+#webPushDeniedModal [data-i18n="webPushBlockedParagraph1"] strong {
+  color: var(--danger);
+}

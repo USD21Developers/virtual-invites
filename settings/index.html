@@ -471,6 +471,79 @@
       </form>
     </div>
 
+    <!-- Modal to prepare the user for a permission request for Web Push -->
+    <div
+      class="modal fade"
+      id="webPushModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" data-i18n="webPushPermissionHeadline"></h5>
+            <button type="button" class="close" aria-label="">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-3">
+            <div data-i18n="webPushPermissionParagraph1"></div>
+
+            <p class="text-center text-danger mt-4">
+              <strong
+                style="font-weight: 500"
+                data-i18n="webPushPermissionParagraph2"
+              ></strong>
+            </p>
+
+            <p class="text-center mt-4">
+              <strong
+                class="large"
+                data-i18n="webPushPermissionParagraph3"
+              ></strong>
+            </p>
+
+            <div class="text-center mt-4 mb-3 pb-1">
+              <button
+                class="btn btn-primary"
+                id="buttonWebPushRequestPermission"
+                data-i18n="webPushPermissionButton"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for when user denies permission request for Web Push -->
+    <div
+      class="modal fade"
+      id="webPushDeniedModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" data-i18n="webPushBlockedHeadline"></h4>
+            <button type="button" class="close" aria-label="">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-4">
+            <p data-i18n="webPushBlockedParagraph1"></p>
+
+            <h4 data-i18n="webPushUnblockHeadline"></h4>
+            <p class="mb-2" data-i18n="webPushBlockedParagraph2"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Modal -->
     <div
       class="modal fade"

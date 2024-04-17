@@ -72,20 +72,36 @@ function populateInviteTextExample() {
     });
 }
 
+function showWebPushDeniedModal() {
+  //
+}
+
+function showWebPushGetReadyModal() {
+  $("#webPushModal").modal();
+}
+
+function showWebPushNotSupportedModal() {
+  //
+}
+
 function onEnablePushClicked(e) {
   const isChecked = e.target.checked ? true : false;
+  const isMobile = isMobileDevice();
 
   if (isChecked) {
     if ("Notification" in window) {
       if (Notification.permission === "granted") {
         e.target.checked = true;
       } else if (Notification.permission === "denied") {
+        showWebPushDeniedModal();
         e.target.checked = false;
       } else {
         e.target.checked = isChecked;
+        showWebPushGetReadyModal();
       }
     } else {
       e.target.checked = isChecked;
+      showWebPushNotSupportedModal();
     }
   }
 }
@@ -143,11 +159,26 @@ async function onSubmit(e) {
   syncSettings();
 }
 
+function onWebPushRequested() {
+  navigator.serviceWorker.ready.then((swReg) => {
+    // Do we already have a push message subscription?
+    swReg.pushManager.getSubscription().then((subscription) => {
+      if (!subscription) {
+        console.log("No Subscription endpoint present");
+      }
+      debugger;
+    });
+  });
+}
+
 function attachListeners() {
   document.querySelector("#settingsForm").addEventListener("submit", onSubmit);
   document
     .querySelector("#notifyViaPush")
     .addEventListener("click", onEnablePushClicked);
+  document
+    .querySelector("#buttonWebPushRequestPermission")
+    .addEventListener("click", onWebPushRequested);
   document
     .querySelector("#toggleCustomTextInstructions")
     .addEventListener("toggle", (e) => {
