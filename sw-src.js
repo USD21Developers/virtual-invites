@@ -1,8 +1,11 @@
 // Import Workbox libraries
-import { precacheAndRoute } from "workbox-precaching";
+// import { precacheAndRoute } from "workbox-precaching";
+importScripts(
+  "https://storage.googleapis.com/workbox-cdn/releases/6.5.3/workbox-sw.js"
+);
 
 // Precache and route all assets
-precacheAndRoute(self.__WB_MANIFEST);
+workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 
 // Add runtime caching
 self.addEventListener("fetch", (event) => {
