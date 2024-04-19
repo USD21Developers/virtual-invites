@@ -2,7 +2,7 @@ const { injectManifest } = require("workbox-build");
 
 injectManifest({
   globDirectory: "./",
-  globPatterns: ["**/*.{html,css,js}"],
+  globPatterns: ["**/*.{html,css,js,svg,gif,png,jpg}"],
   globIgnores: [
     "sw-generator.js",
     "sw.js",
@@ -54,8 +54,20 @@ injectManifest({
   swDest: "./sw.js",
 })
   .then(({ count, size, warnings }) => {
+    const formatBytes = (bytes) => {
+      if (bytes < 1024) {
+        return bytes + " bytes";
+      } else if (bytes < 1024 * 1024) {
+        return (bytes / 1024).toFixed(1) + " kb";
+      } else {
+        return (bytes / (1024 * 1024)).toFixed(1) + " mb";
+      }
+    };
+
     // Optionally, log any warnings or metrics.
     warnings.forEach(console.warn);
-    console.log(`${count} files will be precached, totaling ${size} bytes.`);
+    console.log(
+      `${count} files will be precached, totaling ${formatBytes(size)}.`
+    );
   })
   .catch(console.error);
