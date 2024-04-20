@@ -141,6 +141,7 @@ function onSubmit(e) {
           const updatedInvitesPromise = syncUpdatedInvites();
           const notesPromise = syncAllNotes();
           const settingsPromise = syncSettings();
+          const pushSubscriptionPromise = syncPushSubscription();
           await Promise.allSettled([
             countriesPromise,
             churchesPromise,
@@ -149,6 +150,7 @@ function onSubmit(e) {
             updatedInvitesPromise,
             notesPromise,
             settingsPromise,
+            pushSubscriptionPromise,
           ]);
 
           let redirectUrl = "../";
