@@ -401,7 +401,11 @@
               </div>
 
               <!-- Notify via push message -->
-              <div class="form-check">
+              <div
+                class="form-check"
+                id="notifyViaPushContainer"
+                class="d-none"
+              >
                 <label for="notifyViaPush" class="d-block">
                   <input
                     class="form-check-input"
@@ -477,13 +481,17 @@
       id="webPushModal"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="modaltitle"
+      aria-labelledby="webPushPermissionHeadline"
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" data-i18n="webPushPermissionHeadline"></h5>
+            <h4
+              class="modal-title"
+              id="webPushPermissionHeadline"
+              data-i18n="webPushPermissionHeadline"
+            ></h4>
             <button
               type="button"
               class="close"
@@ -534,7 +542,11 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" data-i18n="webPushBlockedHeadline"></h4>
+            <h4
+              class="modal-title"
+              id="webPushBlockedHeadline"
+              data-i18n="webPushBlockedHeadline"
+            ></h4>
             <button
               type="button"
               class="close"
@@ -548,7 +560,44 @@
             <p data-i18n="webPushBlockedParagraph1"></p>
 
             <h4 data-i18n="webPushUnblockHeadline"></h4>
-            <p class="mb-2" data-i18n="webPushBlockedParagraph2"></p>
+            <p class="mb-3" data-i18n="webPushBlockedParagraph2"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Web Push is not supported in user's browser -->
+    <div
+      class="modal fade"
+      id="webPushNotSupportedModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="webPushNotSupportedHeadline"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4
+              id="webPushNotSupportedHeadline"
+              class="modal-title"
+              data-i18n="webPushNotSupportedHeadline"
+            ></h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-4">
+            <p data-i18n="webPushNotSupportedParagraph1"></p>
+            <p
+              class="mb-2 d-none"
+              data-i18n="webPushNotSupportedParagraph2"
+            ></p>
           </div>
         </div>
       </div>

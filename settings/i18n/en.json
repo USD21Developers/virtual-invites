@@ -271,13 +271,13 @@
     },
     {
       "key": "webPushBlockedHeadline",
-      "original": "Push Notifications Blocked",
-      "translated": "Push Notifications Blocked"
+      "original": "Push Notifications are Blocked",
+      "translated": "Push Notifications are Blocked"
     },
     {
       "key": "webPushBlockedParagraph1",
-      "original": "You denied permission to enable push notifications. As a result, your device will now block all push notifications from this app.",
-      "translated": "You denied permission to enable push notifications. As a result, your device will now block all push notifications from this app.",
+      "original": "Earlier, when a prompt on your screen requested your permission to enable push notifications for this app, you denied the request. As a result, your device will now block all push notifications from this app.",
+      "translated": "Earlier, when a prompt on your screen requested your permission to enable push notifications for this app, you denied the request. As a result, your device will now block all push notifications from this app.",
       "changes": [
         {
           "original": "block",
@@ -291,13 +291,48 @@
     },
     {
       "key": "webPushUnblockHeadline",
-      "original": "How to Unblock Notifications",
-      "translated": "How to Unblock Notifications"
+      "original": "How to Unblock",
+      "translated": "How to Unblock"
     },
     {
       "key": "webPushBlockedParagraph2",
-      "original": "In case you change your mind, the only way to unblock push notifications on this device is by directly updating your browser's notification settings.",
-      "translated": "In case you change your mind, the only way to unblock push notifications on this device is by directly updating your browser's notification settings."
+      "original": "In case you change your mind, the only way to unblock push notifications on this device is by opening your browser's notification settings. Within your browser's settings, you will need to remove invites.mobi from the list of blocked domain names.",
+      "translated": "In case you change your mind, the only way to unblock push notifications on this device is by opening your browser's notification settings. Within your browser's settings, you will need to remove invites.mobi from the list of blocked domain names.",
+      "changes": [
+        {
+          "original": "invites.mobi",
+          "translated": "invites.mobi",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "webPushNotSupportedHeadline",
+      "original": "Not Supported",
+      "translated": "Not Supported"
+    },
+    {
+      "key": "webPushNotSupportedParagraph1",
+      "original": "Push notifications are not supported with this Web browser, on this device.",
+      "translated": "Push notifications are not supported with this Web browser, on this device."
+    },
+    {
+      "key": "webPushNotSupportedParagraph2",
+      "original": "You might try visiting invites.mobi with the Web browser on your mobile phone instead.",
+      "translated": "You might try visiting invites.mobi with the Web browser on your mobile phone instead.",
+      "changes": [
+        {
+          "original": "invites.mobi",
+          "translated": "invites.mobi",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
     }
   ],
 
