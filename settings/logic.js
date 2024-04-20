@@ -48,15 +48,7 @@ function getPushSubscription() {
             JSON.stringify(pushSubscription)
           );
 
-          const date = new Date().toISOString();
-          localforage
-            .setItem("unsyncedPushSubscription", {
-              date: date,
-              pushSubscription: pushSubscription,
-            })
-            .then(() => {
-              syncPushSubscription();
-            });
+          syncPushSubscription();
         })
         .catch(function (error) {
           console.error("Error checking subscription:", error);

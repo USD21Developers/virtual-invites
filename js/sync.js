@@ -262,62 +262,61 @@ function syncFollowing() {
 }
 
 function syncPushSubscription() {
-  return new Promise(async (resolve, reject) => {
-    const unsyncedPushSubscription = await localforage.getItem(
-      "unsyncedPushSubscription"
-    );
-    const isOnline = navigator.onLine;
-    const controller = new AbortController();
-    const timeout = 60000;
-    const endpoint = `${getApiHost()}/subscribe-web-push`;
+  return new Promise((resolve, reject) => {
+    navigator.serviceWorker.ready.then((registration) => {
+      registration.pushManager.getSubscription().then(async (subscription) => {
+        if (!subscription) return resolve();
+        const isOnline = navigator.onLine;
+        const controller = new AbortController();
+        const timeout = 60000;
+        const endpoint = `${getApiHost()}/subscribe-web-push`;
 
-    if (!unsyncedPushSubscription) {
-      return resolve();
-    }
+        if (!isOnline) {
+          return reject(
+            new Error("Push subscription sync failed: user is offline")
+          );
+        }
 
-    if (!isOnline) {
-      return reject(
-        new Error("Push subscription sync failed: user is offline")
-      );
-    }
+        console.log("Syncing push subscription...");
 
-    console.log("Syncing push subscription...");
+        const accessToken = await getAccessToken();
+        let syncSuccessful = false;
 
-    const accessToken = await getAccessToken();
-    let syncSuccessful = false;
+        fetch(endpoint, {
+          mode: "cors",
+          method: "POST",
+          body: JSON.stringify({
+            subscriptionObject: subscription,
+          }),
+          headers: new Headers({
+            "Content-Type": "application/json",
+            authorization: `Bearer ${accessToken}`,
+          }),
+          keepalive: true,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.msg === "subscribed to web push") {
+              syncSuccessful = true;
+              console.log("Push subscription synced");
+              return resolve();
+            }
 
-    fetch(endpoint, {
-      mode: "cors",
-      method: "POST",
-      body: JSON.stringify({
-        subscriptionObject: unsyncedPushSubscription,
-      }),
-      headers: new Headers({
-        "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`,
-      }),
-      keepalive: true,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // Remove unsynced push subscription because sync succeeded
-        localforage.removeItem("unsyncedPushSubscription");
+            throw new Error(data.msg);
+          })
+          .catch((err) => {
+            console.error("Push subscription sync failed: ", err);
+            return reject(new Error(err));
+          });
 
-        syncSuccessful = true;
-        console.log("Push subscription synced");
-        return resolve();
-      })
-      .catch((err) => {
-        console.error("Push subscription failed: ", err);
-        return reject(new Error(err));
+        setTimeout(() => {
+          if (!syncSuccessful) {
+            controller.abort();
+            return reject(new Error("Push subscription sync timed out"));
+          }
+        }, timeout);
       });
-
-    setTimeout(() => {
-      if (!syncSuccessful) {
-        controller.abort();
-        return reject(new Error("Updated invites sync timed out"));
-      }
-    }, timeout);
+    });
   });
 }
 
