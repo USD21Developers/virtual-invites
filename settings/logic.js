@@ -288,6 +288,7 @@ async function init() {
       await populateForm();
     }
   });
+  syncPushSubscription();
   showPushNotificationsCheckbox();
   await populateContent();
   populateInviteTextExample();
