@@ -266,19 +266,22 @@ function syncPushSubscription() {
     const unsyncedPushSubscription = await localforage.getItem(
       "unsyncedPushSubscription"
     );
-    const isOnlien = navigator.onLine;
     const isOnline = navigator.onLine;
     const controller = new AbortController();
     const timeout = 60000;
     const endpoint = `${getApiHost()}/subscribe-web-push`;
 
-    console.log("Syncing push subscription...");
+    if (!unsyncedPushSubscription) {
+      return resolve();
+    }
 
     if (!isOnline) {
       return reject(
         new Error("Push subscription sync failed: user is offline")
       );
     }
+
+    console.log("Syncing push subscription...");
 
     const accessToken = await getAccessToken();
     let syncSuccessful = false;
