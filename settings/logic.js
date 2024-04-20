@@ -256,15 +256,7 @@ async function onSubmit(e) {
 }
 
 function onWebPushRequested() {
-  navigator.serviceWorker.ready.then((swReg) => {
-    // Do we already have a push message subscription?
-    swReg.pushManager.getSubscription().then((subscription) => {
-      if (!subscription) {
-        console.log("No Subscription endpoint present");
-      }
-      debugger;
-    });
-  });
+  getPushSubscription();
 }
 
 function attachListeners() {
