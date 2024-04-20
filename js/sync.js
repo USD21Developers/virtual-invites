@@ -261,6 +261,63 @@ function syncFollowing() {
   });
 }
 
+function syncPushSubscription() {
+  return new Promise(async (resolve, reject) => {
+    const unsyncedPushSubscription = await localforage.getItem(
+      "unsyncedPushSubscription"
+    );
+    const isOnlien = navigator.onLine;
+    const isOnline = navigator.onLine;
+    const controller = new AbortController();
+    const timeout = 60000;
+    const endpoint = `${getApiHost()}/subscribe-web-push`;
+
+    console.log("Syncing push subscription...");
+
+    if (!isOnline) {
+      return reject(
+        new Error("Push subscription sync failed: user is offline")
+      );
+    }
+
+    const accessToken = await getAccessToken();
+    let syncSuccessful = false;
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "POST",
+      body: JSON.stringify({
+        subscriptionObject: unsyncedPushSubscription,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+      keepalive: true,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // Remove unsynced push subscription because sync succeeded
+        localforage.removeItem("unsyncedPushSubscription");
+
+        syncSuccessful = true;
+        console.log("Push subscription synced");
+        return resolve();
+      })
+      .catch((err) => {
+        console.error("Push subscription failed: ", err);
+        return reject(new Error(err));
+      });
+
+    setTimeout(() => {
+      if (!syncSuccessful) {
+        controller.abort();
+        return reject(new Error("Updated invites sync timed out"));
+      }
+    }, timeout);
+  });
+}
+
 function syncUpdatedInvites() {
   return new Promise(async (resolve, reject) => {
     const unsyncedFollowups =

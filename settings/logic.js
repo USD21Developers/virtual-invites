@@ -1,3 +1,72 @@
+function getPushSubscription() {
+  if ("serviceWorker" in navigator && "PushManager" in window) {
+    navigator.serviceWorker.ready.then(function (registration) {
+      registration.pushManager
+        .getSubscription()
+        .then(function (subscription) {
+          if (subscription) {
+            // Push subscription already exists
+            return console.log(
+              "Push subscription already exists:",
+              subscription
+            );
+          }
+
+          // No push subscription exists
+          console.log("Requesting push subscription...");
+
+          const urlBase64ToUint8Array = (base64String) => {
+            const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+            const base64 = (base64String + padding)
+              .replace(/\-/g, "+")
+              .replace(/_/g, "/");
+
+            const rawData = window.atob(base64);
+            const outputArray = new Uint8Array(rawData.length);
+
+            for (let i = 0; i < rawData.length; ++i) {
+              outputArray[i] = rawData.charCodeAt(i);
+            }
+            return outputArray;
+          };
+
+          const VAPID_PUBLIC_KEY =
+            window.location.hostname === "localhost"
+              ? "BKnHjp6KUZvweNGC36UO8MnmydUW-xqgANz4K9UovnZpJXx4uWNa4aP1MJ_eFfj66s6kridOKRUA-Wy05FceJoY"
+              : "BLvcNxeIt_iASml9uC0DGSN0Akkeoc-QxoeGjz09FLu7G3YLxLTftw0pIKOqFtwdssmqQeWnKAfIAs98RmnQUP4";
+
+          const subscribeOptions = {
+            userVisibleOnly: true,
+            applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
+          };
+
+          return registration.pushManager.subscribe(subscribeOptions);
+        })
+        .then(function (pushSubscription) {
+          console.log(
+            "Push subscription obtained",
+            JSON.stringify(pushSubscription)
+          );
+
+          const date = new Date().toISOString();
+          localforage
+            .setItem("unsyncedPushSubscription", {
+              date: date,
+              pushSubscription: pushSubscription,
+            })
+            .then(() => {
+              syncPushSubscription();
+            });
+        })
+        .catch(function (error) {
+          console.error("Error checking subscription:", error);
+        });
+    });
+  } else {
+    console.warn("Push messaging is not supported");
+  }
+}
+
 function populateForm() {
   return new Promise(async (resolve, reject) => {
     const settings = (await localforage.getItem("settings")) || null;
@@ -72,8 +141,24 @@ function populateInviteTextExample() {
     });
 }
 
+function showPushNotificationsCheckbox() {
+  const el = document.querySelector("#notifyViaPushContainer");
+  const pushIsSupported = "Notification" in window ? true : false;
+
+  if (pushIsSupported) {
+    el.classList.remove("d-none");
+  }
+}
+
 function showWebPushDeniedModal() {
-  //
+  const domainName = document.querySelector(
+    "[data-i18n=webPushBlockedParagraph2] strong"
+  );
+  domainName.innerText = domainName.innerText.replace(
+    "invites.mobi",
+    window.location.hostname
+  );
+  $("#webPushDeniedModal").modal();
 }
 
 function showWebPushGetReadyModal() {
@@ -81,17 +166,28 @@ function showWebPushGetReadyModal() {
 }
 
 function showWebPushNotSupportedModal() {
-  //
+  if (!isMobileDevice()) {
+    const paragraph2 = document.querySelector(
+      "[data-i18n=webPushNotSupportedParagraph2]"
+    );
+    const domainNameEl = paragraph2.querySelector("strong");
+    domainNameEl.innerText = domainNameEl.innerText.replace(
+      "invites.mobi",
+      window.location.hostname
+    );
+    paragraph2.classList.remove("d-none");
+  }
+
+  $("#webPushNotSupportedModal").modal();
 }
 
 function onEnablePushClicked(e) {
   const isChecked = e.target.checked ? true : false;
-  const isMobile = isMobileDevice();
 
   if (isChecked) {
     if ("Notification" in window) {
       if (Notification.permission === "granted") {
-        e.target.checked = true;
+        getPushSubscription();
       } else if (Notification.permission === "denied") {
         showWebPushDeniedModal();
         e.target.checked = false;
@@ -192,6 +288,7 @@ async function init() {
       await populateForm();
     }
   });
+  showPushNotificationsCheckbox();
   await populateContent();
   populateInviteTextExample();
   await populateForm();
