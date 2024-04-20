@@ -1058,8 +1058,11 @@ function hide(selector) {
 }
 
 function isMobileDevice() {
-  const result = "ontouchstart" in document.documentElement ? true : false;
-  return result;
+  return (
+    "ontouchstart" in window ||
+    navigator.maxTouchPoints > 0 ||
+    navigator.msMaxTouchPoints > 0
+  );
 }
 
 async function populateContent(customEndpoint, variable = "pageContent") {
