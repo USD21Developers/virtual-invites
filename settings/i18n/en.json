@@ -346,8 +346,8 @@
     },
     {
       "key": "webPushNowAuthorized",
-      "original": "You have successfully authorized Push notifications.",
-      "translated": "You have successfully authorized Push notifications."
+      "original": "You have successfully authorized push notifications.",
+      "translated": "You have successfully authorized push notifications."
     }
   ],
 
