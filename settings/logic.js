@@ -48,7 +48,10 @@ function getPushSubscription() {
             JSON.stringify(pushSubscription)
           );
 
+          $(".modal").modal("hide");
+
           syncPushSubscription();
+          syncSettings();
         })
         .catch(function (error) {
           console.error("Error checking subscription:", error);
@@ -150,10 +153,12 @@ function showWebPushDeniedModal() {
     "invites.mobi",
     window.location.hostname
   );
+  $(".modal").modal("hide");
   $("#webPushDeniedModal").modal();
 }
 
 function showWebPushGetReadyModal() {
+  $(".modal").modal("hide");
   $("#webPushModal").modal();
 }
 
@@ -170,6 +175,7 @@ function showWebPushNotSupportedModal() {
     paragraph2.classList.remove("d-none");
   }
 
+  $(".modal").modal("hide");
   $("#webPushNotSupportedModal").modal();
 }
 
