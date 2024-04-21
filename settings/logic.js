@@ -51,7 +51,8 @@ function getPushSubscription() {
           $(".modal").modal("hide");
 
           syncPushSubscription();
-          syncSettings();
+
+          showToast(getPhrase("webPushNowAuthorized"), 5000, "success");
         })
         .catch(function (error) {
           console.error("Error checking subscription:", error);
