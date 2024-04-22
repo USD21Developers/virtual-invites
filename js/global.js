@@ -1598,13 +1598,22 @@ function initGlobal() {
 
 initGlobal();
 
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register("/sw.js")
-    .then((registration) => {
-      console.log("Service Worker registered:", registration);
-    })
-    .catch((error) => {
-      console.error("Service Worker registration failed:", error);
-    });
+const pagesWithoutServiceWorker = [
+  "/i/",
+  "/i/alt/",
+  "/unsubscribe/",
+  "/unsubscribe/done/",
+];
+
+if (!pagesWithoutServiceWorker.includes(window.location.pathname)) {
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("/sw.js")
+      .then((registration) => {
+        console.log("Service Worker registered:", registration);
+      })
+      .catch((error) => {
+        console.error("Service Worker registration failed:", error);
+      });
+  }
 }
