@@ -1605,7 +1605,11 @@ const pagesWithoutServiceWorker = [
   "/unsubscribe/done/",
 ];
 
-if (!pagesWithoutServiceWorker.includes(window.location.pathname)) {
+const serveThisPageFromServiceWorker = !pagesWithoutServiceWorker.includes(
+  window.location.pathname
+);
+
+if (serveThisPageFromServiceWorker) {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("/sw.js")
