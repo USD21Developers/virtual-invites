@@ -258,6 +258,24 @@ function onWebPushRequested() {
   getPushSubscription();
 }
 
+async function onTestWebPushClick() {
+  const endpoint = `${getApiHost()}/test-web-push`;
+  const accessToken = await getAccessToken();
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "POST",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
+}
+
 function attachListeners() {
   document.querySelector("#settingsForm").addEventListener("submit", onSubmit);
   document
@@ -271,6 +289,10 @@ function attachListeners() {
     .addEventListener("toggle", (e) => {
       console.log(e);
     });
+
+  document
+    .querySelector("#testWebPush")
+    .addEventListener("click", onTestWebPushClick);
 }
 
 async function init() {
