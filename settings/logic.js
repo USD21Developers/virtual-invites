@@ -50,9 +50,7 @@ function getPushSubscription() {
 
             $(".modal").modal("hide");
 
-            syncPushSubscription({
-              action: "create",
-            });
+            syncPushSubscription();
 
             showToast(getPhrase("webPushNowAuthorized"), 5000, "success");
 
