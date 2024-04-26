@@ -1,74 +1,3 @@
-function getPushSubscription() {
-  return new Promise((resolve, reject) => {
-    if ("serviceWorker" in navigator && "PushManager" in window) {
-      navigator.serviceWorker.ready.then(function (registration) {
-        registration.pushManager
-          .getSubscription()
-          .then(function (subscription) {
-            if (subscription) {
-              // Push subscription already exists
-              console.log("Push subscription already exists:", subscription);
-
-              return resolve(subscription);
-            }
-
-            // No push subscription exists
-            console.log("Requesting push subscription...");
-
-            const urlBase64ToUint8Array = (base64String) => {
-              const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
-              const base64 = (base64String + padding)
-                .replace(/\-/g, "+")
-                .replace(/_/g, "/");
-
-              const rawData = window.atob(base64);
-              const outputArray = new Uint8Array(rawData.length);
-
-              for (let i = 0; i < rawData.length; ++i) {
-                outputArray[i] = rawData.charCodeAt(i);
-              }
-              return outputArray;
-            };
-
-            const VAPID_PUBLIC_KEY =
-              window.location.hostname === "localhost"
-                ? "BKnHjp6KUZvweNGC36UO8MnmydUW-xqgANz4K9UovnZpJXx4uWNa4aP1MJ_eFfj66s6kridOKRUA-Wy05FceJoY"
-                : "BLvcNxeIt_iASml9uC0DGSN0Akkeoc-QxoeGjz09FLu7G3YLxLTftw0pIKOqFtwdssmqQeWnKAfIAs98RmnQUP4";
-
-            const subscribeOptions = {
-              userVisibleOnly: true,
-              applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
-            };
-
-            return registration.pushManager.subscribe(subscribeOptions);
-          })
-          .then(function (pushSubscription) {
-            console.log(
-              "Push subscription obtained",
-              JSON.stringify(pushSubscription)
-            );
-
-            $(".modal").modal("hide");
-
-            syncPushSubscription();
-
-            showToast(getPhrase("webPushNowAuthorized"), 5000, "success");
-
-            return resolve(pushSubscription);
-          })
-          .catch(function (error) {
-            console.error("Error checking subscription:", error);
-            return reject(error);
-          });
-      });
-    } else {
-      const msg = "Push messaging is not supported";
-      console.warn(msg);
-      return reject(new Error(msg));
-    }
-  });
-}
-
 function populateForm() {
   return new Promise(async (resolve, reject) => {
     const settings = (await localforage.getItem("settings")) || null;
@@ -192,13 +121,15 @@ function showWebPushNotSupportedModal() {
   $("#webPushNotSupportedModal").modal();
 }
 
-function onEnablePushClicked(e) {
+async function onEnablePushClicked(e) {
   const isChecked = e.target.checked ? true : false;
 
   if (isChecked) {
     if ("Notification" in window) {
       if (Notification.permission === "granted") {
-        getPushSubscription();
+        $(".modal").modal("hide");
+        showToast(getPhrase("webPushNowAuthorized"), 5000, "success");
+        syncPushSubscription();
       } else if (Notification.permission === "denied") {
         showWebPushDeniedModal();
         e.target.checked = false;

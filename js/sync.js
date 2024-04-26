@@ -266,6 +266,42 @@ function syncPushSubscription() {
     navigator.serviceWorker.ready.then((registration) => {
       registration.pushManager.getSubscription().then(async (subscription) => {
         if (!subscription) return resolve();
+
+        const subscriptionHash = await invitesCrypto.hash(
+          JSON.stringify(subscription)
+        );
+
+        let pushSubscriptionMetadata = localStorage.getItem(
+          "pushSubscriptionMetadata"
+        );
+
+        const storePushSubscriptionMetadata = () => {
+          localStorage.setItem(
+            "pushSubscriptionMetadata",
+            JSON.stringify({
+              date: new Date().toISOString(),
+              hash: subscriptionHash,
+            })
+          );
+
+          pushSubscriptionMetadata = localStorage.getItem(
+            "pushSubscriptionMetadata"
+          );
+        };
+
+        // If subscription has been changed or is new, store its metadata in localStorage
+        if (pushSubscriptionMetadata && pushSubscriptionMetadata.length) {
+          const { hash } = JSON.parse(pushSubscriptionMetadata);
+          if (hash !== subscriptionHash) {
+            storePushSubscriptionMetadata();
+          } else {
+            // If subscription exists and remains unchanged, abort the sync
+            return resolve();
+          }
+        } else {
+          storePushSubscriptionMetadata();
+        }
+
         const isOnline = navigator.onLine;
         const controller = new AbortController();
         const timeout = 60000;
