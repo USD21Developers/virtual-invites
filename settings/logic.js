@@ -104,7 +104,13 @@ function populateForm() {
       enableEmailNotifications;
 
     // Enable Push Notificadtions
-    document.querySelector("#notifyViaPush").checked = enablePushNotifications;
+    document.querySelector("#notifyViaPush").checked = false;
+    if ("Notification" in window) {
+      if (Notification.permission === "granted") {
+        document.querySelector("#notifyViaPush").checked =
+          enablePushNotifications;
+      }
+    }
 
     // Auto-add to follow up list
     document.querySelector("#autoAddToFollowUpList").checked =
