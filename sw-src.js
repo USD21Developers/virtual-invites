@@ -101,7 +101,7 @@ function getAccessToken() {
 // If the push subscription changes (e.g. expires and is auto-renewed), update the it on the server
 self.addEventListener("pushsubscriptionchange", async (event) => {
   const { oldSubscription, newSubscription } = event;
-  const endpoint = `${getApiHost}/update-web-push-subscription`;
+  const endpoint = `${getApiHost}/push-update-subscription`;
   const accessToken = await getAccessToken();
 
   event.waitUntil(

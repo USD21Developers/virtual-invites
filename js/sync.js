@@ -269,7 +269,7 @@ function syncPushSubscription() {
         const isOnline = navigator.onLine;
         const controller = new AbortController();
         const timeout = 60000;
-        const endpoint = `${getApiHost()}/subscribe-web-push`;
+        const endpoint = `${getApiHost()}/push-subscribe`;
 
         if (!isOnline) {
           return reject(

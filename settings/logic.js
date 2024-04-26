@@ -270,8 +270,10 @@ function onWebPushRequested() {
   getPushSubscription();
 }
 
-async function onTestWebPushClick() {
-  const endpoint = `${getApiHost()}/test-web-push`;
+async function onTestWebPushClick(e) {
+  e.preventDefault();
+
+  const endpoint = `${getApiHost()}/push-test`;
   const accessToken = await getAccessToken();
 
   fetch(endpoint, {
