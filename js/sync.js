@@ -302,7 +302,7 @@ function syncPushSubscription() {
               return resolve();
             }
 
-            throw new Error(data.msg);
+            return resolve(data.msg);
           })
           .catch((err) => {
             console.error("Push subscription sync failed: ", err);
