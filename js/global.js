@@ -56,6 +56,7 @@ var hidden, visibilityChange;
   hide
   hideToast
   isMobileDevice
+  isPushPermitted
   populateContent
   populateGlobalContent
   popupQuantityOfEvents
@@ -1063,6 +1064,16 @@ function isMobileDevice() {
     navigator.maxTouchPoints > 0 ||
     navigator.msMaxTouchPoints > 0
   );
+}
+
+function isPushPermitted() {
+  let isPermitted = false;
+  if ("Notification" in window) {
+    if (Notification.permission === "granted") {
+      isPermitted = true;
+    }
+  }
+  return isPermitted;
 }
 
 async function populateContent(customEndpoint, variable = "pageContent") {
