@@ -277,8 +277,6 @@ function syncPushSubscription() {
           );
         }
 
-        console.log("Syncing push subscription...");
-
         const accessToken = await getAccessToken();
         let syncSuccessful = false;
 
@@ -296,16 +294,14 @@ function syncPushSubscription() {
         })
           .then((res) => res.json())
           .then((data) => {
-            if (data.msg === "subscribed to web push") {
+            if (data.msgType === "success") {
               syncSuccessful = true;
-              console.log("Push subscription synced");
               return resolve();
             }
 
-            return resolve(data.msg);
+            return reject(data.msg);
           })
           .catch((err) => {
-            console.error("Push subscription sync failed: ", err);
             return reject(new Error(err));
           });
 
