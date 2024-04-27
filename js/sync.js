@@ -296,7 +296,9 @@ function syncPushSubscription() {
             storePushSubscriptionMetadata();
           } else {
             // If subscription exists and remains unchanged, abort the sync
-            return resolve();
+            if (window.location.hostname !== "localhost") {
+              return resolve();
+            }
           }
         } else {
           storePushSubscriptionMetadata();
