@@ -137,14 +137,19 @@ async function onEnablePushClicked(e) {
   if (isChecked) {
     if ("Notification" in window) {
       if (Notification.permission === "granted") {
-        $(".modal").modal("hide");
-        showToast(getPhrase("webPushNowAuthorized"), 5000, "success");
-        if (navigator.onLine) syncPushSubscription();
+        const pushSubscription = await getPushSubscription();
+        if (typeof pushSubscription === "object") {
+          if (navigator.onLine) {
+            syncPushSubscription();
+          }
+        } else {
+          e.target.checked = false;
+        }
       } else if (Notification.permission === "denied") {
         showWebPushDeniedModal();
         e.target.checked = false;
       } else {
-        e.target.checked = isChecked;
+        e.target.checked = false;
         showWebPushGetReadyModal();
       }
     } else {
