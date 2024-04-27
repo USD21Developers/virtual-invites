@@ -346,8 +346,13 @@
     },
     {
       "key": "webPushNowAuthorized",
-      "original": "Push notifications are now authorized.",
-      "translated": "Push notifications are now authorized."
+      "original": "Push notifications are now enabled on this device.",
+      "translated": "Push notifications are now enabled on this device."
+    },
+    {
+      "key": "webPushSomethingWentWrong",
+      "original": "There was a problem enabling push notifications. Please try again.",
+      "translated": "There was a problem enabling push notifications. Please try again."
     }
   ],
 
