@@ -296,12 +296,12 @@
     },
     {
       "key": "webPushBlockedParagraph2",
-      "original": "In case you change your mind, the only way to unblock push notifications on this device is by opening your browser's notification settings. Within your browser's settings, you will need to remove invites.mobi from the list of blocked domain names.",
-      "translated": "In case you change your mind, the only way to unblock push notifications on this device is by opening your browser's notification settings. Within your browser's settings, you will need to remove invites.mobi from the list of blocked domain names.",
+      "original": "In case you change your mind, the only way to unblock push notifications on this device is by opening your browser's notification settings. Within your browser's Notifications settings, you will need to remove Invites from the list of blocked domain names.",
+      "translated": "In case you change your mind, the only way to unblock push notifications on this device is by opening your browser's notification settings. Within your browser's Notifications settings, you will need to remove Invites from the list of blocked domain names.",
       "changes": [
         {
-          "original": "invites.mobi",
-          "translated": "invites.mobi",
+          "original": "Invites",
+          "translated": "Invites",
           "bold": true,
           "italic": false,
           "underline": false,
