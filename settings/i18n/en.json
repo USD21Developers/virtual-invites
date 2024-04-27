@@ -296,8 +296,8 @@
     },
     {
       "key": "webPushBlockedParagraph2",
-      "original": "In case you change your mind, the only way to unblock push notifications on this device is by opening your browser's notification settings. Within your browser's Notifications settings, you will need to remove Invites from the list of blocked domain names.",
-      "translated": "In case you change your mind, the only way to unblock push notifications on this device is by opening your browser's notification settings. Within your browser's Notifications settings, you will need to remove Invites from the list of blocked domain names.",
+      "original": "In case you change your mind, the only way to unblock push notifications on this device is by opening your device's Settings. Find the section that pertains to Notifications and open it. Now find the setting for the Invites app, and reenable notifications.",
+      "translated": "In case you change your mind, the only way to unblock push notifications on this device is by opening your device's Settings. Find the section that pertains to Notifications and open it. Now find the setting for the Invites app, and reenable notifications.",
       "changes": [
         {
           "original": "Invites",
