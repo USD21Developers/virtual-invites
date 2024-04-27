@@ -213,7 +213,51 @@ async function onSubmit(e) {
 }
 
 function onWebPushRequested() {
-  getPushSubscription();
+  Notification.requestPermission()
+    .then(async (permission) => {
+      switch (permission) {
+        case "default":
+          document.querySelector("#notifyViaPush").checked = false;
+          $(".modal").modal("hide");
+          break;
+        case "denied":
+          document.querySelector("#notifyViaPush").checked = false;
+          $(".modal").modal("hide");
+          showWebPushDeniedModal();
+          break;
+        case "granted":
+          const subscription = await getPushSubscription();
+          if (typeof subscription === "object") {
+            showToast(
+              getPhrase("webPushNowAuthorized"),
+              5000,
+              "success",
+              ".snackbar",
+              true
+            );
+            document.querySelector("#notifyViaPush").checked = true;
+            $(".modal").modal("hide");
+            if (navigator.onLine) {
+              syncPushSubscription();
+            }
+          } else {
+            document.querySelector("#notifyViaPush").checked = false;
+            $(".modal").modal("hide");
+            showToast(
+              getPhrase("webPushSomethingWentWrong"),
+              5000,
+              "danger",
+              ".snackbar",
+              true
+            );
+          }
+          break;
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      $(".modal").modal("hide");
+    });
 }
 
 async function onTestWebPushClick(e) {
