@@ -266,8 +266,8 @@
     },
     {
       "key": "webPushPermissionButton",
-      "original": "Grant permission",
-      "translated": "Grant permission"
+      "original": "Prompt Me",
+      "translated": "Prompt Me"
     },
     {
       "key": "webPushBlockedHeadline",
