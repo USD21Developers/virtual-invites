@@ -252,6 +252,10 @@ function onWebPushRequested() {
             );
           }
           break;
+        default:
+          document.querySelector("#notifyViaPush").checked = false;
+          $(".modal").modal("hide");
+          break;
       }
     })
     .catch((error) => {
