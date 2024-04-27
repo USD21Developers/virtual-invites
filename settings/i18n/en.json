@@ -316,8 +316,8 @@
     },
     {
       "key": "webPushNotSupportedParagraph1",
-      "original": "Push notifications on this device will only work if you open the browser's menu and select 'Add To Home Screen,' which will install the app's icon onto your device's home screen. This is a security measure that is required by the creator of your Web browser.",
-      "translated": "Push notifications on this device will only work if you open the browser's menu and select 'Add To Home Screen,' which will install the app's icon onto your device's home screen. This is a security measure that is required by the creator of your Web browser.",
+      "original": "Push notifications on this device will only work if you open the browser's menu and select 'Add To Home Screen,' which will install the icon for this app onto your device's home screen. This is a security measure that is required by the creator of your Web browser.",
+      "translated": "Push notifications on this device will only work if you open the browser's menu and select 'Add To Home Screen,' which will install the icon for this app onto your device's home screen. This is a security measure that is required by the creator of your Web browser.",
       "changes": [
         {
           "original": "Add To Home Screen",
