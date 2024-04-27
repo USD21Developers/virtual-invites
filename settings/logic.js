@@ -32,12 +32,15 @@ function populateForm() {
     document.querySelector("#notifyViaEmail").checked =
       enableEmailNotifications;
 
-    // Enable Push Notificadtions
+    // Enable Push Notifications
     document.querySelector("#notifyViaPush").checked = false;
     if ("Notification" in window) {
       if (Notification.permission === "granted") {
-        document.querySelector("#notifyViaPush").checked =
-          enablePushNotifications;
+        const pushSubscription = await getPushSubscription();
+        if (typeof pushSubscription === "object") {
+          document.querySelector("#notifyViaPush").checked =
+            enablePushNotifications;
+        }
       }
     }
 
@@ -80,7 +83,14 @@ function populateInviteTextExample() {
 
 function showPushNotificationsCheckbox() {
   const el = document.querySelector("#notifyViaPushContainer");
-  const pushIsSupported = "Notification" in window ? true : false;
+  let pushIsSupported = "Notification" in window ? true : false;
+
+  if (typeof navigator.standalone !== undefined) {
+    // Specific to iOS. If iOS, display mode must be standalone.
+    if (!navigator.standalone) {
+      pushIsSupported = false;
+    }
+  }
 
   if (pushIsSupported) {
     el.classList.remove("d-none");
