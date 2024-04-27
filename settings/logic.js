@@ -139,7 +139,7 @@ async function onEnablePushClicked(e) {
       if (Notification.permission === "granted") {
         $(".modal").modal("hide");
         showToast(getPhrase("webPushNowAuthorized"), 5000, "success");
-        syncPushSubscription();
+        if (navigator.onLine) syncPushSubscription();
       } else if (Notification.permission === "denied") {
         showWebPushDeniedModal();
         e.target.checked = false;
@@ -256,7 +256,7 @@ async function init() {
       await populateForm();
     }
   });
-  syncPushSubscription();
+  if (navigator.onLine) syncPushSubscription();
   showPushNotificationsCheckbox();
   await populateContent();
   populateInviteTextExample();
