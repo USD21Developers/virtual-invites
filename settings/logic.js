@@ -129,6 +129,7 @@ function showWebPushNotSupportedModal() {
 
   $(".modal").modal("hide");
   $("#webPushNotSupportedModal").modal();
+  document.querySelector("#notifyViaPush").checked = false;
 }
 
 async function onEnablePushClicked(e) {
