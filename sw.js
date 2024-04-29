@@ -40,10 +40,11 @@ self.addEventListener("push", (event) => {
 
 // Handle notification click event
 self.addEventListener("notificationclick", (event) => {
-  const { title, body, data } = event.notification;
+  const { data } = event.notification;
+  const { followUpURL } = data;
   console.log(event.notification);
   event.notification.close();
-  event.waitUntil(clients.openWindow("https://example.com"));
+  event.waitUntil(clients.openWindow(followUpURL));
 });
 
 function setCountry(country) {
