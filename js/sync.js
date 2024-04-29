@@ -263,101 +263,108 @@ function syncFollowing() {
 
 function syncPushSubscription() {
   return new Promise((resolve, reject) => {
-    navigator.serviceWorker.ready.then((registration) => {
-      registration.pushManager
-        .getSubscription()
-        .then(async (subscription) => {
-          if (!subscription) return resolve();
+    navigator.serviceWorker.ready
+      .then((registration) => {
+        if (!registration) {
+          throw new Error("push subscription does not exist");
+        }
+        registration.pushManager
+          .getSubscription()
+          .then(async (subscription) => {
+            if (!subscription) return resolve();
 
-          const subscriptionHash = await invitesCrypto.hash(
-            JSON.stringify(subscription)
-          );
-
-          let pushSubscriptionMetadata = localStorage.getItem(
-            "pushSubscriptionMetadata"
-          );
-
-          const storePushSubscriptionMetadata = () => {
-            localStorage.setItem(
-              "pushSubscriptionMetadata",
-              JSON.stringify({
-                date: new Date().toISOString(),
-                hash: subscriptionHash,
-              })
+            const subscriptionHash = await invitesCrypto.hash(
+              JSON.stringify(subscription)
             );
 
-            pushSubscriptionMetadata = localStorage.getItem(
+            let pushSubscriptionMetadata = localStorage.getItem(
               "pushSubscriptionMetadata"
             );
-          };
 
-          // If subscription has been changed or is new, store its metadata in localStorage
-          if (pushSubscriptionMetadata && pushSubscriptionMetadata.length) {
-            const { hash } = JSON.parse(pushSubscriptionMetadata);
-            if (hash !== subscriptionHash) {
-              storePushSubscriptionMetadata();
+            const storePushSubscriptionMetadata = () => {
+              localStorage.setItem(
+                "pushSubscriptionMetadata",
+                JSON.stringify({
+                  date: new Date().toISOString(),
+                  hash: subscriptionHash,
+                })
+              );
+
+              pushSubscriptionMetadata = localStorage.getItem(
+                "pushSubscriptionMetadata"
+              );
+            };
+
+            // If subscription has been changed or is new, store its metadata in localStorage
+            if (pushSubscriptionMetadata && pushSubscriptionMetadata.length) {
+              const { hash } = JSON.parse(pushSubscriptionMetadata);
+              if (hash !== subscriptionHash) {
+                storePushSubscriptionMetadata();
+              } else {
+                // If subscription exists and remains unchanged, abort the sync
+                if (window.location.hostname !== "localhost") {
+                  return resolve();
+                }
+              }
             } else {
-              // If subscription exists and remains unchanged, abort the sync
-              if (window.location.hostname !== "localhost") {
-                return resolve();
-              }
+              storePushSubscriptionMetadata();
             }
-          } else {
-            storePushSubscriptionMetadata();
-          }
 
-          const isOnline = navigator.onLine;
-          const controller = new AbortController();
-          const timeout = 60000;
-          const endpoint = `${getApiHost()}/push-subscribe`;
+            const isOnline = navigator.onLine;
+            const controller = new AbortController();
+            const timeout = 60000;
+            const endpoint = `${getApiHost()}/push-subscribe`;
 
-          if (!isOnline) {
-            return reject(
-              new Error("Push subscription sync failed: user is offline")
-            );
-          }
+            if (!isOnline) {
+              return reject(
+                new Error("Push subscription sync failed: user is offline")
+              );
+            }
 
-          const accessToken = await getAccessToken();
-          let syncSuccessful = false;
+            const accessToken = await getAccessToken();
+            let syncSuccessful = false;
 
-          fetch(endpoint, {
-            mode: "cors",
-            method: "POST",
-            body: JSON.stringify({
-              subscriptionObject: subscription,
-            }),
-            headers: new Headers({
-              "Content-Type": "application/json",
-              authorization: `Bearer ${accessToken}`,
-            }),
-            keepalive: true,
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.msgType === "success") {
-                syncSuccessful = true;
-                return resolve();
-              }
-
-              return reject(data.msg);
+            fetch(endpoint, {
+              mode: "cors",
+              method: "POST",
+              body: JSON.stringify({
+                subscriptionObject: subscription,
+              }),
+              headers: new Headers({
+                "Content-Type": "application/json",
+                authorization: `Bearer ${accessToken}`,
+              }),
+              keepalive: true,
             })
-            .catch((err) => {
-              return reject(new Error(err));
-            });
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.msgType === "success") {
+                  syncSuccessful = true;
+                  return resolve();
+                }
 
-          setTimeout(() => {
-            if (!syncSuccessful) {
-              controller.abort();
-              return reject(new Error("Push subscription sync timed out"));
-            }
-          }, timeout);
-        })
-        .catch((error) => {
-          console.error(error);
-          console.log("subscription doesn't exist");
-          return reject(new Error("subscription doesn't exist"));
-        });
-    });
+                return reject(data.msg);
+              })
+              .catch((err) => {
+                return reject(new Error(err));
+              });
+
+            setTimeout(() => {
+              if (!syncSuccessful) {
+                controller.abort();
+                return reject(new Error("Push subscription sync timed out"));
+              }
+            }, timeout);
+          })
+          .catch((error) => {
+            console.error(error);
+            return reject(error);
+          });
+      })
+      .catch((error) => {
+        console.error(error);
+        return reject(error);
+      });
   });
 }
 
