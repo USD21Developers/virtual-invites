@@ -29,9 +29,10 @@ self.addEventListener("fetch", (event) => {
 
 // Add push event listener
 self.addEventListener("push", (event) => {
-  const title = "Push Notification";
+  const { title, body, data } = event.data.json();
   const options = {
-    body: event.data.text(),
+    title: title,
+    body: body,
     icon: "./android-chrome-192x192.png",
   };
   event.waitUntil(self.registration.showNotification(title, options));
@@ -39,7 +40,8 @@ self.addEventListener("push", (event) => {
 
 // Handle notification click event
 self.addEventListener("notificationclick", (event) => {
-  console.log(event);
+  const { title, body, data } = event.data.json();
+  console.log(title, body, data);
   event.notification.close();
   event.waitUntil(clients.openWindow("https://example.com"));
 });
