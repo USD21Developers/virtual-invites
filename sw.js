@@ -40,8 +40,8 @@ self.addEventListener("push", (event) => {
 
 // Handle notification click event
 self.addEventListener("notificationclick", (event) => {
-  const { title, body, data } = event.data.json();
-  console.log(title, body, data);
+  const { title, body, data } = event.notification;
+  console.log(event.notification);
   event.notification.close();
   event.waitUntil(clients.openWindow("https://example.com"));
 });
