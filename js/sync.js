@@ -263,6 +263,7 @@ function syncFollowing() {
 
 function syncPushSubscription() {
   return new Promise((resolve, reject) => {
+    debugger;
     navigator.serviceWorker.ready
       .then((registration) => {
         if (!registration) {
@@ -271,6 +272,8 @@ function syncPushSubscription() {
         registration.pushManager
           .getSubscription()
           .then(async (subscription) => {
+            debugger;
+
             if (!subscription) return resolve();
 
             const subscriptionHash = await invitesCrypto.hash(
