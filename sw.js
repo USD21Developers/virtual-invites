@@ -40,10 +40,7 @@ self.addEventListener("push", (event) => {
 
 // Handle notification click event
 self.addEventListener("notificationclick", (event) => {
-  alert(JSON.stringify(event.notification.data));
-  const { data } = event.notification;
-  const { followUpURL } = data;
-  console.log(event.notification);
+  const followUpURL = "https://staging.invites.mobi/settings/";
   event.notification.close();
   event.waitUntil(clients.openWindow(followUpURL));
 });
