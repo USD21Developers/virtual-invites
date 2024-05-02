@@ -33,6 +33,7 @@ self.addEventListener("push", (event) => {
   const options = {
     title: title,
     body: body,
+    data: data,
     icon: "./android-chrome-192x192.png",
   };
   event.waitUntil(self.registration.showNotification(title, options));
@@ -40,7 +41,7 @@ self.addEventListener("push", (event) => {
 
 // Handle notification click event
 self.addEventListener("notificationclick", (event) => {
-  const followUpURL = "https://staging.invites.mobi/settings/";
+  const followUpURL = event.notification.data.followUpURL;
   event.notification.close();
   event.waitUntil(clients.openWindow(followUpURL));
 });
