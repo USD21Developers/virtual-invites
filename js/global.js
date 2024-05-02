@@ -2,6 +2,7 @@ let globalContent = "";
 let pageContent = "";
 let previewContent = "";
 var hidden, visibilityChange;
+const supportedLangs = ["en"];
 
 /*
   FUNCTIONS:
@@ -780,6 +781,10 @@ function getLang() {
     }
   }
 
+  if (!supportedLangs.includes(lang)) {
+    lang = "en";
+  }
+
   return lang;
 }
 
@@ -1078,7 +1083,7 @@ function isPushPermitted() {
 
 async function populateContent(customEndpoint, variable = "pageContent") {
   return new Promise((resolve, reject) => {
-    const lang = localStorage.getItem("lang") || "en";
+    const lang = getLang();
     const endpoint = customEndpoint ? customEndpoint : `i18n/${lang}.json`;
 
     fetch(endpoint)
@@ -1143,7 +1148,7 @@ async function populateContent(customEndpoint, variable = "pageContent") {
 
 function populateGlobalContent() {
   return new Promise((resolve, reject) => {
-    const lang = localStorage.getItem("lang") || "en";
+    const lang = getLang();
     const endpoint = `/i18n-global/${lang}.json`;
 
     fetch(endpoint)
