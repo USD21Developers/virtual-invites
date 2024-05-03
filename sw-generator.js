@@ -7,7 +7,6 @@ injectManifest({
     "sw-generator.js",
     "sw.js",
     "sw-src.js",
-    "workbox-config.js",
     ".gitignore",
     "node_modules/*",
     "node_modules/**",
