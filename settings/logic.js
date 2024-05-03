@@ -96,14 +96,17 @@ function showPushNotificationsCheckbox() {
 
   if (pushIsSupported) {
     el.classList.remove("d-none");
-
-    getPushSubscription().then((subscription) => {
-      if (subscription) {
-        document
-          .querySelector("#testWebPushContainer")
-          .classList.remove("d-none");
+    if ("Notification" in window) {
+      if (Notification.permission === "granted") {
+        getPushSubscription().then((subscription) => {
+          if (subscription) {
+            document
+              .querySelector("#testWebPushContainer")
+              .classList.remove("d-none");
+          }
+        });
       }
-    });
+    }
   }
 }
 
