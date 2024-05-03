@@ -295,11 +295,37 @@ async function onTestWebPushClick(e) {
     atob(localStorage.getItem("refreshToken").split(".")[1])
   ).gender;
   const recipientName = await getRandomName(userGender);
+  const pushTitle = getPhrase("pushTitle").replaceAll(
+    "{RECIPIENT}",
+    recipientName
+  );
+  const pushBody = getPhrase("pushBody");
+  const payload = {
+    title: pushTitle,
+    body: pushBody,
+  };
+
+  let permissionGranted = false;
+  if ("Notification" in window) {
+    if (Notification.permission === "granted") {
+      permissionGranted = true;
+    }
+  }
+
+  if (!permissionGranted) {
+    const msg =
+      "User has not yet granted permission to receive push notifications";
+    if (window.location.hostname === "localhost") {
+      return showToast(msg, 5000, "danger", ".snackbar", true);
+    } else {
+      return console.error(msg);
+    }
+  }
 
   if (!pushSubscription) {
     const msg = "Push subscription does not exist in this browser.";
     if (window.location.hostname === "localhost") {
-      return showToast(msg, 5000, "danger");
+      return showToast(msg, 5000, "danger", ".snackbar", true);
     } else {
       return console.error(msg);
     }
@@ -314,6 +340,7 @@ async function onTestWebPushClick(e) {
     }),
     body: JSON.stringify({
       pushSubscription: pushSubscription,
+      payload: payload,
     }),
   })
     .then((res) => res.json())

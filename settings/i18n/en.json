@@ -358,6 +358,16 @@
       "key": "showASamplePushNotification",
       "original": "Push notification example",
       "translated": "Push notification example"
+    },
+    {
+      "key": "pushTitle",
+      "original": "{RECIPIENT} just viewed your invite",
+      "translated": "{RECIPIENT} just viewed your invite"
+    },
+    {
+      "key": "pushBody",
+      "original": "Please follow up soon!",
+      "translated": "Please follow up soon!"
     }
   ],
 
