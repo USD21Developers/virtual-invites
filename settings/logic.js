@@ -37,7 +37,6 @@ function populateForm() {
     if ("Notification" in window) {
       if (Notification.permission === "granted") {
         const pushSubscription = await getPushSubscription().catch((error) => {
-          console.error(error);
           return null;
         });
         if (typeof pushSubscription === "object") {
@@ -142,7 +141,6 @@ async function onEnablePushClicked(e) {
     if ("Notification" in window) {
       if (Notification.permission === "granted") {
         const pushSubscription = await getPushSubscription().catch((error) => {
-          console.error(error);
           return null;
         });
         if (typeof pushSubscription === "object") {
@@ -234,7 +232,6 @@ function onWebPushRequested() {
           break;
         case "granted":
           const subscription = await getPushSubscription().catch((error) => {
-            console.error(error);
             return null;
           });
           if (typeof subscription === "object") {
