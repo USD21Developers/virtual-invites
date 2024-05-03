@@ -263,68 +263,75 @@ function syncFollowing() {
 
 function syncPushSubscription() {
   return new Promise((resolve, reject) => {
-    navigator.serviceWorker.ready
-      .then((registration) => {
-        if (!registration) {
-          throw new Error("push subscription does not exist");
-        }
-        registration.pushManager
-          .getSubscription()
-          .then(async (subscription) => {
-            if (!subscription) return resolve();
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.ready
+        .then((registration) => {
+          if (!registration) {
+            throw new Error("service worker could not be registered");
+          }
 
-            const isOnline = navigator.onLine;
-            const controller = new AbortController();
-            const timeout = 60000;
-            const endpoint = `${getApiHost()}/push-subscribe`;
+          if (!registration.pushManager) {
+            throw new Error("push messages are not supported");
+          }
 
-            if (!isOnline) {
-              return reject(
-                new Error("Push subscription sync failed: user is offline")
-              );
-            }
+          registration.pushManager
+            .getSubscription()
+            .then(async (subscription) => {
+              if (!subscription) return resolve();
 
-            const accessToken = await getAccessToken();
-            let syncSuccessful = false;
+              const isOnline = navigator.onLine;
+              const controller = new AbortController();
+              const timeout = 60000;
+              const endpoint = `${getApiHost()}/push-subscribe`;
 
-            fetch(endpoint, {
-              mode: "cors",
-              method: "POST",
-              body: JSON.stringify({
-                subscriptionObject: subscription,
-              }),
-              headers: new Headers({
-                "Content-Type": "application/json",
-                authorization: `Bearer ${accessToken}`,
-              }),
-              keepalive: true,
-            })
-              .then((res) => res.json())
-              .then((data) => {
-                if (data.msgType === "success") {
-                  syncSuccessful = true;
-                  return resolve();
-                }
+              if (!isOnline) {
+                return reject(
+                  new Error("Push subscription sync failed: user is offline")
+                );
+              }
 
-                return reject(data.msg);
+              const accessToken = await getAccessToken();
+              let syncSuccessful = false;
+
+              fetch(endpoint, {
+                mode: "cors",
+                method: "POST",
+                body: JSON.stringify({
+                  subscriptionObject: subscription,
+                }),
+                headers: new Headers({
+                  "Content-Type": "application/json",
+                  authorization: `Bearer ${accessToken}`,
+                }),
+                keepalive: true,
               })
-              .catch((err) => {
-                return reject(new Error(err));
-              });
+                .then((res) => res.json())
+                .then((data) => {
+                  if (data.msgType === "success") {
+                    syncSuccessful = true;
+                    return resolve();
+                  }
 
-            setTimeout(() => {
-              controller.abort();
-              return reject(new Error("Push subscription sync timed out"));
-            }, timeout);
-          })
-          .catch((error) => {
-            console.error(error);
-            return reject(error);
-          });
-      })
-      .catch((error) => {
-        return reject(error);
-      });
+                  return reject(data.msg);
+                })
+                .catch((err) => {
+                  return reject(new Error(err));
+                });
+
+              setTimeout(() => {
+                controller.abort();
+                return reject(new Error("Push subscription sync timed out"));
+              }, timeout);
+            })
+            .catch((error) => {
+              console.error(error);
+              return reject(error);
+            });
+        })
+        .catch((error) => {
+          return reject(error);
+        });
+    }
   });
 }
 
