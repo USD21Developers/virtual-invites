@@ -205,109 +205,6 @@ function getCalendarObject() {
   return o;
 }
 
-function getDefaultRecipientName(gender) {
-  const maleNames = [
-    "Aaron",
-    "Abolfazi",
-    "Ali",
-    "Amir-Abbas",
-    "Amir-Ali",
-    "Amir-Hossein",
-    "Angelo",
-    "Benjamin",
-    "Brian",
-    "Christian",
-    "Daniel",
-    "Drew",
-    "Elijah",
-    "Gabriel",
-    "George",
-    "Hossein",
-    "Jacob",
-    "James",
-    "John Mark",
-    "Jose",
-    "Joshua",
-    "Jožef",
-    "Kairo",
-    "Kerem",
-    "Leandro",
-    "Liam",
-    "Lucas",
-    "Luis",
-    "Luka",
-    "Maddox",
-    "Mohammed",
-    "Nathan",
-    "Nathaniel",
-    "Noah",
-    "Oliver",
-    "Ryley",
-    "Samyar",
-    "Seo-jun",
-    "William",
-    "Yusuf",
-  ];
-
-  const femaleNames = [
-    "Aadhya",
-    "Abigail",
-    "Alba",
-    "Amanda",
-    "Andile",
-    "Annalisa",
-    "Antonia",
-    "Aurora",
-    "Ava",
-    "Brittany",
-    "Carla",
-    "Chloe",
-    "Diya",
-    "Emily",
-    "Emine",
-    "Emma",
-    "Esra",
-    "Fatma",
-    "Hannah",
-    "Isabella",
-    "Isidora",
-    "Kalyani",
-    "Leoni",
-    "Lucia",
-    "Marie",
-    "Martina",
-    "Mia",
-    "Monica",
-    "Natalia",
-    "Nicole",
-    "Olivia",
-    "Paula",
-    "Phyllis",
-    "Priya",
-    "Ruby",
-    "Saanvi",
-    "Sophia",
-    "Valentina",
-    "Zeynep",
-  ];
-
-  const userGender = gender
-    ? gender
-    : JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1]))
-        .gender;
-  let defaultRecipientName;
-
-  if (userGender === "female") {
-    defaultRecipientName =
-      femaleNames[Math.floor(Math.random() * femaleNames.length)];
-  } else {
-    defaultRecipientName =
-      maleNames[Math.floor(Math.random() * maleNames.length)];
-  }
-
-  return defaultRecipientName;
-}
-
 function getDefaultInvitedDate() {
   let lang = getLang();
   const numDaysAgo = randomIntFromInterval(0, 32) * -1;
@@ -1340,7 +1237,7 @@ function populateFormBasedPhrases() {
   }
 }
 
-function populateInterpolatedPhrases() {
+async function populateInterpolatedPhrases() {
   const lang =
     JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1])).lang ||
     "en";
@@ -1370,7 +1267,11 @@ function populateInterpolatedPhrases() {
   let eventStartDateTime = `${eventStartDate} ${eventStartTime}`;
   const eventStartDateTimeUTC = moment(eventStartDateTime).utc().format();
 
-  recipientName = getDefaultRecipientName();
+  const userGender = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  ).gender;
+
+  recipientName = await getRandomName(userGender);
   senderFirstName = getSenderFirstName();
   invitedDate = getDefaultInvitedDate();
   eventTitle = document.querySelector("#eventtitle").value;
