@@ -46,6 +46,7 @@ const supportedLangs = ["en"];
   getPhrase
   getGlobalPhrase
   getPreviewPhrase
+  getRandomName
   getRecurringWeekdayName
   getStoredChurch
   getTimezoneOffset
@@ -950,6 +951,41 @@ function getPreviewPhrase(key) {
     console.error(err);
     return content;
   }
+}
+
+function getRandomName(sex = "either", lang = getLang()) {
+  return new Promise(async (resolve, reject) => {
+    const names = await fetch(`../i18n-names/${lang}.json`).then((res) =>
+      res.json()
+    );
+
+    if (!names) {
+      return reject(
+        new Error(`could not find list of names at "/i18n-names/${lang}.json"`)
+      );
+    }
+
+    const male = names.male.sort();
+    const female = names.female.sort();
+    const all = male.concat(female).sort();
+    let name = "";
+
+    switch (sex) {
+      case "male":
+        name = male[Math.floor(Math.random() * male.length)];
+        break;
+
+      case "female":
+        name = female[Math.floor(Math.random() * female.length)];
+        break;
+
+      default:
+        name = all[Math.floor(Math.random() * all.length)];
+        break;
+    }
+
+    return resolve(name);
+  });
 }
 
 function getRecurringWeekdayName(frequency) {
