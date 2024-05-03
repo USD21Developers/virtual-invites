@@ -31,7 +31,6 @@ self.addEventListener("fetch", (event) => {
 self.addEventListener("push", (event) => {
   const { title, body, data } = event.data.json();
   const options = {
-    title: title,
     body: body,
     data: data,
     icon: "./android-chrome-192x192.png",
