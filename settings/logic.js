@@ -36,7 +36,10 @@ function populateForm() {
     document.querySelector("#notifyViaPush").checked = false;
     if ("Notification" in window) {
       if (Notification.permission === "granted") {
-        const pushSubscription = await getPushSubscription();
+        const pushSubscription = await getPushSubscription().catch((error) => {
+          console.error(error);
+          return null;
+        });
         if (typeof pushSubscription === "object") {
           document.querySelector("#notifyViaPush").checked =
             enablePushNotifications;
@@ -138,7 +141,10 @@ async function onEnablePushClicked(e) {
   if (isChecked) {
     if ("Notification" in window) {
       if (Notification.permission === "granted") {
-        const pushSubscription = await getPushSubscription();
+        const pushSubscription = await getPushSubscription().catch((error) => {
+          console.error(error);
+          return null;
+        });
         if (typeof pushSubscription === "object") {
           if (navigator.onLine) {
             syncPushSubscription();
@@ -227,7 +233,10 @@ function onWebPushRequested() {
           showWebPushDeniedModal();
           break;
         case "granted":
-          const subscription = await getPushSubscription();
+          const subscription = await getPushSubscription().catch((error) => {
+            console.error(error);
+            return null;
+          });
           if (typeof subscription === "object") {
             showToast(
               getPhrase("webPushNowAuthorized"),
