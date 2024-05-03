@@ -55,7 +55,7 @@ function getPushSubscription() {
             });
         })
         .catch((error) => {
-          return reject(error);
+          return reject(null);
         });
     } else {
       const msg = "Push messaging is not supported";
