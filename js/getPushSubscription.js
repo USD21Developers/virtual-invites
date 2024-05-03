@@ -2,6 +2,10 @@ function getPushSubscription() {
   return new Promise((resolve, reject) => {
     if ("serviceWorker" in navigator && "PushManager" in window) {
       navigator.serviceWorker.ready.then(function (registration) {
+        if (!registration.pushManager) {
+          return reject();
+        }
+
         registration.pushManager
           .getSubscription()
           .then(function (subscription) {
