@@ -353,6 +353,11 @@
       "key": "webPushSomethingWentWrong",
       "original": "There was a problem enabling push notifications. Please try again.",
       "translated": "There was a problem enabling push notifications. Please try again."
+    },
+    {
+      "key": "showASamplePushNotification",
+      "original": "Show a Sample Push Notification",
+      "translated": "Show a Sample Push Notification"
     }
   ],
 

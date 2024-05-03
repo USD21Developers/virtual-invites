@@ -41,3 +41,9 @@ label {
 #webPushDeniedModal [data-i18n="webPushBlockedParagraph1"] strong {
   color: var(--danger);
 }
+
+#testWebPush {
+  border-radius: 6px;
+  font-size: smaller;
+  text-transform: none;
+}

@@ -96,6 +96,14 @@ function showPushNotificationsCheckbox() {
 
   if (pushIsSupported) {
     el.classList.remove("d-none");
+
+    getPushSubscription().then((subscription) => {
+      if (subscription) {
+        document
+          .querySelector("#testWebPushContainer")
+          .classList.remove("d-none");
+      }
+    });
   }
 }
 
@@ -276,6 +284,23 @@ async function onTestWebPushClick(e) {
 
   const endpoint = `${getApiHost()}/push-test`;
   const accessToken = await getAccessToken();
+  const pushSubscription = await getPushSubscription().catch((error) => {
+    console.error(error);
+    return null;
+  });
+  const userGender = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  ).gender;
+  const recipientName = await getRandomName(userGender);
+
+  if (!pushSubscription) {
+    const msg = "Push subscription does not exist in this browser.";
+    if (window.location.hostname === "localhost") {
+      return showToast(msg, 5000, "danger");
+    } else {
+      return console.error(msg);
+    }
+  }
 
   fetch(endpoint, {
     mode: "cors",
@@ -283,6 +308,9 @@ async function onTestWebPushClick(e) {
     headers: new Headers({
       "Content-Type": "application/json",
       authorization: `Bearer ${accessToken}`,
+    }),
+    body: JSON.stringify({
+      pushSubscription: pushSubscription,
     }),
   })
     .then((res) => res.json())
