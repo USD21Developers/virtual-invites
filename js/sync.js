@@ -323,7 +323,6 @@ function syncPushSubscription() {
           });
       })
       .catch((error) => {
-        console.error(error);
         return reject(error);
       });
   });
