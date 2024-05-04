@@ -2,7 +2,9 @@ const { injectManifest } = require("workbox-build");
 
 injectManifest({
   globDirectory: "./",
-  globPatterns: ["**/*.{html,css,js,map,svg,gif,png,jpg,webmanifest,json}"],
+  globPatterns: [
+    "**/*.{html,css,js,map,svg,gif,png,jpg,webmanifest,json,ttf,woff2}",
+  ],
   globIgnores: [
     "sw-generator.js",
     "sw.js",
