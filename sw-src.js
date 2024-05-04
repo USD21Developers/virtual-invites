@@ -51,7 +51,7 @@ self.addEventListener("notificationclick", (event) => {
   if (!event.hasOwnProperty("notification")) return;
   if (!event.notification.hasOwnProperty("data")) return;
   if (!event.notification.data.hasOwnProperty("followUpURL")) return;
-  
+
   const followUpURL = event.notification.data.followUpURL;
   event.notification.close();
   event.waitUntil(clients.openWindow(followUpURL));
@@ -114,7 +114,7 @@ function getAccessToken() {
 // If the push subscription changes (e.g. expires and is auto-renewed), update the it on the server
 self.addEventListener("pushsubscriptionchange", async (event) => {
   const { oldSubscription, newSubscription } = event;
-  const endpoint = `${getApiHost}/push-update-subscription`;
+  const endpoint = `${getApiHost()}/push-update-subscription`;
   const accessToken = await getAccessToken();
 
   event.waitUntil(
