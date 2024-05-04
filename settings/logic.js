@@ -356,7 +356,7 @@ async function onTestWebPushClick(e) {
     document
       .querySelector("#testSpinner")
       .classList.replace("d-inline-block", "d-none");
-  }, 10000);
+  }, 5000);
 }
 
 function attachListeners() {
