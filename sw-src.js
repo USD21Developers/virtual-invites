@@ -48,6 +48,10 @@ self.addEventListener("push", (event) => {
 
 // Handle notification click event
 self.addEventListener("notificationclick", (event) => {
+  if (!event.hasOwnProperty("notification")) return;
+  if (!event.notification.hasOwnProperty("data")) return;
+  if (!event.notification.data.hasOwnProperty("followUpURL")) return;
+  
   const followUpURL = event.notification.data.followUpURL;
   event.notification.close();
   event.waitUntil(clients.openWindow(followUpURL));
