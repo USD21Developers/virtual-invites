@@ -8,7 +8,7 @@ importScripts(
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 
 // Add runtime caching
-self.addEventListener("fetch", (event) => {
+/* self.addEventListener("fetch", (event) => {
   if (
     event.request.url.includes("/i18n/") &&
     event.request.url.endsWith(".json")
@@ -25,7 +25,7 @@ self.addEventListener("fetch", (event) => {
       })
     );
   }
-});
+}); */
 
 // Add push event listener
 self.addEventListener("push", (event) => {
