@@ -128,17 +128,3 @@ self.addEventListener("pushsubscriptionchange", async (event) => {
     })
   );
 });
-
-self.addEventListener("message", (event) => {
-  // Handle messages received from main thread
-  const message = event.data;
-  if (message.type === "hello") {
-    console.log("Message received in service worker: ", message.data);
-
-    // Send a response back to the main thread
-    event.source.postMessage({
-      type: "response",
-      data: "Hello from service worker!",
-    });
-  }
-});
