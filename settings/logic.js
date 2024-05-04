@@ -294,7 +294,7 @@ async function onTestWebPushClick(e) {
   const userGender = JSON.parse(
     atob(localStorage.getItem("refreshToken").split(".")[1])
   ).gender;
-  const recipientName = await getRandomName(userGender);
+  const recipientName = await getRandomName();
   const pushTitle = getPhrase("pushTitle").replaceAll(
     "{RECIPIENT}",
     recipientName
