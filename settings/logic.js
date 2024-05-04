@@ -331,6 +331,10 @@ async function onTestWebPushClick(e) {
     }
   }
 
+  document
+    .querySelector("#testSpinner")
+    .classList.replace("d-none", "d-inline-block");
+
   fetch(endpoint, {
     mode: "cors",
     method: "POST",
@@ -347,6 +351,12 @@ async function onTestWebPushClick(e) {
     .then((data) => {
       console.log(data);
     });
+
+  setTimeout(() => {
+    document
+      .querySelector("#testSpinner")
+      .classList.replace("d-inline-block", "d-none");
+  }, 10000);
 }
 
 function attachListeners() {
@@ -366,6 +376,15 @@ function attachListeners() {
   document
     .querySelector("#testWebPush")
     .addEventListener("click", onTestWebPushClick);
+
+  navigator.serviceWorker.addEventListener("message", (event) => {
+    // Hide spinner when push message has been received
+    if (event.data && event.data.type === "pushReceived") {
+      document
+        .querySelector("#testSpinner")
+        .classList.replace("d-inline-block", "d-none");
+    }
+  });
 }
 
 async function init() {

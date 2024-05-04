@@ -35,7 +35,15 @@ self.addEventListener("push", (event) => {
     data: data,
     icon: "./android-chrome-192x192.png",
   };
-  event.waitUntil(self.registration.showNotification(title, options));
+  event.waitUntil(
+    self.registration.showNotification(title, options).then(() => {
+      self.clients.matchAll().then((clients) => {
+        clients.forEach((client) => {
+          client.postMessage({ type: "pushReceived" });
+        });
+      });
+    })
+  );
 });
 
 // Handle notification click event
@@ -119,4 +127,18 @@ self.addEventListener("pushsubscriptionchange", async (event) => {
       }),
     })
   );
+});
+
+self.addEventListener("message", (event) => {
+  // Handle messages received from main thread
+  const message = event.data;
+  if (message.type === "hello") {
+    console.log("Message received in service worker: ", message.data);
+
+    // Send a response back to the main thread
+    event.source.postMessage({
+      type: "response",
+      data: "Hello from service worker!",
+    });
+  }
 });
