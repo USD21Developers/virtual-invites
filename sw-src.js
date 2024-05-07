@@ -1,11 +1,15 @@
 // Import Workbox libraries
-// import { precacheAndRoute } from "workbox-precaching";
 importScripts(
   "https://storage.googleapis.com/workbox-cdn/releases/6.5.3/workbox-sw.js"
 );
 
-// Precache and route all assets
+// Precache and route all assets (this includes a "fetch" listener, so no need to add one for precached assets)
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+
+// Allow updated service worker to become active immediately
+self.addEventListener("install", (event) => {
+  self.skipWaiting();
+});
 
 // Add runtime caching
 /* self.addEventListener("fetch", (event) => {
@@ -67,10 +71,15 @@ function getAccessToken() {
 
     if (!refreshToken.length) return reject("refresh token missing");
 
-    const isLocalhost =
-      location.hostname === "localhost" || location.hostname === "127.0.0.1"
-        ? true
-        : false;
+    let isLocalhost = false;
+    if (location && location.hasOwnProperty("hostname")) {
+      if (
+        location.hostname === "localhost" ||
+        location.hostname === "127.0.0.1"
+      ) {
+        isLocalhost = true;
+      }
+    }
 
     const apiHost = isLocalhost
       ? "http://localhost:4000/invites"
@@ -112,23 +121,38 @@ function getAccessToken() {
 }
 
 // If the push subscription changes (e.g. expires and is auto-renewed), update the it on the server
-self.addEventListener("pushsubscriptionchange", async (event) => {
-  const { oldSubscription, newSubscription } = event;
-  const endpoint = `${getApiHost()}/push-update-subscription`;
-  const accessToken = await getAccessToken();
+self.addEventListener(
+  "pushsubscriptionchange",
+  (event) => {
+    console.log(`"pushsubscriptionchange" event was fired`, event);
+    const conv = (val) =>
+      btoa(String.fromCharCode.apply(null, new Uint8Array(val)));
+    const getPayload = (subscription) => ({
+      endpoint: subscription.endpoint,
+      publicKey: conv(subscription.getKey("p256dh")),
+      authToken: conv(subscription.getKey("auth")),
+    });
 
-  event.waitUntil(
-    fetch(endpoint, {
-      mode: "cors",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify({
-        oldSubscription: oldSubscription,
-        newSubscription: newSubscription,
-      }),
-    })
-  );
-});
+    const subscription = self.registration.pushManager
+      .subscribe(event.oldSubscription.options)
+      .then(async (subscription) => {
+        const endpoint = `${getApiHost()}/push-update-subscription`;
+        const accessToken = await getAccessToken();
+
+        fetch(endpoint, {
+          mode: "cors",
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+            authorization: `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify({
+            oldSubscription: getPayload(event.oldSubscription),
+            newSubscription: getPayload(subscription),
+          }),
+        });
+      });
+    event.waitUntil(subscription);
+  },
+  false
+);
