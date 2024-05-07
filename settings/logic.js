@@ -350,6 +350,12 @@ async function onTestWebPushClick(e) {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
+    })
+    .catch((error) => {
+      console.error(error);
+      document
+        .querySelector("#testSpinner")
+        .classList.replace("d-inline-block", "d-none");
     });
 
   setTimeout(() => {
