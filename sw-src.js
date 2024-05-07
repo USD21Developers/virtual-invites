@@ -3,12 +3,21 @@ importScripts(
   "https://storage.googleapis.com/workbox-cdn/releases/6.5.3/workbox-sw.js"
 );
 
-// Precache and route all assets (this includes a "fetch" listener, so no need to add one for precached assets)
+// Precache and route all assets
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 
 // Allow updated service worker to become active immediately
 self.addEventListener("install", (event) => {
   self.skipWaiting();
+});
+
+// Cache, falling back to network
+// https://jakearchibald.com/2014/offline-cookbook/#cache-falling-back-to-network
+self.addEventListener("fetch", (event) => {
+  event.respondWith(async function () {
+    const response = await caches.match(event.request);
+    return response || fetch(event.request);
+  });
 });
 
 // Add runtime caching
