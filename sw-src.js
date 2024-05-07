@@ -1,10 +1,8 @@
 // Import Workbox libraries
-importScripts(
-  "https://storage.googleapis.com/workbox-cdn/releases/6.5.3/workbox-sw.js"
-);
+importScripts("/js/workbox-sw.js");
 
 // Precache and route all assets
-workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+workbox.precaching.CacheFirst(self.__WB_MANIFEST);
 
 // Allow updated service worker to become active immediately
 self.addEventListener("install", (event) => {
@@ -19,26 +17,6 @@ self.addEventListener("fetch", (event) => {
     return response || fetch(event.request);
   });
 });
-
-// Add runtime caching
-/* self.addEventListener("fetch", (event) => {
-  if (
-    event.request.url.includes("/i18n/") &&
-    event.request.url.endsWith(".json")
-  ) {
-    event.respondWith(
-      caches.open("translations").then((cache) => {
-        return cache.match(event.request).then((response) => {
-          const fetchPromise = fetch(event.request).then((networkResponse) => {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
-          });
-          return response || fetchPromise;
-        });
-      })
-    );
-  }
-}); */
 
 // Add push event listener
 self.addEventListener("push", (event) => {
@@ -69,10 +47,6 @@ self.addEventListener("notificationclick", (event) => {
   event.notification.close();
   event.waitUntil(clients.openWindow(followUpURL));
 });
-
-function setCountry(country) {
-  localStorage.setItem("country", country);
-}
 
 function getAccessToken() {
   return new Promise((resolve, reject) => {
@@ -110,11 +84,7 @@ function getAccessToken() {
       .then((data) => {
         switch (data.msg) {
           case "tokens renewed":
-            const { accessToken, refreshToken } = data;
-            localStorage.setItem("refreshToken", refreshToken);
-            const country =
-              JSON.parse(atob(accessToken.split(".")[1])).country || "us";
-            setCountry(country);
+            const { accessToken } = data;
             resolve(accessToken);
             break;
           default:
