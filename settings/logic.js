@@ -291,13 +291,12 @@ async function onTestWebPushClick(e) {
     console.error(error);
     return null;
   });
-  const userGender = JSON.parse(
+  const firstName = JSON.parse(
     atob(localStorage.getItem("refreshToken").split(".")[1])
-  ).gender;
-  const recipientName = await getRandomName();
+  ).firstname;
   const pushTitle = getPhrase("pushTitle").replaceAll(
-    "{RECIPIENT}",
-    recipientName
+    "{FIRST-NAME}",
+    firstName
   );
   const pushBody = getPhrase("pushBody");
   const payload = {

@@ -361,13 +361,13 @@
     },
     {
       "key": "pushTitle",
-      "original": "{RECIPIENT} viewed your invite",
-      "translated": "{RECIPIENT} viewed your invite"
+      "original": "Hello {FIRST-NAME}!",
+      "translated": "Hello {FIRST-NAME}!"
     },
     {
       "key": "pushBody",
-      "original": "Please follow up soon!",
-      "translated": "Please follow up soon!"
+      "original": "This is a push message.",
+      "translated": "This is a push message."
     }
   ],
 
