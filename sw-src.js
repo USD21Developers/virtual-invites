@@ -1,12 +1,44 @@
-importScripts(
-  "https://storage.googleapis.com/workbox-cdn/releases/6.5.3/workbox-sw.js"
-);
-workbox.precaching.precacheAndRoute(self.__WB_MANIFEST, {
-  directoryIndex: "index.html",
+const CACHE_NAME = "invites";
+const urlsToCache = [
+  "/",
+  "https://storage.googleapis.com/workbox-cdn/releases/6.5.3/workbox-sw.js",
+];
+
+// Install event
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches
+      .open(CACHE_NAME)
+      .then((cache) => {
+        // Cache all the assets
+        return cache.addAll(urlsToCache);
+      })
+      .then(() => {
+        // Activate the new service worker immediately
+        return self.skipWaiting();
+      })
+  );
 });
 
-self.addEventListener("install", (event) => {
-  self.skipWaiting();
+// Activate event
+self.addEventListener("activate", (event) => {
+  // Claim clients immediately to ensure that the new service worker takes control
+  event.waitUntil(self.clients.claim());
+
+  // Clean up old caches if any
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames
+          .filter((name) => {
+            return name !== CACHE_NAME;
+          })
+          .map((name) => {
+            return caches.delete(name);
+          })
+      );
+    })
+  );
 });
 
 // Add runtime caching
@@ -29,6 +61,21 @@ self.addEventListener("fetch", (event) => {
       })
     );
   }
+
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      // Cache-first strategy
+      return response || fetch(event.request);
+    })
+  );
+});
+
+// Import workbox after caching
+importScripts("/workbox-sw.js");
+
+// Use workbox methods
+workbox.precaching.precacheAndRoute(self.__WB_MANIFEST, {
+  directoryIndex: "index.html",
 });
 
 // Add push event listener
@@ -54,11 +101,11 @@ self.addEventListener("push", (event) => {
 self.addEventListener("notificationclick", (event) => {
   if (!event.hasOwnProperty("notification")) return;
   if (!event.notification.hasOwnProperty("data")) return;
-  if (!event.notification.data.hasOwnProperty("followUpURL")) return;
+  if (!event.notification.data.hasOwnProperty("clickURL")) return;
 
-  const followUpURL = event.notification.data.followUpURL;
+  const clickURL = event.notification.data.clickURL;
   event.notification.close();
-  event.waitUntil(clients.openWindow(followUpURL));
+  event.waitUntil(clients.openWindow(clickURL));
 });
 
 // If the push subscription changes (e.g. expires and is auto-renewed), update the it on the server
