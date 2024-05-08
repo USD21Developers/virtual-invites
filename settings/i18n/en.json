@@ -361,8 +361,8 @@
     },
     {
       "key": "pushTitle",
-      "original": "{RECIPIENT} just viewed your invite",
-      "translated": "{RECIPIENT} just viewed your invite"
+      "original": "{RECIPIENT} viewed your invite",
+      "translated": "{RECIPIENT} viewed your invite"
     },
     {
       "key": "pushBody",
