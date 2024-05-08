@@ -316,3 +316,8 @@ strong {
 .prettyTextWrap {
   text-wrap: pretty;
 }
+
+.btn:focus,
+.btn:hover {
+  background-image: none !important;
+}
