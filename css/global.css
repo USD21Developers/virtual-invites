@@ -321,3 +321,8 @@ strong {
 .btn:hover {
   background-image: none !important;
 }
+
+.btn.active,
+.btn:active {
+  background-color: unset !important;
+}
