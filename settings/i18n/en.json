@@ -366,8 +366,8 @@
     },
     {
       "key": "pushBody",
-      "original": "This is a push message.",
-      "translated": "This is a push message."
+      "original": "This is a push notification.",
+      "translated": "This is a push notification."
     }
   ],
 
