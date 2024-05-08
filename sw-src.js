@@ -1,10 +1,10 @@
+importScripts(
+  "https://storage.googleapis.com/workbox-cdn/releases/6.5.3/workbox-sw.js"
+);
+workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    (async function () {
-      const cache = await caches.open("invites");
-      await cache.addAll(self.__WB_MANIFEST);
-    })()
-  );
+  self.skipWaiting();
 });
 
 // Add push event listener

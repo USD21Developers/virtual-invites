@@ -4,7 +4,8 @@
   "description": "An application to send virtual invites for church functions that are organized by the International Christian Churches (SoldOut Discipling Movement)",
   "scripts": {
     "start": "serve -p 5555",
-    "build": "node sw-generator.js",
+    "build": "esbuild --outfile=sw.js --bundle sw-src.ts && workbox injectManifest",
+    "buildOLD": "node sw-generator.js",
     "ssh:staging": "ssh staginginvites@usd21.org -i ~/.ssh/usd21/id_rsa -p 1773",
     "ssh:prod": "ssh invitesusd21@usd21.org -i ~/.ssh/usd21/id_rsa -p 1773",
     "deploy:staging": "ssh staginginvites@usd21.org -i ~/.ssh/usd21/id_rsa -p 1773 \"bash /home/staginginvites/pull.sh\"",
@@ -32,8 +33,13 @@
   "homepage": "https://invites.mobi/",
   "devDependencies": {
     "daemonite-material": "^4.1.1",
+    "esbuild": "^0.21.1",
     "serve": "^14.1.2",
-    "workbox-build": "^7.0.0"
+    "workbox-build": "^7.0.0",
+    "workbox-cli": "^7.1.0",
+    "workbox-precaching": "^7.1.0",
+    "workbox-routing": "^7.1.0",
+    "workbox-strategies": "^7.1.0"
   },
   "dependencies": {
     "datatables.net-plugins": "^1.13.6"
