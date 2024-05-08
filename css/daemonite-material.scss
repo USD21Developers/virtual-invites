@@ -16,6 +16,11 @@ $warning: (
   light: lighten(#f57c00, 10%),
 );
 
+.btn:focus,
+.btn:hover {
+  background-image: none;
+}
+
 $font-size-root: 18px;
 
 $btn-font-weight: 600;

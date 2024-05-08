@@ -1,4 +1,9 @@
 @charset "UTF-8";
+.btn:focus,
+.btn:hover {
+  background-image: none;
+}
+
 :root {
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
