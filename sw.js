@@ -99,13 +99,18 @@ self.addEventListener("push", (event) => {
 
 // Handle notification click event
 self.addEventListener("notificationclick", (event) => {
-  if (!event.hasOwnProperty("notification")) return;
-  if (!event.notification.hasOwnProperty("data")) return;
-  if (!event.notification.data.hasOwnProperty("clickURL")) return;
-
-  const clickURL = event.notification.data.clickURL;
+  let clickURL = "";
+  try {
+    clickURL = event.notification.data.clickURL;
+  } catch (err) {
+    clickURL = null;
+    console.log(err);
+  }
   event.notification.close();
-  event.waitUntil(clients.openWindow(clickURL));
+
+  if (clickURL) {
+    event.waitUntil(clients.openWindow(clickURL));
+  }
 });
 
 // If the push subscription changes (e.g. expires and is auto-renewed), update the it on the server
