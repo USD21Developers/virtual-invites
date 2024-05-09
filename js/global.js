@@ -1646,6 +1646,12 @@ function initGlobal() {
   showMaterialIcons();
   refreshFloatingLabelsListener();
   configureLocalForage();
+  const ptr = PullToRefresh.init({
+    mainElement: "body",
+    onRefresh() {
+      window.location.reload();
+    },
+  });
 }
 
 initGlobal();
