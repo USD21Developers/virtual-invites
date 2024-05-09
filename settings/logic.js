@@ -364,6 +364,10 @@ async function onTestWebPushClick(e) {
   }, 5000);
 }
 
+function onPushNotificationClick() {
+  showToast("Clicked!", 5000, "success");
+}
+
 function attachListeners() {
   document.querySelector("#settingsForm").addEventListener("submit", onSubmit);
   document
@@ -405,6 +409,9 @@ async function init() {
   await populateForm();
   attachListeners();
   globalHidePageSpinner();
+
+  if (window.location.hash) {
+  }
 }
 
 init();
