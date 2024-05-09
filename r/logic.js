@@ -684,11 +684,12 @@ async function populateNotes() {
   );
   const invitationid = Number(getHash().split("/")[1]);
   const notesLocal = filterNotes(allNotesLocal);
-  const unsyncedNotes = (await localforage.getItem("unsyncedNotes")) || [];
 
   notesObj = notesLocal;
 
   renderNotes();
+
+  let unsyncedNotes = (await localforage.getItem("unsyncedNotes")) || [];
 
   syncNotesForInvite(invitationid, unsyncedNotes)
     .then(async (notesForInvite) => {
