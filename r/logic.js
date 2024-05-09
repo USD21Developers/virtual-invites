@@ -131,8 +131,8 @@ function getRecipient() {
 
     let invites = (await localforage.getItem("invites")) || null;
 
-    await syncInviteNotifications();
-    await syncInvites();
+    syncInviteNotifications();
+    syncInvites();
     syncedInvites = true;
     invites = await localforage.getItem("invites");
 
