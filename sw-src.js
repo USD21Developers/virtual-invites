@@ -1,7 +1,7 @@
-importScripts("/third_party/workbox/workbox-v7.1.0/workbox-sw.js");
+importScripts("/third_party/workbox/workbox-v7.0.0/workbox-sw.js");
 
 workbox.setConfig({
-  modulePathPrefix: "/third_party/workbox/workbox-v7.1.0/",
+  modulePathPrefix: "/third_party/workbox/workbox-v7.0.0/",
 });
 
 // Use workbox methods
@@ -18,7 +18,7 @@ self.addEventListener("fetch", (event) => {
       event.request.url.endsWith("__140.jpg"))
   ) {
     event.respondWith(
-      caches.open(CACHE_NAME).then((cache) => {
+      caches.open("user-images").then((cache) => {
         return cache.match(event.request).then((response) => {
           const fetchPromise = fetch(event.request).then((networkResponse) => {
             cache.put(event.request, networkResponse.clone());
