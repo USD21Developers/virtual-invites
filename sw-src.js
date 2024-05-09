@@ -1,44 +1,12 @@
-const CACHE_NAME = "invites";
-const urlsToCache = [
-  "/",
-  "https://storage.googleapis.com/workbox-cdn/releases/6.5.3/workbox-sw.js",
-];
+importScripts("/third_party/workbox/workbox-v7.1.0/workbox-sw.js");
 
-// Install event
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches
-      .open(CACHE_NAME)
-      .then((cache) => {
-        // Cache all the assets
-        return cache.addAll(urlsToCache);
-      })
-      .then(() => {
-        // Activate the new service worker immediately
-        return self.skipWaiting();
-      })
-  );
+workbox.setConfig({
+  modulePathPrefix: "/third_party/workbox/workbox-v7.1.0/",
 });
 
-// Activate event
-self.addEventListener("activate", (event) => {
-  // Claim clients immediately to ensure that the new service worker takes control
-  event.waitUntil(self.clients.claim());
-
-  // Clean up old caches if any
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames
-          .filter((name) => {
-            return name !== CACHE_NAME;
-          })
-          .map((name) => {
-            return caches.delete(name);
-          })
-      );
-    })
-  );
+// Use workbox methods
+workbox.precaching.precacheAndRoute(self.__WB_MANIFEST, {
+  directoryIndex: "index.html",
 });
 
 // Add runtime caching
@@ -50,7 +18,7 @@ self.addEventListener("fetch", (event) => {
       event.request.url.endsWith("__140.jpg"))
   ) {
     event.respondWith(
-      caches.open("invites").then((cache) => {
+      caches.open(CACHE_NAME).then((cache) => {
         return cache.match(event.request).then((response) => {
           const fetchPromise = fetch(event.request).then((networkResponse) => {
             cache.put(event.request, networkResponse.clone());
@@ -61,21 +29,6 @@ self.addEventListener("fetch", (event) => {
       })
     );
   }
-
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      // Cache-first strategy
-      return response || fetch(event.request);
-    })
-  );
-});
-
-// Import workbox after caching
-importScripts("/workbox-sw.js");
-
-// Use workbox methods
-workbox.precaching.precacheAndRoute(self.__WB_MANIFEST, {
-  directoryIndex: "index.html",
 });
 
 // Add push event listener
