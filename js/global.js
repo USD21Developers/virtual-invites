@@ -68,6 +68,7 @@ const supportedLangs = ["en"];
   setCountry
   show
   showAlert
+  showBottomNavOnIOS
   showEventDateTime
   showMaterialIcons
   showModal
@@ -1369,6 +1370,16 @@ function showAlert(selectorObject, message, headline = "") {
   window.scroll({ top: offset, behavior: "smooth" });
 }
 
+function showBottomNavOnIOS() {
+  const refreshToken = localStorage.getItem("refreshToken");
+  if (!refreshToken) return; // Must not be an invite recipient
+
+  if (navigator.standalone) {
+    const body = document.querySelector("body");
+    body.classList.add("standalone");
+  }
+}
+
 function showEventDateTime(eventObj) {
   return new Promise(async (resolve, reject) => {
     const {
@@ -1653,9 +1664,7 @@ function initGlobal() {
     },
   });
 
-  if (navigator.standalone) {
-    document.querySelector("body").classList.add("standalone");
-  }
+  showBottomNavOnIOS();
 }
 
 initGlobal();

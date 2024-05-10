@@ -1505,7 +1505,7 @@ async function init() {
   populateHeadlineAboutEvent();
   populateEventDescription();
   populateQuestionsSection();
-  // hideSpinner();
+  showBottomNavOnIOS();
 }
 
 init();
