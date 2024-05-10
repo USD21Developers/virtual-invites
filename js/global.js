@@ -1652,6 +1652,10 @@ function initGlobal() {
       window.location.reload();
     },
   });
+
+  if (navigator.standalone) {
+    document.querySelector("body").classList.add("standalone");
+  }
 }
 
 initGlobal();
