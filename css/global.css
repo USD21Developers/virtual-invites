@@ -326,3 +326,29 @@ strong {
 .btn:active {
   background-color: unset !important;
 }
+
+#navButtons {
+  background-color: black;
+  display: none;
+}
+
+#navButtons table {
+  margin: auto;
+  max-width: 560px;
+}
+
+#navButtons img {
+  border: 0;
+  height: 22px;
+  width: 22px;
+}
+
+@media all and (display-mode: standalone) {
+  body.standalone {
+    padding-bottom: 30px;
+  }
+
+  body.standalone #navButtons {
+    display: block !important;
+  }
+}
