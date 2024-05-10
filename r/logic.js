@@ -233,14 +233,14 @@ async function renderRecipient(invite) {
 
     if (eventObj.isDeleted === 1) {
       eventNameEl.innerHTML = `
-        <a href="${url}" class="text-underline text-danger"><strike>${eventName}</strike></a>
+        <a href="${url}" class="text-underline text-danger" target="_blank" rel="noreferrer"><strike>${eventName}</strike></a>
         <span class="text-nowrap">
           &nbsp;
           <span class="text-danger">${txtEventIsDeleted}</span>
         </span>
       `;
     } else {
-      eventNameEl.innerHTML = `<a href="${url}" class="text-underline">${eventName}</a>`;
+      eventNameEl.innerHTML = `<a href="${url}" class="text-underline" target="_blank" rel="noreferrer">${eventName}</a>`;
     }
   }
   if (dateInvitedEl) dateInvitedEl.innerText = whenInvited;
