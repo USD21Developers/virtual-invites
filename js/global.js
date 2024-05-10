@@ -1370,28 +1370,28 @@ function showAlert(selectorObject, message, headline = "") {
   window.scroll({ top: offset, behavior: "smooth" });
 }
 
+function updateNavButtons() {
+  var backButton = document.getElementById("navBackButton");
+  var forwardButton = document.getElementById("navForwardButton");
+
+  // Disable back button if there are no pages to go back to
+  if (history.length <= 1 || history.state === null) {
+    backButton.setAttribute("disabled", "disabled");
+  } else {
+    backButton.removeAttribute("disabled");
+  }
+
+  // Disable forward button if there are no pages to go forward to
+  if (history.state === null || history.state.index >= history.length - 1) {
+    forwardButton.setAttribute("disabled", "disabled");
+  } else {
+    forwardButton.removeAttribute("disabled");
+  }
+}
+
 function showBottomNavOnIOS() {
   const refreshToken = localStorage.getItem("refreshToken");
   if (!refreshToken) return; // Must not be an invite recipient
-
-  const updateNavButtons = () => {
-    var backButton = document.getElementById("navBackButton");
-    var forwardButton = document.getElementById("navForwardButton");
-
-    // Disable back button if there are no pages to go back to
-    if (history.length <= 1 || history.state === null) {
-      backButton.disabled = true;
-    } else {
-      backButton.disabled = false;
-    }
-
-    // Disable forward button if there are no pages to go forward to
-    if (history.state === null || history.state.index >= history.length - 1) {
-      forwardButton.disabled = true;
-    } else {
-      forwardButton.disabled = false;
-    }
-  };
 
   if (navigator.standalone) {
     window.addEventListener("popstate", updateNavButtons);
