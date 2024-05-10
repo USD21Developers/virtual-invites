@@ -126,6 +126,43 @@
       <div class="snackbar-body"></div>
     </div>
 
+    <!-- Nav buttons (only visible in standalone mode on iOS Safari) -->
+    <nav id="navButtons" class="container-fluid fixed-bottom p-0 d-none">
+      <table width="100%" cellpadding="10">
+        <tr>
+          <td>
+            <a href="javascript:history.go(-1)">
+              <img
+                src="/_assets/svg/icons/nav-arrow-back.svg"
+                width="22"
+                height="22"
+              />
+            </a>
+          </td>
+
+          <td class="text-center">
+            <a href="/">
+              <img
+                src="/_assets/svg/icons/nav-home.svg"
+                width="22"
+                height="22"
+              />
+            </a>
+          </td>
+
+          <td class="text-right">
+            <a href="javascript:history.go(+1)">
+              <img
+                src="/_assets/svg/icons/nav-arrow-forward.svg"
+                width="22"
+                height="22"
+              />
+            </a>
+          </td>
+        </tr>
+      </table>
+    </nav>
+
     <script src="/js/datebook.min.js"></script>
     <script src="/js/moment.min.js" referrerpolicy="no-referrer"></script>
     <script
