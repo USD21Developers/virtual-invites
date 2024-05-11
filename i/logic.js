@@ -577,10 +577,10 @@ async function getInvite() {
       "email-event-is-deleted": getPhrase("eventIsDeleted"),
     };
     const pushPhrases = {
-      pushInviteViewed: getPhrase("pushInviteViewed"),
-      pushRSVPOccurred: getPhrase("pushRSVPOccurred"),
-      pushAddToCalendarOccurred: getPhrase("pushAddToCalendarOccurred"),
-      pushFollowUp: getPhrase("pushFollowUp"),
+      "push-invite-viewed": getPhrase("pushInviteViewed"),
+      "push-rsvp-occurred": getPhrase("pushRSVPOccurred"),
+      "push-add-to-calendar-occurred": getPhrase("pushAddToCalendarOccurred"),
+      "push-follow-up": getPhrase("pushFollowUp"),
     };
 
     const loadedAlready = sessionStorage.getItem("loaded") ? true : false;
