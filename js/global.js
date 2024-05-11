@@ -1394,8 +1394,8 @@ function showBottomNavOnIOS() {
   if (!refreshToken) return; // Must not be an invite recipient
 
   if (navigator.standalone) {
-    window.addEventListener("popstate", updateNavButtons);
-    updateNavButtons();
+    // window.addEventListener("popstate", updateNavButtons);
+    // updateNavButtons();
     document.querySelector("body").classList.add("standalone");
   }
 }
