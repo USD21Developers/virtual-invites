@@ -576,6 +576,12 @@ async function getInvite() {
       "email-timezone-notice": getPhrase("email-timezone-notice"),
       "email-event-is-deleted": getPhrase("eventIsDeleted"),
     };
+    const pushPhrases = {
+      pushInviteViewed: getPhrase("pushInviteViewed"),
+      pushRSVPOccurred: getPhrase("pushRSVPOccurred"),
+      pushAddToCalendarOccurred: getPhrase("pushAddToCalendarOccurred"),
+      pushFollowUp: getPhrase("pushFollowUp"),
+    };
 
     const loadedAlready = sessionStorage.getItem("loaded") ? true : false;
 
@@ -620,6 +626,7 @@ async function getInvite() {
         timezone: timezone,
         emailHtml: emailHtml,
         emailPhrases: emailPhrases,
+        pushPhrases: pushPhrases,
         loadedAlready: loadedAlready,
         isUser: isUser,
       }),
