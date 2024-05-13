@@ -145,6 +145,26 @@ function showWebPushNotSupportedModal() {
   document.querySelector("#notifyViaPush").checked = false;
 }
 
+async function togglePushNotificationExampleButton(action = {}) {
+  const testWebPushContainerEl = document.querySelector(
+    "#testWebPushContainer"
+  );
+
+  if (action.hide) {
+    testWebPushContainerEl.classList.add("d-none");
+    return;
+  }
+
+  const pushPermissionGranted = isPushPermitted();
+  const pushSubscription = await getPushSubscription();
+
+  if (!pushPermissionGranted || !pushSubscription) {
+    testWebPushContainerEl.classList.add("d-none");
+  } else {
+    testWebPushContainerEl.classList.remove("d-none");
+  }
+}
+
 async function onEnablePushClicked(e) {
   const isChecked = e.target.checked ? true : false;
 
@@ -286,7 +306,6 @@ async function onTestWebPushClick(e) {
   e.preventDefault();
 
   const endpoint = `${getApiHost()}/push-test`;
-  const accessToken = await getAccessToken();
   const pushSubscription = await getPushSubscription().catch((error) => {
     console.error(error);
     return null;
@@ -304,14 +323,7 @@ async function onTestWebPushClick(e) {
     body: pushBody,
   };
 
-  let permissionGranted = false;
-  if ("Notification" in window) {
-    if (Notification.permission === "granted") {
-      permissionGranted = true;
-    }
-  }
-
-  if (!permissionGranted) {
+  if (isPushPermitted() === false) {
     const msg =
       "User has not yet granted permission to receive push notifications";
     if (window.location.hostname === "localhost") {
@@ -334,6 +346,8 @@ async function onTestWebPushClick(e) {
     .querySelector("#testSpinner")
     .classList.replace("d-none", "d-inline-block");
 
+  const accessToken = await getAccessToken();
+
   fetch(endpoint, {
     mode: "cors",
     method: "POST",
@@ -349,12 +363,14 @@ async function onTestWebPushClick(e) {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
+      togglePushNotificationExampleButton();
     })
     .catch((error) => {
       console.error(error);
       document
         .querySelector("#testSpinner")
         .classList.replace("d-inline-block", "d-none");
+      togglePushNotificationExampleButton({ hide: true });
     });
 
   setTimeout(() => {
@@ -362,10 +378,6 @@ async function onTestWebPushClick(e) {
       .querySelector("#testSpinner")
       .classList.replace("d-inline-block", "d-none");
   }, 5000);
-}
-
-function onPushNotificationClick() {
-  showToast("Clicked!", 5000, "success");
 }
 
 function attachListeners() {
@@ -408,10 +420,8 @@ async function init() {
   populateInviteTextExample();
   await populateForm();
   attachListeners();
+  togglePushNotificationExampleButton();
   globalHidePageSpinner();
-
-  if (window.location.hash) {
-  }
 }
 
 init();
