@@ -189,6 +189,7 @@ function onSubmit(e) {
   setTimeout(() => {
     controller.abort();
     const alertMessage = getPhrase("timedout");
+    showToast(getPhrase("timeOutMessage"), 5000, "danger", ".snackbar", true);
     hide(spinner);
     show(submitButton);
     if (state === "during") {
@@ -225,3 +226,5 @@ async function init() {
 }
 
 init();
+
+console.log("Jason");

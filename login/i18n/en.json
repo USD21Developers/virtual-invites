@@ -62,6 +62,11 @@
       "key": "invalid login headline",
       "original": "Login Not Recognized",
       "translated": "Login Not Recognized"
+    },
+    {
+      "key": "timeOutMessage",
+      "original": "Login timed out. Please try again.",
+      "translated": "Login timed out. Please try again."
     }
   ],
 
