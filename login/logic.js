@@ -195,7 +195,7 @@ function onSubmit(e) {
     hide(spinner);
     show(submitButton);
 
-    showToast(getPhrase("timeOutMessage"), 5000, "danger", ".snackbar", true);
+    showToast(getPhrase("timeOutMessage"), 5000, "danger");
   }, 30000);
 }
 
