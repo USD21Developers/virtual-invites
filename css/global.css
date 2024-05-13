@@ -348,6 +348,10 @@ body.standalone #navButtons a[disabled] img {
   opacity: 0.3; /* 30% opacity */
 }
 
+#navForwardButton {
+  display: none;
+}
+
 @media all and (display-mode: standalone) {
   body.standalone {
     padding-bottom: 30px;
