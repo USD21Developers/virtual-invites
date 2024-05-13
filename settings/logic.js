@@ -145,24 +145,28 @@ function showWebPushNotSupportedModal() {
   document.querySelector("#notifyViaPush").checked = false;
 }
 
-async function togglePushNotificationExampleButton(action = {}) {
+async function togglePushNotificationExampleButton(e) {
+  const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isStandalone = window.matchMedia("(display-mode: standalone)").matches
+    ? true
+    : false;
+
   const testWebPushContainerEl = document.querySelector(
     "#testWebPushContainer"
   );
-
-  if (action.hide) {
-    testWebPushContainerEl.classList.add("d-none");
-    return;
-  }
 
   const pushPermissionGranted = isPushPermitted();
   const pushSubscription = await getPushSubscription();
 
   if (!pushPermissionGranted || !pushSubscription) {
-    testWebPushContainerEl.classList.add("d-none");
-  } else {
-    testWebPushContainerEl.classList.remove("d-none");
+    return testWebPushContainerEl.classList.add("d-none");
   }
+
+  if (isiOS && !navigator.standalone) {
+    return testWebPushContainerEl.classList.add("d-none");
+  }
+
+  return testWebPushContainerEl.classList.remove("d-none");
 }
 
 async function onEnablePushClicked(e) {
@@ -406,6 +410,11 @@ function attachListeners() {
         .classList.replace("d-inline-block", "d-none");
     }
   });
+
+  window.addEventListener(
+    "DOMContentLoaded",
+    togglePushNotificationExampleButton
+  );
 }
 
 async function init() {
@@ -420,7 +429,6 @@ async function init() {
   populateInviteTextExample();
   await populateForm();
   attachListeners();
-  togglePushNotificationExampleButton();
   globalHidePageSpinner();
 }
 
