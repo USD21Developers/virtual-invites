@@ -164,6 +164,8 @@ async function togglePushNotificationExampleButton(e) {
 
   if (isiOS && !navigator.standalone) {
     return testWebPushContainerEl.classList.add("d-none");
+  } else if (isiOS && !isStandalone) {
+    return testWebPushContainerEl.classList.add("d-none");
   }
 
   return testWebPushContainerEl.classList.remove("d-none");
