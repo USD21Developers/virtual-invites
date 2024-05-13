@@ -191,12 +191,12 @@ function onSubmit(e) {
     const submitButton = document.querySelector("#formsubmit");
     const spinner = document.querySelector("#progressbar");
 
-    controller.abort();
-
     hide(spinner);
     show(submitButton);
     showAlert(alert, getPhrase("timedout"));
     customScrollTo("#alert");
+
+    controller.abort();
   }, 30000);
 }
 
