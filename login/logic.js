@@ -187,15 +187,15 @@ function onSubmit(e) {
     });
 
   setTimeout(() => {
+    const submitButton = document.querySelector("#formsubmit");
+    const spinner = document.querySelector("#progressbar");
+
     controller.abort();
-    const alertMessage = getPhrase("timedout");
-    showToast(getPhrase("timeOutMessage"), 5000, "danger", ".snackbar", true);
+
     hide(spinner);
     show(submitButton);
-    if (state === "during") {
-      showAlert(alert, alertMessage);
-      state = "aborted";
-    }
+
+    showToast(getPhrase("timeOutMessage"), 5000, "danger", ".snackbar", true);
   }, 30000);
 }
 
