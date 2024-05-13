@@ -187,6 +187,7 @@ function onSubmit(e) {
     });
 
   setTimeout(() => {
+    const alert = document.querySelector("#alert");
     const submitButton = document.querySelector("#formsubmit");
     const spinner = document.querySelector("#progressbar");
 
@@ -194,8 +195,8 @@ function onSubmit(e) {
 
     hide(spinner);
     show(submitButton);
-
-    showToast(getPhrase("timeOutMessage"), 5000, "danger");
+    showAlert(document.querySelector(alert), getPhrase("timedout"));
+    customScrollTo("#alert");
   }, 30000);
 }
 
