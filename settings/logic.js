@@ -270,6 +270,7 @@ function onWebPushRequested() {
             return null;
           });
           if (typeof subscription === "object") {
+            togglePushNotificationExampleButton();
             showToast(
               getPhrase("webPushNowAuthorized"),
               5000,
@@ -374,7 +375,7 @@ async function onTestWebPushClick(e) {
       document
         .querySelector("#testSpinner")
         .classList.replace("d-inline-block", "d-none");
-      togglePushNotificationExampleButton({ hide: true });
+      togglePushNotificationExampleButton();
     });
 
   setTimeout(() => {
