@@ -195,7 +195,7 @@ function onSubmit(e) {
 
     hide(spinner);
     show(submitButton);
-    showAlert(document.querySelector(alert), getPhrase("timedout"));
+    showAlert(alert, getPhrase("timedout"));
     customScrollTo("#alert");
   }, 30000);
 }
