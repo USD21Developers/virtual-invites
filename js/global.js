@@ -1383,7 +1383,7 @@ function updateNavButtons() {
   } */
 
   // Disable back button if there are no pages to go back to
-  if (history.length <= 1 || history.state === null) {
+  if (showDimmedBackButton) {
     backButton.setAttribute("disabled", "disabled");
   } else {
     backButton.removeAttribute("disabled");
