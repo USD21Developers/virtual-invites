@@ -1675,6 +1675,7 @@ function initGlobal() {
     },
   });
 
+  updateNavButtons();
   showBottomNavOnIOS();
 }
 
