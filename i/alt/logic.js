@@ -541,6 +541,15 @@ function showMap() {
   });
 }
 
+function toggleBottomNav() {
+  const refreshToken = localStorage.getItem("refreshToken");
+  const navButtonsEl = document.querySelector("#navButtons");
+
+  if (!refreshToken) {
+    navButtonsEl.classList.add("showToLoggedInUser");
+  }
+}
+
 function updateCountryToMatchCoordinates(latitude, longitude) {
   return new Promise((resolve, reject) => {
     const endpoint = `${getApiServicesHost()}/country-of-coordinates`;
@@ -856,6 +865,7 @@ async function init() {
   await populateLanguages();
   setDefaultDates();
   setDefaultDistanceUnit();
+  toggleBottomNav();
   globalHidePageSpinner();
 }
 

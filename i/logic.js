@@ -1365,6 +1365,15 @@ function implementDiscreetLocation(event) {
   }
 }
 
+function toggleBottomNav() {
+  const refreshToken = localStorage.getItem("refreshToken");
+  const navButtonsEl = document.querySelector("#navButtons");
+
+  if (refreshToken) {
+    navButtonsEl.classList.add("showToLoggedInUser");
+  }
+}
+
 function warnIfEventIsDeleted() {
   const { event } = inviteObject;
   const isDeleted =
@@ -1512,7 +1521,7 @@ async function init() {
   populateHeadlineAboutEvent();
   populateEventDescription();
   populateQuestionsSection();
-  showBottomNavOnIOS();
+  toggleBottomNav();
 }
 
 init();

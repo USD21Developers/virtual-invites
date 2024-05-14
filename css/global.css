@@ -381,7 +381,8 @@ strong {
   text-transform: uppercase;
 }
 
-body.standalone #navButtons a[disabled] img {
+#navButtons a[disabled],
+#navButtons a[disabled] img {
   opacity: 0.3; /* 30% opacity */
 }
 
@@ -390,7 +391,7 @@ body.standalone #navButtons a[disabled] img {
     padding-bottom: 30px;
   }
 
-  body #navButtons {
+  #navButtons {
     display: block;
   }
 }
