@@ -8,7 +8,6 @@ async function redirectIfNecessary() {
   if (launchedFromHomescreen) {
     switch (openingPage) {
       case "home":
-        redirectUrl = "/";
         break;
       case "send an invite":
         redirectUrl = "/send/";
@@ -20,7 +19,7 @@ async function redirectIfNecessary() {
         redirectUrl = "/followup/";
         break;
       default:
-        redirectUrl = "/";
+        break;
     }
 
     window.location.href = redirectUrl;

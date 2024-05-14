@@ -1372,15 +1372,17 @@ function showAlert(selectorObject, message, headline = "") {
 
 function updateNavButtons() {
   const backButton = document.getElementById("navBackButton");
+  const launchedFromHomescreen =
+    window.location.search === "?utm_source=homescreen" ? true : false;
   let showDimmedBackButton = false;
 
-  if (window.location.pathname === "/") {
+  if (launchedFromHomescreen && window.location.pathname === "/") {
     showDimmedBackButton = true;
   }
 
-  /* if (history.length <= 2) {
+  if (history.length <= 2) {
     showDimmedBackButton = true;
-  } */
+  }
 
   // Disable back button if there are no pages to go back to
   if (showDimmedBackButton) {
