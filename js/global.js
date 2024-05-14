@@ -1380,7 +1380,7 @@ function updateNavButtons() {
     showDimmedBackButton = true;
   }
 
-  if (history.length <= 2) {
+  if (history.length === 1) {
     showDimmedBackButton = true;
   }
 
