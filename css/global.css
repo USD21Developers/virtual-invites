@@ -355,7 +355,17 @@ strong {
 #navButtons img {
   border: 0;
   height: 22px;
+  max-height: 22px;
+  max-width: 22px;
   width: 22px;
+}
+
+#navButtons a {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 body.standalone #navButtons a[disabled] img {
