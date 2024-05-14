@@ -338,8 +338,8 @@ strong {
 }
 
 #navButtons td {
-  padding-bottom: 0;
-  padding-top: 0;
+  padding-bottom: 1rem;
+  padding-top: 0.5rem;
   vertical-align: bottom;
 }
 
@@ -375,8 +375,7 @@ strong {
   font-family: "Inter", sans-serif;
   font-size: 0.7rem;
   font-weight: 400;
-  padding-bottom: 0;
-  padding-top: 0;
+  padding: 0;
   text-transform: uppercase;
 }
 
