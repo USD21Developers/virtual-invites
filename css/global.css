@@ -338,6 +338,8 @@ strong {
 }
 
 #navButtons td {
+  padding-bottom: 0;
+  padding-top: 0;
   vertical-align: bottom;
 }
 
@@ -357,7 +359,7 @@ strong {
 }
 
 #navButtons td div {
-  margin-top: 0.35rem;
+  margin-top: 0.5rem;
 }
 
 #navButtons img {
@@ -373,6 +375,8 @@ strong {
   font-family: "Inter", sans-serif;
   font-size: 0.7rem;
   font-weight: 400;
+  padding-bottom: 0;
+  padding-top: 0;
   text-transform: uppercase;
 }
 
