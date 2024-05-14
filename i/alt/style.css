@@ -187,3 +187,69 @@ hr {
   font-weight: bold;
   margin-right: 0.75rem;
 }
+
+#navButtons {
+  background-color: black;
+  display: none;
+}
+
+#navButtons table {
+  margin: auto;
+  margin-bottom: 25px;
+  max-width: 560px;
+}
+
+#navButtons td {
+  padding-bottom: 1rem;
+  padding-top: 0.85rem;
+  vertical-align: bottom;
+}
+
+#navButtons td:nth-child(1) {
+  text-align: left;
+  width: 33%;
+}
+
+#navButtons td:nth-child(2) {
+  text-align: center;
+  width: 34%;
+}
+
+#navButtons td:nth-child(3) {
+  text-align: right;
+  width: 33%;
+}
+
+#navButtons td div {
+  margin-top: 0.5rem;
+  min-height: 0.7rem;
+}
+
+#navButtons img {
+  border: 0;
+  height: 22px;
+  max-height: 22px;
+  max-width: 22px;
+  width: 22px;
+}
+
+#navButtons a {
+  color: #f5f5f5;
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+#navButtons a[disabled],
+#navButtons a[disabled] img {
+  opacity: 0.3; /* 30% opacity */
+}
+
+@media all and (display-mode: standalone) {
+  #navButtons.showToLoggedInUser {
+    display: block !important;
+    padding-bottom: 30px;
+  }
+}
