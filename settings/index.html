@@ -664,36 +664,51 @@
     <br /><br /><br /><br />
 
     <!-- Nav buttons (only visible in standalone mode on iOS Safari) -->
-    <nav id="navButtons" class="container-fluid fixed-bottom p-0 d-none">
+    <nav id="navButtons" class="container-fluid fixed-bottom p-0">
       <table width="100%" cellpadding="10">
         <tr>
-          <td>
-            <a href="javascript:history.go(-1)" id="navBackButton">
+          <td class="text-left">
+            <a
+              class="btn d-inline-block text-center"
+              href="/invites/"
+              id="navMyInvitesButton"
+            >
               <img
-                src="/_assets/svg/icons/nav-arrow-back.svg"
+                src="/_assets/svg/icons/nav-my-invites.svg"
                 width="22"
                 height="22"
               />
+              <div data-i18n-global="navbarMyInvites"></div>
             </a>
           </td>
 
           <td class="text-center">
-            <a href="/" id="navHomeButton">
+            <a
+              class="btn d-inline-block text-center"
+              href="/"
+              id="navHomeButton"
+            >
               <img
                 src="/_assets/svg/icons/nav-home.svg"
                 width="22"
                 height="22"
               />
+              <div data-i18n-global="navbarHome"></div>
             </a>
           </td>
 
           <td class="text-right">
-            <a href="javascript:history.go(+1)" id="navForwardButton">
+            <a
+              class="btn d-inline-block text-center"
+              href="/send/"
+              id="navSendAnInviteButton"
+            >
               <img
-                src="/_assets/svg/icons/nav-arrow-forward.svg"
+                src="/_assets/svg/icons/nav-send-an-invite.svg"
                 width="22"
                 height="22"
               />
+              <div data-i18n-global="navbarSendAnInvite"></div>
             </a>
           </td>
         </tr>

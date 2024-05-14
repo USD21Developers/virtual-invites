@@ -321,6 +321,21 @@
       "key": "multidayToLabel",
       "original": "To:",
       "translated": "To:"
+    },
+    {
+      "key": "navbarMyInvites",
+      "original": "My Invites",
+      "translated": "My Invites"
+    },
+    {
+      "key": "navbarHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "navbarSendAnInvite",
+      "original": "Send an Invite",
+      "translated": "Send an Invite"
     }
   ],
 

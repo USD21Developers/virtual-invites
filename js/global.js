@@ -1370,38 +1370,6 @@ function showAlert(selectorObject, message, headline = "") {
   window.scroll({ top: offset, behavior: "smooth" });
 }
 
-function updateNavButtons() {
-  const backButton = document.getElementById("navBackButton");
-  const launchedFromHomescreen =
-    window.location.search === "?utm_source=homescreen" ? true : false;
-  let showDimmedBackButton = false;
-
-  if (launchedFromHomescreen && window.location.pathname === "/") {
-    showDimmedBackButton = true;
-  }
-
-  if (history.length === 1) {
-    showDimmedBackButton = true;
-  }
-
-  // Disable back button if there are no pages to go back to
-  if (showDimmedBackButton) {
-    backButton.setAttribute("disabled", "disabled");
-  } else {
-    backButton.removeAttribute("disabled");
-  }
-}
-
-function showBottomNavOnIOS() {
-  const refreshToken = localStorage.getItem("refreshToken");
-  if (!refreshToken) return; // Must not be an invite recipient
-
-  if (navigator.standalone) {
-    updateNavButtons();
-    document.querySelector("body").classList.add("standalone");
-  }
-}
-
 function showEventDateTime(eventObj) {
   return new Promise(async (resolve, reject) => {
     const {
@@ -1685,9 +1653,6 @@ function initGlobal() {
       window.location.reload();
     },
   });
-
-  updateNavButtons();
-  showBottomNavOnIOS();
 }
 
 initGlobal();
