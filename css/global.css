@@ -352,6 +352,10 @@ strong {
   width: 33%;
 }
 
+#navButtons td div {
+  margin-top: 0.35rem;
+}
+
 #navButtons img {
   border: 0;
   height: 22px;
