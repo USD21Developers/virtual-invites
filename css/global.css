@@ -329,6 +329,7 @@ strong {
 
 #navButtons {
   background-color: black;
+  display: none;
 }
 
 #navButtons table {
@@ -360,6 +361,7 @@ strong {
 
 #navButtons td div {
   margin-top: 0.5rem;
+  min-height: 0.7rem;
 }
 
 #navButtons img {
