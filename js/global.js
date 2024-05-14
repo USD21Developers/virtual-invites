@@ -1371,7 +1371,16 @@ function showAlert(selectorObject, message, headline = "") {
 }
 
 function updateNavButtons() {
-  var backButton = document.getElementById("navBackButton");
+  const backButton = document.getElementById("navBackButton");
+  let showDimmedBackButton = false;
+
+  if (window.location.pathname === "/") {
+    showDimmedBackButton = true;
+  }
+
+  /* if (history.length <= 2) {
+    showDimmedBackButton = true;
+  } */
 
   // Disable back button if there are no pages to go back to
   if (history.length <= 1 || history.state === null) {
