@@ -338,6 +338,21 @@ strong {
   max-width: 560px;
 }
 
+#navButtons td:nth-child(1) {
+  text-align: left;
+  width: 33%;
+}
+
+#navButtons td:nth-child(2) {
+  text-align: center;
+  width: 34%;
+}
+
+#navButtons td:nth-child(3) {
+  text-align: right;
+  width: 33%;
+}
+
 #navButtons img {
   border: 0;
   height: 22px;
