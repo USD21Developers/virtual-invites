@@ -386,11 +386,11 @@ body.standalone #navButtons a[disabled] img {
 }
 
 @media all and (display-mode: standalone) {
-  body.standalone {
+  body {
     padding-bottom: 30px;
   }
 
-  body.standalone #navButtons {
-    display: block !important;
+  body #navButtons {
+    display: block;
   }
 }
