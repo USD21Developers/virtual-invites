@@ -1372,20 +1372,12 @@ function showAlert(selectorObject, message, headline = "") {
 
 function updateNavButtons() {
   var backButton = document.getElementById("navBackButton");
-  var forwardButton = document.getElementById("navForwardButton");
 
   // Disable back button if there are no pages to go back to
   if (history.length <= 1 || history.state === null) {
     backButton.setAttribute("disabled", "disabled");
   } else {
     backButton.removeAttribute("disabled");
-  }
-
-  // Disable forward button if there are no pages to go forward to
-  if (history.state === null || history.state.index >= history.length - 1) {
-    forwardButton.setAttribute("disabled", "disabled");
-  } else {
-    forwardButton.removeAttribute("disabled");
   }
 }
 
@@ -1394,8 +1386,7 @@ function showBottomNavOnIOS() {
   if (!refreshToken) return; // Must not be an invite recipient
 
   if (navigator.standalone) {
-    // window.addEventListener("popstate", updateNavButtons);
-    // updateNavButtons();
+    updateNavButtons();
     document.querySelector("body").classList.add("standalone");
   }
 }
