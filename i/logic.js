@@ -651,9 +651,6 @@ async function getInvite() {
       .catch((err) => {
         console.error(err);
         showSpinner();
-      })
-      .finally(() => {
-        toggleBottomNav();
       });
   });
 }
@@ -933,6 +930,8 @@ function renderInvite(invite) {
 
   // Show invite
   hideSpinner();
+
+  toggleBottomNav();
 }
 
 function hideSpinner() {
