@@ -336,6 +336,16 @@
       "key": "navbarSendAnInvite",
       "original": "Send",
       "translated": "Send"
+    },
+    {
+      "key": "navbarBack",
+      "original": "Back",
+      "translated": "Back"
+    },
+    {
+      "key": "navbarForward",
+      "original": "Forward",
+      "translated": "Forward"
     }
   ],
 
