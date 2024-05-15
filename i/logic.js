@@ -930,8 +930,6 @@ function renderInvite(invite) {
 
   // Show invite
   hideSpinner();
-
-  toggleBottomNav();
 }
 
 function hideSpinner() {
@@ -1456,6 +1454,7 @@ function onVideoEnded(e) {
   const pageContentContainerEl = paper.querySelector("#pageContentContainer");
   if (refreshToken) {
     pageContentContainerEl.classList.add("isLoggedInUser");
+    toggleBottomNav();
   }
 
   warnIfEventIsPast();
