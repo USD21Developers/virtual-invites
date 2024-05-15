@@ -231,16 +231,16 @@ h6 {
 .font-weight-bold,
 strong {
   font-family: Inter, sans-serif;
-  font-weight: 400;
+  font-weight: 600;
 }
 
-@supports (font-variation-settings: "wght" 900) {
+/* @supports (font-variation-settings: "wght" 900) {
   .font-weight-bold,
   strong {
     font-family: Inter, sans-serif;
     font-weight: 900;
   }
-}
+} */
 
 .invalid-feedback-unbound {
   font-size: 0.85rem;
