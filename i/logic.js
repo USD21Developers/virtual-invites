@@ -928,6 +928,8 @@ function renderInvite(invite) {
     connectingVirtuallyEl.classList.remove("d-none");
   }
 
+  // IF
+
   // Show invite
   hideSpinner();
 }
@@ -1367,9 +1369,11 @@ function implementDiscreetLocation(event) {
 
 function toggleBottomNav() {
   const refreshToken = localStorage.getItem("refreshToken");
+  const mainEl = document.querySelector("main");
   const navButtonsEl = document.querySelector("#navButtons");
 
   if (refreshToken) {
+    mainEl.classList.add("isLoggedInUser");
     navButtonsEl.classList.add("showToLoggedInUser");
   }
 }
