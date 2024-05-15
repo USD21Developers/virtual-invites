@@ -651,6 +651,9 @@ async function getInvite() {
       .catch((err) => {
         console.error(err);
         showSpinner();
+      })
+      .finally(() => {
+        toggleBottomNav();
       });
   });
 }
@@ -1529,7 +1532,6 @@ async function init() {
   populateHeadlineAboutEvent();
   populateEventDescription();
   populateQuestionsSection();
-  toggleBottomNav();
 }
 
 init();
