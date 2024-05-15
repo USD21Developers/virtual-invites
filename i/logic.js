@@ -1456,7 +1456,7 @@ function onVideoEnded(e) {
     pageContentContainerEl.classList.add("isLoggedInUser");
     setTimeout(() => {
       toggleBottomNav();
-    }, 1000);
+    }, 300);
   }
 
   warnIfEventIsPast();

@@ -367,7 +367,9 @@ a:hover {
   }
 
   #navButtons.showToLoggedInUser {
+    animation: fadeIn 0.5s;
     display: block !important;
     padding-bottom: 50px;
+    transition: height 0.5s ease;
   }
 }
