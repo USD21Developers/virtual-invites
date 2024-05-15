@@ -1451,9 +1451,9 @@ function onVideoEnded(e) {
 
   // IF LOGGED IN USER
   const refreshToken = localStorage.getItem("refreshToken");
-  const mainEl = paper.querySelector("main");
+  const pageContentContainerEl = paper.querySelector("#pageContentContainer");
   if (refreshToken) {
-    mainEl.classList.add("isLoggedInUser");
+    pageContentContainerEl.classList.add("isLoggedInUser");
   }
 
   warnIfEventIsPast();

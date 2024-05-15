@@ -362,7 +362,7 @@ a:hover {
 }
 
 @media all and (display-mode: standalone) {
-  main.isLoggedInUser {
+  #pageContentContainer.isLoggedInUser {
     margin-bottom: 72px;
   }
 
