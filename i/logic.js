@@ -1454,9 +1454,7 @@ function onVideoEnded(e) {
   const pageContentContainerEl = paper.querySelector("#pageContentContainer");
   if (refreshToken) {
     pageContentContainerEl.classList.add("isLoggedInUser");
-    setTimeout(() => {
-      toggleBottomNav();
-    }, 300);
+    toggleBottomNav();
   }
 
   warnIfEventIsPast();
