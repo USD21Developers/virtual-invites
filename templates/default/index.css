@@ -317,7 +317,7 @@ a:hover {
 }
 
 #navButtons td:nth-child(1) {
-  padding-left: 14px;
+  padding-left: 20px;
   text-align: left;
   width: 33%;
 }
@@ -328,7 +328,7 @@ a:hover {
 }
 
 #navButtons td:nth-child(3) {
-  padding-right: 14px;
+  padding-right: 20px;
   text-align: right;
   width: 33%;
 }
