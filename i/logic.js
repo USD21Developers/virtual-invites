@@ -928,13 +928,6 @@ function renderInvite(invite) {
     connectingVirtuallyEl.classList.remove("d-none");
   }
 
-  // IF LOGGED IN USER
-  const refreshToken = localStorage.getItem("refreshToken");
-  const mainEl = document.querySelector("main");
-  if (refreshToken) {
-    mainEl.classList.add("isLoggedInUser");
-  }
-
   // Show invite
   hideSpinner();
 }
@@ -1455,6 +1448,14 @@ function onVideoEnded(e) {
   fixVideoBug();
   paper.classList.remove("d-none");
   topOfEnvelope.scrollIntoView({ behavior: "smooth" });
+
+  // IF LOGGED IN USER
+  const refreshToken = localStorage.getItem("refreshToken");
+  const mainEl = paper.querySelector("main");
+  if (refreshToken) {
+    mainEl.classList.add("isLoggedInUser");
+  }
+
   warnIfEventIsPast();
   warnIfEventIsDeleted();
 
