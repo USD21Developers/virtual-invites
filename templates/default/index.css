@@ -307,12 +307,12 @@ a:hover {
 
 #navButtons table {
   margin: auto;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
 #navButtons td {
   padding-bottom: 16px;
-  padding-top: 13.6px;
+  padding-top: 0;
   vertical-align: bottom;
 }
 
@@ -323,6 +323,7 @@ a:hover {
 
 #navButtons td:nth-child(2) {
   text-align: center;
+  width: 34%;
 }
 
 #navButtons td:nth-child(3) {
