@@ -364,6 +364,6 @@ a:hover {
 @media all and (display-mode: standalone) {
   #navButtons.showToLoggedInUser {
     display: block !important;
-    padding-bottom: 30px;
+    padding-bottom: 50px;
   }
 }
