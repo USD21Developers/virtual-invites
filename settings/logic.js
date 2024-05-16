@@ -432,6 +432,7 @@ async function init() {
   populateInviteTextExample();
   await populateForm();
   attachListeners();
+  togglePushNotificationExampleButton();
   globalHidePageSpinner();
 }
 
