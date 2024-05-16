@@ -340,24 +340,19 @@ strong {
 #navButtons td {
   padding-bottom: 1rem;
   padding-top: 3px;
+  text-align: center;
   vertical-align: bottom;
+  width: 25%;
 }
 
 #navButtons td:nth-child(1) {
   padding-left: 20px;
   text-align: left;
-  width: 33%;
 }
 
-#navButtons td:nth-child(2) {
-  text-align: center;
-  width: 34%;
-}
-
-#navButtons td:nth-child(3) {
+#navButtons td:nth-child(4) {
   padding-right: 20px;
   text-align: right;
-  width: 33%;
 }
 
 #navButtons td div {
