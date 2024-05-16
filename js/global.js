@@ -957,9 +957,9 @@ function getPreviewPhrase(key) {
 
 function getDefaultName(sex = "either", lang = getLang()) {
   return new Promise(async (resolve, reject) => {
-    const names = await fetch(`/i18n-names/${lang}.json`).then((res) => {
-      res.json();
-    });
+    const names = await fetch(`/i18n-names/${lang}.json`).then((res) =>
+      res.json()
+    );
 
     if (!names) {
       return reject(
@@ -967,19 +967,19 @@ function getDefaultName(sex = "either", lang = getLang()) {
       );
     }
 
-    const male = names.male;
-    const female = names.female;
+    const maleName = names.defaultMale;
+    const femaleName = names.defaultFemale;
     let name = "";
 
     switch (sex) {
       case "male":
-        name = male[0];
+        name = maleName;
         break;
       case "female":
-        name = female[0];
+        name = femaleName;
         break;
       default:
-        name = Math.random() < 0.5 ? male[0] : female[0];
+        name = Math.random() < 0.5 ? maleName : femaleName;
     }
 
     return resolve(name);
