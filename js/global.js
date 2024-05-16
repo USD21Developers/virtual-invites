@@ -957,7 +957,7 @@ function getPreviewPhrase(key) {
 
 function getDefaultName(sex = "either", lang = getLang()) {
   return new Promise(async (resolve, reject) => {
-    const names = await fetch(`../i18n-names/${lang}.json`).then((res) => {
+    const names = await fetch(`/i18n-names/${lang}.json`).then((res) => {
       res.json();
     });
 
@@ -988,7 +988,7 @@ function getDefaultName(sex = "either", lang = getLang()) {
 
 function getRandomName(sex = "either", lang = getLang()) {
   return new Promise(async (resolve, reject) => {
-    const names = await fetch(`../i18n-names/${lang}.json`).then((res) =>
+    const names = await fetch(`/i18n-names/${lang}.json`).then((res) =>
       res.json()
     );
 
