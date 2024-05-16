@@ -1,9 +1,16 @@
-const gender = JSON.parse(
-  atob(localStorage.getItem("refreshToken").split(".")[1])
-).gender;
-let randomRecipientName = (async () => {
-  return await getDefaultName(gender);
-})();
+let randomRecipientName;
+
+function populateDefaultName() {
+  return new Promise((resolve, reject) => {
+    const gender = JSON.parse(
+      atob(localStorage.getItem("refreshToken").split(".")[1])
+    ).gender;
+    getDefaultName(gender).then((name) => {
+      randomRecipientName = name;
+      return resolve();
+    });
+  });
+}
 
 function populateForm() {
   return new Promise(async (resolve, reject) => {
@@ -448,10 +455,11 @@ async function init() {
   if (navigator.onLine) syncPushSubscription();
   showPushNotificationsCheckbox();
   await populateContent();
+  await populateDefaultName();
   populateInviteTextExample();
   await populateForm();
   attachListeners();
-  togglePushNotificationExampleButton();
+  await togglePushNotificationExampleButton();
   globalHidePageSpinner();
 }
 
