@@ -1,7 +1,7 @@
 const gender = JSON.parse(
   atob(localStorage.getItem("refreshToken").split(".")[1])
 ).gender;
-let randomRecipientName = getDefaultName(gender);
+let randomRecipientName = await getDefaultName(gender);
 
 function populateForm() {
   return new Promise(async (resolve, reject) => {
