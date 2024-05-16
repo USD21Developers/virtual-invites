@@ -313,6 +313,7 @@ a:hover {
 #navButtons td {
   padding-bottom: 16px;
   padding-top: 0;
+  text-align: center;
   vertical-align: bottom;
   width: 25%;
 }
