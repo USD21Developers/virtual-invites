@@ -73,6 +73,12 @@ function populateInviteTextExample() {
     atob(localStorage.getItem("refreshToken").split(".")[1])
   );
   const firstName = userData.firstname;
+  const gender = userData.gender;
+  const genderPronoun =
+    gender === "female"
+      ? getGlobalPhrase("herPronoun")
+      : getGlobalPhrase("himPronoun");
+
   document
     .querySelectorAll("[data-i18n='customInviteTextExample']")
     .forEach((el) => {
@@ -92,10 +98,9 @@ function populateInviteTextExample() {
     .querySelectorAll("[data-i18n='templatePlaceholderExplanation2']")
     .forEach((el) => {
       const rawText = el.innerHTML;
-      const fixedText = rawText.replaceAll(
-        "{RANDOM-RECIPIENT-NAME}",
-        randomRecipientName
-      );
+      const fixedText = rawText
+        .replaceAll("{RANDOM-RECIPIENT-NAME}", randomRecipientName)
+        .replaceAll("{GENDER-PRONOUN}", genderPronoun);
       el.innerHTML = fixedText;
     });
   document
