@@ -46,6 +46,7 @@ const supportedLangs = ["en"];
   getPhrase
   getGlobalPhrase
   getPreviewPhrase
+  getDefaultName
   getRandomName
   getRecurringWeekdayName
   getStoredChurch
@@ -952,6 +953,37 @@ function getPreviewPhrase(key) {
     console.error(err);
     return content;
   }
+}
+
+function getDefaultName(sex = "either", lang = getLang()) {
+  return new Promise(async (resolve, reject) => {
+    const names = await fetch(`../i18n-names/${lang}.json`).then((res) => {
+      res.json();
+    });
+
+    if (!names) {
+      return reject(
+        new Error(`could not find list of names at "/i18n-names/${lang}.json`)
+      );
+    }
+
+    const male = names.male;
+    const female = names.female;
+    let name = "";
+
+    switch (sex) {
+      case "male":
+        name = male[0];
+        break;
+      case "female":
+        name = female[0];
+        break;
+      default:
+        name = Math.random() < 0.5 ? male[0] : female[0];
+    }
+
+    return resolve(name);
+  });
 }
 
 function getRandomName(sex = "either", lang = getLang()) {
