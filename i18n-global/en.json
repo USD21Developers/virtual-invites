@@ -323,24 +323,29 @@
       "translated": "To:"
     },
     {
-      "key": "navbarMyInvites",
-      "original": "My Invites",
-      "translated": "My Invites"
-    },
-    {
       "key": "navbarHome",
       "original": "Home",
       "translated": "Home"
     },
     {
-      "key": "navbarSendAnInvite",
-      "original": "Send",
-      "translated": "Send"
-    },
-    {
       "key": "navbarBack",
       "original": "Back",
       "translated": "Back"
+    },
+    {
+      "key": "navbarMyInvites",
+      "original": "My Invites",
+      "translated": "My Invites"
+    },
+    {
+      "key": "navbarFollowUp",
+      "original": "Follow Up",
+      "translated": "Follow Up"
+    },
+    {
+      "key": "navbarSendAnInvite",
+      "original": "Send",
+      "translated": "Send"
     },
     {
       "key": "navbarForward",
