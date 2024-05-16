@@ -1,3 +1,8 @@
+const gender = JSON.parse(
+  atob(localStorage.getItem("refreshToken").split(".")[1])
+).gender;
+let randomRecipientName = getDefaultName(gender);
+
 function populateForm() {
   return new Promise(async (resolve, reject) => {
     const settings = (await localforage.getItem("settings")) || null;
@@ -75,10 +80,22 @@ function populateInviteTextExample() {
       el.innerHTML = fixedText;
     });
   document
+    .querySelectorAll("[data-i18n='templatePlaceholderExplanation2']")
+    .forEach((el) => {
+      const rawText = el.innerHTML;
+      const fixedText = rawText.replaceAll(
+        "{RANDOM-RECIPIENT-NAME}",
+        randomRecipientName
+      );
+      el.innerHTML = fixedText;
+    });
+  document
     .querySelectorAll("[data-i18n='templatePlaceholderAfter']")
     .forEach((el) => {
       const rawText = el.innerHTML;
-      const fixedText = rawText.replaceAll("{SENDER-FIRST-NAME}", firstName);
+      const fixedText = rawText
+        .replaceAll("{SENDER-FIRST-NAME}", firstName)
+        .replaceAll("{RANDOM-RECIPIENT-NAME}", randomRecipientName);
       el.innerHTML = fixedText;
     });
 }
