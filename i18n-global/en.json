@@ -346,6 +346,16 @@
       "key": "navbarForward",
       "original": "Forward",
       "translated": "Forward"
+    },
+    {
+      "key": "himPronoun",
+      "original": "him",
+      "translated": "him"
+    },
+    {
+      "key": "herPronoun",
+      "original": "her",
+      "translated": "her"
     }
   ],
 
