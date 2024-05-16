@@ -187,10 +187,14 @@ async function togglePushNotificationExampleButton(e) {
   );
 
   const pushPermissionGranted = isPushPermitted();
-  const pushSubscription = await getPushSubscription();
 
-  if (!pushPermissionGranted || !pushSubscription) {
+  if (!pushPermissionGranted) {
     return testWebPushContainerEl.classList.add("d-none");
+  } else {
+    const pushSubscription = await getPushSubscription();
+    if (!pushSubscription) {
+      return testWebPushContainerEl.classList.add("d-none");
+    }
   }
 
   if (isiOS && !navigator.standalone) {
