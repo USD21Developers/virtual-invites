@@ -230,7 +230,7 @@ h6 {
 .font-weight-bold,
 strong {
   font-family: Inter, sans-serif;
-  font-weight: 600;
+  font-weight: 600 !important;
 }
 
 /* @supports (font-variation-settings: "wght" 900) {
@@ -327,7 +327,8 @@ strong {
 }
 
 #navButtons {
-  background-color: #102951;
+  background-color: #fafafa;
+  border-top: 1px solid #cacaca;
   max-width: 800px;
 }
 
@@ -345,6 +346,7 @@ strong {
 }
 
 #navButtons td div {
+  color: #777777;
   margin-top: 0.5rem;
   min-height: 0.7rem;
   white-space: nowrap;
@@ -359,13 +361,17 @@ strong {
 }
 
 #navButtons a {
-  color: #f5f5f5;
+  color: #777777;
   font-family: "Inter", sans-serif;
   font-size: 0.7rem;
   font-weight: 400;
   padding: 0;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+#navButtons .font-weight-bold a {
+  font-weight: 600;
 }
 
 #navButtons a[disabled],
