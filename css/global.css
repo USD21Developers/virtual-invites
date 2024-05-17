@@ -12,8 +12,7 @@
   font-family: "Material Icons";
   font-style: normal;
   font-weight: 400;
-  src: url("../_assets/fonts/MaterialIcons/material-icons.woff2")
-    format("woff2");
+  src: url("/_assets/fonts/MaterialIcons/material-icons.woff2") format("woff2");
 }
 
 .material-icons {
@@ -328,13 +327,13 @@ strong {
 }
 
 #navButtons {
-  background-color: black;
-  display: none;
+  background-color: #102951;
+  max-width: 800px;
 }
 
 #navButtons table {
   margin: auto;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 }
 
 #navButtons td {
@@ -348,6 +347,7 @@ strong {
 #navButtons td div {
   margin-top: 0.5rem;
   min-height: 0.7rem;
+  white-space: nowrap;
 }
 
 #navButtons img {
@@ -373,6 +373,30 @@ strong {
   opacity: 0.3; /* 30% opacity */
 }
 
+@media (min-width: 660px) {
+  html {
+    background-color: #4b668f;
+  }
+
+  body {
+    margin: auto;
+    max-width: 800px;
+    min-height: calc(100vh - 75px);
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  #navButtons {
+    max-width: 800px;
+  }
+
+  #navButtons table {
+    max-width: 660px;
+    width: 60%;
+  }
+}
+
 @media all and (display-mode: standalone) {
   body {
     padding-bottom: 72px;
@@ -380,5 +404,9 @@ strong {
 
   #navButtons {
     display: block;
+  }
+
+  #navButtons table {
+    margin-bottom: 15px;
   }
 }
