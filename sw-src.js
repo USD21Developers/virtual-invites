@@ -82,7 +82,18 @@ self.addEventListener(
     const subscription = self.registration.pushManager
       .subscribe(event.oldSubscription.options)
       .then(async (subscription) => {
-        const endpoint = `${getApiHost()}/push-update-subscription`;
+        const origin = self.location.origin;
+        let apiHost;
+
+        if (origin.includes("localhost")) {
+          apiHost = "http://localhost:4000/invites";
+        } else if (origin.includes("staging")) {
+          apiHost = "https://api.usd21.org/invites";
+        } else {
+          apiHost = "https://api.usd21.org/invites";
+        }
+
+        const endpoint = `${apiHost}/push-update-subscription`;
 
         fetch(endpoint, {
           mode: "cors",
