@@ -545,7 +545,7 @@ function toggleBottomNav() {
   const refreshToken = localStorage.getItem("refreshToken");
   const navButtonsEl = document.querySelector("#navButtons");
 
-  if (!refreshToken) {
+  if (refreshToken) {
     navButtonsEl.classList.add("showToLoggedInUser");
   }
 }
