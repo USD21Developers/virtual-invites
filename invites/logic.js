@@ -129,7 +129,7 @@ async function init() {
     if (changed) mustReload = true;
     if (hashBeforeSync !== hashAfterSync) mustReload = true;
 
-    if (mustReload) {
+    /* if (mustReload) {
       if (table) {
         globalShowPageSpinner();
         table.destroy();
@@ -137,7 +137,7 @@ async function init() {
       } else {
         window.location.reload();
       }
-    }
+    } */
   });
 }
 
