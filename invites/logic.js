@@ -115,7 +115,19 @@ async function init() {
   await populateContent();
   globalHidePageSpinner();
   await populateRecipientsTable();
-  syncInvites();
+
+  syncInvites().then(() => {
+    if ($.fn.DataTable.isDataTable("#recipients")) {
+      globalShowPageSpinner();
+
+      var table = $("#recipients").DataTable();
+      table.clear();
+      populateRecipientsTable().then(() => {
+        table.draw();
+        globalHidePageSpinner();
+      });
+    }
+  });
 }
 
 init();
