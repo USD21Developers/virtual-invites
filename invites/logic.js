@@ -106,7 +106,9 @@ function populateRecipientsTable() {
           order: [[1, "desc"]],
         });
       } else {
-        table.draw();
+        if ($.fn.DataTable.isDataTable("#recipients")) {
+          table.draw();
+        }
       }
 
       noRecipientsEl.classList.add("d-none");
