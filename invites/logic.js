@@ -129,15 +129,14 @@ async function init() {
     if (changed) mustReload = true;
     if (hashBeforeSync !== hashAfterSync) mustReload = true;
 
-    /* if (mustReload) {
+    if (mustReload) {
       if (table) {
-        globalShowPageSpinner();
         table.destroy();
-        populateRecipientsTable().then(() => globalHidePageSpinner());
+        populateRecipientsTable();
       } else {
-        window.location.reload();
+        // window.location.reload();
       }
-    } */
+    }
   });
 }
 
