@@ -300,6 +300,10 @@ a:hover {
   }
 }
 
+#pageContentContainer.isLoggedInUser {
+  margin-bottom: 72px;
+}
+
 #navButtons {
   background-color: #fafafa;
   border-top: 1px solid #cacaca;
@@ -350,10 +354,6 @@ a:hover {
 }
 
 @media all and (display-mode: standalone) {
-  #pageContentContainer.isLoggedInUser {
-    margin-bottom: 72px;
-  }
-
   #navButtons.showToLoggedInUser {
     animation: fadeIn 0.5s;
     display: block !important;
