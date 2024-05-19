@@ -303,7 +303,7 @@ a:hover {
 #navButtons {
   background-color: #fafafa;
   border-top: 1px solid #cacaca;
-  max-width: 800px;
+  max-width: 488px;
 }
 
 #navButtons table {
@@ -322,9 +322,9 @@ a:hover {
 #navButtons td div {
   color: #777777;
   font-family: "Inter", sans-serif;
-  font-size: 0.7rem;
-  margin-top: 0.5rem;
-  min-height: 0.7rem;
+  font-size: 12px;
+  margin-top: 8px;
+  min-height: 12px;
   text-transform: uppercase;
   white-space: nowrap;
 }
