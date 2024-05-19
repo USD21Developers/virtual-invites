@@ -1,4 +1,5 @@
 let table = null;
+let hashBeforeSync = null;
 
 function getMaxUtcDate(interactions) {
   if (interactions.length === 0) return "1970-01-01T00:00:00Z"; // Default date for no interactions
@@ -14,12 +15,14 @@ function populateRecipientsTable() {
     const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
     const translationURL = getDatatablesTranslationURL();
     const languageData = await fetch(translationURL).then((res) => res.json());
-    localforage.getItem("invites").then((invites) => {
+    localforage.getItem("invites").then(async (invites) => {
       if (!invites.length) {
+        hashBeforeSync = await invitesCrypto.hash(JSON.stringify([]));
         recipientsEl.classList.add("d-none");
         noRecipientsEl.classList.remove("d-none");
         return resolve();
       }
+      hashBeforeSync = await invitesCrypto.hash(JSON.stringify(invites));
       invites = invites.filter((item) => !!!item.deleted);
       invites = invites.sort((a, b) => {
         const maxUtcDateA = getMaxUtcDate(a.interactions);
@@ -118,15 +121,16 @@ async function init() {
   globalHidePageSpinner();
   await populateRecipientsTable();
 
-  syncInvites().then((invitesObj) => {
-    const { changed } = invitesObj;
+  syncInvites().then(async (invitesObj) => {
+    const { invites, changed } = invitesObj;
+    const hashAfterSync = await invitesCrypto.hash(JSON.stringify(invites));
+    let mustReload = false;
 
-    if (!!changed) {
-      // window.location.reload();
-      if (table) {
-        table.destroy();
-        populateRecipientsTable();
-      }
+    if (changed) mustReload = true;
+    if (hashBeforeSync !== hashAfterSync) mustReload = true;
+
+    if (mustReload) {
+      window.location.reload();
     }
   });
 }
