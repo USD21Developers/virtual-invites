@@ -130,12 +130,8 @@ async function init() {
     if (hashBeforeSync !== hashAfterSync) mustReload = true;
 
     if (mustReload) {
-      if (table) {
-        table.destroy();
-        populateRecipientsTable();
-      } else {
-        // window.location.reload();
-      }
+      await populateRecipientsTable();
+      // window.location.reload();
     }
   });
 }
