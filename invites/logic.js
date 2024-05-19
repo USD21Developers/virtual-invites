@@ -1,4 +1,4 @@
-let tableHash = null;
+let table = null;
 
 function getMaxUtcDate(interactions) {
   if (interactions.length === 0) return "1970-01-01T00:00:00Z"; // Default date for no interactions
@@ -100,7 +100,7 @@ function populateRecipientsTable() {
 
       recipientsEl.querySelector("tbody").innerHTML = rows;
 
-      const table = $("#recipients").DataTable({
+      table = $("#recipients").DataTable({
         language: languageData,
         order: [[1, "desc"]],
       });
@@ -122,7 +122,11 @@ async function init() {
     const { changed } = invitesObj;
 
     if (!!changed) {
-      window.location.reload();
+      // window.location.reload();
+      if (table) {
+        table.destroy();
+        populateRecipientsTable();
+      }
     }
   });
 }
