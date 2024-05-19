@@ -1,4 +1,4 @@
-let table = null;
+let tableHash = null;
 
 function getMaxUtcDate(interactions) {
   if (interactions.length === 0) return "1970-01-01T00:00:00Z"; // Default date for no interactions
@@ -100,16 +100,10 @@ function populateRecipientsTable() {
 
       recipientsEl.querySelector("tbody").innerHTML = rows;
 
-      if (!table) {
-        table = $("#recipients").DataTable({
-          language: languageData,
-          order: [[1, "desc"]],
-        });
-      } else {
-        if ($.fn.DataTable.isDataTable("#recipients")) {
-          table.draw();
-        }
-      }
+      const table = $("#recipients").DataTable({
+        language: languageData,
+        order: [[1, "desc"]],
+      });
 
       noRecipientsEl.classList.add("d-none");
       recipientsEl.classList.remove("d-none");
@@ -122,10 +116,18 @@ function populateRecipientsTable() {
 async function init() {
   await populateContent();
   globalHidePageSpinner();
-  await populateRecipientsTable();
+  const invites1 = await populateRecipientsTable();
+  const hash1 = await invitesCrypto.hash(JSON.stringify(invites1));
 
-  syncInvites().then(() => {
-    populateRecipientsTable();
+  syncInvites().then(async () => {
+    const invites2 = await localforage.getItem("invites");
+    const hash2 = await invitesCrypto.hash(JSON.stringify(invites2));
+
+    if (invites1 && invites2) {
+      if (hash1 !== hash2) {
+        window.location.reload();
+      }
+    }
   });
 }
 
