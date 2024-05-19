@@ -709,8 +709,6 @@ async function onSubmitButtonClick(e) {
 
   clearErrorMessages();
 
-  console.log(getFinalURL());
-
   if (eventid === "") {
     const msg = getPhrase("eventIsRequired");
     const msgInline = getPhrase("fieldRequired");
