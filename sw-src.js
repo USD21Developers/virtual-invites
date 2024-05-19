@@ -82,7 +82,7 @@ self.addEventListener(
     const subscription = self.registration.pushManager
       .subscribe(event.oldSubscription.options)
       .then(async (subscription) => {
-        const origin = self.location.origin;
+        const origin = self.location.hostname;
         let apiHost;
 
         if (origin.includes("localhost")) {
