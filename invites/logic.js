@@ -122,7 +122,7 @@ async function init() {
     const { changed } = invitesObj;
 
     if (!!changed) {
-      console.log("Changed");
+      window.location.reload();
     }
   });
 }
