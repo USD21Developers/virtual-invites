@@ -124,14 +124,13 @@ async function init() {
   syncInvites().then(async (invitesObj) => {
     const { invites, changed } = invitesObj;
     const hashAfterSync = await invitesCrypto.hash(JSON.stringify(invites));
-    let mustReload = false;
+    let mustReRender = false;
 
-    if (changed) mustReload = true;
-    if (hashBeforeSync !== hashAfterSync) mustReload = true;
+    if (changed) mustReRender = true;
+    if (hashBeforeSync !== hashAfterSync) mustReRender = true;
 
-    if (mustReload) {
+    if (mustReRender) {
       await populateRecipientsTable();
-      // window.location.reload();
     }
   });
 }
