@@ -118,7 +118,12 @@ async function init() {
   globalHidePageSpinner();
   await populateRecipientsTable();
 
-  syncInvites();
+  syncInvites().then((invitesObj) => {
+    const { changed } = invitesObj;
+    if (changed) {
+      window.location.reload();
+    }
+  });
 }
 
 init();
