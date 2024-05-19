@@ -401,6 +401,11 @@ function syncInvites() {
     const accessToken = await getAccessToken();
     let syncSuccessful = false;
 
+    const invitesBeforeSync = await localforage.getItem("invites");
+    const hashBeforeSync = await invitesCrypto.hash(
+      JSON.stringify(invitesBeforeSync)
+    );
+
     fetch(endpoint, {
       mode: "cors",
       method: "POST",
@@ -481,9 +486,22 @@ function syncInvites() {
                 data.eventsFromMyInvites
               );
             })
-            .then(() => {
+            .then(async () => {
+              const invitesAfterSync = JSON.stringify(
+                await localforage.getItem("invites")
+              );
+              const hashAfterSync = await invitesCrypto.hash(invitesAfterSync);
+              let changed = false;
+
+              if (hashBeforeSync !== hashAfterSync) {
+                changed = true;
+              }
+
               syncSuccessful = true;
-              return resolve(invites);
+              return resolve({
+                changed: changed,
+                invites: invites,
+              });
             });
         });
       })

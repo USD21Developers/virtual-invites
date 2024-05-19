@@ -116,20 +116,9 @@ function populateRecipientsTable() {
 async function init() {
   await populateContent();
   globalHidePageSpinner();
-  const invites1 = await populateRecipientsTable();
-  const hash1 = await invitesCrypto.hash(JSON.stringify(invites1));
+  await populateRecipientsTable();
 
-  syncInvites().then(async () => {
-    const invites2 = await localforage.getItem("invites");
-    const hash2 = await invitesCrypto.hash(JSON.stringify(invites2));
-
-    if (invites1 && invites2) {
-      if (hash1 !== hash2) {
-        debugger;
-        window.location.reload();
-      }
-    }
-  });
+  syncInvites();
 }
 
 init();
