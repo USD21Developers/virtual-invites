@@ -125,6 +125,7 @@ async function init() {
 
     if (invites1 && invites2) {
       if (hash1 !== hash2) {
+        debugger;
         window.location.reload();
       }
     }
