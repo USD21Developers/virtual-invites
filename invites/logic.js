@@ -131,11 +131,11 @@ async function init() {
 
     if (mustReload) {
       if (table) {
-        /* globalShowPageSpinner();
+        globalShowPageSpinner();
         table.destroy();
-        populateRecipientsTable().then(() => globalHidePageSpinner()); */
+        populateRecipientsTable().then(() => globalHidePageSpinner());
       } else {
-        // window.location.reload();
+        window.location.reload();
       }
     }
   });
