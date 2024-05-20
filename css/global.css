@@ -377,7 +377,12 @@ strong {
 
 @media (min-width: 660px) {
   html {
-    background-color: #4b668f;
+    background: rgb(110, 149, 208);
+    background: radial-gradient(
+      circle,
+      rgba(110, 149, 208, 1) 10%,
+      rgba(51, 69, 97, 1) 90%
+    );
   }
 
   body {
