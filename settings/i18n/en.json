@@ -311,13 +311,13 @@
     },
     {
       "key": "webPushNotSupportedHeadline",
-      "original": "Not Supported",
-      "translated": "Not Supported"
+      "original": "Requires Installation",
+      "translated": "Requires Installation"
     },
     {
       "key": "webPushNotSupportedParagraph1",
-      "original": "Push notifications on this device will only work if you open the browser's menu and select 'Add To Home Screen,' which will install the icon for this app onto your device's home screen. Then open the app from the home screen, return to the Settings page, and enable push notifications.",
-      "translated": "Push notifications on this device will only work if you open the browser's menu and select 'Add To Home Screen,' which will install the icon for this app onto your device's home screen. Then open the app from the home screen, return to the Settings page, and enable push notifications.",
+      "original": "Push notifications on this device will only work if you open the browser's menu and select 'Add To Home Screen,' which will install the icon for this app onto your device's home screen. Then open the app from the home screen, return to the Settings page, and try enabling push notifications again.",
+      "translated": "Push notifications on this device will only work if you open the browser's menu and select 'Add To Home Screen,' which will install the icon for this app onto your device's home screen. Then open the app from the home screen, return to the Settings page, and try enabling push notifications again.",
       "changes": [
         {
           "original": "Add To Home Screen",
