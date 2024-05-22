@@ -51,8 +51,9 @@ function fixBreadcrumbIfArrivedFromFollowup() {
     );
     if (breadcrumb) {
       breadcrumb.setAttribute("href", "../followup/");
-      breadcrumb.setAttribute("data-i18n-global", "menuFollowUp");
-      breadcrumb.innerText = getGlobalPhrase("menuFollowUp");
+      breadcrumb.setAttribute("data-i18n", "menuFollowUp");
+      breadcrumb.removeAttribute("data-i18n-global");
+      breadcrumb.innerText = getPhrase("menuFollowUp");
     }
   }
 }

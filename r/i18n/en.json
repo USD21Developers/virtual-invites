@@ -362,6 +362,11 @@
       "key": "eventIsDeleted",
       "original": "(inactive)",
       "translated": "(inactive)"
+    },
+    {
+      "key": "menuFollowUp",
+      "original": "Follow Up",
+      "translated": "Follow Up"
     }
   ],
 
