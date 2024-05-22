@@ -47,7 +47,7 @@ function fixBreadcrumbIfArrivedFromFollowup() {
 
   if (cameFromFollowup) {
     const breadcrumb = document.querySelector(
-      "#breadcrumbs > a[href='../invites/']"
+      "#breadcrumbs a[href='../invites/']"
     );
     if (breadcrumb) {
       breadcrumb.setAttribute("href", "../followup/");
