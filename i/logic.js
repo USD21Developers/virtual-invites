@@ -1393,6 +1393,9 @@ function warnIfEventIsDeleted() {
   if (!refreshToken) showToast(toastHTML, 0, "danger", ".snackbar", true);
 
   const toastEl = document.querySelector(".snackbar a");
+
+  if (!toastEl) return;
+
   toastEl.setAttribute(
     "style",
     "color: white; text-decoration: underline; font-weight: bold"
