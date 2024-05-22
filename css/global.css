@@ -33,6 +33,7 @@
 
 body {
   overscroll-behavior: none !important;
+  padding-bottom: 82px;
 }
 
 body,
@@ -375,12 +376,6 @@ strong {
   opacity: 0.3; /* 30% opacity */
 }
 
-@media (max-width: 767px) {
-  body {
-    padding-bottom: 82px;
-  }
-}
-
 @media (min-width: 660px) {
   html {
     background: rgb(110, 149, 208);
@@ -411,10 +406,6 @@ strong {
 }
 
 @media all and (display-mode: standalone) {
-  body {
-    padding-bottom: 82px;
-  }
-
   #navButtons {
     display: block;
   }
