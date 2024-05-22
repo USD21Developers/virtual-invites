@@ -406,7 +406,7 @@ strong {
 
 @media all and (display-mode: standalone) {
   body {
-    padding-bottom: 72px;
+    padding-bottom: 82px;
   }
 
   #navButtons {
