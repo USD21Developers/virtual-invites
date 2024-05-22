@@ -38,6 +38,30 @@ function filterNotes(allNotes) {
   return notes;
 }
 
+function fixBreadcrumbIfArrivedFromFollowup() {
+  const referrer = document.referrer || null;
+
+  if (!referrer) return;
+
+  const cameFromFollowup = referrer.endsWith("/followup/");
+
+  if (cameFromFollowup) {
+    const breadcrumb = document.querySelector(
+      "#breadcrumbs > a[href='../invites/']"
+    );
+    breadcrumb.setAttribute("href", "../followup/");
+    breadcrumb.setAttribute("data-i18n-global", "menuFollowUp");
+    breadcrumb.innerText = getGlobalPhrase("menuFollowUp");
+  } else {
+    const breadcrumb = document.querySelector(
+      "#breadcrumbs > a[href='../followup/']"
+    );
+    breadcrumb.setAttribute("href", "../invites/");
+    breadcrumb.setAttribute("data-i18n-global", "menuMyInvites");
+    breadcrumb.innerText = getGlobalPhrase("menuMyInvites");
+  }
+}
+
 function getFollowUpDateTime() {
   const followUpDateEl = document.querySelector("#followUpDate");
   const followUpTimeEl = document.querySelector("#followUpTime");
@@ -1584,6 +1608,7 @@ async function init() {
   syncUpdatedInvites();
   await populateContent();
   await getRecipient();
+  fixBreadcrumbIfArrivedFromFollowup();
   populateNotificationsExplanation();
   populateResendInvite();
   populateFollowUpReminder();
