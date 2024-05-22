@@ -53,12 +53,13 @@ function fixBreadcrumbIfArrivedFromFollowup() {
     breadcrumb.setAttribute("data-i18n-global", "menuFollowUp");
     breadcrumb.innerText = getGlobalPhrase("menuFollowUp");
   } else {
-    const breadcrumb = document.querySelector(
+    const oldBreadcrumb = document.querySelector(
       "#breadcrumbs > a[href='../followup/']"
     );
-    breadcrumb.setAttribute("href", "../invites/");
-    breadcrumb.setAttribute("data-i18n-global", "menuMyInvites");
-    breadcrumb.innerText = getGlobalPhrase("menuMyInvites");
+    if (!oldBreadcrumb) return;
+    oldBreadcrumb.setAttribute("href", "../invites/");
+    oldBreadcrumb.setAttribute("data-i18n-global", "menuMyInvites");
+    oldBreadcrumb.innerText = getGlobalPhrase("menuMyInvites");
   }
 }
 
