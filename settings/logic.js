@@ -279,6 +279,8 @@ async function onEnablePushClicked(e) {
       e.target.checked = isChecked;
       showWebPushNotSupportedModal();
     }
+  } else {
+    document.querySelector("#notifyViaPush").disabled = true;
   }
 }
 
