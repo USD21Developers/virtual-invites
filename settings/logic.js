@@ -457,8 +457,16 @@ function attachListeners() {
 
 async function init() {
   syncSettings().then(async (result) => {
-    if (result.changed) {
+    const settings = result.settings;
+    const pushSubscriptions = result.pushSubscriptions;
+    const { changed } = settings;
+    if (changed) {
       await populateForm();
+    }
+
+    if (pushSubscriptions && pushSubscriptions.length) {
+      const notifyViaPushEl = document.querySelector("#notifyViaPush");
+      notifyViaPushEl.setAttribute("data-has-subscriptions", "true");
     }
   });
   if (navigator.onLine) syncPushSubscription();
