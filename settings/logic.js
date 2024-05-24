@@ -257,7 +257,6 @@ async function togglePushNotificationExampleButton(e) {
     return testWebPushContainerEl.classList.add("d-none");
   } else {
     const pushSubscription = await getPushSubscription().catch((error) => {
-      console.error(error);
       return null;
     });
     if (!pushSubscription) {
