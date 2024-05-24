@@ -114,6 +114,47 @@ function populateInviteTextExample() {
     });
 }
 
+async function populatePushCheckbox(result) {
+  const settings = result.settings;
+  const pushSubscriptions = result.pushSubscriptions;
+  const { changed } = settings;
+  if (changed) {
+    await populateForm();
+  }
+
+  if (pushSubscriptions && pushSubscriptions.length) {
+    const notifyViaPushEl = document.querySelector("#notifyViaPush");
+
+    notifyViaPushEl.setAttribute(
+      "data-push-subscriptions-quantity",
+      pushSubscriptions.length
+    );
+
+    if (
+      settings.hasOwnProperty("enableEmailNotifications") &&
+      settings.enableEmailNotifications === true
+    ) {
+      if (!navigator.standalone) {
+        notifyViaPushEl.checked = true;
+      } else {
+        let pushIsSupported = "Notification" in window ? true : false;
+
+        if (pushIsSupported) {
+          if ("Notification" in window) {
+            if (Notification.permission === "granted") {
+              getPushSubscription().then((subscription) => {
+                if (subscription) {
+                  notifyViaPushEl.checked = true;
+                }
+              });
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 function showPushNotificationsCheckbox() {
   const el = document.querySelector("#notifyViaPushContainer");
   let pushIsSupported = "Notification" in window ? true : false;
@@ -457,26 +498,9 @@ function attachListeners() {
 
 async function init() {
   syncSettings().then(async (result) => {
-    const settings = result.settings;
-    const pushSubscriptions = result.pushSubscriptions;
-    const { changed } = settings;
-    if (changed) {
-      await populateForm();
-    }
-
-    if (pushSubscriptions && pushSubscriptions.length) {
-      const notifyViaPushEl = document.querySelector("#notifyViaPush");
-
-      notifyViaPushEl.setAttribute(
-        "data-push-subscriptions-quantity",
-        pushSubscriptions.length
-      );
-
-      if (settings.enableEmailNotifications) {
-        notifyViaPushEl.checked = true;
-      }
-    }
+    populatePushCheckbox(result);
   });
+
   if (navigator.onLine) syncPushSubscription();
   showPushNotificationsCheckbox();
   await populateContent();
