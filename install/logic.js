@@ -1,10 +1,7 @@
 function hideNavs() {
   const refreshToken = localStorage.getItem("refreshToken");
-  let hideIt = false;
 
-  if (!refreshToken) hideIt = true;
-
-  if (hideIt) {
+  if (!refreshToken) {
     const hamburgerMenu = document.querySelector(".navbar-toggler");
     const bottomNavBar = document.querySelector("#navButtons");
     hamburgerMenu.classList.add("d-none");
