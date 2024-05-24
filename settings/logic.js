@@ -466,11 +466,15 @@ async function init() {
 
     if (pushSubscriptions && pushSubscriptions.length) {
       const notifyViaPushEl = document.querySelector("#notifyViaPush");
+
       notifyViaPushEl.setAttribute(
         "data-push-subscriptions-quantity",
         pushSubscriptions.length
       );
-      notifyViaPushEl.checked = true;
+
+      if (settings.enableEmailNotifications) {
+        notifyViaPushEl.checked = true;
+      }
     }
   });
   if (navigator.onLine) syncPushSubscription();
