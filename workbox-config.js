@@ -16,6 +16,7 @@ module.exports = {
     "js/datatables.net/i18n/*.js",
     "js/datatables.net/i18n/*.mjs",
     "js/libphonenumber-js.min.js",
+    "_assets/img/install/**",
     "data/**",
     "i/*",
     "i/**",
