@@ -47,3 +47,7 @@ label {
   font-size: smaller;
   text-transform: none;
 }
+
+#webPushNotSupportedModal a[href="/install/"] {
+  color: var(--primary);
+}

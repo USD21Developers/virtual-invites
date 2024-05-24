@@ -316,18 +316,8 @@
     },
     {
       "key": "webPushNotSupportedParagraph1",
-      "original": "Push notifications on this device can only be received if you have installed the app to your home screen. To do so, open your browser's menu, select 'Add To Home Screen,' then follow the prompts.",
-      "translated": "Push notifications on this device can only be received if you have installed the app to your home screen. To do so, open your browser's menu, select 'Add To Home Screen,' then follow the prompts.",
-      "changes": [
-        {
-          "original": "Add To Home Screen",
-          "translated": "Add To Home Screen",
-          "bold": true,
-          "italic": false,
-          "underline": false,
-          "link": ""
-        }
-      ]
+      "original": "Push notifications on this device can only be received if you have installed the app to your home screen.",
+      "translated": "Push notifications on this device can only be received if you have installed the app to your home screen."
     },
     {
       "key": "webPushNotSupportedParagraph2",
