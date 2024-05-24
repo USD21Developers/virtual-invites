@@ -22,6 +22,90 @@
       "key": "breadcrumbInstall",
       "original": "Install",
       "translated": "Install"
+    },
+    {
+      "key": "step1",
+      "original": "Step 1:",
+      "translated": "Step 1:"
+    },
+    {
+      "key": "step1instructions",
+      "original": "Find this navbar at the bottom of your screen:",
+      "translated": "Find this navbar at the bottom of your screen:"
+    },
+    {
+      "key": "step2",
+      "original": "Step 2:",
+      "translated": "Step 2:"
+    },
+    {
+      "key": "step2instructions",
+      "original": "Click on the Share icon (a square containing an upward-pointing arrow).",
+      "translated": "Click on the Share icon (a square containing an upward-pointing arrow)."
+    },
+    {
+      "key": "step3",
+      "original": "Step 3:",
+      "translated": "Step 3:"
+    },
+    {
+      "key": "step3instructions",
+      "original": "A 'share sheet' will open:",
+      "translated": "A 'share sheet' will open:"
+    },
+    {
+      "key": "step4",
+      "original": "Step 4:",
+      "translated": "Step 4:"
+    },
+    {
+      "key": "step4instructions",
+      "original": "Click on 'Add to Home Screen.'",
+      "translated": "Click on 'Add to Home Screen.'"
+    },
+    {
+      "key": "step5",
+      "original": "Step 5:",
+      "translated": "Step 5:"
+    },
+    {
+      "key": "step5instructions",
+      "original": "The 'Add to Home Screen' dialog will appear:",
+      "translated": "The 'Add to Home Screen' dialog will appear:"
+    },
+    {
+      "key": "step6",
+      "original": "Step 6:",
+      "translated": "Step 6:"
+    },
+    {
+      "key": "step6instructions",
+      "original": "Click on 'Add'",
+      "translated": "Click on 'Add'"
+    },
+    {
+      "key": "step7",
+      "original": "Step 7:",
+      "translated": "Step 7:"
+    },
+    {
+      "key": "step7instructions",
+      "original": "Go to your device's home screen and find the icon for the Invites App.",
+      "translated": "Go to your device's home screen and find the icon for the Invites App."
+    },
+    {
+      "key": "step7final",
+      "original": "You're done! From now on, just open the Invites app from your device's home screen.",
+      "translated": "You're done! From now on, just open the Invites app from your device's home screen.",
+      "changes": [
+        {
+          "original": "You're done!",
+          "translated": "You're done!",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
     }
   ],
 
