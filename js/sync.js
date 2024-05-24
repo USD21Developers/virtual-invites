@@ -764,8 +764,9 @@ function syncSettings() {
           localforage.removeItem("unsyncedSettings");
           const hashAfter = await invitesCrypto.hash(JSON.stringify(settings));
           const changed = hashBefore === hashAfter ? false : true;
+          settings.changed = changed;
           await localforage.setItem("settings", settings);
-          return resolve({ changed: changed });
+          return resolve(data);
         } else {
           return reject();
         }
