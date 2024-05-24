@@ -316,8 +316,8 @@
     },
     {
       "key": "webPushNotSupportedParagraph1",
-      "original": "Push notifications on this device can only be received if you have installed the app to your home screen.",
-      "translated": "Push notifications on this device can only be received if you have installed the app to your home screen."
+      "original": "Push notifications on this device can only be received if you have installed this Web site to your home screen.",
+      "translated": "Push notifications on this device can only be received if you have installed this Web site to your home screen."
     },
     {
       "key": "webPushNotSupportedParagraph2",
