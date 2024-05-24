@@ -170,13 +170,15 @@ function showPushNotificationsCheckbox() {
     el.classList.remove("d-none");
     if ("Notification" in window) {
       if (Notification.permission === "granted") {
-        getPushSubscription().then((subscription) => {
-          if (subscription) {
-            document
-              .querySelector("#testWebPushContainer")
-              .classList.remove("d-none");
-          }
-        });
+        getPushSubscription()
+          .then((subscription) => {
+            if (subscription) {
+              document
+                .querySelector("#testWebPushContainer")
+                .classList.remove("d-none");
+            }
+          })
+          .catch((error) => console.error(error));
       }
     }
   }
@@ -232,7 +234,10 @@ async function togglePushNotificationExampleButton(e) {
   if (!pushPermissionGranted) {
     return testWebPushContainerEl.classList.add("d-none");
   } else {
-    const pushSubscription = await getPushSubscription();
+    const pushSubscription = await getPushSubscription().catch((error) => {
+      console.error(error);
+      return null;
+    });
     if (!pushSubscription) {
       return testWebPushContainerEl.classList.add("d-none");
     }
