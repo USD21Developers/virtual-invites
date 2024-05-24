@@ -75,7 +75,7 @@ function populateForm() {
         const pushSubscription = await getPushSubscription().catch((error) => {
           return null;
         });
-        if (typeof pushSubscription === "object") {
+        if (!!pushSubscription) {
           document.querySelector("#notifyViaPush").checked =
             enablePushNotifications;
         }
@@ -283,7 +283,7 @@ async function onEnablePushClicked(e) {
         const pushSubscription = await getPushSubscription().catch((error) => {
           return null;
         });
-        if (typeof pushSubscription === "object") {
+        if (!!pushSubscription) {
           if (navigator.onLine) {
             syncPushSubscription();
           }
@@ -378,7 +378,7 @@ function onWebPushRequested() {
           const subscription = await getPushSubscription().catch((error) => {
             return null;
           });
-          if (typeof subscription === "object") {
+          if (!!subscription) {
             togglePushNotificationExampleButton();
             showToast(
               getPhrase("webPushNowAuthorized"),
