@@ -1,5 +1,27 @@
 let randomRecipientName;
 
+function detectSafariVersion() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+  var match = userAgent.match(/Version\/(\d+\.\d+)/i);
+
+  if (match) {
+    return parseFloat(match[1]);
+  }
+
+  return -1; // Not Safari or version could not be detected
+}
+
+function isUnsupportedSafariVersion() {
+  var safariVersion = detectSafariVersion();
+
+  // Versions of Safari prior to 7.1 (on OS X Mavericks) and Safari 8 (on OS X Yosemite) do not support Web Push
+  if (safariVersion < 7.1) {
+    return true;
+  }
+
+  return false;
+}
+
 function populateDefaultName() {
   return new Promise((resolve, reject) => {
     const gender = JSON.parse(
@@ -266,7 +288,11 @@ async function onEnablePushClicked(e) {
             syncPushSubscription();
           }
         } else {
+          const isOldSafari = isUnsupportedSafariVersion();
           e.target.checked = false;
+          if (isOldSafari) {
+            e.target.disabled = true;
+          }
         }
       } else if (Notification.permission === "denied") {
         showWebPushDeniedModal();
