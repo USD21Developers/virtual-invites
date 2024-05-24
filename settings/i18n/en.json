@@ -316,8 +316,8 @@
     },
     {
       "key": "webPushNotSupportedParagraph1",
-      "original": "Push notifications on this device will only work if you open the browser's menu and select 'Add To Home Screen,' which will install the icon for this app onto your device's home screen. Once you've done that, you should always open the app from your home screen.",
-      "translated": "Push notifications on this device will only work if you open the browser's menu and select 'Add To Home Screen,' which will install the icon for this app onto your device's home screen. Once you've done that, you should always open the app from your home screen.",
+      "original": "Push notifications on this device can only be received if you have installed the app to your home screen. To do so, open your browser's menu, select 'Add To Home Screen,' then follow the prompts.",
+      "translated": "Push notifications on this device can only be received if you have installed the app to your home screen. To do so, open your browser's menu, select 'Add To Home Screen,' then follow the prompts.",
       "changes": [
         {
           "original": "Add To Home Screen",
@@ -331,6 +331,21 @@
     },
     {
       "key": "webPushNotSupportedParagraph2",
+      "original": "For more info, see How to Install.",
+      "translated": "For more info, see How to Install.",
+      "changes": [
+        {
+          "original": "How to Install",
+          "translated": "How to Install",
+          "bold": true,
+          "italic": false,
+          "underline": true,
+          "link": "/install/"
+        }
+      ]
+    },
+    {
+      "key": "webPushNotSupportedParagraph3",
       "original": "You might try visiting invites.mobi with the Web browser on your mobile phone instead.",
       "translated": "You might try visiting invites.mobi with the Web browser on your mobile phone instead.",
       "changes": [

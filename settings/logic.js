@@ -160,15 +160,15 @@ function showWebPushGetReadyModal() {
 
 function showWebPushNotSupportedModal() {
   if (!isMobileDevice()) {
-    const paragraph2 = document.querySelector(
-      "[data-i18n=webPushNotSupportedParagraph2]"
+    const paragraph3 = document.querySelector(
+      "[data-i18n=webPushNotSupportedParagraph3]"
     );
-    const domainNameEl = paragraph2.querySelector("strong");
+    const domainNameEl = paragraph3.querySelector("strong");
     domainNameEl.innerText = domainNameEl.innerText.replace(
       "invites.mobi",
       window.location.hostname
     );
-    paragraph2.classList.remove("d-none");
+    paragraph3.classList.remove("d-none");
   }
 
   $(".modal").modal("hide");
