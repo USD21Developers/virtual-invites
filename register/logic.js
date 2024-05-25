@@ -202,7 +202,6 @@ function initCroppie() {
 
   function init() {
     attachListeners();
-    // showProfilePhoto();
     showTakeASelfie();
   }
 
