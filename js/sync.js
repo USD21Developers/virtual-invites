@@ -761,11 +761,13 @@ function syncSettings() {
       .then(async (data) => {
         if (data.msgType === "success") {
           const settings = data.settings;
+          const pushSubscriptions = data.pushSubscriptions;
           localforage.removeItem("unsyncedSettings");
           const hashAfter = await invitesCrypto.hash(JSON.stringify(settings));
           const changed = hashBefore === hashAfter ? false : true;
           settings.changed = changed;
           await localforage.setItem("settings", settings);
+          await localforage.setItem("pushSubscriptions", pushSubscriptions);
           return resolve(data);
         } else {
           return reject();

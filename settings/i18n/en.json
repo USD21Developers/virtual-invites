@@ -185,12 +185,12 @@
       "translated": "You can be immediately notified if someone you invited views or interacts with their invite. This allows you to follow up with them in a timely manner."
     },
     {
-      "key": "notifyViaEmail",
-      "original": "Enable e-mail notifications",
-      "translated": "Enable e-mail notifications"
+      "key": "receiveEmailNotifications",
+      "original": "Receive e-mail notifications",
+      "translated": "Receive e-mail notifications"
     },
     {
-      "key": "notifyViaPush",
+      "key": "enablePushNotifications",
       "original": "Enable push notifications",
       "translated": "Enable push notifications"
     },
@@ -198,6 +198,11 @@
       "key": "onThisDevice",
       "original": "on this device",
       "translated": "on this device"
+    },
+    {
+      "key": "receivePushNotifications",
+      "original": "Receive push notifications",
+      "translated": "Receive push notifications"
     },
     {
       "key": "notificationClarification",

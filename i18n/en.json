@@ -37,6 +37,11 @@
       "key": "followlink",
       "original": "Follow a User",
       "translated": "Follow a User"
+    },
+    {
+      "key": "followinglink",
+      "original": "Following",
+      "translated": "Following"
     }
   ],
 

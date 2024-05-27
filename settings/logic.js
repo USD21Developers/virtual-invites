@@ -1,3 +1,5 @@
+const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+const iOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
 let randomRecipientName;
 
 function populateDefaultName() {
@@ -114,74 +116,83 @@ function populateInviteTextExample() {
     });
 }
 
-async function populatePushCheckbox(result) {
+function populateReceivePushNotificationsCheckbox(result) {
   const settings = result.settings;
   const pushSubscriptions = result.pushSubscriptions;
-  const { changed } = settings;
-  if (changed) {
-    await populateForm();
-  }
+  const { changed, enablePushNotifications } = settings;
+  const notifyViaPushEl = document.querySelector("#notifyViaPush");
+  const notifyViaPushContainerEl = document.querySelector(
+    "#notifyViaPushContainer"
+  );
 
   if (pushSubscriptions && pushSubscriptions.length) {
-    const notifyViaPushEl = document.querySelector("#notifyViaPush");
+    notifyViaPushEl.checked = enablePushNotifications ? true : false;
+    notifyViaPushContainerEl.classList.remove("d-none");
+  }
 
-    notifyViaPushEl.setAttribute(
-      "data-push-subscriptions-quantity",
-      pushSubscriptions.length
-    );
+  if (changed) {
+    populateForm();
+  }
+}
 
-    if (
-      settings.hasOwnProperty("enableEmailNotifications") &&
-      settings.enableEmailNotifications === true
-    ) {
-      if (!navigator.standalone) {
-        notifyViaPushEl.checked = true;
-      } else {
-        let pushIsSupported = "Notification" in window ? true : false;
+function showEnablePushNotificationsCheckbox() {
+  const enablePushContainerEl = document.querySelector("#enablePushContainer");
+  let pushIsPossible = "Notification" in window ? true : false;
 
-        if (pushIsSupported) {
-          if ("Notification" in window) {
-            if (Notification.permission === "granted") {
-              getPushSubscription().then((subscription) => {
-                if (subscription) {
-                  notifyViaPushEl.checked = true;
-                }
-              });
+  if (iOS) {
+    if (!navigator.standalone) {
+      pushIsPossible = false;
+    }
+  }
+
+  if (!pushIsPossible) return;
+
+  if ("Notification" in window) {
+    enablePushContainerEl.classList.remove("d-none");
+    if (Notification.permission === "granted") {
+      getPushSubscription()
+        .then(async (subscription) => {
+          if (subscription) {
+            enablePushContainerEl.classList.add("d-none");
+            const subscriptionHash = await invitesCrypto.hash(
+              JSON.stringify(subscription)
+            );
+            const subscriptions = await localforage.getItem(
+              "pushSubscriptions"
+            );
+            const subscriptionFound = subscriptions.find(
+              (item) => item.sha256hex === subscriptionHash
+            )
+              ? true
+              : false;
+
+            if (subscriptionFound) {
+              togglePushNotificationExampleButton();
             }
           }
-        }
-      }
+        })
+        .catch((error) => console.error(error));
     }
   }
 }
 
-function showPushNotificationsCheckbox() {
+async function showReceivePushNotificationsCheckbox() {
   const el = document.querySelector("#notifyViaPushContainer");
+  const pushSubscriptions = await localforage.getItem("pushSubscriptions");
   let pushIsSupported = "Notification" in window ? true : false;
 
-  if (typeof navigator.standalone !== undefined) {
-    // Specific to iOS. If iOS, display mode must be standalone.
+  if (iOS) {
     if (!navigator.standalone) {
       pushIsSupported = false;
     }
   }
 
-  if (pushIsSupported) {
-    el.classList.remove("d-none");
-    if ("Notification" in window) {
-      if (Notification.permission === "granted") {
-        getPushSubscription()
-          .then((subscription) => {
-            if (subscription) {
-              document
-                .querySelector("#testWebPushContainer")
-                .classList.remove("d-none");
-            }
-          })
-          .catch((error) => console.error(error));
-      }
-    }
-  }
+  if (!pushIsSupported) return;
+  if (!navigator.onLine) return;
+  if (!pushSubscriptions) return;
+  if (!pushSubscriptions.length) return;
+
+  el.classList.remove("d-none");
 }
 
 function showWebPushDeniedModal() {
@@ -219,36 +230,44 @@ function showWebPushNotSupportedModal() {
   document.querySelector("#notifyViaPush").checked = false;
 }
 
-async function togglePushNotificationExampleButton(e) {
-  const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-  const isStandalone = window.matchMedia("(display-mode: standalone)").matches
-    ? true
-    : false;
-
+async function togglePushNotificationExampleButton() {
   const testWebPushContainerEl = document.querySelector(
     "#testWebPushContainer"
   );
 
-  const pushPermissionGranted = isPushPermitted();
+  let pushIsPossible = "Notification" in window ? true : false;
 
-  if (!pushPermissionGranted) {
-    return testWebPushContainerEl.classList.add("d-none");
-  } else {
-    const pushSubscription = await getPushSubscription().catch((error) => {
-      return null;
-    });
-    if (!pushSubscription) {
-      return testWebPushContainerEl.classList.add("d-none");
+  if (iOS) {
+    if (!navigator.standalone) {
+      pushIsPossible = false;
     }
   }
 
-  if (isiOS && !navigator.standalone) {
-    return testWebPushContainerEl.classList.add("d-none");
-  } else if (isiOS && !isStandalone) {
-    return testWebPushContainerEl.classList.add("d-none");
+  if (!pushIsPossible) {
+    return;
   }
 
-  return testWebPushContainerEl.classList.remove("d-none");
+  if ("Notification" in window) {
+    if (Notification.permission === "granted") {
+      getPushSubscription().then(async (subscription) => {
+        if (subscription) {
+          const subscriptionHash = await invitesCrypto.hash(
+            JSON.stringify(subscription)
+          );
+          const subscriptions = await localforage.getItem("pushSubscriptions");
+          const subscriptionFound = subscriptions.find(
+            (item) => item.sha256hex === subscriptionHash
+          )
+            ? true
+            : false;
+
+          if (subscriptionFound) {
+            testWebPushContainerEl.classList.remove("d-none");
+          }
+        }
+      });
+    }
+  }
 }
 
 async function onEnablePushClicked(e) {
@@ -262,7 +281,17 @@ async function onEnablePushClicked(e) {
         });
         if (!!pushSubscription) {
           if (navigator.onLine) {
-            syncPushSubscription();
+            syncPushSubscription().then(() => {
+              e.target.checked = true;
+              document
+                .querySelector("#enablePushContainer")
+                .classList.add("d-none");
+              document.querySelector("#notifyViaPush").checked = false;
+              document
+                .querySelector("#notifyViaPushContainer")
+                .classList.remove("d-none");
+              togglePushNotificationExampleButton();
+            });
           }
         } else {
           e.target.checked = false;
@@ -285,8 +314,8 @@ async function onSubmit(e) {
   e.preventDefault();
   let openingPage = "home";
   let customInviteText = "";
-  let enableEmailNotifications = false;
-  let enablePushNotifications = false;
+  let receiveEmailNotifications = false;
+  let receivePushNotifications = false;
   let autoAddToFollowupList = false;
 
   // Opening Page
@@ -300,13 +329,13 @@ async function onSubmit(e) {
   // Custom Invite Text
   customInviteText = document.querySelector("#bodyText").value.trim();
 
-  // Enable Email Notifications
-  enableEmailNotifications = document.querySelector("#notifyViaEmail").checked
+  // Receive Email Notifications
+  receiveEmailNotifications = document.querySelector("#notifyViaEmail").checked
     ? true
     : false;
 
-  // Enable Push Notificadtions
-  enablePushNotifications = document.querySelector("#notifyViaPush").checked
+  // Receive Push Notificadtions
+  receivePushNotifications = document.querySelector("#notifyViaPush").checked
     ? true
     : false;
 
@@ -319,8 +348,8 @@ async function onSubmit(e) {
   const settings = {
     openingPage: openingPage,
     customInviteText: customInviteText,
-    enableEmailNotifications: enableEmailNotifications,
-    enablePushNotifications: enablePushNotifications,
+    enableEmailNotifications: receiveEmailNotifications,
+    enablePushNotifications: receivePushNotifications,
     autoAddToFollowupList: autoAddToFollowupList,
   };
 
@@ -339,11 +368,11 @@ function onWebPushRequested() {
     .then(async (permission) => {
       switch (permission) {
         case "default":
-          document.querySelector("#notifyViaPush").checked = false;
+          document.querySelector("#enablePushNotifications").checked = false;
           $(".modal").modal("hide");
           break;
         case "denied":
-          document.querySelector("#notifyViaPush").checked = false;
+          document.querySelector("#enablePushNotifications").checked = false;
           $(".modal").modal("hide");
           showWebPushDeniedModal();
           break;
@@ -352,21 +381,47 @@ function onWebPushRequested() {
             return null;
           });
           if (!!subscription) {
-            togglePushNotificationExampleButton();
-            showToast(
-              getPhrase("webPushNowAuthorized"),
-              5000,
-              "success",
-              ".snackbar",
-              true
-            );
-            document.querySelector("#notifyViaPush").checked = true;
-            $(".modal").modal("hide");
-            if (navigator.onLine) {
-              syncPushSubscription();
-            }
+            const endpoint = `${getApiHost()}/push-subscribe`;
+            const accessToken = await getAccessToken();
+            fetch(endpoint, {
+              mode: "cors",
+              method: "POST",
+              body: JSON.stringify({
+                subscriptionObject: subscription,
+              }),
+              headers: new Headers({
+                "Content-Type": "application/json",
+                authorization: `Bearer ${accessToken}`,
+              }).then((data) => {
+                if (!data) {
+                  return;
+                }
+
+                if (data.msgType && data.msgType !== "success") {
+                  throw new Error("data.msg");
+                }
+
+                if (data.msgType === "success") {
+                  togglePushNotificationExampleButton();
+                  showToast(
+                    getPhrase("webPushNowAuthorized"),
+                    5000,
+                    "success",
+                    ".snackbar",
+                    true
+                  );
+                  document.querySelector(
+                    "#enablePushNotifications"
+                  ).checked = true;
+                  $(".modal").modal("hide");
+                  if (navigator.onLine) {
+                    syncPushSubscription();
+                  }
+                }
+              }),
+            });
           } else {
-            document.querySelector("#notifyViaPush").checked = false;
+            document.querySelector("#enablePushNotifications").checked = false;
             $(".modal").modal("hide");
             showToast(
               getPhrase("webPushSomethingWentWrong"),
@@ -378,7 +433,7 @@ function onWebPushRequested() {
           }
           break;
         default:
-          document.querySelector("#notifyViaPush").checked = false;
+          document.querySelector("#enablePushNotifications").checked = false;
           $(".modal").modal("hide");
           break;
       }
@@ -450,14 +505,12 @@ async function onTestWebPushClick(e) {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      togglePushNotificationExampleButton();
     })
     .catch((error) => {
       console.error(error);
       document
         .querySelector("#testSpinner")
         .classList.replace("d-inline-block", "d-none");
-      togglePushNotificationExampleButton();
     });
 
   setTimeout(() => {
@@ -470,7 +523,7 @@ async function onTestWebPushClick(e) {
 function attachListeners() {
   document.querySelector("#settingsForm").addEventListener("submit", onSubmit);
   document
-    .querySelector("#notifyViaPush")
+    .querySelector("#enablePushNotifications")
     .addEventListener("click", onEnablePushClicked);
   document
     .querySelector("#buttonWebPushRequestPermission")
@@ -493,20 +546,17 @@ function attachListeners() {
         .classList.replace("d-inline-block", "d-none");
     }
   });
-
-  window.addEventListener(
-    "DOMContentLoaded",
-    togglePushNotificationExampleButton
-  );
 }
 
 async function init() {
   syncSettings().then(async (result) => {
-    populatePushCheckbox(result);
+    populateReceivePushNotificationsCheckbox(result);
+    showReceivePushNotificationsCheckbox();
+    togglePushNotificationExampleButton();
   });
 
   if (navigator.onLine) syncPushSubscription();
-  showPushNotificationsCheckbox();
+  showEnablePushNotificationsCheckbox();
   await populateContent();
   await populateDefaultName();
   populateInviteTextExample();
