@@ -380,57 +380,15 @@ function onWebPushRequested() {
           const subscription = await getPushSubscription().catch((error) => {
             return null;
           });
-          if (!!subscription) {
-            const endpoint = `${getApiHost()}/push-subscribe`;
-            const accessToken = await getAccessToken();
-            fetch(endpoint, {
-              mode: "cors",
-              method: "POST",
-              body: JSON.stringify({
-                subscriptionObject: subscription,
-              }),
-              headers: new Headers({
-                "Content-Type": "application/json",
-                authorization: `Bearer ${accessToken}`,
-              }).then((data) => {
-                if (!data) {
-                  return;
-                }
-
-                if (data.msgType && data.msgType !== "success") {
-                  throw new Error("data.msg");
-                }
-
-                if (data.msgType === "success") {
-                  togglePushNotificationExampleButton();
-                  showToast(
-                    getPhrase("webPushNowAuthorized"),
-                    5000,
-                    "success",
-                    ".snackbar",
-                    true
-                  );
-                  document.querySelector(
-                    "#enablePushNotifications"
-                  ).checked = true;
-                  $(".modal").modal("hide");
-                  if (navigator.onLine) {
-                    syncPushSubscription();
-                  }
-                }
-              }),
-            });
-          } else {
-            document.querySelector("#enablePushNotifications").checked = false;
+          await syncPushSubscription().then(() => {
+            document
+              .querySelector("#enablePushContainer")
+              .classList.add("d-none");
+            document
+              .querySelector("#testWebPushContainer")
+              .classList.remove("d-none");
             $(".modal").modal("hide");
-            showToast(
-              getPhrase("webPushSomethingWentWrong"),
-              5000,
-              "danger",
-              ".snackbar",
-              true
-            );
-          }
+          });
           break;
         default:
           document.querySelector("#enablePushNotifications").checked = false;
