@@ -388,7 +388,13 @@ function onWebPushRequested() {
               .querySelector("#testWebPushContainer")
               .classList.remove("d-none");
             $(".modal").modal("hide");
-            showToast(getPhrase("webPushNowAuthorized"), 5000, "success");
+            showToast(
+              getPhrase("webPushNowAuthorized"),
+              5000,
+              "success",
+              ".snackbar",
+              true
+            );
           });
           break;
         default:
