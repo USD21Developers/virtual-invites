@@ -1078,6 +1078,8 @@ function getUserChurchId(userid) {
     const endpoint = `${getApiHost()}/userprofile/${userid}`;
     const accessToken = await getAccessToken();
     fetch(endpoint, {
+      mode: "cors",
+      method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
         authorization: `Bearer ${accessToken}`,
