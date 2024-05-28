@@ -392,10 +392,10 @@ function showFollowing(following) {
   headlineFollowingEl.innerText = headlineText;
 
   following.forEach(async (user) => {
-    const { firstname, gender, lastname, profilephoto, userid } = user;
+    const { churchid, firstname, gender, lastname, profilephoto, userid } =
+      user;
     const profilePhotoSmall = profilephoto.replace("400.jpg", "140.jpg");
-    const churchId = await getUserChurchId(userid);
-    const churchInfo = getStoredChurch(churchId);
+    const churchInfo = getStoredChurch(churchid);
     const churchName = churchInfo ? churchInfo.name : "";
     const churchPlace = churchInfo ? churchInfo.place : "";
     const defaultImg =
