@@ -222,8 +222,10 @@ async function refreshButtons(dataFromApi) {
   }
 }
 
-function selectUserChurch() {
-  const church = getStoredChurch(getUserChurchId());
+async function selectUserChurch() {
+  const myUserId = getUserId();
+  const myChurchId = await getUserChurchId(myUserId);
+  const church = getStoredChurch(myChurchId);
   const userChurchId = church.id;
   const churchEl = document.querySelector("#churchid");
 
