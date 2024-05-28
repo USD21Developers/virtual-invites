@@ -228,6 +228,7 @@ function showWebPushNotSupportedModal() {
   $(".modal").modal("hide");
   $("#webPushNotSupportedModal").modal();
   document.querySelector("#notifyViaPush").checked = false;
+  document.querySelector("#enablePushNotifications").checked = false;
 }
 
 async function togglePushNotificationExampleButton() {
