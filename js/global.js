@@ -1072,10 +1072,26 @@ function getTimezoneOffset(timezoneName) {
 }
 
 function getUserChurchId(userid) {
-  const churchid = JSON.parse(
-    atob(localStorage.getItem("refreshToken").split(".")[1])
-  ).churchid;
-  return churchid;
+  return new Promise(async (resolve, reject) => {
+    if (!navigator.onLine)
+      return reject(new Error("cannot retrieve church ID; user is offline"));
+    const endpoint = `${getApiHost()}/userprofile/${userid}`;
+    const accessToken = await getAccessToken();
+    fetch(endpoint, {
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.msgType && data.msgType === "error") {
+          return reject(new Error(data.msg));
+        }
+        const { churchid } = data;
+        return resolve(churchid);
+      });
+  });
 }
 
 function getUserId() {
