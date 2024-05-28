@@ -101,9 +101,11 @@ function populateForm() {
   });
 }
 
-function selectUserChurch() {
-  const church = getStoredChurch(getUserChurchId());
-  const userChurchId = church.id;
+async function selectUserChurch() {
+  const userid = getUserId();
+  const churchid = await getUserChurchId(userid);
+  const church = getStoredChurch(churchid);
+  const userChurchId = churchid;
   const churchEl = document.querySelector("#churchid");
 
   if (typeof userChurchId !== "number") return;
