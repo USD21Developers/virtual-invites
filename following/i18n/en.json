@@ -68,6 +68,11 @@
       "key": "headlineFollowing1",
       "original": "Following {quantity}:",
       "translated": "Following {quantity}:"
+    },
+    {
+      "key": "followAnotherUser",
+      "original": "Follow another user",
+      "translated": "Follow another user"
     }
   ],
 
