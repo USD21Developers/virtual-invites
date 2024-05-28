@@ -1090,7 +1090,7 @@ function getUserChurchId(userid) {
         if (data.msgType && data.msgType === "error") {
           return reject(new Error(data.msg));
         }
-        const { churchid } = data;
+        const { churchid } = data.profile;
         return resolve(churchid);
       });
   });
