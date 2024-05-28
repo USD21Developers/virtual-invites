@@ -410,7 +410,7 @@ function showFollowing(following) {
 
         <td class="spacer">&nbsp;</td>
 
-        <td valign="middle" class="following_text" nowrap width="99%">
+        <td valign="middle" class="following_text" width="99%">
           <a href="../u/#${userid}"><strong>${firstname} ${lastname}</strong></a>
           ${
             churchName.length
