@@ -268,7 +268,7 @@ async function showMatchesFound(matches) {
     if (eventsSharingQuantity === 0) {
       eventsSharingPhrase = getPhrase("eventsSharing").replaceAll(
         "{QUANTITY}",
-        `<span class="slashed">${eventsSharingQuantity}</span>`
+        `<span class="slashed font-weight-bold mx-1">${eventsSharingQuantity}</span>`
       );
     }
     const firstname = matches[i].firstname;
