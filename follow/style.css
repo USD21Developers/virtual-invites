@@ -55,3 +55,7 @@
 .modal-users-following .result:last-child {
   margin-bottom: 0;
 }
+
+.slashed {
+  font-variant-numeric: slashed-zero;
+}

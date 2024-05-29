@@ -260,11 +260,17 @@ async function showMatchesFound(matches) {
 
   for (let i = 0; i < numMatches; i++) {
     const userid = matches[i].userid;
-    const eventsSharing = matches[i].eventsSharing;
-    const eventsSharingPhrase = getPhrase("eventsSharing").replaceAll(
+    const eventsSharingQuantity = matches[i].eventsSharing;
+    let eventsSharingPhrase = getPhrase("eventsSharing").replaceAll(
       "{QUANTITY}",
-      eventsSharing
+      `<span>${eventsSharingQuantity}</span>`
     );
+    if (eventsSharingQuantity === 0) {
+      eventsSharingPhrase = getPhrase("eventsSharing").replaceAll(
+        "{QUANTITY}",
+        `<span class="slashed">${eventsSharingQuantity}</span>`
+      );
+    }
     const firstname = matches[i].firstname;
     const lastname = matches[i].lastname;
     const gender = matches[i].gender;
