@@ -157,6 +157,11 @@
       "key": "eventsSharing",
       "original": "Sharing {QUANTITY} events",
       "translated": "Sharing {QUANTITY} events"
+    },
+    {
+      "key": "eventsSharing1",
+      "original": "Sharing {QUANTITY} event",
+      "translated": "Sharing {QUANTITY} event"
     }
   ],
 

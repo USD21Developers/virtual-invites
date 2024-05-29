@@ -271,6 +271,12 @@ async function showMatchesFound(matches) {
         `<span class="slashed font-weight-bold mx-1">${eventsSharingQuantity}</span>`
       );
     }
+    if (eventsSharingQuantity === 1) {
+      eventsSharingPhrase = getPhrase("eventsSharing1").replaceAll(
+        "{QUANTITY}",
+        `<span class="slashed font-weight-bold mx-1">${eventsSharingQuantity}</span>`
+      );
+    }
     const firstname = matches[i].firstname;
     const lastname = matches[i].lastname;
     const gender = matches[i].gender;
