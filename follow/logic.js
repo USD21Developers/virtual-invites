@@ -268,9 +268,9 @@ async function showMatchesFound(matches) {
       matches[i].profilephoto && matches[i].profilephoto.length
         ? matches[i].profilephoto.replace("400.jpg", "140.jpg")
         : "";
-    const isFollowing = followedUsers.length
-      ? followedUsers.find((item) => item.userid === followid)
-      : false;
+    const isFollowing = followedUsers.find(
+      (item) => item.userid === matches[i].userid
+    );
     const btnFollow = isFollowing
       ? getPhrase("btnFollowing")
       : getPhrase("btnFollow");
