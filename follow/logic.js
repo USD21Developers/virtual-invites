@@ -260,6 +260,11 @@ async function showMatchesFound(matches) {
 
   for (let i = 0; i < numMatches; i++) {
     const userid = matches[i].userid;
+    const eventsSharing = matches[i].eventsSharing;
+    const eventsSharingPhrase = getPhrase("eventsSharing").replaceAll(
+      "{QUANTITY}",
+      eventsSharing
+    );
     const firstname = matches[i].firstname;
     const lastname = matches[i].lastname;
     const gender = matches[i].gender;
@@ -287,6 +292,9 @@ async function showMatchesFound(matches) {
             </a>
           </div>
           <h3 class="mt-2 mb-3">${firstname} ${lastname}</h4>
+          <div class="text-center mb-4">
+            ${eventsSharingPhrase}
+          </div>
           <button type="button" class="btn btn-primary btn-sm btn-follow my-0 mr-2" data-status="follow" data-follow-userid="${userid}">
             ${btnFollow}
           </button>

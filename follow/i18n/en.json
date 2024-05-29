@@ -152,6 +152,11 @@
       "key": "modalFollowingX",
       "original": "{quantity} users:",
       "translated": "{quantity} users:"
+    },
+    {
+      "key": "eventsSharing",
+      "original": "{QUANTITY} Events",
+      "translated": "{QUANTITY} Events"
     }
   ],
 
