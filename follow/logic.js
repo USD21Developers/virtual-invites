@@ -291,7 +291,7 @@ async function showMatchesFound(matches) {
               <img src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
             </a>
           </div>
-          <h3 class="mt-2 mb-3">${firstname} ${lastname}</h4>
+          <h3 class="mt-2 mb-3">${firstname} ${lastname}</h3>
           <div class="text-center mb-4">
             ${eventsSharingPhrase}
           </div>
@@ -311,7 +311,10 @@ async function showMatchesFound(matches) {
               <img src="${profilephoto}" alt="${firstname} ${lastname}" width="140" height="140" onerror="this.onerror=null;this.src='/_assets/img/${defaultImg}';">
             </a>
           </div>
-          <h3 class="mt-0 mb-3">${firstname} ${lastname}</h4>
+          <h3 class="mt-0 mb-3">${firstname} ${lastname}</h3>
+          <div class="text-center mb-4">
+            ${eventsSharingPhrase}
+          </div>
           <button type="button" class="btn btn-follow btn-sm btn-primary my-0 mr-2" data-status="followed" data-follow-userid="${userid}">
             ${btnFollow}
           </button>
