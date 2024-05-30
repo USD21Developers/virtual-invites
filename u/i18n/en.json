@@ -127,27 +127,32 @@
       "key": "mapAndDirections",
       "original": "Map and Directions",
       "translated": "Map and Directions"
-    }
-  ],
-
-  "example-no-changes": [
-    
-  ],
-
-  "example-has-changes": [
+    },
     {
-      "key": "",
-      "original": "",
-      "translated": "",
-      "changes": [
-        {
-          "original": "",
-          "translated": "",
-          "bold": false,
-          "italic": false,
-          "link": ""
-        }
-      ]
+      "key": "eventsSharing",
+      "original": "Events Sharing",
+      "translated": "Events Sharing"
     }
-  ]
+  ],
+
+  "example-no-changes": {
+    "key": "",
+    "original": "",
+    "translated": ""
+  },
+
+  "example-has-changes": {
+    "key": "",
+    "original": "",
+    "translated": "",
+    "changes": [
+      {
+        "original": "",
+        "translated": "",
+        "bold": false,
+        "italic": false,
+        "link": ""
+      }
+    ]
+  }
 }
