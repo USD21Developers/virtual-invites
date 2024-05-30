@@ -414,3 +414,8 @@ strong {
     margin-bottom: 15px;
   }
 }
+
+.navbar-brand {
+  height: unset;
+  line-height: unset;
+}
