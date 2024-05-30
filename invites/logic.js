@@ -1,5 +1,6 @@
 let table = null;
 let hashBeforeSync = null;
+let inviteIdsToDelete = null;
 
 function getMaxUtcDate(interactions) {
   if (interactions.length === 0) return "1970-01-01T00:00:00Z"; // Default date for no interactions
@@ -15,6 +16,8 @@ function populateRecipientsTable() {
     const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
     const translationURL = getDatatablesTranslationURL();
     const languageData = await fetch(translationURL).then((res) => res.json());
+    const deleteInviteBtnEl = document.querySelector("#deleteInviteBtn");
+
     localforage.getItem("invites").then(async (invites) => {
       if (!invites.length) {
         hashBeforeSync = await invitesCrypto.hash(JSON.stringify([]));
@@ -76,6 +79,9 @@ function populateRecipientsTable() {
 
         const row = `
               <tr>
+                <td class="px-2">
+                  ${invitationid}
+                </td>
                 <td data-search="${recipientName}">
                   <a href="../r/#/${invitationid}">${recipientName}</a>
                 </td>
@@ -105,7 +111,42 @@ function populateRecipientsTable() {
 
       table = $("#recipients").DataTable({
         language: languageData,
+        columnDefs: [
+          {
+            targets: 0,
+            checkboxes: {
+              selectRow: true,
+              selectCallback: (nodes, selected) => {
+                let atLeastOneSelected = false;
+                document.querySelectorAll(".dt-checkboxes").forEach((item) => {
+                  if (item.checked) {
+                    atLeastOneSelected = true;
+                  }
+                });
+                if (atLeastOneSelected) {
+                  deleteInviteBtnEl.removeAttribute("disabled");
+                } else {
+                  deleteInviteBtnEl.setAttribute("disabled", "");
+                }
+              },
+            },
+          },
+        ],
         order: [[1, "desc"]],
+        select: {
+          style: "multi",
+        },
+      });
+
+      $("#deleteInviteBtn").on("click", () => {
+        const selected_rows = table.column(0).checkboxes.selected();
+        const ids = [];
+
+        $.each(selected_rows, (key, invitationid) => {
+          ids.push(Number(invitationid));
+        });
+
+        showConfirmDeleteModal(ids);
       });
 
       noRecipientsEl.classList.add("d-none");
@@ -116,10 +157,77 @@ function populateRecipientsTable() {
   });
 }
 
+async function showConfirmDeleteModal(invitationIds) {
+  const modal = document.querySelector("#deleteModal");
+  const invites = await localforage.getItem("invites");
+  const invitesToDelete = invites.filter((item) =>
+    invitationIds.includes(item.invitationid)
+  );
+  const ids = invitesToDelete.filter((item) => item.invitationid);
+  let html = "";
+
+  if (invitesToDelete.length === 1) {
+    document.querySelector("[data-i18n='deleteAreYouSure']").innerHTML =
+      getPhrase("deleteAreYouSure1");
+  }
+
+  invitesToDelete.forEach((item) => {
+    const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
+    const dateInvited = Intl.DateTimeFormat(userDateTimePrefs.locale, {
+      dateStyle: "long",
+      timeStyle: "short",
+      timeZone: userDateTimePrefs.timeZone,
+    }).format(new Date(item.utctime));
+    const whenInvitedPhrase = getPhrase("invitedOn").replaceAll(
+      "{DATETIME}",
+      dateInvited
+    );
+
+    html += `
+      <li class="mb-2">
+        <a href="/r/#/${item.invitationid}" class="font-weight-bold text-primary underline">
+          ${item.recipient.name}
+        </a>
+        <div class="text-dark small">
+          ${whenInvitedPhrase}
+        </div>
+  </li>
+    `;
+  });
+
+  html = `<ol class="my-2 mb-1 pl-4" data-quantity="${invitesToDelete.length}">${html}</ol>`;
+
+  modal.querySelector(".modal-body blockquote").innerHTML = html;
+
+  $("#deleteModal").modal();
+
+  inviteIdsToDelete = ids;
+}
+
+async function onInvitesDelete() {
+  const ids = inviteIdsToDelete ? inviteIdsToDelete : null;
+  const deleteInviteBtnEl = document.querySelector("#deleteInviteBtn");
+  if (!ids || !ids.length) return;
+
+  // TODO:  delete stuff
+
+  // Cleanup
+  deleteInviteBtnEl.setAttribute("disabled", "");
+  $("#deleteModal").modal("hide");
+}
+
+function addEventListeners() {
+  document
+    .querySelector("#confirmDeleteButton")
+    .addEventListener("click", onInvitesDelete);
+}
+
 async function init() {
   await populateContent();
   globalHidePageSpinner();
   await populateRecipientsTable();
+
+  addEventListeners();
 
   syncInvites().then(async (invitesObj) => {
     const { invites, changed } = invitesObj;

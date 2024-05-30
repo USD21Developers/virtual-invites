@@ -24,6 +24,12 @@
       type="text/css"
       href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"
     />
+    <link
+      type="text/css"
+      href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css"
+      rel="stylesheet"
+    />
+
     <link href="../css/global.css" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
 
@@ -204,12 +210,24 @@
           <table id="recipients" class="table table-striped d-none">
             <thead>
               <tr>
+                <th class="px-2">&nbsp;</th>
                 <th data-i18n="colHeadName"></th>
                 <th data-i18n="colHeadLastInteraction"></th>
               </tr>
             </thead>
             <tbody></tbody>
           </table>
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col col-sm-10 offset-sm-1 d-flex justify-content-end">
+          <button
+            class="btn btn-danger border"
+            id="deleteInviteBtn"
+            data-i18n="delete"
+            disabled
+          ></button>
         </div>
       </div>
 
@@ -280,10 +298,62 @@
       </table>
     </nav>
 
+    <!-- Delete Modal -->
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modaltitle" data-i18n="confirm"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-1">
+            <div class="text-danger">
+              <strong data-i18n="deleteAreYouSure"></strong>
+            </div>
+            <blockquote
+              class="mt-3 mb-2 p-1 border bg-light text-dark"
+            ></blockquote>
+          </div>
+          <div class="modal-footer mb-1">
+            <button
+              type="button"
+              class="btn text-muted ml-3"
+              data-dismiss="modal"
+              data-i18n-global="cancel"
+            ></button>
+            <button
+              id="confirmDeleteButton"
+              type="button"
+              class="btn btn-danger ml-5 mr-2 font-weight-bold"
+              data-i18n-global="delete"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/datatables.net/jquery.dataTables.min.js"></script>
+    <script
+      type="text/javascript"
+      src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"
+    ></script>
     <script src="/js/moment.min.js" referrerpolicy="no-referrer"></script>
     <script
       src="/js/moment-timezone-with-data-10-year-range.min.js"
