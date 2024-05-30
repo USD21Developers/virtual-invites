@@ -61,28 +61,24 @@
     }
   ],
 
-  "example-no-changes": [
-    {
-      "key": "",
-      "original": "",
-      "translated": ""
-    }
-  ],
+  "example-no-changes": {
+    "key": "",
+    "original": "",
+    "translated": ""
+  },
 
-  "example-has-changes": [
-    {
-      "key": "",
-      "original": "",
-      "translated": "",
-      "changes": [
-        {
-          "original": "",
-          "translated": "",
-          "bold": false,
-          "italic": false,
-          "link": ""
-        }
-      ]
-    }
-  ]
+  "example-has-changes": {
+    "key": "",
+    "original": "",
+    "translated": "",
+    "changes": [
+      {
+        "original": "",
+        "translated": "",
+        "bold": false,
+        "italic": false,
+        "link": ""
+      }
+    ]
+  }
 }
