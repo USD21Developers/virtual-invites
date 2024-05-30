@@ -303,7 +303,6 @@ function renderProfile(userdata, churchinfo) {
     numFollowedBy,
     numFollowing,
     followed,
-    numEvents,
     numInvitesSent,
     numEventsSharing,
     profilephoto,
