@@ -151,6 +151,7 @@ function populateRecipientsTable() {
 
       noRecipientsEl.classList.add("d-none");
       recipientsEl.classList.remove("d-none");
+      deleteInviteBtnEl.remove("d-none");
 
       return resolve(invites);
     });
