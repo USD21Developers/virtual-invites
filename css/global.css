@@ -389,7 +389,7 @@ strong {
   body {
     margin: auto;
     max-width: 800px;
-    min-height: calc(100vh - 70px);
+    min-height: calc(100vh - 65px);
     padding-top: 10px;
     padding-left: 20px;
     padding-right: 20px;
