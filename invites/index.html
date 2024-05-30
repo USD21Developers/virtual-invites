@@ -329,18 +329,21 @@
             ></blockquote>
           </div>
           <div class="modal-footer mb-1">
-            <button
-              type="button"
-              class="btn text-muted ml-3"
-              data-dismiss="modal"
-              data-i18n-global="cancel"
-            ></button>
-            <button
-              id="confirmDeleteButton"
-              type="button"
-              class="btn btn-danger ml-5 mr-2 font-weight-bold"
-              data-i18n-global="delete"
-            ></button>
+            <form>
+              <input type="hidden" name="deletionIds" id="deletionIds" />
+              <button
+                type="button"
+                class="btn text-muted ml-3"
+                data-dismiss="modal"
+                data-i18n-global="cancel"
+              ></button>
+              <button
+                id="confirmDeleteButton"
+                type="submit"
+                class="btn btn-danger ml-5 mr-2 font-weight-bold"
+                data-i18n-global="delete"
+              ></button>
+            </form>
           </div>
         </div>
       </div>

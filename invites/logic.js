@@ -1,6 +1,5 @@
 let table = null;
 let hashBeforeSync = null;
-let inviteIdsToDelete = null;
 
 function getMaxUtcDate(interactions) {
   if (interactions.length === 0) return "1970-01-01T00:00:00Z"; // Default date for no interactions
@@ -198,13 +197,17 @@ async function showConfirmDeleteModal(invitationIds) {
     `;
   });
 
-  html = `<ol class="my-2 mb-1" data-quantity="${invitesToDelete.length}">${html}</ol>`;
+  html = `<ol class="my-2 mb-1">${html}</ol>`;
 
   modal.querySelector(".modal-body blockquote").innerHTML = html;
 
+  $("#deleteModal").on("shown.bs.modal", (e) => {
+    $("#deletionIds").value = JSON.stringify(ids);
+  });
+  $("#deleteModal").on("hide.bs.modal", (e) => {
+    $("#deletionIds").value = "";
+  });
   $("#deleteModal").modal();
-
-  inviteIdsToDelete = ids;
 }
 
 async function onInvitesDelete() {
