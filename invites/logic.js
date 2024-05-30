@@ -202,10 +202,16 @@ async function showConfirmDeleteModal(invitationIds) {
   modal.querySelector(".modal-body blockquote").innerHTML = html;
 
   $("#deleteModal").on("shown.bs.modal", (e) => {
-    $("#deletionIds").value = JSON.stringify(ids);
+    const el = document.querySelector("#deletionIds");
+    if (el) {
+      el.value = JSON.stringify(ids);
+    }
   });
   $("#deleteModal").on("hide.bs.modal", (e) => {
-    $("#deletionIds").value = "";
+    const el = document.querySelector("#deletionIds");
+    if (el) {
+      el.value = "";
+    }
   });
   $("#deleteModal").modal();
 }
