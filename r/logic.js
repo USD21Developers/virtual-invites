@@ -201,6 +201,10 @@ async function renderRecipient(invite) {
   const events = await localforage.getItem("eventsFromMyInvites");
   const event = events.find((item) => item.eventid === eventid);
 
+  if (!event) {
+    return (window.location.href = "../invites/");
+  }
+
   eventObj = event;
 
   const inviteViews = interactions.length
