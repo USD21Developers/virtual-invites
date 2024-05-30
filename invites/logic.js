@@ -124,8 +124,10 @@ function populateRecipientsTable() {
                   }
                 });
                 if (atLeastOneSelected) {
+                  deleteInviteBtnEl.classList.remove("d-none");
                   deleteInviteBtnEl.removeAttribute("disabled");
                 } else {
+                  deleteInviteBtnEl.classList.add("d-none");
                   deleteInviteBtnEl.setAttribute("disabled", "");
                 }
               },
