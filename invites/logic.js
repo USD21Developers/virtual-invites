@@ -184,7 +184,7 @@ async function showConfirmDeleteModal(invitationIds) {
     );
 
     html += `
-      <li class="mb-2">
+      <li class="mb-3">
         <a href="/r/#/${item.invitationid}" class="font-weight-bold text-primary underline">
           ${item.recipient.name}
         </a>
