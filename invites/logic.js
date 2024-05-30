@@ -212,8 +212,9 @@ async function onInvitesDelete() {
   // TODO:  delete stuff
 
   // Cleanup
-  deleteInviteBtnEl.setAttribute("disabled", "");
-  $("#deleteModal").modal("hide");
+  // deleteInviteBtnEl.setAttribute("disabled", "");
+  // $("#deleteModal").modal("hide");
+  window.location.reload();
 }
 
 function addEventListeners() {
