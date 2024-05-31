@@ -280,10 +280,19 @@ async function init() {
   syncInvites().then(async (invitesObj) => {
     const { invites, changed } = invitesObj;
     const hashAfterSync = await invitesCrypto.hash(JSON.stringify(invites));
+    const deleteInviteBtnContainerEl = document.querySelector(
+      "#deleteInviteBtnContainer"
+    );
     let mustReRender = false;
 
     if (changed) mustReRender = true;
     if (hashBeforeSync !== hashAfterSync) mustReRender = true;
+
+    if (!invites.length) {
+      deleteInviteBtnContainerEl.classList.add("d-none");
+    } else {
+      deleteInviteBtnContainerEl.classList.remove("d-none");
+    }
 
     if (mustReRender) {
       if (table) {
