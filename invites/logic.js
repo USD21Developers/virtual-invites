@@ -250,9 +250,8 @@ async function onInvitesDeleteSubmitted(e) {
       // Happy path:
       syncInvites()
         .then(() => {
-          globalHidePageSpinner();
-          $("#deleteModal").modal("hide");
           window.location.reload();
+          globalHidePageSpinner();
         })
         .catch((error) => {
           console.error(error);
