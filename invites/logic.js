@@ -230,6 +230,8 @@ async function onInvitesDeleteSubmitted(e) {
   const endpoint = `${getApiHost()}/delete-invites`;
   const accessToken = await getAccessToken();
 
+  globalShowPageSpinner();
+
   fetch(endpoint, {
     mode: "cors",
     method: "POST",
@@ -243,10 +245,23 @@ async function onInvitesDeleteSubmitted(e) {
   })
     .then((res) => res.json())
     .then((data) => {
-      debugger;
+      // TODO:  handle potential errors
+
+      // Happy path:
+      syncInvites()
+        .then(() => {
+          globalHidePageSpinner();
+          $("#deleteModal").modal("hide");
+          window.location.reload();
+        })
+        .catch((error) => {
+          console.error(error);
+          globalHidePageSpinner();
+        });
     })
     .catch((error) => {
       console.error(error);
+      globalHidePageSpinner();
     });
 }
 
