@@ -367,6 +367,11 @@
       "key": "menuFollowUp",
       "original": "Follow Up",
       "translated": "Follow Up"
+    },
+    {
+      "key": "reload",
+      "original": "Reload?",
+      "translated": "Reload?"
     }
   ],
 

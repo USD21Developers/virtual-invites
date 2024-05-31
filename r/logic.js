@@ -167,7 +167,43 @@ function getRecipient() {
       return resolve();
     }
 
-    return reject(new Error("invite not found"));
+    if (!navigator.onLine) {
+      showToast(
+        `
+          ${getGlobalPhrase("youAreOffline")}
+           &nbsp; 
+          <a href="window.location.reload()" class="text-white underline font-weight-bold">
+            ${getPhrase("reload")}
+          </a>
+        `,
+        null,
+        "danger",
+        ".snackbar",
+        true
+      );
+      return reject(new Error("invite not found"));
+    }
+
+    if (navigator.onLine) {
+      const endpoint = `${getApiHost()}/recipient`;
+      const accessToken = await getAccessToken();
+      fetch(endpoint, {
+        mode: "cors",
+        method: "post",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          authorization: `Bearer ${accessToken}`,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          return resolve(data.recipient);
+        })
+        .catch((error) => {
+          console.error(error);
+          return reject(error);
+        });
+    }
   });
 }
 

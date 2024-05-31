@@ -233,7 +233,7 @@ async function onInvitesDeleteSubmitted(e) {
   const accessToken = await getAccessToken();
 
   $("#deleteModal").modal("hide");
-  
+
   globalShowPageSpinner();
 
   fetch(endpoint, {
