@@ -224,14 +224,17 @@ async function onInvitesDeleteSubmitted(e) {
   e.preventDefault();
 
   if (!json.length) return;
-  if (!navigator.onLine) return;
+  if (!navigator.onLine) {
+    return showToast(getGlobalPhrase("youAreOffline"), 5000, "danger");
+  }
 
   const ids = JSON.parse(json);
   const endpoint = `${getApiHost()}/delete-invites`;
   const accessToken = await getAccessToken();
 
-  globalShowPageSpinner();
   $("#deleteModal").modal("hide");
+  
+  globalShowPageSpinner();
 
   fetch(endpoint, {
     mode: "cors",

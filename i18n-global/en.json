@@ -361,6 +361,11 @@
       "key": "herPronoun",
       "original": "her",
       "translated": "her"
+    },
+    {
+      "key": "youAreOffline",
+      "original": "You are offline. Please reconnect.",
+      "translated": "You are offline. Please reconnect."
     }
   ],
 
