@@ -165,8 +165,9 @@ async function showConfirmDeleteModal(invitationIds) {
   const invitesToDelete = invites.filter((item) =>
     invitationIds.includes(item.invitationid)
   );
-  let ids = invitesToDelete.filter((item) => item.invitationid);
-  ids = ids.map((item) => item.invitationid);
+  let ids = invitesToDelete
+    .filter((item) => item.invitationid)
+    .map((item) => item.invitationid);
   let html = "";
 
   if (invitesToDelete.length === 1) {
