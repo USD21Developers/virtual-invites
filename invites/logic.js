@@ -219,8 +219,35 @@ async function showConfirmDeleteModal(invitationIds) {
 }
 
 async function onInvitesDeleteSubmitted(e) {
+  const json = e.target["deletionIds"].value;
+
   e.preventDefault();
-  debugger;
+
+  if (!json.length) return;
+  if (!navigator.onLine) return;
+
+  const ids = JSON.parse(json);
+  const endpoint = `${getApiHost()}/delete-invites`;
+  const accessToken = await getAccessToken();
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "POST",
+    body: JSON.stringify({
+      ids: ids,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      debugger;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 function addEventListeners() {
