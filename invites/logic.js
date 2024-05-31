@@ -231,6 +231,7 @@ async function onInvitesDeleteSubmitted(e) {
   const accessToken = await getAccessToken();
 
   globalShowPageSpinner();
+  $("#deleteModal").modal("hide");
 
   fetch(endpoint, {
     mode: "cors",
