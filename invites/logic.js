@@ -218,23 +218,15 @@ async function showConfirmDeleteModal(invitationIds) {
   $("#deleteModal").modal();
 }
 
-async function onInvitesDelete() {
-  const ids = inviteIdsToDelete ? inviteIdsToDelete : null;
-  const deleteInviteBtnEl = document.querySelector("#deleteInviteBtn");
-  if (!ids || !ids.length) return;
-
-  // TODO:  delete stuff
-
-  // Cleanup
-  // deleteInviteBtnEl.setAttribute("disabled", "");
-  // $("#deleteModal").modal("hide");
-  window.location.reload();
+async function onInvitesDeleteSubmitted(e) {
+  e.preventDefault();
+  debugger;
 }
 
 function addEventListeners() {
   document
-    .querySelector("#confirmDeleteButton")
-    .addEventListener("click", onInvitesDelete);
+    .querySelector("#formDeleteInvites")
+    .addEventListener("submit", onInvitesDeleteSubmitted);
 }
 
 async function init() {
