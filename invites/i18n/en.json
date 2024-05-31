@@ -65,8 +65,8 @@
     },
     {
       "key": "norecipients",
-      "original": "There are no invites at this time.",
-      "translated": "There are no invites at this time."
+      "original": "You have no invites at this time.",
+      "translated": "You have no invites at this time."
     },
     {
       "key": "confirm",
