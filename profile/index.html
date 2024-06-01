@@ -203,6 +203,7 @@
             <span id="username" class="text-monospace"></span>
           </p>
           <form id="profileform" autocomplete="off">
+            <input type="hidden" name="username" id="username_hidden" />
             <div class="form-group mb-4 pb-4">
               <label for="password" data-i18n="newpassword"></label>
               <input
@@ -261,6 +262,10 @@
           </form>
         </div>
       </div>
+    </div>
+
+    <div class="snackbar">
+      <div class="snackbar-body"></div>
     </div>
 
     <!-- Modal -->
