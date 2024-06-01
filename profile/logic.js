@@ -44,60 +44,49 @@ async function populateChurches() {
 
 function populateForm() {
   return new Promise(async (resolve, reject) => {
-    const endpoint = `${getApiHost()}/user`;
-    const accessToken = await getAccessToken();
+    const userData = JSON.parse(
+      atob(localStorage.getItem("refreshToken").split(".")[1])
+    );
+    const {
+      profilephoto,
+      username,
+      email,
+      firstname,
+      lastname,
+      churchid,
+      gender,
+    } = userData;
 
-    fetch(endpoint, {
-      mode: "cors",
-      method: "POST",
-      headers: new Headers({
-        "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (!data) return reject();
-        if (data.msgType !== "success") return reject();
+    const altText = getPhrase("profilePhoto")
+      .replaceAll("{FIRST-NAME}", firstname)
+      .replaceAll("{LAST-NAME}", lastname);
 
-        const user = data.user;
+    const photoLinkEl = document.querySelector("#profilePhoto");
 
-        const altText = getPhrase("profilePhoto")
-          .replaceAll("{FIRST-NAME}", user.firstname)
-          .replaceAll("{LAST-NAME}", user.lastname);
+    const defaultImg =
+      gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
+    const img = document.createElement("img");
+    img.setAttribute("src", profilephoto);
+    img.setAttribute("alt", altText);
+    img.setAttribute("title", altText);
+    img.setAttribute("width", 140);
+    img.setAttribute("height", 140);
+    img.setAttribute(
+      "onerror",
+      `this.onerror=null;this.src='/_assets/img/${defaultImg}';this.alt='${altText}';`
+    );
 
-        const photoLinkEl = document.querySelector("#profilePhoto");
+    photoLinkEl.innerHTML = "";
+    photoLinkEl.appendChild(img);
 
-        const refreshTokenObject = JSON.parse(
-          atob(localStorage.getItem("refreshToken").split(".")[1])
-        );
+    document.querySelector("#username").innerHTML = username;
+    document.querySelector("#username_hidden").value = username;
+    document.querySelector("#email").value = email;
+    document.querySelector("#firstname").value = firstname;
+    document.querySelector("#lastname").value = lastname;
+    document.querySelector("#churchid").value = churchid;
 
-        const { gender } = refreshTokenObject;
-
-        const defaultImg =
-          gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
-        const img = document.createElement("img");
-        img.setAttribute("src", user.profilephoto);
-        img.setAttribute("alt", altText);
-        img.setAttribute("title", altText);
-        img.setAttribute("width", 140);
-        img.setAttribute("height", 140);
-        img.setAttribute(
-          "onerror",
-          `this.onerror=null;this.src='';this.alt='';`
-        );
-
-        photoLinkEl.innerHTML = "";
-        photoLinkEl.appendChild(img);
-
-        document.querySelector("#username").innerHTML = user.username;
-        document.querySelector("#email").value = user.email;
-        document.querySelector("#firstname").value = user.firstname;
-        document.querySelector("#lastname").value = user.lastname;
-        document.querySelector("#churchid").value = user.churchid;
-
-        return resolve(user);
-      });
+    return resolve(userData);
   });
 }
 
@@ -182,6 +171,9 @@ async function onSubmit(e) {
   }
 
   // TODO:  now do server-side validation
+  if (!navigator.onLine) {
+    return showToast(getGlobalPhrase("youAreOffline"), 5000, "danger");
+  }
 }
 
 function attachListeners() {
