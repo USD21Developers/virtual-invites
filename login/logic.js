@@ -105,6 +105,10 @@ function onSubmit(e) {
   hide(submitButton);
   hide(alert);
 
+  if (!navigator.onLine) {
+    return showToast(getGlobalPhrase("youAreOffline"), 5000, "danger");
+  }
+
   fetch(endpoint, {
     mode: "cors",
     method: "POST",
