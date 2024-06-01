@@ -43,51 +43,47 @@ async function populateChurches() {
 }
 
 function populateForm() {
-  return new Promise(async (resolve, reject) => {
-    const userData = JSON.parse(
-      atob(localStorage.getItem("refreshToken").split(".")[1])
-    );
-    const {
-      profilephoto,
-      username,
-      email,
-      firstname,
-      lastname,
-      churchid,
-      gender,
-    } = userData;
+  const userData = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  );
+  const {
+    profilephoto,
+    username,
+    email,
+    firstname,
+    lastname,
+    churchid,
+    gender,
+  } = userData;
 
-    const altText = getPhrase("profilePhoto")
-      .replaceAll("{FIRST-NAME}", firstname)
-      .replaceAll("{LAST-NAME}", lastname);
+  const altText = getPhrase("profilePhoto")
+    .replaceAll("{FIRST-NAME}", firstname)
+    .replaceAll("{LAST-NAME}", lastname);
 
-    const photoLinkEl = document.querySelector("#profilePhoto");
+  const photoLinkEl = document.querySelector("#profilePhoto");
 
-    const defaultImg =
-      gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
-    const img = document.createElement("img");
-    img.setAttribute("src", profilephoto);
-    img.setAttribute("alt", altText);
-    img.setAttribute("title", altText);
-    img.setAttribute("width", 140);
-    img.setAttribute("height", 140);
-    img.setAttribute(
-      "onerror",
-      `this.onerror=null;this.src='/_assets/img/${defaultImg}';this.alt='${altText}';`
-    );
+  const defaultImg =
+    gender === "male" ? "avatar_male.svg" : "avatar_female.svg";
+  const img = document.createElement("img");
+  img.setAttribute("src", profilephoto);
+  img.setAttribute("alt", altText);
+  img.setAttribute("title", altText);
+  img.setAttribute("width", 140);
+  img.setAttribute("height", 140);
+  img.setAttribute(
+    "onerror",
+    `this.onerror=null;this.src='/_assets/img/${defaultImg}';this.alt='${altText}';`
+  );
 
-    photoLinkEl.innerHTML = "";
-    photoLinkEl.appendChild(img);
+  photoLinkEl.innerHTML = "";
+  photoLinkEl.appendChild(img);
 
-    document.querySelector("#username").innerHTML = username;
-    document.querySelector("#username_hidden").value = username;
-    document.querySelector("#email").value = email;
-    document.querySelector("#firstname").value = firstname;
-    document.querySelector("#lastname").value = lastname;
-    document.querySelector("#churchid").value = churchid;
-
-    return resolve(userData);
-  });
+  document.querySelector("#username").innerHTML = username;
+  document.querySelector("#username_hidden").value = username;
+  document.querySelector("#email").value = email;
+  document.querySelector("#firstname").value = firstname;
+  document.querySelector("#lastname").value = lastname;
+  document.querySelector("#churchid").value = churchid;
 }
 
 async function selectUserChurch() {
@@ -153,6 +149,7 @@ async function onSubmit(e) {
   const firstname = document.querySelector("#firstname").value.trim() || "";
   const lastname = document.querySelector("#lastname").value.trim() || "";
   const churchid = document.querySelector("#churchid").value.trim() || "";
+  const datakey = localStorage.getItem("datakey");
 
   if (!email.length) {
     return formError("#email", getPhrase("emailrequired", regContent));
@@ -174,6 +171,41 @@ async function onSubmit(e) {
   if (!navigator.onLine) {
     return showToast(getGlobalPhrase("youAreOffline"), 5000, "danger");
   }
+
+  const endpoint = `${getApiHost()}/profile`;
+  const accessToken = await getAccessToken();
+
+  globalShowPageSpinner();
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "post",
+    body: JSON.stringify({
+      password: password,
+      datakey: datakey,
+      email: email,
+      firstname: firstname,
+      lastname: lastname,
+      churchid: churchid,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then(async (data) => {
+      document.querySelector("#profileform").reset();
+      populateForm();
+      document.querySelector("body").scrollIntoView();
+      showToast(getPhrase("profileUpdated"), 5000, "success");
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+    .finally(() => {
+      globalHidePageSpinner();
+    });
 }
 
 function attachListeners() {
@@ -189,7 +221,7 @@ async function init() {
   populateChurches();
   await populateContent();
   showProfilePhoto();
-  await populateForm();
+  populateForm();
   attachListeners();
   globalHidePageSpinner();
 }
