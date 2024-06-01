@@ -195,6 +195,12 @@ async function onSubmit(e) {
   })
     .then((res) => res.json())
     .then(async (data) => {
+      const { refreshToken, accessToken } = data;
+      if (data.msgType !== "success") {
+        throw data.msg;
+      }
+      localStorage.setItem("refreshToken", refreshToken);
+      sessionStorage.setItem("accessToken", accessToken);
       document.querySelector("#profileform").reset();
       populateForm();
       document.querySelector("body").scrollIntoView();
