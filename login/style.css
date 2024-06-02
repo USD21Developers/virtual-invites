@@ -1,0 +1,5 @@
+@media (min-width: 660px) {
+  body {
+    min-height: 100vh;
+  }
+}
