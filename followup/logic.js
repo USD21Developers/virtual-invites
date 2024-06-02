@@ -29,7 +29,7 @@ async function populateFollowUpList() {
   let listHTML = "";
 
   followUpsSorted.forEach((invite) => {
-    let lastInteractionUtcDate = invite.utctime;
+    let lastInteractionUtcDate = invite.utctime + "Z";
     let action = getPhrase("wasInvited");
 
     if (invite.interactions.length) {
