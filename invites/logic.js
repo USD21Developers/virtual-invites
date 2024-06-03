@@ -261,7 +261,6 @@ async function onInvitesDeleteSubmitted(e) {
       syncInvites()
         .then(() => {
           window.location.reload();
-          globalHidePageSpinner();
         })
         .catch((error) => {
           console.error(error);
