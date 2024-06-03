@@ -51,13 +51,13 @@ function getCountries() {
   });
 }
 
-function getProfileImage() {
+function getProfileImage(height = 400, width = 400) {
   if (!vanilla) return "";
   if (typeof vanilla.__proto__.result !== "function") return "";
 
   return vanilla.result({
     type: "base64",
-    size: { width: 400, height: 400 },
+    size: { width: width, height: height },
     format: "jpg",
     quality: 0.75,
     circle: false,
@@ -435,7 +435,8 @@ async function onSubmit(e) {
   const churchid = document.querySelector("#churchid").value.trim() || "";
   const unlistedchurch =
     document.querySelector("#unlistedchurch").value.trim() || "";
-  const profileImage = await getProfileImage();
+  const profileImage400 = await getProfileImage(400, 400);
+  const profileImage140 = await getProfileImage(140, 140);
   const emailSenderText = getPhrase("emailSenderText");
   const emailSubject = getPhrase("emailSubject");
   let emailParagraph1 = getPhrase("emailParagraph1");
@@ -468,7 +469,8 @@ async function onSubmit(e) {
       country: country,
       churchid: churchid,
       unlistedchurch: unlistedchurch,
-      profileImage: profileImage,
+      profileImage140: profileImage140,
+      profileImage400: profileImage400,
       lang: lang,
       emailSenderText: emailSenderText,
       emailSubject: emailSubject,
