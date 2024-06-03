@@ -1,6 +1,7 @@
 importScripts("/third_party/workbox/workbox-v7.0.0/workbox-sw.js");
 
 workbox.setConfig({
+  debug: false,
   modulePathPrefix: "/third_party/workbox/workbox-v7.0.0/",
 });
 
