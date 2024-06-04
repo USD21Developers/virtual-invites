@@ -366,6 +366,7 @@ strong {
 
 #navButtons a {
   color: #777777;
+  display: block;
   font-weight: 400;
   padding: 0;
   text-decoration: none;
