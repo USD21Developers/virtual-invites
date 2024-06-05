@@ -1310,9 +1310,47 @@ function resetAddNoteForm() {
   }
 }
 
-function undeleteInvite(e) {
+async function undeleteInvite(e) {
   e.preventDefault();
-  // TODO:  Add logic here
+  if (!navigator.onLine) {
+    return showToast(getGlobalPhrase("youAreOffline"), 5000, "danger");
+  }
+
+  const inviteDeletedContainerEl = document.querySelector(
+    "#inviteDeletedContainer"
+  );
+  const invitationid = Number(getHash().split("/")[1]);
+  const endpoint = `${getApiHost()}/undelete-invite`;
+  const accessToken = await getAccessToken();
+
+  globalShowPageSpinner();
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "post",
+    body: JSON.stringify({
+      invitationid: invitationid,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (!data || data.msgType !== "success") {
+        throw new Error(data.msg);
+      }
+      inviteDeletedContainerEl.classList.add("d-none");
+      syncInvites();
+      customScrollTo("body");
+      showToast(getPhrase("inviteUndeleted"), 5000, "success");
+      globalHidePageSpinner();
+    })
+    .catch((error) => {
+      console.error(error);
+      globalHidePageSpinner();
+    });
 }
 
 function onEditNote() {

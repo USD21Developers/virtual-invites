@@ -387,6 +387,11 @@
       "key": "undelete",
       "original": "Undelete",
       "translated": "Undelete"
+    },
+    {
+      "key": "inviteUndeleted",
+      "original": "Invite undeleted",
+      "translated": "Invite undeleted"
     }
   ],
 
