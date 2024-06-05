@@ -187,6 +187,7 @@ function getRecipient() {
           }
 
           const invite = data.recipient;
+          inviteObj = invite;
           renderRecipient(invite);
           return resolve();
         });
