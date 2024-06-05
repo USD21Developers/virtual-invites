@@ -7,13 +7,13 @@ let photoData = {
 
 let vanilla;
 
-function getProfileImage() {
+function getProfileImage(height = 400, width = 400) {
   if (!vanilla) return "";
   if (typeof vanilla.__proto__.result !== "function") return "";
 
   return vanilla.result({
     type: "base64",
-    size: { width: 400, height: 400 },
+    size: { width: width, height: height },
     format: "jpg",
     quality: 0.75,
     circle: false,
@@ -234,7 +234,8 @@ async function onSubmit(e) {
 
   formErrorsReset();
 
-  const profileImage = await getProfileImage();
+  const profileImage400 = await getProfileImage(400, 400);
+  const profileImage140 = await getProfileImage(140, 140);
   const spinner = document.querySelector("#progressbar");
   const submitButton = document.querySelector("#formsubmit");
   const controller = new AbortController();
@@ -249,7 +250,8 @@ async function onSubmit(e) {
     mode: "cors",
     method: "POST",
     body: JSON.stringify({
-      profileImage: profileImage,
+      profileImage140: profileImage140,
+      profileImage400: profileImage400,
     }),
     headers: new Headers({
       "Content-Type": "application/json",
