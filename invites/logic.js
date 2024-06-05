@@ -35,7 +35,7 @@ function populateRecipientsTable() {
       let rows = "";
 
       invites.forEach((item) => {
-        let lastInteractionUtcTime = item.utctime;
+        let lastInteractionUtcTime = item.utctime + "Z";
         let lastInteractionTimezone = item.timezone;
         let action = getPhrase("wasInvited");
 
