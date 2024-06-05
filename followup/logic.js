@@ -6,13 +6,15 @@ function styleLinkToRecipients() {
 async function populateFollowUpList() {
   const followUpListEl = document.querySelector("#followUpList");
   const msgEmptyListEl = document.querySelector("#msgEmptyList");
-  const invites = await localforage.getItem("invites");
+  let invites = await localforage.getItem("invites");
 
   if (!invites) {
     followUpListEl.classList.add("d-none");
     msgEmptyListEl.classList.remove("d-none");
     return;
   }
+
+  invites = invites.filter((item) => item.isDeleted === 0);
 
   const followUps = invites.filter((item) => item.followup === 1);
 
