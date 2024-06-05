@@ -25,7 +25,7 @@ function populateRecipientsTable() {
         return resolve();
       }
       hashBeforeSync = await invitesCrypto.hash(JSON.stringify(invites));
-      invites = invites.filter((item) => !!!item.deleted);
+      invites = invites.filter((item) => item.isDeleted === 0);
       invites = invites.sort((a, b) => {
         const maxUtcDateA = getMaxUtcDate(a.interactions);
         const maxUtcDateB = getMaxUtcDate(b.interactions);
