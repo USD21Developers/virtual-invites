@@ -165,6 +165,31 @@ function getRecipient() {
     if (invite) {
       renderRecipient(invite);
       return resolve();
+    } else {
+      const endpoint = `${getApiHost()}/recipient`;
+      const accessToken = await getAccessToken();
+      fetch(endpoint, {
+        mode: "cors",
+        method: "post",
+        body: JSON.stringify({
+          invitationid: Number(invitationid),
+        }),
+        headers: new Headers({
+          "Content-Type": "application/json",
+          authorization: `Bearer ${accessToken}`,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (!data || data.msgType !== "success") {
+            showToast(getPhrase("recipientNotFound"), 5000, "danger");
+            return reject(new Error("recipient not found"));
+          }
+
+          const invite = data.recipient;
+          renderRecipient(invite);
+          return resolve();
+        });
     }
 
     if (!navigator.onLine) {

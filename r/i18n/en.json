@@ -372,6 +372,11 @@
       "key": "reload",
       "original": "Reload?",
       "translated": "Reload?"
+    },
+    {
+      "key": "recipientNotFound",
+      "original": "Recipient not found.",
+      "translated": "Recipient not found."
     }
   ],
 
