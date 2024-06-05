@@ -377,6 +377,16 @@
       "key": "recipientNotFound",
       "original": "Recipient not found.",
       "translated": "Recipient not found."
+    },
+    {
+      "key": "inviteDeleted",
+      "original": "INVITE DELETED",
+      "translated": "INVITE DELETED"
+    },
+    {
+      "key": "undelete",
+      "original": "Undelete",
+      "translated": "Undelete"
     }
   ],
 

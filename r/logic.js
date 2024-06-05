@@ -244,6 +244,7 @@ async function renderRecipient(invite) {
     sentvia,
     timezone,
     utctime,
+    isDeleted,
   } = invite;
   const { email, id, name, sms } = recipient;
   const dateInvitedEl = document.querySelector("#dateInvited");
@@ -442,6 +443,13 @@ async function renderRecipient(invite) {
     }
   }
   if (interactionViewsEl) interactionViewsEl.innerHTML = inviteViewsHTML;
+
+  // Show deleted status (if deleted)
+  if (isDeleted) {
+    document
+      .querySelector("#inviteDeletedContainer")
+      .classList.remove("d-none");
+  }
 }
 
 async function onAddToPhoneBook(e) {
@@ -1302,6 +1310,11 @@ function resetAddNoteForm() {
   }
 }
 
+function undeleteInvite(e) {
+  e.preventDefault();
+  // TODO:  Add logic here
+}
+
 function onEditNote() {
   return new Promise(async (resolve, reject) => {
     const noteSummaryEl = document.querySelector("#editNoteSummary");
@@ -1664,6 +1677,10 @@ function attachListeners() {
   document
     .querySelector("#notificationsConfirmForm")
     .addEventListener("submit", onConfirmNotifications);
+
+  document
+    .querySelector("#undeleteInvite")
+    .addEventListener("click", undeleteInvite);
 }
 
 async function init() {

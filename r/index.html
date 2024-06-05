@@ -199,9 +199,23 @@
         </div>
       </div>
 
-      <div class="row mb-4">
+      <div class="row mb-4" id="metadataContainer">
         <div class="col col-md-8 offset-md-2">
           <table class="table table-striped">
+            <tr id="inviteDeletedContainer" class="d-none">
+              <td class="bg-danger text-white">
+                <strong data-i18n="inviteDeleted"></strong>
+              </td>
+              <td class="bg-danger text-right">
+                <a
+                  href="#"
+                  class="text-white underline"
+                  data-i18n="undelete"
+                  id="undeleteInvite"
+                >
+                </a>
+              </td>
+            </tr>
             <tr>
               <td><strong data-i18n="label_event"></strong></td>
               <td class="text-right">
