@@ -51,10 +51,12 @@ async function redirectIfNecessary() {
 
 async function init() {
   const isRedirecting = redirectIfNecessary();
-  toggleUsersIFollow();
-  await populateContent();
-  if (!isRedirecting) globalHidePageSpinner();
-  syncEvents();
+  if (!isRedirecting) {
+    toggleUsersIFollow();
+    await populateContent();
+    globalHidePageSpinner();
+    syncEvents();
+  }
 }
 
 init();
