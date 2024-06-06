@@ -3,6 +3,7 @@ async function toggleUsersIFollow() {
   const followedUsers = await localforage.getItem("followedUsers");
   const userid = getUserId();
   const link = `following/#${userid}`;
+  let isRedirecting = false;
 
   if (Array.isArray(followedUsers)) {
     if (followedUsers.length) {
@@ -39,6 +40,7 @@ async function redirectIfNecessary() {
   }
 
   if (redirectUrl) {
+    isRedirecting = true;
     window.location.href = redirectUrl;
   }
 }
@@ -47,7 +49,7 @@ async function init() {
   redirectIfNecessary();
   toggleUsersIFollow();
   await populateContent();
-  globalHidePageSpinner();
+  if (!isRedirecting) globalHidePageSpinner();
   syncEvents();
 }
 
