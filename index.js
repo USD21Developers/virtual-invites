@@ -19,24 +19,24 @@ async function redirectIfNecessary() {
   let redirectUrl;
   let redirect = false;
 
-  if (!launchedFromHomescreen) return;
-  if (!settings) return;
-  if (!settings.openingPage) return;
+  if (!launchedFromHomescreen) return redirect;
+  if (!settings) return redirect;
+  if (!settings.openingPage) return redirect;
 
   switch (settings.openingPage) {
     case "home":
       break;
     case "send an invite":
       redirectUrl = "/send/";
-      redirect = true;
+      if (launchedFromHomescreen) redirect = true;
       break;
     case "my invites":
       redirectUrl = "/invites/";
-      redirect = true;
+      if (launchedFromHomescreen) redirect = true;
       break;
     case "follow up list":
       redirectUrl = "/followup/";
-      redirect = true;
+      if (launchedFromHomescreen) redirect = true;
       break;
     default:
       break;
