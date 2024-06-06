@@ -54,6 +54,11 @@ function redirectIfNecessary() {
 async function init() {
   const isRedirecting = await redirectIfNecessary();
   if (!isRedirecting) {
+    window.history.replaceState(
+      null,
+      null,
+      location.origin + location.pathname.split("/")[0]
+    );
     toggleUsersIFollow();
     await populateContent();
     globalHidePageSpinner();
