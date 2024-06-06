@@ -12,45 +12,47 @@ async function toggleUsersIFollow() {
   }
 }
 
-async function redirectIfNecessary() {
-  const launchedFromHomescreen =
-    window.location.search === "?utm_source=homescreen" ? true : false;
-  const settings = await localforage.getItem("settings");
-  let redirectUrl;
-  let redirect = false;
+function redirectIfNecessary() {
+  return new Promise(async (resolve, reject) => {
+    const launchedFromHomescreen =
+      window.location.search === "?utm_source=homescreen" ? true : false;
+    const settings = await localforage.getItem("settings");
+    let redirectUrl;
+    let redirect = false;
 
-  if (!launchedFromHomescreen) return redirect;
-  if (!settings) return redirect;
-  if (!settings.openingPage) return redirect;
+    if (!launchedFromHomescreen) return resolve(redirect);
+    if (!settings) return resolve(redirect);
+    if (!settings.openingPage) return resolve(redirect);
 
-  switch (settings.openingPage) {
-    case "home":
-      break;
-    case "send an invite":
-      redirectUrl = "/send/";
-      if (launchedFromHomescreen) redirect = true;
-      break;
-    case "my invites":
-      redirectUrl = "/invites/";
-      if (launchedFromHomescreen) redirect = true;
-      break;
-    case "follow up list":
-      redirectUrl = "/followup/";
-      if (launchedFromHomescreen) redirect = true;
-      break;
-    default:
-      break;
-  }
+    switch (settings.openingPage) {
+      case "home":
+        break;
+      case "send an invite":
+        redirectUrl = "/send/";
+        if (launchedFromHomescreen) redirect = true;
+        break;
+      case "my invites":
+        redirectUrl = "/invites/";
+        if (launchedFromHomescreen) redirect = true;
+        break;
+      case "follow up list":
+        redirectUrl = "/followup/";
+        if (launchedFromHomescreen) redirect = true;
+        break;
+      default:
+        break;
+    }
 
-  if (redirect) {
-    window.location.href = redirectUrl;
-  }
+    if (redirect) {
+      window.location.href = redirectUrl;
+    }
 
-  return redirect;
+    return resolve(redirect);
+  });
 }
 
 async function init() {
-  const isRedirecting = redirectIfNecessary();
+  const isRedirecting = await redirectIfNecessary();
   if (!isRedirecting) {
     toggleUsersIFollow();
     await populateContent();
