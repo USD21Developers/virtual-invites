@@ -172,6 +172,11 @@ function onSubmit(e) {
             sessionStorage.removeItem("unsubscribeFromNotifications");
           }
 
+          const isFromHomeScreen = !!sessionStorage.getItem("isFromHomeScreen");
+          if (isFromHomeScreen) {
+            redirectUrl = "../?utm_source=homescreen";
+          }
+
           window.location.href = redirectUrl;
           break;
         default:
@@ -231,5 +236,3 @@ async function init() {
 }
 
 init();
-
-console.log("Jason");
