@@ -28,25 +28,27 @@ async function redirectIfNecessary() {
       break;
     case "send an invite":
       redirectUrl = "/send/";
+      isRedirecting = true;
       break;
     case "my invites":
       redirectUrl = "/invites/";
+      isRedirecting = true;
       break;
     case "follow up list":
       redirectUrl = "/followup/";
+      isRedirecting = true;
       break;
     default:
       break;
   }
 
-  if (redirectUrl) {
-    isRedirecting = true;
+  if (isRedirecting) {
     window.location.href = redirectUrl;
   }
 }
 
 async function init() {
-  redirectIfNecessary();
+  redirectIfNecessary(isRedirecting);
   toggleUsersIFollow();
   await populateContent();
   if (!isRedirecting) globalHidePageSpinner();
