@@ -25,3 +25,7 @@ span.material-icons.material-symbols-outlined.text-info {
   font-size: 18px;
   margin-right: 0.2rem;
 }
+
+.btn[data-i18n="btnRetry"] {
+  font-weight: 500;
+}
