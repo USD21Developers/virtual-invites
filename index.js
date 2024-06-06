@@ -3,7 +3,6 @@ async function toggleUsersIFollow() {
   const followedUsers = await localforage.getItem("followedUsers");
   const userid = getUserId();
   const link = `following/#${userid}`;
-  let isRedirecting = false;
 
   if (Array.isArray(followedUsers)) {
     if (followedUsers.length) {
@@ -18,6 +17,7 @@ async function redirectIfNecessary() {
     window.location.search === "?utm_source=homescreen" ? true : false;
   const settings = await localforage.getItem("settings");
   let redirectUrl;
+  let redirect = false;
 
   if (!launchedFromHomescreen) return;
   if (!settings) return;
@@ -28,27 +28,29 @@ async function redirectIfNecessary() {
       break;
     case "send an invite":
       redirectUrl = "/send/";
-      isRedirecting = true;
+      redirect = true;
       break;
     case "my invites":
       redirectUrl = "/invites/";
-      isRedirecting = true;
+      redirect = true;
       break;
     case "follow up list":
       redirectUrl = "/followup/";
-      isRedirecting = true;
+      redirect = true;
       break;
     default:
       break;
   }
 
-  if (isRedirecting) {
+  if (redirect) {
     window.location.href = redirectUrl;
   }
+
+  return redirect;
 }
 
 async function init() {
-  redirectIfNecessary(isRedirecting);
+  const isRedirecting = redirectIfNecessary();
   toggleUsersIFollow();
   await populateContent();
   if (!isRedirecting) globalHidePageSpinner();
