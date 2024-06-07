@@ -187,7 +187,7 @@ async function showConfirmDeleteModal(invitationIds) {
       dateStyle: "long",
       timeStyle: "short",
       timeZone: userDateTimePrefs.timeZone,
-    }).format(new Date(item.utctime));
+    }).format(new Date(`${item.utctime}Z`));
     const whenInvitedPhrase = getPhrase("invitedOn").replaceAll(
       "{DATETIME}",
       dateInvited
