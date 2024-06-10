@@ -152,10 +152,12 @@ function getRecipient() {
     let invites = (await localforage.getItem("invites")) || null;
 
     if (!Array.isArray(invites)) {
-      invites = await syncInvites();
+      await syncInvites();
+      invites = await localforage.getItem("invites");
       syncedInvites = true;
     } else if (invites.length === 0) {
-      invites = await syncInvites();
+      await syncInvites();
+      invites = await localforage.getItem("invites");
       syncedInvites = true;
     }
 
@@ -174,6 +176,7 @@ function getRecipient() {
       return resolve();
     } else {
       await syncInvites();
+      invites = await localforage.getItem("invites");
       syncedInvites = true;
       invite = invites.find(
         (item) => item.invitationid === parseInt(Math.abs(invitationid))
@@ -192,23 +195,6 @@ function getRecipient() {
     if (!syncedInvites) {
       syncInvites();
       syncedInvites = true;
-    }
-
-    if (!navigator.onLine) {
-      showToast(
-        `
-          ${getGlobalPhrase("youAreOffline")}
-           &nbsp; 
-          <a href="window.location.reload()" class="text-white underline font-weight-bold">
-            ${getPhrase("reload")}
-          </a>
-        `,
-        null,
-        "danger",
-        ".snackbar",
-        true
-      );
-      return reject(new Error("invite not found"));
     }
 
     if (navigator.onLine) {
