@@ -151,46 +151,47 @@ function getRecipient() {
 
     let invites = (await localforage.getItem("invites")) || null;
 
-    syncInviteNotifications();
-    syncInvites();
-    syncedInvites = true;
-    invites = await localforage.getItem("invites");
+    if (!Array.isArray(invites)) {
+      invites = await syncInvites();
+      syncedInvites = true;
+    } else if (invites.length === 0) {
+      invites = await syncInvites();
+      syncedInvites = true;
+    }
 
-    const invite = invites.find(
+    if (!Array.isArray(invites) || !invites.length) {
+      showToast(getPhrase("recipientNotFound"), 5000, "danger");
+      return reject(new Error("recipient not found"));
+    }
+
+    let invite = invites.find(
       (item) => item.invitationid === parseInt(Math.abs(invitationid))
     );
 
-    inviteObj = invite;
-
     if (invite) {
+      inviteObj = invite;
       renderRecipient(invite);
       return resolve();
     } else {
-      const endpoint = `${getApiHost()}/recipient`;
-      const accessToken = await getAccessToken();
-      fetch(endpoint, {
-        mode: "cors",
-        method: "post",
-        body: JSON.stringify({
-          invitationid: Number(invitationid),
-        }),
-        headers: new Headers({
-          "Content-Type": "application/json",
-          authorization: `Bearer ${accessToken}`,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (!data || data.msgType !== "success") {
-            showToast(getPhrase("recipientNotFound"), 5000, "danger");
-            return reject(new Error("recipient not found"));
-          }
+      await syncInvites();
+      syncedInvites = true;
+      invite = invites.find(
+        (item) => item.invitationid === parseInt(Math.abs(invitationid))
+      );
 
-          const invite = data.recipient;
-          inviteObj = invite;
-          renderRecipient(invite);
-          return resolve();
-        });
+      if (invite) {
+        inviteObj = invite;
+      } else {
+        showToast(getPhrase("recipientNotFound"), 5000, "danger");
+        return reject(new Error("recipient not found"));
+      }
+    }
+
+    syncInviteNotifications();
+
+    if (!syncedInvites) {
+      syncInvites();
+      syncedInvites = true;
     }
 
     if (!navigator.onLine) {
