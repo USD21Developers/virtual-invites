@@ -17,11 +17,11 @@
           method: "post",
           body: JSON.stringify({
             jason: "is cool",
-          })
-            .then((res) => res.json())
-            .then((data) => console.log(data))
-            .catch((error) => console.error(error)),
-        });
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.error(error));
       });
     </script>
   </body>
