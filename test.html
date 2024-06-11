@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="/global.js"></script>
+  </head>
+  <body>
+    <button id="test">Test SendGrid event hooks</button>
+
+    <script type="text/javascript">
+      document.querySelector("#test").addEventListener("click", (e) => {
+        fetch(`${getApiServicesHost()}/sendgrid-event`, {
+          mode: "cors",
+          method: "post",
+          body: JSON.stringify({
+            mode: "cors",
+            method: "post",
+            body: JSON.stringify({
+              jason: "is cool",
+            }),
+          })
+            .then((res) => res.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.error(error)),
+        });
+      });
+    </script>
+  </body>
+</html>
