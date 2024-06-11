@@ -274,6 +274,20 @@
       "key": "selectAPhoto",
       "original": "Select a photo",
       "translated": "Select a photo"
+    },
+    {
+      "key": "waitingTooLong",
+      "original": "Waiting too long? Remember to check in your spam folder.",
+      "translated": "Waiting too long? Remember to check in your spam folder.",
+      "changes": [
+        {
+          "original": "Waiting too long?",
+          "translated": "Waiting too long?",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
     }
   ],
 
