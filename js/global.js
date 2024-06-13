@@ -1710,6 +1710,7 @@ initGlobal();
 const pagesWithoutServiceWorker = [
   "/i/",
   "/i/alt/",
+  "/login/",
   "/unsubscribe/",
   "/unsubscribe/done/",
 ];
@@ -1719,14 +1720,16 @@ const serveThisPageFromServiceWorker = !pagesWithoutServiceWorker.includes(
 );
 
 if (serveThisPageFromServiceWorker) {
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker
-      .register("/sw.js")
-      .then((registration) => {
-        // console.log("Service Worker registered:", registration);
-      })
-      .catch((error) => {
-        console.error("Service Worker registration failed:", error);
-      });
-  }
+  window.addEventListener("load", () => {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/sw.js")
+        .then((registration) => {
+          // console.log("Service Worker registered:", registration);
+        })
+        .catch((error) => {
+          console.error("Service Worker registration failed:", error);
+        });
+    }
+  });
 }
