@@ -135,19 +135,7 @@ function getFollowUpDescriptionWithoutURL() {
 
 function getRecipient() {
   return new Promise(async (resolve, reject) => {
-    const hash = window.location.hash;
-    let recipientParts = hash.split("/") || null;
-    if (!recipientParts) {
-      return reject(new Error("Required URL parameters are missing"));
-    }
-    if (!Array.isArray(recipientParts)) {
-      return reject(new Error("URL parameters must be separated by slashes"));
-    }
-    if (!recipientParts.length) {
-      return reject(new Error("At least one URL parameter is required"));
-    }
-
-    const invitationid = recipientParts[1] || null;
+    const invitationid = parseInt(window.location.hash.split("#")[1]) || null;
 
     let invites = (await localforage.getItem("invites")) || null;
 
