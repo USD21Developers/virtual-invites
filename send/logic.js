@@ -451,7 +451,18 @@ async function loadEvents() {
   const eventsByFollowedUsers = await localforage.getItem(
     "eventsByFollowedUsers"
   );
-  const followedUsers = await localforage.getItem("followedUsers");
+  let followedUsers = await localforage.getItem("followedUsers");
+
+  if (followedUsers && followedUsers.length) {
+    if (eventsByFollowedUsers.length) {
+      followedUsers = followedUsers.filter((followedUser) => {
+        const matchingEvent = eventsByFollowedUsers.find(
+          (item) => item.createdBy === followedUser.userid
+        );
+        return matchingEvent ? true : false;
+      });
+    }
+  }
 
   return new Promise((resolve, reject) => {
     const hasOwnEvents = Array.isArray(events) && events.length > 0;
