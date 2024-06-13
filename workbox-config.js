@@ -7,6 +7,7 @@ module.exports = {
     "_assets/fonts/Oswald/Oswald-VariableFont.ttf",
   ],
   globIgnores: [
+    "**/*.map",
     "sw-generator.js",
     "sw.js",
     "sw-src.js",
