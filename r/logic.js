@@ -136,6 +136,7 @@ function getFollowUpDescriptionWithoutURL() {
 function getRecipient() {
   return new Promise(async (resolve, reject) => {
     const invitationid = parseInt(window.location.hash.split("#")[1]) || null;
+    if (!invitationid) return;
 
     let invites = (await localforage.getItem("invites")) || null;
 
@@ -154,9 +155,7 @@ function getRecipient() {
       return reject(new Error("recipient not found"));
     }
 
-    let invite = invites.find(
-      (item) => item.invitationid === parseInt(Math.abs(invitationid))
-    );
+    let invite = invites.find((item) => item.invitationid === invitationid);
 
     if (invite) {
       inviteObj = invite;
