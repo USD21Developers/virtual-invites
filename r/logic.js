@@ -135,7 +135,8 @@ function getFollowUpDescriptionWithoutURL() {
 
 function getRecipient() {
   return new Promise(async (resolve, reject) => {
-    const invitationid = parseInt(window.location.hash.split("#")[1]) || null;
+    const invitationid =
+      parseInt(window.location.hash.split("#")[1].split("/")[1]) || null;
     if (!invitationid) return;
 
     let invites = (await localforage.getItem("invites")) || null;
