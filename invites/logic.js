@@ -4,8 +4,7 @@ let hashBeforeSync = null;
 function addDatatablesTranslationToCache() {
   return new Promise(async (resolve, reject) => {
     const cache = await caches.open("dynamic-cache");
-    const lang = getLang();
-    const translationFile = `/js/datatables.net/i18n/${lang}.json`;
+    const translationFile = getDatatablesTranslationURL();
     const response = await fetch(translationFile);
 
     await cache.put(translationFile, response);
