@@ -1,6 +1,19 @@
 let table = null;
 let hashBeforeSync = null;
 
+function addDatatablesTranslationToCache() {
+  return new Promise(async (resolve, reject) => {
+    const cache = await caches.open("dynamic-cache");
+    const lang = getLang();
+    const translationFile = `/js/datatables.net/i18n/${lang}.json`;
+    const response = await fetch(translationFile);
+
+    await cache.put(translationFile, response);
+
+    resolve();
+  });
+}
+
 function getMaxUtcDate(interactions) {
   if (interactions.length === 0) return "1970-01-01T00:00:00Z"; // Default date for no interactions
   return interactions.reduce((maxDate, interaction) => {
@@ -283,6 +296,7 @@ async function init() {
   await populateContent();
   globalHidePageSpinner();
   await populateRecipientsTable();
+  await addDatatablesTranslationToCache();
 
   addEventListeners();
 
