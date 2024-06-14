@@ -157,7 +157,7 @@ function populateRecipientsTable() {
         },
       });
 
-      document.querySelector("th[data-i18n='colHeadLastInteraction']").click();
+      table.order([2, "desc"]).draw();
 
       $("#deleteInviteBtn").on("click", () => {
         const selected_rows = table.column(0).checkboxes.selected();
@@ -306,12 +306,12 @@ async function init() {
   syncInvites().then(async (invitesObj) => {
     const { invites, changed } = invitesObj;
     const hashAfterSync = await invitesCrypto.hash(JSON.stringify(invites));
-    let mustReRender = false;
+    let mustReRendered = false;
 
-    if (changed) mustReRender = true;
-    if (hashBeforeSync !== hashAfterSync) mustReRender = true;
+    if (changed) mustReRendered = true;
+    if (hashBeforeSync !== hashAfterSync) mustReRendered = true;
 
-    if (mustReRender) {
+    if (mustReRendered) {
       if (table) {
         table.destroy();
         await populateRecipientsTable();
