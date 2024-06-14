@@ -221,6 +221,15 @@ async function renderRecipient(invite) {
     utctime,
     isDeleted,
   } = invite;
+
+  if (!recipient) {
+    globalShowPageSpinner();
+    await syncInvites().then(() => {
+      window.location.reload();
+      return;
+    });
+  }
+
   const { email, id, name, sms } = recipient;
   const dateInvitedEl = document.querySelector("#dateInvited");
   const invitedFromLocationEl = document.querySelector("#invitedFromLocation");
