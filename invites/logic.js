@@ -157,6 +157,8 @@ function populateRecipientsTable() {
         },
       });
 
+      document.querySelector("th[data-i18n='colHeadLastInteraction']").click();
+
       $("#deleteInviteBtn").on("click", () => {
         const selected_rows = table.column(0).checkboxes.selected();
         const ids = [];
@@ -293,8 +295,10 @@ function addEventListeners() {
 
 async function init() {
   await populateContent();
-  globalHidePageSpinner();
   await populateRecipientsTable();
+
+  globalHidePageSpinner();
+
   await addDatatablesTranslationToCache();
 
   addEventListeners();
