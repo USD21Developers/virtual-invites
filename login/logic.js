@@ -206,7 +206,7 @@ function onSubmit(e) {
     customScrollTo("#alert");
 
     controller.abort();
-  }, 30000);
+  }, 60000);
 }
 
 function attachListeners() {
