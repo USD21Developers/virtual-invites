@@ -1,23 +1,12 @@
-async function forwardUser() {
-  const countriesPromise = getCountries(getLang());
-  const churchesPromise = syncChurches();
-  const eventsPromise = syncEvents();
-  const invitesPromise = syncInvites();
-  const updatedInvitesPromise = syncUpdatedInvites();
-  const notesPromise = syncAllNotes();
-  const settingsPromise = syncSettings();
-  const pushSubscriptionPromise = syncPushSubscription();
-
-  await Promise.allSettled([
-    countriesPromise,
-    churchesPromise,
-    eventsPromise,
-    invitesPromise,
-    updatedInvitesPromise,
-    notesPromise,
-    settingsPromise,
-    pushSubscriptionPromise,
-  ]);
+async function forwardAuthenticatedUser() {
+  const countriesPromise = await getCountries(getLang());
+  const churchesPromise = await syncChurches();
+  const eventsPromise = await syncEvents();
+  const invitesPromise = await syncInvites();
+  const updatedInvitesPromise = await syncUpdatedInvites();
+  const notesPromise = await syncAllNotes();
+  const settingsPromise = await syncSettings();
+  const pushSubscriptionPromise = await syncPushSubscription();
 
   let redirectUrl = "../";
 
@@ -174,7 +163,7 @@ function onSubmit(e) {
         localStorage.setItem("refreshToken", data.refreshToken);
         sessionStorage.setItem("accessToken", data.accessToken);
 
-        return forwardUser();
+        return forwardAuthenticatedUser();
       } else {
         const glitchMessage = getPhrase("glitchMessage");
         hide(spinner);
