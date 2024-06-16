@@ -1,4 +1,4 @@
-function forwardUser() {
+async function forwardUser() {
   const countriesPromise = getCountries(getLang());
   const churchesPromise = syncChurches();
   const eventsPromise = syncEvents();
@@ -8,7 +8,7 @@ function forwardUser() {
   const settingsPromise = syncSettings();
   const pushSubscriptionPromise = syncPushSubscription();
 
-  Promise.all([
+  await Promise.allSettled([
     countriesPromise,
     churchesPromise,
     eventsPromise,
@@ -17,29 +17,29 @@ function forwardUser() {
     notesPromise,
     settingsPromise,
     pushSubscriptionPromise,
-  ]).then(async (data) => {
-    let redirectUrl = "../";
+  ]);
 
-    if (sessionStorage.getItem("redirectOnLogin")) {
-      const newUrl = sessionStorage.getItem("redirectOnLogin");
-      sessionStorage.removeItem("redirectOnLogin");
-      if (newUrl && newUrl.length) {
-        redirectUrl = newUrl;
-      }
+  let redirectUrl = "../";
+
+  if (sessionStorage.getItem("redirectOnLogin")) {
+    const newUrl = sessionStorage.getItem("redirectOnLogin");
+    sessionStorage.removeItem("redirectOnLogin");
+    if (newUrl && newUrl.length) {
+      redirectUrl = newUrl;
     }
+  }
 
-    if (sessionStorage.getItem("unsubscribeFromNotifications")) {
-      await unsubscribeFromNotifications();
-      sessionStorage.removeItem("unsubscribeFromNotifications");
-    }
+  if (sessionStorage.getItem("unsubscribeFromNotifications")) {
+    await unsubscribeFromNotifications();
+    sessionStorage.removeItem("unsubscribeFromNotifications");
+  }
 
-    const isFromHomeScreen = !!sessionStorage.getItem("isFromHomeScreen");
-    if (isFromHomeScreen) {
-      redirectUrl = "../?utm_source=homescreen";
-    }
+  const isFromHomeScreen = !!sessionStorage.getItem("isFromHomeScreen");
+  if (isFromHomeScreen) {
+    redirectUrl = "../?utm_source=homescreen";
+  }
 
-    window.location.href = redirectUrl;
-  });
+  window.location.href = redirectUrl;
 }
 
 function unsubscribeFromNotifications() {
