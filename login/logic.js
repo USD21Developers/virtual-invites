@@ -18,7 +18,7 @@ function forwardAuthenticatedUser() {
   ])
     .then(async (result) => {
       try {
-        await syncPushSubscription();
+        syncPushSubscription();
       } catch (err) {
         console.log(err);
       }
