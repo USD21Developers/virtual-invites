@@ -123,72 +123,67 @@ function onSubmit(e) {
   })
     .then((res) => res.json())
     .then(async (data) => {
-      switch (data.msg) {
-        case "invalid login":
-          const phrase = getPhrase("invalid login");
-          const headline = getPhrase("invalid login headline");
-          state = "before";
-          hide(spinner);
-          show(submitButton);
-          showAlert(alert, phrase, headline);
-          break;
-        case "user authenticated":
-          state = "after";
-          localStorage.setItem("datakey", data.datakey);
-          localStorage.setItem("refreshToken", data.refreshToken);
-          sessionStorage.setItem("accessToken", data.accessToken);
+      if (data.msg === "invalid login") {
+        const phrase = getPhrase("invalid login");
+        const headline = getPhrase("invalid login headline");
+        state = "before";
+        hide(spinner);
+        show(submitButton);
+        showAlert(alert, phrase, headline);
+        return;
+      } else if (data.msg === "user authenticated") {
+        state = "after";
+        localStorage.setItem("datakey", data.datakey);
+        localStorage.setItem("refreshToken", data.refreshToken);
+        sessionStorage.setItem("accessToken", data.accessToken);
 
-          const countriesPromise = getCountries(getLang());
-          const churchesPromise = syncChurches();
-          const eventsPromise = syncEvents();
-          const invitesPromise = syncInvites();
-          const updatedInvitesPromise = syncUpdatedInvites();
-          const notesPromise = syncAllNotes();
-          const settingsPromise = syncSettings();
-          const pushSubscriptionPromise = syncPushSubscription();
-          Promise.allSettled([
-            countriesPromise,
-            churchesPromise,
-            eventsPromise,
-            invitesPromise,
-            updatedInvitesPromise,
-            notesPromise,
-            settingsPromise,
-            pushSubscriptionPromise,
-          ]).then(async () => {
-            let redirectUrl = "../";
+        const countriesPromise = getCountries(getLang());
+        const churchesPromise = syncChurches();
+        const eventsPromise = syncEvents();
+        const invitesPromise = syncInvites();
+        const updatedInvitesPromise = syncUpdatedInvites();
+        const notesPromise = syncAllNotes();
+        const settingsPromise = syncSettings();
+        const pushSubscriptionPromise = syncPushSubscription();
+        Promise.allSettled([
+          countriesPromise,
+          churchesPromise,
+          eventsPromise,
+          invitesPromise,
+          updatedInvitesPromise,
+          notesPromise,
+          settingsPromise,
+          pushSubscriptionPromise,
+        ]).then(async () => {
+          let redirectUrl = "../";
 
-            if (sessionStorage.getItem("redirectOnLogin")) {
-              const newUrl = sessionStorage.getItem("redirectOnLogin");
-              sessionStorage.removeItem("redirectOnLogin");
-              if (newUrl && newUrl.length) {
-                redirectUrl = newUrl;
-              }
+          if (sessionStorage.getItem("redirectOnLogin")) {
+            const newUrl = sessionStorage.getItem("redirectOnLogin");
+            sessionStorage.removeItem("redirectOnLogin");
+            if (newUrl && newUrl.length) {
+              redirectUrl = newUrl;
             }
+          }
 
-            if (sessionStorage.getItem("unsubscribeFromNotifications")) {
-              await unsubscribeFromNotifications();
-              sessionStorage.removeItem("unsubscribeFromNotifications");
-            }
+          if (sessionStorage.getItem("unsubscribeFromNotifications")) {
+            await unsubscribeFromNotifications();
+            sessionStorage.removeItem("unsubscribeFromNotifications");
+          }
 
-            const isFromHomeScreen =
-              !!sessionStorage.getItem("isFromHomeScreen");
-            if (isFromHomeScreen) {
-              redirectUrl = "../?utm_source=homescreen";
-            }
+          const isFromHomeScreen = !!sessionStorage.getItem("isFromHomeScreen");
+          if (isFromHomeScreen) {
+            redirectUrl = "../?utm_source=homescreen";
+          }
 
-            window.location.href = redirectUrl;
-          });
-
-          break;
-        default:
-          state = "before";
-          const glitchMessage = getPhrase("glitchMessage");
-          hide(spinner);
-          show(submitButton);
-          showAlert(alert, glitchMessage);
-          break;
+          return (window.location.href = redirectUrl);
+        });
       }
+
+      state = "before";
+      const glitchMessage = getPhrase("glitchMessage");
+      hide(spinner);
+      show(submitButton);
+      showAlert(alert, glitchMessage);
     })
     .catch((err) => {
       state = "before";
