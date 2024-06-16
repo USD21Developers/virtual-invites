@@ -1,3 +1,47 @@
+function forwardUser() {
+  const countriesPromise = getCountries(getLang());
+  const churchesPromise = syncChurches();
+  const eventsPromise = syncEvents();
+  const invitesPromise = syncInvites();
+  const updatedInvitesPromise = syncUpdatedInvites();
+  const notesPromise = syncAllNotes();
+  const settingsPromise = syncSettings();
+  const pushSubscriptionPromise = syncPushSubscription();
+
+  Promise.allSettled([
+    countriesPromise,
+    churchesPromise,
+    eventsPromise,
+    invitesPromise,
+    updatedInvitesPromise,
+    notesPromise,
+    settingsPromise,
+    pushSubscriptionPromise,
+  ]).then(async () => {
+    let redirectUrl = "../";
+
+    if (sessionStorage.getItem("redirectOnLogin")) {
+      const newUrl = sessionStorage.getItem("redirectOnLogin");
+      sessionStorage.removeItem("redirectOnLogin");
+      if (newUrl && newUrl.length) {
+        redirectUrl = newUrl;
+      }
+    }
+
+    if (sessionStorage.getItem("unsubscribeFromNotifications")) {
+      await unsubscribeFromNotifications();
+      sessionStorage.removeItem("unsubscribeFromNotifications");
+    }
+
+    const isFromHomeScreen = !!sessionStorage.getItem("isFromHomeScreen");
+    if (isFromHomeScreen) {
+      redirectUrl = "../?utm_source=homescreen";
+    }
+
+    window.location.href = redirectUrl;
+  });
+}
+
 function unsubscribeFromNotifications() {
   return new Promise(async (resolve, reject) => {
     const unsubscribeJSON = sessionStorage.getItem(
@@ -137,53 +181,14 @@ function onSubmit(e) {
         localStorage.setItem("refreshToken", data.refreshToken);
         sessionStorage.setItem("accessToken", data.accessToken);
 
-        const countriesPromise = getCountries(getLang());
-        const churchesPromise = syncChurches();
-        const eventsPromise = syncEvents();
-        const invitesPromise = syncInvites();
-        const updatedInvitesPromise = syncUpdatedInvites();
-        const notesPromise = syncAllNotes();
-        const settingsPromise = syncSettings();
-        const pushSubscriptionPromise = syncPushSubscription();
-        Promise.allSettled([
-          countriesPromise,
-          churchesPromise,
-          eventsPromise,
-          invitesPromise,
-          updatedInvitesPromise,
-          notesPromise,
-          settingsPromise,
-          pushSubscriptionPromise,
-        ]).then(async () => {
-          let redirectUrl = "../";
-
-          if (sessionStorage.getItem("redirectOnLogin")) {
-            const newUrl = sessionStorage.getItem("redirectOnLogin");
-            sessionStorage.removeItem("redirectOnLogin");
-            if (newUrl && newUrl.length) {
-              redirectUrl = newUrl;
-            }
-          }
-
-          if (sessionStorage.getItem("unsubscribeFromNotifications")) {
-            await unsubscribeFromNotifications();
-            sessionStorage.removeItem("unsubscribeFromNotifications");
-          }
-
-          const isFromHomeScreen = !!sessionStorage.getItem("isFromHomeScreen");
-          if (isFromHomeScreen) {
-            redirectUrl = "../?utm_source=homescreen";
-          }
-
-          return (window.location.href = redirectUrl);
-        });
+        return forwardUser();
+      } else {
+        state = "before";
+        const glitchMessage = getPhrase("glitchMessage");
+        hide(spinner);
+        show(submitButton);
+        showAlert(alert, glitchMessage);
       }
-
-      state = "before";
-      const glitchMessage = getPhrase("glitchMessage");
-      hide(spinner);
-      show(submitButton);
-      showAlert(alert, glitchMessage);
     })
     .catch((err) => {
       state = "before";
