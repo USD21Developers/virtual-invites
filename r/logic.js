@@ -172,6 +172,8 @@ function getRecipient() {
 
       if (invite) {
         inviteObj = invite;
+        renderRecipient(invite);
+        return resolve();
       } else {
         showToast(getPhrase("recipientNotFound"), 5000, "danger");
         return reject(new Error("recipient not found"));
@@ -181,29 +183,10 @@ function getRecipient() {
     syncInviteNotifications();
 
     if (!syncedInvites) {
-      syncInvites();
-      syncedInvites = true;
-    }
-
-    if (navigator.onLine) {
-      const endpoint = `${getApiHost()}/sync-invites`;
-      const accessToken = await getAccessToken();
-      fetch(endpoint, {
-        mode: "cors",
-        method: "post",
-        headers: new Headers({
-          "Content-Type": "application/json",
-          authorization: `Bearer ${accessToken}`,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          return resolve(data.recipient);
-        })
-        .catch((error) => {
-          console.error(error);
-          return reject(error);
-        });
+      await syncInvites();
+      const invites = await localforage.getItem("invites");
+      const invite = invites.find((item) => item.invitationid === invitationid);
+      return resolve(invite);
     }
   });
 }
