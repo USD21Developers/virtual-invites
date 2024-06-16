@@ -6,7 +6,12 @@ async function forwardAuthenticatedUser() {
   await syncUpdatedInvites();
   await syncAllNotes();
   await syncSettings();
-  await syncPushSubscription();
+
+  try {
+    syncPushSubscription();
+  } catch (err) {
+    console.log(err);
+  }
 
   if (sessionStorage.getItem("redirectOnLogin")) {
     const newUrl = sessionStorage.getItem("redirectOnLogin");
