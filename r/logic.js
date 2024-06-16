@@ -186,7 +186,7 @@ function getRecipient() {
     }
 
     if (navigator.onLine) {
-      const endpoint = `${getApiHost()}/recipient`;
+      const endpoint = `${getApiHost()}/sync-invites`;
       const accessToken = await getAccessToken();
       fetch(endpoint, {
         mode: "cors",
@@ -1709,6 +1709,7 @@ async function init() {
   syncUpdatedInvites();
   await populateContent();
   await getRecipient();
+  renderRecipient();
   fixBreadcrumbIfArrivedFromFollowup();
   populateNotificationsExplanation();
   populateResendInvite();
