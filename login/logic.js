@@ -8,7 +8,7 @@ function forwardUser() {
   const settingsPromise = syncSettings();
   const pushSubscriptionPromise = syncPushSubscription();
 
-  Promise.allSettled([
+  Promise.all([
     countriesPromise,
     churchesPromise,
     eventsPromise,
@@ -17,7 +17,7 @@ function forwardUser() {
     notesPromise,
     settingsPromise,
     pushSubscriptionPromise,
-  ]).then(async () => {
+  ]).then(async (data) => {
     let redirectUrl = "../";
 
     if (sessionStorage.getItem("redirectOnLogin")) {
