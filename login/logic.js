@@ -8,27 +8,31 @@ function forwardAuthenticatedUser() {
     syncAllNotes(),
     syncSettings(),
     syncPushSubscription(),
-  ]).then(async (result) => {
-    if (sessionStorage.getItem("redirectOnLogin")) {
-      const newUrl = sessionStorage.getItem("redirectOnLogin");
-      sessionStorage.removeItem("redirectOnLogin");
-      if (newUrl && newUrl.length) {
-        redirectUrl = newUrl;
+  ])
+    .then(async (result) => {
+      if (sessionStorage.getItem("redirectOnLogin")) {
+        const newUrl = sessionStorage.getItem("redirectOnLogin");
+        sessionStorage.removeItem("redirectOnLogin");
+        if (newUrl && newUrl.length) {
+          redirectUrl = newUrl;
+        }
       }
-    }
 
-    if (sessionStorage.getItem("unsubscribeFromNotifications")) {
-      await unsubscribeFromNotifications();
-      sessionStorage.removeItem("unsubscribeFromNotifications");
-    }
+      if (sessionStorage.getItem("unsubscribeFromNotifications")) {
+        await unsubscribeFromNotifications();
+        sessionStorage.removeItem("unsubscribeFromNotifications");
+      }
 
-    const isFromHomeScreen = !!sessionStorage.getItem("isFromHomeScreen");
-    if (isFromHomeScreen) {
-      redirectUrl = "../?utm_source=homescreen";
-    }
+      const isFromHomeScreen = !!sessionStorage.getItem("isFromHomeScreen");
+      if (isFromHomeScreen) {
+        redirectUrl = "../?utm_source=homescreen";
+      }
 
-    window.location.href = "../";
-  });
+      window.location.href = "../";
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 function unsubscribeFromNotifications() {
