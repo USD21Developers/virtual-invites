@@ -1,37 +1,51 @@
-async function forwardAuthenticatedUser() {
-  await getCountries(getLang());
+function forwardAuthenticatedUser() {
+  /* await getCountries(getLang());
   await syncChurches();
   await syncEvents();
   await syncInvites();
   await syncUpdatedInvites();
   await syncAllNotes();
-  await syncSettings();
+  await syncSettings(); */
 
-  try {
-    syncPushSubscription();
-  } catch (err) {
-    console.log(err);
-  }
+  Promise.all([
+    getCountries(getLang()),
+    syncChurches(),
+    syncEvents(),
+    syncInvites(),
+    syncUpdatedInvites(),
+    syncAllNotes(),
+    syncSettings(),
+  ])
+    .then(async (result) => {
+      try {
+        await syncPushSubscription();
+      } catch (err) {
+        console.log(err);
+      }
 
-  if (sessionStorage.getItem("redirectOnLogin")) {
-    const newUrl = sessionStorage.getItem("redirectOnLogin");
-    sessionStorage.removeItem("redirectOnLogin");
-    if (newUrl && newUrl.length) {
-      redirectUrl = newUrl;
-    }
-  }
+      if (sessionStorage.getItem("redirectOnLogin")) {
+        const newUrl = sessionStorage.getItem("redirectOnLogin");
+        sessionStorage.removeItem("redirectOnLogin");
+        if (newUrl && newUrl.length) {
+          redirectUrl = newUrl;
+        }
+      }
 
-  if (sessionStorage.getItem("unsubscribeFromNotifications")) {
-    await unsubscribeFromNotifications();
-    sessionStorage.removeItem("unsubscribeFromNotifications");
-  }
+      if (sessionStorage.getItem("unsubscribeFromNotifications")) {
+        await unsubscribeFromNotifications();
+        sessionStorage.removeItem("unsubscribeFromNotifications");
+      }
 
-  const isFromHomeScreen = !!sessionStorage.getItem("isFromHomeScreen");
-  if (isFromHomeScreen) {
-    redirectUrl = "../?utm_source=homescreen";
-  }
+      const isFromHomeScreen = !!sessionStorage.getItem("isFromHomeScreen");
+      if (isFromHomeScreen) {
+        redirectUrl = "../?utm_source=homescreen";
+      }
 
-  window.location.href = "../";
+      window.location.href = "../";
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 function unsubscribeFromNotifications() {
