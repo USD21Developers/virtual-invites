@@ -1,5 +1,5 @@
 function forwardAuthenticatedUser() {
-  Promise.allSettled([
+  Promise.all([
     getCountries(getLang()),
     syncChurches(),
     syncEvents(),
