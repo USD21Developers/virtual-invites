@@ -1,12 +1,4 @@
 function forwardAuthenticatedUser() {
-  /* await getCountries(getLang());
-  await syncChurches();
-  await syncEvents();
-  await syncInvites();
-  await syncUpdatedInvites();
-  await syncAllNotes();
-  await syncSettings(); */
-
   Promise.all([
     getCountries(getLang()),
     syncChurches(),
@@ -16,11 +8,11 @@ function forwardAuthenticatedUser() {
     syncAllNotes(),
     syncSettings(),
   ])
-    .then(async (result) => {
+    .then(async () => {
       try {
         await syncPushSubscription();
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
 
       if (sessionStorage.getItem("redirectOnLogin")) {
