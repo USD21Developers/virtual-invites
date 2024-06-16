@@ -122,9 +122,6 @@ function onSubmit(e) {
   const usernameError = document.querySelector(".username.invalid-feedback");
   const passwordError = document.querySelector(".password.invalid-feedback");
   const endpoint = `${getApiHost()}/login`;
-  const controller = new AbortController();
-  const signal = controller.signal;
-  let state = "before"; // before | during | after | aborted
 
   document
     .querySelectorAll(".is-invalid")
@@ -144,7 +141,6 @@ function onSubmit(e) {
     return;
   }
 
-  state = "during";
   show(spinner);
   hide(submitButton);
   hide(alert);
@@ -163,27 +159,23 @@ function onSubmit(e) {
     headers: new Headers({
       "Content-Type": "application/json",
     }),
-    signal: signal,
   })
     .then((res) => res.json())
     .then(async (data) => {
       if (data.msg === "invalid login") {
         const phrase = getPhrase("invalid login");
         const headline = getPhrase("invalid login headline");
-        state = "before";
         hide(spinner);
         show(submitButton);
         showAlert(alert, phrase, headline);
         return;
       } else if (data.msg === "user authenticated") {
-        state = "after";
         localStorage.setItem("datakey", data.datakey);
         localStorage.setItem("refreshToken", data.refreshToken);
         sessionStorage.setItem("accessToken", data.accessToken);
 
         return forwardUser();
       } else {
-        state = "before";
         const glitchMessage = getPhrase("glitchMessage");
         hide(spinner);
         show(submitButton);
@@ -191,24 +183,10 @@ function onSubmit(e) {
       }
     })
     .catch((err) => {
-      state = "before";
       console.error(err);
       hide(spinner);
       show(submitButton);
     });
-
-  setTimeout(() => {
-    const alert = document.querySelector("#alert");
-    const submitButton = document.querySelector("#formsubmit");
-    const spinner = document.querySelector("#progressbar");
-
-    hide(spinner);
-    show(submitButton);
-    showAlert(alert, getPhrase("timedout"));
-    customScrollTo("#alert");
-
-    controller.abort();
-  }, 60000);
 }
 
 function attachListeners() {
