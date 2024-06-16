@@ -30,7 +30,7 @@ function populateRecipientsTable() {
     const deleteInviteBtnEl = document.querySelector("#deleteInviteBtn");
 
     localforage.getItem("invites").then(async (invites) => {
-      if (!invites.length) {
+      if (!invites || !invites.length) {
         hashBeforeSync = await invitesCrypto.hash(JSON.stringify([]));
         recipientsEl.classList.add("d-none");
         noRecipientsEl.classList.remove("d-none");
