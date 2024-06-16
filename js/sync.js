@@ -267,11 +267,11 @@ function syncPushSubscription() {
       navigator.serviceWorker.ready
         .then((registration) => {
           if (!registration) {
-            throw new Error("service worker could not be registered");
+            return reject(new Error("service worker could not be registered"));
           }
 
           if (!registration.pushManager) {
-            throw new Error("push messages are not supported");
+            return reject(new Error("push messages are not supported"));
           }
 
           registration.pushManager
