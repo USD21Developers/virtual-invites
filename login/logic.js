@@ -1,34 +1,34 @@
 async function forwardAuthenticatedUser() {
-  const countriesPromise = await getCountries(getLang());
-  const churchesPromise = await syncChurches();
-  const eventsPromise = await syncEvents();
-  const invitesPromise = await syncInvites();
-  const updatedInvitesPromise = await syncUpdatedInvites();
-  const notesPromise = await syncAllNotes();
-  const settingsPromise = await syncSettings();
-  const pushSubscriptionPromise = await syncPushSubscription();
-
-  let redirectUrl = "../";
-
-  if (sessionStorage.getItem("redirectOnLogin")) {
-    const newUrl = sessionStorage.getItem("redirectOnLogin");
-    sessionStorage.removeItem("redirectOnLogin");
-    if (newUrl && newUrl.length) {
-      redirectUrl = newUrl;
+  Promise.allSettled([
+    getCountries(getLang()),
+    syncChurches(),
+    syncEvents(),
+    syncInvites(),
+    syncUpdatedInvites(),
+    syncAllNotes(),
+    syncSettings(),
+    syncPushSubscription(),
+  ]).then(async (result) => {
+    if (sessionStorage.getItem("redirectOnLogin")) {
+      const newUrl = sessionStorage.getItem("redirectOnLogin");
+      sessionStorage.removeItem("redirectOnLogin");
+      if (newUrl && newUrl.length) {
+        redirectUrl = newUrl;
+      }
     }
-  }
 
-  if (sessionStorage.getItem("unsubscribeFromNotifications")) {
-    await unsubscribeFromNotifications();
-    sessionStorage.removeItem("unsubscribeFromNotifications");
-  }
+    if (sessionStorage.getItem("unsubscribeFromNotifications")) {
+      await unsubscribeFromNotifications();
+      sessionStorage.removeItem("unsubscribeFromNotifications");
+    }
 
-  const isFromHomeScreen = !!sessionStorage.getItem("isFromHomeScreen");
-  if (isFromHomeScreen) {
-    redirectUrl = "../?utm_source=homescreen";
-  }
+    const isFromHomeScreen = !!sessionStorage.getItem("isFromHomeScreen");
+    if (isFromHomeScreen) {
+      redirectUrl = "../?utm_source=homescreen";
+    }
 
-  window.location.href = redirectUrl;
+    window.location.href = "../";
+  });
 }
 
 function unsubscribeFromNotifications() {
