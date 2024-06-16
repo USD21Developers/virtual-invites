@@ -146,7 +146,7 @@ function onSubmit(e) {
           const notesPromise = syncAllNotes();
           const settingsPromise = syncSettings();
           const pushSubscriptionPromise = syncPushSubscription();
-          await Promise.allSettled([
+          await Promise.all([
             countriesPromise,
             churchesPromise,
             eventsPromise,
@@ -155,29 +155,31 @@ function onSubmit(e) {
             notesPromise,
             settingsPromise,
             pushSubscriptionPromise,
-          ]);
+          ]).then(async () => {
+            let redirectUrl = "../";
 
-          let redirectUrl = "../";
-
-          if (sessionStorage.getItem("redirectOnLogin")) {
-            const newUrl = sessionStorage.getItem("redirectOnLogin");
-            sessionStorage.removeItem("redirectOnLogin");
-            if (newUrl && newUrl.length) {
-              redirectUrl = newUrl;
+            if (sessionStorage.getItem("redirectOnLogin")) {
+              const newUrl = sessionStorage.getItem("redirectOnLogin");
+              sessionStorage.removeItem("redirectOnLogin");
+              if (newUrl && newUrl.length) {
+                redirectUrl = newUrl;
+              }
             }
-          }
 
-          if (sessionStorage.getItem("unsubscribeFromNotifications")) {
-            await unsubscribeFromNotifications();
-            sessionStorage.removeItem("unsubscribeFromNotifications");
-          }
+            if (sessionStorage.getItem("unsubscribeFromNotifications")) {
+              await unsubscribeFromNotifications();
+              sessionStorage.removeItem("unsubscribeFromNotifications");
+            }
 
-          const isFromHomeScreen = !!sessionStorage.getItem("isFromHomeScreen");
-          if (isFromHomeScreen) {
-            redirectUrl = "../?utm_source=homescreen";
-          }
+            const isFromHomeScreen =
+              !!sessionStorage.getItem("isFromHomeScreen");
+            if (isFromHomeScreen) {
+              redirectUrl = "../?utm_source=homescreen";
+            }
 
-          window.location.href = redirectUrl;
+            window.location.href = redirectUrl;
+          });
+
           break;
         default:
           state = "before";
