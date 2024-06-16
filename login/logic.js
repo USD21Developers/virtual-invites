@@ -146,7 +146,7 @@ function onSubmit(e) {
           const notesPromise = syncAllNotes();
           const settingsPromise = syncSettings();
           const pushSubscriptionPromise = syncPushSubscription();
-          await Promise.all([
+          Promise.allSettled([
             countriesPromise,
             churchesPromise,
             eventsPromise,
