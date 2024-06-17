@@ -92,9 +92,10 @@ async function init() {
       null,
       location.origin + location.pathname.split("/")[0]
     );
-    await populateContent();
-    toggleUsersIFollow();
-    globalHidePageSpinner();
+    populateContent().then(() => {
+      toggleUsersIFollow();
+      globalHidePageSpinner();
+    });
   }
 }
 
