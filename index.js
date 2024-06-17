@@ -1,15 +1,16 @@
 async function toggleUsersIFollow() {
   const el = document.querySelector("[data-i18n='followinglink']");
-  const followedUsers = await localforage.getItem("followedUsers");
-  const userid = getUserId();
-  const link = `following/#${userid}`;
+  localforage.getItem("followedUsers").then((followedUsers) => {
+    const userid = getUserId();
+    const link = `following/#${userid}`;
 
-  if (Array.isArray(followedUsers)) {
-    if (followedUsers.length) {
-      el.setAttribute("href", link);
-      el.classList.remove("d-none");
+    if (Array.isArray(followedUsers)) {
+      if (followedUsers.length) {
+        el.setAttribute("href", link);
+        el.classList.remove("d-none");
+      }
     }
-  }
+  });
 }
 
 function redirectIfNecessary() {
