@@ -81,7 +81,7 @@ ${event.otherlocationdetails}
     const attendOnline_headlineCantAttendInPerson = getPhrase(
       "headline-cant-attend"
     );
-    const attendOnline_text = getPhrase("text-connect");
+    const attendOnline_text = getPhrase("text-cant-attend");
     const attendOnline_headlineHowToConnect = getPhrase(
       "headline-how-to-connect"
     );
