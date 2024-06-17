@@ -52,22 +52,39 @@ function redirectIfNecessary() {
 }
 
 function syncOnLogin() {
-  const proceedWithSync = sessionStorage.getItem("syncOnLogin") ? true : false;
+  return new Promise((resolve, reject) => {
+    const proceedWithSync = sessionStorage.getItem("syncOnLogin")
+      ? true
+      : false;
 
-  if (proceedWithSync) {
-    sessionStorage.removeItem("syncOnLogin");
-    getCountries(getLang());
-    syncChurches();
-    syncEvents();
-    syncInvites();
-    syncUpdatedInvites();
-    syncAllNotes();
-    syncSettings();
-    syncPushSubscription();
-  }
+    if (proceedWithSync) {
+      sessionStorage.removeItem("syncOnLogin");
+      Promise.all([
+        getCountries(getLang()),
+        syncChurches(),
+        syncEvents(),
+        syncInvites(),
+        syncUpdatedInvites(),
+        syncAllNotes(),
+        syncSettings(),
+      ]).then((result) => {
+        try {
+          syncPushSubscription();
+        } catch (error) {
+          console.error(error);
+        }
+
+        return resolve();
+      });
+    }
+
+    return resolve();
+  });
 }
 
 async function init() {
+  await syncOnLogin();
+
   const isRedirecting = await redirectIfNecessary();
   if (!isRedirecting) {
     window.history.replaceState(
@@ -79,8 +96,6 @@ async function init() {
     await populateContent();
     globalHidePageSpinner();
   }
-
-  syncOnLogin();
 }
 
 init();
