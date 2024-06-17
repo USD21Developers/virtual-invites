@@ -51,10 +51,10 @@ function redirectIfNecessary() {
   });
 }
 
-function syncEverything() {
-  const syncOnLogin = sessionStorage.getItem("syncOnLogin") || null;
+function syncOnLogin() {
+  const proceedWithSync = sessionStorage.getItem("syncOnLogin") ? true : false;
 
-  if (!!syncOnLogin) {
+  if (proceedWithSync) {
     sessionStorage.removeItem("syncOnLogin");
     getCountries(getLang());
     syncChurches();
@@ -78,8 +78,9 @@ async function init() {
     toggleUsersIFollow();
     await populateContent();
     globalHidePageSpinner();
-    syncEverything();
   }
+
+  syncOnLogin();
 }
 
 init();
