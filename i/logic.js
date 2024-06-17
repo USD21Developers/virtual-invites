@@ -79,7 +79,7 @@ ${event.otherlocationdetails}
   // BEGIN ATTENTING VIRTUALLY
   if (event.virtualconnectiondetails) {
     const attendOnline_headlineCantAttendInPerson = getPhrase(
-      "cant-attend-in-person"
+      "headline-cant-attend"
     );
     const attendOnline_text = getPhrase("text-connect");
     const attendOnline_headlineHowToConnect = getPhrase(
