@@ -92,8 +92,8 @@ async function init() {
       null,
       location.origin + location.pathname.split("/")[0]
     );
-    await toggleUsersIFollow();
     await populateContent();
+    toggleUsersIFollow();
     globalHidePageSpinner();
   }
 }
