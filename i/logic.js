@@ -1529,8 +1529,8 @@ function showVideo() {
 
 async function init() {
   await populateTemplate();
-  await getInvite().catch((err) => console.error(err));
   await populateContent();
+  await getInvite().catch((err) => console.error(err));
   attachListeners();
   personalizeGreeting();
   populateHeadlineAboutEvent();
