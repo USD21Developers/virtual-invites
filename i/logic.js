@@ -923,7 +923,13 @@ function renderInvite(invite) {
       event.virtualconnectiondetails &&
       event.virtualconnectiondetails.length
     ) {
-      connectionContentEl.innerHTML = event.virtualconnectiondetails.trim();
+      const linkifiedContent = linkifyHtml(
+        event.virtualconnectiondetails.trim(),
+        {
+          defaultProtocol: "https",
+        }
+      );
+      connectionContentEl.innerHTML = linkifiedContent;
     }
     connectingVirtuallyEl.classList.remove("d-none");
   }
