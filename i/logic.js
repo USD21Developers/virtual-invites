@@ -1528,10 +1528,10 @@ function showVideo() {
 }
 
 async function init() {
-  await getInvite().catch((err) => console.error(err));
   await populateTemplate();
-  attachListeners();
+  await getInvite().catch((err) => console.error(err));
   await populateContent();
+  attachListeners();
   personalizeGreeting();
   populateHeadlineAboutEvent();
   populateEventDescription();
