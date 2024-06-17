@@ -51,6 +51,22 @@ function redirectIfNecessary() {
   });
 }
 
+function syncEverything() {
+  const syncOnLogin = sessionStorage.getItem("syncOnLogin") || null;
+
+  if (!!syncOnLogin) {
+    sessionStorage.removeItem("syncOnLogin");
+    getCountries(getLang());
+    syncChurches();
+    syncEvents();
+    syncInvites();
+    syncUpdatedInvites();
+    syncAllNotes();
+    syncSettings();
+    syncPushSubscription();
+  }
+}
+
 async function init() {
   const isRedirecting = await redirectIfNecessary();
   if (!isRedirecting) {
@@ -62,7 +78,7 @@ async function init() {
     toggleUsersIFollow();
     await populateContent();
     globalHidePageSpinner();
-    syncEvents();
+    syncEverything();
   }
 }
 

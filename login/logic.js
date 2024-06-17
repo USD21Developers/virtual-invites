@@ -1,43 +1,25 @@
-function forwardAuthenticatedUser() {
-  Promise.all([
-    getCountries(getLang()),
-    syncChurches(),
-    syncEvents(),
-    syncInvites(),
-    syncUpdatedInvites(),
-    syncAllNotes(),
-    syncSettings(),
-  ])
-    .then(async () => {
-      try {
-        await syncPushSubscription();
-      } catch (err) {
-        // console.log(err);
-      }
+async function forwardAuthenticatedUser() {
+  if (sessionStorage.getItem("redirectOnLogin")) {
+    const newUrl = sessionStorage.getItem("redirectOnLogin");
+    sessionStorage.removeItem("redirectOnLogin");
+    if (newUrl && newUrl.length) {
+      redirectUrl = newUrl;
+    }
+  }
 
-      if (sessionStorage.getItem("redirectOnLogin")) {
-        const newUrl = sessionStorage.getItem("redirectOnLogin");
-        sessionStorage.removeItem("redirectOnLogin");
-        if (newUrl && newUrl.length) {
-          redirectUrl = newUrl;
-        }
-      }
+  if (sessionStorage.getItem("unsubscribeFromNotifications")) {
+    await unsubscribeFromNotifications();
+    sessionStorage.removeItem("unsubscribeFromNotifications");
+  }
 
-      if (sessionStorage.getItem("unsubscribeFromNotifications")) {
-        await unsubscribeFromNotifications();
-        sessionStorage.removeItem("unsubscribeFromNotifications");
-      }
+  const isFromHomeScreen = !!sessionStorage.getItem("isFromHomeScreen");
+  if (isFromHomeScreen) {
+    redirectUrl = "../?utm_source=homescreen";
+  }
 
-      const isFromHomeScreen = !!sessionStorage.getItem("isFromHomeScreen");
-      if (isFromHomeScreen) {
-        redirectUrl = "../?utm_source=homescreen";
-      }
+  sessionStorage.setItem("syncOnLogin", "true");
 
-      window.location.href = "../";
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  window.location.href = "../";
 }
 
 function unsubscribeFromNotifications() {
