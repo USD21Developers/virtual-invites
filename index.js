@@ -74,9 +74,9 @@ function syncOnLogin() {
 
         return resolve();
       });
+    } else {
+      return resolve();
     }
-
-    return resolve();
   });
 }
 
@@ -91,7 +91,6 @@ async function init() {
       location.origin + location.pathname.split("/")[0]
     );
     populateContent().then(() => {
-      toggleUsersIFollow();
       globalHidePageSpinner();
     });
   }
