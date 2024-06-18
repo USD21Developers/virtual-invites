@@ -67,6 +67,11 @@
       "key": "invalid login headline",
       "original": "Login Not Recognized",
       "translated": "Login Not Recognized"
+    },
+    {
+      "key": "headlineAccountUnconfirmed",
+      "original": "Account still unconfirmed",
+      "translated": "Account still unconfirmed"
     }
   ],
 

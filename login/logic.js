@@ -103,6 +103,10 @@ function onSubmit(e) {
   const passwordError = document.querySelector(".password.invalid-feedback");
   const endpoint = `${getApiHost()}/login`;
   const controller = new AbortController();
+  let fetchSettled = false;
+
+  localStorage.removeItem("refreshToken");
+  sessionStorage.removeItem("accessToken");
 
   document
     .querySelectorAll(".is-invalid")
@@ -127,6 +131,8 @@ function onSubmit(e) {
   hide(alert);
 
   if (!navigator.onLine) {
+    hide(spinner);
+    show(submitButton);
     return showToast(getGlobalPhrase("youAreOffline"), 5000, "danger");
   }
 
@@ -157,6 +163,22 @@ function onSubmit(e) {
         sessionStorage.setItem("accessToken", data.accessToken);
 
         return forwardAuthenticatedUser();
+      } else if (data.msg === "user status is not registered") {
+        const registrationPageContent = await fetch(
+          `../register/i18n/${getLang()}.json`
+        ).then((res) => res.json());
+        let content = getPhrase("checkyouremailtext", registrationPageContent);
+        content += `
+          <br /><br />
+          ${getPhrase("waitingTooLong", registrationPageContent)}
+        `;
+
+        const headline = getPhrase("headlineAccountUnconfirmed");
+
+        hide(spinner);
+        show(submitButton);
+        showAlert(alert, content, headline);
+        return;
       } else {
         const glitchMessage = getPhrase("glitchMessage");
         hide(spinner);
@@ -168,15 +190,20 @@ function onSubmit(e) {
       console.error(err);
       hide(spinner);
       show(submitButton);
+    })
+    .finally(() => {
+      fetchSettled = true;
     });
 
   setTimeout(() => {
-    controller.abort();
-    hide(spinner);
-    show(submitButton);
-    const phrase = getPhrase("timedout");
-    const headline = getPhrase("timedoutHeadline");
-    showAlert(alert, phrase, headline);
+    if (!fetchSettled) {
+      controller.abort();
+      hide(spinner);
+      show(submitButton);
+      const phrase = getPhrase("timedout");
+      const headline = getPhrase("timedoutHeadline");
+      showAlert(alert, phrase, headline);
+    }
   }, 30000);
 }
 
