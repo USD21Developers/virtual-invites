@@ -1,11 +1,11 @@
 @font-face {
   font-family: "Inter";
-  src: url("/_assets/fonts/Inter/Inter-VariableFont.ttf") format("truetype");
+  src: url("/_assets/fonts/Inter/Inter-VariableFont.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Oswald";
-  src: url("/_assets/fonts/Oswald/Oswald-VariableFont.ttf") format("truetype");
+  src: url("/_assets/fonts/Oswald/Oswald-VariableFont.woff2") format("truetype");
 }
 
 @font-face {
@@ -38,7 +38,7 @@ body {
 
 body,
 td {
-  font-family: Inter, sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.9rem;
 }
 
@@ -153,7 +153,7 @@ h6 {
 .floating-label.has-value label {
   color: var(--secondary);
   filter: brightness(30%);
-  font-family: Inter, sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   font-weight: 500;
   margin-top: -0.25rem;
@@ -179,7 +179,7 @@ h6 {
 .floating-label.is-focused label:after,
 .floating-label.has-value label:after {
   content: ":";
-  font-family: Inter, sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
 }
@@ -230,14 +230,14 @@ h6 {
 
 .font-weight-bold,
 strong {
-  font-family: Inter, sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 800 !important;
 }
 
 /* @supports (font-variation-settings: "wght" 900) {
   .font-weight-bold,
   strong {
-    font-family: Inter, sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 900;
   }
 } */

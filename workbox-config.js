@@ -2,11 +2,12 @@ module.exports = {
   globDirectory: "./",
   globPatterns: [
     "**/*.{html,css,js,map,svg,gif,png,jpg,webmanifest,json}",
-    "_assets/fonts/Inter/Inter-VariableFont.ttf",
+    "_assets/fonts/Inter/Inter-VariableFont.woff2",
     "_assets/fonts/MaterialIcons/material-icons.woff2",
-    "_assets/fonts/Oswald/Oswald-VariableFont.ttf",
+    "_assets/fonts/Oswald/Oswald-VariableFont.woff2",
   ],
   globIgnores: [
+    "**/*.ttf",
     "**/*.map",
     "sw-generator.js",
     "sw.js",
