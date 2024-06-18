@@ -102,6 +102,7 @@ function onSubmit(e) {
   const usernameError = document.querySelector(".username.invalid-feedback");
   const passwordError = document.querySelector(".password.invalid-feedback");
   const endpoint = `${getApiHost()}/login`;
+  const controller = new AbortController();
 
   document
     .querySelectorAll(".is-invalid")
@@ -139,6 +140,7 @@ function onSubmit(e) {
     headers: new Headers({
       "Content-Type": "application/json",
     }),
+    signal: controller.signal,
   })
     .then((res) => res.json())
     .then(async (data) => {
@@ -167,6 +169,15 @@ function onSubmit(e) {
       hide(spinner);
       show(submitButton);
     });
+
+  setTimeout(() => {
+    controller.abort();
+    hide(spinner);
+    show(submitButton);
+    const phrase = getPhrase("timedout");
+    const headline = getPhrase("timedoutHeadline");
+    showAlert(alert, phrase, headline);
+  }, 30000);
 }
 
 function attachListeners() {
