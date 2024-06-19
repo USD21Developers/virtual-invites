@@ -425,6 +425,10 @@ function onAppInstalled(e) {
 }
 
 function onInstallClick(e) {
+  if (iOS) {
+    sessionStorage.setItem("clickedInstall");
+  }
+
   if (!!installPromptEvent) {
     e.preventDefault();
     installPromptEvent.prompt();
@@ -602,13 +606,18 @@ async function init() {
   Promise.all([getChurches(), getCountries()]).then(() => {
     populateCountries();
     attachListeners();
-    globalHidePageSpinner();
+
     document.querySelector("#contentinstall").classList.remove("d-none");
     if (iOS) {
-      document
-        .querySelector("#whenFinishedInstalling")
-        .classList.remove("d-none");
+      const clickedInstall = sessionStorage.getItem("clickedInstall");
+      if (clickedInstall) {
+        document
+          .querySelector("#whenFinishedInstalling")
+          .classList.remove("d-none");
+      }
     }
+
+    globalHidePageSpinner();
   });
 
   initCroppie();
