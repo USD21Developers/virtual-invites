@@ -24,22 +24,22 @@ label[for="photoCapture"] {
 
 /* Media query for portrait orientation */
 @media screen and (max-width: 767px) and (orientation: portrait) and (display-mode: browser) {
-  .mainContent {
+  #contentdefault {
     display: none !important;
   }
 
-  .installContent {
+  #contentinstall:not(.d-none) {
     display: block !important;
   }
 }
 
 /* Media query for landscape orientation */
 @media screen and (max-width: 991px) and (orientation: landscape) and (display-mode: browser) {
-  .mainContent {
+  #contentdefault {
     display: none !important;
   }
 
-  .installContent {
+  #contentinstall:not(.d-none) {
     display: block !important;
   }
 }
