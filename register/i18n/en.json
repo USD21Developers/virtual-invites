@@ -366,6 +366,11 @@
           "link": ""
         }
       ]
+    },
+    {
+      "key": "finishedInstalling",
+      "original": "Finished installing?",
+      "translated": "Finished installing?"
     }
   ],
 

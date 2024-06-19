@@ -1,16 +1,14 @@
+const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+const iOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
 let churches = [];
-
 let countries = [];
-
 let photoData = {
   url: "",
   points: "",
   zoom: "",
   orientation: "",
 };
-
 let vanilla;
-
 let installPromptEvent;
 
 async function getChurches() {
@@ -606,6 +604,11 @@ async function init() {
     attachListeners();
     globalHidePageSpinner();
     document.querySelector("#contentinstall").classList.remove("d-none");
+    if (iOS) {
+      document
+        .querySelector("#whenFinishedInstalling")
+        .classList.remove("d-none");
+    }
   });
 
   initCroppie();
