@@ -427,6 +427,9 @@ function onAppInstalled(e) {
 function onInstallClick(e) {
   if (iOS) {
     sessionStorage.setItem("clickedInstall");
+    document
+      .querySelector("#whenFinishedInstalling")
+      .classList.remove("d-none");
   }
 
   if (!!installPromptEvent) {
