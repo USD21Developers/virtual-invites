@@ -585,6 +585,7 @@ async function init() {
     populateCountries();
     attachListeners();
     globalHidePageSpinner();
+    document.querySelector("#contentinstall").classList.remove("d-none");
   });
 
   initCroppie();
