@@ -11,6 +11,8 @@ let photoData = {
 
 let vanilla;
 
+let installPromptEvent;
+
 async function getChurches() {
   const churchesObj = await syncChurches();
   churches = churchesObj.churches;
@@ -415,7 +417,10 @@ function onCountryChange(e) {
 }
 
 function onInstallClick(e) {
-  e.preventDefault();
+  if (!!installPromptEvent) {
+    e.preventDefault();
+    installPromptEvent.prompt();
+  }
 }
 
 async function onSubmit(e) {
@@ -577,6 +582,10 @@ function attachListeners() {
   document
     .querySelector("#installButton")
     .addEventListener("click", onInstallClick);
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    installPromptEvent = e;
+  });
 }
 
 async function init() {
