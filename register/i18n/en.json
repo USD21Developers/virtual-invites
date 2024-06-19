@@ -288,6 +288,55 @@
           "link": ""
         }
       ]
+    },
+    {
+      "key": "installation",
+      "original": "Installation",
+      "translated": "Installation"
+    },
+    {
+      "key": "installP1",
+      "original": "Please install this Web app by adding it to your home screen. Installation will put the following icon on your device, enabling you to open the app quickly and conveniently:",
+      "translated": "Please install this Web app by adding it to your home screen. Installation will put the following icon on your device, enabling you to open the app quickly and conveniently:",
+      "changes": [
+        {
+          "original": "adding it to your home screen",
+          "translated": "adding it to your home screen",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "installP2",
+      "original": "Installation will also unlock certain important functionality that this app provides, such as the ability to notify you immediately when someone who you previously invited views or interacts with their invite.",
+      "translated": "Installation will also unlock certain important functionality that this app provides, such as the ability to notify you immediately when someone who you previously invited views or interacts with their invite."
+    },
+    {
+      "key": "toProceed",
+      "original": "To proceed with installation, click on the button below:",
+      "translated": "To proceed with installation, click on the button below:"
+    },
+    {
+      "key": "installButtonText",
+      "original": "Install",
+      "translated": "Install"
+    },
+    {
+      "key": "afterInstallHeadline",
+      "original": "App Installed",
+      "translated": "App Installed"
+    },
+    {
+      "key": "afterInstallP1",
+      "original": "Now that you have installed, you will find the following icon on your device's home screen:",
+      "translated": "Now that you have installed, you will find the following icon on your device's home screen:"
+    },
+    {
+      "key": "afterInstallP2",
+      "original": "From now on, just open the app from your home screen by clicking on this icon (instead of using your Web browser).",
+      "translated": "From now on, just open the app from your home screen by clicking on this icon (instead of using your Web browser)."
     }
   ],
 

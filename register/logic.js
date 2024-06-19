@@ -416,6 +416,26 @@ function onCountryChange(e) {
   unlistedchurch.value = "";
 }
 
+function onAppInstalled(e) {
+  showModal(
+    `
+      <p>${getPhrase("afterInstallP1")}</p>
+      <p class="text-center my-4">
+        <img
+          src="../apple-touch-icon.png"
+          class="installIcon"
+          width="48"
+          height="48"
+        />
+      </p>
+      <p>
+        ${getPhrase("afterInstallP2")}
+      </p>
+    `,
+    getPhrase("afterInstallHeadline")
+  );
+}
+
 function onInstallClick(e) {
   if (!!installPromptEvent) {
     e.preventDefault();
@@ -586,6 +606,7 @@ function attachListeners() {
     e.preventDefault();
     installPromptEvent = e;
   });
+  window.addEventListener("appinstalled", onAppInstalled);
 }
 
 async function init() {
