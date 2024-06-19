@@ -414,6 +414,10 @@ function onCountryChange(e) {
   unlistedchurch.value = "";
 }
 
+function onInstallClick(e) {
+  e.preventDefault();
+}
+
 async function onSubmit(e) {
   e.preventDefault();
 
@@ -570,6 +574,9 @@ function attachListeners() {
     .querySelector("#churchid")
     .addEventListener("change", onChurchChange);
   document.querySelector("#formlogin").addEventListener("submit", onSubmit);
+  document
+    .querySelector("#installButton")
+    .addEventListener("click", onInstallClick);
 }
 
 async function init() {
