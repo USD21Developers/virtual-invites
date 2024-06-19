@@ -620,6 +620,10 @@ async function init() {
       }
     }
 
+    if (screen.width <= 767) {
+      document.querySelector("#contentdefault").classList.add("d-none");
+    }
+
     globalHidePageSpinner();
   });
 
