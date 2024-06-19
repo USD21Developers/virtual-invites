@@ -337,6 +337,35 @@
       "key": "afterInstallP2",
       "original": "From now on, just open the app from your home screen by clicking on this icon (instead of using your Web browser).",
       "translated": "From now on, just open the app from your home screen by clicking on this icon (instead of using your Web browser)."
+    },
+    {
+      "key": "continueWithRegistration",
+      "original": "Continue with Registration",
+      "translated": "Continue with Registration"
+    },
+    {
+      "key": "continueP1",
+      "original": "In order to continue with Registration, please do the following:",
+      "translated": "In order to continue with Registration, please do the following:"
+    },
+    {
+      "key": "continueStep1",
+      "original": "Open the app from your home screen",
+      "translated": "Open the app from your home screen"
+    },
+    {
+      "key": "continueStep2",
+      "original": "Click on Register",
+      "translated": "Click on Register",
+      "changes": [
+        {
+          "original": "Register",
+          "translated": "Register",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
     }
   ],
 

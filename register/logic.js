@@ -417,23 +417,13 @@ function onCountryChange(e) {
 }
 
 function onAppInstalled(e) {
-  showModal(
-    `
-      <p>${getPhrase("afterInstallP1")}</p>
-      <p class="text-center my-4">
-        <img
-          src="../apple-touch-icon.png"
-          class="installIcon"
-          width="48"
-          height="48"
-        />
-      </p>
-      <p>
-        ${getPhrase("afterInstallP2")}
-      </p>
-    `,
-    getPhrase("afterInstallHeadline")
-  );
+  const defaultEl = document.querySelector("#contentdefault");
+  const installEl = document.querySelector("#contentinstall");
+  const afterInstallEl = document.querySelector("#afterInstall");
+
+  defaultEl.remove();
+  installEl.remove();
+  afterInstallEl.classList.remove("d-none");
 }
 
 function onInstallClick(e) {
