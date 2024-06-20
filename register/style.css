@@ -22,7 +22,7 @@ label[for="photoCapture"] {
   border-radius: 6px;
 }
 
-/* Browser mode: portrait orientation */
+/* Browser mode on mobile */
 @media screen and (max-width: 767px) and (orientation: portrait) and (display-mode: browser) {
   #contentdefault {
     display: none !important;
@@ -36,8 +36,6 @@ label[for="photoCapture"] {
     display: block !important;
   }
 }
-
-/* Browser mode: landscape orientation */
 @media screen and (max-width: 991px) and (orientation: landscape) and (display-mode: browser) {
   #contentdefault {
     display: none !important;
@@ -49,6 +47,34 @@ label[for="photoCapture"] {
 
   #afterInstall:not(.d-none) {
     display: block !important;
+  }
+}
+
+/* Browser mode on non-mobile */
+@media screen and (min-width: 768px) and (orientation: portrait) and (display-mode: browser) {
+  #contentdefault:not(.d-none) {
+    display: block !important;
+  }
+
+  #contentinstall {
+    display: none !important;
+  }
+
+  #afterInstall {
+    display: none !important;
+  }
+}
+@media screen and (min-width: 992px) and (orientation: landscape) and (display-mode: browser) {
+  #contentdefault:not(.d-none) {
+    display: block !important;
+  }
+
+  #contentinstall {
+    display: none !important;
+  }
+
+  #afterInstall {
+    display: none !important;
   }
 }
 
