@@ -1692,7 +1692,6 @@ async function init() {
   syncUpdatedInvites();
   await populateContent();
   await getRecipient();
-  renderRecipient();
   fixBreadcrumbIfArrivedFromFollowup();
   populateNotificationsExplanation();
   populateResendInvite();
