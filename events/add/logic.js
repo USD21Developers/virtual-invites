@@ -757,6 +757,26 @@ function populateCountries() {
     });
 }
 
+function populateDefaultCountry() {
+  const refreshToken = localStorage.getItem("refreshToken");
+  const churchesJSON = localStorage.getItem("churches");
+  if (!refreshToken) return;
+  if (!churchesJSON) return;
+
+  const churches = JSON.parse(churchesJSON);
+  if (!Array.isArray(churches)) return;
+
+  const churchid = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  ).churchid;
+  const church = churches.find((item) => item.id === churchid);
+  if (!church) return;
+
+  const countryiso = church.country;
+
+  document.querySelector("#country").value = countryiso;
+}
+
 function populateDefaultEventTitle() {
   const eventTitleEl = document.querySelector("#eventtitle");
   const eventTitle = eventTitleEl.value.trim();
@@ -1938,6 +1958,7 @@ async function init() {
   removeUnnecessaryHash();
   await populateContent();
   populateCountries();
+  populateDefaultCountry();
   populateLanguages();
   populateTimeZones();
   populateDurationInHours();
