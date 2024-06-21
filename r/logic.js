@@ -153,7 +153,7 @@ function getRecipient() {
 
     if (!Array.isArray(invites) || !invites.length) {
       showToast(getPhrase("recipientNotFound"), 5000, "danger");
-      return reject(new Error("recipient not found"));
+      reject(new Error("recipient not found"));
     }
 
     let invite = invites.find((item) => item.invitationid === invitationid);
@@ -161,7 +161,7 @@ function getRecipient() {
     if (invite) {
       inviteObj = invite;
       renderRecipient(invite);
-      return resolve();
+      resolve(invite);
     } else {
       await syncInvites();
       invites = await localforage.getItem("invites");
@@ -173,10 +173,10 @@ function getRecipient() {
       if (invite) {
         inviteObj = invite;
         renderRecipient(invite);
-        return resolve();
+        resolve(invite);
       } else {
         showToast(getPhrase("recipientNotFound"), 5000, "danger");
-        return reject(new Error("recipient not found"));
+        reject(new Error("recipient not found"));
       }
     }
 
