@@ -736,25 +736,28 @@ async function onSubmit(e) {
 }
 
 function populateCountries() {
-  const country = document.querySelector("#country");
-  const lang = localStorage.getItem("lang") || "en";
-  const endpoint = `../../data/json/countries/${lang}/world.json`;
+  return new Promise((resolve, reject) => {
+    const country = document.querySelector("#country");
+    const lang = localStorage.getItem("lang") || "en";
+    const endpoint = `../../data/json/countries/${lang}/world.json`;
 
-  fetch(endpoint)
-    .then((res) => res.json())
-    .then((data) => {
-      data.forEach((countryItem) => {
-        const { name, alpha2 } = countryItem;
-        const option = document.createElement("option");
-        option.value = alpha2;
-        option.text = name;
-        country.add(option);
+    fetch(endpoint)
+      .then((res) => res.json())
+      .then((data) => {
+        data.forEach((countryItem) => {
+          const { name, alpha2 } = countryItem;
+          const option = document.createElement("option");
+          option.value = alpha2;
+          option.text = name;
+          country.add(option);
+        });
+        return resolve();
+      })
+      .catch((err) => {
+        console.error(err);
+        return reject();
       });
-      country.value = localStorage.getItem("country") || "us";
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  });
 }
 
 function populateDefaultCountry() {
@@ -1957,8 +1960,9 @@ function attachListeners() {
 async function init() {
   removeUnnecessaryHash();
   await populateContent();
-  populateCountries();
-  populateDefaultCountry();
+  populateCountries().then(() => {
+    populateDefaultCountry();
+  });
   populateLanguages();
   populateTimeZones();
   populateDurationInHours();
