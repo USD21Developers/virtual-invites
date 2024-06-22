@@ -26,7 +26,7 @@
     }
   ],
   "theme_color": "#102951",
-  "background_color": "#3D316B",
+  "background_color": "#8882d3",
   "display": "standalone",
   "orientation": "portrait",
   "start_url": "/?utm_source=homescreen"
