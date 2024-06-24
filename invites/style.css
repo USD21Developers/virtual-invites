@@ -21,7 +21,7 @@
   font-size: 0.95rem;
 }
 
-#deleteModal ol[data-quantity="1"] {
+#confirmInvitesToDelete[data-quantity="1"] {
   list-style-type: none;
   padding-left: 10px !important;
 }

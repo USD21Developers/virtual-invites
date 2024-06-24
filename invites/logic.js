@@ -219,7 +219,7 @@ async function showConfirmDeleteModal(invitationIds) {
     `;
   });
 
-  html = `<ol class="my-2 mb-1">${html}</ol>`;
+  html = `<ol id="confirmInvitesToDelete" class="my-2 mb-1" data-quantity="${invitesToDelete.length}">${html}</ol>`;
 
   modal.querySelector(".modal-body blockquote").innerHTML = html;
 
