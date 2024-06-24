@@ -395,8 +395,8 @@
     },
     {
       "key": "recipientNotFound",
-      "original": "Invite recipient not found.",
-      "translated": "Invite recipient not found."
+      "original": "This invite recipient could not be found.",
+      "translated": "This invite recipient could not be found."
     }
   ],
 
