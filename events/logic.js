@@ -728,17 +728,17 @@ async function init() {
 
   const { eventsHaveChanged } = await syncEvents();
 
-  globalHidePageSpinner();
-
   if (eventsHaveChanged) {
     globalShowPageSpinner();
     await renderEvents();
     await renderFollowedEvents();
     populateLinksToFollowedUsers();
+    attachListeners();
+    globalHidePageSpinner();
+  } else {
+    attachListeners();
     globalHidePageSpinner();
   }
-
-  attachListeners();
 }
 
 init();
