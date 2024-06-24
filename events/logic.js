@@ -183,7 +183,11 @@ async function renderFollowedEvents() {
     );
     const followedUsers = await localforage.getItem("followedUsers");
 
+    el.innerHTML = "";
+
     if (!followedUsers) return resolve();
+    if (!Array.isArray(eventsByFollowedUsers)) return resolve();
+    if (!eventsByFollowedUsers.length) return resolve();
 
     let html = "";
 
@@ -205,7 +209,11 @@ async function renderFollowedEvents() {
       const eventsByFollowedUser = eventsByFollowedUsers.filter(
         (item) => item.createdBy === followedUser.userid
       );
-      if (eventsByFollowedUser.length) {
+      if (
+        eventsByFollowedUser &&
+        eventsByFollowedUser.hasOwnProperty("length") &&
+        eventsByFollowedUser.length
+      ) {
         const followedUserEventsHTML = await renderFollowedUser(
           followedUser,
           eventsByFollowedUser
