@@ -1700,6 +1700,16 @@ async function init() {
   populateNotificationsSettings();
   populateNotes();
   attachListeners();
+
+  const pageTitleEl = document.querySelector("h2[data-i18n='pagetitle']");
+  if (pageTitleEl) {
+    const containsTemplateTags =
+      pageTitleEl.innerText.indexOf("{RECIPIENT-NAME}") >= 0 ? true : false;
+    if (containsTemplateTags) {
+      window.location.reload();
+    }
+  }
+
   globalHidePageSpinner();
 }
 
