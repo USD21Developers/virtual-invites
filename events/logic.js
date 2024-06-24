@@ -183,7 +183,7 @@ async function renderFollowedEvents() {
     );
     const followedUsers = await localforage.getItem("followedUsers");
 
-    if (!followedUsers) return [];
+    if (!followedUsers) return resolve();
 
     let html = "";
 
@@ -214,7 +214,7 @@ async function renderFollowedEvents() {
       }
     });
 
-    return resolve(html);
+    return resolve();
   });
 }
 
