@@ -392,6 +392,11 @@
       "key": "inviteUndeleted",
       "original": "Invite undeleted",
       "translated": "Invite undeleted"
+    },
+    {
+      "key": "recipientNotFound",
+      "original": "Invite recipient not found.",
+      "translated": "Invite recipient not found."
     }
   ],
 

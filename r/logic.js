@@ -137,7 +137,7 @@ function getRecipient() {
   return new Promise(async (resolve, reject) => {
     const invitationid =
       parseInt(window.location.hash.split("#")[1].split("/")[1]) || null;
-    if (!invitationid) return;
+    if (!invitationid) reject();
 
     let invites = (await localforage.getItem("invites")) || null;
 
@@ -160,7 +160,6 @@ function getRecipient() {
 
     if (invite) {
       inviteObj = invite;
-      renderRecipient(invite);
       resolve(invite);
     } else {
       await syncInvites();
@@ -172,7 +171,6 @@ function getRecipient() {
 
       if (invite) {
         inviteObj = invite;
-        renderRecipient(invite);
         resolve(invite);
       } else {
         showToast(getPhrase("recipientNotFound"), 5000, "danger");
@@ -186,7 +184,7 @@ function getRecipient() {
       await syncInvites();
       const invites = await localforage.getItem("invites");
       const invite = invites.find((item) => item.invitationid === invitationid);
-      return resolve(invite);
+      resolve(invite);
     }
   });
 }
@@ -1691,7 +1689,13 @@ function attachListeners() {
 async function init() {
   syncUpdatedInvites();
   await populateContent();
-  await getRecipient();
+  const recipient = await getRecipient();
+  if (recipient) {
+    renderRecipient(recipient);
+  } else {
+    showToast("recipientNotFound", 0, "danger");
+    return;
+  }
   fixBreadcrumbIfArrivedFromFollowup();
   populateNotificationsExplanation();
   populateResendInvite();
