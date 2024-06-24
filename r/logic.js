@@ -1693,7 +1693,13 @@ async function init() {
   if (recipient) {
     renderRecipient(recipient);
   } else {
-    showToast(getPhrase("recipientNotFound"), 0, "danger", ".snackbar", true);
+    showToast(
+      getPhrase("recipientCouldNotBeFound"),
+      0,
+      "danger",
+      ".snackbar",
+      true
+    );
     return;
   }
   fixBreadcrumbIfArrivedFromFollowup();

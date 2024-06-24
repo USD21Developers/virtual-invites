@@ -394,7 +394,7 @@
       "translated": "Invite undeleted"
     },
     {
-      "key": "recipientNotFound",
+      "key": "recipientCouldNotBeFound",
       "original": "This invite recipient could not be found.",
       "translated": "This invite recipient could not be found."
     }
