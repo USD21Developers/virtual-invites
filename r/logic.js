@@ -1701,15 +1701,6 @@ async function init() {
   populateNotes();
   attachListeners();
 
-  const pageTitleEl = document.querySelector("h2[data-i18n='pagetitle']");
-  if (pageTitleEl) {
-    const variableIsRendered =
-      pageTitleEl.innerText.indexOf("{RECIPIENT-NAME}") >= 0 ? true : false;
-    if (variableIsRendered) {
-      window.location.reload();
-    }
-  }
-
   globalHidePageSpinner();
 }
 
