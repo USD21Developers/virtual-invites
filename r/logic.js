@@ -1703,9 +1703,9 @@ async function init() {
 
   const pageTitleEl = document.querySelector("h2[data-i18n='pagetitle']");
   if (pageTitleEl) {
-    const containsTemplateTags =
+    const placeholderIsRendered =
       pageTitleEl.innerText.indexOf("{RECIPIENT-NAME}") >= 0 ? true : false;
-    if (containsTemplateTags) {
+    if (placeholderIsRendered) {
       window.location.reload();
     }
   }
