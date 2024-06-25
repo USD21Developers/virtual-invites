@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "description": "Maps",
+    "path": "/maps/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Maps",
+      "translated": "Maps"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbMaps",
+      "original": "Maps",
+      "translated": "Maps"
+    },
+    {
+      "key": "evangelism",
+      "original": "Evangelism",
+      "translated": "Evangelism"
+    },
+    {
+      "key": "events",
+      "original": "Events",
+      "translated": "Events"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
