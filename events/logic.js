@@ -221,7 +221,7 @@ async function renderFollowedEvents() {
     });
 
     while (!el.innerHTML.length) {
-      await sleep(1000);
+      await sleep(250);
     }
 
     return resolve();
