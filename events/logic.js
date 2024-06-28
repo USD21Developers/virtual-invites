@@ -185,17 +185,13 @@ async function renderFollowedEvents() {
 
     el.innerHTML = "";
 
-    if (!followedUsers) return resolve();
-    if (!Array.isArray(eventsByFollowedUsers)) return resolve();
-    if (!eventsByFollowedUsers.length) return resolve();
-
-    let html = "";
-
     if (!followedUsers || !followedUsers.length) {
       el.innerHTML = `
         <div class="text-muted text-center">
           ${getPhrase("notFollowingAnyone")}
         </div>`;
+
+      return resolve();
     }
 
     if (!eventsByFollowedUsers || !eventsByFollowedUsers.length) {
@@ -203,6 +199,8 @@ async function renderFollowedEvents() {
         <div class="text-center" id="noEventsFromUsersIFollow">
           ${getPhrase("noEventsFromUsersIFollow")}
         </div>`;
+
+      return resolve();
     }
 
     followedUsers.forEach(async (followedUser) => {
@@ -221,6 +219,10 @@ async function renderFollowedEvents() {
         el.innerHTML += followedUserEventsHTML;
       }
     });
+
+    while (!el.innerHTML.length) {
+      await sleep(1000);
+    }
 
     return resolve();
   });
