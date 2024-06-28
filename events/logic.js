@@ -191,18 +191,18 @@ async function renderFollowedEvents() {
 
     let html = "";
 
-    if (!followedUsers.length) {
+    if (!followedUsers || !followedUsers.length) {
       el.innerHTML = `
         <div class="text-muted text-center">
           ${getPhrase("notFollowingAnyone")}
         </div>`;
-      return resolve();
-    } else if (!eventsByFollowedUsers.length) {
+    }
+
+    if (!eventsByFollowedUsers || !eventsByFollowedUsers.length) {
       el.innerHTML = `
         <div class="text-center" id="noEventsFromUsersIFollow">
           ${getPhrase("noEventsFromUsersIFollow")}
         </div>`;
-      return resolve();
     }
 
     followedUsers.forEach(async (followedUser) => {
