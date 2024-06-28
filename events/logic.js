@@ -711,15 +711,13 @@ function onPageShow(event) {
 }
 
 function attachListeners() {
-  document
-    .querySelector("#followedEvents")
-    .querySelectorAll("a[data-eventid]")
-    .forEach((item) => {
-      item.addEventListener("click", onFollowedEventClicked);
-    });
+  const followedEventsEl = document.querySelector("#followedEvents");
 
-  document
-    .querySelector("#followedEvents")
+  followedEventsEl.querySelectorAll("a[data-eventid]").forEach((item) => {
+    item.addEventListener("click", onFollowedEventClicked);
+  });
+
+  followedEventsEl
     .querySelectorAll("[data-dismiss='alert']")
     .forEach((item) =>
       item.addEventListener("click", onFollowedUserUnfollowed)
@@ -731,22 +729,18 @@ function attachListeners() {
 async function init() {
   await populateContent();
   await renderEvents();
-  await renderFollowedEvents();
-  populateLinksToFollowedUsers();
 
   const { eventsHaveChanged } = await syncEvents();
 
   if (eventsHaveChanged) {
     globalShowPageSpinner();
     await renderEvents();
-    await renderFollowedEvents();
-    populateLinksToFollowedUsers();
-    attachListeners();
-    globalHidePageSpinner();
-  } else {
-    attachListeners();
-    globalHidePageSpinner();
   }
+
+  await renderFollowedEvents();
+  populateLinksToFollowedUsers();
+  attachListeners();
+  globalHidePageSpinner();
 }
 
 init();
