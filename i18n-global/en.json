@@ -366,6 +366,11 @@
       "key": "youAreOffline",
       "original": "You are offline. Please reconnect.",
       "translated": "You are offline. Please reconnect."
+    },
+    {
+      "key": "comingSoon",
+      "original": "Coming Soon",
+      "translated": "Coming Soon"
     }
   ],
 

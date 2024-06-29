@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "description": "Map of Evangelism",
+    "path": "/maps/evangelism/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Map of Evangelism",
+      "translated": "Map of Evangelism"
+    },
+    {
+      "key": "pageHeadline",
+      "original": "Map of Evangelism",
+      "translated": "Map of Evangelism",
+      "changes": [
+        {
+          "original": "of",
+          "translated": "of",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbMaps",
+      "original": "Maps",
+      "translated": "Maps"
+    },
+    {
+      "key": "breadcrumbEvangelism",
+      "original": "Evangelism",
+      "translated": "Evangelism"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
