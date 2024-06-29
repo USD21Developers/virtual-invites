@@ -197,75 +197,142 @@
 
       <div class="row mt-4">
         <div class="col col-md-6 offset-md-3">
-          <form id="mapForm" class="mb-5">
-            <div class="form-group">
-              <label
-                class="d-block mb-1 text-dark font-weight-bold text-uppercase"
-                data-i18n="labelFrom"
-              ></label>
-              <div class="my-3">
-                <input
-                  type="date"
-                  class="form-control datetime-label"
-                  id="fromDate"
-                  data-i18n-placeholder="date"
-                />
-                <small class="form-text text-muted" data-i18n="date"></small>
-              </div>
-              <div class="my-3">
-                <input
-                  type="time"
-                  class="form-control datetime-label"
-                  id="fromTime"
-                  data-i18n-placeholder="time"
-                />
-                <small class="form-text text-muted" data-i18n="time"></small>
-              </div>
-            </div>
+          <p class="text-center balancedTextWrap mb-4 pb-1">
+            <strong data-i18n="selectADateRange"></strong>
+          </p>
 
-            <div class="form-group my-4 py-4">
-              <div class="form-row">
-                <div class="col-auto mr-4">
+          <form id="mapForm" class="mb-5">
+            <fieldset class="mb-5">
+              <legend data-i18n="labelFrom"></legend>
+              <div class="mb-4 pb-1">
+                <select id="fromPresets" class="form-control">
+                  <option value="thisMorning" data-i18n="thisMorning"></option>
+                  <option value="yesterday" data-i18n="yesterday"></option>
+                  <option
+                    value="beginningOfThisWeek"
+                    data-i18n="beginningOfThisWeek"
+                  ></option>
+                  <option
+                    value="beginningOfThisMonth"
+                    data-i18n="beginningOfThisMonth"
+                  ></option>
+                  <option
+                    value="beginningOfLastMonth"
+                    data-i18n="beginningOfLastMonth"
+                  ></option>
+                  <option
+                    value="beginningOfThisYear"
+                    data-i18n="beginningOfThisYear"
+                  ></option>
+                  <option value="daysAgo3" data-i18n="daysAgo3"></option>
+                  <option value="daysAgo7" data-i18n="daysAgo7"></option>
+                  <option value="daysAgo10" data-i18n="daysAgo10"></option>
+                  <option value="daysAgo14" data-i18n="daysAgo14"></option>
+                  <option value="daysAgo21" data-i18n="daysAgo21"></option>
+                  <option value="daysAgo30" data-i18n="daysAgo30"></option>
+                  <option value="daysAgo60" data-i18n="daysAgo60"></option>
+                  <option
+                    value="monthsAgo3"
+                    data-i18n="monthsAgo3"
+                    selected
+                  ></option>
+                  <option value="monthsAgo6" data-i18n="monthsAgo6"></option>
+                  <option value="monthsAgo9" data-i18n="monthsAgo9"></option>
+                  <option value="yearsAgo1" data-i18n="yearsAgo1"></option>
+                  <option
+                    value="specificDateTime"
+                    data-i18n="specificDateAndTime"
+                  ></option>
+                </select>
+              </div>
+              <div id="fromDateTimeContainer" class="d-none">
+                <div class="form-group mt-2">
                   <label
-                    class="d-block mb-1 text-dark font-weight-bold text-uppercase"
-                    data-i18n="labelTo"
+                    class="d-block mb-1 text-dark font-weight-bold text-uppercase datetime-label"
+                    data-i18n="date"
+                    for="fromDate"
                   ></label>
-                </div>
-                <div class="col-auto text-right">
-                  <div class="form-check mb-2">
+                  <div class="mt-1 mb-4 pb-1">
                     <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="toNow"
-                      checked
+                      type="date"
+                      class="form-control datetime-field"
+                      id="fromDate"
                     />
-                    <label
-                      class="form-check-label"
-                      for="toNow"
-                      data-i18n="now"
-                    ></label>
+                  </div>
+                  <label
+                    class="d-block mt-4 pt-1 mb-1 text-dark font-weight-bold text-uppercase datetime-label"
+                    data-i18n="time"
+                    for="fromTime"
+                  ></label>
+                  <div class="mt-1 mb-2 pb-2">
+                    <input
+                      type="time"
+                      class="form-control datetime-field"
+                      id="fromTime"
+                    />
                   </div>
                 </div>
               </div>
-              <div class="my-3">
-                <input
-                  type="date"
-                  class="form-control datetime-label"
-                  id="toDate"
-                  data-i18n-placeholder="date"
-                />
-                <small class="form-text text-muted" data-i18n="date"></small>
+            </fieldset>
+
+            <fieldset class="mb-5">
+              <legend data-i18n="labelTo"></legend>
+              <div class="form-group mt-2 mb-4">
+                <div class="form-check">
+                  <label class="form-check-label d-block">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="toDateTime"
+                      id="toDateTimeNow"
+                      value="now"
+                      checked
+                    />
+                    <span data-i18n="now"></span>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label" for="toDateTimePrevious">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="toDateTime"
+                      id="toDateTimePrevious"
+                      value="previous"
+                    />
+                    <span data-i18n="specificDateAndTime"></span>
+                  </label>
+                </div>
               </div>
-              <div class="my-3">
-                <input
-                  type="time"
-                  class="form-control datetime-label"
-                  id="toTime"
-                  data-i18n-placeholder="time"
-                />
-                <small class="form-text text-muted" data-i18n="time"></small>
+              <div id="toDateTimeContainer" class="d-none">
+                <div class="form-group mt-4">
+                  <label
+                    class="d-block mb-1 text-dark font-weight-bold text-uppercase datetime-label"
+                    data-i18n="date"
+                    for="toDate"
+                  ></label>
+                  <div class="mt-1 mb-4 pb-1">
+                    <input
+                      type="date"
+                      class="form-control datetime-field"
+                      id="toDate"
+                    />
+                  </div>
+                  <label
+                    class="d-block mb-1 text-dark font-weight-bold text-uppercase datetime-label"
+                    data-i18n="time"
+                    for="toTime"
+                  ></label>
+                  <div class="mt-1 mb-2 pb-2">
+                    <input
+                      type="time"
+                      class="form-control datetime-field"
+                      id="toTime"
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
+            </fieldset>
 
             <div class="form-group my-4 text-center">
               <button

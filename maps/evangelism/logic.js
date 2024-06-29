@@ -1,34 +1,43 @@
-function populateDefaultDates() {
-  const toNowEl = document.querySelector("#toNow");
-  const toDateEl = document.querySelector("#toDate");
-  const toTimeEl = document.querySelector("#toTime");
-  const dateNow = moment().format("YYYY-MM-DD");
-  const timeNow = moment().format("HH:mm:ss");
+function toggleFromDateTime(e) {
+  const fromDateTimeContainerEl = document.querySelector(
+    "#fromDateTimeContainer"
+  );
+  const isSpecificDateTimeChecked =
+    e.target.value === "specificDateTime" ? true : false;
 
-  if (toNowEl.checked) {
-    toDateEl.value = dateNow;
-    toTimeEl.value = timeNow;
+  if (isSpecificDateTimeChecked) {
+    fromDateTimeContainerEl.classList.remove("d-none");
+  } else {
+    fromDateTimeContainerEl.classList.add("d-none");
   }
 }
 
 function toggleToDateTime(e) {
-  if (e.target.checked) {
-    populateDefaultDates();
+  const toDateTimeContainerEl = document.querySelector("#toDateTimeContainer");
+  const isSpecificDateTimeChecked =
+    e.target.value === "previous" ? true : false;
+
+  if (isSpecificDateTimeChecked) {
+    toDateTimeContainerEl.classList.remove("d-none");
   } else {
-    const toDateEl = document.querySelector("#toDate");
-    const toTimeEl = document.querySelector("#toTime");
-    toDateEl.value = "";
-    toTimeEl.value = "";
+    toDateTimeContainerEl.classList.add("d-none");
   }
 }
 
 function addEventListeners() {
-  document.querySelector("#toNow").addEventListener("click", toggleToDateTime);
+  document
+    .querySelector("#fromPresets")
+    .addEventListener("change", toggleFromDateTime);
+  document
+    .querySelector("#toDateTimeNow")
+    .addEventListener("click", toggleToDateTime);
+  document
+    .querySelector("#toDateTimePrevious")
+    .addEventListener("click", toggleToDateTime);
 }
 
 async function init() {
   await populateContent();
-  populateDefaultDates();
   addEventListeners();
   globalHidePageSpinner();
 }

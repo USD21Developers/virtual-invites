@@ -29,8 +29,8 @@
     },
     {
       "key": "pageDescription",
-      "original": "Places from which invites were sent",
-      "translated": "Places from which invites were sent"
+      "original": "Locations from which invites have been sent",
+      "translated": "Locations from which invites have been sent"
     },
     {
       "key": "breadcrumbHome",
@@ -48,14 +48,19 @@
       "translated": "Evangelism"
     },
     {
+      "key": "selectADateRange",
+      "original": "Select a date range:",
+      "translated": "Select a date range:"
+    },
+    {
       "key": "labelFrom",
       "original": "From:",
       "translated": "From:"
     },
     {
       "key": "labelTo",
-      "original": "To:",
-      "translated": "To:"
+      "original": "Until:",
+      "translated": "Until:"
     },
     {
       "key": "now",
@@ -63,14 +68,104 @@
       "translated": "Now"
     },
     {
-      "key": "date",
-      "original": "Date",
-      "translated": "Date"
+      "key": "thisMorning",
+      "original": "This morning",
+      "translated": "This morning"
+    },
+    {
+      "key": "yesterday",
+      "original": "Yesterday",
+      "translated": "Yesterday"
+    },
+    {
+      "key": "beginningOfThisWeek",
+      "original": "Beginning of this week",
+      "translated": "Beginning of this week"
+    },
+    {
+      "key": "beginningOfThisMonth",
+      "original": "Beginning of this month",
+      "translated": "Beginning of this month"
+    },
+    {
+      "key": "beginningOfLastMonth",
+      "original": "Beginning of last month",
+      "translated": "Beginning of last month"
+    },
+    {
+      "key": "beginningOfThisYear",
+      "original": "Beginning of this year",
+      "translated": "Beginning of this year"
+    },
+    {
+      "key": "daysAgo3",
+      "original": "3 days ago",
+      "translated": "3 days ago"
+    },
+    {
+      "key": "daysAgo7",
+      "original": "7 days ago",
+      "translated": "7 days ago"
+    },
+    {
+      "key": "daysAgo10",
+      "original": "10 days ago",
+      "translated": "10 days ago"
+    },
+    {
+      "key": "daysAgo14",
+      "original": "14 days ago",
+      "translated": "14 days ago"
+    },
+    {
+      "key": "daysAgo21",
+      "original": "21 days ago",
+      "translated": "21 days ago"
+    },
+    {
+      "key": "daysAgo30",
+      "original": "30 days ago",
+      "translated": "30 days ago"
+    },
+    {
+      "key": "daysAgo60",
+      "original": "60 days ago",
+      "translated": "60 days ago"
+    },
+    {
+      "key": "monthsAgo3",
+      "original": "3 months ago",
+      "translated": "3 months ago"
+    },
+    {
+      "key": "monthsAgo6",
+      "original": "6 months ago",
+      "translated": "6 months ago"
+    },
+    {
+      "key": "monthsAgo9",
+      "original": "9 months ago",
+      "translated": "9 months ago"
+    },
+    {
+      "key": "yearsAgo1",
+      "original": "1 year ago",
+      "translated": "1 year ago"
+    },
+    {
+      "key": "specificDateAndTime",
+      "original": "Specific date and time",
+      "translated": "Specific date and time"
     },
     {
       "key": "time",
-      "original": "Time",
-      "translated": "Time"
+      "original": "Time:",
+      "translated": "Time:"
+    },
+    {
+      "key": "date",
+      "original": "Date:",
+      "translated": "Date:"
     },
     {
       "key": "showMap",

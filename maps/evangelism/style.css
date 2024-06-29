@@ -4,3 +4,15 @@
   text-transform: initial;
   font-variant: small-caps;
 }
+
+fieldset {
+  border: revert;
+  padding: revert;
+}
+
+legend {
+  font-family: Oswald, sans-serif;
+  font-size: 1.3rem;
+  padding: 0 10px;
+  width: revert;
+}
