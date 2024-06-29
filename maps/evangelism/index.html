@@ -278,7 +278,14 @@
             <fieldset class="mb-5">
               <legend data-i18n="labelTo"></legend>
               <div class="form-group mt-2 mb-4">
-                <div class="form-check">
+                <select id="toPresets" class="form-control">
+                  <option value="now" data-i18n="now"></option>
+                  <option
+                    value="specificDateTime"
+                    data-i18n="specificDateAndTime"
+                  ></option>
+                </select>
+                <!-- <div class="form-check">
                   <label class="form-check-label d-block">
                     <input
                       class="form-check-input"
@@ -305,7 +312,7 @@
                     />
                     <span data-i18n="specificDateAndTime"></span>
                   </label>
-                </div>
+                </div> -->
               </div>
               <div id="toDateTimeContainer" class="d-none">
                 <div class="form-group mt-4">
