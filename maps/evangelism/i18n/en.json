@@ -28,6 +28,11 @@
       ]
     },
     {
+      "key": "pageDescription",
+      "original": "Places from which invites were sent",
+      "translated": "Places from which invites were sent"
+    },
+    {
       "key": "breadcrumbHome",
       "original": "Home",
       "translated": "Home"
@@ -41,6 +46,36 @@
       "key": "breadcrumbEvangelism",
       "original": "Evangelism",
       "translated": "Evangelism"
+    },
+    {
+      "key": "labelFrom",
+      "original": "From:",
+      "translated": "From:"
+    },
+    {
+      "key": "labelTo",
+      "original": "To:",
+      "translated": "To:"
+    },
+    {
+      "key": "now",
+      "original": "Now",
+      "translated": "Now"
+    },
+    {
+      "key": "date",
+      "original": "Date",
+      "translated": "Date"
+    },
+    {
+      "key": "time",
+      "original": "Time",
+      "translated": "Time"
+    },
+    {
+      "key": "showMap",
+      "original": "Show map",
+      "translated": "Show map"
     }
   ],
 
