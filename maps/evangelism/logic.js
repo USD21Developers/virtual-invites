@@ -14,7 +14,7 @@ function populateDefaultValues() {
   const fromDateStored = localStorage.getItem("mapEvangelismFromDate");
   const fromTimeStored = localStorage.getItem("mapEvangelismFromTime");
   const toDateStored = localStorage.getItem("mapEvangelismToDate");
-  const toTimeStored = localStorage.getItem("mapEvangelismToTimeStored");
+  const toTimeStored = localStorage.getItem("mapEvangelismToTime");
 
   if (fromSelectionStored && fromSelectionStored.length) {
     fromPresetsEl.value = fromSelectionStored;
