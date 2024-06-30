@@ -42,6 +42,11 @@
       "key": "followinglink",
       "original": "Following",
       "translated": "Following"
+    },
+    {
+      "key": "evangelismMapsLink",
+      "original": "Evangelism Maps",
+      "translated": "Evangelism Maps"
     }
   ],
 
