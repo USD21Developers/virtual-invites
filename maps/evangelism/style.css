@@ -16,3 +16,10 @@ legend {
   padding: 0 10px;
   width: revert;
 }
+
+.lead {
+  color: var(--dark-light);
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 300;
+}

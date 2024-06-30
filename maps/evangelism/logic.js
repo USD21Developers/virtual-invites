@@ -1,6 +1,6 @@
 function populateDefaultValues() {
-  const fromSelectionStored = localStorage.getItem("mapEvangelismFrom");
-  const toSelectionStored = localStorage.getItem("mapEvangelismTo");
+  const fromSelectionStored = localStorage.getItem("mapEvangelismFromPreset");
+  const toSelectionStored = localStorage.getItem("mapEvangelismToPreset");
   const fromPresetsEl = document.querySelector("#fromPresets");
   const toPresetsEl = document.querySelector("#toPresets");
   const fromSpecificDateTimeEl = document.querySelector(
@@ -19,13 +19,13 @@ function populateDefaultValues() {
   if (fromSelectionStored && fromSelectionStored.length) {
     fromPresetsEl.value = fromSelectionStored;
   } else {
-    localStorage.setItem("mapEvangelismFrom", fromPresetsEl.value);
+    localStorage.setItem("mapEvangelismFromPreset", fromPresetsEl.value);
   }
 
   if (toSelectionStored && toSelectionStored.length) {
     toPresetsEl.value = toSelectionStored;
   } else {
-    localStorage.setItem("mapEvangelismTo", toPresetsEl.value);
+    localStorage.setItem("mapEvangelismToPreset", toPresetsEl.value);
   }
 
   if (fromPresetsEl.value === "specificDateTime") {
@@ -73,7 +73,7 @@ function populateDefaultValues() {
   }
 }
 
-function toggleFromDateTime(e) {
+function toggleFromPreset(e) {
   const fromDateTimeContainerEl = document.querySelector(
     "#fromDateTimeContainer"
   );
@@ -81,7 +81,7 @@ function toggleFromDateTime(e) {
     e.target.value === "specificDateTime" ? true : false;
   const currentSelection = e.target.value;
 
-  localStorage.setItem("mapEvangelismFrom", currentSelection);
+  localStorage.setItem("mapEvangelismFromPreset", currentSelection);
 
   if (isSpecificDateTimeSelected) {
     fromDateTimeContainerEl.classList.remove("d-none");
@@ -90,13 +90,13 @@ function toggleFromDateTime(e) {
   }
 }
 
-function toggleToDateTime(e) {
+function toggleToPreset(e) {
   const toDateTimeContainerEl = document.querySelector("#toDateTimeContainer");
   const isSpecificDateTimeChecked =
     e.target.value === "specificDateTime" ? true : false;
   const currentSelection = e.target.value;
 
-  localStorage.setItem("mapEvangelismTo", currentSelection);
+  localStorage.setItem("mapEvangelismToPreset", currentSelection);
 
   if (isSpecificDateTimeChecked) {
     toDateTimeContainerEl.classList.remove("d-none");
@@ -141,10 +141,10 @@ function onSubmit(e) {
 function addEventListeners() {
   document
     .querySelector("#fromPresets")
-    .addEventListener("change", toggleFromDateTime);
+    .addEventListener("change", toggleFromPreset);
   document
     .querySelector("#toPresets")
-    .addEventListener("change", toggleToDateTime);
+    .addEventListener("change", toggleToPreset);
   document
     .querySelector("#fromDate")
     .addEventListener("change", onChangeFromDate);
