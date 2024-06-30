@@ -10,7 +10,7 @@ function populateDefaultValues() {
   const fromDateEl = document.querySelector("#fromDate");
   const fromTimeEl = document.querySelector("#fromTime");
   const toDateEl = document.querySelector("#toDate");
-  const toTimeEl = document.querySelector("#toTimeEl");
+  const toTimeEl = document.querySelector("#toTime");
   const fromDateStored = localStorage.getItem("mapEvangelismFromDate");
   const fromTimeStored = localStorage.getItem("mapEvangelismFromTime");
   const toDateStored = localStorage.getItem("mapEvangelismToDate");
@@ -43,25 +43,33 @@ function populateDefaultValues() {
   if (fromDateStored && fromDateStored.length) {
     fromDateEl.value = fromDateStored;
   } else {
-    localStorage.setItem("mapEvangelismFromDate", fromDateEl.value);
+    if (fromDateEl.value && fromDateEl.value.length) {
+      localStorage.setItem("mapEvangelismFromDate", fromDateEl.value);
+    }
   }
 
   if (fromTimeStored && fromTimeStored.length) {
     fromTimeEl.value = fromTimeStored;
   } else {
-    localStorage.setItem("mapEvangelismFromTime", fromTimeEl.value);
+    if (fromTimeEl.value && fromTimeEl.value.length) {
+      localStorage.setItem("mapEvangelismFromTime", fromTimeEl.value);
+    }
   }
 
   if (toDateStored && toDateStored.length) {
     toDateEl.value = toDateStored;
   } else {
-    localStorage.setItem("mapEvangelismToDate", toDateEl.value);
+    if (toDateEl.value && toDateEl.value.length) {
+      localStorage.setItem("mapEvangelismToDate", toDateEl.value);
+    }
   }
 
   if (toTimeStored && toTimeStored.length) {
     toTimeEl.value = toTimeStored;
   } else {
-    localStorage.setItem("mapEvangelismToTime", toTimeEl.value);
+    if (toTimeEl.value && toTimeEl.value.length) {
+      localStorage.setItem("mapEvangelismToTime", toTimeEl.value);
+    }
   }
 }
 
