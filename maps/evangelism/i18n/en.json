@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "description": "Map of Evangelism",
+    "description": "Evangelism Map",
     "path": "/maps/evangelism/",
     "lang": {
       "original": "en",
@@ -10,22 +10,13 @@
   "phrases": [
     {
       "key": "pagetitle",
-      "original": "Map of Evangelism",
-      "translated": "Map of Evangelism"
+      "original": "Evangelism Map",
+      "translated": "Evangelism Map"
     },
     {
       "key": "pageHeadline",
-      "original": "Map of Evangelism",
-      "translated": "Map of Evangelism",
-      "changes": [
-        {
-          "original": "of",
-          "translated": "of",
-          "bold": false,
-          "italic": true,
-          "link": ""
-        }
-      ]
+      "original": "Evangelism Map",
+      "translated": "Evangelism Map"
     },
     {
       "key": "pageDescription",
