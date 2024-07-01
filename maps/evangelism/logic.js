@@ -135,7 +135,11 @@ function onChangeToTime(e) {
 
 function onSubmit(e) {
   e.preventDefault();
+  const modal = document.querySelector("#modal");
+  const content = modal.querySelector(".modal-content");
   showModal("This feature is coming soon!", "Under construction");
+  const contentWidth = content.clientWidth;
+  const contentHeight = content.clientHeight;
 }
 
 function addEventListeners() {
