@@ -22,6 +22,10 @@
     <meta name="application-name" content="Invites" />
     <meta name="msapplication-TileColor" content="#6551b4" />
     <meta name="theme-color" content="#102951" />
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2Dn_epqgHXUHOlmyAcwvGdBNCyLC5Fdw&loading=async&libraries=maps&v=beta"
+      defer
+    ></script>
   </head>
   <body>
     <nav class="navbar bg-white sticky-top">
@@ -333,7 +337,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modaltitle"></h5>
+            <h5 class="modal-title" id="modaltitle" data-i18n="inviteSent"></h5>
             <button
               type="button"
               class="close"

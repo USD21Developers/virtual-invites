@@ -135,11 +135,7 @@ function onChangeToTime(e) {
 
 function onSubmit(e) {
   e.preventDefault();
-  const modal = document.querySelector("#modal");
-  const content = modal.querySelector(".modal-content");
-  showModal("This feature is coming soon!", "Under construction");
-  const contentWidth = content.clientWidth;
-  const contentHeight = content.clientHeight;
+  $("#modal").modal();
 }
 
 function addEventListeners() {
@@ -157,8 +153,22 @@ function addEventListeners() {
     .addEventListener("change", onChangeFromTime);
   document.querySelector("#toDate").addEventListener("change", onChangeToDate);
   document.querySelector("#toTime").addEventListener("change", onChangeToTime);
-
   document.querySelector("#mapForm").addEventListener("submit", onSubmit);
+
+  $("#modal").on("shown.bs.modal", function (event) {
+    const modal = document.querySelector("#modal");
+    const modalBody = modal.querySelector(".modal-body");
+    const modalBodyHeight = body.clientHeight;
+
+    body.innerHTML = `
+      <gmp-map
+        center="37.4220656,-122.0840897"
+        zoom="10"
+        map-id="DEMO_MAP_ID"
+        style="height: 100%"
+      ></gmp-map>
+    `;
+  });
 }
 
 async function init() {

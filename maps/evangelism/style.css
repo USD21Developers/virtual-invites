@@ -36,3 +36,12 @@ legend {
     margin: auto;
   }
 }
+
+#modal .modal-title {
+  font-weight: 300;
+}
+
+#modal [map-id] {
+  height: 100%;
+  max-height: 100%;
+}

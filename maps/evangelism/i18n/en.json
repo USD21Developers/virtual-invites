@@ -157,6 +157,11 @@
       "key": "showMap",
       "original": "Show map",
       "translated": "Show map"
+    },
+    {
+      "key": "inviteSent",
+      "original": "Invites Sent",
+      "translated": "Invites Sent"
     }
   ],
 
