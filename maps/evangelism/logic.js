@@ -158,7 +158,7 @@ function addEventListeners() {
   $("#modal").on("shown.bs.modal", function (event) {
     const modal = document.querySelector("#modal");
     const modalBody = modal.querySelector(".modal-body");
-    const modalBodyHeight = body.clientHeight;
+    const modalBodyHeight = modalBody.clientHeight;
 
     body.innerHTML = `
       <gmp-map
