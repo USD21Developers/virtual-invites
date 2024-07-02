@@ -160,7 +160,7 @@ function addEventListeners() {
     const modalBody = modal.querySelector(".modal-body");
     const modalBodyHeight = modalBody.clientHeight;
 
-    body.innerHTML = `
+    modalBody.innerHTML = `
       <gmp-map
         center="37.4220656,-122.0840897"
         zoom="10"
