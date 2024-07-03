@@ -1,3 +1,99 @@
+let map;
+
+function getDefaultMapInfo() {
+  return new Promise(async (resolve, reject) => {
+    const accessToken = await getAccessToken();
+    const endpoint = `${getApiHost()}/map-defaults-for-church`;
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "post",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        switch (data.msg) {
+          case "map defaults for user's church retrieved":
+            resolve(data.mapDefaults);
+            break;
+          default:
+            console.error(data.msg);
+            reject(data.msg);
+            break;
+        }
+      });
+  });
+}
+
+async function initMap() {
+  const { Map } = await google.maps.importLibrary("maps");
+  const defaultMapInfo = await getDefaultMapInfo();
+
+  if (!defaultMapInfo) return;
+
+  const { latitude, longitude, zoom } = defaultMapInfo;
+  const churches = await getChurches();
+  const userChurchId = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  ).churchid;
+  const userChurch = churches.find((item) => item.id === userChurchId);
+  const mapCountry = userChurch.country;
+  const mapLanguage = getLang();
+
+  ((g) => {
+    var h,
+      a,
+      k,
+      p = "The Google Maps JavaScript API",
+      c = "google",
+      l = "importLibrary",
+      q = "__ib__",
+      m = document,
+      b = window;
+    b = b[c] || (b[c] = {});
+    var d = b.maps || (b.maps = {}),
+      r = new Set(),
+      e = new URLSearchParams(),
+      u = () =>
+        h ||
+        (h = new Promise(async (f, n) => {
+          await (a = m.createElement("script"));
+          e.set("libraries", [...r] + "");
+          for (k in g)
+            e.set(
+              k.replace(/[A-Z]/g, (t) => "_" + t[0].toLowerCase()),
+              g[k]
+            );
+          e.set("callback", c + ".maps." + q);
+          a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+          d[q] = f;
+          a.onerror = () => (h = n(Error(p + " could not load.")));
+          a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+          m.head.append(a);
+        }));
+    d[l]
+      ? console.warn(p + " only loads once. Ignoring:", g)
+      : (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
+  })({
+    key: "AIzaSyAbMnOdYtIksdcQT9hNhSzwr6aHJVB8z_U",
+    v: "weekly",
+    loading: "async",
+    libraries: "maps",
+    region: mapCountry,
+    language: mapLanguage,
+    // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+    // Add other bootstrap parameters as needed, using camel case.
+  });
+
+  map = new Map(document.getElementById("map"), {
+    center: { lat: latitude, lng: longitude },
+    zoom: zoom,
+  });
+}
+
 function populateDefaultValues() {
   const fromSelectionStored = localStorage.getItem("mapEvangelismFromPreset");
   const toSelectionStored = localStorage.getItem("mapEvangelismToPreset");
@@ -154,27 +250,13 @@ function addEventListeners() {
   document.querySelector("#toDate").addEventListener("change", onChangeToDate);
   document.querySelector("#toTime").addEventListener("change", onChangeToTime);
   document.querySelector("#mapForm").addEventListener("submit", onSubmit);
-
-  $("#modal").on("shown.bs.modal", function (event) {
-    const modal = document.querySelector("#modal");
-    const modalBody = modal.querySelector(".modal-body");
-    const modalBodyHeight = modalBody.clientHeight;
-
-    modalBody.innerHTML = `
-      <gmp-map
-        center="37.4220656,-122.0840897"
-        zoom="10"
-        map-id="DEMO_MAP_ID"
-        style="height: 100%"
-      ></gmp-map>
-    `;
-  });
 }
 
 async function init() {
   await populateContent();
   addEventListeners();
   populateDefaultValues();
+  await initMap();
   globalHidePageSpinner();
 }
 
