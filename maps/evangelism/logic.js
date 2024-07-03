@@ -1,5 +1,26 @@
 let map;
 
+function getMapKey() {
+  const dev = "AIzaSyAbMnOdYtIksdcQT9hNhSzwr6aHJVB8z_U";
+  const staging = "AIzaSyDdfeKEz0gdwcc6uF2AnsBaLrvD7PuNMdg";
+  const production = "AIzaSyC2Dn_epqgHXUHOlmyAcwvGdBNCyLC5Fdw";
+  let key = "";
+
+  switch (window.location.hostname) {
+    case "localhost":
+      key = dev;
+      break;
+    case "staging.invites.mobi":
+      key = staging;
+      break;
+    case "invites.mobi":
+      key = production;
+      break;
+  }
+
+  return key;
+}
+
 function getDefaultMapInfo() {
   return new Promise(async (resolve, reject) => {
     const accessToken = await getAccessToken();
@@ -35,6 +56,14 @@ async function initMap() {
   if (!defaultMapInfo) return;
 
   const { latitude, longitude, zoom } = defaultMapInfo;
+
+  map = new Map(document.getElementById("map"), {
+    center: { lat: latitude, lng: longitude },
+    zoom: zoom,
+  });
+}
+
+async function loadGoogleMapsLibs() {
   const churches = await getChurches();
   const userChurchId = JSON.parse(
     atob(localStorage.getItem("refreshToken").split(".")[1])
@@ -42,8 +71,9 @@ async function initMap() {
   const userChurch = churches.find((item) => item.id === userChurchId);
   const mapCountry = userChurch.country;
   const mapLanguage = getLang();
+  const mapKey = getMapKey();
 
-  ((g) => {
+  return ((g) => {
     var h,
       a,
       k,
@@ -78,7 +108,7 @@ async function initMap() {
       ? console.warn(p + " only loads once. Ignoring:", g)
       : (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
   })({
-    key: "AIzaSyAbMnOdYtIksdcQT9hNhSzwr6aHJVB8z_U",
+    key: mapKey,
     v: "weekly",
     loading: "async",
     libraries: "maps",
@@ -86,11 +116,6 @@ async function initMap() {
     language: mapLanguage,
     // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
     // Add other bootstrap parameters as needed, using camel case.
-  });
-
-  map = new Map(document.getElementById("map"), {
-    center: { lat: latitude, lng: longitude },
-    zoom: zoom,
   });
 }
 
@@ -256,6 +281,7 @@ async function init() {
   await populateContent();
   addEventListeners();
   populateDefaultValues();
+  await loadGoogleMapsLibs();
   await initMap();
   globalHidePageSpinner();
 }
