@@ -199,6 +199,29 @@ function populateDefaultValues() {
   }
 }
 
+function search() {
+  return new Promise((resolve, reject) => {
+    const checkboxMyInvitesLabel = document.querySelector(
+      "label[for='checkboxMyInvites']"
+    );
+    const checkboxOthersInvitesLabel = document.querySelector(
+      "label[for='checkboxOthersInvites']"
+    );
+    const myInvitesLabelText = getPhrase("checkboxMine").replaceAll(
+      "{QUANTITY}",
+      `<span class="quantity">${5}</span>`
+    );
+    const othersInvitesLabelText = getPhrase("checkboxOhers").replaceAll(
+      "{QUANTITY}",
+      `<span class="quantity">${245}</span>`
+    );
+    checkboxMyInvitesLabel.innerHTML = myInvitesLabelText;
+    checkboxOthersInvitesLabel.innerHTML = othersInvitesLabelText;
+    // globalHidePageSpinner();
+    resolve();
+  });
+}
+
 function toggleFromPreset(e) {
   const fromDateTimeContainerEl = document.querySelector(
     "#fromDateTimeContainer"
@@ -259,8 +282,9 @@ function onChangeToTime(e) {
   }
 }
 
-function onSubmit(e) {
+async function onSubmit(e) {
   e.preventDefault();
+  await search();
   $("#modal").modal();
 }
 

@@ -38,7 +38,7 @@ legend {
 }
 
 #modal .modal-title {
-  font-weight: 300;
+  font-weight: 400;
 }
 
 #modal [map-id] {
@@ -48,4 +48,10 @@ legend {
 
 #map {
   height: 100%;
+}
+
+label[for="checkboxMyInvites"] em,
+label[for="checkboxOthersInvites"] em {
+  font-style: normal;
+  margin-left: 0.25rem;
 }

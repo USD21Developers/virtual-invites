@@ -165,13 +165,31 @@
     },
     {
       "key": "checkboxMine",
-      "original": "Mine",
-      "translated": "Mine"
+      "original": "My invites ({QUANTITY})",
+      "translated": "My invites ({QUANTITY})",
+      "changes": [
+        {
+          "original": "({QUANTITY})",
+          "translated": "({QUANTITY})",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "checkboxOhers",
-      "original": "Others'",
-      "translated": "Others'"
+      "original": "Others' invites ({QUANTITY})",
+      "translated": "Others' invites ({QUANTITY})",
+      "changes": [
+        {
+          "original": "({QUANTITY})",
+          "translated": "({QUANTITY})",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
     }
   ],
 
