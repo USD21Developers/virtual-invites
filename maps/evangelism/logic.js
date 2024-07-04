@@ -12,8 +12,8 @@ function getMapKey() {
   }
 
   if (!keys) {
-    sessionStorage.redirectOnLogin = window.location.href;
-    window.location.href = "/logout";
+    sessionStorage.setItem("redirectOnLogin", window.location.href);
+    window.location.href = "../../logout/";
   }
 
   switch (window.location.hostname) {

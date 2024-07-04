@@ -162,6 +162,16 @@
       "key": "inviteSent",
       "original": "Invites Sent",
       "translated": "Invites Sent"
+    },
+    {
+      "key": "checkboxMine",
+      "original": "Mine",
+      "translated": "Mine"
+    },
+    {
+      "key": "checkboxOhers",
+      "original": "Others'",
+      "translated": "Others'"
     }
   ],
 
