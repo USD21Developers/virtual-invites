@@ -124,6 +124,12 @@ async function loadGoogleMapsLibs() {
   });
 }
 
+function namedColorToHex(color) {
+  const ctx = document.createElement("canvas").getContext("2d");
+  ctx.fillStyle = color;
+  return ctx.fillStyle;
+}
+
 function populateDefaultValues() {
   const fromSelectionStored = localStorage.getItem("mapEvangelismFromPreset");
   const toSelectionStored = localStorage.getItem("mapEvangelismToPreset");
@@ -137,10 +143,15 @@ function populateDefaultValues() {
   const fromTimeEl = document.querySelector("#fromTime");
   const toDateEl = document.querySelector("#toDate");
   const toTimeEl = document.querySelector("#toTime");
+  const colorMyInvites = document.querySelector("#colorMyInvites");
+  const colorOthersInvites = document.querySelector("#colorOthersInvites");
   const fromDateStored = localStorage.getItem("mapEvangelismFromDate");
   const fromTimeStored = localStorage.getItem("mapEvangelismFromTime");
   const toDateStored = localStorage.getItem("mapEvangelismToDate");
   const toTimeStored = localStorage.getItem("mapEvangelismToTime");
+
+  colorMyInvites.value = namedColorToHex("tomato");
+  colorOthersInvites.value = namedColorToHex("cornflowerblue");
 
   if (fromSelectionStored && fromSelectionStored.length) {
     fromPresetsEl.value = fromSelectionStored;

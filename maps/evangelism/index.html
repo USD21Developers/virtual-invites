@@ -333,7 +333,10 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header pb-0">
-            <h5 class="modal-title" id="modaltitle" data-i18n="inviteSent"></h5>
+            <h5 class="modal-title" id="modaltitle">
+              <span data-i18n="inviteSent"></span>
+              <span class="text-muted ml-1 not-bold small">(250)</span>
+            </h5>
             <button
               type="button"
               class="close"
@@ -355,8 +358,8 @@
           </div>
           <div class="modal-footer py-3">
             <div class="container-fluid">
-              <div class="row">
-                <div class="col-auto mb-2">
+              <div class="row mb-2">
+                <div class="col-auto d-flex align-items-center">
                   <div class="form-check form-check-inline">
                     <input
                       class="form-check-input"
@@ -369,7 +372,16 @@
                     </label>
                   </div>
                 </div>
-                <div class="col-auto mb-2">
+                <div class="col text-right">
+                  <input
+                    type="color"
+                    id="colorMyInvites"
+                    class="p-0 border-0"
+                  />
+                </div>
+              </div>
+              <div class="row mb-1">
+                <div class="col-auto d-flex align-items-center">
                   <div class="form-check form-check-inline">
                     <input
                       class="form-check-input"
@@ -383,6 +395,13 @@
                       for="checkboxOthersInvites"
                     ></label>
                   </div>
+                </div>
+                <div class="col text-right">
+                  <input
+                    type="color"
+                    id="colorOthersInvites"
+                    class="p-0 border-0"
+                  />
                 </div>
               </div>
             </div>
