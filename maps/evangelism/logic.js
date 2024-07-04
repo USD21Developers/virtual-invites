@@ -1,24 +1,29 @@
 let map;
 
 function getMapKey() {
-  const dev = "AIzaSyAbMnOdYtIksdcQT9hNhSzwr6aHJVB8z_U";
-  const staging = "AIzaSyDdfeKEz0gdwcc6uF2AnsBaLrvD7PuNMdg";
-  const production = "AIzaSyC2Dn_epqgHXUHOlmyAcwvGdBNCyLC5Fdw";
-  let key = "";
+  let keys;
+
+  try {
+    keys = JSON.parse(
+      atob(localStorage.getItem("refreshToken").split(".")[1])
+    ).mapsApiKeys;
+  } catch (err) {
+    keys = null;
+  }
+
+  if (!keys) {
+    sessionStorage.redirectOnLogin = window.location.href;
+    window.location.href = "/logout";
+  }
 
   switch (window.location.hostname) {
     case "localhost":
-      key = dev;
-      break;
+      return keys.dev;
     case "staging.invites.mobi":
-      key = staging;
-      break;
+      return keys.staging;
     case "invites.mobi":
-      key = production;
-      break;
+      return keys.prod;
   }
-
-  return key;
 }
 
 function getDefaultMapInfo() {
