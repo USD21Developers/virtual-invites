@@ -284,6 +284,11 @@
       "translated": "Edit"
     },
     {
+      "key": "reload",
+      "original": "Reload",
+      "translated": "Reload"
+    },
+    {
       "key": "notesUpdatedReload",
       "original": "Notes were updated. Reload?",
       "translated": "Notes were updated. Reload?",
