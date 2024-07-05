@@ -60,3 +60,8 @@ input[type="color"] {
   height: 1.75rem;
   width: 1.75rem;
 }
+
+.modal-header button.close[data-dismiss="modal"] {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
