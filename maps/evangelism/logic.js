@@ -1,5 +1,29 @@
 let map;
 
+function askToConnect() {
+  const headlineEl = document.querySelector(
+    "#pageContent [data-i18n='pageHeadline']"
+  );
+  const contentEl = document.querySelector(
+    "#pageContent .row:nth-child(2) div.col"
+  );
+
+  headlineEl.innerHTML = getPhrase("pagetitle");
+  contentEl.innerHTML = `
+    <p class="text-center text-danger font-weight-bold">
+      ${getGlobalPhrase("youAreOffline")}
+    </p>
+
+    <div class="mt-4 pt-2 text-center">
+      <button class="btn btn-primary" onClick="javascript:window.location.reload()">
+        <span class="mr-1"><img src="/_assets/svg/icons/reload-white.svg" width="24" height="24"></span>
+        <span>${getGlobalPhrase("reload")}</span>
+      </button>
+    </div>
+  `;
+  globalHidePageSpinner();
+}
+
 function getMapKey() {
   let keys;
 
@@ -150,8 +174,8 @@ function populateDefaultValues() {
   const toDateStored = localStorage.getItem("mapEvangelismToDate");
   const toTimeStored = localStorage.getItem("mapEvangelismToTime");
 
-  colorMyInvites.value = namedColorToHex("tomato");
-  colorOthersInvites.value = namedColorToHex("cornflowerblue");
+  colorMyInvites.value = namedColorToHex("blue");
+  colorOthersInvites.value = namedColorToHex("green");
 
   if (fromSelectionStored && fromSelectionStored.length) {
     fromPresetsEl.value = fromSelectionStored;
@@ -319,6 +343,12 @@ function addEventListeners() {
 
 async function init() {
   await populateContent();
+
+  if (!navigator.onLine) {
+    askToConnect();
+    return;
+  }
+
   addEventListeners();
   populateDefaultValues();
   await loadGoogleMapsLibs();
