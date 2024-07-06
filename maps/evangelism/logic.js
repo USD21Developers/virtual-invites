@@ -154,6 +154,17 @@ function namedColorToHex(color) {
   return ctx.fillStyle;
 }
 
+async function populateChurchName() {
+  const modalChurchNameEl = document.querySelector("#modalChurchName");
+  const churches = await getChurches();
+  const churchid = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  ).churchid;
+  const church = churches.find((item) => item.id === churchid);
+  const churchName = church.name;
+  modalChurchNameEl.innerHTML = churchName;
+}
+
 function populateDefaultValues() {
   const fromSelectionStored = localStorage.getItem("mapEvangelismFromPreset");
   const toSelectionStored = localStorage.getItem("mapEvangelismToPreset");
@@ -343,6 +354,7 @@ function addEventListeners() {
 
 async function init() {
   await populateContent();
+  populateChurchName();
 
   if (!navigator.onLine) {
     askToConnect();
