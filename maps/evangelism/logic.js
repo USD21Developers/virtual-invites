@@ -245,25 +245,63 @@ function populateDefaultValues() {
   }
 }
 
-function search() {
-  return new Promise((resolve, reject) => {
-    const checkboxMyInvitesLabel = document.querySelector(
+function prepareMap(searchResults) {
+  return new Promise(async (resolve, reject) => {
+    const {
+      othersInvites,
+      userInvites,
+      userEvents,
+      fromDateTimeUTC,
+      toDateTimeUTC,
+    } = searchResults;
+    const totalQuantity = userInvites.length + othersInvites.length;
+    const totalInvitesQuantityEl = document.querySelector(
+      "#totalInvitesQuantity"
+    );
+    const checkboxMyInvitesLabelEl = document.querySelector(
       "label[for='checkboxMyInvites']"
     );
-    const checkboxOthersInvitesLabel = document.querySelector(
+    const checkboxOthersInvitesLabelEl = document.querySelector(
       "label[for='checkboxOthersInvites']"
     );
+    const modalDateTimeFromEl = document.querySelector("#modalDateTimeFrom");
+    const modalDateTimeToEl = document.querySelector("#modalDateTimeTo");
     const myInvitesLabelText = getPhrase("checkboxMine").replaceAll(
       "{QUANTITY}",
-      `<span class="quantity">${5}</span>`
+      `<span class="quantity">${userInvites.length}</span>`
     );
     const othersInvitesLabelText = getPhrase("checkboxOhers").replaceAll(
       "{QUANTITY}",
-      `<span class="quantity">${245}</span>`
+      `<span class="quantity">${othersInvites.length}</span>`
     );
-    checkboxMyInvitesLabel.innerHTML = myInvitesLabelText;
-    checkboxOthersInvitesLabel.innerHTML = othersInvitesLabelText;
-    // globalHidePageSpinner();
+    checkboxMyInvitesLabelEl.innerHTML = myInvitesLabelText;
+    checkboxOthersInvitesLabelEl.innerHTML = othersInvitesLabelText;
+    totalInvitesQuantityEl.innerHTML = `(${totalQuantity})`;
+
+    const churches = await getChurches();
+    const userChurchId = JSON.parse(
+      atob(localStorage.getItem("refreshToken").split(".")[1])
+    ).churchid;
+    const userChurch = churches.find((item) => item.id === userChurchId);
+    const country = userChurch.country;
+    const language = getLang();
+    const locale = `${language.toLowerCase()}-${country.toUpperCase()}`;
+    const fromDateTimeLocal = Intl.DateTimeFormat(locale, {
+      dateStyle: "short",
+      timeStyle: "short",
+    }).format(new Date(fromDateTimeUTC));
+    const toDateTimeLocal = Intl.DateTimeFormat(locale, {
+      dateStyle: "short",
+      timeStyle: "short",
+    }).format(new Date(toDateTimeUTC));
+
+    modalDateTimeFromEl.innerHTML = fromDateTimeLocal;
+    modalDateTimeToEl.innerHTML = toDateTimeLocal;
+
+    // TODO:  populate map markers with searchResults
+    // TODO:  make markers for user's invites show invite and event details
+    // TODO:  make markers for others' invites show only date and time
+
     resolve();
   });
 }
@@ -330,8 +368,254 @@ function onChangeToTime(e) {
 
 async function onSubmit(e) {
   e.preventDefault();
-  await search();
-  $("#modal").modal();
+  const fromSpecificDate = document.querySelector("#fromDate").value;
+  const fromSpecificTime = document.querySelector("#fromTime").value;
+  const toSpecificDate = document.querySelector("#toDate").value;
+  const toSpecificTime = document.querySelector("#toTime").value;
+  const fromThisMorning = moment().utc().format();
+  const fromYesterday = moment()
+    .subtract(1, "days")
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .utc()
+    .format();
+  const fromBeginningOfThisWeek = moment()
+    .startOf("week")
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .utc()
+    .format();
+  const fromBeginningOfThisMonth = moment()
+    .startOf("month")
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .utc()
+    .format();
+  const fromBeginningOfLastMonth = moment()
+    .startOf("month")
+    .subtract(1, "months")
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .utc()
+    .format();
+  const fromBeginningOfThisYear = moment()
+    .startOf("year")
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .utc()
+    .format();
+  const fromDaysAgo3 = moment()
+    .subtract(3, "days")
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .utc()
+    .format();
+  const fromDaysAgo7 = moment()
+    .subtract(7, "days")
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .utc()
+    .format();
+  const fromDaysAgo10 = moment()
+    .subtract(10, "days")
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .utc()
+    .format();
+  const fromDaysAgo14 = moment()
+    .subtract(14, "days")
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .utc()
+    .format();
+  const fromDaysAgo21 = moment()
+    .subtract(21, "days")
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .utc()
+    .format();
+  const fromDaysAgo30 = moment()
+    .subtract(30, "days")
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .utc()
+    .format();
+  const fromDaysAgo60 = moment()
+    .subtract(60, "days")
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .utc()
+    .format();
+  const fromMonthsAgo3 = moment()
+    .subtract(3, "months")
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .utc()
+    .format();
+  const fromMonthsAgo6 = moment()
+    .subtract(6, "months")
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .utc()
+    .format();
+  const fromMonthsAgo9 = moment()
+    .subtract(9, "months")
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .utc()
+    .format();
+  const fromYearsAgo1 = moment()
+    .subtract(1, "years")
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .utc()
+    .format();
+  let fromSpecificDateTime;
+  let toSpecificDateTime;
+  let fromDateTime;
+  let toDateTime;
+
+  if (fromSpecificDate.length && fromSpecificTime.length) {
+    fromSpecificDateTime = moment(`${fromSpecificDate} ${fromSpecificTime}`)
+      .utc()
+      .format();
+  }
+
+  if (toSpecificDate.length && toSpecificTime.length) {
+    toSpecificDateTime = moment(`${toSpecificDate} ${toSpecificTime}`)
+      .utc()
+      .format();
+  }
+
+  const fromPreset = document.querySelector("#fromPresets").value;
+  const toPreset = document.querySelector("#toPreset").value;
+
+  switch (fromPreset) {
+    case "thisMorning":
+      fromDateTime = fromThisMorning;
+      break;
+    case "yesterday":
+      fromDateTime = fromYesterday;
+      break;
+    case "beginningOfThisWeek":
+      fromDateTime = fromBeginningOfThisWeek;
+      break;
+    case "beginningOfThisMonth":
+      fromDateTime = fromBeginningOfThisMonth;
+      break;
+    case "beginningOfLastMonth":
+      fromDateTime = fromBeginningOfLastMonth;
+      break;
+    case "beginningOfThisYear":
+      fromDateTIme = fromBeginningOfThisYear;
+      break;
+    case "daysAgo3":
+      fromDateTime = fromDaysAgo3;
+      break;
+    case "daysAgo7":
+      fromDateTime = fromDaysAgo7;
+      break;
+    case "daysAgo10":
+      fromDateTime = fromDaysAgo10;
+      break;
+    case "daysAgo14":
+      fromDateTime = fromDaysAgo14;
+      break;
+    case "daysAgo21":
+      fromDateTime = fromDaysAgo21;
+      break;
+    case "daysAgo30":
+      fromDateTime = fromDaysAgo30;
+      break;
+    case "daysAgo60":
+      fromDateTime = fromDaysAgo60;
+      break;
+    case "monthsAgo3":
+      fromDateTime = fromMonthsAgo3;
+      break;
+    case "monthsAgo6":
+      fromDateTime = fromMonthsAgo6;
+      break;
+    case "monthsAgo9":
+      fromDateTime = fromMonthsAgo9;
+      break;
+    case "yearsAgo1":
+      fromDateTime = fromYearsAgo1;
+      break;
+    case "specificDateTime":
+      fromDateTime = fromSpecificDateTime;
+      break;
+  }
+
+  switch (toPreset) {
+    case "now":
+      toDateTime = moment().utc().format();
+      break;
+    case "specificDateTime":
+      toDateTime = toSpecificDateTime;
+      break;
+  }
+
+  if (!moment(fromDateTime).isValid()) {
+    showToast(
+      getPhrase("incompleteFromDateTime"),
+      5000,
+      "danger",
+      ".snackbar",
+      true
+    );
+    return;
+  }
+
+  if (!moment(toDateTime).isValid()) {
+    showToast(
+      getPhrase("incompleteToDateTime"),
+      5000,
+      "danger",
+      ".snackbar",
+      true
+    );
+    return;
+  }
+
+  const accessToken = await getAccessToken();
+  const endpoint = `${getApiHost()}/map-evangelism`;
+
+  globalShowPageSpinner();
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "post",
+    body: JSON.stringify({
+      fromDateTime: fromDateTime,
+      toDateTime: toDateTime,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then(async (data) => {
+      if (data.msgType === "error") {
+        throw new Error(data.msg);
+      }
+
+      await syncEvents();
+      await initMap(); // Financial cost is incurred here ($0.007 per load)
+      await prepareMap(data.searchResults);
+      globalHidePageSpinner();
+      $("#modal").modal();
+    })
+    .catch((error) => {
+      console.error(error);
+      globalHidePageSpinner();
+
+      switch (error) {
+        case "invalid value for fromDateTime":
+          showToast(
+            getPhrase("incompleteFromDateTime"),
+            5000,
+            "danger",
+            ".snackbar",
+            true
+          );
+          break;
+        case "invalid value for toDateTime":
+          showToast(
+            getPhrase("incompleteToDateTime"),
+            5000,
+            "danger",
+            ".snackbar",
+            true
+          );
+          break;
+      }
+    });
 }
 
 function addEventListeners() {
@@ -354,17 +638,16 @@ function addEventListeners() {
 
 async function init() {
   await populateContent();
-  populateChurchName();
 
   if (!navigator.onLine) {
     askToConnect();
     return;
   }
 
+  populateChurchName();
   addEventListeners();
   populateDefaultValues();
   await loadGoogleMapsLibs();
-  await initMap();
   globalHidePageSpinner();
 }
 
