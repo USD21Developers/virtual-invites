@@ -472,7 +472,7 @@ async function onSubmit(e) {
   }
 
   const fromPreset = document.querySelector("#fromPresets").value;
-  const toPreset = document.querySelector("#toPreset").value;
+  const toPreset = document.querySelector("#toPresets").value;
 
   switch (fromPreset) {
     case "thisMorning":
