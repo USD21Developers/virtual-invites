@@ -190,6 +190,21 @@
           "link": ""
         }
       ]
+    },
+    {
+      "key": "incompleteFromDateTime",
+      "original": "Incomplete 'From' date and time",
+      "translated": "Incomplete 'From' date and time"
+    },
+    {
+      "key": "incompleteToDateTime",
+      "original": "Incomplete 'To' date and time",
+      "translated": "Incomplete 'To' date and time"
+    },
+    {
+      "key": "hyphenBetweenDates",
+      "original": "-",
+      "translated": "-"
     }
   ],
 
