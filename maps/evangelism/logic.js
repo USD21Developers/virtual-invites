@@ -585,7 +585,6 @@ async function onSubmit(e) {
         throw new Error(data.msg);
       }
 
-      await syncEvents();
       await initMap(); // Financial cost is incurred here ($0.007 per load)
       await prepareMap(data.searchResults);
       globalHidePageSpinner();
