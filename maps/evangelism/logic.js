@@ -368,6 +368,7 @@ function onChangeToTime(e) {
 
 async function onSubmit(e) {
   e.preventDefault();
+  const noResultsEl = document.querySelector("#noResultsFound");
   const fromSpecificDate = document.querySelector("#fromDate").value;
   const fromSpecificTime = document.querySelector("#fromTime").value;
   const toSpecificDate = document.querySelector("#toDate").value;
@@ -562,6 +563,8 @@ async function onSubmit(e) {
     return;
   }
 
+  noResultsEl.classList.add("d-none");
+
   const accessToken = await getAccessToken();
   const endpoint = `${getApiHost()}/map-evangelism`;
 
@@ -583,6 +586,16 @@ async function onSubmit(e) {
     .then(async (data) => {
       if (data.msgType === "error") {
         throw new Error(data.msg);
+      }
+
+      const { othersInvites, userInvites } = data.searchResults;
+      const totalQuantity = userInvites.length + othersInvites.length;
+
+      if (totalQuantity === 0) {
+        noResultsEl.classList.remove("d-none");
+        globalHidePageSpinner();
+        customScrollTo("#noResultsFound");
+        return;
       }
 
       await initMap(); // Financial cost is incurred here ($0.007 per load)

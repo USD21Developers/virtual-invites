@@ -205,6 +205,16 @@
       "key": "hyphenBetweenDates",
       "original": "-",
       "translated": "-"
+    },
+    {
+      "key": "noResultsHeading",
+      "original": "No results found",
+      "translated": "No results found"
+    },
+    {
+      "key": "noResultsParagraph",
+      "original": "No invites were found that were tagged with a location and occurred within the specified date range.",
+      "translated": "No invites were found that were tagged with a location and occurred within the specified date range."
     }
   ],
 
