@@ -251,8 +251,8 @@ function prepareMap(searchResults) {
       othersInvites,
       userInvites,
       userEvents,
-      fromDateTimeUTC,
-      toDateTimeUTC,
+      dateTimeUTCFrom,
+      dateTimeUTCTo,
     } = searchResults;
     const totalQuantity = userInvites.length + othersInvites.length;
     const totalInvitesQuantityEl = document.querySelector(
@@ -289,11 +289,11 @@ function prepareMap(searchResults) {
     const fromDateTimeLocal = Intl.DateTimeFormat(locale, {
       dateStyle: "short",
       timeStyle: "short",
-    }).format(new Date(fromDateTimeUTC));
+    }).format(new Date(dateTimeUTCFrom));
     const toDateTimeLocal = Intl.DateTimeFormat(locale, {
       dateStyle: "short",
       timeStyle: "short",
-    }).format(new Date(toDateTimeUTC));
+    }).format(new Date(dateTimeUTCTo));
 
     modalDateTimeFromEl.innerHTML = fromDateTimeLocal;
     modalDateTimeToEl.innerHTML = toDateTimeLocal;
