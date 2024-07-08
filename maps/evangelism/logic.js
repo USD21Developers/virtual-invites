@@ -1,4 +1,8 @@
 let map;
+let heatmap;
+let heatmapData = [];
+defaultColorMyInvites = namedColorToHex("blue");
+defaultColorOthersInvites = namedColorToHex("red");
 
 function askToConnect() {
   const headlineEl = document.querySelector(
@@ -78,8 +82,42 @@ function getDefaultMapInfo() {
   });
 }
 
-async function initMap() {
+function HeatmapControl(controlDiv, map) {
+  // Set CSS for the control border
+  var controlUI = document.createElement("div");
+  controlUI.style.backgroundColor = "#fff";
+  controlUI.style.border = "2px solid #fff";
+  controlUI.style.borderRadius = "3px";
+  controlUI.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
+  controlUI.style.cursor = "pointer";
+  controlUI.style.marginTop = "8px";
+  controlUI.style.textAlign = "center";
+  controlUI.title = "Click to toggle heatmap";
+  controlDiv.appendChild(controlUI);
+
+  // Set CSS for the control interior
+  var controlText = document.createElement("div");
+  controlText.style.color = "rgb(25,25,25)";
+  controlText.style.fontFamily = "Roboto,Arial,sans-serif";
+  controlText.style.fontSize = "16px";
+  controlText.style.lineHeight = "38px";
+  controlText.style.paddingLeft = "5px";
+  controlText.style.paddingRight = "5px";
+  controlText.innerHTML = "Toggle Heatmap";
+  controlUI.appendChild(controlText);
+
+  // Setup the click event listeners
+  controlUI.addEventListener("click", function () {
+    heatmap.setMap(heatmap.getMap() ? null : map);
+  });
+}
+
+async function initMap(searchResults) {
+  const { othersInvites, userInvites } = searchResults;
   const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
+    "marker"
+  );
   const defaultMapInfo = await getDefaultMapInfo();
 
   if (!defaultMapInfo) return;
@@ -87,8 +125,38 @@ async function initMap() {
   const { latitude, longitude, zoom } = defaultMapInfo;
 
   map = new Map(document.getElementById("map"), {
-    center: { lat: latitude, lng: longitude },
     zoom: zoom,
+    center: { lat: latitude, lng: longitude },
+    mapId: "invitesMap1",
+  });
+
+  userInvites.forEach((invite) => {
+    const { lat, lng, recipientname } = invite;
+    const pin = new PinElement({
+      background: defaultColorMyInvites,
+      borderColor: "white",
+      glyphColor: "white",
+    });
+    const marker = new AdvancedMarkerElement({
+      map,
+      position: { lat: lat, lng: lng },
+      title: recipientname,
+      content: pin.element,
+    });
+  });
+
+  othersInvites.forEach((invite) => {
+    const { lat, lng } = invite;
+    const pin = new PinElement({
+      background: defaultColorOthersInvites,
+      borderColor: "white",
+      glyphColor: "white",
+    });
+    const marker = new AdvancedMarkerElement({
+      map,
+      position: { lat: lat, lng: lng },
+      content: pin.element,
+    });
   });
 }
 
@@ -141,6 +209,7 @@ async function loadGoogleMapsLibs() {
     v: "weekly",
     loading: "async",
     libraries: "maps",
+    mapIds: "invitesMap1",
     region: mapCountry,
     language: mapLanguage,
     // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
@@ -185,8 +254,8 @@ function populateDefaultValues() {
   const toDateStored = localStorage.getItem("mapEvangelismToDate");
   const toTimeStored = localStorage.getItem("mapEvangelismToTime");
 
-  colorMyInvites.value = namedColorToHex("blue");
-  colorOthersInvites.value = namedColorToHex("green");
+  colorMyInvites.value = defaultColorMyInvites;
+  colorOthersInvites.value = defaultColorOthersInvites;
 
   if (fromSelectionStored && fromSelectionStored.length) {
     fromPresetsEl.value = fromSelectionStored;
@@ -297,10 +366,6 @@ function prepareMap(searchResults) {
 
     modalDateTimeFromEl.innerHTML = fromDateTimeLocal;
     modalDateTimeToEl.innerHTML = toDateTimeLocal;
-
-    // TODO:  populate map markers with searchResults
-    // TODO:  make markers for user's invites show invite and event details
-    // TODO:  make markers for others' invites show only date and time
 
     resolve();
   });
@@ -598,7 +663,7 @@ async function onSubmit(e) {
         return;
       }
 
-      await initMap(); // Financial cost is incurred here ($0.007 per load)
+      await initMap(data.searchResults); // Financial cost is incurred here ($0.007 per load)
       await prepareMap(data.searchResults);
       globalHidePageSpinner();
       $("#modal").modal();
