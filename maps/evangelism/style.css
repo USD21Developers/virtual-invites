@@ -77,3 +77,26 @@ input[type="color"] {
 #checkboxOthersInvites {
   accent-color: blue;
 }
+
+div[role="dialog"] .gm-style-iw-ch {
+  padding-top: 0.5rem;
+  padding-bottom: 0;
+}
+
+div[role="dialog"] .gm-style-iw-ch h4 {
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0;
+  padding-right: 0.75rem;
+}
+
+div[role="dialog"] .gm-style-iw-d {
+  padding-bottom: 0.25rem;
+  padding-top: 0.25rem;
+}
+
+div[role="dialog"] .gm-style-iw-d a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: underline;
+}

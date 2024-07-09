@@ -2,6 +2,9 @@ let map;
 let churchDefaultLatitude;
 let churchDefaultLongitude;
 let churchDefaultZoom;
+let country;
+let language = getLang();
+let locale;
 const markersMyInvites = [];
 const markersOthersInvites = [];
 const defaultColorMyInvites = namedColorToHex("red");
@@ -86,7 +89,7 @@ function getDefaultMapInfo() {
 }
 
 async function initMap(searchResults) {
-  const { othersInvites, userInvites } = searchResults;
+  const { othersInvites, userInvites, userEvents } = searchResults;
   const { Map } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
     "marker"
@@ -111,7 +114,8 @@ async function initMap(searchResults) {
   const bounds = new google.maps.LatLngBounds();
 
   userInvites.forEach((invite) => {
-    const { lat, lng, recipientname } = invite;
+    const { lat, lng, recipientname, invitedAt, invitationid, eventid } =
+      invite;
     const pin = new PinElement({
       background: defaultColorMyInvites,
       borderColor: "white",
@@ -124,12 +128,45 @@ async function initMap(searchResults) {
       content: pin.element,
     });
 
+    const event = userEvents.find((item) => item.eventid === eventid);
+    const headerEl = document.createElement("h4");
+    headerEl.innerText = recipientname;
+
+    const dateTimeInvited = Intl.DateTimeFormat(locale, {
+      dateStyle: "short",
+      timeStyle: "short",
+    }).format(new Date(invitedAt));
+
+    const infowindow = new google.maps.InfoWindow({
+      headerContent: headerEl,
+      content: `
+        <p class="mt-0">
+          <strong>${getPhrase("mapBubbleInvited")}</strong> ${dateTimeInvited}
+        </p>
+
+        <p>
+          <strong>${getPhrase("mapBubbleEvent")}</strong> ${event.title}
+        </p>
+
+        <p class="mb-0">
+          <a href="/r/#/${invitationid}">${getPhrase("mapBubbleDetails")}</a>
+        </p>
+      `,
+    });
+
+    marker.addListener("click", () => {
+      infowindow.open({
+        anchor: marker,
+        map,
+      });
+    });
+
     markersMyInvites.push(marker);
     bounds.extend(marker.position);
   });
 
   othersInvites.forEach((invite) => {
-    const { lat, lng } = invite;
+    const { lat, lng, invitedAt } = invite;
     const pin = new PinElement({
       background: defaultColorOthersInvites,
       borderColor: "white",
@@ -139,6 +176,18 @@ async function initMap(searchResults) {
       map,
       position: { lat: lat, lng: lng },
       content: pin.element,
+    });
+
+    const infowindow = new google.maps.InfoWindow({
+      content: `<div><strong>${invitedAt}</div>`,
+      ariaLabel: invitedAt,
+    });
+
+    marker.addEventListener("click", () => {
+      infowindow.open({
+        anchor: marker,
+        map,
+      });
     });
 
     markersOthersInvites.push(marker);
@@ -348,8 +397,8 @@ function prepareMap(searchResults) {
       atob(localStorage.getItem("refreshToken").split(".")[1])
     ).churchid;
     const userChurch = churches.find((item) => item.id === userChurchId);
-    const country = userChurch.country;
-    const language = getLang();
+    country = userChurch.country;
+    language = getLang();
     const locale = `${language.toLowerCase()}-${country.toUpperCase()}`;
     const fromDateTimeLocal = Intl.DateTimeFormat(locale, {
       dateStyle: "short",
