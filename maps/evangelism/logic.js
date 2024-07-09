@@ -1,8 +1,11 @@
 let map;
-let heatmap;
-let heatmapData = [];
-defaultColorMyInvites = namedColorToHex("blue");
-defaultColorOthersInvites = namedColorToHex("red");
+let churchDefaultLatitude;
+let churchDefaultLongitude;
+let churchDefaultZoom;
+const markersMyInvites = [];
+const markersOthersInvites = [];
+const defaultColorMyInvites = namedColorToHex("blue");
+const defaultColorOthersInvites = namedColorToHex("red");
 
 function askToConnect() {
   const headlineEl = document.querySelector(
@@ -82,36 +85,6 @@ function getDefaultMapInfo() {
   });
 }
 
-function HeatmapControl(controlDiv, map) {
-  // Set CSS for the control border
-  var controlUI = document.createElement("div");
-  controlUI.style.backgroundColor = "#fff";
-  controlUI.style.border = "2px solid #fff";
-  controlUI.style.borderRadius = "3px";
-  controlUI.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
-  controlUI.style.cursor = "pointer";
-  controlUI.style.marginTop = "8px";
-  controlUI.style.textAlign = "center";
-  controlUI.title = "Click to toggle heatmap";
-  controlDiv.appendChild(controlUI);
-
-  // Set CSS for the control interior
-  var controlText = document.createElement("div");
-  controlText.style.color = "rgb(25,25,25)";
-  controlText.style.fontFamily = "Roboto,Arial,sans-serif";
-  controlText.style.fontSize = "16px";
-  controlText.style.lineHeight = "38px";
-  controlText.style.paddingLeft = "5px";
-  controlText.style.paddingRight = "5px";
-  controlText.innerHTML = "Toggle Heatmap";
-  controlUI.appendChild(controlText);
-
-  // Setup the click event listeners
-  controlUI.addEventListener("click", function () {
-    heatmap.setMap(heatmap.getMap() ? null : map);
-  });
-}
-
 async function initMap(searchResults) {
   const { othersInvites, userInvites } = searchResults;
   const { Map } = await google.maps.importLibrary("maps");
@@ -123,6 +96,10 @@ async function initMap(searchResults) {
   if (!defaultMapInfo) return;
 
   const { latitude, longitude, zoom } = defaultMapInfo;
+
+  churchDefaultLatitude = latitude;
+  churchDefaultLongitude = longitude;
+  churchDefaultZoom = zoom;
 
   map = new Map(document.getElementById("map"), {
     zoom: zoom,
@@ -139,12 +116,14 @@ async function initMap(searchResults) {
       borderColor: "white",
       glyphColor: "white",
     });
-    const marker = new AdvancedMarkerElement({
+    const marker = new google.maps.marker.AdvancedMarkerElement({
       map,
       position: { lat: lat, lng: lng },
       title: recipientname,
       content: pin.element,
     });
+
+    markersMyInvites.push(marker);
     bounds.extend(marker.position);
   });
 
@@ -155,15 +134,26 @@ async function initMap(searchResults) {
       borderColor: "white",
       glyphColor: "white",
     });
-    const marker = new AdvancedMarkerElement({
+    const marker = new google.maps.marker.AdvancedMarkerElement({
       map,
       position: { lat: lat, lng: lng },
       content: pin.element,
     });
+
+    markersOthersInvites.push(marker);
     bounds.extend(marker.position);
   });
 
-  map.fitBounds(bounds);
+  // Calculate the center of the bounds
+  const center = bounds.getCenter();
+
+  // Set the map center to the calculated center
+  map.setCenter(center);
+
+  // Optionally, you can add a listener to re-center the map on window resize to maintain the center
+  google.maps.event.addDomListener(window, "resize", () => {
+    map.setCenter(center);
+  });
 }
 
 async function loadGoogleMapsLibs() {
@@ -407,6 +397,18 @@ function toggleToPreset(e) {
   } else {
     toDateTimeContainerEl.classList.add("d-none");
   }
+}
+
+function toggleMyInvites(e) {
+  const isChecked = e.target.checked ? true : false;
+  markersMyInvites.forEach((marker) => (marker.map = isChecked ? map : null));
+}
+
+function toggleOthersInvites(e) {
+  const isChecked = e.target.checked ? true : false;
+  markersOthersInvites.forEach(
+    (marker) => (marker.map = isChecked ? map : null)
+  );
 }
 
 function onChangeFromDate(e) {
@@ -717,6 +719,12 @@ function addEventListeners() {
   document.querySelector("#toDate").addEventListener("change", onChangeToDate);
   document.querySelector("#toTime").addEventListener("change", onChangeToTime);
   document.querySelector("#mapForm").addEventListener("submit", onSubmit);
+  document
+    .querySelector("#checkboxMyInvites")
+    .addEventListener("click", toggleMyInvites);
+  document
+    .querySelector("#checkboxOthersInvites")
+    .addEventListener("click", toggleOthersInvites);
 }
 
 async function init() {
