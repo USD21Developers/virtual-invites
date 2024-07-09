@@ -105,6 +105,7 @@ async function initMap(searchResults) {
     zoom: zoom,
     center: { lat: latitude, lng: longitude },
     mapId: "invitesMap1",
+    mapTypeId: "terrain",
   });
 
   const bounds = new google.maps.LatLngBounds();
