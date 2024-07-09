@@ -141,11 +141,13 @@ async function initMap(searchResults) {
       headerContent: headerEl,
       content: `
         <p class="mt-0">
-          <strong>${getPhrase("mapBubbleInvited")}</strong> ${dateTimeInvited}
+          <strong>${getPhrase("mapBubbleInvited")}</strong><br>
+          ${dateTimeInvited}
         </p>
 
         <p>
-          <strong>${getPhrase("mapBubbleEvent")}</strong> ${event.title}
+          <strong>${getPhrase("mapBubbleEvent")}</strong><br>
+          ${event.title}
         </p>
 
         <p class="mb-0">
