@@ -107,7 +107,7 @@ async function initMap(searchResults) {
     mapId: "invitesMap1",
   });
 
-  var bounds = new google.maps.LatLngBounds();
+  const bounds = new google.maps.LatLngBounds();
 
   userInvites.forEach((invite) => {
     const { lat, lng, recipientname } = invite;
