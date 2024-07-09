@@ -151,7 +151,9 @@ async function initMap(searchResults) {
         </p>
 
         <p class="mb-0">
-          <a href="/r/#/${invitationid}">${getPhrase("mapBubbleDetails")}</a>
+          <strong><a href="/r/#/${invitationid}">${getPhrase(
+        "mapBubbleDetails"
+      )}</a></strong>
         </p>
       `,
     });
@@ -779,6 +781,8 @@ function addEventListeners() {
 }
 
 async function init() {
+  syncEvents();
+
   await populateContent();
 
   if (!navigator.onLine) {
