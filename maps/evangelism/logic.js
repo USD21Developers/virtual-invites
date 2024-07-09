@@ -323,6 +323,10 @@ function prepareMap(searchResults) {
     const totalInvitesQuantityEl = document.querySelector(
       "#totalInvitesQuantity"
     );
+    const checkboxMyInvitesEl = document.querySelector("#checkboxMyInvites");
+    const checkboxOthersInvitesEl = document.querySelector(
+      "#checkboxOthersInvites"
+    );
     const checkboxMyInvitesLabelEl = document.querySelector(
       "label[for='checkboxMyInvites']"
     );
@@ -362,6 +366,15 @@ function prepareMap(searchResults) {
 
     modalDateTimeFromEl.innerHTML = fromDateTimeLocal;
     modalDateTimeToEl.innerHTML = toDateTimeLocal;
+
+    checkboxMyInvitesEl.style.setProperty(
+      "accent-color",
+      defaultColorMyInvites
+    );
+    checkboxOthersInvitesEl.style.setProperty(
+      "accent-color",
+      defaultColorOthersInvites
+    );
 
     resolve();
   });
