@@ -130,6 +130,8 @@ async function initMap(searchResults) {
     mapId: "invitesMap1",
   });
 
+  var bounds = new google.maps.LatLngBounds();
+
   userInvites.forEach((invite) => {
     const { lat, lng, recipientname } = invite;
     const pin = new PinElement({
@@ -143,6 +145,7 @@ async function initMap(searchResults) {
       title: recipientname,
       content: pin.element,
     });
+    bounds.extend(marker.position);
   });
 
   othersInvites.forEach((invite) => {
@@ -157,7 +160,10 @@ async function initMap(searchResults) {
       position: { lat: lat, lng: lng },
       content: pin.element,
     });
+    bounds.extend(marker.position);
   });
+
+  map.fitBounds(bounds);
 }
 
 async function loadGoogleMapsLibs() {
