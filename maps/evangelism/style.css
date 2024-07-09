@@ -69,3 +69,11 @@ input[type="color"] {
 #modalChurchName {
   font-size: small;
 }
+
+#checkboxMyInvites {
+  accent-color: red;
+}
+
+#checkboxOthersInvites {
+  accent-color: blue;
+}

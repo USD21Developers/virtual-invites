@@ -4,8 +4,8 @@ let churchDefaultLongitude;
 let churchDefaultZoom;
 const markersMyInvites = [];
 const markersOthersInvites = [];
-const defaultColorMyInvites = namedColorToHex("blue");
-const defaultColorOthersInvites = namedColorToHex("red");
+const defaultColorMyInvites = namedColorToHex("red");
+const defaultColorOthersInvites = namedColorToHex("blue");
 
 function askToConnect() {
   const headlineEl = document.querySelector(
@@ -243,15 +243,10 @@ function populateDefaultValues() {
   const fromTimeEl = document.querySelector("#fromTime");
   const toDateEl = document.querySelector("#toDate");
   const toTimeEl = document.querySelector("#toTime");
-  const colorMyInvites = document.querySelector("#colorMyInvites");
-  const colorOthersInvites = document.querySelector("#colorOthersInvites");
   const fromDateStored = localStorage.getItem("mapEvangelismFromDate");
   const fromTimeStored = localStorage.getItem("mapEvangelismFromTime");
   const toDateStored = localStorage.getItem("mapEvangelismToDate");
   const toTimeStored = localStorage.getItem("mapEvangelismToTime");
-
-  colorMyInvites.value = defaultColorMyInvites;
-  colorOthersInvites.value = defaultColorOthersInvites;
 
   if (fromSelectionStored && fromSelectionStored.length) {
     fromPresetsEl.value = fromSelectionStored;
@@ -366,15 +361,6 @@ function prepareMap(searchResults) {
 
     modalDateTimeFromEl.innerHTML = fromDateTimeLocal;
     modalDateTimeToEl.innerHTML = toDateTimeLocal;
-
-    checkboxMyInvitesEl.style.setProperty(
-      "accent-color",
-      defaultColorMyInvites
-    );
-    checkboxOthersInvitesEl.style.setProperty(
-      "accent-color",
-      defaultColorOthersInvites
-    );
 
     resolve();
   });
@@ -578,7 +564,7 @@ async function onSubmit(e) {
       fromDateTime = fromBeginningOfLastMonth;
       break;
     case "beginningOfThisYear":
-      fromDateTIme = fromBeginningOfThisYear;
+      fromDateTime = fromBeginningOfThisYear;
       break;
     case "daysAgo3":
       fromDateTime = fromDaysAgo3;
