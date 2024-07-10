@@ -1717,7 +1717,7 @@ function initGlobal() {
           });
         });
 
-        navigator.virtualKeyboard.addEventListener(
+        /*  navigator.virtualKeyboard.addEventListener(
           "geometrychange",
           (event) => {
             if (navigator.virtualKeyboard.boundingRect.height > 0) {
@@ -1726,7 +1726,7 @@ function initGlobal() {
               navButtons.classList.remove("hidden");
             }
           }
-        );
+        ); */
       }
     }
   });
