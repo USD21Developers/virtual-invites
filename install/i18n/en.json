@@ -1,0 +1,67 @@
+{
+  "metadata": {
+    "description": "Install",
+    "path": "/install/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Select your System",
+      "translated": "Select your System"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbInstall",
+      "original": "Install",
+      "translated": "Install"
+    },
+    {
+      "key": "explanationParagraph",
+      "original": "Installation instructions vary depending on your browser and operating system. Select the option below that applies to you.",
+      "translated": "Installation instructions vary depending on your browser and operating system. Select the option below that applies to you."
+    },
+    {
+      "key": "chromeOnAndroid",
+      "original": "Android",
+      "translated": "Android"
+    },
+    {
+      "key": "safariOnIOS",
+      "original": "Apple",
+      "translated": "Apple"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

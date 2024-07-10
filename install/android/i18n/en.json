@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "description": "How to Install (Android)",
+    "path": "/install/ios/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "How to Install",
+      "translated": "How to Install"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbInstall",
+      "original": "Install",
+      "translated": "Install"
+    },
+    {
+      "key": "breadcrumbInstallAndroid",
+      "original": "Android",
+      "translated": "Android"
+    },
+    {
+      "key": "comingSoon",
+      "original": "Coming soon!",
+      "translated": "Coming soon!"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

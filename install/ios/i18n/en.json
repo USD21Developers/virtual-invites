@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "description": "How to Install",
-    "path": "/install/",
+    "description": "How to Install (iOS)",
+    "path": "/install/ios/",
     "lang": {
       "original": "en",
       "translated": "en"
@@ -22,6 +22,11 @@
       "key": "breadcrumbInstall",
       "original": "Install",
       "translated": "Install"
+    },
+    {
+      "key": "breadcrumbInstallIOS",
+      "original": "Apple",
+      "translated": "Apple"
     },
     {
       "key": "step1",
