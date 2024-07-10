@@ -1711,6 +1711,10 @@ function initGlobal() {
             }, 300);
           });
 
+          input.addEventListener("input", () => {
+            navigator.virtualKeyboard.overlaysContent = false;
+          });
+
           input.addEventListener("blur", () => {
             navigator.virtualKeyboard.overlaysContent = false;
           });
