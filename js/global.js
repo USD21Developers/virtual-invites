@@ -1697,12 +1697,20 @@ function initGlobal() {
   showMaterialIcons();
   refreshFloatingLabelsListener();
   configureLocalForage();
-  /* const ptr = PullToRefresh.init({
-    mainElement: "body",
-    onRefresh() {
-      window.location.reload();
-    },
-  }); */
+
+  document.addEventListener("DOMContentLoaded", (event) => {
+    const navButtons = document.getElementById("navButtons");
+
+    if ("virtualKeyboard" in navigator) {
+      navigator.virtualKeyboard.addEventListener("geometrychange", (event) => {
+        if (navigator.virtualKeyboard.boundingRect.height > 0) {
+          navButtons.classList.add("hidden");
+        } else {
+          navButtons.classList.remove("hidden");
+        }
+      });
+    }
+  });
 }
 
 initGlobal();

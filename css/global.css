@@ -420,3 +420,8 @@ strong {
   height: unset;
   line-height: unset;
 }
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
