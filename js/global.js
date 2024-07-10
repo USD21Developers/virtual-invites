@@ -1702,19 +1702,20 @@ function initGlobal() {
     if ("virtualKeyboard" in navigator) {
       if (screen.width < 640) {
         const navButtons = document.getElementById("navButtons");
+        const inputs = document.querySelectorAll(".hideKeyboardWhileFocused");
 
-        document
-          .querySelector(".hideKeyboardWhileFocused")
-          .addEventListener("focus", (event) => {
-            navigator.virtualKeyboard.overlaysContent = true;
-            document.querySelector(event.target).scrollIntoView();
+        inputs.forEach((input) => {
+          input.addEventListener("focus", () => {
+            setTimeout(() => {
+              navigator.virtualKeyboard.overlaysContent = true;
+              input.scrollIntoView({ behavior: "smooth", block: "center" });
+            }, 300);
           });
 
-        document
-          .querySelector(".hideKeyboardWhileFocused")
-          .addEventListener("blur", (event) => {
+          input.addEventListener("blur", () => {
             navigator.virtualKeyboard.overlaysContent = false;
           });
+        });
 
         navigator.virtualKeyboard.addEventListener(
           "geometrychange",
