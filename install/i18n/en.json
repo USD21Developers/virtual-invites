@@ -19,6 +19,11 @@
       "translated": "Home"
     },
     {
+      "key": "breadcrumbRegister",
+      "original": "Register",
+      "translated": "Register"
+    },
+    {
       "key": "breadcrumbInstall",
       "original": "Install",
       "translated": "Install"
