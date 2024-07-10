@@ -1699,9 +1699,11 @@ function initGlobal() {
   configureLocalForage();
 
   document.addEventListener("DOMContentLoaded", (event) => {
-    const navButtons = document.getElementById("navButtons");
-
     if ("virtualKeyboard" in navigator) {
+      const navButtons = document.getElementById("navButtons");
+
+      navigator.virtualKeyboard.overlaysContent = true;
+
       navigator.virtualKeyboard.addEventListener("geometrychange", (event) => {
         if (navigator.virtualKeyboard.boundingRect.height > 0) {
           navButtons.classList.add("hidden");
