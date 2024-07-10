@@ -1700,17 +1700,33 @@ function initGlobal() {
 
   document.addEventListener("DOMContentLoaded", (event) => {
     if ("virtualKeyboard" in navigator) {
-      const navButtons = document.getElementById("navButtons");
+      if (screen.width < 640) {
+        const navButtons = document.getElementById("navButtons");
 
-      navigator.virtualKeyboard.overlaysContent = true;
+        document
+          .querySelector(".hideKeyboardWhileFocused")
+          .addEventListener("focus", (event) => {
+            navigator.virtualKeyboard.overlaysContent = true;
+            document.querySelector(event.target).scrollIntoView();
+          });
 
-      navigator.virtualKeyboard.addEventListener("geometrychange", (event) => {
-        if (navigator.virtualKeyboard.boundingRect.height > 0) {
-          navButtons.classList.add("hidden");
-        } else {
-          navButtons.classList.remove("hidden");
-        }
-      });
+        document
+          .querySelector(".hideKeyboardWhileFocused")
+          .addEventListener("blur", (event) => {
+            navigator.virtualKeyboard.overlaysContent = false;
+          });
+
+        navigator.virtualKeyboard.addEventListener(
+          "geometrychange",
+          (event) => {
+            if (navigator.virtualKeyboard.boundingRect.height > 0) {
+              navButtons.classList.add("hidden");
+            } else {
+              navButtons.classList.remove("hidden");
+            }
+          }
+        );
+      }
     }
   });
 }
