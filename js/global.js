@@ -1701,7 +1701,6 @@ function initGlobal() {
   document.addEventListener("DOMContentLoaded", (event) => {
     if ("virtualKeyboard" in navigator) {
       if (screen.width < 640) {
-        const navButtons = document.getElementById("navButtons");
         const inputs = document.querySelectorAll(".hideKeyboardWhileFocused");
 
         inputs.forEach((input) => {
@@ -1716,17 +1715,6 @@ function initGlobal() {
             navigator.virtualKeyboard.overlaysContent = false;
           });
         });
-
-        /*  navigator.virtualKeyboard.addEventListener(
-          "geometrychange",
-          (event) => {
-            if (navigator.virtualKeyboard.boundingRect.height > 0) {
-              navButtons.classList.add("hidden");
-            } else {
-              navButtons.classList.remove("hidden");
-            }
-          }
-        ); */
       }
     }
   });
