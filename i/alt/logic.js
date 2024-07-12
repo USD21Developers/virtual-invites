@@ -5,7 +5,11 @@ function getInviteInfo() {
     let eventid;
     let userid;
     let recipientid;
-    const endpoint = `${getApiHost()}/alt-events-invite`;
+    let endpoint = `${getApiHost()}/alt-events-invite`;
+
+    if (window.location.hostname !== "localhost") {
+      endpoint = "alt-events-invite-proxy.php";
+    }
 
     try {
       const urlParts = window.location.hash.split("#")[1].split("/");
@@ -49,7 +53,11 @@ function getLanguagesOfEvents() {
     let eventid;
     let userid;
     let recipientid;
-    const endpoint = `${getApiHost()}/languages-of-events`;
+    let endpoint = `${getApiHost()}/languages-of-events`;
+
+    if (window.location.hostname !== "localhost") {
+      endpoint = "languages-of-events-proxy.php";
+    }
 
     try {
       const urlParts = window.location.hash.split("#")[1].split("/");
@@ -491,13 +499,17 @@ function setDefaultDistanceUnit() {
 function showMap() {
   return new Promise((resolve, reject) => {
     const mapContainerEl = document.querySelector("#mapContainer");
-    const endpoint = `${getApiHost()}/map-static`;
+    let endpoint = `${getApiHost()}/map-static`;
     const place = document.querySelector("#originLocation").value;
     const label = getPhrase("mapLabelOrigin");
     const searchResultsEl = document.querySelector("#searchResults");
     const searchResultsSpinnerEl = document.querySelector(
       "#searchResultsSpinner"
     );
+
+    if (window.location.hostname !== "localhost") {
+      endpoint = "map-static-proxy.php";
+    }
 
     mapContainerEl.classList.remove("d-none");
     searchResultsEl.classList.add("d-none");
@@ -552,7 +564,11 @@ function toggleBottomNav() {
 
 function updateCountryToMatchCoordinates(latitude, longitude) {
   return new Promise((resolve, reject) => {
-    const endpoint = `${getApiServicesHost()}/country-of-coordinates`;
+    let endpoint = `${getApiServicesHost()}/country-of-coordinates`;
+
+    if (window.location.hostname !== "localhost") {
+      endpoint = "country-of-coordinates-proxy.php";
+    }
 
     fetch(endpoint, {
       mode: "cors",
@@ -760,7 +776,11 @@ function onSearch(e) {
 
   const dateFromUTC = moment(dateFrom).utc().format();
   const dateToUTC = moment(`${dateTo}T23:59:59`).utc().format();
-  const endpoint = `${getApiHost()}/alt-events-search`;
+  let endpoint = `${getApiHost()}/alt-events-search`;
+
+  if (window.location.hostname !== "localhost") {
+    endpoint = "alt-events-search-proxy.php";
+  }
 
   hide("#searchResults");
   show("#searchResultsSpinner");
