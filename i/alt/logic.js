@@ -449,7 +449,11 @@ function setDefaultDistanceUnit() {
       return resolve("miles");
     }
 
-    fetch(endpoint)
+    fetch(endpoint, {
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data && data.msgType) {
