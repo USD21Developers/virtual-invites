@@ -1,6 +1,6 @@
 <?php
 
-$target_url = 'https://api.usd21.org/invites/country-of-coordinates';
+$target_url = 'https://api.usd21.org/services/country-of-coordinates';
 
 $ch = curl_init();
 
