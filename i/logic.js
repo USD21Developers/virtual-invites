@@ -557,9 +557,12 @@ async function getInvite() {
     let recipientid = inviteParts[3] || null;
     const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
     const timezone = userDateTimePrefs.timeZone || "";
-    const emailHtml = await fetch("./sender-notification-email.html?v=1").then(
-      (res) => res.text()
-    );
+    const emailHtml = await fetch("./sender-notification-email.html?v=1")
+      .then((res) => res.text())
+      .then((html) => {
+        const base64Html = atob(html);
+        return base64Html;
+      });
     const emailPhrases = {
       "email-subject-viewed-invite": getPhrase("email-subject-viewed-invite"),
       "email-recipient-viewed-your-invite": getPhrase(
