@@ -624,6 +624,7 @@ async function getInvite() {
     showSpinner();
 
     fetch(endpoint, {
+      mode: "cors",
       method: "POST",
       body: JSON.stringify({
         eventid: eventid,
