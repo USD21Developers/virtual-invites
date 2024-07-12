@@ -1,6 +1,6 @@
 RewriteEngine On
 
-# RewriteRule ^\d+/\d+/[^/]+$ /i/#/$0 [NE,R=302,L]
+RewriteRule ^\d+/\d+/[^/]+$ /i/#/$0 [NE,R=302,L]
 
 # RewriteRule ^proxy/(.\*)$ https://api.usd21.org/$1 [P]
 
