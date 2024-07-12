@@ -587,7 +587,11 @@ async function getInvite() {
 
     if (!eventid) return reject();
 
-    const endpoint = `${getApiHost()}/invite`;
+    let endpoint = `${getApiHost()}/invite`;
+
+    if (window.location.hostname !== "localhost") {
+      endpoint = "invite-proxy.php";
+    }
 
     const refreshToken = localStorage.getItem("refreshToken");
     let isUser = false;
@@ -617,7 +621,6 @@ async function getInvite() {
     showSpinner();
 
     fetch(endpoint, {
-      mode: "cors",
       method: "POST",
       body: JSON.stringify({
         eventid: eventid,
