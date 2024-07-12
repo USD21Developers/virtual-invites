@@ -560,7 +560,7 @@ async function getInvite() {
     const emailHtml = await fetch("./sender-notification-email.html?v=1")
       .then((res) => res.text())
       .then((html) => {
-        const base64Html = atob(html);
+        const base64Html = btoa(html);
         return base64Html;
       });
     const emailPhrases = {
