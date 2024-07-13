@@ -1209,50 +1209,20 @@ async function populateContent(customEndpoint, variable = "pageContent") {
           }
           contentitems.push({ key: key, content: content });
         });
-
-        /* let queryPrefix = document;
-        if (variable === "previewContent") {
-          queryPrefix = document.querySelector("#previewModal");
-        } */
-
-        if (variable === "previewContent") {
-          const container = document.querySelector("#previewModal");
-          container.querySelectorAll("[data-i18n]").forEach((item) => {
-            const key = item.getAttribute("data-i18n");
-            const matchedcontent = contentitems.find(
-              (contentitem) => contentitem.key == key
-            )?.content;
-            if (matchedcontent) item.innerHTML = matchedcontent;
-          });
-          container
-            .querySelectorAll("[data-i18n-placeholder]")
-            .forEach((item) => {
-              const key = item.getAttribute("data-i18n-placeholder");
-              const matchedcontent = contentitems.find(
-                (contentitem) => contentitem.key == key
-              )?.content;
-              if (matchedcontent)
-                item.setAttribute("placeholder", matchedcontent);
-            });
-        } else {
-          document.querySelectorAll("[data-i18n]").forEach((item) => {
-            const key = item.getAttribute("data-i18n");
-            const matchedcontent = contentitems.find(
-              (contentitem) => contentitem.key == key
-            )?.content;
-            if (matchedcontent) item.innerHTML = matchedcontent;
-          });
-          document
-            .querySelectorAll("[data-i18n-placeholder]")
-            .forEach((item) => {
-              const key = item.getAttribute("data-i18n-placeholder");
-              const matchedcontent = contentitems.find(
-                (contentitem) => contentitem.key == key
-              )?.content;
-              if (matchedcontent)
-                item.setAttribute("placeholder", matchedcontent);
-            });
-        }
+        document.querySelectorAll("[data-i18n]").forEach((item) => {
+          const key = item.getAttribute("data-i18n");
+          const matchedcontent = contentitems.find(
+            (contentitem) => contentitem.key == key
+          )?.content;
+          if (matchedcontent) item.innerHTML = matchedcontent;
+        });
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((item) => {
+          const key = item.getAttribute("data-i18n-placeholder");
+          const matchedcontent = contentitems.find(
+            (contentitem) => contentitem.key == key
+          )?.content;
+          if (matchedcontent) item.setAttribute("placeholder", matchedcontent);
+        });
         await populateGlobalContent();
         refreshFloatingLabels();
         return resolve();
