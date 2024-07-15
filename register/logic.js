@@ -587,6 +587,8 @@ async function onSubmit(e) {
 }
 
 function attachListeners() {
+  const installButton = document.querySelector("#installButton");
+  const installButtonPWA = document.querySelector("#installButtonPWA");
   document
     .querySelector("#country")
     .addEventListener("change", onCountryChange);
@@ -594,12 +596,12 @@ function attachListeners() {
     .querySelector("#churchid")
     .addEventListener("change", onChurchChange);
   document.querySelector("#formlogin").addEventListener("submit", onSubmit);
-  document
-    .querySelector("#installButton")
-    .addEventListener("click", onInstallClick);
+  installButtonPWA.addEventListener("click", onInstallClick);
   window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     installPromptEvent = e;
+    installButton.classList.add("d-none");
+    installButtonPWA.remove("d-none");
   });
   window.addEventListener("appinstalled", onAppInstalled);
 }
