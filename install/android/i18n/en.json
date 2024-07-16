@@ -98,8 +98,8 @@
     },
     {
       "key": "step4instructions",
-      "original": "If prompted, select the Install option.",
-      "translated": "If prompted, select the Install option.",
+      "original": "If prompted, select the Install option (do not select 'Create shortcut').",
+      "translated": "If prompted, select the Install option (do not select 'Create shortcut').",
       "changes": [
         {
           "original": "Install",
