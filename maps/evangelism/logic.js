@@ -11,7 +11,6 @@ const markersClustered = [];
 const colorMyInvites = namedColorToHex("red");
 const colorOthersInvites = namedColorToHex("blue");
 const colorClusteredInvites = namedColorToHex("green");
-const markerCluster = new markerClusterer.MarkerClusterer({ markers, map });
 
 function askToConnect() {
   const headlineEl = document.querySelector(
