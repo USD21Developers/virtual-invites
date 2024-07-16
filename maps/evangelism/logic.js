@@ -7,10 +7,8 @@ let language = getLang();
 let locale;
 const markersMyInvites = [];
 const markersOthersInvites = [];
-const markersClustered = [];
-const colorMyInvites = namedColorToHex("red");
-const colorOthersInvites = namedColorToHex("blue");
-const colorClusteredInvites = namedColorToHex("green");
+const defaultColorMyInvites = namedColorToHex("red");
+const defaultColorOthersInvites = namedColorToHex("blue");
 
 function askToConnect() {
   const headlineEl = document.querySelector(
@@ -119,22 +117,11 @@ async function initMap(searchResults) {
     const { lat, lng, recipientname, invitedAt, invitationid, eventid } =
       invite;
     const pin = new PinElement({
-      background: colorMyInvites,
-      borderColor: "white",
-      glyphColor: "white",
-    });
-    const clusterPin = new PinElement({
-      background: colorClusteredInvites,
+      background: defaultColorMyInvites,
       borderColor: "white",
       glyphColor: "white",
     });
     const marker = new google.maps.marker.AdvancedMarkerElement({
-      map,
-      position: { lat: lat, lng: lng },
-      title: recipientname,
-      content: pin.element,
-    });
-    const clusteredMarker = new google.maps.marker.AdvancedMarkerElement({
       map,
       position: { lat: lat, lng: lng },
       title: recipientname,
@@ -179,31 +166,19 @@ async function initMap(searchResults) {
     });
 
     markersMyInvites.push(marker);
-    markersClustered.push(clusteredMarker);
     bounds.extend(marker.position);
   });
 
   othersInvites.forEach((invite) => {
     const { lat, lng, invitedAt } = invite;
     const pin = new PinElement({
-      background: colorOthersInvites,
-      borderColor: "white",
-      glyphColor: "white",
-    });
-    const clusterPin = new PinElement({
-      background: colorClusteredInvites,
+      background: defaultColorOthersInvites,
       borderColor: "white",
       glyphColor: "white",
     });
     const marker = new google.maps.marker.AdvancedMarkerElement({
       map,
       position: { lat: lat, lng: lng },
-      content: pin.element,
-    });
-    const clusteredMarker = new google.maps.marker.AdvancedMarkerElement({
-      map,
-      position: { lat: lat, lng: lng },
-      title: recipientname,
       content: pin.element,
     });
 
@@ -220,7 +195,6 @@ async function initMap(searchResults) {
     });
 
     markersOthersInvites.push(marker);
-    markersClustered.push(clusteredMarker);
     bounds.extend(marker.position);
   });
 
@@ -229,11 +203,6 @@ async function initMap(searchResults) {
 
   // Set the map center to the calculated center
   map.setCenter(center);
-
-  const markerCluster = new markerClusterer.MarkerClusterer({
-    markersClustered,
-    map,
-  });
 
   // Optionally, you can add a listener to re-center the map on window resize to maintain the center
   google.maps.event.addDomListener(window, "resize", () => {
