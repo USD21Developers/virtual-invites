@@ -126,6 +126,8 @@ async function initMap(searchResults) {
       position: { lat: lat, lng: lng },
       title: recipientname,
       content: pin.element,
+      collisionBehavior:
+        google.maps.CollisionBehavior.REQUIRED_AND_HIDES_OPTIONAL,
     });
 
     const event = userEvents.find((item) => item.eventid === eventid);
@@ -180,6 +182,8 @@ async function initMap(searchResults) {
       map,
       position: { lat: lat, lng: lng },
       content: pin.element,
+      collisionBehavior:
+        google.maps.CollisionBehavior.REQUIRED_AND_HIDES_OPTIONAL,
     });
 
     const infowindow = new google.maps.InfoWindow({
