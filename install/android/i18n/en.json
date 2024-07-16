@@ -29,9 +29,130 @@
       "translated": "Android"
     },
     {
-      "key": "comingSoon",
-      "original": "Coming soon!",
-      "translated": "Coming soon!"
+      "key": "step1",
+      "original": "Step 1:",
+      "translated": "Step 1:"
+    },
+    {
+      "key": "step1instructions",
+      "original": "Use the Google Chrome browser for best results.",
+      "translated": "Use the Google Chrome browser for best results.",
+      "changes": [
+        {
+          "original": "Google Chrome",
+          "translated": "Google Chrome",
+          "bold": false,
+          "italic": false,
+          "underline": true,
+          "link": "https://www.google.com/chrome/dr/download/"
+        }
+      ]
+    },
+    {
+      "key": "step2",
+      "original": "Step 2:",
+      "translated": "Step 2:"
+    },
+    {
+      "key": "step2instructions",
+      "original": "In the top right corner, click on the vertical 3 dots.",
+      "translated": "In the top right corner, click on the vertical 3 dots."
+    },
+    {
+      "key": "step3",
+      "original": "Step 3:",
+      "translated": "Step 3:"
+    },
+    {
+      "key": "step3instructions",
+      "original": "A menu will appear.  Click on Add to Home screen, then follow the prompts.",
+      "translated": "A menu will appear.  Click on Add to Home screen, then follow the prompts.",
+      "changes": [
+        {
+          "original": "Add to Home screen",
+          "translated": "Add to Home screen",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "step3append",
+      "original": "Note: Subsequent steps may vary, depending on your browser version.",
+      "translated": "Note: Subsequent steps may vary, depending on your browser version..",
+      "changes": [
+        {
+          "original": "Note:",
+          "translated": "Note:",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "step4",
+      "original": "Step 4:",
+      "translated": "Step 4:"
+    },
+    {
+      "key": "step4instructions",
+      "original": "If prompted, select the Install option.",
+      "translated": "If prompted, select the Install option.",
+      "changes": [
+        {
+          "original": "Install",
+          "translated": "Install",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "step5",
+      "original": "Step 5:",
+      "translated": "Step 5:"
+    },
+    {
+      "key": "step5instructions",
+      "original": "The Invites App will now appear on your device, alongside other installed apps.",
+      "translated": "The Invites App will now appear on your device, alongside other installed apps."
+    },
+    {
+      "key": "step6",
+      "original": "Step 6:",
+      "translated": "Step 6:"
+    },
+    {
+      "key": "step6instructions",
+      "original": "You you prefer, you can now drag the icon for the Invites App onto your Home screen.",
+      "translated": "You you prefer, you can now drag the icon for the Invites App onto your Home screen."
+    },
+    {
+      "key": "finalStep",
+      "original": "Final step:",
+      "translated": "Final step:"
+    },
+    {
+      "key": "step7instructions",
+      "original": "Go to your device's home screen and find the icon for the Invites App.",
+      "translated": "Go to your device's home screen and find the icon for the Invites App."
+    },
+    {
+      "key": "step7final",
+      "original": "You're done! From now on, just open the Invites app from your device's home screen.",
+      "translated": "You're done! From now on, just open the Invites app from your device's home screen.",
+      "changes": [
+        {
+          "original": "You're done!",
+          "translated": "You're done!",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
     }
   ],
 
