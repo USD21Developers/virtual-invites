@@ -30,8 +30,8 @@
     },
     {
       "key": "ifAlreadyInstalled",
-      "original": "Note: If you have already followed the steps below, then your installation is complete. Just open the app from your Home screen, and you will no longer see this page.",
-      "translated": "Note: If you have already followed the steps below, then your installation is complete. Just open the app from your Home screen, and you will no longer see this page.",
+      "original": "Note: If you have already followed the steps below, then your installation is complete. Just open the app from your Home screen, and you will no longer see these installation instructions.",
+      "translated": "Note: If you have already followed the steps below, then your installation is complete. Just open the app from your Home screen, and you will no longer see these installation instructions.",
       "changes": [
         {
           "original": "Note:",
