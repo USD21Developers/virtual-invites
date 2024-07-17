@@ -964,7 +964,8 @@ function populateEventDescription() {
   const eventDescriptionEl = document.querySelector("#eventDescription");
   const { descriptionHeading: descriptionHeadline, description } =
     inviteObject.event;
-  const text = breakify(description);
+  let text = linkify(description);
+  text = breakify(description);
 
   descriptionHeadlineEl.innerHTML = descriptionHeadline;
   eventDescriptionEl.innerHTML = text;
