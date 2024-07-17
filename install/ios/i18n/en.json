@@ -29,6 +29,20 @@
       "translated": "Apple"
     },
     {
+      "key": "ifAlreadyInstalled",
+      "original": "Note: If you have already followed the steps below, then your installation is complete. Just open the app from your Home screen and you will no longer see this page.",
+      "translated": "Note: If you have already followed the steps below, then your installation is complete. Just open the app from your Home screen and you will no longer see this page.",
+      "changes": [
+        {
+          "original": "Note:",
+          "translated": "Note:",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
       "key": "step1",
       "original": "Step 1:",
       "translated": "Step 1:"
