@@ -365,3 +365,8 @@ a:hover {
     margin-bottom: 15px;
   }
 }
+
+#eventDescription a {
+  color: #333333;
+  text-decoration: underline;
+}
