@@ -99,8 +99,8 @@
     },
     {
       "key": "labelHighestLeadershipRole",
-      "original": "Highest leadership role:",
-      "translated": "Highest leadership role:"
+      "original": "User's highest leadership role (currently):",
+      "translated": "User's highest leadership role (currently):"
     },
     {
       "key": "houseChurchLeaderOrHigher",
