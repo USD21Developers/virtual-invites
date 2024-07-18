@@ -8,14 +8,19 @@
       name="viewport"
     />
     <title data-i18n="pagetitle"></title>
-    <link rel="stylesheet" href="../css/daemonite-material.css" />
-    <link href="../css/global.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/daemonite-material.css" />
+    <link
+      href="/js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
+      rel="stylesheet"
+    />
+    <link href="/css/global.css" rel="stylesheet" />
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#3d316b" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <meta name="apple-mobile-web-app-title" content="Invites" />
     <meta name="application-name" content="Invites" />
     <meta name="msapplication-TileColor" content="#6551b4" />
@@ -27,9 +32,7 @@
         <img src="/_assets/img/logo.svg" width="133" height="50" alt="logo" />
       </a>
       <div class="align-items-end">
-        <a href="/profile/" class="d-none">
-          <img class="profileImageNav" />
-        </a>
+        <a href="/profile/" class="profileImageNav d-none"></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -162,7 +165,7 @@
 
     <div class="container d-none mainContent">
       <div class="row">
-        <div class="col col-md-6 offset-md-3">
+        <div class="col">
           <h2
             class="text-center text-uppercase my-4"
             data-i18n="pagetitle"
@@ -171,12 +174,179 @@
           <div class="my-4" id="instructions">
             <p data-i18n="paragraph1"></p>
             <p data-i18n="paragraph2"></p>
+            <hr />
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col col-md-6 offset-md-3 text-center">
-          [ INSERT FORM HERE ]
+        <div class="col col-md-8 offset-md-2">
+          <h3 class="text-center" data-i18n="inputNewUser"></h3>
+          <form class="mt-4">
+            <div class="form-group mt-4 mb-5">
+              <label for="firstName" data-i18n="firstName"></label>
+              <input type="text" class="form-control" id="firstName" />
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="form-group mt-4 mb-5">
+              <label for="lastName" data-i18n="lastName"></label>
+              <input type="text" class="form-control" id="lastName" />
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="form-group mt-4 mb-5">
+              <label for="churchid" data-i18n="church"></label>
+              <select id="churchid" class="form-control"></select>
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="mb-5">
+              <label class="mb-2" data-i18n="labelMethodOfSending"> </label>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="sendingMethod"
+                  id="sendingMethodSMS"
+                  value="SMS"
+                  checked
+                />
+                <label
+                  class="form-check-label notbold"
+                  for="sendingMethodSMS"
+                  data-i18n="labelSMS"
+                >
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="sendingMethod"
+                  id="sendingMethodEmail"
+                  value="email"
+                />
+                <label
+                  class="form-check-label notbold"
+                  for="sendingMethodEmail"
+                  data-i18n="labelEmail"
+                >
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="sendingMethod"
+                  id="sendingMethodQRCode"
+                  value="QR Code"
+                />
+                <label
+                  class="form-check-label notbold"
+                  for="sendingMethodQRCode"
+                  data-i18n="labelQRCode"
+                >
+                </label>
+              </div>
+            </div>
+
+            <div id="contactPhoneContainer" class="mb-5">
+              <label for="contactPhone" data-i18n="contactPhone"></label>
+              <input
+                type="tel"
+                class="form-control"
+                id="contactPhone"
+                pattern="[0-9]*"
+              />
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div id="emailContainer" class="mb-5 d-none">
+              <label for="contactEmail" data-i18n="contactEmail"></label>
+              <input type="email" class="form-control" id="contactEmail" />
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="mb-5" id="containerHighestLeadershipRole">
+              <div class="invalid-feedback"></div>
+              <label class="mb-2" data-i18n="labelHighestLeadershipRole">
+              </label>
+              <div class="form-check">
+                <label
+                  class="form-check-label notbold"
+                  for="highestLeadershipRoleHCLUp"
+                >
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="highestLeadershipRole"
+                    id="highestLeadershipRoleHCLUp"
+                    value="HCL and up"
+                  />
+                  <span data-i18n="houseChurchLeaderOrHigher"></span>
+                </label>
+              </div>
+              <div class="form-check">
+                <label
+                  class="form-check-label notbold"
+                  for="highestLeadershipRoleBTL"
+                >
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="highestLeadershipRole"
+                    id="highestLeadershipRoleBTL"
+                    value="BTL"
+                  />
+                  <span data-i18n="bibleTalkLeader"></span>
+                </label>
+              </div>
+              <div class="form-check">
+                <label
+                  class="form-check-label notbold"
+                  for="highestLeadershipRoleNoneOfAbove"
+                >
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="highestLeadershipRole"
+                    id="highestLeadershipRoleNoneOfAbove"
+                    value="neither"
+                  />
+                  <span data-i18n="noneOfAbove"></span>
+                </label>
+              </div>
+            </div>
+
+            <div
+              class="mb-5 alert alert-light border border-dark"
+              id="oathContainer"
+            >
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="oath"
+                  value="accepted"
+                />
+                <label
+                  class="form-check-label"
+                  for="oath"
+                  data-i18n="oath"
+                ></label>
+              </div>
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <div class="mb-5 text-center text-md-left">
+              <button
+                id="submitButton"
+                type="submit"
+                class="btn btn-primary"
+                data-i18n="btnSend"
+              ></button>
+            </div>
+          </form>
         </div>
       </div>
 
@@ -257,7 +427,14 @@
     <script src="/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script
+      src="/js/localforage.min.js"
+      integrity="sha512-+BMamP0e7wn39JGL8nKAZ3yAQT2dL5oaXWr4ZYlTGkKOaoXM/Yj7c4oy50Ngz5yoUutAG17flueD4F6QpTlPng=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="/js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
+    <script src="/css/material-4.1.1-dist/js/material.min.js"></script>
     <script src="../js/global.js"></script>
     <script src="logic.js"></script>
   </body>

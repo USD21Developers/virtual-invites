@@ -15,8 +15,8 @@
     },
     {
       "key": "paragraph1",
-      "original": "Any member of the International Christian Churches (ICC) may use this app, but must be properly authorized first. Those who have a usd21.org e-mail address are automatically authorized, and can also authorize others.",
-      "translated": "Any member of the International Christian Churches (ICC) may use this app, but must be properly authorized first. Those who have a usd21.org e-mail address are automatically authorized, and can also authorize others.",
+      "original": "Any member of the International Christian Churches (ICC) may use this app, but must be properly authorized first. Those who have a church-issued e-mail address are automatically authorized, and can also authorize others.",
+      "translated": "Any member of the International Christian Churches (ICC) may use this app, but must be properly authorized first. Those who have a church-issued e-mail address are automatically authorized, and can also authorize others.",
       "changes": [
         {
           "original": "usd21.org",
@@ -28,8 +28,109 @@
     },
     {
       "key": "paragraph2",
-      "original": "To authorize a new user, please first verify that they are a member of the church in good standing. Then complete the form below. Doing this will cause a special link to be sent to the new user, granting them full access.",
-      "translated": "To authorize a new user, please first verify that they are a member of the church in good standing. Then complete the form below. Doing this will cause a special link to be sent to the new user, granting them full access."
+      "original": "To authorize a new user, please verify that they are a member in good standing with the International Christian Churches. Then complete the form below. Doing this will cause a clickable authorization link to be sent to the new user. Once they click on that link, they will be granted full access.",
+      "translated": "To authorize a new user, please verify that they are a member in good standing with the International Christian Churches. Then complete the form below. Doing this will cause a clickable authorization link to be sent to the new user. Once they click on that link, they will be granted full access.",
+      "changes": [
+        {
+          "original": "verify that they are a member in good standing",
+          "translated": "verify that they are a member in good standing",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        },
+        {
+          "original": "authorization link",
+          "translated": "authorization link",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "inputNewUser",
+      "original": "New User:",
+      "translated": "New User:"
+    },
+    {
+      "key": "firstName",
+      "original": "First name:",
+      "translated": "First name:"
+    },
+    {
+      "key": "lastName",
+      "original": "Last name:",
+      "translated": "Last name:"
+    },
+    {
+      "key": "church",
+      "original": "Church:",
+      "translated": "Church:"
+    },
+    {
+      "key": "labelMethodOfSending",
+      "original": "Method of sending the authorization link:",
+      "translated": "Method of sending the authorization link:"
+    },
+    {
+      "key": "labelSMS",
+      "original": "Text message",
+      "translated": "Text message"
+    },
+    {
+      "key": "labelEmail",
+      "original": "E-mail",
+      "translated": "E-mail"
+    },
+    {
+      "key": "labelQRCode",
+      "original": "QR Code",
+      "translated": "QR Code"
+    },
+    {
+      "key": "contactPhone",
+      "original": "Mobile phone number:",
+      "translated": "Mobile phone number:"
+    },
+    {
+      "key": "contactEmail",
+      "original": "E-mail address:",
+      "translated": "E-mail address:"
+    },
+    {
+      "key": "labelHighestLeadershipRole",
+      "original": "Highest leadership role:",
+      "translated": "Highest leadership role:"
+    },
+    {
+      "key": "houseChurchLeaderOrHigher",
+      "original": "House church leader or higher",
+      "translated": "House church leader or higher"
+    },
+    {
+      "key": "bibleTalkLeader",
+      "original": "Bible Talk leader",
+      "translated": "Bible Talk leader"
+    },
+    {
+      "key": "noneOfAbove",
+      "original": "None of the above",
+      "translated": "None of the above"
+    },
+    {
+      "key": "oath",
+      "original": "I hereby vouch that the above person is a member in good standing with the International Christian Churches.",
+      "translated": "I hereby vouch that the above person is a member in good standing with the International Christian Churches."
+    },
+    {
+      "key": "btnSend",
+      "original": "Send authorization link",
+      "translated": "Send authorization link"
+    },
+    {
+      "key": "btnShowQRCode",
+      "original": "Show QR Code",
+      "translated": "Show QR Code"
     }
   ],
 

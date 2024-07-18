@@ -1,0 +1,45 @@
+.iti {
+  display: block;
+}
+
+label[for="contactPhone"] {
+  margin-left: 55px;
+}
+
+label.notbold {
+  font-weight: normal;
+}
+
+.is-focused > label[for="contactPhone"],
+.has-value > label[for="contactPhone"] {
+  margin-left: 0;
+}
+
+[data-i18n="paragraph2"] strong {
+  color: var(--success-dark);
+}
+
+[data-i18n="paragraph2"] em {
+  font-style: normal;
+  font-weight: bold;
+}
+
+hr {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+label {
+  color: var(--dark-dark);
+  font-weight: bold;
+}
+
+label[for="oath"] {
+  font-weight: 400;
+}
+
+label[for="oath"] em {
+  color: var(--dark-dark);
+  font-style: normal;
+  font-weight: bold;
+}
