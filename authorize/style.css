@@ -34,6 +34,10 @@ label {
   font-weight: bold;
 }
 
+.form-check:not(.form-check-inline) label {
+  display: block;
+}
+
 [data-i18n="labelHighestLeadershipRole"] em {
   font-style: normal;
   font-weight: normal;
