@@ -100,7 +100,16 @@
     {
       "key": "labelHighestLeadershipRole",
       "original": "User's highest leadership role (currently):",
-      "translated": "User's highest leadership role (currently):"
+      "translated": "User's highest leadership role (currently):",
+      "changes": [
+        {
+          "original": "(currently)",
+          "translated": "(currently)",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "houseChurchLeaderOrHigher",
@@ -119,8 +128,8 @@
     },
     {
       "key": "oath",
-      "original": "I hereby vouch that the above person is a member in good standing with the International Christian Churches.",
-      "translated": "I hereby vouch that the above person is a member in good standing with the International Christian Churches."
+      "original": "I hereby vouch that the above person is a member in good standing with the International Christian Churches, and that the above information is accurate to the best of my knowledge.",
+      "translated": "I hereby vouch that the above person is a member in good standing with the International Christian Churches, and that the above information is accurate to the best of my knowledge."
     },
     {
       "key": "btnSend",
