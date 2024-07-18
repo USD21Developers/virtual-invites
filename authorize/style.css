@@ -34,6 +34,11 @@ label {
   font-weight: bold;
 }
 
+[data-i18n="labelHighestLeadershipRole"] em {
+  font-style: normal;
+  font-weight: normal;
+}
+
 label[for="oath"] {
   font-weight: 400;
 }
