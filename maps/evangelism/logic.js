@@ -113,8 +113,6 @@ async function initMap(searchResults) {
 
   const bounds = new google.maps.LatLngBounds();
 
-  var markers = [];
-
   userInvites.forEach((invite) => {
     const { lat, lng, recipientname, invitedAt, invitationid, eventid } =
       invite;
@@ -128,10 +126,7 @@ async function initMap(searchResults) {
       position: { lat: lat, lng: lng },
       title: recipientname,
       content: pin.element,
-      collisionBehavior: google.maps.CollisionBehavior.REQUIRED,
     });
-
-    markers.push(marker);
 
     const event = userEvents.find((item) => item.eventid === eventid);
     const headerEl = document.createElement("h4");
@@ -185,10 +180,7 @@ async function initMap(searchResults) {
       map,
       position: { lat: lat, lng: lng },
       content: pin.element,
-      collisionBehavior: google.maps.CollisionBehavior.REQUIRED,
     });
-
-    markers.push(marker);
 
     const infowindow = new google.maps.InfoWindow({
       content: `<div><strong>${invitedAt}</div>`,
@@ -205,8 +197,6 @@ async function initMap(searchResults) {
     markersOthersInvites.push(marker);
     bounds.extend(marker.position);
   });
-
-  new MarkerClusterer({ markers, map });
 
   // Calculate the center of the bounds
   const center = bounds.getCenter();
