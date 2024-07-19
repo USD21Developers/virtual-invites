@@ -1,4 +1,6 @@
 async function forwardAuthenticatedUser() {
+  let redirectUrl = null;
+
   if (sessionStorage.getItem("redirectOnLogin")) {
     const newUrl = sessionStorage.getItem("redirectOnLogin");
     sessionStorage.removeItem("redirectOnLogin");
@@ -18,6 +20,10 @@ async function forwardAuthenticatedUser() {
   }
 
   sessionStorage.setItem("syncOnLogin", "true");
+
+  if (redirectUrl && redirectUrl.length) {
+    return (window.location.href = redirectUrl);
+  }
 
   window.location.href = "../";
 }
