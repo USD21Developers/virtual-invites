@@ -15,8 +15,8 @@
     },
     {
       "key": "paragraph1",
-      "original": "To authorize a new user, please complete the form below. This will send a clickable authorization link to the new user. Once they click on that link, they will have full access to Invites App.",
-      "translated": "To authorize a new user, please complete the form below. This will send a clickable authorization link to the new user. Once they click on that link, they will have full access to Invites App.",
+      "original": "To authorize a new user, please complete the form below. This will send a clickable authorization link to the new user. Once they click on that link, they will have full access to the Invites App.",
+      "translated": "To authorize a new user, please complete the form below. This will send a clickable authorization link to the new user. Once they click on that link, they will have full access to the Invites App.",
       "changes": [
         {
           "original": "authorization link",
