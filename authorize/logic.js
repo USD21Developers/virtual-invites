@@ -69,6 +69,14 @@ async function populateChurches() {
   ).churchid;
 
   churchDropdown.value = defaultChurchId;
+  populateChurchName();
+}
+
+function populateChurchName() {
+  const churchName = document
+    .querySelector("#churchid")
+    .selectedOptions[0].getAttribute("data-name");
+  document.querySelector("#churchName").innerHTML = churchName;
 }
 
 function onToggleMethodOfSending(sendingMethod) {
@@ -97,6 +105,10 @@ function onToggleMethodOfSending(sendingMethod) {
 }
 
 function attachListeners() {
+  document
+    .querySelector("#churchid")
+    .addEventListener("change", populateChurchName);
+
   document.querySelectorAll("[name='sendingMethod']").forEach((item) => {
     item.addEventListener("click", (e) =>
       onToggleMethodOfSending(e.target.value)
