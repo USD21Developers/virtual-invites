@@ -15,21 +15,14 @@
     },
     {
       "key": "paragraph1",
-      "original": "To authorize a new user, please verify that they are a member in good standing with the International Christian Churches. Then complete the form below. This will cause a clickable authorization link to be sent to the new user. They will be granted full access when they click on that link.",
-      "translated": "To authorize a new user, please verify that they are a member in good standing with the International Christian Churches. Then complete the form below. This will cause a clickable authorization link to be sent to the new user. They will be granted full access when they click on that link.",
+      "original": "To authorize a new user, please complete the form below. This will send a clickable authorization link to the new user. Once they click on that link, they will have full access to Invites App.",
+      "translated": "To authorize a new user, please complete the form below. This will send a clickable authorization link to the new user. Once they click on that link, they will have full access to Invites App.",
       "changes": [
-        {
-          "original": "verify that they are a member in good standing",
-          "translated": "verify that they are a member in good standing",
-          "bold": true,
-          "italic": false,
-          "link": ""
-        },
         {
           "original": "authorization link",
           "translated": "authorization link",
-          "bold": false,
-          "italic": true,
+          "bold": true,
+          "italic": false,
           "link": ""
         }
       ]
