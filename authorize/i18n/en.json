@@ -98,9 +98,14 @@
       "translated": "None of the above"
     },
     {
-      "key": "oath",
-      "original": "I hereby vouch that the above person is a member in good standing with the International Christian Churches, and that the above information is accurate to the best of my knowledge.",
-      "translated": "I hereby vouch that the above person is a member in good standing with the International Christian Churches, and that the above information is accurate to the best of my knowledge."
+      "key": "oathCustomizedNames",
+      "original": "I hereby vouch that {FIRST-NAME} {LAST-NAME} is a member in good standing with the {CHURCH-NAME}.",
+      "translated": "I hereby vouch that {FIRST-NAME} {LAST-NAME} is a member in good standing with the {CHURCH-NAME}."
+    },
+    {
+      "key": "oathCustomizedChurch",
+      "original": "I hereby vouch that the above person is a member in good standing with the {CHURCH-NAME}.",
+      "translated": "I hereby vouch that the above person is a member in good standing with the {CHURCH-NAME}."
     },
     {
       "key": "btnSend",

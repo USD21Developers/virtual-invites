@@ -1,3 +1,43 @@
+function customizeOath() {
+  const firstName = document.querySelector("#firstName").value.trim();
+  const lastName = document.querySelector("#lastName").value.trim();
+  const oathEl = document.querySelector("label[for='oath']");
+  const churchEl = document.querySelector("#churchid");
+  const churchName = churchEl.selectedOptions[0].getAttribute("data-name");
+  let oathCustomizedNames = getPhrase("oathCustomizedNames");
+  let oathCustomizedChurch = getPhrase("oathCustomizedChurch");
+  let namesPopulated = firstName.length && lastName.length ? true : false;
+
+  if (!!churchName && churchName.length) {
+    oathCustomizedChurch = oathCustomizedChurch.replaceAll(
+      "{CHURCH-NAME}",
+      churchName
+    );
+    oathEl.innerHTML = oathCustomizedChurch;
+  }
+
+  if (namesPopulated) {
+    oathCustomizedNames = oathCustomizedNames.replaceAll(
+      "{FIRST-NAME}",
+      `<strong>${firstName}</strong>`
+    );
+
+    oathCustomizedNames = oathCustomizedNames.replaceAll(
+      "{LAST-NAME}",
+      `<strong>${lastName}</strong>`
+    );
+
+    oathCustomizedNames = oathCustomizedNames.replaceAll(
+      "{CHURCH-NAME}",
+      churchName
+    );
+
+    oathEl.innerHTML = oathCustomizedNames;
+  } else {
+    oathEl.innerHTML = oathCustomizedChurch;
+  }
+}
+
 async function initIntlTelInput() {
   let initialCountry = "us";
   const input = document.querySelector("#contactPhone");
@@ -70,6 +110,7 @@ async function populateChurches() {
 
   churchDropdown.value = defaultChurchId;
   populateChurchName();
+  customizeOath();
 }
 
 function populateChurchName() {
@@ -77,6 +118,40 @@ function populateChurchName() {
     .querySelector("#churchid")
     .selectedOptions[0].getAttribute("data-name");
   document.querySelector("#churchName").innerHTML = churchName;
+}
+
+function unhideContentForHighestUsers() {
+  let isAuthorized = false;
+  let canAuthorize = false;
+  let canAuthToAuth = false;
+  let canAccessThisPage = false;
+  const refreshToken = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  );
+
+  if (refreshToken.isAuthorized) {
+    isAuthorized = true;
+  }
+
+  if (refreshToken.canAuthorize) {
+    canAuthorize = true;
+    canAccessThisPage = true;
+  }
+
+  if (refreshToken.canAuthToAuth) {
+    canAuthToAuth = true;
+  }
+
+  if (!canAccessThisPage) {
+    sessionStorage.setItem("redirectOnLogin", window.location.href);
+    window.location.href = "../logout/";
+  }
+
+  if (canAuthToAuth) {
+    document
+      .querySelector("#containerHighestLeadershipRole")
+      .classList.remove("d-none");
+  }
 }
 
 function onToggleMethodOfSending(sendingMethod) {
@@ -105,9 +180,12 @@ function onToggleMethodOfSending(sendingMethod) {
 }
 
 function attachListeners() {
+  document.querySelector("#firstName").addEventListener("input", customizeOath);
+  document.querySelector("#lastName").addEventListener("input", customizeOath);
   document
     .querySelector("#churchid")
     .addEventListener("change", populateChurchName);
+  document.querySelector("#churchid").addEventListener("change", customizeOath);
 
   document.querySelectorAll("[name='sendingMethod']").forEach((item) => {
     item.addEventListener("click", (e) =>
@@ -119,6 +197,7 @@ function attachListeners() {
 async function init() {
   await populateContent();
   populateChurches();
+  unhideContentForHighestUsers();
   initIntlTelInput();
   attachListeners();
   globalHidePageSpinner();
