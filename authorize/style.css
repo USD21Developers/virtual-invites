@@ -15,11 +15,11 @@ label.notbold {
   margin-left: 0;
 }
 
-[data-i18n="paragraph2"] strong {
+[data-i18n="paragraph1"] strong {
   color: var(--success-dark);
 }
 
-[data-i18n="paragraph2"] em {
+[data-i18n="paragraph1"] em {
   font-style: normal;
   font-weight: bold;
 }
