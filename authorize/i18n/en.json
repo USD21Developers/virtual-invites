@@ -69,13 +69,13 @@
     },
     {
       "key": "contactPhone",
-      "original": "Mobile phone number:",
-      "translated": "Mobile phone number:"
+      "original": "User's mobile phone number:",
+      "translated": "User's mobile phone number:"
     },
     {
       "key": "contactEmail",
-      "original": "E-mail address:",
-      "translated": "E-mail address:"
+      "original": "User's e-mail address:",
+      "translated": "User's e-mail address:"
     },
     {
       "key": "labelHighestLeadershipRole",
@@ -116,6 +116,60 @@
       "key": "btnShowQRCode",
       "original": "Show QR Code",
       "translated": "Show QR Code"
+    },
+    {
+      "key": "errorFirstName",
+      "original": "First name is required",
+      "translated": "First name is required"
+    },
+    {
+      "key": "errorLastName",
+      "original": "Last name is required",
+      "translated": "Last name is required"
+    },
+    {
+      "key": "errorChurchMustMatch",
+      "original": "New user must be in the same church as me ({CHURCH-NAME}).",
+      "translated": "New user must be in the same church as me ({CHURCH-NAME}).",
+      "changes": [
+        {
+          "original": "({CHURCH-NAME})",
+          "translated": "({CHURCH-NAME})",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "errorLeadershipRoleRequired",
+      "original": "Highest leadership role is required",
+      "translated": "Highest leadership role is required"
+    },
+    {
+      "key": "errorMobilePhoneRequired",
+      "original": "User's mobile phone number is required",
+      "translated": "User's mobile phone number is required"
+    },
+    {
+      "key": "errorMobilePhoneInvalid",
+      "original": "A valid phone number is required.",
+      "translated": "A valid phone number is required."
+    },
+    {
+      "key": "errorEmailRequired",
+      "original": "User's e-mail address is required",
+      "translated": "User's e-mail address is required"
+    },
+    {
+      "key": "errorEmailInvalid",
+      "original": "A valid e-mail address is required.",
+      "translated": "A valid e-mail address is required."
+    },
+    {
+      "key": "errorOathIsRequired",
+      "original": "Please check the above checkbox.",
+      "translated": "Please check the above checkbox."
     }
   ],
 

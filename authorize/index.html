@@ -180,7 +180,7 @@
       <div class="row">
         <div class="col col-md-8 offset-md-2">
           <h3 class="text-center" data-i18n="inputNewUser"></h3>
-          <form class="mt-4" autocomplete="off">
+          <form id="authorizeForm" class="mt-4" autocomplete="off" novalidate>
             <div class="form-group mt-4 mb-5">
               <label for="firstName" data-i18n="firstName"></label>
               <input type="text" class="form-control" id="firstName" />
@@ -193,15 +193,17 @@
               <div class="invalid-feedback"></div>
             </div>
 
-            <div class="form-group mt-4 mb-5">
+            <div class="form-group mt-4 mb-5" id="churchContainer">
               <label for="churchid" data-i18n="church"></label>
               <select id="churchid" class="form-control"></select>
               <div class="text-muted"><small id="churchName"></small></div>
-              <div class="invalid-feedback"></div>
+              <div
+                class="invalid-feedback mt-1"
+                id="churchInvalidFeedback"
+              ></div>
             </div>
 
             <div class="mb-5 d-none" id="containerHighestLeadershipRole">
-              <div class="invalid-feedback"></div>
               <label class="mb-2" data-i18n="labelHighestLeadershipRole">
               </label>
               <div class="form-check">
@@ -249,6 +251,10 @@
                   <span data-i18n="noneOfAbove"></span>
                 </label>
               </div>
+              <div
+                class="invalid-feedback mt-3 pt-1 border-top border-danger"
+                id="highestLeadershipRole_invalidFeedback"
+              ></div>
             </div>
 
             <div class="mb-5">
@@ -309,13 +315,19 @@
                 id="contactPhone"
                 pattern="[0-9]*"
               />
-              <div class="invalid-feedback"></div>
+              <div
+                class="invalid-feedback"
+                id="contactPhoneInvalidFeedback"
+              ></div>
             </div>
 
             <div id="emailContainer" class="mb-5 d-none">
               <label for="contactEmail" data-i18n="contactEmail"></label>
               <input type="email" class="form-control" id="contactEmail" />
-              <div class="invalid-feedback"></div>
+              <div
+                class="invalid-feedback"
+                id="contactEmailInvalidFeedback"
+              ></div>
             </div>
 
             <div
@@ -329,13 +341,9 @@
                   id="oath"
                   value="accepted"
                 />
-                <label
-                  class="form-check-label"
-                  for="oath"
-                  data-i18n="oathDefault"
-                ></label>
+                <label class="form-check-label ml-2" for="oath"></label>
               </div>
-              <div class="invalid-feedback"></div>
+              <div class="invalid-feedback" id="oathInvalidFeedback"></div>
             </div>
 
             <div class="mb-2 text-center">

@@ -121,8 +121,6 @@ function populateChurchName() {
 }
 
 function unhideContentForHighestUsers() {
-  let isAuthorized = false;
-  let canAuthorize = false;
   let canAuthToAuth = false;
   let canAccessThisPage = false;
   const refreshToken = JSON.parse(
@@ -151,6 +149,132 @@ function unhideContentForHighestUsers() {
     document
       .querySelector("#containerHighestLeadershipRole")
       .classList.remove("d-none");
+  }
+}
+
+async function onSubmit(e) {
+  const refreshToken = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  );
+  const firstName = document.querySelector("#firstName").value.trim();
+  const lastName = document.querySelector("#lastName").value.trim();
+  const churchid = document.querySelector("#churchid").value;
+  const highestLeadershipRole = document.querySelector(
+    "[name='highestLeadershipRole']:checked"
+  )?.value;
+  const methodOfSending = document.querySelector(
+    "[name='sendingMethod']:checked"
+  ).value;
+  const phoneNumber = iti.getNumber();
+  const email = document.querySelector("#contactEmail").value.trim();
+  const acceptedOath = document.querySelector("#oath").checked;
+
+  e.preventDefault();
+
+  // Validate
+
+  document.querySelectorAll(".is-invalid").forEach((item) => {
+    item.classList.remove("is-invalid");
+  });
+
+  document.querySelectorAll(".invalid-feedback").forEach((item) => {
+    item.innerHTML = "";
+    item.classList.remove("d-block");
+  });
+
+  if (!firstName.length) {
+    formError("#firstName", getPhrase("errorFirstName"));
+    document.querySelector("#firstName").focus();
+    return;
+  }
+
+  if (!lastName.length) {
+    formError("#lastName", getPhrase("errorLastName"));
+    document.querySelector("#lastName").focus();
+    return;
+  }
+
+  if (!refreshToken.canAuthToAuth) {
+    const userChurchId = await getUserChurchId(getUserId());
+    const userChurchName = document
+      .querySelector(`#churchid option[value='${userChurchId}']`)
+      .getAttribute("data-name");
+    const newUserChurchId = Number(churchid);
+    if (newUserChurchId !== userChurchId) {
+      const errorEl = document.querySelector("#churchInvalidFeedback");
+      const errorMsg = getPhrase("errorChurchMustMatch").replaceAll(
+        "{CHURCH-NAME}",
+        userChurchName
+      );
+      errorEl.innerHTML = errorMsg;
+      errorEl.classList.add("d-block");
+      customScrollTo("#churchContainer");
+      return;
+    }
+  }
+
+  if (refreshToken.canAuthToAuth) {
+    if (!highestLeadershipRole) {
+      const errorEl = document.querySelector(
+        "#highestLeadershipRole_invalidFeedback"
+      );
+      errorEl.innerHTML = getPhrase("errorLeadershipRoleRequired");
+      errorEl.classList.add("d-block");
+      customScrollTo("#highestLeadershipRole_invalidFeedback", 225);
+      return;
+    }
+  }
+
+  if (methodOfSending === "SMS") {
+    const errorEl = document.querySelector("#contactPhoneInvalidFeedback");
+    const phoneNumber = iti.getNumber();
+    const isValidNumber = iti.isValidNumber();
+
+    if (!phoneNumber.length) {
+      errorEl.innerHTML = getPhrase("errorMobilePhoneRequired");
+      errorEl.classList.add("d-block");
+      customScrollTo("#contactPhoneContainer");
+      return;
+    }
+
+    if (!isValidNumber) {
+      errorEl.innerHTML = getPhrase("errorMobilePhoneInvalid");
+      errorEl.classList.add("d-block");
+      customScrollTo("#contactPhoneContainer");
+      return;
+    }
+  }
+
+  if (methodOfSending === "email") {
+    const errorEl = document.querySelector("#contactEmailInvalidFeedback");
+    const isValidEmail = validateEmail(email);
+
+    if (!email.length) {
+      errorEl.innerHTML = getPhrase("errorEmailRequired");
+      errorEl.classList.add("d-block");
+      customScrollTo("#emailContainer");
+      return;
+    }
+
+    if (!isValidEmail) {
+      errorEl.innerHTML = getPhrase("errorEmailInvalid");
+      errorEl.classList.add("d-block");
+      customScrollTo("#emailContainer");
+      return;
+    }
+  }
+
+  if (!acceptedOath) {
+    const errorEl = document.querySelector("#oathInvalidFeedback");
+
+    errorEl.innerHTML = getPhrase("errorOathIsRequired");
+    errorEl.classList.add("d-block");
+    customScrollTo("#oathContainer");
+    return;
+  }
+
+  if (!navigator.onLine) {
+    return showToast(getGlobalPhrase("youAreOffline"), 5000, "danger");
   }
 }
 
@@ -187,11 +311,23 @@ function attachListeners() {
     .addEventListener("change", populateChurchName);
   document.querySelector("#churchid").addEventListener("change", customizeOath);
 
+  document
+    .querySelectorAll("[name='highestLeadershipRole']")
+    .forEach((item) => {
+      item.addEventListener("change", (item) => {
+        document
+          .querySelector("#highestLeadershipRole_invalidFeedback")
+          .classList.remove("d-block");
+      });
+    });
+
   document.querySelectorAll("[name='sendingMethod']").forEach((item) => {
     item.addEventListener("click", (e) =>
       onToggleMethodOfSending(e.target.value)
     );
   });
+
+  document.querySelector("#authorizeForm").addEventListener("submit", onSubmit);
 }
 
 async function init() {
