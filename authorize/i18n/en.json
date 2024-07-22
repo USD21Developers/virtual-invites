@@ -184,6 +184,11 @@
     {
       "key": "notificationSentence2",
       "original": "{FIRST-NAME} {LAST-NAME} has authorized you to use the Invites App, a powerful tool for evangelism and follow-up, specifically created for the Soldout Discipling Movement.",
+      "translated": "{FIRST-NAME} {LAST-NAME} has authorized you to use the Invites App, a powerful tool for evangelism and follow-up, specifically created for the Soldout Discipling Movement."
+    },
+    {
+      "key": "notificationSentence2HTML",
+      "original": "{FIRST-NAME} {LAST-NAME} has authorized you to use the Invites App, a powerful tool for evangelism and follow-up, specifically created for the Soldout Discipling Movement.",
       "translated": "{FIRST-NAME} {LAST-NAME} has authorized you to use the Invites App, a powerful tool for evangelism and follow-up, specifically created for the Soldout Discipling Movement.",
       "changes": [
         {

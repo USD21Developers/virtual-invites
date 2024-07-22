@@ -282,6 +282,31 @@ async function onSubmit(e) {
 
   const endpoint = `${getApiHost()}/authorize`;
   const accessToken = await getAccessToken();
+  const templateSms = await fetch("notification-text-message.txt").res((res) =>
+    res.text()
+  );
+  const templateEmail = await fetch("notificadtion-email.html").res((res) =>
+    res.text()
+  );
+  const notificationPhrases = {
+    emailSubject: getPhrase("notificationEmailSubject"),
+    sentence1: getPhrase("notificationSentence1"),
+    sentence2: getPhrase("notificationSentence2"),
+    sentence2HTML: getPhrase("notificationSentence2HTML"),
+    sentence3: getPhrase("notificationSentence3"),
+    sentence4: getPhrase("notificationSentence4"),
+    sentence5: getPhrase("notificationSentence5"),
+    sentence6: getPhrase("notificationMoreInfo"),
+    sincerely: getPhrase("notificationSincerely"),
+    internetMinistry: getPhrase("notificationInternetMinistry"),
+  };
+
+  const templates = {
+    sms: btoa(templateSms),
+    html: btoa(templateEmail),
+  };
+
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   globalShowPageSpinner();
 
@@ -298,6 +323,9 @@ async function onSubmit(e) {
       phoneData: phoneData,
       email: email,
       acceptedOath: acceptedOath,
+      notificationPhrases: notificationPhrases,
+      templates: templates,
+      timeZone: timeZone,
     }),
     headers: new Headers({
       "Content-Type": "application/json",
