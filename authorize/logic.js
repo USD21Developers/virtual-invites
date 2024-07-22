@@ -166,6 +166,7 @@ async function onSubmit(e) {
     "[name='sendingMethod']:checked"
   ).value;
   const phoneNumber = iti.getNumber();
+  let phoneData = null;
   const email = document.querySelector("#contactEmail").value.trim();
   const acceptedOath = document.querySelector("#oath").checked;
 
@@ -243,6 +244,8 @@ async function onSubmit(e) {
       customScrollTo("#contactPhoneContainer");
       return;
     }
+
+    phoneData = getSelectedCountryData();
   }
 
   if (methodOfSending === "email") {
@@ -276,6 +279,39 @@ async function onSubmit(e) {
   if (!navigator.onLine) {
     return showToast(getGlobalPhrase("youAreOffline"), 5000, "danger");
   }
+
+  const endpoint = `${getApiHost()}/authorize`;
+  const accessToken = await getAccessToken();
+
+  globalShowPageSpinner();
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "post",
+    body: JSON.stringify({
+      firstName: firstName,
+      lastName: lastName,
+      churchid: churchid,
+      highestLeadershipRole: highestLeadershipRole,
+      methodOfSending: methodOfSending,
+      phoneNumber: phoneNumber,
+      phoneData: phoneData,
+      email: email,
+      acceptedOath: acceptedOath,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      //
+    })
+    .catch((error) => {
+      console.error(error);
+      globalHidePageSpinner();
+    });
 }
 
 function onToggleMethodOfSending(sendingMethod) {
