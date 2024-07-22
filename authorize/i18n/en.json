@@ -170,6 +170,60 @@
       "key": "errorOathIsRequired",
       "original": "Please check the above checkbox.",
       "translated": "Please check the above checkbox."
+    },
+    {
+      "key": "notificationEmailSubject",
+      "original": "The Invites App:  You are invited to register!",
+      "translated": "The Invites App:  You are invited to register!"
+    },
+    {
+      "key": "notificationSentence1",
+      "original": "Hi {NEW-USER-FIRST-NAME}!",
+      "translated": "Hi {NEW-USER-FIRST-NAME}!"
+    },
+    {
+      "key": "notificationSentence2",
+      "original": "{FIRST-NAME} {LAST-NAME} has authorized you to use the Invites App, a powerful tool for evangelism and follow-up, specifically created for the Soldout Discipling Movement.",
+      "translated": "{FIRST-NAME} {LAST-NAME} has authorized you to use the Invites App, a powerful tool for evangelism and follow-up, specifically created for the Soldout Discipling Movement.",
+      "changes": [
+        {
+          "original": "Soldout Discipling Movement",
+          "translated": "Soldout Discipling Movement",
+          "bold": false,
+          "italic": false,
+          "link": "https://usd21.org/"
+        }
+      ]
+    },
+    {
+      "key": "notificationSentence3",
+      "original": "This browser-based app lets you share your faith quickly and conveniently, helps you stay organized in your follow up, and helps invite recipients to both remember and find the event.",
+      "translated": "This browser-based app lets you share your faith quickly and conveniently, helps you stay organized in your follow up, and helps invite recipients to both remember and find the event."
+    },
+    {
+      "key": "notificationSentence4",
+      "original": "It's also completely FREE.",
+      "translated": "It's also completely FREE."
+    },
+    {
+      "key": "notificationSentence5",
+      "original": "Please register by {DEADLINE-DATE}.",
+      "translated": "Please register by {DEADLINE-DATE}."
+    },
+    {
+      "key": "notificationMoreInfo",
+      "original": "Full details (click below):",
+      "translated": "Full details (click below):"
+    },
+    {
+      "key": "notificationSincerely",
+      "original": "Sincerely,",
+      "translated": "Sincerely,"
+    },
+    {
+      "key": "notificationInternetMinistry",
+      "original": "The Internet Ministry",
+      "translated": "The Internet Ministry"
     }
   ],
 
