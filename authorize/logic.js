@@ -131,6 +131,26 @@ function populateStoredSendingMethod() {
     if (item.value === storedSendingMethod) {
       item.checked = true;
     }
+
+    const contactPhoneContainerEl = document.querySelector(
+      "#contactPhoneContainer"
+    );
+    const emailContainerEl = document.querySelector("#emailContainer");
+    const submitButtonEl = document.querySelector("#submitButton");
+
+    if (storedSendingMethod === "sms") {
+      emailContainerEl.classList.add("d-none");
+      contactPhoneContainerEl.classList.remove("d-none");
+      submitButtonEl.innerHTML = getPhrase("btnSend");
+    } else if (storedSendingMethod === "email") {
+      contactPhoneContainerEl.classList.add("d-none");
+      emailContainerEl.classList.remove("d-none");
+      submitButtonEl.innerHTML = getPhrase("btnSend");
+    } else if (storedSendingMethod === "QR Code") {
+      contactPhoneContainerEl.classList.add("d-none");
+      emailContainerEl.classList.add("d-none");
+      submitButtonEl.innerHTML = getPhrase("btnShowQRCode");
+    }
   });
 }
 
