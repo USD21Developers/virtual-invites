@@ -306,7 +306,54 @@ async function onSubmit(e) {
   })
     .then((res) => res.json())
     .then((data) => {
-      //
+      switch (data.msg) {
+        case "firstName is required":
+          break;
+        case "lastName is required":
+          break;
+        case "churchid is required":
+          break;
+        case "churchid must be a number":
+          break;
+        case "highestLeadershipRole is required":
+          break;
+        case "invalid value for highestLeadershipRole":
+          break;
+        case "methodOfSending is required":
+          break;
+        case "invalid value for methodOfSending":
+          break;
+        case "phoneNumber is required":
+          break;
+        case "phoneData is required":
+          break;
+        case "phoneNumber is invalid":
+          break;
+        case "email is required":
+          break;
+        case "email is invalid":
+          break;
+        case "invalid value for acceptedOath":
+          break;
+        case "acceptedOath must be a boolean":
+          break;
+        case "unable to query for authorizing user's permissions":
+          break;
+        case "authorizing user was not found":
+          break;
+        case "invalid userStatus for authorizing user":
+          break;
+        case "authorizing user does not have permission to authorize":
+          break;
+        case "authorizing user does not have permission to authorize for this leadership role":
+          break;
+        case "unable to store authorization":
+          break;
+        case "new user authorized":
+          break;
+        default:
+          break;
+      }
     })
     .catch((error) => {
       console.error(error);
