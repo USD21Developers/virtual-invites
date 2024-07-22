@@ -120,6 +120,20 @@ function populateChurchName() {
   document.querySelector("#churchName").innerHTML = churchName;
 }
 
+function populateStoredSendingMethod() {
+  const storedSendingMethod = localStorage.getItem(
+    "authorizationSendingMethod"
+  );
+  if (!storedSendingMethod) return;
+  if (!["SMS", "email", "QR Code"].includes(storedSendingMethod)) return;
+
+  document.querySelectorAll("input[name='sendingMethod']").forEach((item) => {
+    if (item.value === storedSendingMethod) {
+      item.checked = true;
+    }
+  });
+}
+
 function unhideContentForHighestUsers() {
   let canAuthToAuth = false;
   let canAccessThisPage = false;
@@ -433,9 +447,10 @@ function attachListeners() {
     });
 
   document.querySelectorAll("[name='sendingMethod']").forEach((item) => {
-    item.addEventListener("click", (e) =>
-      onToggleMethodOfSending(e.target.value)
-    );
+    item.addEventListener("click", (e) => {
+      localStorage.setItem("authorizationSendingMethod", e.target.value);
+      onToggleMethodOfSending(e.target.value);
+    });
   });
 
   document.querySelector("#authorizeForm").addEventListener("submit", onSubmit);
@@ -446,6 +461,7 @@ async function init() {
   populateChurches();
   unhideContentForHighestUsers();
   initIntlTelInput();
+  populateStoredSendingMethod();
   attachListeners();
   globalHidePageSpinner();
 }
