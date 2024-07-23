@@ -183,8 +183,8 @@
     },
     {
       "key": "notificationSentence2",
-      "original": "{FIRST-NAME} {LAST-NAME} has invited you to use the Invites App. This app is a powerful tool for evangelism and follow-up, created specifically for disciples in the Soldout Discipling Movement.",
-      "translated": "{FIRST-NAME} {LAST-NAME} has invited you to use the Invites App. This app is a powerful tool for evangelism and follow-up, created specifically for disciples in the Soldout Discipling Movement."
+      "original": "{FIRST-NAME} {LAST-NAME} has invited you to use the Invites App. This app is a powerful tool for evangelism and follow up, created specifically for disciples in the Soldout Discipling Movement.",
+      "translated": "{FIRST-NAME} {LAST-NAME} has invited you to use the Invites App. This app is a powerful tool for evangelism and follow up, created specifically for disciples in the Soldout Discipling Movement."
     },
     {
       "key": "notificationSentence2HTML",
