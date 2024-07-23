@@ -192,6 +192,7 @@ async function onSubmit(e) {
   );
   const firstName = document.querySelector("#firstName").value.trim();
   const lastName = document.querySelector("#lastName").value.trim();
+  const churches = JSON.parse(localStorage.getItem("churches"));
   const churchid = document.querySelector("#churchid").value;
   const highestLeadershipRole = document.querySelector(
     "[name='highestLeadershipRole']:checked"
@@ -340,7 +341,16 @@ async function onSubmit(e) {
     html: btoa(templateEmail),
   };
 
+  const lang = getLang();
+  const churchCountry =
+    churches.find((item) => item.id == churchid).country || "us";
   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const locale = `${lang.toLowerCase()}-${churchCountry.toUpperCase()}`;
+  const utcNow = moment().utc().format();
+
+  const localizedExpiryDate = Intl.DateTimeFormat(locale, {
+    dateStyle: "short",
+  }).format(new Date(utcNow));
 
   globalShowPageSpinner();
 
@@ -360,6 +370,7 @@ async function onSubmit(e) {
       notificationPhrases: notificationPhrases,
       templates: templates,
       timeZone: timeZone,
+      localizedExpiryDate: localizedExpiryDate,
     }),
     headers: new Headers({
       "Content-Type": "application/json",
