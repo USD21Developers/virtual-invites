@@ -280,7 +280,7 @@ async function onSubmit(e) {
       return;
     }
 
-    phoneData = getSelectedCountryData();
+    phoneData = iti.getSelectedCountryData();
   }
 
   if (methodOfSending === "email") {
@@ -317,10 +317,10 @@ async function onSubmit(e) {
 
   const endpoint = `${getApiHost()}/authorize`;
   const accessToken = await getAccessToken();
-  const templateSms = await fetch("notification-text-message.txt").res((res) =>
+  const templateSms = await fetch("notification-text-message.txt").then((res) =>
     res.text()
   );
-  const templateEmail = await fetch("notificadtion-email.html").res((res) =>
+  const templateEmail = await fetch("notification-email.html").then((res) =>
     res.text()
   );
   const notificationPhrases = {
@@ -338,19 +338,17 @@ async function onSubmit(e) {
 
   const templates = {
     sms: btoa(templateSms),
-    html: btoa(templateEmail),
+    email: btoa(templateEmail),
   };
 
   const lang = getLang();
-  const churchCountry =
-    churches.find((item) => item.id == churchid).country || "us";
+  const church = churches.find((item) => item.id === Number(churchid));
   const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const locale = `${lang.toLowerCase()}-${churchCountry.toUpperCase()}`;
-  const utcNow = moment().utc().format();
-
+  const locale = `${lang.toLowerCase()}-${church.country.toUpperCase()}`;
+  const utcExpiryDate = moment().add(1, "months").utc().format();
   const localizedExpiryDate = Intl.DateTimeFormat(locale, {
     dateStyle: "short",
-  }).format(new Date(utcNow));
+  }).format(new Date(utcExpiryDate));
 
   globalShowPageSpinner();
 
@@ -360,7 +358,7 @@ async function onSubmit(e) {
     body: JSON.stringify({
       firstName: firstName,
       lastName: lastName,
-      churchid: churchid,
+      churchid: Number(churchid),
       highestLeadershipRole: highestLeadershipRole,
       methodOfSending: methodOfSending,
       phoneNumber: phoneNumber,
@@ -370,6 +368,7 @@ async function onSubmit(e) {
       notificationPhrases: notificationPhrases,
       templates: templates,
       timeZone: timeZone,
+      utcExpiryDate: utcExpiryDate,
       localizedExpiryDate: localizedExpiryDate,
     }),
     headers: new Headers({

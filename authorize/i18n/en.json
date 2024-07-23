@@ -34,13 +34,13 @@
     },
     {
       "key": "firstName",
-      "original": "First name:",
-      "translated": "First name:"
+      "original": "User's first name:",
+      "translated": "User's first name:"
     },
     {
       "key": "lastName",
-      "original": "Last name:",
-      "translated": "Last name:"
+      "original": "User's last name:",
+      "translated": "User's last name:"
     },
     {
       "key": "church",
@@ -183,13 +183,13 @@
     },
     {
       "key": "notificationSentence2",
-      "original": "{FIRST-NAME} {LAST-NAME} has authorized you to use the Invites App, a powerful tool for evangelism and follow-up, specifically created for the Soldout Discipling Movement.",
-      "translated": "{FIRST-NAME} {LAST-NAME} has authorized you to use the Invites App, a powerful tool for evangelism and follow-up, specifically created for the Soldout Discipling Movement."
+      "original": "{FIRST-NAME} {LAST-NAME} has invited you to use the Invites App. This app is a powerful tool for evangelism and follow-up, created specifically for disciples in the Soldout Discipling Movement.",
+      "translated": "{FIRST-NAME} {LAST-NAME} has invited you to use the Invites App. This app is a powerful tool for evangelism and follow-up, created specifically for disciples in the Soldout Discipling Movement."
     },
     {
       "key": "notificationSentence2HTML",
-      "original": "{FIRST-NAME} {LAST-NAME} has authorized you to use the Invites App, a powerful tool for evangelism and follow-up, specifically created for the Soldout Discipling Movement.",
-      "translated": "{FIRST-NAME} {LAST-NAME} has authorized you to use the Invites App, a powerful tool for evangelism and follow-up, specifically created for the Soldout Discipling Movement.",
+      "original": "{FIRST-NAME} {LAST-NAME} has invited you to use the Invites App. This app is a powerful tool for evangelism and follow up, created specifically for disciples in the Soldout Discipling Movement.",
+      "translated": "{FIRST-NAME} {LAST-NAME} has invited you to use the Invites App. This app is a powerful tool for evangelism and follow up, created specifically for disciples in the Soldout Discipling Movement.",
       "changes": [
         {
           "original": "Soldout Discipling Movement",
@@ -202,8 +202,8 @@
     },
     {
       "key": "notificationSentence3",
-      "original": "This browser-based app lets you share your faith quickly and conveniently, helps you stay organized in your follow up, and helps invite recipients to both remember and find the event.",
-      "translated": "This browser-based app lets you share your faith quickly and conveniently, helps you stay organized in your follow up, and helps invite recipients to both remember and find the event."
+      "original": "The Invites App lets you share your faith quickly and conveniently, by sending a digital invitation. It can help you stay organized in your follow up, and helps the people you share with to both remember and find the events that you invite them to.",
+      "translated": "The Invites App lets you share your faith quickly and conveniently, by sending a digital invitation. It can help you stay organized in your follow up, and helps the people you share with to both remember and find the events that you invite them to."
     },
     {
       "key": "notificationSentence4",
@@ -212,8 +212,8 @@
     },
     {
       "key": "notificationSentence5",
-      "original": "Please register by {DEADLINE-DATE}.",
-      "translated": "Please register by {DEADLINE-DATE}."
+      "original": "If you decide to register, please do so by {DEADLINE-DATE}.",
+      "translated": "If you decide to register, please do so by {DEADLINE-DATE}."
     },
     {
       "key": "notificationMoreInfo",
