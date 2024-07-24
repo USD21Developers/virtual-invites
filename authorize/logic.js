@@ -421,6 +421,8 @@ async function onSubmit(e) {
           break;
         case "unable to store authorization":
           break;
+        case "not enough money to send text message":
+          break;
         case "new user authorized":
           break;
         default:
