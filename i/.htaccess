@@ -1,15 +1,3 @@
 RewriteEngine On
 
 RewriteRule ^\d+/\d+/[^/]+$ /i/#/$0 [NE,R=302,L]
-
-# RewriteRule ^proxy/(.\*)$ https://api.usd21.org/$1 [P]
-
-# ProxyPass /proxy/ https://api.usd21.org/
-
-# ProxyPassReverse /proxy/ http://api.usd21.org/
-
-# Header set Access-Control-Allow-Origin "\*"
-
-# Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
-
-# Header set Access-Control-Allow-Headers "Content-Type, Authorization"
