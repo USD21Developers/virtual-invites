@@ -217,13 +217,13 @@
     },
     {
       "key": "notificationSentence5",
-      "original": "If you decide to register, please do so by {DEADLINE-DATE}.",
-      "translated": "If you decide to register, please do so by {DEADLINE-DATE}."
+      "original": "If you decide to register, please do so by {DEADLINE-DATE} when the link below expires.",
+      "translated": "If you decide to register, please do so by {DEADLINE-DATE} when the link below expires."
     },
     {
       "key": "notificationMoreInfo",
-      "original": "Full details (click below):",
-      "translated": "Full details (click below):"
+      "original": "Registration and/or full details (click below):",
+      "translated": "Registration and/or full details (click below):"
     },
     {
       "key": "notificationSincerely",
