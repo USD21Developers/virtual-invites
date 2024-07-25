@@ -194,16 +194,7 @@
     {
       "key": "notificationSentence2HTML",
       "original": "{FIRST-NAME} {LAST-NAME} has invited you to use the Invites App. This app is a powerful tool for evangelism and follow up, created specifically for disciples in the Soldout Discipling Movement.",
-      "translated": "{FIRST-NAME} {LAST-NAME} has invited you to use the Invites App. This app is a powerful tool for evangelism and follow up, created specifically for disciples in the Soldout Discipling Movement.",
-      "changes": [
-        {
-          "original": "Soldout Discipling Movement",
-          "translated": "Soldout Discipling Movement",
-          "bold": false,
-          "italic": false,
-          "link": "https://usd21.org/"
-        }
-      ]
+      "translated": "{FIRST-NAME} {LAST-NAME} has invited you to use the Invites App. This app is a powerful tool for evangelism and follow up, created specifically for disciples in the Soldout Discipling Movement."
     },
     {
       "key": "notificationSentence3",
@@ -222,8 +213,8 @@
     },
     {
       "key": "notificationMoreInfo",
-      "original": "Registration and/or full details (click below):",
-      "translated": "Registration and/or full details (click below):"
+      "original": "Full details:",
+      "translated": "Full details"
     },
     {
       "key": "notificationSincerely",
