@@ -125,7 +125,7 @@ function populateStoredSendingMethod() {
     "authorizationSendingMethod"
   );
   if (!storedSendingMethod) return;
-  if (!["SMS", "email", "QR Code"].includes(storedSendingMethod)) return;
+  if (!["textmessage", "email", "qrcode"].includes(storedSendingMethod)) return;
 
   document.querySelectorAll("input[name='sendingMethod']").forEach((item) => {
     if (item.value === storedSendingMethod) {
@@ -138,7 +138,7 @@ function populateStoredSendingMethod() {
     const emailContainerEl = document.querySelector("#emailContainer");
     const submitButtonEl = document.querySelector("#submitButton");
 
-    if (storedSendingMethod === "sms") {
+    if (storedSendingMethod === "textmessage") {
       emailContainerEl.classList.add("d-none");
       contactPhoneContainerEl.classList.remove("d-none");
       submitButtonEl.innerHTML = getPhrase("btnSend");
@@ -146,7 +146,7 @@ function populateStoredSendingMethod() {
       contactPhoneContainerEl.classList.add("d-none");
       emailContainerEl.classList.remove("d-none");
       submitButtonEl.innerHTML = getPhrase("btnSend");
-    } else if (storedSendingMethod === "QR Code") {
+    } else if (storedSendingMethod === "qrcode") {
       contactPhoneContainerEl.classList.add("d-none");
       emailContainerEl.classList.add("d-none");
       submitButtonEl.innerHTML = getPhrase("btnShowQRCode");
@@ -262,7 +262,7 @@ async function onSubmit(e) {
     }
   }
 
-  if (methodOfSending === "SMS") {
+  if (methodOfSending === "textmessage") {
     const errorEl = document.querySelector("#contactPhoneInvalidFeedback");
     const phoneNumber = iti.getNumber();
     const isValidNumber = iti.isValidNumber();
@@ -445,7 +445,7 @@ function onToggleMethodOfSending(sendingMethod) {
   const submitButtonEl = document.querySelector("#submitButton");
   let submitButtonText;
 
-  if (sendingMethod === "SMS") {
+  if (sendingMethod === "textmessage") {
     contactPhoneContainerEl.classList.remove("d-none");
     emailContainerEl.classList.add("d-none");
     submitButtonText = getPhrase("btnSend");

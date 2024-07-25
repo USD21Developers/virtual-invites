@@ -53,7 +53,7 @@
       "translated": "Method of sending authorization link:"
     },
     {
-      "key": "labelSMS",
+      "key": "labelTextMessage",
       "original": "Text message",
       "translated": "Text message"
     },
