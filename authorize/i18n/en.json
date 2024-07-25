@@ -73,6 +73,11 @@
       "translated": "User's mobile phone number:"
     },
     {
+      "key": "isWhatsApp",
+      "original": "This is a WhatsApp phone number",
+      "translated": "This is a WhatsApp phone number"
+    },
+    {
       "key": "contactEmail",
       "original": "User's e-mail address:",
       "translated": "User's e-mail address:"

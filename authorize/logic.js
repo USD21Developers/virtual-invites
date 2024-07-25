@@ -201,6 +201,7 @@ async function onSubmit(e) {
     "[name='sendingMethod']:checked"
   ).value;
   const phoneNumber = iti.getNumber();
+  const isWhatsApp = document.querySelector("#isWhatsApp").checked;
   let phoneData = null;
   const email = document.querySelector("#contactEmail").value.trim();
   const acceptedOath = document.querySelector("#oath").checked;
@@ -363,6 +364,7 @@ async function onSubmit(e) {
       methodOfSending: methodOfSending,
       phoneNumber: phoneNumber,
       phoneData: phoneData,
+      isWhatsApp: isWhatsApp,
       email: email,
       acceptedOath: acceptedOath,
       notificationPhrases: notificationPhrases,

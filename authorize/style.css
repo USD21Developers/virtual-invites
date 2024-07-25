@@ -2,10 +2,6 @@
   display: block;
 }
 
-label[for="contactPhone"] {
-  margin-left: 55px;
-}
-
 label.notbold {
   font-weight: normal;
 }
