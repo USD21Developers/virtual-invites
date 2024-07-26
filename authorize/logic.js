@@ -366,7 +366,7 @@ async function onSubmit(e) {
 
       errorEl.innerHTML = getPhrase("errorIsExpectingIsRequired");
       errorEl.classList.add("d-block");
-      customScrollTo("#isExpectingContainerEl");
+      customScrollTo("#isExpectingContainer");
       return;
     }
   }
