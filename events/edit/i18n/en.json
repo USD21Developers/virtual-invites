@@ -240,8 +240,8 @@
     },
     {
       "key": "addressHeadline",
-      "original": "Address:",
-      "translated": "Address:"
+      "original": "Full Address:",
+      "translated": "Full Address:"
     },
     {
       "key": "addressLine1",
