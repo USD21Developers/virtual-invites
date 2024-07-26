@@ -45,3 +45,7 @@ label[for="oath"] em {
   font-style: normal;
   font-weight: normal;
 }
+
+html[lang="en"] #isExpectingContainer * {
+  word-break: keep-all;
+}
