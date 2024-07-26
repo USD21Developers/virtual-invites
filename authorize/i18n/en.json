@@ -114,8 +114,8 @@
     },
     {
       "key": "isExpectingTextMessage",
-      "original": "{FIRST-NAME} is expecting to receive a text message about the Invites App. That message should not be overlooked.",
-      "translated": "{FIRST-NAME} is expecting to receive a text message about the Invites App. That message should not be overlooked.",
+      "original": "{FIRST-NAME} is expecting to receive a text message about the Invites App.",
+      "translated": "{FIRST-NAME} is expecting to receive a text message about the Invites App.",
       "changes": [
         {
           "original": "expecting to receive",
@@ -128,8 +128,8 @@
     },
     {
       "key": "isExpectingWhatsApp",
-      "original": "{FIRST-NAME} is expecting to receive a text message in WhatsApp about the Invites App. That message should not be overlooked.",
-      "translated": "{FIRST-NAME} is expecting to receive a text message in WhatsApp about the Invites App. That message should not be overlooked.",
+      "original": "{FIRST-NAME} is expecting to receive a text message in WhatsApp about the Invites App.",
+      "translated": "{FIRST-NAME} is expecting to receive a text message in WhatsApp about the Invites App.",
       "changes": [
         {
           "original": "expecting to receive",
@@ -142,8 +142,8 @@
     },
     {
       "key": "isExpectingEmail",
-      "original": "{FIRST-NAME} is expecting to receive an e-mail about the Invites App. That e-mail should not be overlooked.",
-      "translated": "{FIRST-NAME} is expecting to receive an e-mail about the Invites App. That e-mail should not be overlooked.",
+      "original": "{FIRST-NAME} is expecting to receive an e-mail about the Invites App.",
+      "translated": "{FIRST-NAME} is expecting to receive an e-mail about the Invites App.",
       "changes": [
         {
           "original": "expecting to receive",
