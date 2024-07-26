@@ -15,8 +15,8 @@
     },
     {
       "key": "paragraph1",
-      "original": "To authorize a new user to register for the Invites App, please complete the form below. This will send a clickable authorization link to the new user. Once they click on that link, they will be able to register.",
-      "translated": "To authorize a new user to register for the Invites App, please complete the form below. This will send a clickable authorization link to the new user. Once they click on that link, they will be able to register.",
+      "original": "To authorize a new user to register for the Invites App, please complete the form below. This will send a brief message about the Invites App to the new user. The message will contain a clickable authorization link. Once they click on that link, they will be able to register.",
+      "translated": "To authorize a new user to register for the Invites App, please complete the form below. This will send a brief message about the Invites App to the new user. The message will contain a clickable authorization link. Once they click on that link, they will be able to register.",
       "changes": [
         {
           "original": "authorization link",
