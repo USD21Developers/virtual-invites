@@ -114,18 +114,18 @@
     },
     {
       "key": "isExpectingTextMessage",
-      "original": "{FIRST-NAME} is expecting to receive a text message about the Invites App. The message will not be overlooked.",
-      "translated": "{FIRST-NAME} is expecting to receive a text message about the Invites App. The message will not be overlooked."
+      "original": "{FIRST-NAME} is expecting to receive a text message about the Invites App. That message should not be overlooked.",
+      "translated": "{FIRST-NAME} is expecting to receive a text message about the Invites App. That message should not be overlooked."
     },
     {
       "key": "isExpectingWhatsApp",
-      "original": "{FIRST-NAME} is expecting to receive a text message in WhatsApp about the Invites App. The message will not be overlooked.",
-      "translated": "{FIRST-NAME} is expecting to receive a text message in WhatsApp about the Invites App. The message will not be overlooked."
+      "original": "{FIRST-NAME} is expecting to receive a text message in WhatsApp about the Invites App. That message should not be overlooked.",
+      "translated": "{FIRST-NAME} is expecting to receive a text message in WhatsApp about the Invites App. That message should not be overlooked."
     },
     {
       "key": "isExpectingEmail",
-      "original": "{FIRST-NAME} is expecting to receive an e-mail about the Invites App. The e-mail will not be overlooked.",
-      "translated": "{FIRST-NAME} is expecting to receive an e-mail about the Invites App. The e-mail will not be overlooked."
+      "original": "{FIRST-NAME} is expecting to receive an e-mail about the Invites App. That e-mail should not be overlooked.",
+      "translated": "{FIRST-NAME} is expecting to receive an e-mail about the Invites App. That e-mail should not be overlooked."
     },
     {
       "key": "btnSend",
@@ -188,13 +188,13 @@
     },
     {
       "key": "errorOathIsRequired",
-      "original": "Please check the above checkbox.",
-      "translated": "Please check the above checkbox."
+      "original": "You must vouch for the new user.",
+      "translated": "You must vouch for the new user."
     },
     {
       "key": "errorIsExpectingIsRequired",
-      "original": "Please check the above checkbox.",
-      "translated": "Please check the above checkbox."
+      "original": "The new user must be expecting to receive a message.",
+      "translated": "The new user must be expecting to receive a message."
     },
     {
       "key": "notificationEmailSubject",

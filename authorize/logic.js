@@ -252,6 +252,8 @@ async function onSubmit(e) {
   let phoneData = null;
   const email = document.querySelector("#contactEmail").value.trim();
   const acceptedOath = document.querySelector("#oath").checked;
+  const isExpectingEl = document.querySelector("#isExpecting");
+  const isExpecting = isExpectingEl.checked;
 
   e.preventDefault();
 
@@ -262,7 +264,6 @@ async function onSubmit(e) {
   });
 
   document.querySelectorAll(".invalid-feedback").forEach((item) => {
-    item.innerHTML = "";
     item.classList.remove("d-block");
   });
 
@@ -357,6 +358,17 @@ async function onSubmit(e) {
     errorEl.classList.add("d-block");
     customScrollTo("#oathContainer");
     return;
+  }
+
+  if (methodOfSending !== "qrcode") {
+    if (!isExpecting) {
+      const errorEl = document.querySelector("#isExpectingInvalidFeedback");
+
+      errorEl.innerHTML = getPhrase("errorIsExpectingIsRequired");
+      errorEl.classList.add("d-block");
+      customScrollTo("#isExpectingContainerEl");
+      return;
+    }
   }
 
   if (!navigator.onLine) {
