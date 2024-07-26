@@ -193,8 +193,8 @@
     },
     {
       "key": "errorIsExpectingIsRequired",
-      "original": "The new user must be expecting to receive a message.",
-      "translated": "The new user must be expecting to receive a message."
+      "original": "The new user must be expecting to receive a message about the Invites App.",
+      "translated": "The new user must be expecting to receive a message about the Invites App."
     },
     {
       "key": "notificationEmailSubject",
