@@ -426,7 +426,20 @@ async function loadEvent() {
   document.querySelector("#country").value = country;
 
   if (country === "us") {
-    if (locationaddressline2.length && !locationaddressline3.length) {
+    let canMoveToLine3 = false;
+
+    if (locationaddressline2 && locationaddressline2.length) {
+      if (!locationaddressline3) {
+        canMoveToLine3 = true;
+      } else if (
+        typeof locationaddressline3 === "string" &&
+        !locationaddressline3.length
+      ) {
+        canMoveToLine3 = true;
+      }
+    }
+
+    if (canMoveToLine3) {
       document.querySelector("#addressLine2").value = "";
       document.querySelector("#addressLine3").value = locationaddressline2;
     }
