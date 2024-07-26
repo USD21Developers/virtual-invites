@@ -424,6 +424,14 @@ async function loadEvent() {
   document.querySelector("#addressLine2").value = locationaddressline2;
   document.querySelector("#addressLine3").value = locationaddressline3;
   document.querySelector("#country").value = country;
+
+  if (country === "us") {
+    if (locationaddressline2.length && !locationaddressline3.length) {
+      document.querySelector("#addressLine2").value = "";
+      document.querySelector("#addressLine3").value = locationaddressline2;
+    }
+  }
+
   document.querySelector("#longitude").value =
     typeof coordinates === "object" && coordinates.hasOwnProperty("x")
       ? coordinates.x
