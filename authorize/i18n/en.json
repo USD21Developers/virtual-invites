@@ -114,18 +114,18 @@
     },
     {
       "key": "isExpectingTextMessage",
-      "original": "{FIRST-NAME} is now expecting to receive a text message about the Invites App.",
-      "translated": "{FIRST-NAME} is now expecting to receive a text message about the Invites App."
+      "original": "{FIRST-NAME} is already expecting to receive a text message about the Invites App.",
+      "translated": "{FIRST-NAME} is already expecting to receive a text message about the Invites App."
     },
     {
       "key": "isExpectingWhatsApp",
-      "original": "{FIRST-NAME} is now expecting to receive a text message via WhatsApp about the Invites App.",
-      "translated": "{FIRST-NAME} is now expecting to receive a text message via WhatsApp about the Invites App."
+      "original": "{FIRST-NAME} is already expecting to receive a text message via WhatsApp about the Invites App.",
+      "translated": "{FIRST-NAME} is already expecting to receive a text message via WhatsApp about the Invites App."
     },
     {
       "key": "isExpectingEmail",
-      "original": "{FIRST-NAME} is now expecting to receive an e-mail about the Invites App.",
-      "translated": "{FIRST-NAME} is now expecting to receive an e-mail about the Invites App."
+      "original": "{FIRST-NAME} is already expecting to receive an e-mail about the Invites App.",
+      "translated": "{FIRST-NAME} is already expecting to receive an e-mail about the Invites App."
     },
     {
       "key": "btnSend",
