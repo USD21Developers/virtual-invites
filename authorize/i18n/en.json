@@ -143,7 +143,16 @@
     {
       "key": "isExpectingEmail",
       "original": "{FIRST-NAME} is expecting to receive an e-mail about the Invites App. That e-mail should not be overlooked.",
-      "translated": "{FIRST-NAME} is expecting to receive an e-mail about the Invites App. That e-mail should not be overlooked."
+      "translated": "{FIRST-NAME} is expecting to receive an e-mail about the Invites App. That e-mail should not be overlooked.",
+      "changes": [
+        {
+          "original": "expecting to receive",
+          "translated": "expecting to receive",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "btnSend",
