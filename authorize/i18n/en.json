@@ -123,8 +123,8 @@
       "translated": "{FIRST-NAME} is expecting to receive a text message in WhatsApp about the Invites App. That message should not be overlooked.",
       "changes": [
         {
-          "original": "{FIRST-NAME} is expecting to receive",
-          "translated": "{FIRST-NAME} is expecting to receive",
+          "original": "expecting to receive",
+          "translated": "expecting to receive",
           "bold": true,
           "italic": false,
           "link": ""
