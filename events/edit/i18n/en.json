@@ -259,6 +259,11 @@
       "translated": "Line 3"
     },
     {
+      "key": "addressCityStateZIP",
+      "original": "City, State, ZIP",
+      "translated": "City, State, ZIP"
+    },
+    {
       "key": "selectCountry",
       "original": "(Select country)",
       "translated": "(Select country)"

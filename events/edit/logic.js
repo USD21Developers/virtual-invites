@@ -934,6 +934,22 @@ async function onSubmit(e) {
     });
 }
 
+function populateAddressLine3Placeholder() {
+  const countryEl = document.querySelector("#country");
+  if (!countryEl) return;
+
+  const country = countryEl.value;
+  if (!country.length) return;
+  if (country.length !== 2) return;
+
+  const addressLine3El = document.querySelector("#addressLine3");
+
+  if (["us"].includes(country)) {
+    const placeholderText = getPhrase("addressCityStateZIP");
+    addressLine3El.setAttribute("placeholder", placeholderText);
+  }
+}
+
 function populateCountries() {
   const country = document.querySelector("#country");
   const lang = localStorage.getItem("lang") || "en";
@@ -2141,6 +2157,7 @@ async function init() {
   populateDurationInHours();
   await syncEvents();
   await loadEvent();
+  populateAddressLine3Placeholder();
   attachListeners();
   showCoordinatesContainer();
   initIntlTelInput();

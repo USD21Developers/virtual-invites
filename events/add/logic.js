@@ -735,6 +735,22 @@ async function onSubmit(e) {
     });
 }
 
+function populateAddressLine3Placeholder() {
+  const countryEl = document.querySelector("#country");
+  if (!countryEl) return;
+
+  const country = countryEl.value;
+  if (!country.length) return;
+  if (country.length !== 2) return;
+
+  const addressLine3El = document.querySelector("#addressLine3");
+
+  if (["us"].includes(country)) {
+    const placeholderText = getPhrase("addressCityStateZIP");
+    addressLine3El.setAttribute("placeholder", placeholderText);
+  }
+}
+
 function populateCountries() {
   return new Promise((resolve, reject) => {
     const country = document.querySelector("#country");
@@ -1962,6 +1978,7 @@ async function init() {
   await populateContent();
   populateCountries().then(() => {
     populateDefaultCountry();
+    populateAddressLine3Placeholder();
   });
   populateLanguages();
   populateTimeZones();

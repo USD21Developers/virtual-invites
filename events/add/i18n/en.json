@@ -240,8 +240,8 @@
     },
     {
       "key": "addressHeadline",
-      "original": "Address:",
-      "translated": "Address:"
+      "original": "Full address:",
+      "translated": "Full address:"
     },
     {
       "key": "addressLine1",
@@ -257,6 +257,11 @@
       "key": "addressLine3",
       "original": "Line 3",
       "translated": "Line 3"
+    },
+    {
+      "key": "addressCityStateZIP",
+      "original": "City, State, ZIP",
+      "translated": "City, State, ZIP"
     },
     {
       "key": "selectCountry",
