@@ -324,7 +324,7 @@
                 id="contactPhoneInvalidFeedback"
               ></div>
 
-              <div class="mt-3 d-none" id="isWhatsAppContainer">
+              <div class="mt-3" id="isWhatsAppContainer">
                 <div class="form-check">
                   <input
                     class="form-check-input"
@@ -352,7 +352,7 @@
             </div>
 
             <div
-              class="mb-5 alert alert-light border border-dark"
+              class="mb-4 alert alert-light border border-dark"
               id="oathContainer"
             >
               <div class="form-check form-check-inline">
@@ -365,6 +365,29 @@
                 <label class="form-check-label ml-2" for="oath"></label>
               </div>
               <div class="invalid-feedback" id="oathInvalidFeedback"></div>
+            </div>
+
+            <div
+              class="mb-5 alert alert-light border border-dark d-none"
+              id="isExpectingContainer"
+            >
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="isExpecting"
+                  value="accepted"
+                />
+                <label
+                  class="form-check-label ml-2 notbold"
+                  for="isExpecting"
+                  data-i18n="isExpectingTextMessage"
+                ></label>
+              </div>
+              <div
+                class="invalid-feedback"
+                data-i18n="errorIsExpectingIsRequired"
+              ></div>
             </div>
 
             <div class="mb-2 text-center">

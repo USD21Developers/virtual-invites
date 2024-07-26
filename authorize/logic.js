@@ -36,6 +36,53 @@ function customizeOath() {
   } else {
     oathEl.innerHTML = oathCustomizedChurch;
   }
+
+  customizeIsExpecting();
+}
+
+function customizeIsExpecting() {
+  const isExpectingContainerEl = document.querySelector(
+    "#isExpectingContainer"
+  );
+  const isExpectingLabel = document.querySelector("label[for='isExpecting']");
+  const firstName = document.querySelector("#firstName").value.trim();
+  const lastName = document.querySelector("#lastName").value.trim();
+  const sendingMethod = document.querySelector(
+    "[name='sendingMethod']:checked"
+  ).value;
+  const isWhatsApp = document.querySelector("#isWhatsApp").checked;
+  const contentWhatsApp = getPhrase("isExpectingWhatsApp").replaceAll(
+    "{FIRST-NAME}",
+    firstName
+  );
+  const contentTextMessage = getPhrase("isExpectingTextMessage").replaceAll(
+    "{FIRST-NAME}",
+    firstName
+  );
+  const contentEmail = getPhrase("isExpectingEmail").replaceAll(
+    "{FIRST-NAME}",
+    firstName
+  );
+
+  if (!firstName.length || !lastName.length) {
+    isExpectingContainerEl.classList.add("d-none");
+    return;
+  }
+
+  if (sendingMethod === "textmessage") {
+    if (isWhatsApp) {
+      isExpectingLabel.innerHTML = contentWhatsApp;
+    } else {
+      isExpectingLabel.innerHTML = contentTextMessage;
+    }
+    isExpectingContainerEl.classList.remove("d-none");
+  } else if (sendingMethod === "email") {
+    isExpectingLabel.innerHTML = contentEmail;
+    isExpectingContainerEl.classList.remove("d-none");
+  } else if (sendingMethod === "qrcode") {
+    isExpectingLabel.innerHTML = "";
+    isExpectingContainerEl.classList.add("d-none");
+  }
 }
 
 async function initIntlTelInput() {
@@ -443,19 +490,54 @@ function onToggleMethodOfSending(sendingMethod) {
   );
   const emailContainerEl = document.querySelector("#emailContainer");
   const submitButtonEl = document.querySelector("#submitButton");
+  const isExpectingLabel = document.querySelector("label[for='isExpecting']");
+  const isExpectingContainerEl = document.querySelector(
+    "#isExpectingContainer"
+  );
+  const isWhatsAppEl = document.querySelector("#isWhatsApp");
+  const firstName = document.querySelector("#firstName").value.trim();
   let submitButtonText;
 
   if (sendingMethod === "textmessage") {
+    if (firstName.length) {
+      if (isWhatsAppEl.checked) {
+        const content = getPhrase("isExpectingWhatsApp").replaceAll(
+          "{FIRST-NAME}",
+          firstName
+        );
+        isExpectingLabel.innerHTML = content;
+      } else {
+        const content = getPhrase("isExpectingTextMessage").replaceAll(
+          "{FIRST-NAME}",
+          firstName
+        );
+        isExpectingLabel.innerHTML = content;
+      }
+      isExpectingLabel.innerHTML = getPhrase(
+        "isExpectingTextMessage"
+      ).replaceAll("{FIRST-NAME}", firstName);
+      isExpectingContainerEl.classList.remove("d-none");
+    }
     contactPhoneContainerEl.classList.remove("d-none");
     emailContainerEl.classList.add("d-none");
     submitButtonText = getPhrase("btnSend");
   } else if (sendingMethod === "email") {
+    if (firstName.length) {
+      const content = getPhrase("isExpectingEmail").replaceAll(
+        "{FIRST-NAME}",
+        firstName
+      );
+      isExpectingLabel.innerHTML = content;
+      isExpectingContainerEl.classList.remove("d-none");
+    }
     contactPhoneContainerEl.classList.add("d-none");
     emailContainerEl.classList.remove("d-none");
     submitButtonText = getPhrase("btnSend");
   } else {
+    isExpectingLabel.innerHTML = "";
     contactPhoneContainerEl.classList.add("d-none");
     emailContainerEl.classList.add("d-none");
+    isExpectingContainerEl.classList.add("d-none");
     submitButtonText = getPhrase("btnShowQRCode");
   }
 
@@ -482,12 +564,17 @@ function attachListeners() {
 
   document.querySelectorAll("[name='sendingMethod']").forEach((item) => {
     item.addEventListener("click", (e) => {
+      customizeIsExpecting();
       localStorage.setItem("authorizationSendingMethod", e.target.value);
       onToggleMethodOfSending(e.target.value);
     });
   });
 
   document.querySelector("#authorizeForm").addEventListener("submit", onSubmit);
+
+  document
+    .querySelector("#isWhatsApp")
+    .addEventListener("click", customizeIsExpecting);
 }
 
 async function init() {
