@@ -547,6 +547,7 @@ async function onSubmit(e) {
             const formEl = document.querySelector("#authorizeForm");
             formEl.reset();
             populateChurches();
+            populateStoredSendingMethod();
             customScrollTo("body");
           }
 
