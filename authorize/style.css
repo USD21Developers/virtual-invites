@@ -49,3 +49,7 @@ label[for="oath"] em {
 html[lang="en"] #isExpectingContainer * {
   word-break: keep-all;
 }
+
+#alertMessage strong {
+  font-weight: 700 !important;
+}
