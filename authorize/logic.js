@@ -527,15 +527,10 @@ async function onSubmit(e) {
 
           if (firstName.length) {
             const alertHeadline = getPhrase("authorizationSentHeadline");
-            const alertContent1 = getPhrase("authorizationSent1");
-            const alertContent2 = getPhrase("authorizationSent2").replaceAll(
+            const alertContent = getPhrase("authorizationSent").replaceAll(
               "{FIRST-NAME}",
               firstName
             );
-            const alertContent = `
-              <p>${alertContent1}</p>
-              <p class="mb-0">${alertContent2}</p>
-            `;
             const successAlertEl = document.querySelector("#alertMessage");
             successAlertEl
               .querySelector(".alert")
