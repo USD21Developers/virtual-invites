@@ -258,6 +258,7 @@ async function onSubmit(e) {
   e.preventDefault();
 
   // Validate
+  document.querySelector("#alertMessage").classList.add("d-none");
 
   document.querySelectorAll(".is-invalid").forEach((item) => {
     item.classList.remove("is-invalid");
@@ -439,54 +440,118 @@ async function onSubmit(e) {
   })
     .then((res) => res.json())
     .then((data) => {
+      globalHidePageSpinner();
+
       switch (data.msg) {
         case "firstName is required":
+          formError("#firstName", getPhrase("errorFirstName"));
+          document.querySelector("#firstName").focus();
           break;
         case "lastName is required":
-          break;
-        case "churchid is required":
-          break;
-        case "churchid must be a number":
+          formError("#lastName", getPhrase("errorLastName"));
+          document.querySelector("#lastName").focus();
           break;
         case "highestLeadershipRole is required":
-          break;
-        case "invalid value for highestLeadershipRole":
-          break;
-        case "methodOfSending is required":
-          break;
-        case "invalid value for methodOfSending":
+          const errorElHighestLeadershipRole = document.querySelector(
+            "#highestLeadershipRole_invalidFeedback"
+          );
+          errorElHighestLeadershipRole.innerHTML = getPhrase(
+            "errorLeadershipRoleRequired"
+          );
+          errorElHighestLeadershipRole.classList.add("d-block");
+          customScrollTo("#highestLeadershipRole_invalidFeedback", 225);
           break;
         case "phoneNumber is required":
-          break;
-        case "phoneData is required":
+          const phoneNumberErrorEl = document.querySelector(
+            "#contactPhoneInvalidFeedback"
+          );
+          phoneNumberErrorEl.innerHTML = getPhrase("errorMobilePhoneRequired");
+          phoneNumberErrorEl.classList.add("d-block");
+          customScrollTo("#contactPhoneContainer");
           break;
         case "phoneNumber is invalid":
+          phoneNumberErrorEl.innerHTML = getPhrase("errorMobilePhoneInvalid");
+          phoneNumberErrorEl.classList.add("d-block");
+          customScrollTo("#contactPhoneContainer");
           break;
         case "email is required":
+          const emailErrorEl = document.querySelector(
+            "#contactEmailInvalidFeedback"
+          );
+          emailErrorEl.innerHTML = getPhrase("errorEmailRequired");
+          emailErrorEl.classList.add("d-block");
+          customScrollTo("#emailContainer");
           break;
         case "email is invalid":
+          emailErrorEl.innerHTML = getPhrase("errorEmailInvalid");
+          emailErrorEl.classList.add("d-block");
+          customScrollTo("#emailContainer");
           break;
         case "invalid value for acceptedOath":
-          break;
-        case "acceptedOath must be a boolean":
+          const acceptedOathErrorEl = document.querySelector(
+            "#oathInvalidFeedback"
+          );
+          acceptedOathErrorEl.innerHTML = getPhrase("errorOathIsRequired");
+          acceptedOathErrorEl.classList.add("d-block");
+          customScrollTo("#oathContainer");
           break;
         case "unable to query for authorizing user's permissions":
+          showToast(getPhrase("unexpectedError"), 5000, "danger");
           break;
         case "authorizing user was not found":
+          window.location.href = "/logout/";
           break;
         case "invalid userStatus for authorizing user":
+          window.location.href = "/logout/";
           break;
         case "authorizing user does not have permission to authorize":
+          window.location.href = "/";
           break;
         case "authorizing user does not have permission to authorize for this leadership role":
+          window.location.href = "/";
           break;
         case "unable to store authorization":
+          showToast(getPhrase("unexpectedError"), 5000, "danger");
           break;
         case "not enough money to send text message":
+          showToast(
+            getPhrase("notEnoughMoneyToSendTextMessage"),
+            5000,
+            "danger",
+            ".snackbar",
+            true
+          );
           break;
         case "new user authorized":
+          const firstName = document.querySelector("#firstName").value.trim();
+
+          if (firstName.length) {
+            const alertHeadline = getPhrase("authorizationSentHeadline");
+            const alertContent1 = getPhrase("authorizationSent1");
+            const alertContent2 = getPhrase("authorizationSent2").replaceAll(
+              "{FIRST-NAME}",
+              firstName
+            );
+            const alertContent = `
+              <p>${alertContent1}</p>
+              <p class="mb-0">${alertContent2}</p>
+            `;
+            const successAlertEl = document.querySelector("#alertMessage");
+            successAlertEl
+              .querySelector(".alert")
+              .classList.remove("alert-info", "alert-danger", "alert-warning");
+            successAlertEl
+              .querySelector(".alert")
+              .classList.add("alert-success");
+            showAlert(successAlertEl, alertContent, alertHeadline, true);
+            const formEl = document.querySelector("#authorizeForm");
+            formEl.reset();
+            customScrollTo("body");
+          }
+
           break;
         default:
+          showToast(getPhrase("unexpectedError"), 5000, "danger");
           break;
       }
     })

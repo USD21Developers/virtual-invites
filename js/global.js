@@ -1408,14 +1408,30 @@ function show(selector) {
   document.querySelector(selector).classList.remove("d-none");
 }
 
-function showAlert(selectorObject, message, headline = "") {
+function showAlert(
+  selectorObject,
+  message,
+  headline = "",
+  dismissable = false
+) {
   const offset = selectorObject.offsetTop - 64;
   const contentEl = selectorObject.querySelector(".alert");
-  const html = headline.length
+  let html = headline.length
     ? `<h3 class="alert-heading">${headline}</h3>${message}`
     : message;
 
+  const txtClose = getGlobalPhrase("close");
+
+  if (dismissable) {
+    html += `
+      <button type="button" class="close" data-dismiss="alert" aria-label="${txtClose}">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    `;
+  }
+
   contentEl.innerHTML = html;
+
   selectorObject.classList.remove("d-none");
   window.scroll({ top: offset, behavior: "smooth" });
 }
