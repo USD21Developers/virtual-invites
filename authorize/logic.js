@@ -546,6 +546,7 @@ async function onSubmit(e) {
             showAlert(successAlertEl, alertContent, alertHeadline, true);
             const formEl = document.querySelector("#authorizeForm");
             formEl.reset();
+            populateChurches();
             customScrollTo("body");
           }
 
