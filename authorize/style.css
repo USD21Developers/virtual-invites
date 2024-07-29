@@ -51,5 +51,9 @@ html[lang="en"] #isExpectingContainer * {
 }
 
 #alertMessage strong {
-  font-weight: 700 !important;
+  font-weight: 600 !important;
+}
+
+#alertMessage h3 {
+  margin-bottom: 12px;
 }
