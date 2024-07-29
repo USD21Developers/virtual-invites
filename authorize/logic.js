@@ -171,6 +171,9 @@ function populateStoredSendingMethod() {
   const storedSendingMethod = localStorage.getItem(
     "authorizationSendingMethod"
   );
+  const submitButtonEl = document.querySelector("#submitButton");
+  const showQrCodeEl = document.querySelector("#showQrCode");
+
   if (!storedSendingMethod) return;
   if (!["textmessage", "email", "qrcode"].includes(storedSendingMethod)) return;
 
@@ -189,14 +192,20 @@ function populateStoredSendingMethod() {
       emailContainerEl.classList.add("d-none");
       contactPhoneContainerEl.classList.remove("d-none");
       submitButtonEl.innerHTML = getPhrase("btnSend");
+      submitButtonEl.classList.remove("d-none");
+      showQrCodeEl.classList.add("d-none");
     } else if (storedSendingMethod === "email") {
       contactPhoneContainerEl.classList.add("d-none");
       emailContainerEl.classList.remove("d-none");
       submitButtonEl.innerHTML = getPhrase("btnSend");
+      submitButtonEl.classList.remove("d-none");
+      showQrCodeEl.classList.add("d-none");
     } else if (storedSendingMethod === "qrcode") {
       contactPhoneContainerEl.classList.add("d-none");
       emailContainerEl.classList.add("d-none");
       submitButtonEl.innerHTML = getPhrase("btnShowQRCode");
+      submitButtonEl.classList.add("d-none");
+      showQrCodeEl.classList.remove("d-none");
     }
   });
 }
@@ -233,13 +242,12 @@ function unhideContentForHighestUsers() {
   }
 }
 
-async function onSubmit(e) {
+async function validate(e) {
   const refreshToken = JSON.parse(
     atob(localStorage.getItem("refreshToken").split(".")[1])
   );
   const firstName = document.querySelector("#firstName").value.trim();
   const lastName = document.querySelector("#lastName").value.trim();
-  const churches = JSON.parse(localStorage.getItem("churches"));
   const churchid = document.querySelector("#churchid").value;
   const highestLeadershipRole = document.querySelector(
     "[name='highestLeadershipRole']:checked"
@@ -247,15 +255,12 @@ async function onSubmit(e) {
   const methodOfSending = document.querySelector(
     "[name='sendingMethod']:checked"
   ).value;
-  const phoneNumber = iti.getNumber();
-  const isWhatsApp = document.querySelector("#isWhatsApp").checked;
-  let phoneData = null;
   const email = document.querySelector("#contactEmail").value.trim();
   const acceptedOath = document.querySelector("#oath").checked;
   const isExpectingEl = document.querySelector("#isExpecting");
   const isExpecting = isExpectingEl.checked;
 
-  e.preventDefault();
+  if (e) e.preventDefault();
 
   // Validate
   document.querySelector("#alertMessage").classList.add("d-none");
@@ -271,13 +276,13 @@ async function onSubmit(e) {
   if (!firstName.length) {
     formError("#firstName", getPhrase("errorFirstName"));
     document.querySelector("#firstName").focus();
-    return;
+    return false;
   }
 
   if (!lastName.length) {
     formError("#lastName", getPhrase("errorLastName"));
     document.querySelector("#lastName").focus();
-    return;
+    return false;
   }
 
   if (!refreshToken.canAuthToAuth) {
@@ -295,7 +300,7 @@ async function onSubmit(e) {
       errorEl.innerHTML = errorMsg;
       errorEl.classList.add("d-block");
       customScrollTo("#churchContainer");
-      return;
+      return false;
     }
   }
 
@@ -307,7 +312,7 @@ async function onSubmit(e) {
       errorEl.innerHTML = getPhrase("errorLeadershipRoleRequired");
       errorEl.classList.add("d-block");
       customScrollTo("#highestLeadershipRole_invalidFeedback", 225);
-      return;
+      return false;
     }
   }
 
@@ -320,17 +325,15 @@ async function onSubmit(e) {
       errorEl.innerHTML = getPhrase("errorMobilePhoneRequired");
       errorEl.classList.add("d-block");
       customScrollTo("#contactPhoneContainer");
-      return;
+      return false;
     }
 
     if (!isValidNumber) {
       errorEl.innerHTML = getPhrase("errorMobilePhoneInvalid");
       errorEl.classList.add("d-block");
       customScrollTo("#contactPhoneContainer");
-      return;
+      return false;
     }
-
-    phoneData = iti.getSelectedCountryData();
   }
 
   if (methodOfSending === "email") {
@@ -341,14 +344,14 @@ async function onSubmit(e) {
       errorEl.innerHTML = getPhrase("errorEmailRequired");
       errorEl.classList.add("d-block");
       customScrollTo("#emailContainer");
-      return;
+      return false;
     }
 
     if (!isValidEmail) {
       errorEl.innerHTML = getPhrase("errorEmailInvalid");
       errorEl.classList.add("d-block");
       customScrollTo("#emailContainer");
-      return;
+      return false;
     }
   }
 
@@ -358,7 +361,7 @@ async function onSubmit(e) {
     errorEl.innerHTML = getPhrase("errorOathIsRequired");
     errorEl.classList.add("d-block");
     customScrollTo("#oathContainer");
-    return;
+    return false;
   }
 
   if (methodOfSending !== "qrcode") {
@@ -368,8 +371,81 @@ async function onSubmit(e) {
       errorEl.innerHTML = getPhrase("errorIsExpectingIsRequired");
       errorEl.classList.add("d-block");
       customScrollTo("#isExpectingContainer");
-      return;
+      return false;
     }
+  }
+
+  return true;
+}
+
+async function onQrCodeScanned(e) {
+  // TODO:  fetch to record the authorization. Put the code below in the success callback.
+
+  $("#qrCodeModal").modal("hide");
+
+  const firstName = document.querySelector("#firstName").value.trim();
+
+  if (firstName.length) {
+    const alertHeadline = getPhrase("authorizationSentHeadline");
+    const alertContent = getPhrase("authorizationSent").replaceAll(
+      "{FIRST-NAME}",
+      firstName
+    );
+    const successAlertEl = document.querySelector("#alertMessage");
+    successAlertEl
+      .querySelector(".alert")
+      .classList.remove("alert-info", "alert-danger", "alert-warning");
+    successAlertEl.querySelector(".alert").classList.add("alert-success");
+    showAlert(successAlertEl, alertContent, alertHeadline, true);
+    const formEl = document.querySelector("#authorizeForm");
+    formEl.reset();
+    populateChurches();
+    populateStoredSendingMethod();
+    customScrollTo("body");
+  }
+}
+
+async function onShowQrCode(e) {
+  const resultTextEl = document.querySelector("#didNewUserRead");
+  const firstName = document.querySelector("#firstName").value.trim();
+  const messageText = getPhrase("didNewUserRead").replaceAll(
+    "{FIRST-NAME}",
+    firstName
+  );
+
+  const isValidated = await validate();
+
+  if (!isValidated) return;
+
+  resultTextEl.innerHTML = messageText;
+  $("#qrCodeModal").modal();
+}
+
+async function onSubmit(e) {
+  const firstName = document.querySelector("#firstName").value.trim();
+  const lastName = document.querySelector("#lastName").value.trim();
+  const churches = JSON.parse(localStorage.getItem("churches"));
+  const churchid = document.querySelector("#churchid").value;
+  const highestLeadershipRole = document.querySelector(
+    "[name='highestLeadershipRole']:checked"
+  )?.value;
+  const methodOfSending = document.querySelector(
+    "[name='sendingMethod']:checked"
+  ).value;
+  const phoneNumber = iti.getNumber();
+  const isWhatsApp = document.querySelector("#isWhatsApp").checked;
+  let phoneData = null;
+  const email = document.querySelector("#contactEmail").value.trim();
+  const acceptedOath = document.querySelector("#oath").checked;
+
+  e.preventDefault();
+
+  // Validate
+  const isValidated = await validate(e);
+  if (!isValidated) return;
+
+  if (methodOfSending === "textmessage") {
+    phoneData = iti.getSelectedCountryData();
   }
 
   if (!navigator.onLine) {
@@ -377,7 +453,6 @@ async function onSubmit(e) {
   }
 
   const endpoint = `${getApiHost()}/authorize`;
-  const accessToken = await getAccessToken();
   const templateSms = await fetch("notification-text-message.txt").then((res) =>
     res.text()
   );
@@ -412,6 +487,8 @@ async function onSubmit(e) {
   }).format(new Date(utcExpiryDate));
 
   globalShowPageSpinner();
+
+  const accessToken = await getAccessToken();
 
   fetch(endpoint, {
     mode: "cors",
@@ -649,6 +726,12 @@ function attachListeners() {
   document
     .querySelector("#isWhatsApp")
     .addEventListener("click", customizeIsExpecting);
+
+  document.querySelector("#showQrCode").addEventListener("click", onShowQrCode);
+
+  document
+    .querySelector("#qrcodeCompleted")
+    .addEventListener("click", onQrCodeScanned);
 }
 
 async function init() {

@@ -283,6 +283,21 @@
           "link": ""
         }
       ]
+    },
+    {
+      "key": "completed",
+      "original": "Scan Completed",
+      "translated": "Scan Completed"
+    },
+    {
+      "key": "result",
+      "original": "Result",
+      "translated": "Result"
+    },
+    {
+      "key": "didNewUserRead",
+      "original": "Did {FIRST-NAME} scan the QR code?",
+      "translated": "Did {FIRST-NAME} scan the QR code?"
     }
   ],
 
