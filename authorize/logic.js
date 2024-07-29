@@ -210,6 +210,13 @@ function populateStoredSendingMethod() {
   });
 }
 
+function resetAndPopulateForm() {
+  const formEl = document.querySelector("#authorizeForm");
+  formEl.reset();
+  populateChurches();
+  populateStoredSendingMethod();
+}
+
 function unhideContentForHighestUsers() {
   let canAuthToAuth = false;
   let canAccessThisPage = false;
@@ -616,10 +623,7 @@ async function onSubmit(e) {
               .querySelector(".alert")
               .classList.add("alert-success");
             showAlert(successAlertEl, alertContent, alertHeadline, true);
-            const formEl = document.querySelector("#authorizeForm");
-            formEl.reset();
-            populateChurches();
-            populateStoredSendingMethod();
+            resetAndPopulateForm();
             customScrollTo("body");
           }
 
@@ -641,6 +645,7 @@ function onToggleMethodOfSending(sendingMethod) {
   );
   const emailContainerEl = document.querySelector("#emailContainer");
   const submitButtonEl = document.querySelector("#submitButton");
+  const showQrCodeButtonEl = document.querySelector("#showQrCode");
   const isExpectingLabel = document.querySelector("label[for='isExpecting']");
   const isExpectingContainerEl = document.querySelector(
     "#isExpectingContainer"
@@ -671,7 +676,8 @@ function onToggleMethodOfSending(sendingMethod) {
     }
     contactPhoneContainerEl.classList.remove("d-none");
     emailContainerEl.classList.add("d-none");
-    submitButtonText = getPhrase("btnSend");
+    showQrCodeButtonEl.classList.add("d-none");
+    submitButtonEl.classList.remove("d-none");
   } else if (sendingMethod === "email") {
     if (firstName.length) {
       const content = getPhrase("isExpectingEmail").replaceAll(
@@ -683,16 +689,16 @@ function onToggleMethodOfSending(sendingMethod) {
     }
     contactPhoneContainerEl.classList.add("d-none");
     emailContainerEl.classList.remove("d-none");
-    submitButtonText = getPhrase("btnSend");
+    showQrCodeButtonEl.classList.add("d-none");
+    submitButtonEl.classList.remove("d-none");
   } else {
     isExpectingLabel.innerHTML = "";
     contactPhoneContainerEl.classList.add("d-none");
     emailContainerEl.classList.add("d-none");
     isExpectingContainerEl.classList.add("d-none");
-    submitButtonText = getPhrase("btnShowQRCode");
+    submitButtonEl.classList.add("d-none");
+    showQrCodeButtonEl.classList.remove("d-none");
   }
-
-  submitButtonEl.innerHTML = submitButtonText;
 }
 
 function attachListeners() {
