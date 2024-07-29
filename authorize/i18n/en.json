@@ -285,6 +285,11 @@
       ]
     },
     {
+      "key": "authorizationSentQRCode",
+      "original": "Please ask {FIRST-NAME} to click on the link within the message.",
+      "translated": "Please ask {FIRST-NAME} to click on the link within the message."
+    },
+    {
       "key": "completed",
       "original": "Scan Completed",
       "translated": "Scan Completed"

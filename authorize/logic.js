@@ -387,7 +387,7 @@ async function onQrCodeScanned(e) {
 
   if (firstName.length) {
     const alertHeadline = getPhrase("authorizationSentHeadline");
-    const alertContent = getPhrase("authorizationSent").replaceAll(
+    const alertContent = getPhrase("authorizationSentQRCode").replaceAll(
       "{FIRST-NAME}",
       firstName
     );
