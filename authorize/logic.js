@@ -191,19 +191,16 @@ function populateStoredSendingMethod() {
     if (storedSendingMethod === "textmessage") {
       emailContainerEl.classList.add("d-none");
       contactPhoneContainerEl.classList.remove("d-none");
-      submitButtonEl.innerHTML = getPhrase("btnSend");
       submitButtonEl.classList.remove("d-none");
       showQrCodeEl.classList.add("d-none");
     } else if (storedSendingMethod === "email") {
       contactPhoneContainerEl.classList.add("d-none");
       emailContainerEl.classList.remove("d-none");
-      submitButtonEl.innerHTML = getPhrase("btnSend");
       submitButtonEl.classList.remove("d-none");
       showQrCodeEl.classList.add("d-none");
     } else if (storedSendingMethod === "qrcode") {
       contactPhoneContainerEl.classList.add("d-none");
       emailContainerEl.classList.add("d-none");
-      submitButtonEl.innerHTML = getPhrase("btnShowQRCode");
       submitButtonEl.classList.add("d-none");
       showQrCodeEl.classList.remove("d-none");
     }
@@ -215,6 +212,30 @@ function resetAndPopulateForm() {
   formEl.reset();
   populateChurches();
   populateStoredSendingMethod();
+}
+
+function showConfirmationModal() {
+  const firstName = document.querySelector("#firstName").value.trim();
+  const sendingMethod = document.querySelector(
+    "[name='sendingMethod']:checked"
+  ).value;
+
+  if (firstName.length) {
+    const headline = getPhrase("authorizationSentHeadline");
+    let content = getPhrase("authorizationSent").replaceAll(
+      "{FIRST-NAME}",
+      firstName
+    );
+
+    if (sendingMethod === "qrcode") {
+      content = getPhrase("authorizationSentQRCode").replaceAll(
+        "{FIRST-NAME}",
+        firstName
+      );
+    }
+
+    showModal(content, headline, true, "#confirmationModal");
+  }
 }
 
 function unhideContentForHighestUsers() {
@@ -386,30 +407,8 @@ async function validate(e) {
 }
 
 async function onQrCodeScanned(e) {
-  // TODO:  fetch to record the authorization. Put the code below in the success callback.
-
   $("#qrCodeModal").modal("hide");
-
-  const firstName = document.querySelector("#firstName").value.trim();
-
-  if (firstName.length) {
-    const alertHeadline = getPhrase("authorizationSentHeadline");
-    const alertContent = getPhrase("authorizationSentQRCode").replaceAll(
-      "{FIRST-NAME}",
-      firstName
-    );
-    const successAlertEl = document.querySelector("#alertMessage");
-    successAlertEl
-      .querySelector(".alert")
-      .classList.remove("alert-info", "alert-danger", "alert-warning");
-    successAlertEl.querySelector(".alert").classList.add("alert-success");
-    showAlert(successAlertEl, alertContent, alertHeadline, true);
-    const formEl = document.querySelector("#authorizeForm");
-    formEl.reset();
-    populateChurches();
-    populateStoredSendingMethod();
-    customScrollTo("body");
-  }
+  showConfirmationModal();
 }
 
 async function onShowQrCode(e) {
@@ -607,25 +606,7 @@ async function onSubmit(e) {
           );
           break;
         case "new user authorized":
-          const firstName = document.querySelector("#firstName").value.trim();
-
-          if (firstName.length) {
-            const alertHeadline = getPhrase("authorizationSentHeadline");
-            const alertContent = getPhrase("authorizationSent").replaceAll(
-              "{FIRST-NAME}",
-              firstName
-            );
-            const successAlertEl = document.querySelector("#alertMessage");
-            successAlertEl
-              .querySelector(".alert")
-              .classList.remove("alert-info", "alert-danger", "alert-warning");
-            successAlertEl
-              .querySelector(".alert")
-              .classList.add("alert-success");
-            showAlert(successAlertEl, alertContent, alertHeadline, true);
-            resetAndPopulateForm();
-            customScrollTo("body");
-          }
+          showConfirmationModal();
 
           break;
         default:
@@ -652,7 +633,6 @@ function onToggleMethodOfSending(sendingMethod) {
   );
   const isWhatsAppEl = document.querySelector("#isWhatsApp");
   const firstName = document.querySelector("#firstName").value.trim();
-  let submitButtonText;
 
   if (sendingMethod === "textmessage") {
     if (firstName.length) {
@@ -738,6 +718,11 @@ function attachListeners() {
   document
     .querySelector("#qrcodeCompleted")
     .addEventListener("click", onQrCodeScanned);
+
+  $("#confirmationModal").on("hidden.bs.modal", (e) => {
+    resetAndPopulateForm();
+    document.querySelector("body").scrollIntoView();
+  });
 }
 
 async function init() {

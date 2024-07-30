@@ -267,22 +267,13 @@
     },
     {
       "key": "authorizationSentHeadline",
-      "original": "Authorization Sent",
-      "translated": "Authorization Sent"
+      "original": "Authorization Sent!",
+      "translated": "Authorization Sent!"
     },
     {
       "key": "authorizationSent",
       "original": "Please ask {FIRST-NAME} to click on the link within the message. The link will expire after one month.",
-      "translated": "Please ask {FIRST-NAME} to click on the link within the message. The link will expire after one month.",
-      "changes": [
-        {
-          "original": "Please ask {FIRST-NAME} to click on the link within the message.",
-          "translated": "Please ask {FIRST-NAME} to click on the link within the message.",
-          "bold": true,
-          "italic": false,
-          "link": ""
-        }
-      ]
+      "translated": "Please ask {FIRST-NAME} to click on the link within the message. The link will expire after one month."
     },
     {
       "key": "authorizationSentQRCode",
