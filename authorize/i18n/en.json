@@ -292,8 +292,8 @@
     },
     {
       "key": "didNewUserRead",
-      "original": "Did {FIRST-NAME} scan the QR code?",
-      "translated": "Did {FIRST-NAME} scan the QR code?"
+      "original": "Has {FIRST-NAME} scanned this QR code?",
+      "translated": "Has {FIRST-NAME} scanned this QR code?"
     }
   ],
 
