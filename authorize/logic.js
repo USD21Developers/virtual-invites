@@ -238,6 +238,34 @@ function showConfirmationModal() {
   }
 }
 
+async function showQrCode(qrCodeUrl) {
+  return new Promise(async (resolve, reject) => {
+    const resultTextEl = document.querySelector("#didNewUserRead");
+    const firstName = document.querySelector("#firstName").value.trim();
+    const messageText = getPhrase("didNewUserRead").replaceAll(
+      "{FIRST-NAME}",
+      firstName
+    );
+
+    resultTextEl.innerHTML = messageText;
+    $("#qrCodeModal").modal();
+
+    $("#qrCodeModal").on("shown.bs.modal", (e) => {
+      const availableWidth = document.querySelector("#qrcode").clientWidth;
+      const maxWidth = 200;
+      const width = availableWidth > maxWidth ? maxWidth : availableWidth;
+
+      const qr = new QRious({
+        element: document.getElementById("qr"),
+        value: qrCodeUrl,
+        size: width,
+      });
+
+      return resolve(qr);
+    });
+  });
+}
+
 function unhideContentForHighestUsers() {
   let canAuthToAuth = false;
   let canAccessThisPage = false;
@@ -411,22 +439,6 @@ async function onQrCodeScanned(e) {
   showConfirmationModal();
 }
 
-async function onShowQrCode(e) {
-  const resultTextEl = document.querySelector("#didNewUserRead");
-  const firstName = document.querySelector("#firstName").value.trim();
-  const messageText = getPhrase("didNewUserRead").replaceAll(
-    "{FIRST-NAME}",
-    firstName
-  );
-
-  const isValidated = await validate();
-
-  if (!isValidated) return;
-
-  resultTextEl.innerHTML = messageText;
-  $("#qrCodeModal").modal();
-}
-
 async function onSubmit(e) {
   const firstName = document.querySelector("#firstName").value.trim();
   const lastName = document.querySelector("#lastName").value.trim();
@@ -522,9 +534,8 @@ async function onSubmit(e) {
     }),
   })
     .then((res) => res.json())
-    .then((data) => {
+    .then(async (data) => {
       globalHidePageSpinner();
-
       switch (data.msg) {
         case "firstName is required":
           formError("#firstName", getPhrase("errorFirstName"));
@@ -606,7 +617,11 @@ async function onSubmit(e) {
           );
           break;
         case "new user authorized":
-          showConfirmationModal();
+          if (!!data.qrCodeUrl) {
+            await showQrCode(data.qrCodeUrl);
+          } else {
+            showConfirmationModal();
+          }
 
           break;
         default:
@@ -712,8 +727,6 @@ function attachListeners() {
   document
     .querySelector("#isWhatsApp")
     .addEventListener("click", customizeIsExpecting);
-
-  document.querySelector("#showQrCode").addEventListener("click", onShowQrCode);
 
   document
     .querySelector("#qrcodeCompleted")
