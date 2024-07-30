@@ -734,7 +734,7 @@ function attachListeners() {
 
   $("#confirmationModal").on("hidden.bs.modal", (e) => {
     resetAndPopulateForm();
-    document.querySelector("body").scrollIntoView();
+    document.querySelector("html").scrollIntoView();
   });
 }
 
