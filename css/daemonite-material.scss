@@ -1,19 +1,25 @@
 $primary: (
-  color: #0d6efd,
-  dark: darken(#0d6efd, 10%),
-  light: lighten(#0d6efd, 10%),
+  color: #193e87,
+  dark: darken(#193e87, 10%),
+  light: lighten(#193e87, 10%),
 );
 
 $secondary: (
-  color: #6c757d,
-  dark: darken(#6c757d, 10%),
-  light: lighten(#6c757d, 10%),
+  color: #5d7daf,
+  dark: darken(#5d7daf, 10%),
+  light: lighten(#5d7daf, 10%),
+);
+
+$info: (
+  color: #2e6cde,
+  dark: darken(#2e6cde, 10%),
+  light: lighten(#2e6cde, 10%),
 );
 
 $warning: (
-  color: #f57c00,
-  dark: darken(#f57c00, 10%),
-  light: lighten(#f57c00, 10%),
+  color: #e2b93b,
+  dark: darken(#e2b93b, 10%),
+  light: lighten(#e2b93b, 10%),
 );
 
 $font-size-root: 18px;
