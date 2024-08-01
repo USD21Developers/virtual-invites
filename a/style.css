@@ -1,0 +1,13 @@
+html {
+  background: rgb(110, 149, 208);
+  background: radial-gradient(circle, rgba(110, 149, 208, 1) 10%, #334561 90%);
+  height: 100vh;
+}
+
+body {
+  background: unset;
+}
+
+#modal a {
+  color: lab(40 9.2 -55.3) !important;
+}

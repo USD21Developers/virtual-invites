@@ -202,6 +202,11 @@
       "translated": "The Invites App:  You are invited to register!"
     },
     {
+      "key": "notificationQRCodeHeader",
+      "original": "You are invited",
+      "translated": "You are invited"
+    },
+    {
       "key": "notificationSentence1",
       "original": "Hi {NEW-USER-FIRST-NAME}!",
       "translated": "Hi {NEW-USER-FIRST-NAME}!"
@@ -239,6 +244,11 @@
       "key": "notificationSentence5",
       "original": "If you decide to register, please do so by {DEADLINE-DATE} when the link below expires.",
       "translated": "If you decide to register, please do so by {DEADLINE-DATE} when the link below expires."
+    },
+    {
+      "key": "notificationSentence5QRCode",
+      "original": "If you decide to register, please do so by {DEADLINE-DATE}.",
+      "translated": "If you decide to register, please do so by {DEADLINE-DATE}."
     },
     {
       "key": "notificationMoreInfo",
