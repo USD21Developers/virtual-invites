@@ -12,13 +12,16 @@ async function showMessage(newUser, authorizedBy, expiresAt, churchid) {
   }).format(new Date(utcExpiryDate));
   const url = `../authorize/i18n/${lang}.json`;
   const phraseJSON = await fetch(url).then((res) => res.json());
-  const header = getPhrase("notificationQRCodeHeader", phraseJSON);
+  const header = getPhrase("notificationQRCodeHeader", phraseJSON).replaceAll(
+    "{NEW-USER-FIRST-NAME}",
+    newUser.firstname
+  );
   let sentence1 = getPhrase("notificationSentence1", phraseJSON);
   let sentence2 = getPhrase("notificationSentence2HTML", phraseJSON);
   const sentence3 = getPhrase("notificationSentence3", phraseJSON);
   const sentence4 = getPhrase("notificationSentence4", phraseJSON);
   let sentence5 = getPhrase("notificationSentence5QRCode", phraseJSON);
-  const moreInfo = getPhrase("notificationMoreInfo", phraseJSON);
+  const moreInfo = getPhrase("notificationMoreInfoQRCode", phraseJSON);
   const sincerely = getPhrase("notificationSincerely", phraseJSON);
   const internetMinistry = getPhrase(
     "notificationInternetMinistry",
@@ -47,9 +50,10 @@ async function showMessage(newUser, authorizedBy, expiresAt, churchid) {
       ${sentence5}
     </p>
 
-    <p>
-      <strong>${moreInfo}</strong><br />
-      <a href="/about/" class="underline text-primary">${window.location.origin}/about/</a>
+    <p class="text-center">
+      <a href="/about/" class="btn btn-sm btn-outline-primary border border-primary">
+        ${moreInfo}
+      </a>
     </p>
 
     <p>

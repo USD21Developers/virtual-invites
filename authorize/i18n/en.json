@@ -203,8 +203,8 @@
     },
     {
       "key": "notificationQRCodeHeader",
-      "original": "You are invited",
-      "translated": "You are invited"
+      "original": "{NEW-USER-FIRST-NAME} is Invited!",
+      "translated": "{NEW-USER-FIRST-NAME} is Invited!"
     },
     {
       "key": "notificationSentence1",
@@ -254,6 +254,11 @@
       "key": "notificationMoreInfo",
       "original": "Full details:",
       "translated": "Full details:"
+    },
+    {
+      "key": "notificationMoreInfoQRCode",
+      "original": "Full details",
+      "translated": "Full details"
     },
     {
       "key": "notificationSincerely",
