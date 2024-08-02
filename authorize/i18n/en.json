@@ -292,8 +292,17 @@
     },
     {
       "key": "authorizationSentQRCode",
-      "original": "Please ask {FIRST-NAME} to click on the link within the message.",
-      "translated": "Please ask {FIRST-NAME} to click on the link within the message."
+      "original": "Please ask {FIRST-NAME} to click on the Full Details button within the message.",
+      "translated": "Please ask {FIRST-NAME} to click on the Full Details button within the message.",
+      "changes": [
+        {
+          "original": "Full Details",
+          "translated": "Full Details",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "completed",
