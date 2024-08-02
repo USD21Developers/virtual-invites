@@ -12,6 +12,11 @@
       "key": "pagetitle",
       "original": "The Invites App:  You are invited to register!",
       "translated": "The Invites App:  You are invited to register!"
+    },
+    {
+      "key": "noRecordsFound",
+      "original": "No records found.",
+      "translated": "No records found."
     }
   ],
 

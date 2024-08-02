@@ -50,7 +50,7 @@ async function showMessage(newUser, authorizedBy, expiresAt, churchid) {
       ${sentence5}
     </p>
 
-    <p class="text-center">
+    <p class="text-center text-sm-left">
       <a href="/about/" class="btn btn-sm btn-outline-primary border border-primary">
         ${moreInfo}
       </a>
@@ -70,36 +70,102 @@ async function showMessage(newUser, authorizedBy, expiresAt, churchid) {
   showModal(content, header);
 }
 
+function validate(churchid, authorizedBy, authcode) {
+  const noRecordsFound = getPhrase("noRecordsFound");
+
+  const reset = () => {
+    globalHidePageSpinner();
+    document
+      .querySelector("html")
+      .style.setProperty("background-color", "white");
+  };
+
+  if (!churchid) {
+    console.error("churchid not found");
+    reset();
+    showToast(noRecordsFound, 0, "danger");
+    return false;
+  }
+
+  if (!authorizedBy) {
+    console.log("authorizedBy not found");
+    reset();
+    showToast(noRecordsFound, 0, "danger");
+    return false;
+  }
+
+  if (!authcode) {
+    console.log("authcode not found");
+    reset();
+    showToast(noRecordsFound, 0, "danger");
+    return false;
+  }
+
+  if (typeof churchid !== "number") {
+    console.log("churchid must be a number");
+    reset();
+    showToast(noRecordsFound, 0, "danger");
+    return false;
+  }
+
+  if (typeof authorizedBy !== "number") {
+    console.log("authorizedBy must be a number");
+    reset();
+    showToast(noRecordsFound, 0, "danger");
+    return false;
+  }
+
+  if (typeof authcode !== "string") {
+    console.log("authcode must be a string");
+    reset();
+    showToast(noRecordsFound, 0, "danger");
+    return false;
+  }
+
+  if (churchid <= 0) {
+    console.log("churchid must be a positive number");
+    reset();
+    showToast(noRecordsFound, 0, "danger");
+    return false;
+  }
+
+  if (authorizedBy <= 0) {
+    console.log("authorizedBy must be a positive number");
+    reset();
+    showToast(noRecordsFound, 0, "danger");
+    return false;
+  }
+  if (authcode.length !== 6) {
+    console.log("authcode must be exactly 6 characters");
+    reset();
+    showToast(noRecordsFound, 0, "danger");
+    return false;
+  }
+
+  return true;
+}
+
 function verifyAuthorization() {
   return new Promise(async (resolve, reject) => {
     const hash = window.location.hash.split("#")[1];
     const params = hash.split("/");
 
-    if (!Array.isArray(params)) throw new Error("params must be an array");
+    if (!Array.isArray(params)) {
+      console.error("params must be an array");
+    }
 
     params.shift();
 
-    if (params.length !== 3)
-      throw new Error("params must be an array of length 3");
+    if (params.length !== 3) {
+      console.error("params must be an array of length 3");
+    }
 
     const churchid = Number(params[0]) || null;
     const authorizedBy = Number(params[1]) || null;
     const authcode = params[2] || null;
+    const isValidated = validate(churchid, authorizedBy, authcode);
 
-    if (!churchid) throw new Error("churchid not found");
-    if (!authorizedBy) throw new Error("authorizedBy not found");
-    if (!authcode) throw new Error("authcode not found");
-    if (typeof churchid !== "number")
-      throw new Error("churchid must be a number");
-    if (typeof authorizedBy !== "number")
-      throw new Error("authorizedBy must be a number");
-    if (typeof authcode !== "string")
-      throw new Error("authcode must be a string");
-    if (churchid <= 0) throw new Error("churchid must be a positive number");
-    if (authorizedBy <= 0)
-      throw new Error("authorizedBy must be a positive number");
-    if (authcode.length !== 6)
-      throw new Error("authcode must be exactly 6 characters");
+    if (!isValidated) return reject();
 
     const endpoint = `${getApiHost()}/authorize-pre`;
 
