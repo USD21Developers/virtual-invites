@@ -102,7 +102,6 @@ function verifyAuthorization() {
       throw new Error("authcode must be exactly 6 characters");
 
     const endpoint = `${getApiHost()}/authorize-pre`;
-    const accessToken = await getAccessToken();
 
     fetch(endpoint, {
       mode: "cors",
@@ -114,7 +113,6 @@ function verifyAuthorization() {
       }),
       headers: new Headers({
         "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`,
       }),
     })
       .then((res) => res.json())
