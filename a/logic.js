@@ -1,3 +1,8 @@
+function reset() {
+  globalHidePageSpinner();
+  document.querySelector("html").style.setProperty("background-color", "white");
+}
+
 async function showMessage(newUser, authorizedBy, expiresAt, churchid) {
   // TODO:  if preauth was done via QR code, show a modal containing a similar message as sent via e-mail or text message.
   const churchesEndpoint = `${getApiServicesHost()}/churches`;
@@ -72,13 +77,6 @@ async function showMessage(newUser, authorizedBy, expiresAt, churchid) {
 
 function validate(churchid, authorizedBy, authcode) {
   const noRecordsFound = getPhrase("noRecordsFound");
-
-  const reset = () => {
-    globalHidePageSpinner();
-    document
-      .querySelector("html")
-      .style.setProperty("background-color", "white");
-  };
 
   if (!churchid) {
     console.error("churchid not found");
@@ -185,8 +183,12 @@ function verifyAuthorization() {
       .then((data) => {
         switch (data.msg) {
           case "no records found":
+            reset();
+            showToast(getPhrase("noRecordsFound"), 0, "danger");
             break;
           case "preauth is expired":
+            localStorage.removeItem("registrationToken");
+            window.location.href = "/about/";
             break;
           case "authorization verified":
             const jwt = data.registrationToken;
