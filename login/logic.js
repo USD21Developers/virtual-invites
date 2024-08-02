@@ -164,9 +164,8 @@ function onSubmit(e) {
         showAlert(alert, phrase, headline);
         return;
       } else if (data.msg === "user is not authorized") {
-        const encodedUserId = btoa(data.userid);
-        const url = `/authorize/me/#/${encodedUserId}`;
-        return (window.location.href = url);
+        localStorage.setItem("userToken", data.userToken);
+        return (window.location.href = "/authorize/me/");
       } else if (data.msg === "user authenticated") {
         localStorage.setItem("datakey", data.datakey);
         localStorage.setItem("refreshToken", data.refreshToken);
