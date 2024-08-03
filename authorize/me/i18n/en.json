@@ -65,8 +65,17 @@
     },
     {
       "key": "instructions3",
-      "original": "The authorizing user will use their device to confirm that you are a member in good standing with the {CHURCH-NAME}.",
-      "translated": "The authorizing user will use their device to confirm that you are a member in good standing with the {CHURCH-NAME}."
+      "original": "The authorizing user will use their device to confirm that you are a member in good standing with the {CHURCH-NAME}. Once this happens, your authorization will be granted.",
+      "translated": "The authorizing user will use their device to confirm that you are a member in good standing with the {CHURCH-NAME}. Once this happens, your authorization will be granted.",
+      "changes": [
+        {
+          "original": "{CHURCH-NAME}",
+          "translated": "{CHURCH-NAME}",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "ready",
