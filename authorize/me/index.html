@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="initial-scale=1, shrink-to-fit=no, width=device-width"
+      name="viewport"
+    />
+    <title data-i18n="pagetitle"></title>
+    <link rel="stylesheet" href="/css/daemonite-material.css" />
+    <link href="/css/global.css" rel="stylesheet" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#3d316b" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta name="apple-mobile-web-app-title" content="Invites" />
+    <meta name="application-name" content="Invites" />
+    <meta name="msapplication-TileColor" content="#6551b4" />
+    <meta name="theme-color" content="#102951" />
+  </head>
+  <body>
+    <nav class="navbar bg-white sticky-top">
+      <a class="navbar-brand" href="/">
+        <img src="/_assets/img/logo.svg" width="133" height="50" alt="logo" />
+      </a>
+      <div class="align-items-end">
+        <a href="/profile/" class="profileImageNav d-none"></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="navdrawer"
+          data-target="#navdrawerDefault"
+          aria-controls="navdrawerDefault"
+          aria-expanded="false"
+          aria-label=""
+          data-i18n-global-aria-label="toggleNavigation"
+        >
+          <span>
+            <img src="/_assets/svg/icons/menu.svg" />
+          </span>
+        </button>
+      </div>
+    </nav>
+
+    <div
+      aria-hidden="true"
+      class="navdrawer navdrawer-right navbar-collapse collapse"
+      id="navdrawerDefault"
+      tabindex="-1"
+    >
+      <div class="navdrawer-content">
+        <div class="navdrawer-header">
+          <div class="row">
+            <div class="col-9 d-flex justify-content-start">
+              <a
+                class="navbar-brand px-0"
+                href="../../"
+                data-i18n-global="menuHeadline"
+              ></a>
+            </div>
+            <div class="col-3 d-flex justify-content-end align-items-center">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="navdrawer"
+                data-target="#navdrawerDefault"
+                aria-controls="navdrawerDefault"
+                aria-expanded="false"
+                aria-label=""
+                data-i18n-global-aria-label="toggleNavigation"
+              >
+                <span>
+                  <img src="/_assets/svg/icons/close.svg" />
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <nav class="navdrawer-nav">
+          <a class="nav-item nav-link" href="../../support/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/contact_support.svg" />
+            </span>
+            <span data-i18n-global="menuSupport"></span>
+          </a>
+          <a class="nav-item nav-link" href="../../logout/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/logout.svg" />
+            </span>
+            <span data-i18n-global="menuLogOut"></span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container" id="pageSpinner">
+      <div class="row">
+        <div class="col col-sm-10 offset-sm-1 mt-3 mb-4 text-center">
+          <img
+            src="/_assets/img/spinner.svg"
+            width="200"
+            height="200"
+            style="max-width: 100%"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-none mainContent">
+      <div class="row">
+        <div class="col">
+          <h2
+            class="text-center text-uppercase my-4"
+            data-i18n="pagetitle"
+          ></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-md-8 offset-md-2">
+          <p class="mb-4" id="paragraph1"></p>
+          <h3 class="text-center mb-3" data-i18n="instructionsHeadline"></h3>
+          <ol>
+            <li>
+              <div class="mb-2">
+                <strong data-i18n="instructions1Headline"></strong>
+              </div>
+              <div class="mb-2" data-i18n="instructions1"></div>
+              <p data-i18n="listOfAuthorizingUsers"></p>
+            </li>
+            <li>
+              <div class="mb-2">
+                <strong data-i18n="instructions2Headline"></strong>
+              </div>
+              <div class="mb-2" data-i18n="instructions2"></div>
+            </li>
+            <li>
+              <div class="mb-2">
+                <strong data-i18n="instructions3Headline"></strong>
+              </div>
+              <div class="mb-2" id="instructions3"></div>
+            </li>
+          </ol>
+          <h3 class="text-center mb-4" data-i18n="ready"></h3>
+          <p class="text-center">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-i18n="showQRCode"
+              id="btnShowQRCode"
+            ></button>
+          </p>
+        </div>
+      </div>
+
+      <div class="snackbar">
+        <div class="snackbar-body"></div>
+      </div>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div
+      class="modal fade"
+      id="qrCodeModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modaltitle"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-1"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              data-i18n="btnCloseModal"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br /><br /><br /><br />
+
+    <script src="/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="/js/qrious/qrious.min.js"></script>
+    <script src="/js/global.js"></script>
+    <script src="logic.js"></script>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+{
+  "metadata": {
+    "description": "Authorize Me",
+    "path": "/authorize/me/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Authorize Me",
+      "translated": "Authorize Me"
+    },
+    {
+      "key": "paragraph1",
+      "original": "Hello, {FIRST-NAME}! Although your login is accurate, you'll still need to get authorized before you can start using the Invites App. Just follow the instructions below.",
+      "translated": "Hello, {FIRST-NAME}! Although your login is accurate, you'll still need to get authorized before you can start using the Invites App. Just follow the instructions below."
+    },
+    {
+      "key": "instructionsHeadline",
+      "original": "Instructions:",
+      "translated": "Instructions:"
+    },
+    {
+      "key": "instructions1Headline",
+      "original": "Find someone who can authorize you.",
+      "translated": "Find someone who can authorize you."
+    },
+    {
+      "key": "instructions1",
+      "original": "Within your congregation there are other registered users of the Invites App who have the necessary access to authorize you. You'll need to find one of them.",
+      "translated": "Within your congregation there are other registered users of the Invites App who have the necessary access to authorize you. You'll need to find one of them."
+    },
+    {
+      "key": "listOfAuthorizingUsers",
+      "original": "Here's a list of authorizing users.",
+      "translated": "Here's a list of authorizing users.",
+      "changes": [
+        {
+          "original": "list of authorizing users",
+          "translated": "list of authorizing users",
+          "bold": true,
+          "italic": false,
+          "link": "by/",
+          "underline": true
+        }
+      ]
+    },
+    {
+      "key": "instructions2Headline",
+      "original": "Show them the QR Code.",
+      "translated": "Show them the QR Code."
+    },
+    {
+      "key": "instructions2",
+      "original": "When you have found someone who can authorize you, click on the button below ('Show QR Code'). A QR Code will appear. Ask them to authorize you by scanning it.",
+      "translated": "When you have found someone who can authorize you, click on the button below ('Show QR Code'). A QR Code will appear. Ask them to authorize you by scanning it."
+    },
+    {
+      "key": "instructions3Headline",
+      "original": "Get authorized.",
+      "translated": "Get authorized."
+    },
+    {
+      "key": "instructions3",
+      "original": "The authorizing user will use their device to confirm that you are a member in good standing with the {CHURCH-NAME}.",
+      "translated": "The authorizing user will use their device to confirm that you are a member in good standing with the {CHURCH-NAME}."
+    },
+    {
+      "key": "ready",
+      "original": "Ready?",
+      "translated": "Ready?"
+    },
+    {
+      "key": "showQRCode",
+      "original": "Show QR Code",
+      "translated": "Show QR Code"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
