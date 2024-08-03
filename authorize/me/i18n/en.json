@@ -43,7 +43,7 @@
           "translated": "list of authorizing users",
           "bold": true,
           "italic": false,
-          "link": "by/",
+          "link": "authorizers/",
           "underline": true
         }
       ]
@@ -56,7 +56,16 @@
     {
       "key": "instructions2",
       "original": "When you have found someone who can authorize you, click on the button below ('Show QR Code'). A QR Code will appear. Ask them to authorize you by scanning it.",
-      "translated": "When you have found someone who can authorize you, click on the button below ('Show QR Code'). A QR Code will appear. Ask them to authorize you by scanning it."
+      "translated": "When you have found someone who can authorize you, click on the button below ('Show QR Code'). A QR Code will appear. Ask them to authorize you by scanning it.",
+      "changes": [
+        {
+          "original": "'Show QR Code'",
+          "translated": "'Show QR Code'",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "instructions3Headline",
