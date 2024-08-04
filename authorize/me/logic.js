@@ -44,6 +44,11 @@ async function personalizeContent() {
 function onShowQrCodeClick(e) {
   e.preventDefault();
   console.log("Button clicked");
+
+  // TODO:  generate QR code, pointing to "/authorize/user/#/{USER-ID}"
+  // TODO:  create actual front end route above
+  // TODO:  start polling the API to check for (A) authorizing user clicked on URL from QR Code, and (B) approval granted
+  // TODO:  create a UX for when approval has been granted
 }
 
 function attachListeners() {
