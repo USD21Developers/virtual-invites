@@ -165,7 +165,7 @@ function verifyAuthorization() {
 
     if (!isValidated) return reject();
 
-    const endpoint = `${getApiHost()}/authorize-pre`;
+    const endpoint = `${getApiHost()}/authorization-prereg-claim`;
 
     fetch(endpoint, {
       mode: "cors",

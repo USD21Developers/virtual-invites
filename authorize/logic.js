@@ -470,7 +470,7 @@ async function onSubmit(e) {
     return showToast(getGlobalPhrase("youAreOffline"), 5000, "danger");
   }
 
-  const endpoint = `${getApiHost()}/authorize`;
+  const endpoint = `${getApiHost()}/authorization-prereg-grant`;
   const templateSms = await fetch("notification-text-message.txt").then((res) =>
     res.text()
   );
