@@ -41,8 +41,7 @@ async function personalizeContent() {
   instructions3El.innerHTML = instructions3Text;
 }
 
-function onShowQrCodeClick(e) {
-  e.preventDefault();
+function onShowQrCodeClick() {
   console.log("Button clicked");
 
   // TODO:  generate QR code, pointing to "/authorize/user/#/{USER-ID}"
