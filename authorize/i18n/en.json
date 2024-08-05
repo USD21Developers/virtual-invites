@@ -15,8 +15,8 @@
     },
     {
       "key": "paragraph1",
-      "original": "To pre-authorize a new user, please complete the form below. This will send them a brief message about the app, and it will contain a clickable authorization link. Once they click on that link, they will be pre-approved to register with full access to the app.",
-      "translated": "To pre-authorize a new user, please complete the form below. This will send them a brief message about the app, and it will contain a clickable authorization link. Once they click on that link, they will be pre-approved to register with full access to the app.",
+      "original": "To pre-authorize a new user, please complete the form below. This will send them a brief message about the app, and it will contain a clickable authorization link. Once they click on that link, they will be pre-approved to register and will have full access to the app.",
+      "translated": "To pre-authorize a new user, please complete the form below. This will send them a brief message about the app, and it will contain a clickable authorization link. Once they click on that link, they will be pre-approved to register and will have full access to the app.",
       "changes": [
         {
           "original": "authorization link",
