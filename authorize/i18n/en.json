@@ -43,27 +43,6 @@
           "bold": false,
           "italic": false,
           "link": "https://usd21.org/"
-        },
-        {
-          "original": "@usd21.org",
-          "translated": "@usd21.org",
-          "bold": true,
-          "italic": false,
-          "link": ""
-        },
-        {
-          "original": "@iccm.global",
-          "translated": "@iccm.global",
-          "bold": true,
-          "italic": false,
-          "link": ""
-        },
-        {
-          "original": "automatically",
-          "translated": "automatically",
-          "bold": false,
-          "italic": true,
-          "link": ""
         }
       ]
     },
