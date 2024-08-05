@@ -10,8 +10,8 @@
   "phrases": [
     {
       "key": "pagetitle",
-      "original": "Authorize Me",
-      "translated": "Authorize Me"
+      "original": "Authorization Required",
+      "translated": "Authorization Required"
     },
     {
       "key": "paragraph1",
