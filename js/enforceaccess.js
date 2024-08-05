@@ -139,5 +139,19 @@ if (isFromHomeScreen) {
 }
 
 framebuster();
-verifyRefreshToken();
-verifyDataKey();
+
+if (window.location.pathname === "/authorize/me/") {
+  const jwt = localStorage.getItem("userToken");
+
+  if (!jwt) {
+    window.location.href = "/logout/";
+  }
+} else {
+  verifyRefreshToken();
+  verifyDataKey();
+
+  const permissions = getPermissions();
+  if (!permissions.includes("isAuthorized")) {
+    window.location.href = "/logout/";
+  }
+}

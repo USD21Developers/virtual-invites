@@ -1,7 +1,5 @@
 async function personalizeContent() {
-  let jwt = localStorage.getItem("userToken");
-
-  jwt = sessionStorage.getItem("accessToken"); // DELETE THIS LATER!
+  const jwt = localStorage.getItem("userToken");
 
   if (!jwt) {
     sessionStorage.setItem("redirectOnLogin", "/authorize/me/");
@@ -10,11 +8,7 @@ async function personalizeContent() {
 
   const userToken = JSON.parse(atob(jwt.split(".")[1]));
 
-  userToken.firstname = "Jason";
-  userToken.churchid = 7;
-  userToken.isAuthorized = false;
-
-  const { firstname, userid, churchid, isAuthorized } = userToken;
+  const { firstname, churchid, isAuthorized } = userToken;
 
   if (isAuthorized) {
     return (window.location.href = "/");
@@ -32,20 +26,58 @@ async function personalizeContent() {
     .then((data) => data.churches);
 
   const church = churches.find((item) => item.id === churchid);
+}
 
-  const instructions3El = document.querySelector("#instructions3");
-  const instructions3Text = getPhrase("instructions3").replaceAll(
-    "{CHURCH-NAME}",
-    church.name
-  );
-  instructions3El.innerHTML = instructions3Text;
+async function showQrCode(qrCodeUrl, userToken) {
+  return new Promise(async (resolve, reject) => {
+    $("#qrCodeModal").modal();
+
+    $("#qrCodeModal").on("shown.bs.modal", (e) => {
+      const availableWidth = document.querySelector("#qrcode").clientWidth;
+      const maxWidth = 200;
+      const width = availableWidth > maxWidth ? maxWidth : availableWidth;
+
+      const qr = new QRious({
+        element: document.getElementById("qr"),
+        value: qrCodeUrl,
+        size: width,
+      });
+
+      const { firstname, lastname } = userToken;
+
+      const modalTitleEl = document.querySelector("#modaltitle");
+      const headlineText = getPhrase("modalHeadline")
+        .replaceAll("{FIRST-NAME}", firstname)
+        .replaceAll("{LAST-NAME}", lastname);
+      modalTitleEl.innerHTML = headlineText;
+
+      const qrCodeInstructionsEl = document.querySelector(
+        "#qrCodeInstructions"
+      );
+      const instructionsText = getPhrase("modalInstructions")
+        .replaceAll("{FIRST-NAME}", firstname)
+        .replaceAll("{LAST-NAME}", lastname);
+      qrCodeInstructionsEl.innerHTML = instructionsText;
+
+      return resolve(qr);
+    });
+  });
 }
 
 function onShowQrCodeClick() {
   console.log("Button clicked");
+  const jwt = localStorage.getItem("userToken") || null;
 
-  // TODO:  generate QR code, pointing to "/authorize/user/#/{USER-ID}"
-  // TODO:  create actual front end route above
+  if (!jwt) {
+    return (location.href = "/logout/");
+  }
+
+  const userToken = JSON.parse(atob(jwt.split(".")[1]));
+  const userid = userToken.userid;
+  const url = `${window.location.origin}/authorize/user/#/${userid}`;
+
+  showQrCode(url, userToken);
+  // TODO:  create actual front end route for above url
   // TODO:  start polling the API to check for (A) authorizing user clicked on URL from QR Code, and (B) approval granted
   // TODO:  create a UX for when approval has been granted
 }

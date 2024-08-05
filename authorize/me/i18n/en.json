@@ -68,23 +68,9 @@
       ]
     },
     {
-      "key": "instructions3Headline",
-      "original": "Get authorized.",
-      "translated": "Get authorized."
-    },
-    {
       "key": "instructions3",
-      "original": "The authorizing user will use their device to confirm that you are a member in good standing with the {CHURCH-NAME}. Once this happens, your authorization will be granted.",
-      "translated": "The authorizing user will use their device to confirm that you are a member in good standing with the {CHURCH-NAME}. Once this happens, your authorization will be granted.",
-      "changes": [
-        {
-          "original": "{CHURCH-NAME}",
-          "translated": "{CHURCH-NAME}",
-          "bold": true,
-          "italic": false,
-          "link": ""
-        }
-      ]
+      "original": "As soon as you are authorized, you will be notified via e-mail, and also the QR Code above will disappear.",
+      "translated": "As soon as you are authorized, you will be notified via e-mail, and also the QR Code above will disappear."
     },
     {
       "key": "ready",
@@ -95,6 +81,25 @@
       "key": "showQRCode",
       "original": "Show QR Code",
       "translated": "Show QR Code"
+    },
+    {
+      "key": "modalHeadline",
+      "original": "Please authorize me",
+      "translated": "Please authorize me"
+    },
+    {
+      "key": "modalInstructions",
+      "original": "Please authorize {FIRST-NAME} {LAST-NAME} to use the Invites App, by scanning the QR Code below.",
+      "translated": "Please authorize {FIRST-NAME} {LAST-NAME} to use the Invites App, by scanning the QR Code below.",
+      "changes": [
+        {
+          "original": "Invites App",
+          "translated": "Invites App",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
     }
   ],
 

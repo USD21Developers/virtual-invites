@@ -2,7 +2,7 @@
 
 <html lang="en">
   <head>
-    <script id="enforceaccess" src="js/enforceaccess.js"></script>
+    <script id="enforceaccess" src="/js/enforceaccess.js"></script>
     <meta charset="utf-8" />
     <meta
       content="initial-scale=1, shrink-to-fit=no, width=device-width"
@@ -138,14 +138,9 @@
               </div>
               <div class="mb-2" data-i18n="instructions2"></div>
             </li>
-            <li>
-              <div class="mb-2">
-                <strong data-i18n="instructions3Headline"></strong>
-              </div>
-              <div class="mb-2" id="instructions3"></div>
-            </li>
           </ol>
-          <h3 class="text-center mb-4" data-i18n="ready"></h3>
+
+          <h3 class="text-center mt-5 mb-4" data-i18n="ready"></h3>
           <p class="text-center">
             <button
               type="button"
@@ -184,7 +179,12 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body pb-1"></div>
+          <div class="modal-body pb-2">
+            <div class="mb-4" id="qrCodeInstructions"></div>
+            <div class="text-center" id="qrcode">
+              <canvas id="qr" style="max-width: 100%"></canvas>
+            </div>
+          </div>
           <div class="modal-footer">
             <button
               type="button"
