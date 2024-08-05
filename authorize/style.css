@@ -58,6 +58,10 @@ html[lang="en"] #isExpectingContainer * {
   margin-bottom: 12px;
 }
 
+details summary {
+  font-size: 0.8rem !important;
+}
+
 details[open] summary {
   color: black !important;
   font-size: 0.9rem;
