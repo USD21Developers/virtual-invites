@@ -59,7 +59,7 @@ html[lang="en"] #isExpectingContainer * {
 }
 
 details summary {
-  font-size: 0.8rem !important;
+  font-size: 0.85rem !important;
 }
 
 details[open] summary {
