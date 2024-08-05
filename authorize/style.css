@@ -64,6 +64,7 @@ details[open] summary {
   font-weight: bold;
 }
 
-details summary a {
+details a {
+  color: var(--primary);
   text-decoration: underline;
 }
