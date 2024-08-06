@@ -20,12 +20,6 @@ async function personalizeContent() {
     firstname
   );
   paragraph1El.innerHTML = paragraph1Text;
-
-  const churches = await fetch(`${getApiServicesHost()}/churches`)
-    .then((res) => res.json())
-    .then((data) => data.churches);
-
-  const church = churches.find((item) => item.id === churchid);
 }
 
 async function showQrCode(qrCodeUrl, userToken) {
@@ -64,8 +58,38 @@ async function showQrCode(qrCodeUrl, userToken) {
   });
 }
 
+async function onAuthorizersClick(e) {
+  e.preventDefault();
+
+  const jwt = localStorage.getItem("userToken");
+
+  if (!jwt) {
+    sessionStorage.setItem("redirectOnLogin", "/authorize/me/");
+    window.location.href = "/logout/";
+  }
+
+  const endpoint = `${getApiHost()}/authorizing-users`;
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "post",
+    body: JSON.stringify({
+      userToken: jwt,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      debugger;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 function onShowQrCodeClick() {
-  console.log("Button clicked");
   const jwt = localStorage.getItem("userToken") || null;
 
   if (!jwt) {
@@ -86,6 +110,10 @@ function attachListeners() {
   document
     .querySelector("#btnShowQRCode")
     .addEventListener("click", onShowQrCodeClick);
+
+  document
+    .querySelector("a[href='#authorizers']")
+    .addEventListener("click", onAuthorizersClick);
 }
 
 async function init() {

@@ -43,7 +43,7 @@
           "translated": "authorizing users",
           "bold": true,
           "italic": false,
-          "link": "authorizers/",
+          "link": "#authorizers",
           "underline": true
         }
       ]
