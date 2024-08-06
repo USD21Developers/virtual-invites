@@ -39,8 +39,8 @@
       "translated": "Here's a list of authorizing users.",
       "changes": [
         {
-          "original": "list of authorizing users",
-          "translated": "list of authorizing users",
+          "original": "authorizing users",
+          "translated": "authorizing users",
           "bold": true,
           "italic": false,
           "link": "authorizers/",
