@@ -487,14 +487,11 @@ function getChurches() {
       return resolve(JSON.parse(churchesStored));
     }
 
-    const accessToken = await getAccessToken();
-
     fetch(endpoint, {
       mode: "cors",
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`,
       }),
     })
       .then((res) => res.json())
