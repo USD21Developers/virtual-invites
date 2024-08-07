@@ -129,29 +129,33 @@ function verifyRefreshToken() {
   }
 }
 
-const isFromHomeScreen =
-  window.location.href.indexOf("utm_source=homescreen") >= 0 ? true : false;
+async function init() {
+  const isFromHomeScreen =
+    window.location.href.indexOf("utm_source=homescreen") >= 0 ? true : false;
 
-if (isFromHomeScreen) {
-  sessionStorage.setItem("isFromHomeScreen", "true");
-} else {
-  sessionStorage.removeItem("isFromHomeScreen");
+  if (isFromHomeScreen) {
+    sessionStorage.setItem("isFromHomeScreen", "true");
+  } else {
+    sessionStorage.removeItem("isFromHomeScreen");
+  }
+
+  framebuster();
+
+  if (window.location.pathname === "/authorize/me/") {
+    const jwt = localStorage.getItem("userToken");
+
+    if (!jwt) {
+      window.location.href = "/logout/";
+    }
+  } else {
+    verifyRefreshToken();
+    verifyDataKey();
+
+    const permissions = await getPermissions();
+    if (!permissions.includes("isAuthorized")) {
+      window.location.href = "/logout/";
+    }
+  }
 }
 
-framebuster();
-
-if (window.location.pathname === "/authorize/me/") {
-  const jwt = localStorage.getItem("userToken");
-
-  if (!jwt) {
-    window.location.href = "/logout/";
-  }
-} else {
-  verifyRefreshToken();
-  verifyDataKey();
-
-  const permissions = getPermissions();
-  if (!permissions.includes("isAuthorized")) {
-    window.location.href = "/logout/";
-  }
-}
+init();
