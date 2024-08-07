@@ -100,6 +100,36 @@
           "link": ""
         }
       ]
+    },
+    {
+      "key": "authorizingUsers",
+      "original": "Authorizing Users",
+      "translated": "Authorizing Users"
+    },
+    {
+      "key": "authorizingUser",
+      "original": "Please find the following person in the fellowship, and explain that you would like to be authorized to use the Invites App:",
+      "translated": "Please find the following person in the fellowship, and explain that you would like to be authorized to use the Invites App:"
+    },
+    {
+      "key": "authorizingUsers",
+      "original": "Please find any of the following people in the fellowship, and explain that you would like to be authorized to use the Invites App:",
+      "translated": "Please find any of the following people in the fellowship, and explain that you would like to be authorized to use the Invites App:"
+    },
+    {
+      "key": "noAuthorizingUsersFound",
+      "original": "No authorizing users were found in your congregation.",
+      "translated": "No authorizing users were found in your congregation."
+    },
+    {
+      "key": "btnCloseModal",
+      "original": "Close",
+      "translated": "Close"
+    },
+    {
+      "key": "registeredOn",
+      "original": "Registered on {REGISTRATION-DATE}",
+      "translated": "Registered on {REGISTRATION-DATE}"
     }
   ],
 

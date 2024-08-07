@@ -22,6 +22,62 @@ async function personalizeContent() {
   paragraph1El.innerHTML = paragraph1Text;
 }
 
+async function populateAuthorizingUsersModal(users) {
+  const el = document.querySelector("#authorizingUsersModal .modal-body");
+  const explanation = document.createElement("p");
+  const churches = await getChurches();
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  el.innerHTML = "";
+
+  if (users.length === 1) {
+    explanation.innerHTML = getPhrase("authorizingUser");
+  } else {
+    explanation.innerHTML = getPhrase("authorizingUsers");
+  }
+
+  el.appendChild(explanation);
+
+  const ul = document.createElement("ul");
+  ul.classList.add("list-group");
+  ul.classList.add("mt-4");
+
+  users.forEach((item) => {
+    const { churchid, createdAt, firstname, lastname, profilephoto, userid } =
+      item;
+    const profilePhotoSmall = profilephoto.replaceAll("400", "140");
+    const church = churches.find((item) => item.id === churchid);
+    const country = church.country;
+    const lang = getLang();
+    const locale = `${lang}-${country}`;
+    const registrationDate = Intl.DateTimeFormat(locale, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: timeZone,
+    }).format(new Date(createdAt));
+
+    const registeredOnDate = getPhrase("registeredOn").replaceAll(
+      "{REGISTRATION-DATE}",
+      registrationDate
+    );
+    const li = document.createElement("li");
+    li.classList.add("list-group-item");
+    li.innerHTML = `
+      <div class="media">
+        <img class="mr-3" width="70" height="70" src="${profilePhotoSmall}" alt="${firstname} ${lastname}">
+        <div class="media-body">
+          <h3 class="mt-0">${firstname} ${lastname}</h3>
+          <div>${registeredOnDate}</div>
+        </div>
+      </div>
+    `;
+    ul.appendChild(li);
+  });
+
+  el.appendChild(ul);
+}
+
 async function showQrCode(qrCodeUrl, userToken) {
   return new Promise(async (resolve, reject) => {
     $("#qrCodeModal").modal();
@@ -70,6 +126,8 @@ async function onAuthorizersClick(e) {
 
   const endpoint = `${getApiHost()}/authorizing-users`;
 
+  $("#authorizingUsersModal").modal();
+
   fetch(endpoint, {
     mode: "cors",
     method: "post",
@@ -82,7 +140,23 @@ async function onAuthorizersClick(e) {
   })
     .then((res) => res.json())
     .then((data) => {
-      debugger;
+      switch (data.msg) {
+        case "no authorizing users found":
+          $("#authorizingUsersModal").modal("hide");
+          showToast(
+            getPhrase("noAuthorizingUsersFound"),
+            5000,
+            "danger",
+            ".snackbar",
+            true
+          );
+          break;
+        case "authorizing users retrieved":
+          populateAuthorizingUsersModal(data.users);
+          break;
+        default:
+          break;
+      }
     })
     .catch((error) => {
       console.error(error);
@@ -114,6 +188,10 @@ function attachListeners() {
   document
     .querySelector("a[href='#authorizers']")
     .addEventListener("click", onAuthorizersClick);
+
+  /* $("#authorizingUsersModal").on("show.bs.modal", (e) => {
+    
+  }); */
 }
 
 async function init() {
