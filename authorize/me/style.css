@@ -5,3 +5,7 @@
 #qrCodeInstructions {
   font-size: 1rem;
 }
+
+a[href="/logout/"] {
+  text-decoration: underline;
+}

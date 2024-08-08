@@ -60,8 +60,17 @@
     },
     {
       "key": "instructions3",
-      "original": "As soon as you are authorized, you will be notified via e-mail, and also the QR Code above will disappear.",
-      "translated": "As soon as you are authorized, you will be notified via e-mail, and also the QR Code above will disappear."
+      "original": "Once you are approved, just log out and log back in again.",
+      "translated": "Once you are approved, just log out and log back in again.",
+      "changes": [
+        {
+          "original": "log out",
+          "translated": "log out",
+          "bold": false,
+          "italic": false,
+          "link": "/logout/"
+        }
+      ]
     },
     {
       "key": "ready",
