@@ -266,8 +266,8 @@
     },
     {
       "key": "notificationSentence5",
-      "original": "If you decide to register, please do so by {DEADLINE-DATE} when the link above expires.",
-      "translated": "If you decide to register, please do so by {DEADLINE-DATE} when the link above expires."
+      "original": "If you decide to register, please do so by {DEADLINE-DATE}.",
+      "translated": "If you decide to register, please do so by {DEADLINE-DATE}."
     },
     {
       "key": "notificationSentence5QRCode",
