@@ -1,3 +1,39 @@
+function createTextMessage(
+  newUserFirstName,
+  firstName,
+  lastName,
+  localizedExpiryDate,
+  url,
+  template,
+  phrases
+) {
+  const { sentence1, sentence2, sentence3, sentence4, sentence5, sentence6 } =
+    phrases;
+  let message = template;
+
+  message = message.replaceAll("{SENTENCE-1}", sentence1);
+  message = message.replaceAll("{SENTENCE-2}", sentence2);
+  message = message.replaceAll("{SENTENCE-3}", sentence3);
+  message = message.replaceAll("{SENTENCE-4}", sentence4);
+  message = message.replaceAll("{SENTENCE-5}", sentence5);
+  message = message.replaceAll("{NEW-USER-FIRST-NAME}", newUserFirstName);
+  message = message.replaceAll("{FIRST-NAME}", firstName);
+  message = message.replaceAll("{LAST-NAME}", lastName);
+  message = message.replaceAll("{DEADLINE-DATE}", localizedExpiryDate);
+  message = message.replaceAll("{MORE-INFO}", sentence6);
+  message = message.replaceAll("{LINK}", url);
+
+  return message;
+}
+
+function createWhatsAppLink(phoneNumber, message) {
+  const phoneNumberNoPlus = phoneNumber.replaceAll("+", "");
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappLink = `https://wa.me/${phoneNumberNoPlus}?text=${encodedMessage}`;
+
+  return whatsappLink;
+}
+
 function customizeOath() {
   const firstName = document.querySelector("#firstName").value.trim();
   const lastName = document.querySelector("#lastName").value.trim();
@@ -439,7 +475,7 @@ async function onQrCodeScanned(e) {
   showConfirmationModal();
 }
 
-async function onSubmit(e) {
+async function onSubmit(clickEvent) {
   const firstName = document.querySelector("#firstName").value.trim();
   const lastName = document.querySelector("#lastName").value.trim();
   const churches = JSON.parse(localStorage.getItem("churches"));
@@ -455,11 +491,16 @@ async function onSubmit(e) {
   let phoneData = null;
   const email = document.querySelector("#contactEmail").value.trim();
   const acceptedOath = document.querySelector("#oath").checked;
+  const linkTarget = clickEvent.target.getAttribute("href");
 
-  e.preventDefault();
+  if (linkTarget === "#") {
+    clickEvent.preventDefault();
+  } else {
+    return;
+  }
 
   // Validate
-  const isValidated = await validate(e);
+  const isValidated = await validate(clickEvent);
   if (!isValidated) return;
 
   if (methodOfSending === "textmessage") {
@@ -618,8 +659,43 @@ async function onSubmit(e) {
           break;
         case "new user authorized":
           if (!!data.qrCodeUrl) {
+            // QR Code
             await showQrCode(data.qrCodeUrl);
+          } else if (!!data.url) {
+            const user = JSON.parse(
+              atob(localStorage.getItem("refreshToken").split(".")[1])
+            );
+            const newUserFirstName = firstName;
+            const encodedTextMessage = await createTextMessage(
+              newUserFirstName,
+              user.firstname,
+              user.lastname,
+              localizedExpiryDate,
+              data.url,
+              templateSms,
+              notificationPhrases
+            );
+
+            if (isWhatsApp) {
+              // WhatsApp
+              const whatsAppLink = createWhatsAppLink(
+                phoneNumber,
+                encodedTextMessage
+              );
+              clickEvent.target.setAttribute("href", whatsAppLink);
+              clickEvent.target.click();
+            } else {
+              // Text message
+              clickEvent.target.setAttribute(
+                "href",
+                `sms:${phoneNumber};?&body=${encodedTextMessage}`
+              );
+              clickEvent.target.click();
+            }
+
+            showConfirmationModal();
           } else {
+            // E-mail
             showConfirmationModal();
           }
 
@@ -722,7 +798,9 @@ function attachListeners() {
     });
   });
 
-  document.querySelector("#authorizeForm").addEventListener("submit", onSubmit);
+  // document.querySelector("#authorizeForm").addEventListener("submit", onSubmit);
+
+  document.querySelector("#submitButton").addEventListener("click", onSubmit);
 
   document
     .querySelector("#isWhatsApp")
