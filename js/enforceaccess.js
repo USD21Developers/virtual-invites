@@ -60,7 +60,7 @@ function getAccessToken() {
 }
 
 function getAPIHost(forceRemote = false) {
-  const local = "http://localhost:4000";
+  const local = "http://localhost:4000/invites";
   const remote = "https://api.usd21.org";
   const host = window.location.hostname === "localhost" ? local : remote;
   return forceRemote ? remote : host;
@@ -83,6 +83,10 @@ async function isSysadmin() {
   const claims = JSON.parse(atob(accessToken.split(".")[1]));
   const usertype = claims.usertype || "user";
   return usertype === "sysadmin" ? true : false;
+}
+
+function setCountry(country) {
+  localStorage.setItem("country", country);
 }
 
 function setRedirectOnLogin() {
