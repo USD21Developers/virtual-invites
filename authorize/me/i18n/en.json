@@ -55,17 +55,8 @@
     },
     {
       "key": "instructions2",
-      "original": "When you have found someone who can authorize you, click on the button below ('Show QR Code'). A QR Code will appear. Ask them to authorize you by scanning it.",
-      "translated": "When you have found someone who can authorize you, click on the button below ('Show QR Code'). A QR Code will appear. Ask them to authorize you by scanning it.",
-      "changes": [
-        {
-          "original": "'Show QR Code'",
-          "translated": "'Show QR Code'",
-          "bold": true,
-          "italic": false,
-          "link": ""
-        }
-      ]
+      "original": "When you have found someone who can authorize you, click on the button below. A QR Code will appear. Ask them to authorize you by scanning it.",
+      "translated": "When you have found someone who can authorize you, click on the button below. A QR Code will appear. Ask them to authorize you by scanning it."
     },
     {
       "key": "instructions3",
