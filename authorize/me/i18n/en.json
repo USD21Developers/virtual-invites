@@ -89,8 +89,8 @@
     },
     {
       "key": "modalInstructions",
-      "original": "Please authorize {FIRST-NAME} {LAST-NAME} to use the Invites App, by scanning the QR Code below.",
-      "translated": "Please authorize {FIRST-NAME} {LAST-NAME} to use the Invites App, by scanning the QR Code below.",
+      "original": "Please authorize {FIRST-NAME} {LAST-NAME} to use the Invites App, by scanning the QR Code below and completing the form.",
+      "translated": "Please authorize {FIRST-NAME} {LAST-NAME} to use the Invites App, by scanning the QR Code below and completing the form.",
       "changes": [
         {
           "original": "Invites App",

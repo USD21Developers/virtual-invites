@@ -1,7 +1,7 @@
-a[href="by/"] {
-  white-space: nowrap;
+#qrCodeInstructions {
+  font-size: 1.3rem;
 }
 
-li {
-  margin-bottom: 1.5rem;
+.mainContent li {
+  margin-bottom: 2.5rem;
 }
