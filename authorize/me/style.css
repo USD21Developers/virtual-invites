@@ -1,7 +1,7 @@
-#qrCodeInstructions {
-  font-size: 1.3rem;
-}
-
 .mainContent li {
   margin-bottom: 2.5rem;
+}
+
+#qrCodeInstructions {
+  font-size: 1rem;
 }
