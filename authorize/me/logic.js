@@ -155,11 +155,13 @@ async function onAuthorizersClick(e) {
           populateAuthorizingUsersModal(data.users);
           break;
         default:
+          $("#authorizingUsersModal").modal("hide");
           break;
       }
     })
     .catch((error) => {
       console.error(error);
+      $("#authorizingUsersModal").modal("hide");
     });
 }
 
