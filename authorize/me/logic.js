@@ -126,6 +126,7 @@ async function onAuthorizersClick(e) {
 
   const endpoint = `${getApiHost()}/authorizing-users`;
 
+  hideToast();
   $("#authorizingUsersModal").modal();
 
   fetch(endpoint, {
@@ -157,12 +158,14 @@ async function onAuthorizersClick(e) {
           break;
         default:
           $("#authorizingUsersModal").modal("hide");
+          hideToast();
           break;
       }
     })
     .catch((error) => {
       console.error(error);
       $("#authorizingUsersModal").modal("hide");
+      hideToast();
     });
 }
 
