@@ -5,10 +5,10 @@ function createTextMessage(
   localizedExpiryDate,
   url,
   template,
-  phrases
+  textMessagePhrases
 ) {
   const { sentence1, sentence2, sentence3, sentence4, sentence5, sentence6 } =
-    phrases;
+    textMessagePhrases;
   let message = template;
 
   message = message.replaceAll("{SENTENCE-1}", sentence1);
@@ -22,6 +22,7 @@ function createTextMessage(
   message = message.replaceAll("{DEADLINE-DATE}", localizedExpiryDate);
   message = message.replaceAll("{MORE-INFO}", sentence6);
   message = message.replaceAll("{LINK}", url);
+  message = message.replaceAll(`\n`, `\r\n`);
 
   return message;
 }
@@ -495,8 +496,6 @@ async function onSubmit(clickEvent) {
 
   if (linkTarget === "#") {
     clickEvent.preventDefault();
-  } else {
-    return;
   }
 
   // Validate
@@ -666,34 +665,48 @@ async function onSubmit(clickEvent) {
               atob(localStorage.getItem("refreshToken").split(".")[1])
             );
             const newUserFirstName = firstName;
-            const encodedTextMessage = await createTextMessage(
+
+            const textMessagePhrases = notificationPhrases;
+            textMessagePhrases.sentence2 = getPhrase(
+              "notificationSentence2TextMessage"
+            );
+
+            const textMessage = await createTextMessage(
               newUserFirstName,
               user.firstname,
               user.lastname,
               localizedExpiryDate,
               data.url,
               templateSms,
-              notificationPhrases
+              textMessagePhrases
             );
 
             if (isWhatsApp) {
               // WhatsApp
-              const whatsAppLink = createWhatsAppLink(
-                phoneNumber,
-                encodedTextMessage
-              );
+              const whatsAppLink = createWhatsAppLink(phoneNumber, textMessage);
+
               clickEvent.target.setAttribute("href", whatsAppLink);
-              clickEvent.target.click();
+
+              globalShowPageSpinner();
+
+              window.location.href = clickEvent.target.getAttribute("href");
             } else {
               // Text message
+              const encodedTextMessage = encodeURIComponent(textMessage);
               clickEvent.target.setAttribute(
                 "href",
                 `sms:${phoneNumber};?&body=${encodedTextMessage}`
               );
-              clickEvent.target.click();
+
+              globalShowPageSpinner();
+
+              window.location.href = clickEvent.target.getAttribute("href");
             }
 
-            showConfirmationModal();
+            setTimeout(() => {
+              globalHidePageSpinner();
+              showConfirmationModal();
+            }, 1000);
           } else {
             // E-mail
             showConfirmationModal();

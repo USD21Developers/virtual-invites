@@ -61,9 +61,15 @@ function getAccessToken() {
 
 function getAPIHost(forceRemote = false) {
   const local = "http://localhost:4000/invites";
+  const localIP = "http://192.168.0.85:4000/invites";
   const remote = "https://api.usd21.org";
-  const host = window.location.hostname === "localhost" ? local : remote;
-  return forceRemote ? remote : host;
+  let apiHost;
+
+  apiHost = window.location.hostname === "localhost" ? local : remote;
+  apiHost =
+    window.location.hostname.indexOf("192.168.") >= 0 ? localIP : remote;
+
+  return forceRemote ? remote : apiHost;
 }
 
 async function getPermissions() {
