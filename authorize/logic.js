@@ -22,7 +22,7 @@ function createTextMessage(
   message = message.replaceAll("{DEADLINE-DATE}", localizedExpiryDate);
   message = message.replaceAll("{MORE-INFO}", sentence6);
   message = message.replaceAll("{LINK}", url);
-  message = message.replaceAll(`\n`, `\r\n`);
+  // message = message.replaceAll(`\n`, `\r\n`);
 
   return message;
 }
