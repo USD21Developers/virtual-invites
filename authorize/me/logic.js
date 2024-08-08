@@ -150,6 +150,7 @@ async function onAuthorizersClick(e) {
             ".snackbar",
             true
           );
+          $("#authorizingUsersModal").modal("hide");
           break;
         case "authorizing users retrieved":
           populateAuthorizingUsersModal(data.users);
