@@ -276,8 +276,8 @@
     },
     {
       "key": "notificationMoreInfo",
-      "original": "Full details:",
-      "translated": "Full details:"
+      "original": "Full details (click below):",
+      "translated": "Full details (click below):"
     },
     {
       "key": "notificationMoreInfoQRCode",

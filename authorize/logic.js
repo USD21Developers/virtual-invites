@@ -706,7 +706,7 @@ async function onSubmit(clickEvent) {
             setTimeout(() => {
               globalHidePageSpinner();
               showConfirmationModal();
-            }, 1000);
+            }, 3000);
           } else {
             // E-mail
             showConfirmationModal();
