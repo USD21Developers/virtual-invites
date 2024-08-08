@@ -68,7 +68,7 @@ async function populateAuthorizingUsersModal(users) {
         <img class="mr-3" width="70" height="70" src="${profilePhotoSmall}" alt="${firstname} ${lastname}">
         <div class="media-body">
           <h3 class="mt-0">${firstname} ${lastname}</h3>
-          <div>${registeredOnDate}</div>
+          <div class="small">${registeredOnDate}</div>
         </div>
       </div>
     `;
