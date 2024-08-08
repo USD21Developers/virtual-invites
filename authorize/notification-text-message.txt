@@ -4,7 +4,7 @@
 
 {SENTENCE-4}
 
-{SENTENCE-5}
-
 {MORE-INFO}
 {LINK}
+
+{SENTENCE-5}
