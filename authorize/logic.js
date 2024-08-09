@@ -830,21 +830,22 @@ function attachListeners() {
     document.querySelector("html").scrollIntoView();
   });
 
-  const bottomNav = document.querySelector("#navButtons");
-
   document.querySelectorAll(".hideBottomNav").forEach((item) => {
-    item.addEventListener("focus", () => {
-      bottomNav.classList.remove("fixed-bottom");
+    const bottomNav = document.querySelector("#navButtons");
+
+    bottomNav.addEventListener("focus", () => {
+      bottomNav.classList.add("d-none");
     });
 
-    item.addEventListener("blur", () => {
-      bottomNav.classList.add("fixed-bottom");
+    bottomNav.addEventListener("blur", () => {
+      bottomNav.classList.remove("d-none");
     });
   });
 
   window.addEventListener("scroll", function () {
-    if (!bottomNav.classList.contains("fixed-bottom")) {
-      bottomNav.classList.add("fixed-bottom");
+    const bottomNav = document.querySelector("#navButtons");
+    if (!bottomNav.classList.contains("d-none")) {
+      bottomNav.classList.remove("d-none");
     }
   });
 }
