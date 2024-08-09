@@ -687,8 +687,6 @@ async function onSubmit(clickEvent) {
 
               clickEvent.target.setAttribute("href", whatsAppLink);
 
-              globalShowPageSpinner();
-
               window.location.href = clickEvent.target.getAttribute("href");
             } else {
               // Text message
@@ -697,8 +695,6 @@ async function onSubmit(clickEvent) {
                 "href",
                 `sms:${phoneNumber};?&body=${encodedTextMessage}`
               );
-
-              globalShowPageSpinner();
 
               window.location.href = clickEvent.target.getAttribute("href");
             }
@@ -710,11 +706,13 @@ async function onSubmit(clickEvent) {
           } else {
             // E-mail
             showConfirmationModal();
+            globalHidePageSpinner();
           }
 
           break;
         default:
           showToast(getPhrase("unexpectedError"), 5000, "danger");
+          globalHidePageSpinner();
           break;
       }
     })
