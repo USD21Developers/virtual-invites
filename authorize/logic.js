@@ -538,7 +538,8 @@ async function onSubmit(e) {
   const locale = `${lang.toLowerCase()}-${church.country.toUpperCase()}`;
   const utcExpiryDate = moment().add(1, "months").utc().format();
   const localizedExpiryDate = Intl.DateTimeFormat(locale, {
-    dateStyle: "short",
+    month: "long",
+    day: "numeric",
   }).format(new Date(utcExpiryDate));
 
   globalShowPageSpinner();
