@@ -496,7 +496,7 @@ async function onSubmit(e) {
   e.preventDefault();
 
   // Validate
-  const isValidated = await validate(clickEvent);
+  const isValidated = await validate(e);
   if (!isValidated) return;
 
   if (methodOfSending === "textmessage") {
@@ -682,18 +682,13 @@ async function onSubmit(e) {
               // WhatsApp
               const whatsAppLink = createWhatsAppLink(phoneNumber, textMessage);
 
-              clickEvent.target.setAttribute("href", whatsAppLink);
-
-              window.location.href = clickEvent.target.getAttribute("href");
+              window.location.href = whatsAppLink;
             } else {
               // Text message
               const encodedTextMessage = encodeURIComponent(textMessage);
-              clickEvent.target.setAttribute(
-                "href",
-                `sms:${phoneNumber};?&body=${encodedTextMessage}`
-              );
+              const smsUrl = `sms:${phoneNumber};?&body=${encodedTextMessage}`;
 
-              window.location.href = clickEvent.target.getAttribute("href");
+              window.location.href = smsUrl;
             }
 
             setTimeout(() => {
