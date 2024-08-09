@@ -832,19 +832,15 @@ function attachListeners() {
 
   const bottomNav = document.querySelector("#navButtons");
 
-  document
-    .querySelectorAll(
-      "input[type='text'],input[type='tel'],input[type='email']"
-    )
-    .forEach((item) => {
-      item.addEventListener("focus", () => {
-        bottomNav.classList.remove("fixed-bottom");
-      });
-
-      item.addEventListener("blur", () => {
-        bottomNav.classList.add("fixed-bottom");
-      });
+  document.querySelectorAll(".hideBottomNav").forEach((item) => {
+    item.addEventListener("focus", () => {
+      bottomNav.classList.remove("fixed-bottom");
     });
+
+    item.addEventListener("blur", () => {
+      bottomNav.classList.add("fixed-bottom");
+    });
+  });
 
   window.addEventListener("scroll", function () {
     if (!bottomNav.classList.contains("fixed-bottom")) {
