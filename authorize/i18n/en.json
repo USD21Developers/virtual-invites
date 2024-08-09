@@ -34,8 +34,8 @@
     },
     {
       "key": "whyAuthorizeText",
-      "original": "Every user of the Invites App must be verified as a member in good standing with the International Christian Churches, promoting only its events, and committed to an accurate understanding of scripture. To achieve this, new users must be authorized before being granted full access.",
-      "translated": "Every user of the Invites App must be verified as a member in good standing with the International Christian Churches, promoting only its events, and committed to an accurate understanding of scripture. To achieve this, new users must be authorized before being granted full access.",
+      "original": "Every user of the Invites App must be verified as a member in good standing with the International Christian Churches (ICC), using the app to promote only ICC events, and committed to an accurate understanding of scripture. To achieve this, new users must be authorized before being granted full access.",
+      "translated": "Every user of the Invites App must be verified as a member in good standing with the International Christian Churches (ICC), using the app to promote only ICC events, and committed to an accurate understanding of scripture. To achieve this, new users must be authorized before being granted full access.",
       "changes": [
         {
           "original": "International Christian Churches",
@@ -256,8 +256,8 @@
     },
     {
       "key": "notificationSentence3",
-      "original": "The Invites App lets you share your faith quickly and conveniently, by sending a digital invitation. It helps the people you share with to find the events that you invite them to, and even helps them remember to attend.",
-      "translated": "The Invites App lets you share your faith quickly and conveniently, by sending a digital invitation. It helps the people you share with to find the events that you invite them to, and even helps them remember to attend."
+      "original": "The Invites App lets you share your faith quickly and conveniently, by sending a digital invitation. It helps the people you share with to remember and find the events that you invite them to.",
+      "translated": "The Invites App lets you share your faith quickly and conveniently, by sending a digital invitation. It helps the people you share with to remember and find the events that you invite them to."
     },
     {
       "key": "notificationSentence4",
