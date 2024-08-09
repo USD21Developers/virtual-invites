@@ -62,7 +62,7 @@ function getAccessToken() {
 function getAPIHost(forceRemote = false) {
   const local = "http://localhost:4000/invites";
   const localIP = "http://192.168.0.85:4000/invites";
-  const remote = "https://api.usd21.org";
+  const remote = "https://api.usd21.org/invites";
   let apiHost;
 
   apiHost = window.location.hostname === "localhost" ? local : remote;
