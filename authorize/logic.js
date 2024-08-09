@@ -829,6 +829,28 @@ function attachListeners() {
     resetAndPopulateForm();
     document.querySelector("html").scrollIntoView();
   });
+
+  const bottomNav = document.querySelector("#navButtons");
+
+  document
+    .querySelectorAll(
+      "input[type='text'],input[type='tel'],input[type='email']"
+    )
+    .forEach((item) => {
+      item.addEventListener("focus", () => {
+        bottomNav.classList.remove("fixed-bottom");
+      });
+
+      item.addEventListener("blur", () => {
+        bottomNav.classList.add("fixed-bottom");
+      });
+    });
+
+  window.addEventListener("scroll", function () {
+    if (!bottomNav.classList.contains("fixed-bottom")) {
+      bottomNav.classList.add("fixed-bottom");
+    }
+  });
 }
 
 async function init() {
