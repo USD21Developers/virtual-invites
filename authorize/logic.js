@@ -476,7 +476,7 @@ async function onQrCodeScanned(e) {
   showConfirmationModal();
 }
 
-async function onSubmit(clickEvent) {
+async function onSubmit(e) {
   const firstName = document.querySelector("#firstName").value.trim();
   const lastName = document.querySelector("#lastName").value.trim();
   const churches = JSON.parse(localStorage.getItem("churches"));
@@ -492,11 +492,8 @@ async function onSubmit(clickEvent) {
   let phoneData = null;
   const email = document.querySelector("#contactEmail").value.trim();
   const acceptedOath = document.querySelector("#oath").checked;
-  const linkTarget = clickEvent.target.getAttribute("href");
 
-  if (linkTarget === "#") {
-    clickEvent.preventDefault();
-  }
+  e.preventDefault();
 
   // Validate
   const isValidated = await validate(clickEvent);
@@ -809,9 +806,7 @@ function attachListeners() {
     });
   });
 
-  // document.querySelector("#authorizeForm").addEventListener("submit", onSubmit);
-
-  document.querySelector("#submitButton").addEventListener("click", onSubmit);
+  document.querySelector("#authorizeForm").addEventListener("submit", onSubmit);
 
   document
     .querySelector("#isWhatsApp")
