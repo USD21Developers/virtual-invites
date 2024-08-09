@@ -148,8 +148,8 @@
     },
     {
       "key": "btnSend",
-      "original": "Send authorization link",
-      "translated": "Send authorization link"
+      "original": "Send Authorization",
+      "translated": "Send Authorization"
     },
     {
       "key": "btnShowQRCode",
