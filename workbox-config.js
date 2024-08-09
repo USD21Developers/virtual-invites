@@ -2,6 +2,7 @@ module.exports = {
   globDirectory: "./",
   globPatterns: [
     "**/*.{html,css,js,map,svg,gif,png,jpg,webmanifest,json}",
+    "**/notification-text-message.txt",
     "_assets/fonts/Inter/Inter-VariableFont.woff2",
     "_assets/fonts/MaterialIcons/material-icons.woff2",
     "_assets/fonts/Oswald/Oswald-VariableFont.woff2",
