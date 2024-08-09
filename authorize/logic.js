@@ -572,13 +572,14 @@ async function onSubmit(e) {
   })
     .then((res) => res.json())
     .then(async (data) => {
-      globalHidePageSpinner();
       switch (data.msg) {
         case "firstName is required":
+          globalHidePageSpinner();
           formError("#firstName", getPhrase("errorFirstName"));
           document.querySelector("#firstName").focus();
           break;
         case "lastName is required":
+          globalHidePageSpinner();
           formError("#lastName", getPhrase("errorLastName"));
           document.querySelector("#lastName").focus();
           break;
@@ -590,6 +591,7 @@ async function onSubmit(e) {
             "errorLeadershipRoleRequired"
           );
           errorElHighestLeadershipRole.classList.add("d-block");
+          globalHidePageSpinner();
           customScrollTo("#highestLeadershipRole_invalidFeedback", 225);
           break;
         case "phoneNumber is required":
@@ -598,11 +600,13 @@ async function onSubmit(e) {
           );
           phoneNumberErrorEl.innerHTML = getPhrase("errorMobilePhoneRequired");
           phoneNumberErrorEl.classList.add("d-block");
+          globalHidePageSpinner();
           customScrollTo("#contactPhoneContainer");
           break;
         case "phoneNumber is invalid":
           phoneNumberErrorEl.innerHTML = getPhrase("errorMobilePhoneInvalid");
           phoneNumberErrorEl.classList.add("d-block");
+          globalHidePageSpinner();
           customScrollTo("#contactPhoneContainer");
           break;
         case "email is required":
@@ -611,11 +615,13 @@ async function onSubmit(e) {
           );
           emailErrorEl.innerHTML = getPhrase("errorEmailRequired");
           emailErrorEl.classList.add("d-block");
+          globalHidePageSpinner();
           customScrollTo("#emailContainer");
           break;
         case "email is invalid":
           emailErrorEl.innerHTML = getPhrase("errorEmailInvalid");
           emailErrorEl.classList.add("d-block");
+          globalHidePageSpinner();
           customScrollTo("#emailContainer");
           break;
         case "invalid value for acceptedOath":
@@ -624,9 +630,11 @@ async function onSubmit(e) {
           );
           acceptedOathErrorEl.innerHTML = getPhrase("errorOathIsRequired");
           acceptedOathErrorEl.classList.add("d-block");
+          globalHidePageSpinner();
           customScrollTo("#oathContainer");
           break;
         case "unable to query for authorizing user's permissions":
+          globalHidePageSpinner();
           showToast(getPhrase("unexpectedError"), 5000, "danger");
           break;
         case "authorizing user was not found":
@@ -642,9 +650,11 @@ async function onSubmit(e) {
           window.location.href = "/";
           break;
         case "unable to store authorization":
+          globalHidePageSpinner();
           showToast(getPhrase("unexpectedError"), 5000, "danger");
           break;
         case "not enough money to send text message":
+          globalHidePageSpinner();
           showToast(
             getPhrase("notEnoughMoneyToSendTextMessage"),
             5000,
@@ -656,6 +666,7 @@ async function onSubmit(e) {
         case "new user authorized":
           if (!!data.qrCodeUrl) {
             // QR Code
+            globalHidePageSpinner();
             await showQrCode(data.qrCodeUrl);
           } else if (!!data.url) {
             const user = JSON.parse(
