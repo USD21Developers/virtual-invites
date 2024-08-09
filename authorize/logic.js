@@ -705,14 +705,14 @@ async function onSubmit(clickEvent) {
             }, 3000);
           } else {
             // E-mail
-            showConfirmationModal();
             globalHidePageSpinner();
+            showConfirmationModal();
           }
 
           break;
         default:
-          showToast(getPhrase("unexpectedError"), 5000, "danger");
           globalHidePageSpinner();
+          showToast(getPhrase("unexpectedError"), 5000, "danger");
           break;
       }
     })
