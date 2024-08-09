@@ -830,24 +830,26 @@ function attachListeners() {
     document.querySelector("html").scrollIntoView();
   });
 
-  document.querySelectorAll(".hideBottomNav").forEach((item) => {
-    const bottomNav = document.querySelector("#navButtons");
+  if (screen.availHeight <= 700) {
+    document.querySelectorAll(".hideBottomNav").forEach((item) => {
+      const bottomNav = document.querySelector("#navButtons");
 
-    bottomNav.addEventListener("focus", () => {
-      bottomNav.classList.add("d-none");
+      bottomNav.addEventListener("focus", () => {
+        bottomNav.classList.add("d-none");
+      });
+
+      bottomNav.addEventListener("blur", () => {
+        bottomNav.classList.remove("d-none");
+      });
     });
 
-    bottomNav.addEventListener("blur", () => {
-      bottomNav.classList.remove("d-none");
+    window.addEventListener("scroll", function () {
+      const bottomNav = document.querySelector("#navButtons");
+      if (!bottomNav.classList.contains("d-none")) {
+        bottomNav.classList.remove("d-none");
+      }
     });
-  });
-
-  window.addEventListener("scroll", function () {
-    const bottomNav = document.querySelector("#navButtons");
-    if (!bottomNav.classList.contains("d-none")) {
-      bottomNav.classList.remove("d-none");
-    }
-  });
+  }
 }
 
 async function init() {
