@@ -2,12 +2,14 @@ function checkConfirmationToken() {
   const hash =
     document.location.hash.substring(1, document.location.hash.length) || "";
   const endpoint = `${getApiHost()}/register-confirm`;
+  const preAuthToken = localStorage.getItem("preAuthToken") || null;
 
   fetch(endpoint, {
     mode: "cors",
     method: "POST",
     body: JSON.stringify({
       token: hash,
+      preAuthToken: preAuthToken,
     }),
     headers: new Headers({
       "Content-Type": "application/json",
@@ -43,6 +45,7 @@ function checkConfirmationToken() {
           notrecognized.classList.remove("d-none");
           break;
         case "registration confirmed":
+          if (preAuthToken) localStorage.removeItem("preAuthToken");
           confirmed.classList.remove("d-none");
           onConfirmed();
           break;
