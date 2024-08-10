@@ -186,15 +186,15 @@ function verifyAuthorization() {
             showToast(getPhrase("noRecordsFound"), 0, "danger");
             break;
           case "preauth is expired":
-            localStorage.removeItem("registrationToken");
+            localStorage.removeItem("preAuthToken");
             window.location.href = "/about/";
             break;
           case "authorization verified":
-            const jwt = data.registrationToken;
+            const jwt = data.preAuthToken;
             const { newUser, authorizedBy, sentvia, expiresAt, churchid } =
               JSON.parse(atob(jwt.split(".")[1]));
 
-            localStorage.setItem("registrationToken", jwt);
+            localStorage.setItem("preAuthToken", jwt);
 
             if (sentvia === "qrcode") {
               showMessage(newUser, authorizedBy, expiresAt, churchid);

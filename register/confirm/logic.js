@@ -62,6 +62,7 @@ function hideContentContainers() {
 }
 
 function onConfirmed() {
+  localStorage.removeItem("preAuthToken");
   sessionStorage.setItem("justRegistered", true);
 }
 
