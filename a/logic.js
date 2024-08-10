@@ -4,7 +4,6 @@ function reset() {
 }
 
 async function showMessage(newUser, authorizedBy, expiresAt, churchid) {
-  // TODO:  if preauth was done via QR code, show a modal containing a similar message as sent via e-mail or text message.
   const churchesEndpoint = `${getApiServicesHost()}/churches`;
   const churchesQuery = await fetch(churchesEndpoint).then((res) => res.json());
   const churches = churchesQuery.churches;
