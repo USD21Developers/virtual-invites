@@ -471,6 +471,7 @@ async function onSubmit(e) {
   const dataKey = await invitesCrypto.generateKey();
   const controller = new AbortController();
   const signal = controller.signal;
+  const registrationToken = localStorage.getItem("registrationToken") || null;
 
   emailParagraph1 = emailParagraph1.replaceAll(
     "${fullname}",
@@ -502,6 +503,7 @@ async function onSubmit(e) {
       emailLinkText: emailLinkText,
       emailSignature: emailSignature,
       dataKey: dataKey,
+      registrationToken: registrationToken,
     }),
     headers: new Headers({
       "Content-Type": "application/json",
