@@ -194,7 +194,7 @@ function verifyAuthorization() {
             const { newUser, authorizedBy, sentvia, expiresAt, churchid } =
               JSON.parse(atob(jwt.split(".")[1]));
 
-            const cookieExpiry = new Date(expiry).toUTCString();
+            const cookieExpiry = new Date(expiresAt).toUTCString();
 
             document.cookie = `preAuthToken=${jwt}; expires=${cookieExpiry}; path=/`;
 
