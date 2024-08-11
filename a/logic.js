@@ -194,9 +194,11 @@ function verifyAuthorization() {
             const { newUser, authorizedBy, sentvia, expiresAt, churchid } =
               JSON.parse(atob(jwt.split(".")[1]));
 
-            localStorage.setItem("preAuthToken", jwt);
+            const cookieExpiry = new Date(expiry).toUTCString();
 
-            document.cookie = `preAuthToken=${jwt}`;
+            document.cookie = `preAuthToken=${jwt}; expires=${cookieExpiry}; path=/`;
+
+            localStorage.setItem("preAuthToken", jwt);
 
             if (sentvia === "qrcode") {
               showMessage(newUser, authorizedBy, expiresAt, churchid);
