@@ -10,6 +10,18 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 curl_setopt($ch, CURLOPT_HEADER, false);
 
+// Pass the "Accept-Language" header from the browser
+$headers = [];
+if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+    $headers[] = 'Accept-Language: ' . $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+}
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+// Pass the browser's cookies
+if (isset($_SERVER['HTTP_COOKIE'])) {
+    curl_setopt($ch, CURLOPT_COOKIE, $_SERVER['HTTP_COOKIE']);
+}
+
 // Execute the cURL session
 $response = curl_exec($ch);
 
@@ -24,6 +36,4 @@ if (curl_errno($ch)) {
     echo $response;
 }
 
-// Close the cURL session
-curl_close($ch);
-?>
+// Close the cURL sess
