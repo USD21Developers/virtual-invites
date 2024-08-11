@@ -196,6 +196,8 @@ function verifyAuthorization() {
 
             localStorage.setItem("preAuthToken", jwt);
 
+            document.cookie = `preAuthToken=${jwt}`;
+
             if (sentvia === "qrcode") {
               showMessage(newUser, authorizedBy, expiresAt, churchid);
               return resolve();
