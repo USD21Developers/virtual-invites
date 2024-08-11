@@ -14,9 +14,6 @@ function init() {
     sessionStorage.setItem("redirectOnLogin", redirectOnLogin);
   }
 
-  document.cookie =
-    "preAuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-
   window.location.href = loginURL;
 }
 
