@@ -36,4 +36,6 @@ if (curl_errno($ch)) {
     echo $response;
 }
 
-// Close the cURL sess
+// Close the cURL session
+curl_close($ch);
+?>
