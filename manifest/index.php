@@ -1,39 +1,29 @@
 <?php
+// Set the URL to fetch
+$url = 'https://api.usd21.org/invites/manifest.json';
 
-$target_url = 'https://api.usd21.org/invites/manifest.json';
+// Initialize a cURL session
+$ch = curl_init($url);
 
-$ch = curl_init();
-
-curl_setopt($ch, CURLOPT_URL, $target_url);
-
+// Set options for the cURL session
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+curl_setopt($ch, CURLOPT_HEADER, false);
 
-$headers = apache_request_headers();
-$headers_array = [];
-foreach ($headers as $key => $value) {
-    if (strtolower($key) == 'host') continue;
-    $headers_array[] = "$key: $value";
-}
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers_array);
-
-$request_method = $_SERVER['REQUEST_METHOD'];
-
-curl_setopt($ch, CURLOPT_POST, true);
-
-$post_data = file_get_contents('php://input');
-
-curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
-
+// Execute the cURL session
 $response = curl_exec($ch);
 
-$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+// Check for cURL errors
+if (curl_errno($ch)) {
+    echo 'Error: ' . curl_error($ch);
+} else {
+    // Set the content type header to indicate that this is serving a Web app manifest
+    header('Content-Type: application/manifest+json');
 
+    // Output the response
+    echo $response;
+}
+
+// Close the cURL session
 curl_close($ch);
-
-http_response_code($http_code);
-
-echo $response;
-
 ?>
