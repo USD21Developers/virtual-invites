@@ -105,6 +105,16 @@ function setRedirectOnLogin() {
   }
 }
 
+function storePreAuthToken() {
+  const preAuthToken = new URLSearchParams(document.location.search).get(
+    "preAuthToken"
+  );
+
+  if (preAuthToken) {
+    localStorage.setItem("preAuthToken", preAuthToken);
+  }
+}
+
 function verifyDataKey() {
   const logoutUrl = "/logout/";
   const dataKey = localStorage.getItem("datakey") || "";
@@ -140,6 +150,8 @@ function verifyRefreshToken() {
 }
 
 async function init() {
+  storePreAuthToken();
+
   const isFromHomeScreen =
     window.location.href.indexOf("utm_source=homescreen") >= 0 ? true : false;
 
