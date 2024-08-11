@@ -8,6 +8,8 @@ module.exports = {
     "_assets/fonts/Oswald/Oswald-VariableFont.woff2",
   ],
   globIgnores: [
+    "manifest/*",
+    "manifest/**",
     "**/*.php",
     "**/*.ttf",
     "**/*.map",
