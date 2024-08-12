@@ -33,25 +33,24 @@
       "translated": "Why is authorization necessary?"
     },
     {
-      "key": "whyAuthorizeText",
-      "original": "Every user of the Invites App must be verified as a member in good standing with the International Christian Churches, and committed to an accurate understanding of scripture. This is important because all church events are input into the app by the users themselves. Hypothetically, a user who was not a genuine disciple could potentially input events that promote outside churches with unsound doctrines.",
-      "translated": "Every user of the Invites App must be verified as a member in good standing with the International Christian Churches, and committed to an accurate understanding of scripture. This is important because all church events are input into the app by the users themselves. Hypothetically, a user who was not a genuine disciple could potentially input events that promote outside churches with unsound doctrines.",
+      "key": "whyAuthorizeP1",
+      "original": "Every user of the Invites App must be verified as a member in good standing with the International Christian Churches, and must be committed to an accurate understanding of scripture.",
+      "translated": "Every user of the Invites App must be verified as a member in good standing with the International Christian Churches, and must be committed to an accurate understanding of scripture.",
       "changes": [
         {
           "original": "International Christian Churches",
           "translated": "International Christian Churches",
           "bold": false,
           "italic": false,
-          "link": "https://usd21.org/"
-        },
-        {
-          "original": "by the users themselves",
-          "translated": "by the users themselves",
-          "bold": false,
-          "italic": true,
-          "link": ""
+          "link": "https://usd21.org/",
+          "underline": true
         }
       ]
+    },
+    {
+      "key": "whyAuthorizeP2",
+      "original": "This is important because all church events are added into the app by the users themselves. If authorization were not practiced, hypothetically a user who was not a disciple could potentially input events that promote outside churches, and/or unsound doctrines.",
+      "translated": "This is important because all church events are added into the app by the users themselves. If authorization were not practiced, hypothetically a user who was not a disciple could potentially input events that promote outside churches, and/or unsound doctrines."
     },
     {
       "key": "inputNewUser",
@@ -140,18 +139,18 @@
     },
     {
       "key": "isExpectingTextMessage",
-      "original": "{FIRST-NAME} is already expecting to receive a text message about the Invites App.",
-      "translated": "{FIRST-NAME} is already expecting to receive a text message about the Invites App."
+      "original": "{FIRST-NAME} is expecting to receive a text message about the Invites App.",
+      "translated": "{FIRST-NAME} is expecting to receive a text message about the Invites App."
     },
     {
       "key": "isExpectingWhatsApp",
-      "original": "{FIRST-NAME} is already expecting to receive a text message via WhatsApp about the Invites App.",
-      "translated": "{FIRST-NAME} is already expecting to receive a text message via WhatsApp about the Invites App."
+      "original": "{FIRST-NAME} is expecting to receive a text message via WhatsApp about the Invites App.",
+      "translated": "{FIRST-NAME} is expecting to receive a text message via WhatsApp about the Invites App."
     },
     {
       "key": "isExpectingEmail",
-      "original": "{FIRST-NAME} is already expecting to receive an e-mail about the Invites App.",
-      "translated": "{FIRST-NAME} is already expecting to receive an e-mail about the Invites App."
+      "original": "{FIRST-NAME} is expecting to receive an e-mail about the Invites App.",
+      "translated": "{FIRST-NAME} is expecting to receive an e-mail about the Invites App."
     },
     {
       "key": "btnSend",

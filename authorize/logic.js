@@ -789,7 +789,16 @@ function onToggleMethodOfSending(sendingMethod) {
   }
 }
 
+function onWhyAuthorizeClicked(e) {
+  e.preventDefault();
+  const authorizeModalEl = document.querySelector("#whyAuthorizeModal");
+  $("#whyAuthorizeModal").modal();
+}
+
 function attachListeners() {
+  document
+    .querySelector("#whyAuthorizeLink")
+    .addEventListener("click", onWhyAuthorizeClicked);
   document.querySelector("#firstName").addEventListener("input", customizeOath);
   document.querySelector("#lastName").addEventListener("input", customizeOath);
   document
