@@ -255,8 +255,6 @@ function populateStoredSendingMethod() {
 
 function resetAndPopulateForm() {
   const formEl = document.querySelector("#authorizeForm");
-  const instructionsEl = document.querySelector("#instructions details");
-  instructionsEl.removeAttribute("open");
   formEl.reset();
   populateChurches();
   populateStoredSendingMethod();
