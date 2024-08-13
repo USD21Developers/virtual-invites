@@ -1,3 +1,10 @@
+function forwardByDefault() {
+  document.cookie =
+    "preAuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  localStorage.removeItem("preAuthToken");
+  window.location.href = "/about/";
+}
+
 function reset() {
   globalHidePageSpinner();
   document.querySelector("html").style.setProperty("background-color", "white");
@@ -89,60 +96,58 @@ async function showMessage(
 }
 
 function validate(churchid, authorizedBy, authcode) {
-  const noRecordsFound = getPhrase("noRecordsFound");
-
   if (!churchid) {
     console.error("churchid not found");
     reset();
-    showToast(noRecordsFound, 0, "danger");
+    forwardByDefault();
     return false;
   }
 
   if (!authorizedBy) {
     console.log("authorizedBy not found");
     reset();
-    showToast(noRecordsFound, 0, "danger");
+    forwardByDefault();
     return false;
   }
 
   if (!authcode) {
     console.log("authcode not found");
     reset();
-    showToast(noRecordsFound, 0, "danger");
+    forwardByDefault();
     return false;
   }
 
   if (isNaN(churchid)) {
     console.log("churchid must be a number");
     reset();
-    showToast(noRecordsFound, 0, "danger");
+    forwardByDefault();
     return false;
   }
 
   if (isNaN(authorizedBy)) {
     console.log("authorizedBy must be a number");
     reset();
-    showToast(noRecordsFound, 0, "danger");
+    forwardByDefault();
     return false;
   }
 
   if (churchid <= 0) {
     console.log("churchid must be a positive number");
     reset();
-    showToast(noRecordsFound, 0, "danger");
+    forwardByDefault();
     return false;
   }
 
   if (authorizedBy <= 0) {
     console.log("authorizedBy must be a positive number");
     reset();
-    showToast(noRecordsFound, 0, "danger");
+    forwardByDefault();
     return false;
   }
-  if (authcode.length !== 6) {
+  if (authcode.toString().length !== 6) {
     console.log("authcode must be exactly 6 characters");
     reset();
-    showToast(noRecordsFound, 0, "danger");
+    forwardByDefault();
     return false;
   }
 
@@ -167,6 +172,7 @@ function verifyAuthorization() {
     const churchid = Number(params[0]) || null;
     const authorizedBy = Number(params[1]) || null;
     const authcode = Number(params[2]) || null;
+
     const isValidated = validate(churchid, authorizedBy, authcode);
 
     if (!isValidated) return reject();
@@ -187,19 +193,15 @@ function verifyAuthorization() {
     })
       .then((res) => res.json())
       .then((data) => {
+        debugger;
         switch (data.msg) {
           case "no records found":
             reset();
-            document.cookie =
-              "preAuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            localStorage.removeItem("preAuthToken");
-            window.location.href = "/about/";
+            forwardByDefault();
             break;
           case "preauth is expired":
-            document.cookie =
-              "preAuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            localStorage.removeItem("preAuthToken");
-            window.location.href = "/about/";
+            reset();
+            forwardByDefault();
             break;
           case "authorization verified":
             const jwt = data.preAuthToken;
@@ -227,10 +229,8 @@ function verifyAuthorization() {
 
             return resolve();
           default:
-            document.cookie =
-              "preAuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            localStorage.removeItem("preAuthToken");
-            window.location.href = "/about/";
+            reset();
+            forwardByDefault()();
         }
       })
       .catch((error) => {
