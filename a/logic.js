@@ -197,10 +197,14 @@ function verifyAuthorization() {
         switch (data.msg) {
           case "no records found":
             reset();
+            document.cookie =
+              "preAuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             localStorage.removeItem("preAuthToken");
             window.location.href = "/about/";
             break;
           case "preauth is expired":
+            document.cookie =
+              "preAuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             localStorage.removeItem("preAuthToken");
             window.location.href = "/about/";
             break;
@@ -230,6 +234,8 @@ function verifyAuthorization() {
 
             return resolve();
           default:
+            document.cookie =
+              "preAuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             localStorage.removeItem("preAuthToken");
             window.location.href = "/about/";
         }
