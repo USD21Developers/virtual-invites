@@ -197,7 +197,8 @@ function verifyAuthorization() {
         switch (data.msg) {
           case "no records found":
             reset();
-            showToast(getPhrase("noRecordsFound"), 0, "danger");
+            localStorage.removeItem("preAuthToken");
+            window.location.href = "/about/";
             break;
           case "preauth is expired":
             localStorage.removeItem("preAuthToken");
@@ -229,7 +230,8 @@ function verifyAuthorization() {
 
             return resolve();
           default:
-            break;
+            localStorage.removeItem("preAuthToken");
+            window.location.href = "/about/";
         }
       })
       .catch((error) => {
