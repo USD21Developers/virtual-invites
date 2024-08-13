@@ -3,7 +3,13 @@ function reset() {
   document.querySelector("html").style.setProperty("background-color", "white");
 }
 
-async function showMessage(newUser, authorizedBy, expiresAt, churchid) {
+async function showMessage(
+  newUser,
+  authorizedBy,
+  expiresAt,
+  churchid,
+  authCode
+) {
   const churchesEndpoint = `${getApiServicesHost()}/churches`;
   const churchesQuery = await fetch(churchesEndpoint).then((res) => res.json());
   const churches = churchesQuery.churches;
@@ -24,8 +30,9 @@ async function showMessage(newUser, authorizedBy, expiresAt, churchid) {
   let sentence2 = getPhrase("notificationSentence2HTML", phraseJSON);
   const sentence3 = getPhrase("notificationSentence3", phraseJSON);
   const sentence4 = getPhrase("notificationSentence4", phraseJSON);
-  let sentence5 = getPhrase("notificationSentence5QRCode", phraseJSON);
   const moreInfo = getPhrase("notificationMoreInfoQRCode", phraseJSON);
+  let registerBefore = getPhrase("notificationRegisterBefore", phraseJSON);
+  const hereIsAuthCode = getPhrase("hereIsAuthCode", phraseJSON);
   const sincerely = getPhrase("notificationSincerely", phraseJSON);
   const internetMinistry = getPhrase(
     "notificationInternetMinistry",
@@ -35,7 +42,10 @@ async function showMessage(newUser, authorizedBy, expiresAt, churchid) {
   sentence1 = sentence1.replaceAll("{NEW-USER-FIRST-NAME}", newUser.firstname);
   sentence2 = sentence2.replaceAll("{FIRST-NAME}", authorizedBy.firstname);
   sentence2 = sentence2.replaceAll("{LAST-NAME}", authorizedBy.lastname);
-  sentence5 = sentence5.replaceAll("{DEADLINE-DATE}", localizedExpiryDate);
+  registerBefore = registerBefore.replaceAll(
+    "{DEADLINE-DATE}",
+    localizedExpiryDate
+  );
 
   const content = `
     <p>
@@ -50,14 +60,18 @@ async function showMessage(newUser, authorizedBy, expiresAt, churchid) {
       ${sentence4}
     </p>
 
-    <p>
-      ${sentence5}
-    </p>
-
     <p class="text-center text-sm-left">
       <a href="/about/" class="btn btn-sm btn-outline-primary border border-primary">
         ${moreInfo}
       </a>
+    </p>
+
+    <p>
+      ${hereIsAuthCode}
+    </p>
+
+    <p>
+      <strong><pre>${authCode}</pre></strong>
     </p>
 
     <p>
@@ -191,8 +205,14 @@ function verifyAuthorization() {
             break;
           case "authorization verified":
             const jwt = data.preAuthToken;
-            const { newUser, authorizedBy, sentvia, expiresAt, churchid } =
-              JSON.parse(atob(jwt.split(".")[1]));
+            const {
+              newUser,
+              authorizedBy,
+              sentvia,
+              expiresAt,
+              churchid,
+              authCode,
+            } = JSON.parse(atob(jwt.split(".")[1]));
 
             const cookieExpiry = new Date(expiresAt).toUTCString();
 
@@ -201,7 +221,7 @@ function verifyAuthorization() {
             localStorage.setItem("preAuthToken", jwt);
 
             if (sentvia === "qrcode") {
-              showMessage(newUser, authorizedBy, expiresAt, churchid);
+              showMessage(newUser, authorizedBy, expiresAt, churchid, authCode);
               return resolve();
             }
 

@@ -22,6 +22,34 @@ label[for="photoCapture"] {
   border-radius: 6px;
 }
 
+#whereToFindAuthCode details summary {
+  color: var(--dark);
+  text-align: center;
+}
+
+#whereToFindAuthCode details[open] summary {
+  color: var(--dark-dark);
+  font-weight: bold;
+}
+
+#whereToFindAuthCode details[open] div {
+  margin-top: 0.25rem;
+  text-align: left;
+}
+
+.floating-label.is-focused #authCode {
+  margin-top: 2rem;
+}
+
+#labelAuthCode em {
+  font-style: normal !important;
+}
+
+.floating-label.is-focused #labelAuthCode em {
+  font-weight: 200;
+  white-space: nowrap;
+}
+
 /* Browser mode on mobile */
 @media screen and (max-width: 767px) and (orientation: portrait) and (display-mode: browser) {
   #contentdefault {

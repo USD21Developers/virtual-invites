@@ -271,16 +271,6 @@
       "translated": "It's also completely FREE."
     },
     {
-      "key": "notificationSentence5",
-      "original": "If you decide to register, please do so by {DEADLINE-DATE}.",
-      "translated": "If you decide to register, please do so by {DEADLINE-DATE}."
-    },
-    {
-      "key": "notificationSentence5QRCode",
-      "original": "If you decide to register, please do so by {DEADLINE-DATE}.",
-      "translated": "If you decide to register, please do so by {DEADLINE-DATE}."
-    },
-    {
       "key": "notificationMoreInfo",
       "original": "Full details (click below):",
       "translated": "Full details (click below):"
@@ -289,6 +279,16 @@
       "key": "notificationMoreInfoQRCode",
       "original": "Full details",
       "translated": "Full details"
+    },
+    {
+      "key": "notificationRegisterBefore",
+      "original": "If you decide to register, please do so by {DEADLINE-DATE}.",
+      "translated": "If you decide to register, please do so by {DEADLINE-DATE}."
+    },
+    {
+      "key": "hereIsAuthCode",
+      "original": "Here's your pre-authorization code:",
+      "translated": "Here's your pre-authorization code:"
     },
     {
       "key": "notificationSincerely",

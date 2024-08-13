@@ -350,6 +350,48 @@
               </div>
             </div>
 
+            <div class="form-group mt-5 mb-2">
+              <div class="floating-label">
+                <label
+                  for="authCode"
+                  data-i18n="label-authCode"
+                  id="labelAuthCode"
+                >
+                </label>
+
+                <input
+                  type="tel"
+                  pattern="[0-9]*"
+                  class="form-control"
+                  id="authCode"
+                  maxlength="6"
+                  aria-describedby="whereToFindAuthCode"
+                />
+                <small id="whereToFindAuthCode">
+                  <details class="my-3">
+                    <summary data-i18n="authCodeHelp"></summary>
+                    <div data-i18n="authCodeHelpDetails"></div>
+                  </details>
+                </small>
+
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="noAuthCode"
+              />
+              <label
+                class="form-check-label"
+                for="noAuthCode"
+                data-i18n="label-noAuthCode"
+              ></label>
+            </div>
+
             <div class="form-group my-5 d-none" id="churchcontainer">
               <div class="floating-label">
                 <label for="churchid" data-i18n="label-my-icc-church"> </label>

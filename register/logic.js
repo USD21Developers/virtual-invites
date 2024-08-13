@@ -606,6 +606,19 @@ function attachListeners() {
     installButtonPWA.remove("d-none");
   });
   window.addEventListener("appinstalled", onAppInstalled);
+  document.querySelector("#authCode").addEventListener("input", (e) => {
+    const code = e.target.value.trim();
+    if (code.length) {
+      const noAuthCodeEl = document.querySelector("#noAuthCode");
+      noAuthCodeEl.checked = false;
+    }
+  });
+  document.querySelector("#noAuthCode").addEventListener("change", (e) => {
+    if (e.target.checked) {
+      const codeEl = document.querySelector("#authCode");
+      codeEl.value = "";
+    }
+  });
 }
 
 async function init() {

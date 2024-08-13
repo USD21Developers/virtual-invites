@@ -1,28 +1,37 @@
 function createTextMessage(
   newUserFirstName,
-  firstName,
-  lastName,
+  authorizerFirstName,
+  authorizerLastName,
   localizedExpiryDate,
   url,
+  authCode,
   template,
   textMessagePhrases
 ) {
-  const { sentence1, sentence2, sentence3, sentence4, sentence5, sentence6 } =
-    textMessagePhrases;
+  const {
+    sentence1,
+    sentence2,
+    sentence3,
+    sentence4,
+    moreInfo,
+    registerBefore,
+    hereIsAuthCode,
+  } = textMessagePhrases;
   let message = template;
 
   message = message.replaceAll("{SENTENCE-1}", sentence1);
+  message = message.replaceAll("{NEW-USER-FIRST-NAME}", newUserFirstName);
   message = message.replaceAll("{SENTENCE-2}", sentence2);
+  message = message.replaceAll("{FIRST-NAME}", authorizerFirstName);
+  message = message.replaceAll("{LAST-NAME}", authorizerLastName);
   message = message.replaceAll("{SENTENCE-3}", sentence3);
   message = message.replaceAll("{SENTENCE-4}", sentence4);
-  message = message.replaceAll("{SENTENCE-5}", sentence5);
-  message = message.replaceAll("{NEW-USER-FIRST-NAME}", newUserFirstName);
-  message = message.replaceAll("{FIRST-NAME}", firstName);
-  message = message.replaceAll("{LAST-NAME}", lastName);
-  message = message.replaceAll("{DEADLINE-DATE}", localizedExpiryDate);
-  message = message.replaceAll("{MORE-INFO}", sentence6);
+  message = message.replaceAll("{MORE-INFO}", moreInfo);
   message = message.replaceAll("{LINK}", url);
-  // message = message.replaceAll(`\n`, `\r\n`);
+  message = message.replaceAll("{REGISTER-BEFORE}", registerBefore);
+  message = message.replaceAll("{DEADLINE-DATE}", localizedExpiryDate);
+  message = message.replaceAll("{HERE-IS-AUTH-CODE}", hereIsAuthCode);
+  message = message.replaceAll("{AUTH-CODE}", authCode);
 
   return message;
 }
@@ -523,8 +532,9 @@ async function onSubmit(e) {
     sentence2HTML: getPhrase("notificationSentence2HTML"),
     sentence3: getPhrase("notificationSentence3"),
     sentence4: getPhrase("notificationSentence4"),
-    sentence5: getPhrase("notificationSentence5"),
-    sentence6: getPhrase("notificationMoreInfo"),
+    moreInfo: getPhrase("notificationMoreInfo"),
+    registerBefore: getPhrase("notificationRegisterBefore"),
+    hereIsAuthCode: getPhrase("hereIsAuthCode"),
     sincerely: getPhrase("notificationSincerely"),
     internetMinistry: getPhrase("notificationInternetMinistry"),
   };
@@ -688,6 +698,7 @@ async function onSubmit(e) {
               user.lastname,
               localizedExpiryDate,
               data.url,
+              data.authCode,
               templateSms,
               textMessagePhrases
             );
