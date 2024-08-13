@@ -175,6 +175,7 @@ async function init() {
 
     const permissions = await getPermissions();
     if (!permissions.includes("isAuthorized")) {
+      sessionStorage.setItem("redirectOnLogin", window.location.href);
       window.location.href = "/logout/";
     }
   }
