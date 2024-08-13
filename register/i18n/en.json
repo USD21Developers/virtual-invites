@@ -70,8 +70,8 @@
     },
     {
       "key": "label-authCode",
-      "original": "Pre-authorization code (not required)",
-      "translated": "Pre-authorization code (not required)",
+      "original": "Authorization code (not required)",
+      "translated": "Authorization code (not required)",
       "changes": [
         {
           "original": "(not required)",
