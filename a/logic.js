@@ -112,22 +112,15 @@ function validate(churchid, authorizedBy, authcode) {
     return false;
   }
 
-  if (typeof churchid !== "number") {
+  if (isNaN(churchid)) {
     console.log("churchid must be a number");
     reset();
     showToast(noRecordsFound, 0, "danger");
     return false;
   }
 
-  if (typeof authorizedBy !== "number") {
+  if (isNaN(authorizedBy)) {
     console.log("authorizedBy must be a number");
-    reset();
-    showToast(noRecordsFound, 0, "danger");
-    return false;
-  }
-
-  if (typeof authcode !== "string") {
-    console.log("authcode must be a string");
     reset();
     showToast(noRecordsFound, 0, "danger");
     return false;
@@ -173,7 +166,7 @@ function verifyAuthorization() {
 
     const churchid = Number(params[0]) || null;
     const authorizedBy = Number(params[1]) || null;
-    const authcode = params[2] || null;
+    const authcode = Number(params[2]) || null;
     const isValidated = validate(churchid, authorizedBy, authcode);
 
     if (!isValidated) return reject();
