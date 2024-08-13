@@ -84,18 +84,18 @@
     },
     {
       "key": "authCodeHelp",
-      "original": "Where can I find my pre-authorization code?",
-      "translated": "Where can I find my pre-authorization code?"
+      "original": "Where can I find my authorization code?",
+      "translated": "Where can I find my authorization code?"
     },
     {
       "key": "authCodeHelpDetails",
-      "original": "If you received a message inviting you to register, a pre-authorization code is found at the bottom of that message.",
-      "translated": "If you received a message inviting you to register, a pre-authorization code is found at the bottom of that message."
+      "original": "If you received a message inviting you to register, a authorization code is found at the bottom of that message.",
+      "translated": "If you received a message inviting you to register, a authorization code is found at the bottom of that message."
     },
     {
       "key": "label-noAuthCode",
-      "original": "I do not have a pre-authorization code",
-      "translated": "I do not have a pre-authorization code"
+      "original": "I do not have a authorization code",
+      "translated": "I do not have a authorization code"
     },
     {
       "key": "label-my-icc-church",

@@ -287,8 +287,8 @@
     },
     {
       "key": "hereIsAuthCode",
-      "original": "Here's your pre-authorization code:",
-      "translated": "Here's your pre-authorization code:"
+      "original": "Here's your authorization code:",
+      "translated": "Here's your authorization code:"
     },
     {
       "key": "notificationSincerely",
