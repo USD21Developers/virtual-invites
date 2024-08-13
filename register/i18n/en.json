@@ -70,17 +70,8 @@
     },
     {
       "key": "label-authCode",
-      "original": "Authorization code (not required)",
-      "translated": "Authorization code (not required)",
-      "changes": [
-        {
-          "original": "(not required)",
-          "translated": "(not required)",
-          "bold": false,
-          "italic": true,
-          "link": ""
-        }
-      ]
+      "original": "Authorization code",
+      "translated": "Authorization code"
     },
     {
       "key": "authCodeHelp",
@@ -191,6 +182,21 @@
       "key": "countryrequired",
       "original": "Country is required",
       "translated": "Country is required"
+    },
+    {
+      "key": "authCodeRequired",
+      "original": "If you do not have an authorization code, check the checkbox below.",
+      "translated": "If you do not have an authorization code, check the checkbox below."
+    },
+    {
+      "key": "authCodeMustBeNumeric",
+      "original": "The authorizaton code must be numeric.",
+      "translated": "The authorizaton code must be numeric."
+    },
+    {
+      "key": "authCodeMustBe6Digits",
+      "original": "The authorizaton code must be 6 digits long.",
+      "translated": "The authorizaton code must be 6 digits long."
     },
     {
       "key": "churchrequired",

@@ -37,19 +37,6 @@ label[for="photoCapture"] {
   text-align: left;
 }
 
-.floating-label.is-focused #authCode {
-  margin-top: 2rem;
-}
-
-#labelAuthCode em {
-  font-style: normal !important;
-}
-
-.floating-label.is-focused #labelAuthCode em {
-  font-weight: 200;
-  white-space: nowrap;
-}
-
 /* Browser mode on mobile */
 @media screen and (max-width: 767px) and (orientation: portrait) and (display-mode: browser) {
   #contentdefault {

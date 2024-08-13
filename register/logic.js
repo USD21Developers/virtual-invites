@@ -249,6 +249,25 @@ function showProfilePhotoError() {
   customScrollTo("#profilePhotoHeadline", 70);
 }
 
+function toggleAuthCodeFields() {
+  let useAuthCode = true;
+  const preAuthToken = localStorage.getItem("preAuthToken");
+
+  if (preAuthToken) {
+    if (typeof preAuthToken === "string") {
+      if (preAuthToken.length) {
+        useAuthCode = false;
+      }
+    }
+  }
+
+  if (useAuthCode) {
+    document.querySelectorAll(".authCodeField").forEach((item) => {
+      item.classList.remove("d-none");
+    });
+  }
+}
+
 function validate() {
   document
     .querySelectorAll(".is-invalid")
@@ -272,6 +291,8 @@ function validate() {
     const unlistedchurch =
       document.querySelector("#unlistedchurch").value.trim() || "";
     const profileImage = await getProfileImage();
+    const authCode = document.querySelector("#authCode").value.trim() || "";
+    const noAuthCodeEl = document.querySelector("#noAuthCode");
 
     if (!username.length) {
       formError("#username", getPhrase("usernamerequired"));
@@ -321,6 +342,35 @@ function validate() {
         .querySelector("#unlistedchurchcontainer")
         .classList.add("d-none");
       return resolve(false);
+    }
+
+    if (!authCode.length) {
+      if (!noAuthCodeEl.checked) {
+        document.querySelector("#authCode").classList.add("is-invalid");
+        document.querySelector(
+          "#authCodeContainer .invalid-feedback"
+        ).innerHTML = getPhrase("authCodeRequired");
+        customScrollTo("#authCodeContainer");
+        return resolve(false);
+      }
+    } else {
+      if (isNaN(authCode)) {
+        document.querySelector("#authCode").classList.add("is-invalid");
+        document.querySelector(
+          "#authCodeContainer .invalid-feedback"
+        ).innerHTML = getPhrase("authCodeMustBeNumeric");
+        customScrollTo("#authCodeContainer");
+        return resolve(false);
+      }
+
+      if (authCode.length !== 6) {
+        document.querySelector("#authCode").classList.add("is-invalid");
+        document.querySelector(
+          "#authCodeContainer .invalid-feedback"
+        ).innerHTML = getPhrase("authCodeMustBe6Digits");
+        customScrollTo("#authCodeContainer");
+        return resolve(false);
+      }
     }
 
     if (!churchid.length) {
@@ -472,6 +522,8 @@ async function onSubmit(e) {
   const controller = new AbortController();
   const signal = controller.signal;
   const preAuthToken = localStorage.getItem("preAuthToken") || null;
+  const authCode = document.querySelector("#authCode").value.trim() || null;
+  const noAuthCode = document.querySelector("#noAuthCode").checked;
 
   emailParagraph1 = emailParagraph1.replaceAll(
     "${fullname}",
@@ -504,6 +556,8 @@ async function onSubmit(e) {
       emailSignature: emailSignature,
       dataKey: dataKey,
       preAuthToken: preAuthToken,
+      authCode: authCode,
+      noAuthCode: noAuthCode,
     }),
     headers: new Headers({
       "Content-Type": "application/json",
@@ -614,15 +668,22 @@ function attachListeners() {
     }
   });
   document.querySelector("#noAuthCode").addEventListener("change", (e) => {
+    const authCodeEl = document.querySelector("#authCode");
+    const authCodeContainerEl = document.querySelector("#authCodeContainer");
     if (e.target.checked) {
-      const codeEl = document.querySelector("#authCode");
-      codeEl.value = "";
+      authCodeEl.value = "";
+      authCodeContainerEl.classList.add("d-none");
+    } else {
+      authCodeContainerEl.classList.remove("d-none");
     }
   });
 }
 
 async function init() {
   await populateContent();
+
+  toggleAuthCodeFields();
+
   Promise.all([getChurches(), getCountries()]).then(() => {
     populateCountries();
     attachListeners();
