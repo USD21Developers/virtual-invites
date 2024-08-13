@@ -193,7 +193,6 @@ function verifyAuthorization() {
     })
       .then((res) => res.json())
       .then((data) => {
-        debugger;
         switch (data.msg) {
           case "no records found":
             reset();
