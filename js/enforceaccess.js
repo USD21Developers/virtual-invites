@@ -105,13 +105,20 @@ function setRedirectOnLogin() {
   }
 }
 
-function storePreAuthToken() {
-  const preAuthToken = new URLSearchParams(document.location.search).get(
-    "preAuthToken"
-  );
+function storePreAuth() {
+  const params = new URLSearchParams(document.location.search);
+  const churchid = params.get("churchid");
+  const authorizedby = params.get("authorizedby");
+  const authcode = params.get("authcode");
 
-  if (preAuthToken) {
-    localStorage.setItem("preAuthToken", preAuthToken);
+  if (churchid && authorizedby && authcode) {
+    const preAuth = JSON.stringify({
+      churchid: Number(churchid),
+      authorizedby: Number(authorizedby),
+      authcode: Number(authcode),
+    });
+
+    localStorage.setItem("preAuth", preAuth);
   }
 }
 
@@ -150,7 +157,7 @@ function verifyRefreshToken() {
 }
 
 async function init() {
-  storePreAuthToken();
+  storePreAuth();
 
   const isFromHomeScreen =
     window.location.href.indexOf("utm_source=homescreen") >= 0 ? true : false;

@@ -251,11 +251,13 @@ function showProfilePhotoError() {
 
 function toggleAuthCodeFields() {
   let useAuthCode = true;
-  const preAuthToken = localStorage.getItem("preAuthToken");
+  const preAuth = localStorage.getItem("preAuth");
 
-  if (preAuthToken) {
-    if (typeof preAuthToken === "string") {
-      if (preAuthToken.length) {
+  if (preAuth) {
+    if (typeof preAuth === "object") {
+      if (preAuth.authcode && preAuth.churchid) {
+        document.querySelector("#churchid").value = preAuth.churchid;
+        document.querySelector("#authCode").value = preAuth.authcode;
         useAuthCode = false;
       }
     }
@@ -521,7 +523,7 @@ async function onSubmit(e) {
   const dataKey = await invitesCrypto.generateKey();
   const controller = new AbortController();
   const signal = controller.signal;
-  const preAuthToken = localStorage.getItem("preAuthToken") || null;
+  const preAuth = localStorage.getItem("preAuth") || null;
   const authCode = document.querySelector("#authCode").value.trim() || null;
   const noAuthCode = document.querySelector("#noAuthCode").checked;
 
@@ -555,7 +557,7 @@ async function onSubmit(e) {
       emailLinkText: emailLinkText,
       emailSignature: emailSignature,
       dataKey: dataKey,
-      preAuthToken: preAuthToken,
+      preAuth: preAuth,
       authCode: authCode,
       noAuthCode: noAuthCode,
     }),

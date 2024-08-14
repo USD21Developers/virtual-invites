@@ -2,14 +2,14 @@ function checkConfirmationToken() {
   const hash =
     document.location.hash.substring(1, document.location.hash.length) || "";
   const endpoint = `${getApiHost()}/register-confirm`;
-  const preAuthToken = localStorage.getItem("preAuthToken") || null;
+  const preAuth = localStorage.getItem("preAuth") || null;
 
   fetch(endpoint, {
     mode: "cors",
     method: "POST",
     body: JSON.stringify({
       token: hash,
-      preAuthToken: preAuthToken,
+      preAuth: preAuth,
     }),
     headers: new Headers({
       "Content-Type": "application/json",
@@ -45,7 +45,7 @@ function checkConfirmationToken() {
           notrecognized.classList.remove("d-none");
           break;
         case "registration confirmed":
-          if (preAuthToken) localStorage.removeItem("preAuthToken");
+          if (preAuth) localStorage.removeItem("preAuth");
           confirmed.classList.remove("d-none");
           onConfirmed();
           break;
@@ -65,7 +65,9 @@ function hideContentContainers() {
 }
 
 function onConfirmed() {
-  localStorage.removeItem("preAuthToken");
+  document.cookie =
+    "preAuthArray=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  localStorage.removeItem("preAuth");
   sessionStorage.setItem("justRegistered", true);
 }
 

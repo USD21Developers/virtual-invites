@@ -1,7 +1,7 @@
 function forwardByDefault() {
   document.cookie =
-    "preAuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  localStorage.removeItem("preAuthToken");
+    "preAuthArray=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  localStorage.removeItem("preAuth");
   window.location.href = "/about/";
 }
 
@@ -203,24 +203,47 @@ function verifyAuthorization() {
             forwardByDefault();
             break;
           case "authorization verified":
-            const jwt = data.preAuthToken;
             const {
-              newUser,
-              authorizedBy,
               sentvia,
-              expiresAt,
               churchid,
-              authCode,
-            } = JSON.parse(atob(jwt.split(".")[1]));
+              expiry,
+              newUserFirstName,
+              newUserLastName,
+              authorizedByFirstName,
+              authorizedByLastName,
+            } = data.preAuthData;
 
-            const cookieExpiry = new Date(expiresAt).toUTCString();
+            const cookieExpiry = new Date(expiry).toUTCString();
 
-            document.cookie = `preAuthToken=${jwt}; expires=${cookieExpiry}; path=/`;
+            document.cookie = `preAuthArray=${data.preAuthArray.toString()}; expires=${cookieExpiry}; path=/`;
 
-            localStorage.setItem("preAuthToken", jwt);
+            const preAuth = JSON.stringify({
+              churchid: data.preAuthArray[0],
+              authorizedby: data.preAuthArray[1],
+              authcode: data.preAuthArray[2],
+            });
+
+            localStorage.setItem("preAuth", preAuth);
+
+            const newUser = {
+              firstname: newUserFirstName,
+              lastname: newUserLastName,
+            };
+
+            const authorizedBy = {
+              firstname: authorizedByFirstName,
+              lastname: authorizedByLastName,
+              userid: data.preAuthArray[1],
+            };
 
             if (sentvia === "qrcode") {
-              showMessage(newUser, authorizedBy, expiresAt, churchid, authCode);
+              showMessage(
+                newUser,
+                authorizedBy,
+                expiry,
+                churchid,
+                data.preAuthArray[2]
+              );
               return resolve();
             }
 
