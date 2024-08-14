@@ -203,15 +203,7 @@ function verifyAuthorization() {
             forwardByDefault();
             break;
           case "authorization verified":
-            const {
-              sentvia,
-              churchid,
-              expiry,
-              newUserFirstName,
-              newUserLastName,
-              authorizedByFirstName,
-              authorizedByLastName,
-            } = data.preAuthData;
+            const { authorizedBy, expiry, newUser, sentvia } = data.preAuthData;
 
             const cookieExpiry = new Date(expiry).toUTCString();
 
@@ -224,17 +216,6 @@ function verifyAuthorization() {
             });
 
             localStorage.setItem("preAuth", preAuth);
-
-            const newUser = {
-              firstname: newUserFirstName,
-              lastname: newUserLastName,
-            };
-
-            const authorizedBy = {
-              firstname: authorizedByFirstName,
-              lastname: authorizedByLastName,
-              userid: data.preAuthArray[1],
-            };
 
             if (sentvia === "qrcode") {
               showMessage(
