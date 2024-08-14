@@ -251,15 +251,14 @@ function showProfilePhotoError() {
 
 function toggleAuthCodeFields() {
   let useAuthCode = true;
-  const preAuth = localStorage.getItem("preAuth");
+  let preAuth = localStorage.getItem("preAuth");
 
   if (preAuth) {
-    if (typeof preAuth === "object") {
-      if (preAuth.authcode && preAuth.churchid) {
-        document.querySelector("#churchid").value = preAuth.churchid;
-        document.querySelector("#authCode").value = preAuth.authcode;
-        useAuthCode = false;
-      }
+    preAuth = JSON.parse(preAuth);
+    if (preAuth.authcode && preAuth.churchid) {
+      document.querySelector("#churchid").value = preAuth.churchid;
+      document.querySelector("#authCode").value = preAuth.authcode;
+      useAuthCode = false;
     }
   }
 
