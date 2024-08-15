@@ -44,6 +44,11 @@
       "translated": "Register"
     },
     {
+      "key": "installToHomeScreen",
+      "original": "Install to my home screen",
+      "translated": "Install to my home screen"
+    },
+    {
       "key": "glitchMessage",
       "original": "The system is unable to verify your login at this time.  Please try again later.",
       "translated": "The system is unable to verify your login at this time.  Please try again later."

@@ -414,6 +414,10 @@ strong {
   #navButtons table {
     margin-bottom: 15px;
   }
+
+  #installLink {
+    display: inline-block;
+  }
 }
 
 .navbar-brand {
