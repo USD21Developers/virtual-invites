@@ -47,6 +47,11 @@
       "key": "evangelismMapLink",
       "original": "Evangelism Map",
       "translated": "Evangelism Map"
+    },
+    {
+      "key": "authorizeLink",
+      "original": "Pre-authorize a new user",
+      "translated": "Pre-authorize a new user"
     }
   ],
 
