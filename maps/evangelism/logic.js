@@ -192,8 +192,8 @@ async function initMap(searchResults) {
   // Set the map center to the calculated center
   map.setCenter(center);
 
-  // Optionally, you can add a listener to re-center the map on window resize to maintain the center
-  google.maps.event.addDomListener(window, "resize", () => {
+  // Re-center the map on window resize to maintain the center
+  window.addEventListener("resize", () => {
     map.setCenter(center);
   });
 }
