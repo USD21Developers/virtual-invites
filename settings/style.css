@@ -30,8 +30,8 @@ label {
   font-weight: bold;
 }
 
-.text-primary-dark {
-  color: var(--primary-dark);
+.text-blue {
+  color: #0057c7;
 }
 
 #notificationClarification a {
