@@ -325,14 +325,14 @@
       ]
     },
     {
-      "key": "installation",
-      "original": "Installation",
-      "translated": "Installation"
+      "key": "installationHeadline",
+      "original": "Please Install",
+      "translated": "Please Install"
     },
     {
       "key": "installP1",
-      "original": "Please install this Web app by adding it to your home screen. Installation will put the following icon on your device, enabling you to open the app quickly and conveniently:",
-      "translated": "Please install this Web app by adding it to your home screen. Installation will put the following icon on your device, enabling you to open the app quickly and conveniently:",
+      "original": "Before registering, you should install this Web app by adding it to your home screen. Installation will put the following icon on your device, enabling you to open the app quickly and conveniently:",
+      "translated": "Before registering, you should install this Web app by adding it to your home screen. Installation will put the following icon on your device, enabling you to open the app quickly and conveniently:",
       "changes": [
         {
           "original": "adding it to your home screen",
