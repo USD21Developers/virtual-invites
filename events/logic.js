@@ -115,8 +115,8 @@ function renderEvents() {
             <div class="row border-bottom pb-2 mb-2">
               <div class="col-8 mb-3 pl-0">
                 <strong>${title}</strong>
-                <div class="small secondary">${when}</div>
-                <div class="small text-secondary">
+                <div class="small text-dark">${when}</div>
+                <div class="small text-dark">
                   ${
                     locationname && locationname.length
                       ? locationname + "<br>"

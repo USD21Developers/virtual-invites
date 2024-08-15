@@ -103,7 +103,7 @@ function populateRecipientsTable() {
                 >
                   ${localDateTime}
                   <div>
-                    <small class="text-secondary">${action}</small>
+                    <small class="text-dark">${action}</small>
                   </div>
                 </td>
               </tr>
