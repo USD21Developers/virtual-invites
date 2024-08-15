@@ -9,9 +9,17 @@ function hideNavs() {
   }
 }
 
+function showContentForDesktop() {
+  const isMobile = isMobileDevice();
+  if (!isMobile) {
+    document.querySelector("#browserAdvisory").classList.remove("d-none");
+  }
+}
+
 async function init() {
   await populateContent();
   hideNavs();
+  showContentForDesktop();
   globalHidePageSpinner();
 }
 

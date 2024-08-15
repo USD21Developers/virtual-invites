@@ -15,8 +15,8 @@
     },
     {
       "key": "subhead",
-      "original": "For Apple devices",
-      "translated": "For Apple devices"
+      "original": "For Apple Devices",
+      "translated": "For Apple Devices"
     },
     {
       "key": "breadcrumbHome",
@@ -44,6 +44,21 @@
           "bold": true,
           "italic": false,
           "link": ""
+        }
+      ]
+    },
+    {
+      "key": "browserAdvisory",
+      "original": "The following steps pertain to the Safari Web browser on iOS:",
+      "translated": "The following steps pertain to the Safari Web browser on iOS:",
+      "changes": [
+        {
+          "original": "Safari",
+          "translated": "Safari",
+          "bold": false,
+          "italic": false,
+          "link": "https://www.apple.com/safari/",
+          "underline": true
         }
       ]
     },
