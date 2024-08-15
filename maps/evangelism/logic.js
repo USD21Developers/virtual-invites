@@ -170,7 +170,7 @@ async function initMap(searchResults) {
   });
 
   othersInvites.forEach((invite) => {
-    const { lat, lng, invitedAt } = invite;
+    const { lat, lng } = invite;
     const pin = new PinElement({
       background: defaultColorOthersInvites,
       borderColor: "white",
@@ -180,18 +180,6 @@ async function initMap(searchResults) {
       map,
       position: { lat: lat, lng: lng },
       content: pin.element,
-    });
-
-    const infowindow = new google.maps.InfoWindow({
-      content: `<div><strong>${invitedAt}</div>`,
-      ariaLabel: invitedAt,
-    });
-
-    marker.addEventListener("click", () => {
-      infowindow.open({
-        anchor: marker,
-        map,
-      });
     });
 
     markersOthersInvites.push(marker);
