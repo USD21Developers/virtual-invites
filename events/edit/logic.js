@@ -877,7 +877,7 @@ async function onSubmit(e) {
 
   const formdata = getCalendarObject();
   const accessToken = await getAccessToken();
-  const endpoint = `${getAPIHost()}/invites/event-edit`;
+  const endpoint = `${getAPIHost()}/event-edit`;
 
   showSpinner();
 
