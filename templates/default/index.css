@@ -242,6 +242,7 @@ a:hover {
   font-size: 0.9rem;
   letter-spacing: 0.32px;
   line-height: 20px;
+  text-decoration: none;
 }
 
 #actbOptions a:first-child {

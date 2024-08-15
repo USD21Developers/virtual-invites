@@ -1,7 +1,7 @@
 $primary: (
-  color: #193e87,
-  dark: darken(#193e87, 10%),
-  light: lighten(#193e87, 10%),
+  color: #15336f,
+  dark: darken(#15336f, 10%),
+  light: lighten(#15336f, 10%),
 );
 
 $secondary: (
@@ -27,3 +27,14 @@ $font-size-root: 18px;
 $btn-font-weight: 600;
 
 @import "../node_modules/daemonite-material/assets/scss/material.scss";
+
+a {
+  text-decoration: underline;
+}
+
+.list-group a,
+.nav-item,
+.navbar-brand,
+a.btn {
+  text-decoration: none;
+}

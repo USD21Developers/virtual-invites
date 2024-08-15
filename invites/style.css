@@ -1,6 +1,6 @@
 #recipients td a {
   color: var(--primary);
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 #recipients th {

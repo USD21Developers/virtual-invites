@@ -134,10 +134,10 @@ function verifyDataKey() {
 
 function verifyRefreshToken() {
   let logoutUrl = "/logout/";
-  const refreshToken = localStorage.getItem("refreshToken") || "";
+  const refreshToken = localStorage.getItem("refreshToken");
   let isAuthorized = true;
 
-  if (!refreshToken.length) {
+  if (!refreshToken) {
     setRedirectOnLogin();
     return (window.location.href = logoutUrl);
   }

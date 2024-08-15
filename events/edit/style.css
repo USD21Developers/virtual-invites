@@ -141,3 +141,14 @@ input[type="range"]::-ms-track {
   font-weight: 600;
   text-decoration: underline;
 }
+
+a.contactMethod,
+a.contactMethod .contactMethod-label {
+  color: #2a2e53;
+  text-decoration: none;
+}
+
+a.contactMethod:hover img {
+  border: 2px solid #2a2e53;
+  border-radius: 50%;
+}
