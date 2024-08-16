@@ -96,7 +96,6 @@ function customizeIsExpecting() {
   const sendingMethod = document.querySelector(
     "[name='sendingMethod']:checked"
   ).value;
-  const isWhatsApp = document.querySelector("#isWhatsApp").checked;
   const contentWhatsApp = getPhrase("isExpectingWhatsApp").replaceAll(
     "{FIRST-NAME}",
     firstName
@@ -116,11 +115,10 @@ function customizeIsExpecting() {
   }
 
   if (sendingMethod === "textmessage") {
-    if (isWhatsApp) {
-      isExpectingLabel.innerHTML = contentWhatsApp;
-    } else {
-      isExpectingLabel.innerHTML = contentTextMessage;
-    }
+    isExpectingLabel.innerHTML = contentTextMessage;
+    isExpectingContainerEl.classList.remove("d-none");
+  } else if (sendingMethod === "whatsapp") {
+    isExpectingLabel.innerHTML = contentWhatsApp;
     isExpectingContainerEl.classList.remove("d-none");
   } else if (sendingMethod === "email") {
     isExpectingLabel.innerHTML = contentEmail;
@@ -217,11 +215,15 @@ function populateStoredSendingMethod() {
   const storedSendingMethod = localStorage.getItem(
     "authorizationSendingMethod"
   );
-  const submitButtonEl = document.querySelector("#submitButton");
   const showQrCodeEl = document.querySelector("#showQrCode");
 
   if (!storedSendingMethod) return;
-  if (!["textmessage", "email", "qrcode"].includes(storedSendingMethod)) return;
+  if (
+    !["textmessage", "whatsapp", "email", "qrcode"].includes(
+      storedSendingMethod
+    )
+  )
+    return;
 
   document.querySelectorAll("input[name='sendingMethod']").forEach((item) => {
     if (item.value === storedSendingMethod) {
@@ -231,6 +233,7 @@ function populateStoredSendingMethod() {
     const contactPhoneContainerEl = document.querySelector(
       "#contactPhoneContainer"
     );
+    const contactPhoneLabel = contactPhoneContainerEl.querySelector("label");
     const emailContainerEl = document.querySelector("#emailContainer");
     const submitButtonEl = document.querySelector("#submitButton");
 
@@ -239,6 +242,13 @@ function populateStoredSendingMethod() {
       contactPhoneContainerEl.classList.remove("d-none");
       submitButtonEl.classList.remove("d-none");
       showQrCodeEl.classList.add("d-none");
+      contactPhoneLabel.innerHTML = getPhrase("contactPhone");
+    } else if (storedSendingMethod === "whatsapp") {
+      emailContainerEl.classList.add("d-none");
+      contactPhoneContainerEl.classList.remove("d-none");
+      submitButtonEl.classList.remove("d-none");
+      showQrCodeEl.classList.add("d-none");
+      contactPhoneLabel.innerHTML = getPhrase("contactPhoneWhatsApp");
     } else if (storedSendingMethod === "email") {
       contactPhoneContainerEl.classList.add("d-none");
       emailContainerEl.classList.remove("d-none");
@@ -418,7 +428,7 @@ async function validate(e) {
     }
   }
 
-  if (methodOfSending === "textmessage") {
+  if (methodOfSending === "textmessage" || methodOfSending === "whatsapp") {
     const errorEl = document.querySelector("#contactPhoneInvalidFeedback");
     const phoneNumber = iti.getNumber();
     const isValidNumber = iti.isValidNumber();
@@ -497,7 +507,6 @@ async function onSubmit(e) {
     "[name='sendingMethod']:checked"
   ).value;
   const phoneNumber = iti.getNumber();
-  const isWhatsApp = document.querySelector("#isWhatsApp").checked;
   let phoneData = null;
   const email = document.querySelector("#contactEmail").value.trim();
   const acceptedOath = document.querySelector("#oath").checked;
@@ -508,7 +517,7 @@ async function onSubmit(e) {
   const isValidated = await validate(e);
   if (!isValidated) return;
 
-  if (methodOfSending === "textmessage") {
+  if (methodOfSending === "textmessage" || methodOfSending === "whatsapp") {
     phoneData = iti.getSelectedCountryData();
   }
 
@@ -567,7 +576,6 @@ async function onSubmit(e) {
       methodOfSending: methodOfSending,
       phoneNumber: phoneNumber,
       phoneData: phoneData,
-      isWhatsApp: isWhatsApp,
       email: email,
       acceptedOath: acceptedOath,
       notificationPhrases: notificationPhrases,
@@ -701,16 +709,14 @@ async function onSubmit(e) {
               textMessagePhrases
             );
 
-            if (isWhatsApp) {
+            if (methodOfSending === "whatsapp") {
               // WhatsApp
               const whatsAppLink = createWhatsAppLink(phoneNumber, textMessage);
-
               window.location.href = whatsAppLink;
-            } else {
+            } else if (methodOfSending === "textmessage") {
               // Text message
               const encodedTextMessage = encodeURIComponent(textMessage);
               const smsUrl = `sms:${phoneNumber};?&body=${encodedTextMessage}`;
-
               window.location.href = smsUrl;
             }
 
@@ -741,6 +747,7 @@ function onToggleMethodOfSending(sendingMethod) {
   const contactPhoneContainerEl = document.querySelector(
     "#contactPhoneContainer"
   );
+  const contactPhoneLabel = contactPhoneContainerEl.querySelector("label");
   const emailContainerEl = document.querySelector("#emailContainer");
   const submitButtonEl = document.querySelector("#submitButton");
   const showQrCodeButtonEl = document.querySelector("#showQrCode");
@@ -748,18 +755,23 @@ function onToggleMethodOfSending(sendingMethod) {
   const isExpectingContainerEl = document.querySelector(
     "#isExpectingContainer"
   );
-  const isWhatsAppEl = document.querySelector("#isWhatsApp");
   const firstName = document.querySelector("#firstName").value.trim();
 
   if (sendingMethod === "textmessage") {
+    contactPhoneLabel.innerHTML = getPhrase("contactPhone");
+  } else if (sendingMethod === "whatsapp") {
+    contactPhoneLabel.innerHTML = getPhrase("contactPhoneWhatsApp");
+  }
+
+  if (sendingMethod === "textmessage" || sendingMethod === "whatsapp") {
     if (firstName.length) {
-      if (isWhatsAppEl.checked) {
+      if (sendingMethod === "whatsapp") {
         const content = getPhrase("isExpectingWhatsApp").replaceAll(
           "{FIRST-NAME}",
           firstName
         );
         isExpectingLabel.innerHTML = content;
-      } else {
+      } else if (sendingMethod === "textmessage") {
         const content = getPhrase("isExpectingTextMessage").replaceAll(
           "{FIRST-NAME}",
           firstName
@@ -834,10 +846,6 @@ function attachListeners() {
   });
 
   document.querySelector("#authorizeForm").addEventListener("submit", onSubmit);
-
-  document
-    .querySelector("#isWhatsApp")
-    .addEventListener("click", customizeIsExpecting);
 
   document
     .querySelector("#qrcodeCompleted")

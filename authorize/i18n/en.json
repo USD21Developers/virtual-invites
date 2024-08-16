@@ -83,6 +83,11 @@
       "translated": "Text message"
     },
     {
+      "key": "labelWhatsApp",
+      "original": "WhatsApp",
+      "translated": "WhatsApp"
+    },
+    {
       "key": "labelEmail",
       "original": "E-mail",
       "translated": "E-mail"
@@ -96,6 +101,11 @@
       "key": "contactPhone",
       "original": "User's mobile phone number:",
       "translated": "User's mobile phone number:"
+    },
+    {
+      "key": "contactPhoneWhatsApp",
+      "original": "User's WhatsApp phone number:",
+      "translated": "User's WhatsApp phone number:"
     },
     {
       "key": "isWhatsApp",
@@ -144,8 +154,8 @@
     },
     {
       "key": "isExpectingWhatsApp",
-      "original": "{FIRST-NAME} is expecting to receive a text message via WhatsApp about the Invites App.",
-      "translated": "{FIRST-NAME} is expecting to receive a text message via WhatsApp about the Invites App."
+      "original": "{FIRST-NAME} is expecting to receive a WhatsApp message about the Invites App.",
+      "translated": "{FIRST-NAME} is expecting to receive a WhatsApp message about the Invites App."
     },
     {
       "key": "isExpectingEmail",
