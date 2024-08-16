@@ -88,6 +88,7 @@ async function toggleUsersIFollow() {
   localforage.getItem("followedUsers").then((followedUsers) => {
     if (Array.isArray(followedUsers) && followedUsers.length) {
       const el = document.querySelector("[data-i18n='followinglink']");
+      if (!el) return;
       const userid = getUserId();
       const link = `following/#${userid}`;
       el.setAttribute("href", link);
