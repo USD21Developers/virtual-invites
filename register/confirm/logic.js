@@ -1,14 +1,35 @@
 function checkConfirmationToken() {
-  const hash =
-    document.location.hash.substring(1, document.location.hash.length) || "";
+  const hashParts = document.location.hash.split("/");
+
+  hashParts.shift();
+
+  const churchid = Number(hashParts[0]);
+  const authorizedBy = Number(hashParts[1]);
+  const preAuthCode = Number(hashParts[2]);
+  const token = Number(hashParts[3]);
+
   const endpoint = `${getApiHost()}/register-confirm`;
-  const preAuth = localStorage.getItem("preAuth") || null;
+  let preAuth = localStorage.getItem("preAuth") || null;
+
+  if (!preAuth) {
+    let resetPreAuth = true;
+    if (isNaN(churchid)) resetPreAuth = false;
+    if (isNaN(authorizedBy)) resetPreAuth = false;
+    if (isNaN(preAuthCode)) resetPreAuth = false;
+    if (resetPreAuth) {
+      preAuth = {
+        churchid: churchid,
+        authorizedby: authorizedBy,
+        authcode: preAuthCode,
+      };
+    }
+  }
 
   fetch(endpoint, {
     mode: "cors",
     method: "POST",
     body: JSON.stringify({
-      token: hash,
+      token: token,
       preAuth: preAuth,
     }),
     headers: new Headers({
