@@ -266,9 +266,6 @@ function clearErrorMessages() {
 }
 
 async function clearStorage() {
-  if (localforage) {
-    await localforage.clear().catch((err) => console.error(err));
-  }
   localStorage.removeItem("lastEventSelected");
   localStorage.removeItem("country");
   localStorage.removeItem("refreshToken");
@@ -277,6 +274,11 @@ async function clearStorage() {
   sessionStorage.removeItem("accessToken");
   document.cookie =
     "preAuthArray=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  try {
+    await localforage.clear().catch((err) => console.error(err));
+  } catch (err) {
+    //
+  }
 }
 
 function compareDates(a, b) {
