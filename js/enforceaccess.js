@@ -8,7 +8,7 @@ function framebuster() {
 
 function getAccessToken() {
   let needToRefresh = false;
-  const accessToken = sessionStorage.getItem("accessToken") || "";
+  const accessToken = sessionStorage.getItem("accessToken") || null;
   const now = Date.now().valueOf() / 1000;
   let expiry = now;
   try {
@@ -19,8 +19,8 @@ function getAccessToken() {
   }
   return new Promise((resolve, reject) => {
     if (!needToRefresh) return resolve(accessToken);
-    const refreshToken = localStorage.getItem("refreshToken") || "";
-    if (!refreshToken.length) return reject("refresh token missing");
+    const refreshToken = localStorage.getItem("refreshToken") || null;
+    if (!refreshToken) return reject("refresh token missing");
 
     const endpoint = `${getAPIHost()}/refresh-token`;
 
