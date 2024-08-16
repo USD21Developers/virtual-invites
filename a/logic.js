@@ -261,6 +261,7 @@ function attachListeners() {
 }
 
 async function init() {
+  await clearStorage();
   await populateContent();
   await verifyAuthorization();
   attachListeners();

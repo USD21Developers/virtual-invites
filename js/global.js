@@ -271,7 +271,10 @@ async function clearStorage() {
   localStorage.removeItem("country");
   localStorage.removeItem("refreshToken");
   localStorage.removeItem("datakey");
+  localStorage.removeItem("preAuth");
   sessionStorage.removeItem("accessToken");
+  document.cookie =
+    "preAuthArray=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
 function compareDates(a, b) {
