@@ -759,8 +759,16 @@ function onToggleMethodOfSending(sendingMethod) {
 
   if (sendingMethod === "textmessage") {
     contactPhoneLabel.innerHTML = getPhrase("contactPhone");
+    isExpectingLabel.innerHTML = getPhrase("isExpectingTextMessage").replaceAll(
+      "{FIRST-NAME}",
+      firstName
+    );
   } else if (sendingMethod === "whatsapp") {
     contactPhoneLabel.innerHTML = getPhrase("contactPhoneWhatsApp");
+    isExpectingLabel.innerHTML = getPhrase("isExpectingWhatsApp").replaceAll(
+      "{FIRST-NAME}",
+      firstName
+    );
   }
 
   if (sendingMethod === "textmessage" || sendingMethod === "whatsapp") {
@@ -778,9 +786,6 @@ function onToggleMethodOfSending(sendingMethod) {
         );
         isExpectingLabel.innerHTML = content;
       }
-      isExpectingLabel.innerHTML = getPhrase(
-        "isExpectingTextMessage"
-      ).replaceAll("{FIRST-NAME}", firstName);
       isExpectingContainerEl.classList.remove("d-none");
     }
     contactPhoneContainerEl.classList.remove("d-none");
