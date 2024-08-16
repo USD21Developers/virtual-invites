@@ -6,7 +6,7 @@ function checkConfirmationToken() {
   const churchid = Number(hashParts[0]);
   const authorizedBy = Number(hashParts[1]);
   const preAuthCode = Number(hashParts[2]);
-  const token = Number(hashParts[3]);
+  const token = hashParts[3];
 
   const endpoint = `${getApiHost()}/register-confirm`;
   let preAuth = localStorage.getItem("preAuth") || null;
