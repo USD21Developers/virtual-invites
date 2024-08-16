@@ -1,15 +1,3 @@
-async function toggleUsersIFollow() {
-  localforage.getItem("followedUsers").then((followedUsers) => {
-    if (Array.isArray(followedUsers) && followedUsers.length) {
-      const el = document.querySelector("[data-i18n='followinglink']");
-      const userid = getUserId();
-      const link = `following/#${userid}`;
-      el.setAttribute("href", link);
-      el.classList.remove("d-none");
-    }
-  });
-}
-
 function redirectIfNecessary() {
   return new Promise(async (resolve, reject) => {
     const launchedFromHomescreen =
@@ -49,6 +37,22 @@ function redirectIfNecessary() {
   });
 }
 
+function showContentForLeaders() {
+  const refreshToken = localStorage.getItem("refreshToken");
+
+  if (!refreshToken) return;
+
+  const { canAuthorize, canAuthToAuth } = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  );
+
+  if (!canAuthorize && !canAuthToAuth) return;
+
+  document
+    .querySelectorAll(".leadersOnly")
+    .forEach((item) => item.classList.remove("d-none"));
+}
+
 function syncOnLogin() {
   return new Promise((resolve, reject) => {
     const proceedWithSync = sessionStorage.getItem("syncOnLogin")
@@ -80,6 +84,18 @@ function syncOnLogin() {
   });
 }
 
+async function toggleUsersIFollow() {
+  localforage.getItem("followedUsers").then((followedUsers) => {
+    if (Array.isArray(followedUsers) && followedUsers.length) {
+      const el = document.querySelector("[data-i18n='followinglink']");
+      const userid = getUserId();
+      const link = `following/#${userid}`;
+      el.setAttribute("href", link);
+      el.classList.remove("d-none");
+    }
+  });
+}
+
 async function init() {
   await syncOnLogin();
 
@@ -95,6 +111,8 @@ async function init() {
       globalHidePageSpinner();
     });
   }
+
+  showContentForLeaders();
 }
 
 init();
