@@ -266,7 +266,7 @@ function clearErrorMessages() {
 }
 
 async function clearStorage() {
-  await localforage.clear().catch((err) => console.error(err));
+  if (localforage) await localforage.clear().catch((err) => console.error(err));
   localStorage.removeItem("lastEventSelected");
   localStorage.removeItem("country");
   localStorage.removeItem("refreshToken");
