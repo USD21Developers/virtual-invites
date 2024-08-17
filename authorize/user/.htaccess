@@ -1,4 +1,3 @@
 RewriteEngine On
 
-RewriteCond %{REQUEST_URI} ^/authorize/user/(\d+)$
-RewriteRule ^authorize/user/(\d+)$ /authorize/user/#/%1 [NE,R=302,L]
+RewriteRule ^(\d+)$ #/$1 [R=302,L]
