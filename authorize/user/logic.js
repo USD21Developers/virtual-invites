@@ -48,8 +48,6 @@ async function populateRegistrant() {
     .forEach((item) => (item.innerHTML = name));
 
   document.querySelector("#churchname").innerHTML = church.name;
-
-  console.log(registrationDateUTC);
 }
 
 function attachListeners() {
