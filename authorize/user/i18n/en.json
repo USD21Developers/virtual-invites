@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "description": "Authorize a Registrant",
+    "path": "/authorie/user/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbAuthorize",
+      "original": "Authorize",
+      "translated": "Authorize"
+    },
+    {
+      "key": "pagetitle",
+      "original": "Authorize {NAME}",
+      "translated": "Authorize {NAME}"
+    },
+    {
+      "key": "profilePhotoAltText",
+      "original": "Photo of {NAME}",
+      "translated": "Photo of {NAME}"
+    },
+    {
+      "key": "registrationDate",
+      "original": "Registered {DATE}",
+      "translated": "Registered {DATE}"
+    }
+  ],
+
+  "example-no-changes": {
+    "key": "",
+    "original": "",
+    "translated": ""
+  },
+
+  "example-has-changes": {
+    "key": "",
+    "original": "",
+    "translated": "",
+    "changes": [
+      {
+        "original": "",
+        "translated": "",
+        "bold": false,
+        "italic": false,
+        "link": ""
+      }
+    ]
+  }
+}
