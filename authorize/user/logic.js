@@ -130,12 +130,81 @@ function unhideContentForHighestUsers() {
   }
 }
 
+async function validate() {
+  const churches = await getChurches();
+  const approver = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  );
+  const approverChurch = churches.find((item) => item.id === approver.churchid);
+  const acceptedOath = document.querySelector("#oath").checked;
+
+  document.querySelectorAll(".is-invalid").forEach((item) => {
+    item.classList.remove("is-invalid");
+  });
+
+  document.querySelectorAll(".invalid-feedback").forEach((item) => {
+    item.classList.remove("d-block");
+  });
+
+  if (approver.usertype !== "user") {
+    const error = getPhrase("approverMustBeRegistered");
+    showToast(error, 5000, "danger");
+    return false;
+  }
+
+  if (registrant.usertype !== "user") {
+    const error = getPhrase("registrantMustBeRegistered");
+    showToast(error, 5000, "danger");
+    return false;
+  }
+
+  if (!approver.canAuthToAuth) {
+    if (registrant.churchid !== approver.churchid) {
+      const errorMsg = getPhrase("errorChurchMustMatch")
+        .replaceAll("{NAME}", `${registrant.firstname} ${registrant.lastname}`)
+        .replaceAll("{CHURCH-NAME}", approverChurch.name);
+      showModal(errorMsg, getPhrase("churchMustMatch"));
+      return false;
+    }
+  }
+
+  if (approver.canAuthToAuth) {
+    const highestLeadershipRole = document.querySelector(
+      "[name='highestLeadershipRole']:checked"
+    )?.value;
+    if (!highestLeadershipRole) {
+      if (!highestLeadershipRole) {
+        const errorEl = document.querySelector(
+          "#highestLeadershipRole_invalidFeedback"
+        );
+        errorEl.innerHTML = getPhrase("errorLeadershipRoleRequired");
+        errorEl.classList.add("d-block");
+        customScrollTo("#highestLeadershipRole_invalidFeedback", 225);
+        return false;
+      }
+    }
+  }
+
+  if (!acceptedOath) {
+    const errorEl = document.querySelector("#oathInvalidFeedback");
+
+    errorEl.innerHTML = getPhrase("errorOathIsRequired");
+    errorEl.classList.add("d-block");
+    customScrollTo("#oathContainer");
+    return false;
+  }
+
+  return isValid;
+}
+
 function onSubmit(e) {
   e.preventDefault();
 
-  // TODO:  validate form.  Must check an option under Highest Leaedership Role (if it is visible), and must accept oath.
   // TODO:  fetch the API
   // TODO:  build API endpoint
+
+  const isValid = validate();
+  if (!isValid) return;
 }
 
 function onWhyAuthorizeClicked(e) {

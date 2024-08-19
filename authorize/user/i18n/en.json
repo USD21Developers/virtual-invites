@@ -81,6 +81,36 @@
       "key": "btnAuthorize",
       "original": "Authorize",
       "translated": "Authorize"
+    },
+    {
+      "key": "approverMustBeRegistered",
+      "original": "Error: you must be a registered user",
+      "translated": "Error: you must be a registered user"
+    },
+    {
+      "key": "registrantMustBeRegistered",
+      "original": "Error: you must be a registered user",
+      "translated": "Error: you must be a registered user"
+    },
+    {
+      "key": "errorLeadershipRoleRequired",
+      "original": "Highest leadership role is required",
+      "translated": "Highest leadership role is required"
+    },
+    {
+      "key": "errorOathIsRequired",
+      "original": "You must vouch for the new user.",
+      "translated": "You must vouch for the new user."
+    },
+    {
+      "key": "churchMustMatch",
+      "original": "Churches must match",
+      "translated": "Churches must match"
+    },
+    {
+      "key": "errorChurchMustMatch",
+      "original": "{NAME} must be in the same church as me ({CHURCH-NAME}).",
+      "translated": "{NAME} must be in the same church as me ({CHURCH-NAME})."
     }
   ],
 
