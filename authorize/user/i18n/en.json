@@ -32,6 +32,16 @@
       "key": "registrationDate",
       "original": "Registered {DATE}",
       "translated": "Registered {DATE}"
+    },
+    {
+      "key": "p1Male",
+      "original": "{FIRST-NAME} needs authorization to use the Invites App. Please verify his membership status in the church, and complete the form below.",
+      "translated": "{FIRST-NAME} needs authorization to use the Invites App. Please verify his membership status in the church, and complete the form below."
+    },
+    {
+      "key": "p1Female",
+      "original": "{FIRST-NAME} needs authorization to use the Invites App. Please verify her membership status in the church, and complete the form below.",
+      "translated": "{FIRST-NAME} needs authorization to use the Invites App. Please verify her membership status in the church, and complete the form below."
     }
   ],
 

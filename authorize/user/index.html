@@ -177,8 +177,9 @@
     </div>
 
     <div class="container d-none mainContent" id="pageContent">
+      <!-- Profile photo -->
       <div class="row">
-        <div class="col col-sm-10 offset-sm-1 mt-2">
+        <div class="col">
           <div class="text-center">
             <img id="profilephoto" />
             <h2 class="fullname mt-2 mb-1"></h2>
@@ -189,6 +190,19 @@
               </p>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="row mt-1">
+        <div class="col col-sm-10 offset-sm-1 mt-2">
+          <p class="mt-0" id="p1"></p>
+          <p class="text-center">
+            <a
+              href="#"
+              class="text-dark small text-center underline"
+              id="whyAuthorizeLink"
+            ></a>
+          </p>
         </div>
       </div>
 
@@ -226,6 +240,44 @@
               class="btn btn-primary"
               data-dismiss="modal"
               data-i18n="btnCloseModal"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Authorize Modal -->
+    <div
+      class="modal fade"
+      id="whyAuthorizeModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-1">
+            <p data-i18n="whyAuthorizeP1"></p>
+            <p data-i18n="whyAuthorizeP2"></p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              data-i18n-global="close"
             ></button>
           </div>
         </div>
