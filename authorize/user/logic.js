@@ -154,6 +154,7 @@ function attachListeners() {
 }
 
 async function init() {
+  syncChurches();
   await populateContent();
   await populateRegistrant();
   unhideContentForHighestUsers();
