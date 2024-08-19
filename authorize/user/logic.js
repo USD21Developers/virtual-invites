@@ -1,5 +1,26 @@
 let registrant;
 
+function populateLeadershipRoleHeading() {
+  const headingEl = document.querySelector("#labelHighestLeadershipRole");
+  const headingText = getPhrase("highestLeadershipRole").replaceAll(
+    "{FIRST-NAME}",
+    registrant.firstname
+  );
+  headingEl.innerHTML = headingText;
+}
+
+async function populateOathText() {
+  const churches = await getChurches();
+  const church = churches.find((item) => item.id === registrant.churchid);
+  const oathEl = document.querySelector("label[for='oath']");
+  const name = `${registrant.firstname} ${registrant.lastname}`;
+  const churchName = church.name;
+  const oathText = getPhrase("oath")
+    .replaceAll("{NAME}", name)
+    .replaceAll("{CHURCH-NAME}", churchName);
+  oathEl.innerHTML = oathText;
+}
+
 function populateParagraph1() {
   const p1El = document.querySelector("#p1");
   let p1Phrase =
@@ -62,12 +83,6 @@ async function populateRegistrant() {
   document.querySelector("#churchname").innerHTML = church.name;
 }
 
-function onWhyAuthorizeClicked(e) {
-  e.preventDefault();
-  const authorizeModalEl = document.querySelector("#whyAuthorizeModal");
-  $("#whyAuthorizeModal").modal();
-}
-
 async function populateWhyAuthorize() {
   const url = `../../authorize/i18n/${getLang()}.json`;
   const phraseJSON = await fetch(url).then((res) => res.json());
@@ -83,19 +98,69 @@ async function populateWhyAuthorize() {
   modalEl.querySelector("[data-i18n='whyAuthorizeP2']").innerHTML = p2Text;
 }
 
+function unhideContentForHighestUsers() {
+  let canAuthToAuth = false;
+  let canAccessThisPage = false;
+  const refreshToken = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  );
+
+  if (refreshToken.isAuthorized) {
+    isAuthorized = true;
+  }
+
+  if (refreshToken.canAuthorize) {
+    canAuthorize = true;
+    canAccessThisPage = true;
+  }
+
+  if (refreshToken.canAuthToAuth) {
+    canAuthToAuth = true;
+  }
+
+  if (!canAccessThisPage) {
+    sessionStorage.setItem("redirectOnLogin", window.location.href);
+    window.location.href = "/";
+  }
+
+  if (canAuthToAuth) {
+    document
+      .querySelector("#containerHighestLeadershipRole")
+      .classList.remove("d-none");
+  }
+}
+
+function onSubmit(e) {
+  e.preventDefault();
+
+  // TODO:  validate form.  Must check an option under Highest Leaedership Role (if it is visible), and must accept oath.
+  // TODO:  fetch the API
+  // TODO:  build API endpoint
+}
+
+function onWhyAuthorizeClicked(e) {
+  e.preventDefault();
+  $("#whyAuthorizeModal").modal();
+}
+
 function attachListeners() {
   window.addEventListener("hashchange", (e) => window.location.reload());
 
   document
     .querySelector("#whyAuthorizeLink")
     .addEventListener("click", onWhyAuthorizeClicked);
+
+  document.querySelector("#authorizeForm").addEventListener("submit", onSubmit);
 }
 
 async function init() {
   await populateContent();
   await populateRegistrant();
+  unhideContentForHighestUsers();
   populateParagraph1();
+  populateLeadershipRoleHeading();
   await populateWhyAuthorize();
+  populateOathText();
   attachListeners();
   globalHidePageSpinner();
 }

@@ -4,3 +4,13 @@
   height: 200px;
   width: 200px;
 }
+
+label {
+  color: var(--dark-dark);
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.notbold {
+  font-weight: normal;
+}

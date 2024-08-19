@@ -42,6 +42,45 @@
       "key": "p1Female",
       "original": "{FIRST-NAME} needs authorization to use the Invites App. Please verify her membership status in the church, and complete the form below.",
       "translated": "{FIRST-NAME} needs authorization to use the Invites App. Please verify her membership status in the church, and complete the form below."
+    },
+    {
+      "key": "highestLeadershipRole",
+      "original": "{FIRST-NAME}'s highest leadership role:",
+      "translated": "{FIRST-NAME}'s highest leadership role:"
+    },
+    {
+      "key": "houseChurchLeaderOrHigher",
+      "original": "House church leader or higher",
+      "translated": "House church leader or higher"
+    },
+    {
+      "key": "bibleTalkLeader",
+      "original": "Bible Talk leader",
+      "translated": "Bible Talk leader"
+    },
+    {
+      "key": "noneOfAbove",
+      "original": "Neither of the above",
+      "translated": "Neither of the above"
+    },
+    {
+      "key": "oath",
+      "original": "I hereby vouch that {NAME} is a member in good standing with the {CHURCH-NAME}.",
+      "translated": "I hereby vouch that {NAME} is a member in good standing with the {CHURCH-NAME}.",
+      "changes": [
+        {
+          "original": "{NAME}",
+          "translated": "{NAME}",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "btnAuthorize",
+      "original": "Authorize",
+      "translated": "Authorize"
     }
   ],
 
