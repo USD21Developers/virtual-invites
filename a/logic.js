@@ -86,7 +86,7 @@ async function showMessage(
       </div>
     </div>
 
-    <p class="text-center text-sm-left my-5">
+    <p class="text-center text-sm-left my-4 py-2">
       <a href="/about/" class="btn btn-lg btn-block btn-outline-primary border border-primary">
         ${moreInfo}
       </a>
@@ -259,7 +259,7 @@ function verifyAuthorization() {
 }
 
 function onCopy(e) {
-  const copiedText = getGlobalPhrase("copied");
+  const copiedText = getGlobalPhrase("copiedToClipboard");
   const authCode = e.target.getAttribute("data-authcode");
 
   navigator.clipboard.writeText(authCode);

@@ -290,11 +290,11 @@
     },
     {
       "key": "copyToClipboard",
-      "original": "Copy to clipboard",
-      "translated": "Copy to clipboard"
+      "original": "Copy",
+      "translated": "Copy"
     },
     {
-      "key": "copied",
+      "key": "copiedToClipboard",
       "original": "Copied!",
       "translated": "Copied!"
     },
