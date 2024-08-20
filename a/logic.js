@@ -268,7 +268,7 @@ function onCopy(e) {
 
   setTimeout(() => {
     e.target.innerHTML = copyText;
-  }, 7000);
+  }, 6000);
 }
 
 function onPageShow(event) {
