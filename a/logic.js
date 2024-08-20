@@ -67,28 +67,30 @@ async function showMessage(
       ${sentence4}
     </p>
 
-    <p class="text-center text-sm-left">
-      <a href="/about/" class="btn btn-sm btn-outline-primary border border-primary">
-        ${moreInfo}
-      </a>
-    </p>
+    <div class="my-5">
+      <p>
+        ${hereIsAuthCode}
+      </p>
 
-    <p class="mt-5">
-      ${hereIsAuthCode}
-    </p>
-
-    <div class="container-fluid px-0 mb-5">
-      <div class="row">
-        <div class="col-auto d-flex align-items-center">
-          <pre class="mb-0"><strong>${authCode}</strong></pre>
-        </div>
-        <div class="col">
-          <button id="btnCopyAuthCode" class="ml-2 btn-sm d-inline-block" data-authcode="${authCode}">
-            ${getGlobalPhrase("copy")}
-          </button>
+      <div class="container-fluid px-0">
+        <div class="row">
+          <div class="col-auto d-flex align-items-center">
+            <pre class="mb-0"><strong>${authCode}</strong></pre>
+          </div>
+          <div class="col">
+            <button id="btnCopyAuthCode" class="ml-2 btn btn-sm btn-outline-primary border border-primary" data-authcode="${authCode}">
+              ${getGlobalPhrase("copy")}
+            </button>
+          </div>
         </div>
       </div>
     </div>
+
+    <p class="text-center text-sm-left">
+      <a href="/about/" class="btn btn-lg btn-block btn-outline-primary border border-primary">
+        ${moreInfo}
+      </a>
+    </p>
 
     <p>
       ${sincerely}
