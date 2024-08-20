@@ -67,7 +67,7 @@ async function showMessage(
       ${sentence4}
     </p>
 
-    <div class="my-5">
+    <div>
       <p>
         ${hereIsAuthCode}
       </p>
@@ -86,7 +86,7 @@ async function showMessage(
       </div>
     </div>
 
-    <p class="text-center text-sm-left">
+    <p class="text-center text-sm-left my-5">
       <a href="/about/" class="btn btn-lg btn-block btn-outline-primary border border-primary">
         ${moreInfo}
       </a>
