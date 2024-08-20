@@ -87,7 +87,7 @@ async function showMessage(
     </div>
 
     <p class="text-center text-sm-left my-4 py-2">
-      <a href="/about/" class="btn btn-lg btn-block btn-outline-primary border border-primary">
+      <a href="/about/" class="btn btn-lg btn-outline-primary border border-primary" id="btnMoreInfo">
         ${moreInfo}
       </a>
     </p>

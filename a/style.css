@@ -16,3 +16,9 @@ body {
 #modal a {
   color: lab(40 9.2 -55.3) !important;
 }
+
+@media (max-width: 400px) {
+  #btnMoreInfo {
+    display: block;
+  }
+}
