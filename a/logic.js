@@ -258,11 +258,13 @@ function onCopy(e) {
   const authCode = e.target.getAttribute("data-authcode");
 
   navigator.clipboard.writeText(authCode);
-  e.target.innerHTML = copiedText;
 
+  showToast(copiedText, 2000, "success", "#modalSnackbar");
+
+  /* e.target.innerHTML = copiedText;
   setTimeout(() => {
     e.target.innerHTML = copyText;
-  }, 10000);
+  }, 10000); */
 }
 
 function onPageShow(event) {
