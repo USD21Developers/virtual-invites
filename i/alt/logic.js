@@ -799,7 +799,7 @@ function onSearch(e) {
     body: JSON.stringify({
       eventid: inviteObj.event.eventid,
       userid: inviteObj.user.userid,
-      recipientid: inviteObj.recipient.recipientid,
+      recipientid: inviteObj?.recipient?.recipientid,
       country: country,
       countryFromIP: countryFromIP,
       lang: lang,
