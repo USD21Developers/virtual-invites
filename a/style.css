@@ -17,7 +17,7 @@ body {
   color: lab(40 9.2 -55.3) !important;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 575px) {
   #btnMoreInfo {
     display: block;
   }
