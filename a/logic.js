@@ -97,6 +97,10 @@ async function showMessage(
     <p>
       ${internetMinistry}
     </p>
+
+    <div class="snackbar" id="modalSnackbar">
+      <div class="snackbar-body"></div>
+    </div>
   `;
 
   globalHidePageSpinner();
@@ -253,18 +257,11 @@ function verifyAuthorization() {
 }
 
 function onCopy(e) {
-  const copyText = getGlobalPhrase("copy");
   const copiedText = getGlobalPhrase("copied");
   const authCode = e.target.getAttribute("data-authcode");
 
   navigator.clipboard.writeText(authCode);
-
   showToast(copiedText, 2000, "success", "#modalSnackbar");
-
-  /* e.target.innerHTML = copiedText;
-  setTimeout(() => {
-    e.target.innerHTML = copyText;
-  }, 10000); */
 }
 
 function onPageShow(event) {
