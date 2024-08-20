@@ -259,11 +259,16 @@ function verifyAuthorization() {
 }
 
 function onCopy(e) {
+  const copyText = getGlobalPhrase("copyToClipboard");
   const copiedText = getGlobalPhrase("copiedToClipboard");
   const authCode = e.target.getAttribute("data-authcode");
 
   navigator.clipboard.writeText(authCode);
-  showToast(copiedText, 2000, "success", "#modalSnackbar");
+  e.target.innerHTML = copiedText;
+
+  setTimeout(() => {
+    e.target.innerHTML = copyText;
+  }, 7000);
 }
 
 function onPageShow(event) {
