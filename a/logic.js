@@ -73,13 +73,20 @@ async function showMessage(
       </a>
     </p>
 
-    <p>
+    <p class="mt-5">
       ${hereIsAuthCode}
     </p>
 
-    <p>
-      <strong><pre>${authCode}</pre></strong>
-    </p>
+    <div class="container-fluid px-0 mb-5">
+      <div class="row">
+        <div class="col-auto d-flex align-items-center">
+          <pre class="mb-0"><strong><pre>${authCode}</pre></strong></pre>
+        </div>
+        <div class="col">
+          <button id="btnCopyAuthCode" class="ml-2 btn-sm d-inline-block" data-i18n-global="copy" data-authcode="${authCode}"></button>
+        </div>
+      </div>
+    </div>
 
     <p>
       ${sincerely}
@@ -243,6 +250,19 @@ function verifyAuthorization() {
   });
 }
 
+function onCopy(e) {
+  const copyText = getGlobalPhrase("copy");
+  const copiedText = getGlobalPhrase("copied");
+  const authCode = e.target.getAttribute("data-authcode");
+
+  navigator.clipboard.writeText(authCode);
+  e.target.innerHTML = copiedText;
+
+  setTimeout(() => {
+    e.target.innerHTML = copyText;
+  }, 10000);
+}
+
 function onPageShow(event) {
   if (
     event.persisted ||
@@ -255,6 +275,12 @@ function onPageShow(event) {
 function attachListeners() {
   $("#modal").on("hide.bs.modal", () => {
     window.location.href = "/about/";
+  });
+
+  $("#modal").on("show.bs.modal", () => {
+    document
+      .querySelector("#btnCopyAuthCode")
+      .addEventListener("click", onCopy);
   });
 
   window.addEventListener("pageshow", onPageShow);

@@ -289,6 +289,16 @@
       "translated": "Reload"
     },
     {
+      "key": "copy",
+      "original": "Copy",
+      "translated": "Copy"
+    },
+    {
+      "key": "copied",
+      "original": "Copied!",
+      "translated": "Copied!"
+    },
+    {
       "key": "notesUpdatedReload",
       "original": "Notes were updated. Reload?",
       "translated": "Notes were updated. Reload?",
