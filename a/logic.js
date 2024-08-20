@@ -80,10 +80,12 @@ async function showMessage(
     <div class="container-fluid px-0 mb-5">
       <div class="row">
         <div class="col-auto d-flex align-items-center">
-          <pre class="mb-0"><strong><pre>${authCode}</pre></strong></pre>
+          <pre class="mb-0"><strong>${authCode}</strong></pre>
         </div>
         <div class="col">
-          <button id="btnCopyAuthCode" class="ml-2 btn-sm d-inline-block" data-i18n-global="copy" data-authcode="${authCode}"></button>
+          <button id="btnCopyAuthCode" class="ml-2 btn-sm d-inline-block" data-authcode="${authCode}">
+            ${getGlobalPhrase("copy")}
+          </button>
         </div>
       </div>
     </div>
