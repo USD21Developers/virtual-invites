@@ -289,9 +289,9 @@
       "translated": "Reload"
     },
     {
-      "key": "copy",
-      "original": "Copy",
-      "translated": "Copy"
+      "key": "copyToClipboard",
+      "original": "Copy to clipboard",
+      "translated": "Copy to clipboard"
     },
     {
       "key": "copied",

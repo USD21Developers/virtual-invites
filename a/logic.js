@@ -79,7 +79,7 @@ async function showMessage(
           </div>
           <div class="col">
             <button id="btnCopyAuthCode" class="ml-2 btn btn-sm btn-outline-primary border border-primary" data-authcode="${authCode}">
-              ${getGlobalPhrase("copy")}
+              ${getGlobalPhrase("copyToClipboard")}
             </button>
           </div>
         </div>
