@@ -87,14 +87,6 @@ function getDefaultMapInfo() {
   });
 }
 
-function heatMapHide() {
-  heatmap.setMap(null);
-}
-
-function heatMapShow() {
-  heatmap.setMap(map);
-}
-
 async function initMap(searchResults) {
   const { othersInvites, userInvites, userEvents } = searchResults;
   const { Map } = await google.maps.importLibrary("maps");
@@ -384,10 +376,6 @@ function prepareMap(searchResults) {
     const totalInvitesQuantityEl = document.querySelector(
       "#totalInvitesQuantity"
     );
-    const checkboxMyInvitesEl = document.querySelector("#checkboxMyInvites");
-    const checkboxOthersInvitesEl = document.querySelector(
-      "#checkboxOthersInvites"
-    );
     const checkboxMyInvitesLabelEl = document.querySelector(
       "label[for='checkboxMyInvites']"
     );
@@ -474,6 +462,15 @@ function toggleOthersInvites(e) {
   markersOthersInvites.forEach(
     (marker) => (marker.map = isChecked ? map : null)
   );
+}
+
+function toggleHeatMap(e) {
+  const isChecked = e.target.checked ? true : false;
+  if (isChecked) {
+    heatmap.setMap(map);
+  } else {
+    heatmap.setMap(null);
+  }
 }
 
 function onChangeFromDate(e) {
@@ -790,6 +787,9 @@ function addEventListeners() {
   document
     .querySelector("#checkboxOthersInvites")
     .addEventListener("click", toggleOthersInvites);
+  document
+    .querySelector("#checkboxHeatMap")
+    .addEventListener("click", toggleHeatMap);
 }
 
 async function init() {

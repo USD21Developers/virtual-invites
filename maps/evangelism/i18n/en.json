@@ -192,6 +192,11 @@
       ]
     },
     {
+      "key": "checkboxHeatMap",
+      "original": "Heat map",
+      "translated": "Heat map"
+    },
+    {
       "key": "incompleteFromDateTime",
       "original": "Incomplete 'From' date and time",
       "translated": "Incomplete 'From' date and time"
