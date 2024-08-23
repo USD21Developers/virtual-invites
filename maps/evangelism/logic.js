@@ -186,15 +186,6 @@ async function initMap(searchResults) {
     bounds.extend(marker.position);
   });
 
-  var heatmapData = markersMyInvites.concat(markersOthersInvites);
-
-  await google.maps.importLibrary("visualization");
-
-  var heatmap = new google.maps.visualization.HeatmapLayer({
-    data: heatmapData,
-  });
-  heatmap.setMap(map);
-
   // Calculate the center of the bounds
   const center = bounds.getCenter();
 
@@ -205,6 +196,24 @@ async function initMap(searchResults) {
   window.addEventListener("resize", () => {
     map.setCenter(center);
   });
+
+  // Enable heat map
+  await google.maps.importLibrary("visualization");
+  var heatmapData = [];
+  userInvites.forEach((invite) => {
+    const { lat, lng } = invite;
+    const point = new google.maps.LatLng(lat, lng);
+    heatmapData.push(point);
+  });
+  othersInvites.forEach((invite) => {
+    const { lat, lng } = invite;
+    const point = new google.maps.LatLng(lat, lng);
+    heatmapData.push(point);
+  });
+  var heatmap = new google.maps.visualization.HeatmapLayer({
+    data: heatmapData,
+  });
+  heatmap.setMap(map);
 }
 
 async function loadGoogleMapsLibs() {
