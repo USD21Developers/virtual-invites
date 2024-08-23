@@ -1,4 +1,4 @@
-let map;
+let map, heatmap;
 let churchDefaultLatitude;
 let churchDefaultLongitude;
 let churchDefaultZoom;
@@ -210,7 +210,7 @@ async function initMap(searchResults) {
     const point = new google.maps.LatLng(lat, lng);
     heatmapData.push(point);
   });
-  var heatmap = new google.maps.visualization.HeatmapLayer({
+  heatmap = new google.maps.visualization.HeatmapLayer({
     data: heatmapData,
   });
   heatmap.setMap(map);
@@ -441,6 +441,10 @@ function toggleFromPreset(e) {
   } else {
     fromDateTimeContainerEl.classList.add("d-none");
   }
+}
+
+function toggleHeatmap() {
+  heatmap.setMap(heatmap.getMap() ? null : map);
 }
 
 function toggleToPreset(e) {
