@@ -487,7 +487,7 @@ async function onSubmit(e) {
   const fromSpecificTime = document.querySelector("#fromTime").value;
   const toSpecificDate = document.querySelector("#toDate").value;
   const toSpecificTime = document.querySelector("#toTime").value;
-  const fromThisMorning = moment().utc().format();
+  const fromThisMorning = moment().startOf("day").utc().format();
   const fromYesterday = moment()
     .subtract(1, "days")
     .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
