@@ -50,6 +50,8 @@ async function populateRegistrant() {
 
   registrant = user;
 
+  // TODO:  if new user is already authorized, show error message
+
   const name = `${user.firstname} ${user.lastname}`;
   const church = churches.find((item) => item.id === user.churchid);
   const profilePhotoEl = document.querySelector("#profilephoto");
@@ -193,18 +195,107 @@ async function validate() {
     customScrollTo("#oathContainer");
     return false;
   }
-
-  return isValid;
 }
 
-function onSubmit(e) {
-  e.preventDefault();
+async function onSubmit(e) {
+  const acceptedOath = document.querySelector("#oath").checked;
+  const registrantUserId = Number(getHash().split("/")[1]);
+  const highestLeadershipRoleEl = document.querySelector(
+    "[name='highestLeadershipRole']:checked"
+  );
+  const highestLeadershipRole = highestLeadershipRoleEl
+    ? highestLeadershipRoleEl.value
+    : null;
 
-  // TODO:  fetch the API
-  // TODO:  build API endpoint
+  e.preventDefault();
 
   const isValid = validate();
   if (!isValid) return;
+
+  if (!navigator.onLine) {
+    return showToast(getGlobalPhrase("youAreOffline"), 5000, "danger");
+  }
+
+  globalShowPageSpinner();
+
+  const endpoint = `${getApiHost()}/authorization-postreg-grant`;
+  const accessToken = await getAccessToken();
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "post",
+    body: JSON.stringify({
+      acceptedOath: acceptedOath,
+      registrantUserId: registrantUserId,
+      highestLeadershipRole: highestLeadershipRole,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      switch (data.msg) {
+        case "oath is required":
+          globalHidePageSpinner();
+          const errorEl = document.querySelector("#oathInvalidFeedback");
+          errorEl.innerHTML = getPhrase("errorOathIsRequired");
+          errorEl.classList.add("d-block");
+          customScrollTo("#oathContainer");
+          break;
+        case "registrantUserId is required":
+          break;
+        case "registrantUserId must be a number":
+          break;
+        case "approving user lacks permission to authorize":
+          break;
+        case "highest leadership role is required":
+          globalHidePageSpinner();
+          const highestLeadershipRole = document.querySelector(
+            "[name='highestLeadershipRole']:checked"
+          )?.value;
+          if (!highestLeadershipRole) {
+            if (!highestLeadershipRole) {
+              const errorEl = document.querySelector(
+                "#highestLeadershipRole_invalidFeedback"
+              );
+              errorEl.innerHTML = getPhrase("errorLeadershipRoleRequired");
+              errorEl.classList.add("d-block");
+              customScrollTo("#highestLeadershipRole_invalidFeedback", 225);
+            }
+          }
+          break;
+        case "unable to query for new user":
+          break;
+        case "new user not found":
+          break;
+        case "invalid user status of new user":
+          break;
+        case "church of approver must match that of new user":
+          globalHidePageSpinner();
+          const errorMsg = getPhrase("errorChurchMustMatch")
+            .replaceAll(
+              "{NAME}",
+              `${registrant.firstname} ${registrant.lastname}`
+            )
+            .replaceAll("{CHURCH-NAME}", approverChurch.name);
+          showModal(errorMsg, getPhrase("churchMustMatch"));
+          break;
+        case "unable to authorize new user":
+          break;
+        case "new user authorized":
+          globalHidePageSpinner();
+          showSuccessModal();
+          break;
+        default:
+          break;
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      globalHidePageSpinner();
+    });
 }
 
 function onWhyAuthorizeClicked(e) {

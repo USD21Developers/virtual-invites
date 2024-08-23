@@ -246,7 +246,7 @@ async function loadGoogleMapsLibs() {
     key: mapKey,
     v: "weekly",
     loading: "async",
-    libraries: "maps",
+    libraries: "maps, visualization",
     mapIds: "invitesMap1",
     region: mapCountry,
     language: mapLanguage,
