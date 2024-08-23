@@ -186,6 +186,13 @@ async function initMap(searchResults) {
     bounds.extend(marker.position);
   });
 
+  var heatmapData = markersMyInvites.concat(markersOthersInvites);
+
+  var heatmap = new google.maps.visualization.HeatmapLayer({
+    data: heatmapData,
+  });
+  heatmap.setMap(map);
+
   // Calculate the center of the bounds
   const center = bounds.getCenter();
 
