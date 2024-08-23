@@ -78,6 +78,10 @@ input[type="color"] {
   accent-color: blue;
 }
 
+#checkboxHeatMap {
+  accent-color: var(--dark);
+}
+
 div[role="dialog"] .gm-style-iw-ch {
   padding-top: 0.5rem;
   padding-bottom: 0;
