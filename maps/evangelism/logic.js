@@ -355,6 +355,7 @@ async function loadGoogleMapsLibs() {
     v: "weekly",
     loading: "async",
     libraries: "maps, visualization",
+    mapIds: "invitesMap1",
     region: mapCountry,
     language: mapLanguage,
     // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
