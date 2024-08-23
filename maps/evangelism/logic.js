@@ -188,6 +188,8 @@ async function initMap(searchResults) {
 
   var heatmapData = markersMyInvites.concat(markersOthersInvites);
 
+  await google.maps.importLibrary("visualization");
+
   var heatmap = new google.maps.visualization.HeatmapLayer({
     data: heatmapData,
   });
