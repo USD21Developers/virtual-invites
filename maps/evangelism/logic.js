@@ -405,7 +405,7 @@ async function initMap(searchResults) {
   map = new Map(document.getElementById("map"), {
     zoom: zoom,
     center: { lat: latitude, lng: longitude },
-    mapId: "invitesMap1",
+    mapId: "33214095edafc538",
     mapTypeId: "terrain",
   });
 
