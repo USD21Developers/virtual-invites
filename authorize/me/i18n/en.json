@@ -107,14 +107,14 @@
       "translated": "Authorizing Users"
     },
     {
-      "key": "authorizingUser",
-      "original": "Please find the following person in the fellowship, and explain that you would like to be authorized to use the Invites App:",
-      "translated": "Please find the following person in the fellowship, and explain that you would like to be authorized to use the Invites App:"
+      "key": "explanationAuthorizingUser",
+      "original": "Please find the following person in the fellowship. Explain that you would like to be authorized to use the Invites App.",
+      "translated": "Please find the following person in the fellowship. Explain that you would like to be authorized to use the Invites App."
     },
     {
-      "key": "authorizingUsers",
-      "original": "Please find any of the following people in the fellowship, and explain that you would like to be authorized to use the Invites App:",
-      "translated": "Please find any of the following people in the fellowship, and explain that you would like to be authorized to use the Invites App:"
+      "key": "explanationAuthorizingUsers",
+      "original": "Please find one of the following people in the fellowship. Explain that you would like to be authorized to use the Invites App.",
+      "translated": "Please find one of the following people in the fellowship. Explain that you would like to be authorized to use the Invites App."
     },
     {
       "key": "noAuthorizingUsersFound",

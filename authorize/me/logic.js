@@ -31,9 +31,9 @@ async function populateAuthorizingUsersModal(users) {
   el.innerHTML = "";
 
   if (users.length === 1) {
-    explanation.innerHTML = getPhrase("authorizingUser");
+    explanation.innerHTML = getPhrase("explanationAuthorizingUser");
   } else {
-    explanation.innerHTML = getPhrase("authorizingUsers");
+    explanation.innerHTML = getPhrase("explanationAuthorizingUsers");
   }
 
   el.appendChild(explanation);
@@ -52,7 +52,7 @@ async function populateAuthorizingUsersModal(users) {
     const locale = `${lang}-${country}`;
     const registrationDate = Intl.DateTimeFormat(locale, {
       year: "numeric",
-      month: "long",
+      month: "short",
       day: "numeric",
       timeZone: timeZone,
     }).format(new Date(createdAt));
