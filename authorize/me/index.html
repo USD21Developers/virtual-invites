@@ -231,13 +231,56 @@
               <canvas id="qr" style="max-width: 100%"></canvas>
             </div>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-dismiss="modal"
-              data-i18n="btnCloseModal"
-            ></button>
+          <div
+            class="footer container border-top mt-3 pt-3 mb-3 pb-1 text-center"
+          >
+            <div id="didSomeoneScan">
+              <div class="row mb-3">
+                <div class="col text-center">
+                  <h4 class="notbold" data-i18n="result"></h4>
+                  <p class="text-center my-2" data-i18n="didSomeoneScan"></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 text-left">
+                  <button
+                    class="btn btn-sm btn-light btn-block"
+                    data-i18n-global="no"
+                    data-dismiss="modal"
+                  ></button>
+                </div>
+
+                <div class="col-6 text-center text-right">
+                  <button
+                    class="btn btn-sm btn-primary btn-block"
+                    type="button"
+                    id="qrCodeScanned"
+                    data-i18n-global="yes"
+                  ></button>
+                </div>
+              </div>
+            </div>
+            <div id="progressMeter" class="d-none pt-2 my-4">
+              <div class="progress">
+                <div
+                  class="progress-bar progress-bar-indeterminate"
+                  role="progressbar"
+                ></div>
+              </div>
+              <div data-i18n="authorizationInProgress" class="mt-3"></div>
+            </div>
+            <div id="stillWaiting" class="d-none my-4">
+              <h4 class="text-center text-dark" data-i18n="stillWaiting"></h4>
+              <p class="my-3 text-left" data-i18n="suggestCheckConnection"></p>
+              <p class="text-left" data-i18n="suggestAskSomeoneElse"></p>
+              <div class="mt-4">
+                <button
+                  id="checkAgain"
+                  data-i18n="checkAgain"
+                  class="btn btn-primary"
+                ></button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

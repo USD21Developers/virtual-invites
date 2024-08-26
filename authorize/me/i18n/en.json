@@ -130,6 +130,46 @@
       "key": "registeredOn",
       "original": "Registered on {REGISTRATION-DATE}",
       "translated": "Registered on {REGISTRATION-DATE}"
+    },
+    {
+      "key": "didSomeoneScan",
+      "original": "Has someone scanned this QR Code?",
+      "translated": "Has someone scanned this QR Code?"
+    },
+    {
+      "key": "authorizationInProgress",
+      "original": "Authorization in progress...",
+      "translated": "Authorization in progress..."
+    },
+    {
+      "key": "stillWaiting",
+      "original": "Still waiting?",
+      "translated": "Still waiting?"
+    },
+    {
+      "key": "suggestCheckConnection",
+      "original": "Check your internet connection, and ask the person who scanned the QR code to do the same.",
+      "translated": "Check your internet connection, and ask the person who scanned the QR code to do the same."
+    },
+    {
+      "key": "suggestAskSomeoneElse",
+      "original": "Alternatively, you may ask someone else to authorize you.",
+      "translated": "Alternatively, you may ask someone else to authorize you.",
+      "changes": [
+        {
+          "original": "ask someone else",
+          "translated": "ask someone else",
+          "bold": false,
+          "italic": false,
+          "link": "#",
+          "underline": true
+        }
+      ]
+    },
+    {
+      "key": "checkAgain",
+      "original": "Check again",
+      "translated": "Check again"
     }
   ],
 

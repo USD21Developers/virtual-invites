@@ -9,3 +9,7 @@
 a[href="/logout/"] {
   text-decoration: underline;
 }
+
+[data-i18n="authorizationInProgress"] {
+  font-weight: 600;
+}

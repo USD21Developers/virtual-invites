@@ -1,3 +1,68 @@
+const fetches = [];
+
+function abortFetches() {
+  if (!fetches.length) return;
+
+  fetches.forEach((controller) => {
+    controller.abort();
+  });
+}
+
+function checkIfAuthorized(didSomeoneScanEl, progressMeterEl, stillWaitingEl) {
+  return new Promise(async (resolve, reject) => {
+    const controller = new AbortController();
+    const endpoint = `${getApiHost()}/am-i-authorized`;
+    const accessToken = await getAccessToken();
+
+    fetches.push(controller);
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "post",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+      signal: controller.signal,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        switch (data.msg) {
+          case "authorization status verified":
+            break;
+          case "unable to check if user is authorized":
+            return resolve("not authorized");
+          case "user not found":
+            return resolve("not authorized");
+        }
+
+        switch (data.result) {
+          case "authorized":
+            localStorage.setItem("refreshToken", data.refreshToken);
+            sessionStorage.setItem("accessToken", data.accessToken);
+            return resolve("authorized");
+          case "declined":
+            return resolve("declined");
+          default:
+            return resolve("not authorized");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        controller.abort();
+        return resolve("not authorized");
+      });
+
+    setTimeout(() => {
+      didSomeoneScanEl.classList.add("d-none");
+      progressMeterEl.classList.add("d-none");
+      stillWaitingEl.classList.remove("d-none");
+      controller.abort();
+      return resolve("not authorized");
+    }, milliSeconds);
+  });
+}
+
 async function personalizeContent() {
   const jwt = localStorage.getItem("userToken");
 
@@ -78,6 +143,16 @@ async function populateAuthorizingUsersModal(users) {
   el.appendChild(ul);
 }
 
+function resetQrCodeContent() {
+  const didSomeoneScanEl = document.querySelector("#didSomeoneScan");
+  const progressMeterEl = document.querySelector("#progressMeter");
+  const stillWaitingEl = document.querySelector("#stillWaiting");
+
+  didSomeoneScanEl.classList.remove("d-none");
+  progressMeterEl.classList.add("d-none");
+  stillWaitingEl.classList.add("d-none");
+}
+
 async function showQrCode(qrCodeUrl, userToken) {
   return new Promise(async (resolve, reject) => {
     $("#qrCodeModal").modal();
@@ -112,6 +187,22 @@ async function showQrCode(qrCodeUrl, userToken) {
       return resolve(qr);
     });
   });
+}
+
+function onAskSomeoneElse(e) {
+  e.preventDefault();
+
+  $("#qrCodeModal").modal("hide");
+
+  onAuthorizersClick(e);
+}
+
+function onAuthorized() {
+  // TODO
+}
+
+function onDeclined() {
+  // TODO
 }
 
 async function onAuthorizersClick(e) {
@@ -169,6 +260,57 @@ async function onAuthorizersClick(e) {
     });
 }
 
+function onCheckAgain() {
+  resetQrCodeContent();
+  onQrCodeScanned();
+}
+
+function onQrCodeScanned() {
+  const didSomeoneScanEl = document.querySelector("#didSomeoneScan");
+  const progressMeterEl = document.querySelector("#progressMeter");
+  const stillWaitingEl = document.querySelector("#stillWaiting");
+  const minutesToWait = 1;
+  const milliSeconds = 1000 * 60 * minutesToWait;
+
+  didSomeoneScanEl.classList.add("d-none");
+  stillWaitingEl.classList.add("d-none");
+  progressMeterEl.classList.remove("d-none");
+
+  setInterval(async () => {
+    if (!navigator.onLine) {
+      resetQrCodeContent();
+      showToast(getGlobalPhrase("youAreOffline"), 5000, "danger");
+      return clearInterval();
+    }
+
+    const result = await checkIfAuthorized(
+      didSomeoneScanEl,
+      progressMeterEl,
+      stillWaitingEl
+    );
+    switch (result) {
+      case "authorized":
+        clearInterval();
+        onAuthorized();
+        break;
+      case "declined":
+        clearInterval();
+        onDeclined();
+        break;
+      default:
+        console.log("Waiting...");
+    }
+  }, 2000);
+
+  setTimeout(() => {
+    abortFetches();
+    clearInterval();
+    didSomeoneScanEl.classList.add("d-none");
+    stillWaitingEl.classList.remove("d-none");
+    progressMeterEl.classList.add("d-none");
+  }, milliSeconds);
+}
+
 function onShowQrCodeClick() {
   const jwt = localStorage.getItem("userToken") || null;
 
@@ -195,9 +337,23 @@ function attachListeners() {
     .querySelector("a[href='#authorizers']")
     .addEventListener("click", onAuthorizersClick);
 
-  /* $("#authorizingUsersModal").on("show.bs.modal", (e) => {
-    
-  }); */
+  document
+    .querySelector("#qrCodeScanned")
+    .addEventListener("click", onQrCodeScanned);
+
+  document
+    .querySelector("[data-i18n='suggestAskSomeoneElse'] a")
+    .addEventListener("click", onAskSomeoneElse);
+
+  document.querySelector("#checkAgain").addEventListener("click", onCheckAgain);
+
+  $("#qrCodeModal").on("show.bs.modal", () => {
+    resetQrCodeContent();
+  });
+
+  $("#qrCodeModal").on("hide.bs.modal", () => {
+    resetQrCodeContent();
+  });
 }
 
 async function init() {

@@ -231,7 +231,7 @@ h6 {
 .font-weight-bold,
 strong {
   font-family: "Inter", sans-serif;
-  font-weight: 800 !important;
+  font-weight: 600 !important;
 }
 
 /* @supports (font-variation-settings: "wght" 900) {
