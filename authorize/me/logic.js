@@ -51,7 +51,7 @@ function checkIfAuthorized(didSomeoneScanEl, progressMeterEl, stillWaitingEl) {
       })
       .catch((error) => {
         console.error(error);
-        controller.abort();
+        // controller.abort();
         return resolve("not authorized");
       });
 
