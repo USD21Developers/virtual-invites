@@ -61,7 +61,7 @@ function checkIfAuthorized(didSomeoneScanEl, progressMeterEl, stillWaitingEl) {
       stillWaitingEl.classList.remove("d-none");
       controller.abort();
       return resolve("not authorized");
-    }, milliSeconds);
+    }, 30000);
   });
 }
 
