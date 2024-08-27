@@ -41,8 +41,6 @@ function checkIfAuthorized(didSomeoneScanEl, progressMeterEl, stillWaitingEl) {
             localStorage.setItem("refreshToken", data.refreshToken);
             sessionStorage.setItem("accessToken", data.accessToken);
             return resolve("authorized");
-          case "declined":
-            return resolve("declined");
           default:
             return resolve("not authorized");
         }
@@ -198,10 +196,6 @@ function onAskSomeoneElse(e) {
 }
 
 function onAuthorized() {
-  // TODO
-}
-
-function onDeclined() {
   // TODO
 }
 
