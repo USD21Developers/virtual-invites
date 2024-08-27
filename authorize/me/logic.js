@@ -12,16 +12,20 @@ function checkIfAuthorized(didSomeoneScanEl, progressMeterEl, stillWaitingEl) {
   return new Promise(async (resolve, reject) => {
     const controller = new AbortController();
     const endpoint = `${getApiHost()}/am-i-authorized`;
-    const accessToken = await getAccessToken();
+    const userToken = JSON.parse(
+      atob(localStorage.getItem("userToken").split(".")[1])
+    );
 
     fetches.push(controller);
 
     fetch(endpoint, {
       mode: "cors",
       method: "post",
+      body: JSON.stringify({
+        userToken: userToken,
+      }),
       headers: new Headers({
         "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`,
       }),
       signal: controller.signal,
     })
