@@ -12,9 +12,7 @@ function checkIfAuthorized(didSomeoneScanEl, progressMeterEl, stillWaitingEl) {
   return new Promise(async (resolve, reject) => {
     const controller = new AbortController();
     const endpoint = `${getApiHost()}/am-i-authorized`;
-    const userToken = JSON.parse(
-      atob(localStorage.getItem("userToken").split(".")[1])
-    );
+    const userToken = localStorage.getItem("userToken");
 
     fetches.push(controller);
 
@@ -316,14 +314,17 @@ function onShowQrCodeClick() {
     return (location.href = "/logout/");
   }
 
+  let origin = window.location.origin;
+
+  if (window.location.hostname === "localhost") {
+    origin = origin.replaceAll("localhost", "192.168.0.85");
+  }
+
   const userToken = JSON.parse(atob(jwt.split(".")[1]));
   const userid = userToken.userid;
-  const url = `${window.location.origin}/authorize/user/#/${userid}`;
+  const url = `${origin}/authorize/user/#/${userid}`;
 
   showQrCode(url, userToken);
-  // TODO:  create actual front end route for above url
-  // TODO:  start polling the API to check for (A) authorizing user clicked on URL from QR Code, and (B) approval granted
-  // TODO:  create a UX for when approval has been granted
 }
 
 function attachListeners() {

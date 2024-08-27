@@ -100,6 +100,10 @@ async function populateWhyAuthorize() {
   modalEl.querySelector("[data-i18n='whyAuthorizeP2']").innerHTML = p2Text;
 }
 
+function showSuccessModal() {
+  // TODO
+}
+
 function unhideContentForHighestUsers() {
   let canAuthToAuth = false;
   let canAccessThisPage = false;
