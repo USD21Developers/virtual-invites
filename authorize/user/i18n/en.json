@@ -124,8 +124,8 @@
     },
     {
       "key": "alreadyAuthorized",
-      "original": "{NAME} is already authorized, and can log in without restriction.",
-      "translated": "{NAME} is already authorized, and can log in without restriction."
+      "original": "{NAME} has already been authorized, and can log in without restriction.",
+      "translated": "{NAME} has already been authorized, and can log in without restriction."
     },
     {
       "key": "confirmationFemale",

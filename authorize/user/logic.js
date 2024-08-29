@@ -309,6 +309,10 @@ async function onSubmit(e) {
           break;
         case "unable to authorize new user":
           break;
+        case "user already authorized":
+          globalHidePageSpinner();
+          showSuccessModal(true);
+          break;
         case "new user authorized":
           globalHidePageSpinner();
           showSuccessModal();
