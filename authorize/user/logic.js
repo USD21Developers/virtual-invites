@@ -24,7 +24,7 @@ async function populateOathText() {
     .replaceAll("{NAME}", name)
     .replaceAll("{CHURCH-NAME}", registrantChurch.name);
 
-  if (userChurch.churchid !== registrant.churchid) {
+  if (userChurch.id !== registrant.churchid) {
     oathText = getPhrase("oath")
       .replaceAll("{NAME}", name)
       .replaceAll(
