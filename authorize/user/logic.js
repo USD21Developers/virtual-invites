@@ -50,8 +50,6 @@ async function populateRegistrant() {
 
   registrant = user;
 
-  // TODO:  if new user is already authorized, show error message
-
   const name = `${user.firstname} ${user.lastname}`;
   const church = churches.find((item) => item.id === user.churchid);
   const profilePhotoEl = document.querySelector("#profilephoto");
@@ -83,6 +81,10 @@ async function populateRegistrant() {
     .forEach((item) => (item.innerHTML = name));
 
   document.querySelector("#churchname").innerHTML = church.name;
+
+  if (user.isAuthorized === 1) {
+    showSuccessModal(true);
+  }
 }
 
 async function populateWhyAuthorize() {
@@ -100,8 +102,27 @@ async function populateWhyAuthorize() {
   modalEl.querySelector("[data-i18n='whyAuthorizeP2']").innerHTML = p2Text;
 }
 
-function showSuccessModal() {
-  // TODO
+function showSuccessModal(isAlreadyAuthorized = false) {
+  const { firstname, gender, lastname } = registrant;
+  const name = `${firstname} ${lastname}`;
+  const modalHeadline = getPhrase("confirmationHeadline");
+  let modalText;
+
+  if (gender === "female") {
+    modalText = getPhrase("confirmationFemale").replaceAll("{NAME}", name);
+  } else {
+    modalText = getPhrase("confirmationMale").replaceAll("{NAME}", name);
+  }
+
+  if (isAlreadyAuthorized) {
+    modalText = getPhrase("alreadyAuthorized").replaceAll("{NAME}", name);
+  }
+
+  $("#modal").on("hide.bs.modal", () => {
+    window.location.href = "/";
+  });
+
+  showModal(modalText, modalHeadline);
 }
 
 function unhideContentForHighestUsers() {

@@ -111,14 +111,41 @@
       "key": "errorChurchMustMatch",
       "original": "{NAME} must be in the same church as me ({CHURCH-NAME}).",
       "translated": "{NAME} must be in the same church as me ({CHURCH-NAME})."
+    },
+    {
+      "key": "btnCloseModal",
+      "original": "Close",
+      "translated": "Close"
+    },
+    {
+      "key": "confirmationHeadline",
+      "original": "Authorization Granted",
+      "translated": "Authorization Granted"
+    },
+    {
+      "key": "alreadyAuthorized",
+      "original": "{NAME} is already authorized, and can log in without restriction.",
+      "translated": "{NAME} is already authorized, and can log in without restriction."
+    },
+    {
+      "key": "confirmationFemale",
+      "original": "{NAME} has now been authorized. Please notify her that she can now log in without any further restriction.",
+      "translated": "{NAME} has now been authorized. Please notify her that she can now log in without any further restriction."
+    },
+    {
+      "key": "confirmationMale",
+      "original": "{NAME} has now been authorized. Please notify him that he can now log in without any further restriction.",
+      "translated": "{NAME} has now been authorized. Please notify him that he can now log in without any further restriction."
     }
   ],
 
-  "example-no-changes": {
-    "key": "",
-    "original": "",
-    "translated": ""
-  },
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
 
   "example-has-changes": {
     "key": "",
