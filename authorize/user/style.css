@@ -14,3 +14,8 @@ label {
 .notbold {
   font-weight: normal;
 }
+
+.highlightedChurch {
+  color: var(--info);
+  font-weight: 900 !important;
+}

@@ -11,13 +11,28 @@ function populateLeadershipRoleHeading() {
 
 async function populateOathText() {
   const churches = await getChurches();
-  const church = churches.find((item) => item.id === registrant.churchid);
+  const registrantChurch = churches.find(
+    (item) => item.id === registrant.churchid
+  );
   const oathEl = document.querySelector("label[for='oath']");
   const name = `${registrant.firstname} ${registrant.lastname}`;
-  const churchName = church.name;
-  const oathText = getPhrase("oath")
+  const user = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  );
+  const userChurch = churches.find((item) => item.id === user.churchid);
+  let oathText = getPhrase("oath")
     .replaceAll("{NAME}", name)
-    .replaceAll("{CHURCH-NAME}", churchName);
+    .replaceAll("{CHURCH-NAME}", registrantChurch.name);
+
+  if (userChurch.churchid !== registrant.churchid) {
+    oathText = getPhrase("oath")
+      .replaceAll("{NAME}", name)
+      .replaceAll(
+        "{CHURCH-NAME}",
+        `<strong class="highlightedChurch">${registrantChurch.name}</strong>`
+      );
+  }
+
   oathEl.innerHTML = oathText;
 }
 
