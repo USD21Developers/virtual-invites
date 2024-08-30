@@ -271,6 +271,7 @@ async function clearStorage() {
   localStorage.removeItem("refreshToken");
   localStorage.removeItem("datakey");
   localStorage.removeItem("preAuth");
+  localStorage.removeItem("userToken");
   sessionStorage.removeItem("accessToken");
   document.cookie =
     "preAuthArray=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

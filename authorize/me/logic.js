@@ -1,11 +1,21 @@
 const fetches = [];
+let intervalId;
 
 function abortFetches() {
+  clearInterval(intervalId);
   if (!fetches.length) return;
 
   fetches.forEach((controller) => {
     controller.abort();
   });
+}
+
+function checkForUserToken() {
+  const userToken = localStorage.getItem("userToken");
+
+  if (!userToken) {
+    window.location.href = "/logout/";
+  }
 }
 
 function checkIfAuthorized(didSomeoneScanEl, progressMeterEl, stillWaitingEl) {
@@ -40,8 +50,12 @@ function checkIfAuthorized(didSomeoneScanEl, progressMeterEl, stillWaitingEl) {
 
         switch (data.result) {
           case "authorized":
-            localStorage.setItem("refreshToken", data.refreshToken);
-            sessionStorage.setItem("accessToken", data.accessToken);
+            if (data.refreshToken) {
+              localStorage.setItem("refreshToken", data.refreshToken);
+            }
+            if (data.accessToken) {
+              sessionStorage.setItem("accessToken", data.accessToken);
+            }
             return resolve("authorized");
           default:
             return resolve("not authorized");
@@ -49,7 +63,7 @@ function checkIfAuthorized(didSomeoneScanEl, progressMeterEl, stillWaitingEl) {
       })
       .catch((error) => {
         console.error(error);
-        // controller.abort();
+        abortFetches();
         return resolve("not authorized");
       });
 
@@ -57,7 +71,7 @@ function checkIfAuthorized(didSomeoneScanEl, progressMeterEl, stillWaitingEl) {
       didSomeoneScanEl.classList.add("d-none");
       progressMeterEl.classList.add("d-none");
       stillWaitingEl.classList.remove("d-none");
-      controller.abort();
+      abortFetches();
       return resolve("not authorized");
     }, 30000);
   });
@@ -197,8 +211,13 @@ function onAskSomeoneElse(e) {
   onAuthorizersClick(e);
 }
 
-function onAuthorized() {
-  // TODO
+function onAuthorized(didSomeoneScanEl, progressMeterEl, stillWaitingEl) {
+  didSomeoneScanEl.classList.add("d-none");
+  stillWaitingEl.classList.add("d-none");
+  progressMeterEl.classList.add("d-none");
+  localStorage.removeItem("userToken");
+  $("#qrCodeModal").modal("hide");
+  $("#authorizationGrantedModal").modal();
 }
 
 async function onAuthorizersClick(e) {
@@ -265,18 +284,16 @@ function onQrCodeScanned() {
   const didSomeoneScanEl = document.querySelector("#didSomeoneScan");
   const progressMeterEl = document.querySelector("#progressMeter");
   const stillWaitingEl = document.querySelector("#stillWaiting");
-  const minutesToWait = 1;
-  const milliSeconds = 1000 * 60 * minutesToWait;
 
   didSomeoneScanEl.classList.add("d-none");
   stillWaitingEl.classList.add("d-none");
   progressMeterEl.classList.remove("d-none");
 
-  setInterval(async () => {
+  intervalId = setInterval(async () => {
     if (!navigator.onLine) {
       resetQrCodeContent();
       showToast(getGlobalPhrase("youAreOffline"), 5000, "danger");
-      return clearInterval();
+      return abortFetches();
     }
 
     const result = await checkIfAuthorized(
@@ -286,25 +303,22 @@ function onQrCodeScanned() {
     );
     switch (result) {
       case "authorized":
-        clearInterval();
-        onAuthorized();
-        break;
-      case "declined":
-        clearInterval();
-        onDeclined();
+        console.log("Authorization granted!");
+        abortFetches();
+        onAuthorized(didSomeoneScanEl, progressMeterEl, stillWaitingEl);
         break;
       default:
-        console.log("Waiting...");
+        console.log("Waiting for authorization...");
     }
   }, 2000);
 
   setTimeout(() => {
+    console.error("Authorization timed out");
     abortFetches();
-    clearInterval();
     didSomeoneScanEl.classList.add("d-none");
     stillWaitingEl.classList.remove("d-none");
     progressMeterEl.classList.add("d-none");
-  }, milliSeconds);
+  }, 60000);
 }
 
 function onShowQrCodeClick() {
@@ -353,9 +367,14 @@ function attachListeners() {
   $("#qrCodeModal").on("hide.bs.modal", () => {
     resetQrCodeContent();
   });
+
+  $("#authorizationGrantedModal").on("hide.bs.modal", () => {
+    window.location.href = "/";
+  });
 }
 
 async function init() {
+  checkForUserToken();
   await populateContent();
   personalizeContent();
   attachListeners();

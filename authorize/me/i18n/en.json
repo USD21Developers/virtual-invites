@@ -170,6 +170,30 @@
       "key": "checkAgain",
       "original": "Check again",
       "translated": "Check again"
+    },
+    {
+      "key": "authorizationGranted",
+      "original": "Authorization Granted",
+      "translated": "Authorization Granted"
+    },
+    {
+      "key": "youAreNowAuthorized",
+      "original": "You are now authorized.",
+      "translated": "You are now authorized."
+    },
+    {
+      "key": "authorizationGrantedText",
+      "original": "Congratulations! You are now fully authorized to use the Invites App. Please log in once again.",
+      "translated": "Congratulations! You are now fully authorized to use the Invites App. Please log in once again.",
+      "changes": [
+        {
+          "original": "Congratulations!",
+          "translated": "Congratulations!",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
     }
   ],
 
