@@ -67,6 +67,41 @@
       "key": "profileUpdated",
       "original": "Profile updated.",
       "translated": "Profile updated."
+    },
+    {
+      "key": "emailSenderText",
+      "original": "Invites",
+      "translated": "Invites"
+    },
+    {
+      "key": "emailSubject",
+      "original": "Confirm your e-mail address",
+      "translated": "Confirm your e-mail address"
+    },
+    {
+      "key": "emailParagraph1",
+      "original": "This message is for ${fullname}. In order to verify your e-mail address, please click on the link below:",
+      "translated": "This message is for ${fullname}. In order to verify your e-mail address, please click on the link below:"
+    },
+    {
+      "key": "emailLinkText",
+      "original": "Confirm my e-mail address",
+      "translated": "Confirm my e-mail address"
+    },
+    {
+      "key": "emailSignature",
+      "original": "The Cyberministry",
+      "translated": "The Cyberministry"
+    },
+    {
+      "key": "mustConfirmEmailHeadline",
+      "original": "E-mail address must be confirmed",
+      "translated": "E-mail address must be confirmed"
+    },
+    {
+      "key": "mustConfirmEmailText",
+      "original": "We have sent you an e-mail. Please check your messages, and confirm the e-mail address below by clicking on the link within the message.",
+      "translated": "We have sent you an e-mail. Please check your messages, and confirm the e-mail address below by clicking on the link within the message."
     }
   ],
 

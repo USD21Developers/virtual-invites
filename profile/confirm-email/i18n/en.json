@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "description": "Confirm E-mail Address",
+    "path": "/profile/confirm-email/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "verifyingHeadline",
+      "original": "Verifying...",
+      "translated": "Verifying..."
+    },
+    {
+      "key": "emailConfirmedHeadline",
+      "original": "E-mail Confirmed",
+      "translated": "E-mail Confirmed"
+    },
+    {
+      "key": "confirmationFailedHeadline",
+      "original": "Confirmation Failed",
+      "translated": "Confirmation Failed"
+    },
+    {
+      "key": "verifyingPleaseWait",
+      "original": "We are verifying your confirmation link.  Please wait...",
+      "translated": "We are verifying your confirmation link.  Please wait..."
+    },
+    {
+      "key": "linkExpired",
+      "original": "Your confirmation link has expired.  Please try again.  When you receive the confirmation e-mail, click on the link within 24 hours of re-sending it.",
+      "translated": "Your confirmation link has expired.  Please try again.  When you receive the confirmation e-mail, click on the link within 24 hours of re-sending it.",
+      "changes": [
+        {
+          "original": "try again",
+          "translated": "try again",
+          "bold": true,
+          "italic": false,
+          "link": "/profile/"
+        }
+      ]
+    },
+    {
+      "key": "linkNotRecognized",
+      "original": "Your confirmation link was not recognized.  Please either check the link for accuracy, or try again.",
+      "translated": "Your confirmation link was not recognized.  Please either check the link for accuracy, or try again.",
+      "changes": [
+        {
+          "original": "try again",
+          "translated": "try again",
+          "bold": true,
+          "italic": false,
+          "link": "/profile/"
+        }
+      ]
+    },
+    {
+      "key": "emailConfirmed",
+      "original": "Your e-mail address is confirmed. You can now delete the confirmation e-mail.",
+      "translated": "Your e-mail address is confirmed. You can now delete the confirmation e-mail."
+    },
+    {
+      "key": "returnToProfile",
+      "original": "Return to Profile",
+      "translated": "Return to Profile"
+    },
+    {
+      "key": "glitchHeadline",
+      "original": "Database is Down",
+      "translated": "Database is Down"
+    },
+    {
+      "key": "glitch",
+      "original": "There was a technical glitch which prevented your e-mail address from being verified. Please reload the page.",
+      "translated": "There was a technical glitch which prevented your e-mail address from being verified. Please reload the page.",
+      "changes": [
+        {
+          "original": "reload the page",
+          "translated": "reload the page",
+          "bold": true,
+          "italic": false,
+          "link": "javascript:window.location.reload()"
+        }
+      ]
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

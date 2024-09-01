@@ -4,6 +4,18 @@ let countries = [];
 
 let regContent = null;
 
+function toggleEmailConfirmationAlert() {
+  const refreshToken = localStorage.getItem("refreshToken");
+  const refreshTokenParsed = JSON.parse(atob(refreshToken.split(".")[1]));
+
+  if (refreshTokenParsed.hasOwnProperty("churchEmailUnverified")) {
+    if (refreshTokenParsed.churchEmailUnverified === 1) {
+      const mustConfirmEmailEl = document.querySelector("#mustConfirmEmail");
+      mustConfirmEmailEl.classList.remove("d-none");
+    }
+  }
+}
+
 async function populateChurches() {
   const churchDropdown = document.querySelector("#churchid");
   const countryData = await getCountries(getLang());
@@ -151,6 +163,17 @@ async function onSubmit(e) {
   const churchid = document.querySelector("#churchid").value.trim() || "";
   const datakey = localStorage.getItem("datakey");
 
+  const emailSenderText = getPhrase("emailSenderText");
+  const emailSubject = getPhrase("emailSubject");
+  let emailParagraph1 = getPhrase("emailParagraph1");
+  const emailLinkText = getPhrase("emailLinkText");
+  const emailSignature = getPhrase("emailSignature");
+
+  emailParagraph1 = emailParagraph1.replaceAll(
+    "${fullname}",
+    `${firstname} ${lastname}`
+  );
+
   if (!email.length) {
     return formError("#email", getPhrase("emailrequired", regContent));
   }
@@ -187,6 +210,11 @@ async function onSubmit(e) {
       firstname: firstname,
       lastname: lastname,
       churchid: churchid,
+      emailSenderText: emailSenderText,
+      emailSubject: emailSubject,
+      emailParagraph1: emailParagraph1,
+      emailLinkText: emailLinkText,
+      emailSignature: emailSignature,
     }),
     headers: new Headers({
       "Content-Type": "application/json",
@@ -201,10 +229,24 @@ async function onSubmit(e) {
       }
       localStorage.setItem("refreshToken", refreshToken);
       sessionStorage.setItem("accessToken", accessToken);
+
+      const refreshTokenParsed = JSON.parse(atob(refreshToken.split(".")[1]));
+
+      if (refreshTokenParsed.hasOwnProperty("churchEmailUnverified")) {
+        if (refreshTokenParsed.churchEmailUnverified === 1) {
+          const mustConfirmEmailEl =
+            document.querySelector("#mustConfirmEmail");
+          mustConfirmEmailEl.classList.remove("d-none");
+        } else {
+          showToast(getPhrase("profileUpdated"), 5000, "success");
+        }
+      } else {
+        showToast(getPhrase("profileUpdated"), 5000, "success");
+      }
+
       document.querySelector("#profileform").reset();
       populateForm();
       document.querySelector("body").scrollIntoView();
-      showToast(getPhrase("profileUpdated"), 5000, "success");
     })
     .catch((error) => {
       console.error(error);
@@ -229,6 +271,7 @@ async function init() {
   showProfilePhoto();
   populateForm();
   attachListeners();
+  toggleEmailConfirmationAlert();
   globalHidePageSpinner();
 }
 
