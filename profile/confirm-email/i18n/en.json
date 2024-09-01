@@ -30,8 +30,8 @@
     },
     {
       "key": "linkExpired",
-      "original": "Your confirmation link has expired.  Please try again.  When you receive the confirmation e-mail, click on the link within 24 hours of re-sending it.",
-      "translated": "Your confirmation link has expired.  Please try again.  When you receive the confirmation e-mail, click on the link within 24 hours of re-sending it.",
+      "original": "Your confirmation link has expired.",
+      "translated": "Your confirmation link has expired.",
       "changes": [
         {
           "original": "try again",
@@ -44,17 +44,8 @@
     },
     {
       "key": "linkNotRecognized",
-      "original": "Your confirmation link was not recognized.  Please either check the link for accuracy, or try again.",
-      "translated": "Your confirmation link was not recognized.  Please either check the link for accuracy, or try again.",
-      "changes": [
-        {
-          "original": "try again",
-          "translated": "try again",
-          "bold": true,
-          "italic": false,
-          "link": "/profile/"
-        }
-      ]
+      "original": "Your confirmation link was not recognized.",
+      "translated": "Your confirmation link was not recognized."
     },
     {
       "key": "emailConfirmed",
