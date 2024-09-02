@@ -297,8 +297,15 @@ async function onSubmit(e) {
       sessionStorage.setItem("accessToken", accessToken);
 
       const refreshTokenParsed = JSON.parse(atob(refreshToken.split(".")[1]));
+      let canAuth = false;
 
-      if (refreshTokenParsed.hasOwnProperty("churchEmailUnverified")) {
+      if (refreshTokenParsed.canAuthorize) canAuth = true;
+      if (refreshTokenParsed.canAuthToAuth) canAuth = true;
+
+      if (
+        refreshTokenParsed.hasOwnProperty("churchEmailUnverified") &&
+        canAuth === false
+      ) {
         if (refreshTokenParsed.churchEmailUnverified === 1) {
           const mustConfirmEmailEl =
             document.querySelector("#mustConfirmEmail");
