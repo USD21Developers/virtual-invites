@@ -65,6 +65,10 @@ function toggleEmailConfirmationAlert() {
 
   mustConfirmEmailEl.classList.add("d-none");
 
+  if (refreshToken.canAuthorize === 1 && refreshToken.canAuthToAuth === 1) {
+    return isUnverified;
+  }
+
   if (refreshTokenParsed.hasOwnProperty("churchEmailUnverified")) {
     if (refreshTokenParsed.churchEmailUnverified === 1) {
       isUnverified = true;
