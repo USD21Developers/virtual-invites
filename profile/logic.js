@@ -4,19 +4,76 @@ let countries = [];
 
 let regContent = null;
 
+let intervalId;
+
+function checkIfEmailIsPrivileged() {
+  return new Promise(async (resolve, reject) => {
+    if (!navigator.onLine) {
+      return resolve(false);
+    }
+
+    const controller = new AbortController();
+    const endpoint = `${getApiHost()}/profile-is-privileged-email`;
+    const accessToken = await getAccessToken();
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "post",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+      signal: controller.signal,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        switch (data.msg) {
+          case "email is church-issued":
+            if (data.refreshToken) {
+              localStorage.setItem("refreshToken", data.refreshToken);
+            }
+
+            if (data.accessToken) {
+              sessionStorage.setItem("accessToken", data.accessToken);
+            }
+
+            clearInterval(intervalId);
+            toggleEmailConfirmationAlert();
+
+            return resolve(true);
+
+          default:
+            return resolve(false);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        return resolve(false);
+      });
+
+    setTimeout(() => {
+      return resolve(false);
+    }, 30000);
+  });
+}
+
 function toggleEmailConfirmationAlert() {
   const mustConfirmEmailEl = document.querySelector("#mustConfirmEmail");
   const refreshToken = localStorage.getItem("refreshToken");
   const refreshTokenParsed = JSON.parse(atob(refreshToken.split(".")[1]));
+  let isUnverified = false;
 
   mustConfirmEmailEl.classList.add("d-none");
 
   if (refreshTokenParsed.hasOwnProperty("churchEmailUnverified")) {
     if (refreshTokenParsed.churchEmailUnverified === 1) {
+      isUnverified = true;
       mustConfirmEmailEl.classList.remove("d-none");
       customScrollTo("#mustConfirmEmail");
     }
   }
+
+  return isUnverified;
 }
 
 async function populateChurches() {
@@ -244,6 +301,14 @@ async function onSubmit(e) {
           mustConfirmEmailEl.classList.remove("d-none");
           globalHidePageSpinner();
           customScrollTo("#mustConfirmEmail");
+
+          intervalId = setInterval(async () => {
+            const hideMustConfirmEmail = await checkIfEmailIsPrivileged();
+            if (hideMustConfirmEmail) {
+              mustConfirmEmailEl.classList.add("d-none");
+              clearInterval(intervalId);
+            }
+          }, 5000);
         } else {
           showToast(getPhrase("profileUpdated"), 5000, "success");
         }
@@ -278,7 +343,10 @@ async function init() {
   showProfilePhoto();
   populateForm();
   attachListeners();
-  toggleEmailConfirmationAlert();
+  const isUnverified = toggleEmailConfirmationAlert();
+  if (isUnverified) {
+    checkIfEmailIsPrivileged();
+  }
   globalHidePageSpinner();
 }
 
