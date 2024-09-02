@@ -80,8 +80,8 @@
     },
     {
       "key": "emailParagraph1",
-      "original": "This message is for ${fullname}. In order to verify your e-mail address, please click on the link below:",
-      "translated": "This message is for ${fullname}. In order to verify your e-mail address, please click on the link below:"
+      "original": "This message is for ${fullname}. In order to finish updating your e-mail address, please click on the link below:",
+      "translated": "This message is for ${fullname}. In order to finish updating your e-mail address, please click on the link below:"
     },
     {
       "key": "emailLinkText",
@@ -100,8 +100,8 @@
     },
     {
       "key": "mustConfirmEmailText",
-      "original": "We have sent you an e-mail. Please check your messages, and confirm the e-mail address below by clicking on the link within the message.",
-      "translated": "We have sent you an e-mail. Please check your messages, and confirm the e-mail address below by clicking on the link within the message."
+      "original": "Please check your e-mail. We have sent you a message containing a link. In order to finish updating the e-mail address on your account, you must click on that link.",
+      "translated": "Please check your e-mail. We have sent you a message containing a link. In order to finish updating the e-mail address on your account, you must click on that link."
     }
   ],
 

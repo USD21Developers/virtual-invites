@@ -5,13 +5,16 @@ let countries = [];
 let regContent = null;
 
 function toggleEmailConfirmationAlert() {
+  const mustConfirmEmailEl = document.querySelector("#mustConfirmEmail");
   const refreshToken = localStorage.getItem("refreshToken");
   const refreshTokenParsed = JSON.parse(atob(refreshToken.split(".")[1]));
 
+  mustConfirmEmailEl.classList.add("d-none");
+
   if (refreshTokenParsed.hasOwnProperty("churchEmailUnverified")) {
     if (refreshTokenParsed.churchEmailUnverified === 1) {
-      const mustConfirmEmailEl = document.querySelector("#mustConfirmEmail");
       mustConfirmEmailEl.classList.remove("d-none");
+      customScrollTo("#mustConfirmEmail");
     }
   }
 }
@@ -169,6 +172,8 @@ async function onSubmit(e) {
   const emailLinkText = getPhrase("emailLinkText");
   const emailSignature = getPhrase("emailSignature");
 
+  document.querySelector("#mustConfirmEmail").classList.add("d-none");
+
   emailParagraph1 = emailParagraph1.replaceAll(
     "${fullname}",
     `${firstname} ${lastname}`
@@ -237,6 +242,8 @@ async function onSubmit(e) {
           const mustConfirmEmailEl =
             document.querySelector("#mustConfirmEmail");
           mustConfirmEmailEl.classList.remove("d-none");
+          globalHidePageSpinner();
+          customScrollTo("#mustConfirmEmail");
         } else {
           showToast(getPhrase("profileUpdated"), 5000, "success");
         }

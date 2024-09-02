@@ -1,39 +1,19 @@
-function checkConfirmationToken() {
-  const hashParts = document.location.hash.split("/");
+async function checkConfirmationToken() {
+  const token = getHash().split("/")[1];
+  const endpoint = `${getApiHost()}/profile-email-confirm`;
+  const accessToken = await getAccessToken();
 
-  hashParts.shift();
-
-  const churchid = Number(hashParts[0]);
-  const authorizedBy = Number(hashParts[1]);
-  const preAuthCode = Number(hashParts[2]);
-  const token = hashParts[3];
-
-  const endpoint = `${getApiHost()}/register-confirm`;
-  let preAuth = localStorage.getItem("preAuth") || null;
-
-  if (!preAuth) {
-    let resetPreAuth = true;
-    if (isNaN(churchid)) resetPreAuth = false;
-    if (isNaN(authorizedBy)) resetPreAuth = false;
-    if (isNaN(preAuthCode)) resetPreAuth = false;
-    if (resetPreAuth) {
-      preAuth = {
-        churchid: churchid,
-        authorizedby: authorizedBy,
-        authcode: preAuthCode,
-      };
-    }
-  }
+  document.title = getPhrase("verifyingHeadline");
 
   fetch(endpoint, {
     mode: "cors",
     method: "POST",
     body: JSON.stringify({
       token: token,
-      preAuth: preAuth,
     }),
     headers: new Headers({
       "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
     }),
   })
     .then((res) => res.json())
@@ -47,28 +27,41 @@ function checkConfirmationToken() {
 
       switch (data.msg) {
         case "token is missing":
+          document.title = getPhrase("confirmationFailedHeadline");
           notrecognized.classList.remove("d-none");
           break;
         case "token is invalid":
+          document.title = getPhrase("confirmationFailedHeadline");
           notrecognized.classList.remove("d-none");
           break;
         case "token not found":
+          document.title = getPhrase("confirmationFailedHeadline");
           notrecognized.classList.remove("d-none");
           break;
         case "token already claimed":
           confirmed.classList.remove("d-none");
-          onConfirmed(refreshToken, accessToken);
+          document.title = getPhrase("emailConfirmedHeadline");
           break;
         case "token expired":
+          document.title = getPhrase("confirmationFailedHeadline");
           expired.classList.remove("d-none");
           break;
         case "user not found":
+          document.title = getPhrase("confirmationFailedHeadline");
           notrecognized.classList.remove("d-none");
           break;
-        case "registration confirmed":
-          if (preAuth) localStorage.removeItem("preAuth");
+        case "email confirmed":
+          if (data.refreshToken) {
+            localStorage.setItem("refreshToken", data.refreshToken);
+          }
+
+          if (data.accessToken) {
+            sessionStorage.setItem("accessToken", data.accessToken);
+          }
+
           confirmed.classList.remove("d-none");
-          onConfirmed();
+
+          document.title = getPhrase("emailConfirmedHeadline");
           break;
         default:
           glitch.classList.remove("d-none");
@@ -83,13 +76,6 @@ function hideContentContainers() {
   document.querySelectorAll(".contentcontainer").forEach((item) => {
     item.classList.add("d-none");
   });
-}
-
-function onConfirmed() {
-  document.cookie =
-    "preAuthArray=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  localStorage.removeItem("preAuth");
-  sessionStorage.setItem("justRegistered", true);
 }
 
 async function init() {
