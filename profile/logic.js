@@ -13,7 +13,7 @@ function checkIfEmailIsPrivileged() {
     }
 
     const controller = new AbortController();
-    const endpoint = `${getApiHost()}/profile-is-privileged-email`;
+    const endpoint = `${getApiHost()}/profile-is-privileged-email-confirmed`;
     const accessToken = await getAccessToken();
 
     fetch(endpoint, {
@@ -28,7 +28,7 @@ function checkIfEmailIsPrivileged() {
       .then((res) => res.json())
       .then((data) => {
         switch (data.msg) {
-          case "email is church-issued":
+          case "confirmed":
             if (data.refreshToken) {
               localStorage.setItem("refreshToken", data.refreshToken);
             }
