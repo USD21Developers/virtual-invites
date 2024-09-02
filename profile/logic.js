@@ -6,7 +6,7 @@ let regContent = null;
 
 let intervalId;
 
-function checkIfEmailIsPrivileged() {
+function checkIfPrivilegedEmailIsConfirmed() {
   return new Promise(async (resolve, reject) => {
     if (!navigator.onLine) {
       return resolve(false);
@@ -302,11 +302,11 @@ async function onSubmit(e) {
       if (refreshTokenParsed.canAuthorize) canAuth = true;
       if (refreshTokenParsed.canAuthToAuth) canAuth = true;
 
-      if (
-        refreshTokenParsed.hasOwnProperty("churchEmailUnverified") &&
-        canAuth === false
-      ) {
-        if (refreshTokenParsed.churchEmailUnverified === 1) {
+      if (refreshTokenParsed.hasOwnProperty("churchEmailUnverified")) {
+        if (
+          refreshTokenParsed.churchEmailUnverified === 1 &&
+          canAuth === false
+        ) {
           const mustConfirmEmailEl =
             document.querySelector("#mustConfirmEmail");
           mustConfirmEmailEl.classList.remove("d-none");
@@ -314,7 +314,8 @@ async function onSubmit(e) {
           customScrollTo("#mustConfirmEmail");
 
           intervalId = setInterval(async () => {
-            const hideMustConfirmEmail = await checkIfEmailIsPrivileged();
+            const hideMustConfirmEmail =
+              await checkIfPrivilegedEmailIsConfirmed();
             if (hideMustConfirmEmail) {
               mustConfirmEmailEl.classList.add("d-none");
               clearInterval(intervalId);
@@ -356,7 +357,7 @@ async function init() {
   attachListeners();
   const isUnverified = toggleEmailConfirmationAlert();
   if (isUnverified) {
-    checkIfEmailIsPrivileged();
+    checkIfPrivilegedEmailIsConfirmed();
   }
   globalHidePageSpinner();
 }
