@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "description": "Support",
+    "path": "/support/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Support",
+      "translated": "Support"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbSupport",
+      "original": "Support",
+      "translated": "Support"
+    },
+    {
+      "key": "needSomeHelp",
+      "original": "Need some help?",
+      "translated": "Need some help?"
+    },
+    {
+      "key": "needSomeHelpP1",
+      "original": "If you need support, or have any questions or feedback, help is available. Contact us below, and we will respond as soon as possible.",
+      "translated": "If you need support, or have any questions or feedback, help is available. Contact us below, and we will respond as soon as possible."
+    },
+    {
+      "key": "emailLabel",
+      "original": "E-mail:",
+      "translated": "E-mail:"
+    },
+    {
+      "key": "emailLinkText",
+      "original": "jason.mcneill@usd21.org",
+      "translated": "jason.mcneill@usd21.org"
+    },
+    {
+      "key": "phoneOrVoicemail",
+      "original": "Phone or Voicemail:",
+      "translated": "Phone or Voicemail:"
+    },
+    {
+      "key": "phoneOrVoicemailLinkText",
+      "original": "+1-213-325-1382",
+      "translated": "+1-213-325-1382"
+    },
+    {
+      "key": "countryName",
+      "original": "(United States)",
+      "translated": "(United States)"
+    },
+    {
+      "key": "thankYouP1",
+      "original": "Thank you for your interest in the Invites App, an outreach tool created for members of the International Christian Churches.",
+      "translated": "Thank you for your interest in the Invites App, an outreach tool created for members of the International Christian Churches.",
+      "changes": [
+        {
+          "original": "International Christian Churches",
+          "translated": "International Christian Churches",
+          "bold": false,
+          "italic": false,
+          "underline": true,
+          "link": "https://usd21.org/"
+        }
+      ]
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
