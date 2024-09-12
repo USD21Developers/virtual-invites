@@ -20,6 +20,7 @@ const supportedLangs = ["en"];
     .importSecretKey
     .serialize
   breakify
+  chooseNewChurch
   clearErrorMessages
   clearStorage
   compareDates
@@ -77,6 +78,7 @@ const supportedLangs = ["en"];
   sleep
   spacify
   updateFollowActivity
+  userChurchStillExists
   validateEmail
 */
 
@@ -257,6 +259,10 @@ const invitesCrypto = {
 
 function breakify(text) {
   return text.replace(/(?:\r\n|\r|\n)/g, "<br>\n");
+}
+
+function chooseNewChurch() {
+  window.location.href = "/select-church/";
 }
 
 function clearErrorMessages() {
@@ -1708,6 +1714,40 @@ function updateFollowActivity(userid, when, action) {
   sessionStorage.setItem("followActivity", JSON.stringify(followActivity));
 }
 
+function userChurchStillExists() {
+  return new Promise(async (resolve, reject) => {
+    const refreshTokenJSON = localStorage.getItem("refreshToken");
+
+    if (!refreshTokenJSON) {
+      return reject("user is logged out");
+    }
+
+    let churchesJSON = localStorage.getItem("churches");
+
+    if (!churchesJSON) {
+      await syncChurches();
+      churchesJSON = localStorage.getItem("churches");
+      if (!churchesJSON) {
+        const error = "unable to sync churches";
+        console.error(error);
+        return reject(error);
+      }
+    }
+
+    const userid = getUserId();
+
+    if (!userid) return reject("userid not recognized");
+
+    const churches = JSON.parse(churchesJSON);
+    const churchid = await getUserChurchId(userid);
+    const churchExists = churches.find((item) => item.id === churchid)
+      ? true
+      : false;
+
+    return resolve(churchExists);
+  });
+}
+
 function validateEmail(email) {
   const re =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -1718,6 +1758,14 @@ function initGlobal() {
   showMaterialIcons();
   refreshFloatingLabelsListener();
   configureLocalForage();
+
+  userChurchStillExists()
+    .then((exists) => {
+      if (!exists) {
+        chooseNewChurch();
+      }
+    })
+    .catch((error) => {});
 
   document.addEventListener("DOMContentLoaded", (event) => {
     if ("virtualKeyboard" in navigator) {
