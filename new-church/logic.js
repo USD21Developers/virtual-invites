@@ -149,20 +149,75 @@ function onCountryChange(e) {
 async function onSubmit(e) {
   e.preventDefault();
 
+  document.querySelectorAll(".is-invalid").forEach((item) => {
+    item.classList.remove("is-invalid");
+  });
+
+  document.querySelectorAll(".invalid-feedback").forEach((item) => {
+    item.innerHTML = "";
+  });
+
   const countryid = document.querySelector("#country").value;
   const churchid = document.querySelector("#churchid").value;
+  const unlistedChurch = document.querySelector("#unlistedchurch").value;
 
   if (countryid === "") {
-    console.log("Country is required");
-    // TODO
+    const countryInvalidFeedbackEl = document.querySelector(
+      "#countryInvalidFeedback"
+    );
+    const textCountryRequired = getPhrase("countryIsRequired");
+    formError("#country", textCountryRequired);
+    countryInvalidFeedbackEl.innerHTML = textCountryRequired;
     return;
   }
 
   if (churchid === "") {
-    console.log("Church is required");
-    // TODO
+    const churchInvalidFeedbackEl = document.querySelector(
+      "#churchInvalidFeedback"
+    );
+    const textChurchRequired = getPhrase("churchrequired");
+    formError("#churchid", textChurchRequired);
+    churchInvalidFeedbackEl.innerHTML = textChurchRequired;
     return;
   }
+
+  if (churchid == 0) {
+    if (unlistedChurch.trim() === "") {
+      formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
+      return;
+    }
+  }
+
+  globalShowPageSpinner();
+
+  const endpoint = `${getApiHost()}/new-church`;
+  const accessToken = await getAccessToken();
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "post",
+    body: JSON.stringify({
+      countryid: Number(countryid),
+      churchid: Number(churchid),
+      unlistedChurch: unlistedChurch,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.msg === "churchid updated") {
+        window.location.href = "/";
+      } else {
+        throw data.msg;
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      globalHidePageSpinner();
+    });
 }
 
 function attachListeners() {

@@ -25,8 +25,8 @@
     },
     {
       "key": "paragraph1",
-      "original": "It appears that the church you originally selected when you registered is no longer in the system. Please select your current church below.",
-      "translated": "It appears that the church you originally selected when you registered is no longer in the system. Please select your current church below."
+      "original": "The church that you originally selected when you registered is no longer in the system. Please select your current church below.",
+      "translated": "The church that you originally selected when you registered is no longer in the system. Please select your current church below."
     },
     {
       "key": "label-country",
@@ -72,6 +72,11 @@
       "key": "selectcountry",
       "original": "(Select country):",
       "translated": "(Select country):"
+    },
+    {
+      "key": "countryIsRequired",
+      "original": "Country is required",
+      "translated": "Country is required"
     },
     {
       "key": "onlyCountriesWithChurch",
