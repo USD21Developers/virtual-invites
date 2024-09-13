@@ -262,7 +262,7 @@ function breakify(text) {
 }
 
 function chooseNewChurch() {
-  window.location.href = "/select-church/";
+  window.location.href = "/new-church/";
 }
 
 function clearErrorMessages() {
