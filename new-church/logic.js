@@ -171,6 +171,7 @@ async function onSubmit(e) {
     .then((res) => res.json())
     .then((data) => {
       if (data.msg === "churchid updated") {
+        document.querySelector("#pageSpinner").classList.add("d-none");
         showModal(getPhrase("updateSuccessful"), getPhrase("churchUpdated"));
       } else {
         throw data.msg;
