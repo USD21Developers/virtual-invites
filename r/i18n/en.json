@@ -119,6 +119,16 @@
       "translated": "Send a text message"
     },
     {
+      "key": "whatsAppCall",
+      "original": "Make a WhatsApp call",
+      "translated": "Make a WhatsApp call"
+    },
+    {
+      "key": "whatsAppText",
+      "original": "Send a WhatsApp message",
+      "translated": "Send a WhatsApp message"
+    },
+    {
       "key": "send-email",
       "original": "Send an e-mail",
       "translated": "Send an e-mail"

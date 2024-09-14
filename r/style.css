@@ -89,3 +89,8 @@ html {
 .mainContent {
   overscroll-behavior-x: none !important;
 }
+
+.whatsAppGlyph {
+  height: 25px;
+  width: auto;
+}
