@@ -4,6 +4,7 @@ let countries = [];
 async function getChurches() {
   const churchesObj = await syncChurches();
   churches = churchesObj.churches;
+  churches = churches.filter((item) => item.name);
   return churches;
 }
 
@@ -74,21 +75,6 @@ function populateCountries() {
   countryDropdown.parentElement.classList.add("has-value");
 }
 
-function onChurchChange(e) {
-  const churchid = e.target.value;
-  const unlistedchurch = document.querySelector("#unlistedchurch");
-  const unlistedchurchcontainer = document.querySelector(
-    "#unlistedchurchcontainer"
-  );
-
-  unlistedchurch.value = "";
-  unlistedchurchcontainer.classList.add("d-none");
-
-  if (churchid == 0) {
-    unlistedchurchcontainer.classList.remove("d-none");
-  }
-}
-
 function onCountryChange(e) {
   const countryCode = e.target.value;
   const churchContainer = document.querySelector("#churchcontainer");
@@ -96,11 +82,7 @@ function onCountryChange(e) {
   const churchesInCountry = churches.filter(
     (item) => item.country == countryCode
   );
-  const unlistedchurchcontainer = document.querySelector(
-    "#unlistedchurchcontainer"
-  );
   const country = document.querySelector("#country");
-  const unlistedchurch = document.querySelector("#unlistedchurch");
   const defaultOption = document.createElement("option");
 
   // Sort churches alphabetically
@@ -122,17 +104,7 @@ function onCountryChange(e) {
     churchSelect.appendChild(option);
   });
 
-  // Add option for ICC churches that aren't in our database yet
-  const unlistedOption = document.createElement("option");
-  unlistedOption.value = "0";
-  unlistedOption.innerText = getPhrase("notListedOption");
-  churchSelect.appendChild(unlistedOption);
-
   churchSelect.parentElement.classList.add("has-value");
-
-  // Hide text input for unlisted church
-  unlistedchurchcontainer.classList.add("d-none");
-  unlistedchurch.value = "";
 
   // Hide errors if a valid country was selected
   if (country.selectedIndex !== 0) {
@@ -143,7 +115,6 @@ function onCountryChange(e) {
   }
 
   churchContainer.classList.add("d-none");
-  unlistedchurch.value = "";
 }
 
 async function onSubmit(e) {
@@ -159,7 +130,6 @@ async function onSubmit(e) {
 
   const countryid = document.querySelector("#country").value;
   const churchid = document.querySelector("#churchid").value;
-  const unlistedChurch = document.querySelector("#unlistedchurch").value;
 
   if (countryid === "") {
     const countryInvalidFeedbackEl = document.querySelector(
@@ -181,13 +151,6 @@ async function onSubmit(e) {
     return;
   }
 
-  if (churchid == 0) {
-    if (unlistedChurch.trim() === "") {
-      formError("#unlistedchurch", getPhrase("unlistedchurchrequired"));
-      return;
-    }
-  }
-
   globalShowPageSpinner();
 
   const endpoint = `${getApiHost()}/new-church`;
@@ -199,7 +162,6 @@ async function onSubmit(e) {
     body: JSON.stringify({
       countryid: Number(countryid),
       churchid: Number(churchid),
-      unlistedChurch: unlistedChurch,
     }),
     headers: new Headers({
       "Content-Type": "application/json",
@@ -224,14 +186,10 @@ function attachListeners() {
   document
     .querySelector("#country")
     .addEventListener("change", onCountryChange);
-  document
-    .querySelector("#churchid")
-    .addEventListener("change", onChurchChange);
   document.querySelector("#newChurch").addEventListener("submit", onSubmit);
 }
 
 async function init() {
-  await syncChurches();
   await populateContent();
 
   Promise.all([getChurches(), getCountries()]).then(() => {
