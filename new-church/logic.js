@@ -160,7 +160,7 @@ async function onSubmit(e) {
     mode: "cors",
     method: "post",
     body: JSON.stringify({
-      countryid: Number(countryid),
+      countryid: countryid,
       churchid: Number(churchid),
     }),
     headers: new Headers({
