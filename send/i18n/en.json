@@ -110,8 +110,8 @@
     },
     {
       "key": "buttonsaveinvite",
-      "original": "SAVE INVITE",
-      "translated": "SAVE INVITE"
+      "original": "SHOW QR CODE",
+      "translated": "SHOW QR CODE"
     },
     {
       "key": "buttoncopyinvite",
@@ -327,6 +327,16 @@
           "link": "../settings/"
         }
       ]
+    },
+    {
+      "key": "labelQRCode",
+      "original": "QR Code",
+      "translated": "QR Code"
+    },
+    {
+      "key": "didRecipientScan",
+      "original": "Has {NAME} scanned the QR code?",
+      "translated": "Has {NAME} scanned the QR code?"
     }
   ],
 

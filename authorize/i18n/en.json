@@ -355,7 +355,7 @@
       "translated": "Result"
     },
     {
-      "key": "didNewUserRead",
+      "key": "didRecipientScan",
       "original": "Has {FIRST-NAME} scanned this QR code?",
       "translated": "Has {FIRST-NAME} scanned this QR code?"
     },
