@@ -82,6 +82,16 @@
       "key": "selectchurch",
       "original": "(Select church):",
       "translated": "(Select church):"
+    },
+    {
+      "key": "churchUpdated",
+      "original": "Church Updated",
+      "translated": "Church Updated"
+    },
+    {
+      "key": "updateSuccessful",
+      "original": "Your update was successful.  Please log in once again.",
+      "translated": "Your update was successful.  Please log in once again."
     }
   ],
 

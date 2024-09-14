@@ -171,7 +171,7 @@ async function onSubmit(e) {
     .then((res) => res.json())
     .then((data) => {
       if (data.msg === "churchid updated") {
-        window.location.href = "/";
+        showModal(getPhrase("updateSuccessful"), getPhrase("churchUpdated"));
       } else {
         throw data.msg;
       }
@@ -186,7 +186,12 @@ function attachListeners() {
   document
     .querySelector("#country")
     .addEventListener("change", onCountryChange);
+
   document.querySelector("#newChurch").addEventListener("submit", onSubmit);
+
+  $("#modal").on("hide.bs.modal", (e) => {
+    window.location.href = "/logout/";
+  });
 }
 
 async function init() {
