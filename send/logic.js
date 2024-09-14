@@ -953,6 +953,7 @@ function selectSendVia(method) {
     case "qrcode":
       const eventid = getInviteToId();
       localStorage.setItem("lastSendMethodSelected", "qrcode");
+      isMobile && containerTagWithLocation.classList.remove("d-none");
       btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-qrcodetext");
       document.querySelector("#sendvia").value = "qrcode";
       break;
