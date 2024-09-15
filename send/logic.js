@@ -322,6 +322,12 @@ async function getSendBody() {
         sendBody += `\r\n\r\n${smsBodyText}`;
       }
       break;
+    case "whatsapp":
+      sendBody = `${inviteToText} ${clickBelow} \r\n\r\n${finalURL}`;
+      if (smsBodyText.length) {
+        sendBody += `\r\n\r\n${smsBodyText}`;
+      }
+      break;
     case "email":
       sendBody = `${inviteToText}:\r\n\r\n${finalURL}`;
       if (emailBodyText.length) {
@@ -346,6 +352,9 @@ function getSendTo() {
   let sendTo;
   switch (sendVia) {
     case "sms":
+      sendTo = iti.getNumber();
+      break;
+    case "whatsapp":
       sendTo = iti.getNumber();
       break;
     case "email":
@@ -751,6 +760,51 @@ async function onSubmitButtonClick(e) {
       }, 2000);
 
       break;
+    case "whatsapp":
+      const whatsAppPhoneNumber = iti.getNumber();
+      const isWhatsAppPhoneNumberValid = iti.isValidNumber();
+
+      if (whatsAppPhoneNumber === "") {
+        const msg = getPhrase("whatsAppPhoneNumberIsRequired");
+        const msgInline = getPhrase("fieldRequired");
+        const inputEl = document.querySelector(".iti--allow-dropdown");
+        const errorContainer = document.createElement("div");
+        errorContainer.classList.add("invalid-feedback");
+        inputEl.appendChild(errorContainer);
+        e.preventDefault();
+        return showError(msg, "#sendto_sms", msgInline);
+      }
+
+      if (!isWhatsAppPhoneNumberValid) {
+        const msg = getPhrase("whatsAppPhoneNumberMustBeValid");
+        const msgInline = getPhrase("validPhoneNumberIsRequired");
+        const inputEl = document.querySelector(".iti--allow-dropdown");
+        const errorContainer = document.createElement("div");
+        errorContainer.classList.add("invalid-feedback");
+        inputEl.appendChild(errorContainer);
+        e.preventDefault();
+        return showError(msg, "#sendto_sms", msgInline);
+      }
+
+      saveAndSync(sendVia);
+
+      const phoneNumberNoPlus = sendTo.replaceAll("+", "");
+      const whatsappLink = `https://wa.me/${phoneNumberNoPlus}?text=${sendBody}`;
+
+      btnSendInvite.setAttribute("href", whatsappLink);
+
+      window.location.href = e.target.href;
+
+      showForwardingMessage(sendVia);
+
+      await sleep(2000);
+
+      setTimeout(() => {
+        globalHidePageSpinner();
+        onAfterSubmitted(sendVia);
+      }, 2000);
+
+      break;
     case "email":
       const email = document.querySelector("#sendto_email").value.trim() || "";
       const isValidEmail = validateEmail(email);
@@ -942,6 +996,14 @@ function selectSendVia(method) {
       btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-defaulttext");
       document.querySelector("#sendvia").value = "sms";
       break;
+    case "whatsapp":
+      smsField.setAttribute("required", "");
+      localStorage.setItem("lastSendMethodSelected", "whatsapp");
+      containerSms.classList.remove("d-none");
+      isMobile && containerTagWithLocation.classList.remove("d-none");
+      btnSendInvite.innerHTML = btnSendInvite.getAttribute("data-defaulttext");
+      document.querySelector("#sendvia").value = "whatsapp";
+      break;
     case "email":
       emailField.setAttribute("required", "");
       localStorage.setItem("lastSendMethodSelected", "email");
@@ -1098,13 +1160,15 @@ function showError(
 }
 
 function showForwardingMessage(sendvia) {
-  if (!["sms", "email"].includes(sendvia)) return;
+  if (!["sms", "whatsapp", "email"].includes(sendvia)) return;
   const btnSendInvite = document.querySelector("#btnSendInvite");
 
   switch (sendvia) {
     case "sms":
       btnSendInvite.innerText = getPhrase("openingsms");
       break;
+    case "whatsapp":
+      btnSendInvite.innerText = getPhrase("openingWhatsApp");
     case "email":
       btnSendInvite.innerText = getPhrase("openingemail");
       break;

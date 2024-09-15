@@ -149,6 +149,11 @@
       "translated": "Opening SMS..."
     },
     {
+      "key": "openingWhatsApp",
+      "original": "Opening WhatsApp...",
+      "translated": "Opening WhatsApp..."
+    },
+    {
       "key": "openingemail",
       "original": "Opening e-mail...",
       "translated": "Opening e-mail..."
@@ -252,6 +257,16 @@
       "key": "phoneNumberIsRequired",
       "original": "Please input the recipient's mobile phone number.",
       "translated": "Please input the recipient's mobile phone number."
+    },
+    {
+      "key": "whatsAppPhoneNumberIsRequired",
+      "original": "Please input the recipient's WhatsApp phone number.",
+      "translated": "Please input the recipient's WhatsApp phone number."
+    },
+    {
+      "key": "whatsAppPhoneNumberMustBeValid",
+      "original": "Please check the recipient's WhatsApp phone number for accuracy.",
+      "translated": "Please check the recipient's WhatsApp phone number for accuracy."
     },
     {
       "key": "phoneNumberMustBeValid",
