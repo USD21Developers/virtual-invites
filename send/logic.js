@@ -1035,7 +1035,9 @@ function saveAndSync(sendvia) {
       document.querySelector("#events_dropdown").selectedOptions[0].value
     );
     const recipientName = document.querySelector("#recipientname").value || "";
-    const recipientSms = sendvia === "sms" ? iti.getNumber() : null;
+    const recipientSms = ["sms", "whatsapp"].includes(sendvia)
+      ? iti.getNumber()
+      : null;
     const recipientEmail =
       sendvia === "email"
         ? document.querySelector("#sendto_email").value
