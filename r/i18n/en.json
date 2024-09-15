@@ -119,14 +119,9 @@
       "translated": "Send a text message"
     },
     {
-      "key": "whatsAppCall",
-      "original": "Make a WhatsApp call",
-      "translated": "Make a WhatsApp call"
-    },
-    {
-      "key": "whatsAppText",
-      "original": "Send a WhatsApp message",
-      "translated": "Send a WhatsApp message"
+      "key": "contactViaWhatsApp",
+      "original": "Contact via WhatsApp",
+      "translated": "Contact via WhatsApp"
     },
     {
       "key": "send-email",

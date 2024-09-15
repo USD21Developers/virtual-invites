@@ -341,14 +341,10 @@ async function renderRecipient(invite) {
     const phoneLinkEl = document.querySelector("#phoneLink");
     const smsLinkContainerEl = document.querySelector("#smsLinkContainer");
     const smsLinkEl = document.querySelector("#smsLink");
-    const whatsAppCallLinkContainerEl = document.querySelector(
-      "#whatsAppCallLinkContainer"
+    const whatsAppLinkContainerEl = document.querySelector(
+      "#whatsAppLinkContainer"
     );
-    const whatsAppCallLinkEl = document.querySelector("#whatsAppCallLink");
-    const whatsAppTextLinkContainerEl = document.querySelector(
-      "#whatsAppTextLinkContainer"
-    );
-    const whatsAppTextLinkEl = document.querySelector("#whatsAppTextLink");
+    const whatsAppLinkEl = document.querySelector("#whatsAppLink");
     const emailLinkContainerEl = document.querySelector("#emailLinkContainer");
     const emailLinkEl = document.querySelector("#emailLink");
     const addCalendarReminderLinkEl = document.querySelector(
@@ -391,22 +387,14 @@ async function renderRecipient(invite) {
       followupEl.classList.remove("d-none");
     } else if (sentvia === "whatsapp") {
       const whatsAppNumber = sms.replaceAll("+", "");
-      whatsAppCallLinkEl.setAttribute(
-        "href",
-        `https://wa.me/${whatsAppNumber}/?call`
-      );
-      whatsAppTextLinkEl.setAttribute(
-        "href",
-        `https://wa.me/${whatsAppNumber}`
-      );
+      whatsAppLinkEl.setAttribute("href", `https://wa.me/${whatsAppNumber}`);
       phoneLinkEl.setAttribute("href", `tel:${sms}`);
       smsLinkEl.setAttribute("href", `sms:${sms}`);
       headlineFollowUpEl.innerText = getPhrase("headlineFollowUp").replaceAll(
         "{RECIPIENT-NAME}",
         name
       );
-      whatsAppCallLinkContainerEl.classList.remove("d-none");
-      whatsAppTextLinkContainerEl.classList.remove("d-none");
+      whatsAppLinkContainerEl.classList.remove("d-none");
       phoneLinkContainerEl.classList.remove("d-none");
       smsLinkContainerEl.classList.remove("d-none");
       followupEl.classList.remove("d-none");
