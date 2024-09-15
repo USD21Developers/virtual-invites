@@ -1231,7 +1231,7 @@ function setEventListeners() {
 async function init() {
   setRecipientID();
   await checkForEvents();
-  clearForm();
+  // clearForm();
   await populateContent();
   populateSaveButtonData();
   await loadEvents();
