@@ -793,7 +793,7 @@ async function onSubmitButtonClick(e) {
 
       btnSendInvite.setAttribute("href", whatsappLink);
 
-      window.location.href = e.target.href;
+      window.open(e.target.href, "_blank");
 
       showForwardingMessage(sendVia);
 
