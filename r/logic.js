@@ -393,7 +393,7 @@ async function renderRecipient(invite) {
       const whatsAppNumber = sms.replaceAll("+", "");
       whatsAppCallLinkEl.setAttribute(
         "href",
-        `https://wa.me/${whatsAppNumber}?action=call`
+        `https://wa.me/${whatsAppNumber}/?call`
       );
       whatsAppTextLinkEl.setAttribute(
         "href",
