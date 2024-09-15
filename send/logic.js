@@ -777,7 +777,7 @@ async function onSubmitButtonClick(e) {
 
       if (!isWhatsAppPhoneNumberValid) {
         const msg = getPhrase("whatsAppPhoneNumberMustBeValid");
-        const msgInline = getPhrase("validPhoneNumberIsRequired");
+        const msgInline = getPhrase("validWhatsAppNumberIsRequired");
         const inputEl = document.querySelector(".iti--allow-dropdown");
         const errorContainer = document.createElement("div");
         errorContainer.classList.add("invalid-feedback");
