@@ -99,6 +99,11 @@
       "translated": "Phone number"
     },
     {
+      "key": "whatsAppNumber",
+      "original": "WhatsApp number",
+      "translated": "WhatsApp number"
+    },
+    {
       "key": "emailaddress",
       "original": "E-mail address",
       "translated": "E-mail address"

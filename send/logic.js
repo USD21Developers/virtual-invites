@@ -989,6 +989,8 @@ function selectSendVia(method) {
 
   switch (sendvia) {
     case "sms":
+      smsField.setAttribute("data-i18n-placeholder", "mobilephonenumber");
+      smsField.setAttribute("placeholder", getPhrase("mobilephonenumber"));
       smsField.setAttribute("required", "");
       localStorage.setItem("lastSendMethodSelected", "sms");
       containerSms.classList.remove("d-none");
@@ -997,6 +999,8 @@ function selectSendVia(method) {
       document.querySelector("#sendvia").value = "sms";
       break;
     case "whatsapp":
+      smsField.setAttribute("data-i18n-placeholder", "whatsAppNumber");
+      smsField.setAttribute("placeholder", getPhrase("whatsAppNumber"));
       smsField.setAttribute("required", "");
       localStorage.setItem("lastSendMethodSelected", "whatsapp");
       containerSms.classList.remove("d-none");
