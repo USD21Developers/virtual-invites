@@ -612,10 +612,17 @@ async function populateResendInvite(e) {
     if (!clickBelowTranslationObject) return;
     const clickBelow = clickBelowTranslationObject.translated;
     const sendBody = eventTitle + " " + clickBelow + " \r\n\r\n" + inviteLink;
-    resendLinkEl.setAttribute(
-      "href",
-      "sms:" + invite.recipient.sms + ";?&body=" + encodeURI(sendBody)
-    );
+
+    if (inviteObj.sentvia === "whatsapp") {
+      const phoneNumberNoPlus = invite.recipient.sms.replaceAll("+", "");
+      const whatsAppUrl = `https://wa.me/${phoneNumberNoPlus}?text=${sendBody}`;
+      resendLinkEl.setAttribute("href", whatsAppUrl);
+    } else {
+      resendLinkEl.setAttribute(
+        "href",
+        "sms:" + invite.recipient.sms + ";?&body=" + encodeURI(sendBody)
+      );
+    }
   } else if (invite.recipient.email) {
     const invitationToTranslationObject = phrasesForSendInvite.phrases.find(
       (item) => item.key === "invitationto"
