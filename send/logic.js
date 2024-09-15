@@ -94,6 +94,17 @@ function clearForm() {
     const form = document.querySelector("#formsendinvite");
     form.reset();
     setDefaultSendMethod();
+
+    const lastEventSelected = localStorage.getItem("lastEventSelected");
+
+    if (lastEventSelected) {
+      const rememberedEvent = document.querySelector(
+        `#events_dropdown option[value='${lastEventSelected}']`
+      );
+      if (rememberedEvent) {
+        rememberedEvent.setAttribute("selected", "selected");
+      }
+    }
   });
 }
 
