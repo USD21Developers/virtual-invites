@@ -1175,6 +1175,7 @@ function showForwardingMessage(sendvia) {
       break;
     case "whatsapp":
       btnSendInvite.innerText = getPhrase("openingWhatsApp");
+      break;
     case "email":
       btnSendInvite.innerText = getPhrase("openingemail");
       break;
