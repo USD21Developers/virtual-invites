@@ -136,6 +136,8 @@ function renderContent(inviteData) {
       sharedVia = getGlobalPhrase("textmessage");
     } else if (invite.sharedvia === "email") {
       sharedVia = getGlobalPhrase("email");
+    } else if (invite.sharedvia === "whatsapp") {
+      sharedVia = getGlobalPhrase("whatsapp");
     } else {
       sharedVia = getPhrase("yourdevice");
     }

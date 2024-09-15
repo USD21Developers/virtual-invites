@@ -328,6 +328,11 @@
       "translated": "e-mail"
     },
     {
+      "key": "whatsapp",
+      "original": "WhatsApp",
+      "translated": "WhatsApp"
+    },
+    {
       "key": "multidayFromLabel",
       "original": "From:",
       "translated": "From:"
