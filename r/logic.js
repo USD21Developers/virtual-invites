@@ -615,7 +615,7 @@ async function populateResendInvite(e) {
 
     if (inviteObj.sentvia === "whatsapp") {
       const phoneNumberNoPlus = invite.recipient.sms.replaceAll("+", "");
-      const whatsAppUrl = `https://wa.me/${phoneNumberNoPlus}?text=${encodeURI(
+      const whatsAppUrl = `https://wa.me/${phoneNumberNoPlus}/?text=${encodeURI(
         sendBody
       )}`;
       resendLinkEl.setAttribute("href", whatsAppUrl);
