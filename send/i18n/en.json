@@ -59,6 +59,11 @@
       "translated": "QR Code"
     },
     {
+      "key": "viawhatsapp",
+      "original": "WhatsApp",
+      "translated": "WhatsApp"
+    },
+    {
       "key": "viaotherapps",
       "original": "Other apps",
       "translated": "Other apps"
