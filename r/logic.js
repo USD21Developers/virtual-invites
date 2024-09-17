@@ -1294,6 +1294,14 @@ function collapseAllNotesExceptLast() {
     });
 }
 
+function populateEditLink() {
+  const editLinkEl = document.querySelector("#editLink");
+  const inviteid = Number(getHash().split("/")[1]);
+  const editLinkURL = `edit/#/${inviteid}`;
+
+  editLinkEl.setAttribute("href", editLinkURL);
+}
+
 function resetAddNoteForm() {
   const addNoteFormEl = document.querySelector("#addNoteForm");
   if (addNoteFormEl) {
@@ -1735,6 +1743,7 @@ async function init() {
   populateAddToFollowupLinks();
   populateNotificationsSettings();
   populateNotes();
+  populateEditLink();
   attachListeners();
 
   globalHidePageSpinner();

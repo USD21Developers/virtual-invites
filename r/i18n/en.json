@@ -402,6 +402,11 @@
       "key": "recipientCouldNotBeFound",
       "original": "This invite recipient could not be found.",
       "translated": "This invite recipient could not be found."
+    },
+    {
+      "key": "editInvite",
+      "original": "Edit invite",
+      "translated": "Edit invite"
     }
   ],
 
