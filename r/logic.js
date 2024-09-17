@@ -1294,14 +1294,6 @@ function collapseAllNotesExceptLast() {
     });
 }
 
-function populateEditLink() {
-  const editLinkEl = document.querySelector("#editLink");
-  const inviteid = Number(getHash().split("/")[1]);
-  const editLinkURL = `edit/#/${inviteid}`;
-
-  editLinkEl.setAttribute("href", editLinkURL);
-}
-
 function resetAddNoteForm() {
   const addNoteFormEl = document.querySelector("#addNoteForm");
   if (addNoteFormEl) {
@@ -1629,6 +1621,10 @@ async function onConfirmNotifications(e) {
   syncInviteNotifications();
 }
 
+function onEdit(e) {
+  e.preventDefault();
+}
+
 function attachListeners() {
   window.addEventListener("hashchange", () => {
     window.location.reload();
@@ -1718,6 +1714,8 @@ function attachListeners() {
   document
     .querySelector("#undeleteInvite")
     .addEventListener("click", undeleteInvite);
+
+  document.querySelector("#editLink").addEventListener("click", onEdit);
 }
 
 async function init() {
@@ -1743,7 +1741,6 @@ async function init() {
   populateAddToFollowupLinks();
   populateNotificationsSettings();
   populateNotes();
-  populateEditLink();
   attachListeners();
 
   globalHidePageSpinner();
