@@ -363,6 +363,11 @@
       "key": "btnCloseModal",
       "original": "Close",
       "translated": "Close"
+    },
+    {
+      "key": "didNewUserRead",
+      "original": "Has {FIRST-NAME} scanned this QR code?",
+      "translated": "Has {FIRST-NAME} scanned this QR code?"
     }
   ],
 
