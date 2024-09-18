@@ -404,9 +404,19 @@
       "translated": "This invite recipient could not be found."
     },
     {
+      "key": "headlineManage",
+      "original": "Manage:",
+      "translated": "Manage:"
+    },
+    {
       "key": "editInvite",
       "original": "Edit invite",
       "translated": "Edit invite"
+    },
+    {
+      "key": "deleteInvite",
+      "original": "Delete invite",
+      "translated": "Delete invite"
     }
   ],
 

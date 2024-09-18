@@ -3,11 +3,13 @@
   font-variant-numeric: tabular-nums;
 }
 
-#followup li {
+#followup li,
+#manage li {
   padding: 0;
 }
 
-#followup li > a {
+#followup li > a,
+#manage li > a {
   display: block;
   color: rgba(0, 0, 0, 0.87);
   font-family: "Inter", sans-serif;
