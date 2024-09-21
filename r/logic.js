@@ -1621,6 +1621,10 @@ async function onConfirmNotifications(e) {
   syncInviteNotifications();
 }
 
+function onDelete(e) {
+  e.preventDefault();
+}
+
 function onEdit(e) {
   e.preventDefault();
 }
@@ -1716,6 +1720,7 @@ function attachListeners() {
     .addEventListener("click", undeleteInvite);
 
   document.querySelector("#editLink").addEventListener("click", onEdit);
+  document.querySelector("#deleteLink").addEventListener("click", onDelete);
 }
 
 async function init() {
