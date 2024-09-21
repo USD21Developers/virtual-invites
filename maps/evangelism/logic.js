@@ -108,7 +108,7 @@ async function initMap(searchResults) {
     zoom: zoom,
     center: { lat: latitude, lng: longitude },
     mapId: "33214095edafc538",
-    mapTypeId: "terrain",
+    mapTypeId: "roadmap",
   });
 
   const bounds = new google.maps.LatLngBounds();
