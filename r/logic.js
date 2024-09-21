@@ -1621,8 +1621,80 @@ async function onConfirmNotifications(e) {
   syncInviteNotifications();
 }
 
-function onDelete(e) {
+async function onDelete(e) {
   e.preventDefault();
+  const lang = getLang();
+  const deletePhrases = await fetch(`../invites/i18n/${lang}.json`).then(
+    (res) => res.json()
+  );
+  const txtConfirm = getPhrase("confirm", deletePhrases);
+  const txtDelete = getPhrase("delete", deletePhrases);
+  const txtDeleteAreYouSure = getPhrase("deleteAreYouSure1", deletePhrases);
+  const txtInvitedOn = getPhrase("invitedOn", deletePhrases);
+  const deleteModalEl = document.querySelector("#deleteModal");
+  const blockQuoteEl = deleteModalEl.querySelector("blockquote");
+
+  deleteModalEl.querySelector("#deleteConfirm").innerHTML = txtConfirm;
+  deleteModalEl.querySelector("#deleteAreYouSure").innerHTML =
+    txtDeleteAreYouSure;
+  const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
+  const dateInvited = Intl.DateTimeFormat(userDateTimePrefs.locale, {
+    dateStyle: "long",
+    timeStyle: "short",
+    timeZone: userDateTimePrefs.timeZone,
+  }).format(new Date(`${inviteObj.utctime}Z`));
+  const whenInvitedPhrase = txtInvitedOn.replaceAll("{DATETIME}", dateInvited);
+
+  const blockQuoteText = `
+    <strong class="large">${inviteObj.recipient.name}</strong>
+    <div class="text-dark mb-1">
+      ${whenInvitedPhrase}
+    </div>
+  `;
+
+  blockQuoteEl.innerHTML = blockQuoteText;
+
+  $("#deleteModal").modal("show");
+}
+
+async function onDeleteSubmitted(e) {
+  e.preventDefault();
+  $("#deleteModal").modal("hide");
+  globalShowPageSpinner();
+
+  // TODO:  check if user is offline first
+
+  const endpoint = `${getApiHost()}/delete-invites`;
+  const accessToken = await getAccessToken();
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "post",
+    body: JSON.stringify({
+      ids: [inviteObj.invitationid],
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      // TODO:  handle errors
+
+      syncInvites()
+        .then(() => {
+          window.location.href = "/";
+        })
+        .catch((error) => {
+          console.error(error);
+          globalHidePageSpinner();
+        });
+    })
+    .catch((error) => {
+      console.error(error);
+      globalHidePageSpinner();
+    });
 }
 
 function onEdit(e) {
@@ -1721,6 +1793,9 @@ function attachListeners() {
 
   document.querySelector("#editLink").addEventListener("click", onEdit);
   document.querySelector("#deleteLink").addEventListener("click", onDelete);
+  document
+    .querySelector("#formDeleteInvites")
+    .addEventListener("submit", onDeleteSubmitted);
 }
 
 async function init() {
