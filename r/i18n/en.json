@@ -120,8 +120,8 @@
     },
     {
       "key": "contactViaWhatsApp",
-      "original": "Contact via WhatsApp",
-      "translated": "Contact via WhatsApp"
+      "original": "WhatsApp",
+      "translated": "WhatsApp"
     },
     {
       "key": "send-email",
