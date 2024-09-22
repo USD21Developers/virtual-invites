@@ -110,13 +110,13 @@
     },
     {
       "key": "phone-call",
-      "original": "Make a phone call",
-      "translated": "Make a phone call"
+      "original": "Phone call",
+      "translated": "Phone call"
     },
     {
       "key": "send-sms",
-      "original": "Send a text message",
-      "translated": "Send a text message"
+      "original": "Text message",
+      "translated": "Text message"
     },
     {
       "key": "contactViaWhatsApp",
