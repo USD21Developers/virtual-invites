@@ -944,6 +944,8 @@ function prepopulateInvite() {
     // Populate name
     nameEl.value = name;
 
+    debugger;
+
     // Populate contact method
     if (email) {
       const emailEl = document.querySelector("#sendto_email");
@@ -959,7 +961,6 @@ function prepopulateInvite() {
       if (sendvia === "sms") {
         selectSendVia("sms");
       } else if (sendvia === "whatsapp") {
-        debugger;
         selectSendVia("whatsapp");
       }
     } else if (sendvia === "qrcode") {
