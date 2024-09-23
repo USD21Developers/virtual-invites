@@ -953,8 +953,14 @@ function prepopulateInvite() {
     } else if (sms) {
       const smsEl = document.querySelector("#sendto_sms");
       if (!smsEl) return;
+
       smsEl.value = sms;
-      selectSendVia("sms");
+
+      if (sendvia === "sms") {
+        selectSendVia("sms");
+      } else if (sendvia === "whatsapp") {
+        selectSendVia("whatsapp");
+      }
     } else if (sendvia === "qrcode") {
       selectSendVia("qrcode");
     }
