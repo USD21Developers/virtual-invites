@@ -959,6 +959,7 @@ function prepopulateInvite() {
       if (sendvia === "sms") {
         selectSendVia("sms");
       } else if (sendvia === "whatsapp") {
+        debugger;
         selectSendVia("whatsapp");
       }
     } else if (sendvia === "qrcode") {
