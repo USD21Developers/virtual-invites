@@ -944,8 +944,6 @@ function prepopulateInvite() {
     // Populate name
     nameEl.value = name;
 
-    debugger;
-
     // Populate contact method
     if (email) {
       const emailEl = document.querySelector("#sendto_email");
@@ -1251,7 +1249,7 @@ function setEventListeners() {
 async function init() {
   setRecipientID();
   await checkForEvents();
-  clearForm();
+  // clearForm();
   await populateContent();
   populateSaveButtonData();
   await loadEvents();
