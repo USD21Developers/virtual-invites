@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="../css/daemonite-material.css" />
     <link href="../css/global.css" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
+    <link
+      href="../js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
+      rel="stylesheet"
+    />
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -944,7 +948,7 @@
       </div>
     </div>
 
-    <!-- Delete Modal -->
+    <!-- Modal for deleting invite -->
     <div
       class="modal fade"
       id="deleteModal"
@@ -991,6 +995,85 @@
               ></button>
             </form>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for editing invite -->
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <form id="formEditInvite" method="post">
+            <input type="hidden" name="inviteId" id="inviteId" />
+            <div class="modal-header">
+              <h5 class="modal-title" data-i18n="editInvite"></h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label=""
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body pb-1">
+              <div class="form-group">
+                <label for="editName" data-i18n="editName"></label>
+                <input type="text" class="form-control" id="editName" />
+              </div>
+
+              <div class="form-group">
+                <label for="editEmail" data-i18n="editEmail"></label>
+                <input type="email" class="form-control" id="editEmail" />
+              </div>
+
+              <div class="form-group">
+                <div>
+                  <label for="editPhone" data-i18n="editPhone"></label>
+                </div>
+                <input
+                  type="tel"
+                  pattern="[0-9]*"
+                  class="form-control hideKeyboardWhileFocused"
+                  id="editPhone"
+                />
+              </div>
+
+              <div class="form-group d-none" id="editWhatsAppContainer">
+                <div>
+                  <label for="editWhatsApp" data-i18n="editWhatsApp"></label>
+                </div>
+
+                <input
+                  type="tel"
+                  pattern="[0-9]*"
+                  class="form-control hideKeyboardWhileFocused"
+                  id="editWhatsApp"
+                />
+              </div>
+            </div>
+            <div class="modal-footer mt-3 mb-1">
+              <button
+                type="button"
+                class="btn text-muted ml-3"
+                data-dismiss="modal"
+                data-i18n-global="cancel"
+              ></button>
+              <button
+                id="submitEditButton"
+                type="submit"
+                class="btn btn-primary ml-5 mr-2 font-weight-bold"
+                data-i18n-global="update"
+              ></button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -1072,6 +1155,7 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
     <script src="../js/getMobileOperatingSystem.js"></script>
     <script src="../js/global.js"></script>
     <script src="../js/sync.js"></script>

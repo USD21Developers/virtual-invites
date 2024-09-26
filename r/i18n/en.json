@@ -417,6 +417,26 @@
       "key": "deleteInvite",
       "original": "Delete invite",
       "translated": "Delete invite"
+    },
+    {
+      "key": "editName",
+      "original": "Name:",
+      "translated": "Name:"
+    },
+    {
+      "key": "editEmail",
+      "original": "E-mail address:",
+      "translated": "E-mail address:"
+    },
+    {
+      "key": "editPhone",
+      "original": "Phone number:",
+      "translated": "Phone number:"
+    },
+    {
+      "key": "editWhatsApp",
+      "original": "WhatsApp number:",
+      "translated": "WhatsApp number:"
     }
   ],
 

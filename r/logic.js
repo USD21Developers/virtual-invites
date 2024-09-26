@@ -189,6 +189,26 @@ function getRecipient() {
   });
 }
 
+function initIntlTelInput() {
+  const editPhoneEl = document.querySelector("#editPhone");
+  const editWhatsAppEl = document.querySelector("#editWhatsApp");
+  const initialCountry = localStorage.getItem("countryIso") || "us";
+
+  iti = window.intlTelInput(editPhoneEl, {
+    initialCountry: initialCountry,
+    preferredCountries: [initialCountry],
+    showOnly: [initialCountry],
+    utilsScript: "../js/intl-tel-input-17.0.0/js/utils.js",
+  });
+
+  iti = window.intlTelInput(editWhatsAppEl, {
+    initialCountry: initialCountry,
+    preferredCountries: [initialCountry],
+    showOnly: [initialCountry],
+    utilsScript: "../js/intl-tel-input-17.0.0/js/utils.js",
+  });
+}
+
 async function renderRecipient(invite) {
   let mapLink;
   let directionsLink;
@@ -1699,6 +1719,28 @@ async function onDeleteSubmitted(e) {
 
 function onEdit(e) {
   e.preventDefault();
+  const modal = document.querySelector("#formEditInvite");
+  const editWhatsAppContainerEl = modal.querySelector("#editWhatsAppContainer");
+
+  modal.querySelector("#editName").value = inviteObj.recipient.name;
+
+  modal.querySelector("#editEmail").value = inviteObj.recipient.email
+    ? inviteObj.recipient.email
+    : "";
+
+  if (inviteObj.sentvia === "whatsapp") {
+    editWhatsAppContainerEl.classList.remove("d-none");
+    modal.querySelector("#editWhatsApp").value = inviteObj.recipient.sms
+      ? inviteObj.recipient.sms
+      : "";
+  } else {
+    editWhatsAppContainerEl.classList.add("d-none");
+    modal.querySelector("#editPhone").value = inviteObj.recipient.sms
+      ? inviteObj.recipient.sms
+      : "";
+  }
+
+  $("#editModal").modal("show");
 }
 
 function attachListeners() {
@@ -1821,6 +1863,7 @@ async function init() {
   populateAddToFollowupLinks();
   populateNotificationsSettings();
   populateNotes();
+  initIntlTelInput();
   attachListeners();
 
   globalHidePageSpinner();
