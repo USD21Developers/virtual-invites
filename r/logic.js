@@ -1732,21 +1732,9 @@ function onEdit(e) {
 
   if (inviteObj.recipient.sms) {
     modal.querySelector("#editPhone").value = inviteObj.recipient.sms;
-    const formattedPhone = itiPhone.getNumber(
-      intlTelInputUtils.numberFormat.NATIONAL
-    );
-    modal.querySelector("#editPhone").value = formattedPhone
-      ? formattedPhone
-      : "";
 
     if (inviteObj.sentvia === "whatsapp") {
       modal.querySelector("#editWhatsApp").value = inviteObj.recipient.sms;
-      const formattedWhatsApp = itiWhatsApp.getNumber(
-        intlTelInputUtils.numberFormat.NATIONAL
-      );
-      modal.querySelector("#editWhatsApp").value = formattedWhatsApp
-        ? formattedWhatsApp
-        : "";
     }
   }
 
