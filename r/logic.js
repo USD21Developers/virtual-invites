@@ -1744,7 +1744,7 @@ function onEdit(e) {
       const formattedWhatsApp = itiWhatsApp.getNumber(
         intlTelInputUtils.numberFormat.NATIONAL
       );
-      modal.querySelector("#editPhone").value = formattedWhatsApp
+      modal.querySelector("#editWhatsApp").value = formattedWhatsApp
         ? formattedWhatsApp
         : "";
     }
