@@ -4,6 +4,8 @@ let syncedInviteNotifications = false;
 let inviteObj = {};
 let eventObj = {};
 let notesObj = [];
+let itiPhone;
+let itiWhatsApp;
 
 function closeModal() {
   const followUpFormEl = document.querySelector("#followUpForm");
@@ -194,14 +196,14 @@ function initIntlTelInput() {
   const editWhatsAppEl = document.querySelector("#editWhatsApp");
   const initialCountry = localStorage.getItem("countryIso") || "us";
 
-  iti = window.intlTelInput(editPhoneEl, {
+  itiPhone = window.intlTelInput(editPhoneEl, {
     initialCountry: initialCountry,
     preferredCountries: [initialCountry],
     showOnly: [initialCountry],
     utilsScript: "../js/intl-tel-input-17.0.0/js/utils.js",
   });
 
-  iti = window.intlTelInput(editWhatsAppEl, {
+  itiWhatsApp = window.intlTelInput(editWhatsAppEl, {
     initialCountry: initialCountry,
     preferredCountries: [initialCountry],
     showOnly: [initialCountry],
@@ -1728,14 +1730,24 @@ function onEdit(e) {
     ? inviteObj.recipient.email
     : "";
 
-  modal.querySelector("#editPhone").value = inviteObj.recipient.sms
-    ? inviteObj.recipient.sms
-    : "";
-
-  if (inviteObj.sentvia === "whatsapp") {
-    modal.querySelector("#editWhatsApp").value = inviteObj.recipient.sms
-      ? inviteObj.recipient.sms
+  if (inviteObj.recipient.sms) {
+    modal.querySelector("#editPhone").value = inviteObj.recipient.sms;
+    const formattedPhone = itiPhone.getNumber(
+      intlTelInputUtils.numberFormat.NATIONAL
+    );
+    modal.querySelector("#editPhone").value = formattedPhone
+      ? formattedPhone
       : "";
+
+    if (inviteObj.sentvia === "whatsapp") {
+      modal.querySelector("#editWhatsApp").value = inviteObj.recipient.sms;
+      const formattedWhatsApp = itiWhatsApp.getNumber(
+        intlTelInputUtils.numberFormat.NATIONAL
+      );
+      modal.querySelector("#editPhone").value = formattedWhatsApp
+        ? formattedWhatsApp
+        : "";
+    }
   }
 
   $("#editModal").modal("show");
