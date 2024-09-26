@@ -142,7 +142,7 @@ function getAddressForMaps() {
     if (address.length > 0) {
       addressLink = `https://maps.apple.com/?daddr=${addressLink}&dirflg=d&t=m`;
     } else if (latitude.length > 0 && longitude.length > 0) {
-      addressLink = `https://maps.apple.com/?ll=${latitude},${longitude}&t=m`;
+      addressLink = `https://maps.apple.com/?daddr=${latitude},${longitude}&t=m`;
     }
   } else {
     // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
