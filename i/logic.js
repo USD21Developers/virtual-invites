@@ -204,14 +204,20 @@ function getAddressForMaps(event) {
     // Docs for Apple Maps URLs:  https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
     if (address.length > 0) {
       addressLink = `https://maps.apple.com/?daddr=${addressLink}&dirflg=d&t=m`;
-    } else if (latitude.length > 0 && longitude.length > 0) {
+    } else if (
+      latitude.toString().length > 0 &&
+      longitude.toString().length > 0
+    ) {
       addressLink = `https://maps.apple.com/?ll=${latitude},${longitude}&t=m`;
     }
   } else {
     // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
     if (address.length > 0) {
       addressLink = `https://www.google.com/maps/dir/?api=1&destination=${addressLink}&sensor=true`;
-    } else if (latitude.length > 0 && longitude.length > 0) {
+    } else if (
+      latitude.toString().length > 0 &&
+      longitude.toString().length > 0
+    ) {
       addressLink = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
     }
   }
