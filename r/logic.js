@@ -1728,14 +1728,12 @@ function onEdit(e) {
     ? inviteObj.recipient.email
     : "";
 
+  modal.querySelector("#editPhone").value = inviteObj.recipient.sms
+    ? inviteObj.recipient.sms
+    : "";
+
   if (inviteObj.sentvia === "whatsapp") {
-    editWhatsAppContainerEl.classList.remove("d-none");
     modal.querySelector("#editWhatsApp").value = inviteObj.recipient.sms
-      ? inviteObj.recipient.sms
-      : "";
-  } else {
-    editWhatsAppContainerEl.classList.add("d-none");
-    modal.querySelector("#editPhone").value = inviteObj.recipient.sms
       ? inviteObj.recipient.sms
       : "";
   }
