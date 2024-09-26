@@ -208,7 +208,7 @@ function getAddressForMaps(event) {
       latitude.toString().length > 0 &&
       longitude.toString().length > 0
     ) {
-      addressLink = `https://maps.apple.com/?ll=${latitude},${longitude}&t=m`;
+      addressLink = `https://maps.apple.com/?daddr=${latitude},${longitude}&t=m`;
     }
   } else {
     // Docs for Google Maps URLs:  https://developers.google.com/maps/documentation/urls
