@@ -197,7 +197,7 @@ function getAddressForMaps(event) {
   }
 
   const operatingSystem = getMobileOperatingSystem();
-  const { x: latitude, y: longitude } = locationcoordinates;
+  const { x: longitude, y: latitude } = locationcoordinates;
 
   // Use Apple Maps if we're on iOS. For all other operating systems, use Google Maps.
   if (operatingSystem === "iOS") {
