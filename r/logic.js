@@ -1819,6 +1819,7 @@ async function onEditSubmitted(e) {
     return;
   }
 
+  $("#editModal").modal("hide");
   globalShowPageSpinner();
 
   const accessToken = await getAccessToken();
