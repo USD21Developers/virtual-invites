@@ -1741,12 +1741,8 @@ async function onEditSubmitted(e) {
   const isValidPhoneNumber = itiPhone.isValidNumber();
   const invitationid = Number(getHash().split("/")[1]);
   const datakey = localStorage.getItem("datakey");
-  const phoneNumberEncrypted = phoneNumber.length
-    ? await invitesCrypto.encrypt(datakey, phoneNumber)
-    : null;
-  const emailEncrypted = email.length
-    ? await invitesCrypto.encrypt(datakey, email)
-    : null;
+  let phoneNumberEncrypted = null;
+  let emailEncrypted = null;
   const endpoint = `${getApiHost()}/invite-edit`;
   let sentvia = inviteObj.sentvia;
 
@@ -1771,6 +1767,8 @@ async function onEditSubmitted(e) {
       customScrollTo("#editEmail");
       return;
     }
+    emailEncrypted = await invitesCrypto.encrypt(datakey, email);
+    emailEncrypted = JSON.stringify(emailEncrypted);
   }
 
   // Validate phone
@@ -1785,6 +1783,9 @@ async function onEditSubmitted(e) {
       customScrollTo("#editPhone");
       return;
     }
+
+    phoneNumberEncrypted = await invitesCrypto.encrypt(datakey, phoneNumber);
+    phoneNumberEncrypted = JSON.stringify(phoneNumberEncrypted);
   }
 
   // Set sentvia based on populated phone number
@@ -1827,8 +1828,16 @@ async function onEditSubmitted(e) {
   })
     .then((res) => res.json())
     .then(async (data) => {
-      await syncInvites();
-      window.location.reload();
+      if (data.msg === "invite updated") {
+        await syncInvites();
+        window.location.reload();
+      } else {
+        throw new Error(data.msg);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      globalHidePageSpinner();
     });
 }
 
