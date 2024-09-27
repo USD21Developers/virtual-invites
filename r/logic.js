@@ -5,7 +5,6 @@ let inviteObj = {};
 let eventObj = {};
 let notesObj = [];
 let itiPhone;
-let itiWhatsApp;
 
 function closeModal() {
   const followUpFormEl = document.querySelector("#followUpForm");
@@ -193,17 +192,9 @@ function getRecipient() {
 
 function initIntlTelInput() {
   const editPhoneEl = document.querySelector("#editPhone");
-  const editWhatsAppEl = document.querySelector("#editWhatsApp");
   const initialCountry = localStorage.getItem("countryIso") || "us";
 
   itiPhone = window.intlTelInput(editPhoneEl, {
-    initialCountry: initialCountry,
-    preferredCountries: [initialCountry],
-    showOnly: [initialCountry],
-    utilsScript: "../js/intl-tel-input-17.0.0/js/utils.js",
-  });
-
-  itiWhatsApp = window.intlTelInput(editWhatsAppEl, {
     initialCountry: initialCountry,
     preferredCountries: [initialCountry],
     showOnly: [initialCountry],
@@ -1721,8 +1712,7 @@ async function onDeleteSubmitted(e) {
 
 function onEdit(e) {
   e.preventDefault();
-  const modal = document.querySelector("#formEditInvite");
-  const editWhatsAppContainerEl = modal.querySelector("#editWhatsAppContainer");
+  const modal = document.querySelector("#editModal");
 
   modal.querySelector("#editName").value = inviteObj.recipient.name;
 
@@ -1734,11 +1724,111 @@ function onEdit(e) {
     modal.querySelector("#editPhone").value = inviteObj.recipient.sms;
 
     if (inviteObj.sentvia === "whatsapp") {
-      modal.querySelector("#editWhatsApp").value = inviteObj.recipient.sms;
+      document.querySelector("#isWhatsApp").checked = true;
     }
   }
 
   $("#editModal").modal("show");
+}
+
+async function onEditSubmitted(e) {
+  const modal = document.querySelector("#editModal");
+  const snackbar = modal.querySelector("#editModalSnackbar");
+  const name = modal.querySelector("#editName").value.trim();
+  const email = modal.querySelector("#editEmail").value.toLowerCase().trim();
+  const phoneNumber = itiPhone.getNumber();
+  const isWhatsApp = modal.querySelector("#isWhatsApp").checked;
+  const isValidPhoneNumber = itiPhone.isValidNumber();
+  const invitationid = Number(getHash().split("/")[1]);
+  const datakey = localStorage.getItem("datakey");
+  const phoneNumberEncrypted = phoneNumber.length
+    ? await invitesCrypto.encrypt(datakey, phoneNumber)
+    : null;
+  const emailEncrypted = email.length
+    ? await invitesCrypto.encrypt(datakey, email)
+    : null;
+  const endpoint = `${getApiHost()}/invite-edit`;
+  let sentvia = inviteObj.sentvia;
+
+  e.preventDefault();
+
+  // Reset error messages
+  formErrorsReset();
+  modal.querySelector("#editPhoneInvalidFeedback").classList.remove("show");
+
+  // Validate name
+  if (name.trim().length === 0) {
+    formError("#editName", getPhrase("nameIsRequired"));
+    customScrollTo("#editName");
+    return;
+  }
+
+  // Validate e-mail
+  if (email.trim().length) {
+    const isValidEmail = validateEmail(email);
+    if (!isValidEmail) {
+      formError("#editEmail", getPhrase("emailIsInvalid"));
+      customScrollTo("#editEmail");
+      return;
+    }
+  }
+
+  // Validate phone
+  if (phoneNumber.length) {
+    if (!isValidPhoneNumber) {
+      const invalidFeedback = document.querySelector(
+        "#editPhoneInvalidFeedback"
+      );
+      formError("#editPhone", getPhrase("phoneNumberIsInvalid"));
+      invalidFeedback.innerHTML = getPhrase("phoneNumberIsInvalid");
+      invalidFeedback.classList.add("show");
+      customScrollTo("#editPhone");
+      return;
+    }
+  }
+
+  // Set sentvia based on populated phone number
+  if (phoneNumber.length) {
+    sentvia = "sms";
+    if (isWhatsApp) {
+      sentvia = "whatsapp";
+    }
+  }
+
+  if (!navigator.onLine) {
+    snackbar.querySelector(".snackbar-body").innerHTML =
+      getGlobalPhrase("youAreOffline");
+    snackbar.classList.add("show");
+    setTimeout(() => {
+      snackbar.classList.remove("show");
+    }, 5000);
+    return;
+  }
+
+  globalShowPageSpinner();
+
+  const accessToken = await getAccessToken();
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "post",
+    body: JSON.stringify({
+      invitationid: invitationid,
+      name: name.trim(),
+      email: emailEncrypted,
+      phoneNumber: phoneNumberEncrypted,
+      sentvia: sentvia,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then(async (data) => {
+      await syncInvites();
+      window.location.reload();
+    });
 }
 
 function attachListeners() {
@@ -1836,6 +1926,10 @@ function attachListeners() {
   document
     .querySelector("#formDeleteInvites")
     .addEventListener("submit", onDeleteSubmitted);
+
+  document
+    .querySelector("#formEditInvite")
+    .addEventListener("submit", onEditSubmitted);
 }
 
 async function init() {

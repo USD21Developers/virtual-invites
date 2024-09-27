@@ -434,9 +434,24 @@
       "translated": "Phone number:"
     },
     {
-      "key": "editWhatsApp",
-      "original": "WhatsApp number:",
-      "translated": "WhatsApp number:"
+      "key": "isWhatsApp",
+      "original": "This is a WhatsApp phone number",
+      "translated": "This is a WhatsApp phone number"
+    },
+    {
+      "key": "nameIsRequired",
+      "original": "Name is required",
+      "translated": "Name is required"
+    },
+    {
+      "key": "emailIsInvalid",
+      "original": "Invalid e-mail address",
+      "translated": "Invalid e-mail address"
+    },
+    {
+      "key": "phoneNumberIsInvalid",
+      "original": "Invalid phone number",
+      "translated": "Invalid phone number"
     }
   ],
 

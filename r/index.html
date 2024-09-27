@@ -1027,14 +1027,16 @@
               <div class="form-group">
                 <label for="editName" data-i18n="editName"></label>
                 <input type="text" class="form-control" id="editName" />
+                <div class="invalid-feedback"></div>
               </div>
 
               <div class="form-group mt-4 pt-2">
                 <label for="editEmail" data-i18n="editEmail"></label>
                 <input type="email" class="form-control" id="editEmail" />
+                <div class="invalid-feedback"></div>
               </div>
 
-              <div class="form-group mt-4 pt-2">
+              <div class="form-group mt-4 pt-2 mb-1">
                 <div>
                   <label for="editPhone" data-i18n="editPhone"></label>
                 </div>
@@ -1045,17 +1047,22 @@
                   id="editPhone"
                 />
               </div>
+              <div class="invalid-feedback" id="editPhoneInvalidFeedback"></div>
 
-              <div class="form-group mt-4 pt-2">
-                <div>
-                  <label for="editWhatsApp" data-i18n="editWhatsApp"></label>
+              <div class="form-group my-2 pt-1">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="isWhatsApp"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="isWhatsApp"
+                    data-i18n="isWhatsApp"
+                  ></label>
                 </div>
-                <input
-                  type="tel"
-                  pattern="[0-9]*"
-                  class="form-control hideKeyboardWhileFocused"
-                  id="editWhatsApp"
-                />
               </div>
             </div>
             <div class="modal-footer mt-3 mb-1">
@@ -1073,6 +1080,13 @@
               ></button>
             </div>
           </form>
+
+          <div
+            class="snackbar snackbar-multi-line bg-danger"
+            id="editModalSnackbar"
+          >
+            <div class="snackbar-body"></div>
+          </div>
         </div>
       </div>
     </div>
