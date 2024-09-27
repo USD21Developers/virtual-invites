@@ -1795,6 +1795,7 @@ async function onEditSubmitted(e) {
     }
   }
 
+  // Stop if user is offline
   if (!navigator.onLine) {
     snackbar.querySelector(".snackbar-body").innerHTML =
       getGlobalPhrase("youAreOffline");
