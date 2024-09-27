@@ -383,7 +383,21 @@ async function renderRecipient(invite) {
       "#qrCodeWithoutLocation"
     );
 
-    if (sentvia === "sms") {
+    if (sms && sms.length) {
+      if (sentvia === "whatsapp") {
+        const whatsAppNumber = sms.replaceAll("+", "");
+        whatsAppLinkEl.setAttribute("href", `https://wa.me/${whatsAppNumber}`);
+        phoneLinkEl.setAttribute("href", `tel:${sms}`);
+        smsLinkEl.setAttribute("href", `sms:${sms}`);
+        headlineFollowUpEl.innerText = getPhrase("headlineFollowUp").replaceAll(
+          "{RECIPIENT-NAME}",
+          name
+        );
+        whatsAppLinkContainerEl.classList.remove("d-none");
+        phoneLinkContainerEl.classList.remove("d-none");
+        smsLinkContainerEl.classList.remove("d-none");
+      }
+
       phoneLinkEl.setAttribute("href", `tel:${sms}`);
       smsLinkEl.setAttribute("href", `sms:${sms}`);
       headlineFollowUpEl.innerText = getPhrase("headlineFollowUp").replaceAll(
@@ -397,29 +411,27 @@ async function renderRecipient(invite) {
         name
       );
       addToPhonebookLinkContainerEl.classList.remove("d-none");
+
       followupEl.classList.remove("d-none");
-    } else if (sentvia === "whatsapp") {
-      const whatsAppNumber = sms.replaceAll("+", "");
-      whatsAppLinkEl.setAttribute("href", `https://wa.me/${whatsAppNumber}`);
-      phoneLinkEl.setAttribute("href", `tel:${sms}`);
-      smsLinkEl.setAttribute("href", `sms:${sms}`);
-      headlineFollowUpEl.innerText = getPhrase("headlineFollowUp").replaceAll(
-        "{RECIPIENT-NAME}",
-        name
-      );
-      whatsAppLinkContainerEl.classList.remove("d-none");
-      phoneLinkContainerEl.classList.remove("d-none");
-      smsLinkContainerEl.classList.remove("d-none");
-      followupEl.classList.remove("d-none");
-    } else if (sentvia === "email") {
+    }
+
+    if (email && email.length) {
       emailLinkEl.setAttribute("href", `mailto:${email}`);
       emailLinkContainerEl.classList.remove("d-none");
       headlineFollowUpEl.innerText = getPhrase("headlineFollowUp").replaceAll(
         "{RECIPIENT-NAME}",
         name
       );
+
+      if (sms && sms.length) {
+        document.querySelector("[data-i18n='send-email']").innerHTML =
+          getPhrase("email");
+      }
+
       followupEl.classList.remove("d-none");
-    } else if (sentvia === "qrcode") {
+    }
+
+    if (sentvia === "qrcode" && !email.length && !sms.length) {
       headlineFollowUpEl.innerText = getPhrase(
         "headlineFollowUpInPerson"
       ).replaceAll("{RECIPIENT-NAME}", name);
@@ -1932,7 +1944,9 @@ function attachListeners() {
     .addEventListener("click", undeleteInvite);
 
   document.querySelector("#editLink").addEventListener("click", onEdit);
+
   document.querySelector("#deleteLink").addEventListener("click", onDelete);
+
   document
     .querySelector("#formDeleteInvites")
     .addEventListener("submit", onDeleteSubmitted);

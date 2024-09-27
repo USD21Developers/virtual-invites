@@ -129,6 +129,11 @@
       "translated": "Send an e-mail"
     },
     {
+      "key": "email",
+      "original": "E-mail",
+      "translated": "E-mail"
+    },
+    {
       "key": "add-calendar-reminder",
       "original": "Add a follow up reminder to my calendar",
       "translated": "Add a follow up reminder to my calendar"
