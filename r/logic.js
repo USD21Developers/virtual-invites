@@ -525,7 +525,7 @@ async function onAddToPhoneBook(e) {
   };
 
   const inviteId = Number(getHash().split("/")[1]);
-  const invites = await localforage.getItem("invites");
+  let invites = await localforage.getItem("invites");
   if (!invites) return;
   if (!Array.isArray(invites)) return;
   const invite = invites.find((item) => item.invitationid === inviteId);
