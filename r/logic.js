@@ -462,8 +462,6 @@ async function renderRecipient(invite) {
 async function onAddToPhoneBook(e) {
   e.preventDefault();
 
-  debugger;
-
   // vCard 3.0 spec:  https://www.evenx.com/vcard-3-0-format-specification
 
   const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
