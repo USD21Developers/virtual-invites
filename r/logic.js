@@ -535,8 +535,8 @@ async function onAddToPhoneBook(e) {
   const long = invite.coords ? invite.coords.x : null;
   const eventid = invite.eventid || null;
 
-  const events = await localforage.getItem("events");
-  const eventsByFollowedUsers = await localforage.getItem(
+  let events = await localforage.getItem("events");
+  let eventsByFollowedUsers = await localforage.getItem(
     "eventsByFollowedUsers"
   );
   if (!events) return;
