@@ -320,6 +320,8 @@ async function renderRecipient(invite) {
       if (coords.hasOwnProperty("y")) {
         longitude = coords.y;
       }
+
+      toggleRemoveMapLocation();
     }
 
     if (latitude && longitude) {
@@ -1321,6 +1323,16 @@ function collapseAllNotesExceptLast() {
         );
       }
     });
+}
+
+function toggleRemoveMapLocation() {
+  const removeMapContainerEl = document.querySelector("#removeMapContainer");
+
+  if (!inviteObj) return;
+
+  if (inviteObj.coords) {
+    removeMapContainerEl.classList.remove("d-none");
+  }
 }
 
 function resetAddNoteForm() {

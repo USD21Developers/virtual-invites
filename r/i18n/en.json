@@ -457,6 +457,16 @@
       "key": "phoneNumberIsInvalid",
       "original": "Invalid phone number",
       "translated": "Invalid phone number"
+    },
+    {
+      "key": "removeMapLabel",
+      "original": "Mapped location",
+      "translated": "Mapped location"
+    },
+    {
+      "key": "removeMapCheckboxLabel",
+      "original": "Remove mapped location from this invite",
+      "translated": "Remove mapped location from this invite"
     }
   ],
 
