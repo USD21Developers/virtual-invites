@@ -465,8 +465,8 @@
     },
     {
       "key": "removeMapCheckboxLabel",
-      "original": "Remove mapped location from this invite",
-      "translated": "Remove mapped location from this invite"
+      "original": "Remove 'invited from location' from this invite",
+      "translated": "Remove 'invited from location' from this invite"
     }
   ],
 
