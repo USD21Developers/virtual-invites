@@ -460,13 +460,13 @@
     },
     {
       "key": "removeMapLabel",
-      "original": "Mapped location",
-      "translated": "Mapped location"
+      "original": "Invited from location",
+      "translated": "Invited from location"
     },
     {
       "key": "removeMapCheckboxLabel",
-      "original": "Remove 'invited from location' from this invite",
-      "translated": "Remove 'invited from location' from this invite"
+      "original": "Remove mapped location from this invite",
+      "translated": "Remove mapped location from this invite"
     }
   ],
 
