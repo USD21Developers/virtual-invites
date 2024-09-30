@@ -927,13 +927,17 @@ function onAfterAllNotesSynced(allNotes) {
   const timeSincePageLoad = pageLoadCurrentTime - pageLoadStartTime;
   const minSeconds = 10;
   const minMilliseconds = minSeconds * 1000;
-  if (timeSincePageLoad > minMilliseconds) {
+
+  /* if (timeSincePageLoad > minMilliseconds) {
     const msgNotesUpdated = getGlobalPhrase("notesUpdatedReload");
     showToast(msgNotesUpdated, null, "info");
   } else {
     notesObj = filterNotes(allNotes);
     renderNotes();
-  }
+  } */
+
+  notesObj = filterNotes(allNotes);
+  renderNotes();
 }
 
 function onClickAway(event) {
