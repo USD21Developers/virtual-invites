@@ -1767,6 +1767,7 @@ async function onEditSubmitted(e) {
   const phoneNumber = itiPhone.getNumber();
   const isWhatsApp = modal.querySelector("#isWhatsApp").checked;
   const isValidPhoneNumber = itiPhone.isValidNumber();
+  const removeMap = document.querySelector("#removeMapCheckbox").checked;
   const invitationid = Number(getHash().split("/")[1]);
   const datakey = localStorage.getItem("datakey");
   let phoneNumberEncrypted = null;
@@ -1848,6 +1849,7 @@ async function onEditSubmitted(e) {
       name: name.trim(),
       email: emailEncrypted,
       phoneNumber: phoneNumberEncrypted,
+      removeMap: removeMap,
       sentvia: sentvia,
     }),
     headers: new Headers({
