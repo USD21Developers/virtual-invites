@@ -460,8 +460,8 @@
     },
     {
       "key": "removeMapLabel",
-      "original": "Invited from location",
-      "translated": "Invited from location"
+      "original": "Invited from location:",
+      "translated": "Invited from location:"
     },
     {
       "key": "removeMapCheckboxLabel",
