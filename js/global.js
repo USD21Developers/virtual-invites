@@ -1084,26 +1084,17 @@ function getTimezoneOffset(timezoneName) {
 
 function getUserChurchId(userid) {
   return new Promise(async (resolve, reject) => {
-    if (!navigator.onLine)
-      return reject(new Error("cannot retrieve church ID; user is offline"));
-    const endpoint = `${getApiHost()}/userprofile/${userid}`;
-    const accessToken = await getAccessToken();
-    fetch(endpoint, {
-      mode: "cors",
-      method: "GET",
-      headers: new Headers({
-        "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.msgType && data.msgType === "error") {
-          return reject(new Error(data.msg));
-        }
-        const { churchid } = data.profile;
-        return resolve(churchid);
-      });
+    const refreshToken = localStorage.getItem("refreshToken");
+    const refreshTokenParsed = refreshToken
+      ? JSON.parse(atob(refreshToken.split(".")[1]))
+      : null;
+
+    if (refreshTokenParsed) {
+      churchid = refreshTokenParsed.churchid;
+      return resolve(refreshTokenParsed.churchid);
+    }
+
+    return reject();
   });
 }
 
@@ -1739,7 +1730,10 @@ function userChurchStillExists() {
     if (!userid) return reject("userid not recognized");
 
     const churches = JSON.parse(churchesJSON);
-    const churchid = await getUserChurchId(userid);
+    const churchid = await getUserChurchId(userid).catch((err) => {
+      console.error(err);
+      return resolve();
+    });
     const churchExists = churches.find((item) => item.id === churchid)
       ? true
       : false;
