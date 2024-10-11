@@ -186,37 +186,96 @@
 
     <div class="container d-none mainContent">
       <div class="row">
-        <div class="col col-md-4 offset-md-4 mt-3 pb-4 mb-4">
+        <div class="col col-md-4 offset-md-4 mt-4">
           <h2
             class="text-center text-uppercase m-0 balancedTextWrap"
             data-i18n="pagetitle"
           ></h2>
         </div>
       </div>
-      <form novalidate>
-        <div class="row">
-          <div class="col-sm-4 offset-sm-2">
-            <div class="form-group">
-              <label for="firstname">First name:</label>
-              <input
-                type="text"
-                class="form-control"
-                id="firstname"
-              />
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="form-group">
-              <label for="lastname">Last name:</label>
-              <input
-                type="text"
-                class="form-control"
-                id="lastname"
-              />
+      <form id="finduserform" class="my-5" novalidate>
+        <div class="row mb-5">
+          <div class="col-sm-8 offset-sm-2">
+            <label for="churchid" data-i18n="church"></label>
+            <select id="churchid" name="churchid" class="form-control"></select>
+            <div
+              class="invalid-feedback searchedFirstName"
+              data-i18n="errorChurchIsRequired"
+            ></div>
+            <div>
+              <small id="selectedChurchName" class="text-muted"></small>
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-sm-4 offset-sm-2 mb-4">
+            <div class="form-group">
+              <div class="floating-label">
+                <label for="firstname" data-i18n="firstname"></label>
+                <input type="text" class="form-control" id="firstname" />
+                <div
+                  class="invalid-feedback searchedFirstName"
+                  data-i18n="errorNameIsRequired"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 mb-4">
+            <div class="form-group">
+              <div class="floating-label">
+                <label for="lastname" data-i18n="lastname"></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lastname"
+                  name="lastname"
+                />
+                <div
+                  class="invalid-feedback searchedLastName"
+                  data-i18n="errorNameIsRequired"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-sm-8 offset-sm-2 text-center">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              data-i18n="finduser"
+            ></button>
+          </div>
+        </div>
       </form>
+
+      <div class="row">
+        <div class="col">
+          <hr class="border-top border-dark" />
+        </div>
+      </div>
+
+      <div class="row my-5">
+        <div
+          class="col col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-6 offset-lg-3"
+        >
+          <div class="list-group">
+            <a
+              href="photoreview/"
+              class="list-group-item list-group-item-action"
+            >
+              <div class="media">
+                <div class="media-body" data-i18n="photoreview"></div>
+                <img
+                  class="ml-3 contactGlyph"
+                  src="/_assets/svg/icons/profile-photo.svg"
+                  alt=""
+                />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
 
       <div class="snackbar">
         <div class="snackbar-body"></div>

@@ -22,6 +22,41 @@
       "key": "breadcrumbAdmin",
       "original": "Admin",
       "translated": "Admin"
+    },
+    {
+      "key": "church",
+      "original": "Church:",
+      "translated": "Church:"
+    },
+    {
+      "key": "firstname",
+      "original": "First name",
+      "translated": "First name"
+    },
+    {
+      "key": "lastname",
+      "original": "Last name",
+      "translated": "Last name"
+    },
+    {
+      "key": "finduser",
+      "original": "Find User",
+      "translated": "Find User"
+    },
+    {
+      "key": "errorChurchIsRequired",
+      "original": "User's church is required",
+      "translated": "User's church is required"
+    },
+    {
+      "key": "errorNameIsRequired",
+      "original": "Name is required",
+      "translated": "Name is required"
+    },
+    {
+      "key": "photoreview",
+      "original": "Profile Photo Review",
+      "translated": "Profile Photo Review"
     }
   ],
 
