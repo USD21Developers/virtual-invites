@@ -50,8 +50,13 @@
     },
     {
       "key": "authorizeLink",
-      "original": "Pre-authorize a new user",
-      "translated": "Pre-authorize a new user"
+      "original": "Pre-authorize a New User",
+      "translated": "Pre-authorize a New User"
+    },
+    {
+      "key": "adminLink",
+      "original": "Manage Existing Users",
+      "translated": "Manage Existing Users"
     }
   ],
 
