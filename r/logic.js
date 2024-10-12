@@ -433,7 +433,7 @@ async function renderRecipient(invite) {
       followupEl.classList.remove("d-none");
     }
 
-    if (sentvia === "qrcode" && !email.length && !sms.length) {
+    if (sentvia === "qrcode" && !email && !sms) {
       headlineFollowUpEl.innerText = getPhrase(
         "headlineFollowUpInPerson"
       ).replaceAll("{RECIPIENT-NAME}", name);
