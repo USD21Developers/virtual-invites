@@ -57,6 +57,16 @@
       "key": "photoreview",
       "original": "Profile photos to review",
       "translated": "Profile photos to review"
+    },
+    {
+      "key": "users",
+      "original": "Users",
+      "translated": "Users"
+    },
+    {
+      "key": "maintenance",
+      "original": "Maintenance",
+      "translated": "Maintenance"
     }
   ],
 
