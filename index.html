@@ -178,41 +178,101 @@
         <div
           class="col col-sm-10 offset-sm-2 col-md-8 offset-md-2 col-lg-6 offset-lg-3"
         >
-          <div class="list-group">
-            <a
-              href="send/"
-              class="list-group-item list-group-item-action"
-              data-i18n="invitelink"
-            >
-            </a>
-            <a
-              href="invites/"
-              class="list-group-item list-group-item-action"
-              data-i18n="myinviteslink"
-            ></a>
-            <a
-              href="events/"
-              class="list-group-item list-group-item-action"
-              data-i18n="eventslink"
-            >
-            </a>
-            <a
-              href="maps/evangelism/"
-              class="list-group-item list-group-item-action"
-              data-i18n="evangelismMapLink"
-            >
-            </a>
-            <a
-              href="authorize/"
-              class="list-group-item list-group-item-action leadersOnly d-none"
-              data-i18n="authorizeLink"
-            >
-            </a>
-            <a
-              href="admin/"
-              class="list-group-item list-group-item-action leadersOnly d-none"
-              data-i18n="adminLink"
-            ></a>
+          <div class="card mb-5">
+            <div
+              class="card-header text-center font-weight-bold bg-secondary text-white"
+              data-i18n="evangelism"
+            ></div>
+            <div class="list-group">
+              <a
+                href="send/"
+                class="list-group-item list-group-item-action py-4 font-weight-bold"
+              >
+                <div class="media">
+                  <div
+                    class="media-body text-primary"
+                    data-i18n="invitelink"
+                  ></div>
+                  <img
+                    class="ml-3 contactGlyph"
+                    src="/_assets/svg/icons/send-dark.svg"
+                    alt=""
+                  />
+                </div>
+              </a>
+              <a href="invites/" class="list-group-item list-group-item-action">
+                <div class="media">
+                  <div class="media-body" data-i18n="myinviteslink"></div>
+                  <img
+                    class="ml-3 contactGlyph"
+                    src="/_assets/svg/icons/group-light.svg"
+                    alt=""
+                  />
+                </div>
+              </a>
+              <a href="events/" class="list-group-item list-group-item-action">
+                <div class="media">
+                  <div class="media-body" data-i18n="eventslink"></div>
+                  <img
+                    class="ml-3 contactGlyph"
+                    src="/_assets/svg/icons/event-light.svg"
+                    alt=""
+                  />
+                </div>
+              </a>
+              <a
+                href="maps/evangelism/"
+                class="list-group-item list-group-item-action"
+              >
+                <div class="media">
+                  <div
+                    class="media-body"
+                    data-i18n="evangelismMapListLink"
+                  ></div>
+                  <img
+                    class="ml-3 contactGlyph"
+                    src="/_assets/svg/icons/map-light.svg"
+                    alt=""
+                  />
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="my-5 py-1 leadersOnly">
+            <hr />
+          </div>
+
+          <div class="card my-5">
+            <div
+              class="card-header text-center font-weight-bold bg-secondary text-white"
+              data-i18n="administration"
+            ></div>
+            <div class="list-group list-group-flush leadersOnly d-none">
+              <a href="admin/" class="list-group-item list-group-item-action">
+                <div class="media">
+                  <div class="media-body" data-i18n="manageUsers"></div>
+                  <img
+                    class="ml-3 contactGlyph"
+                    src="/_assets/svg/icons/group.svg"
+                    alt=""
+                  />
+                </div>
+              </a>
+              <a
+                href="authorize/"
+                class="list-group-item list-group-item-action"
+              >
+                <div class="media">
+                  <div class="media-body" data-i18n="authorizeLink"></div>
+                  <img
+                    class="ml-3 contactGlyph"
+                    src="/_assets/svg/icons/person-add.svg"
+                    alt=""
+                  />
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>

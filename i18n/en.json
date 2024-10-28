@@ -49,14 +49,29 @@
       "translated": "Evangelism Map"
     },
     {
+      "key": "evangelismMapListLink",
+      "original": "Map",
+      "translated": "Map"
+    },
+    {
       "key": "authorizeLink",
       "original": "Pre-authorize a New User",
       "translated": "Pre-authorize a New User"
     },
     {
-      "key": "adminLink",
+      "key": "manageUsers",
       "original": "Manage Users",
       "translated": "Manage Users"
+    },
+    {
+      "key": "evangelism",
+      "original": "Evangelism",
+      "translated": "Evangelism"
+    },
+    {
+      "key": "administration",
+      "original": "Administration",
+      "translated": "Administration"
     }
   ],
 
