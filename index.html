@@ -178,7 +178,7 @@
         <div
           class="col col-sm-10 offset-sm-2 col-md-8 offset-md-2 col-lg-6 offset-lg-3"
         >
-          <div class="list-group shadow">
+          <div class="list-group shadow-sm">
             <a
               href="send/"
               class="list-group-item list-group-item-action py-4 font-weight-bold"
@@ -225,44 +225,19 @@
                 />
               </div>
             </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="row pt-5 my-5 leadersOnly d-none">
-        <div
-          class="col col-sm-10 offset-sm-2 col-md-8 offset-md-2 col-lg-6 offset-lg-3"
-        >
-          <div class="card shadow-sm">
-            <div
-              class="card-header text-center bg-light text-dark font-weight-bold"
-              data-i18n="administration"
-            ></div>
-            <div class="list-group list-group-flush">
-              <a
-                href="authorize/"
-                class="list-group-item list-group-item-action"
-              >
-                <div class="media">
-                  <div class="media-body" data-i18n="authorizeLink"></div>
-                  <img
-                    class="ml-3 contactGlyph"
-                    src="/_assets/svg/icons/person-add.svg"
-                    alt=""
-                  />
-                </div>
-              </a>
-              <a href="admin/" class="list-group-item list-group-item-action">
-                <div class="media">
-                  <div class="media-body" data-i18n="manageUsers"></div>
-                  <img
-                    class="ml-3 contactGlyph"
-                    src="/_assets/svg/icons/group.svg"
-                    alt=""
-                  />
-                </div>
-              </a>
-            </div>
+            <a
+              href="authorize/"
+              class="list-group-item list-group-item-action leadersOnly"
+            >
+              <div class="media">
+                <div class="media-body" data-i18n="authorizeLink"></div>
+                <img
+                  class="ml-3 contactGlyph"
+                  src="/_assets/svg/icons/preauthorize.svg"
+                  alt=""
+                />
+              </div>
+            </a>
           </div>
         </div>
       </div>
