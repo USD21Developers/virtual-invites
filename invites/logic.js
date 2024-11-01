@@ -36,7 +36,17 @@ function populateRecipientsTable() {
         noRecipientsEl.classList.remove("d-none");
         return resolve();
       }
-      hashBeforeSync = await invitesCrypto.hash(JSON.stringify(invites));
+      const invitesLite = invites.map((item) => {
+        return {
+          eventid: item.eventid,
+          utctime: item.utctime,
+          recipient: {
+            id: item.recipient.id,
+            name: item.recipient.name,
+          },
+        };
+      });
+      hashBeforeSync = await invitesCrypto.hash(JSON.stringify(invitesLite));
       invites = invites.filter((item) => item.isDeleted === 0);
       invites = invites.sort((a, b) => {
         const maxUtcDateA = getMaxUtcDate(a.interactions);
@@ -305,7 +315,17 @@ async function init() {
 
   syncInvites().then(async (invitesObj) => {
     const { invites, changed } = invitesObj;
-    const hashAfterSync = await invitesCrypto.hash(JSON.stringify(invites));
+    const invitesLite = invites.map((item) => {
+      return {
+        eventid: item.eventid,
+        utctime: item.utctime,
+        recipient: {
+          id: item.recipient.id,
+          name: item.recipient.name,
+        },
+      };
+    });
+    const hashAfterSync = await invitesCrypto.hash(JSON.stringify(invitesLite));
     let mustReRendered = false;
 
     if (changed) mustReRendered = true;

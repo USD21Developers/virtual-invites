@@ -406,10 +406,22 @@ function initIntlTelInput() {
 
 function getSettings() {
   return new Promise((resolve, reject) => {
-    localforage.getItem("settings").then((settings) => {
-      settingsObj = settings;
-      return resolve();
-    });
+    localforage
+      .getItem("settings")
+      .then((settings) => {
+        if (typeof settings === "object") {
+          settingsObj = settings;
+          return resolve();
+        }
+
+        syncSettings();
+      })
+      .then((data) => {
+        if (!data) return reject();
+        if (!data.settings) return reject();
+        settingsObj = data.settings;
+        return resolve(settingsObj);
+      });
   });
 }
 
@@ -634,7 +646,15 @@ async function onAfterSubmitted(sendvia) {
 }
 
 function onFinish() {
-  window.location.href = "../";
+  globalShowPageSpinner();
+
+  syncInvites().then(() => {
+    window.location.href = "../";
+  });
+
+  setTimeout(() => {
+    window.location.href = "../";
+  }, 5000);
 }
 
 function onGeoLocationError(err) {
@@ -1070,7 +1090,7 @@ function saveAndSync(sendvia) {
     const okToUseCoordinates = tagWithLocationCheckbox?.checked ? true : false;
     const coords = okToUseCoordinates && coordinates ? coordinates : null;
     let followup = 0;
-    if (settingsObj.hasOwnProperty("autoAddToFollowupList")) {
+    if (settingsObj && settingsObj.hasOwnProperty("autoAddToFollowupList")) {
       followup = settingsObj.autoAddToFollowupList ? 1 : 0;
     }
 
