@@ -245,6 +245,11 @@ async function renderFollowedUser(followedUser, eventsByFollowedUser) {
     await getChurches();
     church = getStoredChurch(churchid);
   }
+
+  if (!church) {
+    return (window.location.href = "/new-church/");
+  }
+
   const churchName = church.name;
   let churchPlace = church.place;
 
