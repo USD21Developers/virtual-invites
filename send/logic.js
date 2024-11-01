@@ -646,6 +646,7 @@ async function onAfterSubmitted(sendvia) {
 }
 
 function onFinish() {
+  $("#modal").modal("hide");
   globalShowPageSpinner();
 
   syncInvites().then(() => {
