@@ -69,6 +69,11 @@
       "translated": "Log Out"
     },
     {
+      "key": "menuAdmin",
+      "original": "Admin",
+      "translated": "Admin"
+    },
+    {
       "key": "toggleNavigation",
       "original": "Toggle navigation",
       "translated": "Toggle navigation"
