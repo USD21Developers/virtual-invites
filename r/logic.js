@@ -1236,13 +1236,17 @@ function onSaveNote(e) {
     await localforage.setItem("unsyncedNotes", unsyncedNotesSorted);
     notesObj = filterNotes(notesSorted);
 
-    collapseAllNotesExceptLast(noteid);
-
     renderNotes();
 
     $("#addNoteModal").modal("hide");
 
-    document.querySelector(`[data-note-id="${noteid}"]`)?.scrollIntoView();
+    collapseAllNotesExceptLast(noteid);
+
+    const selector = `[data-note-id='${noteid}']`;
+
+    const noteEl = document.querySelector(selector);
+
+    if (noteEl) customScrollTo(selector);
 
     syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
 
@@ -1319,8 +1323,6 @@ function collapseAllNotesExceptLast(noteid) {
         item.setAttribute("open", "");
       }
     });
-  const selector = `[data-note-id=${noteid}]`;
-  customScrollTo(selector);
 }
 
 function toggleRemoveMapLocation() {
