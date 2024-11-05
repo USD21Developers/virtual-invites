@@ -1236,7 +1236,7 @@ function onSaveNote(e) {
     await localforage.setItem("unsyncedNotes", unsyncedNotesSorted);
     notesObj = filterNotes(notesSorted);
 
-    collapseAllNotesExceptLast();
+    collapseAllNotesExceptLast(noteid);
 
     renderNotes();
 
@@ -1311,18 +1311,16 @@ async function deleteNote(noteid) {
   $("#deleteNoteModal").modal("show");
 }
 
-function collapseAllNotesExceptLast() {
+function collapseAllNotesExceptLast(noteid) {
   document
     .querySelectorAll("#notes details")
     .forEach((item, index, nodeList) => {
       if (index === nodeList.length - 1) {
         item.setAttribute("open", "");
-        customScrollTo(
-          `[data-note-id="${item.getAttribute("data-note-id")}"]`,
-          "instant"
-        );
       }
     });
+  const selector = `[data-note-id=${noteid}]`;
+  customScrollTo(selector);
 }
 
 function toggleRemoveMapLocation() {
