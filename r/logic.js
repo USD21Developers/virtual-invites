@@ -1240,22 +1240,34 @@ function onSaveNote(e) {
 
     $("#addNoteModal").modal("hide");
 
-    collapseAllNotesExceptLast(noteid);
-
-    const selector = `[data-note-id='${noteid}']`;
-
-    const noteEl = document.querySelector(selector);
-
-    if (noteEl) customScrollTo(selector);
-
-    const noteAddedTxt = getPhrase("noteAdded");
-
-    showToast(noteAddedTxt, 3000, "success");
-
     syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
 
     return resolve(note);
   });
+}
+
+function onAfterSaveNote(e) {
+  const noteid = notesObj[notesObj.length - 1].noteid;
+  const noteEl = document.querySelector(`[data-note-id='${noteid}']`);
+  const noteContainerEl = document.querySelector(
+    `[data-note-container-id='${noteid}']`
+  );
+
+  if (noteEl && noteContainerEl) {
+    customScrollTo(`[data-note-id='${noteid}']`);
+    noteEl.setAttribute("open", "open");
+    noteEl.classList.add("highlightAndFade");
+    noteContainerEl.classList.add("highlightAndFade");
+    setTimeout(() => {
+      document
+        .querySelectorAll(".highlightAndFade")
+        .forEach((item) => item.classList.remove("highlightAndFade"));
+    }, 3000);
+  }
+
+  const noteAddedTxt = getPhrase("noteAdded");
+
+  showToast(noteAddedTxt, 3000, "success");
 }
 
 async function editNote(noteid) {
@@ -1977,6 +1989,10 @@ function attachListeners() {
   document
     .querySelector("#formEditInvite")
     .addEventListener("submit", onEditSubmitted);
+
+  $("#addNoteModal").on("hidden.bs.modal", () => {
+    onAfterSaveNote();
+  });
 }
 
 async function init() {

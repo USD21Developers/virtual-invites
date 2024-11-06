@@ -105,3 +105,7 @@ html {
 .invalid-feedback.show {
   display: block;
 }
+
+.highlightAndFade {
+  padding: 0.5rem;
+}
