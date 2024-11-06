@@ -1248,7 +1248,9 @@ function onSaveNote(e) {
 
     if (noteEl) customScrollTo(selector);
 
-    showToast(getPhrase("noteAdded", "success"));
+    const noteAddedTxt = getPhrase("noteAdded");
+
+    showToast(noteAddedTxt, "success");
 
     syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
 
