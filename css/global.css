@@ -429,20 +429,3 @@ strong {
   opacity: 0;
   pointer-events: none;
 }
-
-.highlightAndFade {
-  position: relative;
-  border: 1px solid transparent;
-  animation: borderFade 2s forwards;
-}
-
-@keyframes borderFade {
-  0% {
-    background-color: yellow;
-    border-color: #cfcf00;
-  }
-  100% {
-    background-color: none;
-    border-color: transparent;
-  }
-}

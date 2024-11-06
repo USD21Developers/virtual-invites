@@ -105,3 +105,20 @@ html {
 .invalid-feedback.show {
   display: block;
 }
+
+.highlightAndFade {
+  position: relative;
+  border: 1px solid transparent;
+  animation: borderFade 1.5s forwards;
+}
+
+@keyframes borderFade {
+  0% {
+    background-color: yellow;
+    border-color: #cfcf00;
+  }
+  100% {
+    background-color: none;
+    border-color: transparent;
+  }
+}
