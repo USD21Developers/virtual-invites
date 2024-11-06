@@ -1256,8 +1256,7 @@ function onAfterSaveNote(e) {
   if (noteEl && noteContainerEl) {
     customScrollTo(`[data-note-id='${noteid}']`);
     noteEl.setAttribute("open", "open");
-    noteEl.classList.add("highlightAndFade");
-    noteContainerEl.classList.add("highlightAndFade");
+    noteEl.classList.add("highlightAndFade", "p-1");
     setTimeout(() => {
       document
         .querySelectorAll(".highlightAndFade")
