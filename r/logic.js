@@ -1250,7 +1250,7 @@ function onSaveNote(e) {
 
     const noteAddedTxt = getPhrase("noteAdded");
 
-    showToast(noteAddedTxt, "success");
+    showToast(noteAddedTxt, 3000, "success");
 
     syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
 
