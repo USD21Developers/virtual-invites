@@ -26,7 +26,7 @@ $font-size-root: 18px;
 
 $btn-font-weight: 600;
 
-$link-color: primary;
+$link-color: map-get($primary, color);
 
 @import "../node_modules/daemonite-material/assets/scss/material.scss";
 

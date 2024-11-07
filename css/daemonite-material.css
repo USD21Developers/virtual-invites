@@ -265,7 +265,7 @@ summary {
 
 a {
   background-color: transparent;
-  color: primary;
+  color: #15336f;
   text-decoration: none;
   -webkit-text-decoration-skip: objects;
 }
@@ -2777,7 +2777,7 @@ fieldset:disabled a.btn {
   background-color: transparent;
   border-radius: 0;
   box-shadow: none;
-  color: primary;
+  color: #15336f;
   font-weight: 400;
   text-decoration: none;
   text-transform: none;

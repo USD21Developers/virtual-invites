@@ -1299,6 +1299,10 @@ function onAfterEditNote(e) {
   showToast(noteUpdatedTxt, 3000, "success");
 }
 
+function onAfterDeleteNote(e) {
+  customScrollTo("#headlineNotes", 109);
+}
+
 async function editNote(noteid) {
   const noteSummaryEl = document.querySelector("#editNoteSummary");
   const noteTextEl = document.querySelector("#editNoteText");
@@ -2025,6 +2029,10 @@ function attachListeners() {
 
   $("#editNoteModal").on("hidden.bs.modal", () => {
     onAfterEditNote();
+  });
+
+  $("#deleteNoteModal").on("hidden.bs.modal", () => {
+    onAfterDeleteNote();
   });
 }
 
