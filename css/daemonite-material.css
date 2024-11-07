@@ -265,7 +265,7 @@ summary {
 
 a {
   background-color: transparent;
-  color: #5d7daf;
+  color: primary;
   text-decoration: none;
   -webkit-text-decoration-skip: objects;
 }
@@ -1627,10 +1627,6 @@ hr {
 
 .badge-pill {
   border-radius: 1em;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 3px;
-  padding-bottom: 3px;
 }
 
 .breadcrumb {
@@ -2781,7 +2777,7 @@ fieldset:disabled a.btn {
   background-color: transparent;
   border-radius: 0;
   box-shadow: none;
-  color: #5d7daf;
+  color: primary;
   font-weight: 400;
   text-decoration: none;
   text-transform: none;
