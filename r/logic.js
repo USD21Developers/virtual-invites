@@ -1254,7 +1254,7 @@ function onAfterSaveNote(e) {
   );
 
   if (noteEl && noteContainerEl) {
-    customScrollTo(`[data-note-id='${noteid}']`);
+    customScrollTo(`[data-note-id='${noteid}']`, 109);
     noteEl.setAttribute("open", "open");
     noteEl.classList.add("highlightAndFade", "p-1");
     setTimeout(() => {
@@ -1267,6 +1267,36 @@ function onAfterSaveNote(e) {
   const noteAddedTxt = getPhrase("noteAdded");
 
   showToast(noteAddedTxt, 3000, "success");
+}
+
+function onAfterEditNote(e) {
+  const noteid = document.querySelector("#editNoteId").value;
+  const noteEl = document.querySelector(`[data-note-id='${noteid}']`);
+  const noteContainerEl = document.querySelector(
+    `[data-note-container-id='${noteid}']`
+  );
+
+  if (!noteid) return;
+  if (typeof noteid !== "string") return;
+
+  document.querySelectorAll("[data-note-id]").forEach((item) => {
+    item.removeAttribute("open");
+  });
+
+  if (noteEl && noteContainerEl) {
+    customScrollTo(`[data-note-id='${noteid}']`, 109);
+    noteEl.setAttribute("open", "open");
+    noteEl.classList.add("highlightAndFade", "p-1");
+    setTimeout(() => {
+      document
+        .querySelectorAll(".highlightAndFade")
+        .forEach((item) => item.classList.remove("highlightAndFade"));
+    }, 3000);
+  }
+
+  const noteUpdatedTxt = getPhrase("noteUpdated");
+
+  showToast(noteUpdatedTxt, 3000, "success");
 }
 
 async function editNote(noteid) {
@@ -1991,6 +2021,10 @@ function attachListeners() {
 
   $("#addNoteModal").on("hidden.bs.modal", () => {
     onAfterSaveNote();
+  });
+
+  $("#editNoteModal").on("hidden.bs.modal", () => {
+    onAfterEditNote();
   });
 }
 
