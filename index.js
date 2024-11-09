@@ -6,12 +6,6 @@ function redirectIfNecessary() {
     let redirectUrl = "";
     let redirect = false;
 
-    if (launchedFromHomescreen) {
-      showToast("Launched from homescreen", 4000, "success");
-    } else {
-      showToast("NOT launched from homescreen", 4000, "danger");
-    }
-
     if (!launchedFromHomescreen) return resolve(false);
     if (!settings) return resolve(false);
     if (!settings.openingPage) return resolve(false);
