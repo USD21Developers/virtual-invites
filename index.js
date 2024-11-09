@@ -35,9 +35,7 @@ function redirectIfNecessary() {
       return resolve(true);
     }
 
-    setTimeout(() => {
-      return resolve(redirect);
-    }, 4000);
+    return resolve(redirect);
   });
 }
 
