@@ -26,6 +26,8 @@ function redirectIfNecessary() {
         break;
     }
 
+    debugger;
+
     if (redirect) {
       if (redirectUrl && redirectUrl.length) {
         window.location.href = redirectUrl;
