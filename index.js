@@ -8,6 +8,8 @@ function redirectIfNecessary() {
 
     if (launchedFromHomescreen) {
       showToast("Launched from homescreen", 4000, "success");
+    } else {
+      showToast("NOT launched from homescreen", 4000, "danger");
     }
 
     if (!launchedFromHomescreen) return resolve(false);
