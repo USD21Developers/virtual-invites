@@ -6,12 +6,9 @@ function redirectIfNecessary() {
     let redirectUrl;
     let redirect = false;
 
-    if (!launchedFromHomescreen) return resolve(redirect);
-    if (!settings) return resolve(redirect);
-    if (!settings.openingPage) return resolve(redirect);
-
     switch (settings.openingPage) {
       case "home":
+        redirect = false;
         break;
       case "send an invite":
         redirectUrl = "/send/";
@@ -30,8 +27,15 @@ function redirectIfNecessary() {
     }
 
     if (redirect) {
-      window.location.href = redirectUrl;
+      if (redirectUrl && redirectUrl.length) {
+        window.location.href = redirectUrl;
+        return resolve(true);
+      }
     }
+
+    if (!launchedFromHomescreen) return resolve(false);
+    if (!settings) return resolve(false);
+    if (!settings.openingPage) return resolve(false);
 
     return resolve(redirect);
   });
