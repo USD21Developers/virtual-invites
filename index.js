@@ -3,8 +3,16 @@ function redirectIfNecessary() {
     const launchedFromHomescreen =
       window.location.search === "?utm_source=homescreen" ? true : false;
     const settings = await localforage.getItem("settings");
-    let redirectUrl;
+    let redirectUrl = "";
     let redirect = false;
+
+    if (launchedFromHomescreen) {
+      showToast("Launched from homescreen", 4000, "success");
+    }
+
+    if (!launchedFromHomescreen) return resolve(false);
+    if (!settings) return resolve(false);
+    if (!settings.openingPage) return resolve(false);
 
     switch (settings.openingPage) {
       case "home":
@@ -26,20 +34,14 @@ function redirectIfNecessary() {
         break;
     }
 
-    debugger;
-
-    if (redirect) {
-      if (redirectUrl && redirectUrl.length) {
-        window.location.href = redirectUrl;
-        return resolve(true);
-      }
+    if (redirect && redirectUrl.length) {
+      window.location.href = redirectUrl;
+      return resolve(true);
     }
 
-    if (!launchedFromHomescreen) return resolve(false);
-    if (!settings) return resolve(false);
-    if (!settings.openingPage) return resolve(false);
-
-    return resolve(redirect);
+    setTimeout(() => {
+      return resolve(redirect);
+    }, 4000);
   });
 }
 
@@ -107,6 +109,7 @@ async function init() {
   await syncOnLogin();
 
   const isRedirecting = await redirectIfNecessary();
+
   if (!isRedirecting) {
     window.history.replaceState(
       null,
