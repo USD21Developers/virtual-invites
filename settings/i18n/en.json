@@ -75,8 +75,8 @@
     },
     {
       "key": "customInviteTextExplanation",
-      "original": "When you send a new invite by text message or e-mail, by default your message will only contain the name of the event and a link for the recipient to click on. But you can add additional text below the link, for a more personal touch.",
-      "translated": "When you send a new invite by text message or e-mail, by default your message will only contain the name of the event and a link for the recipient to click on. But you can add additional text below the link, for a more personal touch."
+      "original": "When you send a new invite by WhatsApp, text message or e-mail, by default your message will only contain the name of the event and a link for the recipient to click on. But you can add additional text below the link, for a more personal touch.",
+      "translated": "When you send a new invite by WhatsApp, text message or e-mail, by default your message will only contain the name of the event and a link for the recipient to click on. But you can add additional text below the link, for a more personal touch."
     },
     {
       "key": "customInviteTextExampleHeading",
