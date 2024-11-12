@@ -5,7 +5,7 @@ function backgroundSync() {
 }
 
 function syncChurches() {
-  const endpoint = `${getApiServicesHost()}/churches`;
+  const endpoint = `${getApiHost()}/sync-churches`;
   const isOnline = navigator.onLine;
   const controller = new AbortController();
   const timeout = 60000;
