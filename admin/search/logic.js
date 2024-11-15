@@ -22,7 +22,7 @@ function populateSearchTerm() {
   const churchesJSON = localStorage.getItem("churches");
   if (churchesJSON) {
     const churches = JSON.parse(churchesJSON);
-    const church = churches.find((item) => item.id === churchid);
+    const church = churches.find((item) => item.id == churchid);
     if (church) {
       churchNameEl.innerHTML = church.name;
     } else {
