@@ -6,7 +6,7 @@ function framebuster() {
   }
 }
 
-function getAccessToken() {
+/* function getAccessToken() {
   let needToRefresh = false;
   const accessToken = sessionStorage.getItem("accessToken") || null;
   const now = Date.now().valueOf() / 1000;
@@ -57,7 +57,7 @@ function getAccessToken() {
         console.error(error);
       });
   });
-}
+} */
 
 function getAPIHost(forceRemote = false) {
   const local = "http://localhost:4000/invites";
@@ -72,9 +72,11 @@ function getAPIHost(forceRemote = false) {
   return forceRemote ? remote : apiHost;
 }
 
-async function getPermissions() {
-  const accessToken = await getAccessToken();
-  const claims = JSON.parse(atob(accessToken.split(".")[1]));
+function getPermissions() {
+  const refreshToken = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  );
+  const claims = JSON.parse(atob(refreshToken.split(".")[1]));
   const permissions = [];
 
   if (claims.canAuthToAuth) permissions.push("canAuthToAuth");
@@ -85,8 +87,10 @@ async function getPermissions() {
 }
 
 async function isSysadmin() {
-  const accessToken = await getAccessToken();
-  const claims = JSON.parse(atob(accessToken.split(".")[1]));
+  const refreshToken = JSON.parse(
+    atob(localStorage.getItem("refreshToken").split(".")[1])
+  );
+  const claims = JSON.parse(atob(refreshToken.split(".")[1]));
   const usertype = claims.usertype || "user";
   return usertype === "sysadmin" ? true : false;
 }
@@ -156,7 +160,7 @@ function verifyRefreshToken() {
   }
 }
 
-async function init() {
+async function initEnforceAccess() {
   storePreAuth();
 
   const isFromHomeScreen =
@@ -180,7 +184,7 @@ async function init() {
     verifyRefreshToken();
     verifyDataKey();
 
-    const permissions = await getPermissions();
+    const permissions = getPermissions();
     if (!permissions.includes("isAuthorized")) {
       sessionStorage.setItem("redirectOnLogin", window.location.href);
       window.location.href = "/logout/";
@@ -188,4 +192,4 @@ async function init() {
   }
 }
 
-init();
+initEnforceAccess();
