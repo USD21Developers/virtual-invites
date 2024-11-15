@@ -2,7 +2,6 @@
 
 <html lang="en">
   <head>
-    <script></script>
     <script id="enforceaccess" src="../../js/enforceaccess.js"></script>
     <meta charset="utf-8" />
     <meta
@@ -194,7 +193,18 @@
             class="text-center text-uppercase m-0 balancedTextWrap mt-3"
             data-i18n="searchResults"
           ></h2>
+
+          <h3 class="text-center my-3 pb-1" id="searchTerm"></h3>
+
+          <hr class="my-4" />
         </div>
+      </div>
+
+      <div id="noResultsFound" class="text-center">
+        <h4 class="text-danger" data-i18n="noResultsFound"></h4>
+        <p class="my-3">
+          <a href="javascript:history.go(-1)" data-i18n="tryAgain"></a>
+        </p>
       </div>
 
       <div class="snackbar">
