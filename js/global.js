@@ -494,7 +494,7 @@ function getBodyText(placeholderData) {
 
 function getChurches() {
   return new Promise(async (resolve, reject) => {
-    const endpoint = `${getApiServicesHost()}/churches`;
+    const endpoint = `${getApiHost()}/sync-churches`;
     const churchesStored = localStorage.getItem("churches") || "";
 
     if (churchesStored.length) {
@@ -514,7 +514,6 @@ function getChurches() {
           case "success":
             localStorage.setItem("churches", JSON.stringify(data.churches));
             return resolve(data.churches);
-            break;
           default:
             console.error(data.msg);
             return reject(data.msg);
