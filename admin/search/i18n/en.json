@@ -35,13 +35,28 @@
     },
     {
       "key": "noResultsFound",
-      "original": "No results found.",
-      "translated": "No results found."
+      "original": "No users found.",
+      "translated": "No users found."
     },
     {
       "key": "tryAgain",
       "original": "Try again?",
       "translated": "Try again?"
+    },
+    {
+      "key": "oneUserFound",
+      "original": "One user found:",
+      "translated": "One user found:"
+    },
+    {
+      "key": "multipleUsersFound",
+      "original": "{QUANTITY} users found:",
+      "translated": "{QUANTITY} users found:"
+    },
+    {
+      "key": "registered",
+      "original": "Registered on {DATE}",
+      "translated": "Registered on {DATE}"
     }
   ],
 

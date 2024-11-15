@@ -11,3 +11,7 @@
 #churchName {
   font-style: italic;
 }
+
+#usersListItems img {
+  border-radius: 50%;
+}

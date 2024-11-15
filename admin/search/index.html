@@ -204,12 +204,24 @@
         </div>
       </div>
 
-      <div class="row" id="noResultsFound">
+      <div class="row d-none" id="noResultsFound">
         <div class="col text-center">
           <h4 class="text-danger" data-i18n="noResultsFound"></h4>
           <p class="my-3">
             <a href="javascript:history.go(-1)" data-i18n="tryAgain"></a>
           </p>
+        </div>
+      </div>
+
+      <div class="row mt-4 mb-5 d-none" id="quantityFoundContainer">
+        <div class="col text-center">
+          <h4 class="text-secondary" id="quantityFound"></h4>
+        </div>
+      </div>
+
+      <div class="row d-none" id="usersList">
+        <div class="col col-md-8 offset-md-2">
+          <ul class="list-unstyled" id="usersListItems"></ul>
         </div>
       </div>
 
@@ -280,6 +292,13 @@
     </nav>
 
     <script src="/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/moment.min.js" referrerpolicy="no-referrer"></script>
+    <script
+      src="/js/moment-timezone-with-data-10-year-range.min.js"
+      integrity="sha512-d11VXfxQMn+sZuIgzHITdIuInr4cVRGV/uLiSI643WH/J+p4gPFYSHXRMR2v+w4Rn2TSyzJjsZjc0M7+Qd+UXw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/css/material-4.1.1-dist/js/material.min.js"></script>
