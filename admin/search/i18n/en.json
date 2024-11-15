@@ -32,6 +32,16 @@
       "key": "searchResults",
       "original": "Search Results",
       "translated": "Search Results"
+    },
+    {
+      "key": "noResultsFound",
+      "original": "No results found.",
+      "translated": "No results found."
+    },
+    {
+      "key": "tryAgain",
+      "original": "Try again?",
+      "translated": "Try again?"
     }
   ],
 

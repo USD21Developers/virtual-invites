@@ -1,27 +1,26 @@
-function redirectIfUnauthorized() {
-  const refreshTokenStored = localStorage.getItem("refreshToken");
+function populateSearchTerm() {
+  const el = document.querySelector("#searchTerm");
+  const params = new URLSearchParams(document.location.search);
+  const churchid = params.get("churchid");
+  const firstname = params.get("firstname");
+  const lastname = params.get("lastname");
 
-  const kickOut = () => {
-    return (window.location.href = "/logout/");
-  };
+  let searchTerm = "";
 
-  if (!refreshTokenStored) {
-    kickOut();
+  if (firstname.length && lastname.length) {
+    searchTerm = `${firstname} ${lastname}`;
+  } else if (firstname.length) {
+    searchTerm = `${firstname}`;
+  } else if (lastname.length) {
+    searchTerm = `${lastname}`;
   }
 
-  const refreshToken = JSON.parse(
-    atob(localStorage.getItem("refreshToken").split(".")[1])
-  );
-  const { canAuthorize, canAuthToAuth } = refreshToken;
-
-  if (!canAuthorize && !canAuthToAuth) {
-    kickOut();
-  }
+  el.innerHTML = searchTerm;
 }
 
 async function init() {
   await populateContent();
-  redirectIfUnauthorized();
+  populateSearchTerm();
   globalHidePageSpinner();
 }
 
