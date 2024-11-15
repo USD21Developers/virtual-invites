@@ -396,6 +396,11 @@
       "key": "comingSoon",
       "original": "Coming Soon",
       "translated": "Coming Soon"
+    },
+    {
+      "key": "reset",
+      "original": "Reset",
+      "translated": "Reset"
     }
   ],
 

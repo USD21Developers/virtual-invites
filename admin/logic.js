@@ -137,6 +137,14 @@ function onChurchChanged() {
   churchNameEl.innerText = churchName;
 }
 
+function onResetClicked() {
+  const firstNameEl = document.querySelector("#firstname");
+  const lastNameEl = document.querySelector("#lastname");
+
+  firstNameEl.value = "";
+  lastNameEl.value = "";
+}
+
 function onUserSearch(e) {
   const churchid = document.querySelector("#churchid").value;
   const firstname = document.querySelector("#firstname").value;
@@ -166,6 +174,10 @@ function attachListeners() {
   document
     .querySelector("#churchid")
     .addEventListener("change", onChurchChanged);
+
+  document
+    .querySelector("#resetButton")
+    .addEventListener("click", onResetClicked);
 }
 
 async function init() {
