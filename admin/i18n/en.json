@@ -67,6 +67,16 @@
       "key": "maintenance",
       "original": "Maintenance",
       "translated": "Maintenance"
+    },
+    {
+      "key": "deletedChurches",
+      "original": "Deleted churches detected",
+      "translated": "Deleted churches detected"
+    },
+    {
+      "key": "deletedChurch",
+      "original": "Deleted church detected",
+      "translated": "Deleted church detected"
     }
   ],
 

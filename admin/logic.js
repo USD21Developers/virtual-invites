@@ -74,6 +74,23 @@ async function populatePhotosPendingReview() {
     });
 }
 
+function populateDeletedChurches() {
+  const churchesJSON = localStorage.getItem("churches");
+
+  if (!churchesJSON) return;
+
+  const churches = JSON.parse(churchesJSON);
+
+  const deletedChurches = churches.filter((item) => item.isDeleted === 1);
+
+  if (!deletedChurches.length) return;
+
+  document.querySelector("#quantityDeletedChurches").innerHTML =
+    deletedChurches.length;
+
+  document.querySelector("#deletedChurchesLink").classList.remove("d-none");
+}
+
 function redirectIfUnauthorized() {
   const refreshTokenStored = localStorage.getItem("refreshToken");
 
@@ -90,7 +107,7 @@ function redirectIfUnauthorized() {
   );
   const { canAuthorize, canAuthToAuth } = refreshToken;
 
-  if (canAuthorize === 0 && canAuthToAuth === 0) {
+  if (!canAuthorize && !canAuthToAuth) {
     kickOut();
   }
 }
@@ -121,12 +138,9 @@ function onChurchChanged() {
 }
 
 function onUserSearch(e) {
-  e.preventDefault();
-
   const churchid = document.querySelector("#churchid").value;
   const firstname = document.querySelector("#firstname").value;
   const lastname = document.querySelector("#lastname").value;
-  const endpoint = `${getApiHost()}/get-user`;
 
   document
     .querySelectorAll(".is-invalid")
@@ -134,11 +148,13 @@ function onUserSearch(e) {
 
   if (isNaN(churchid)) {
     formError("#churchid", getPhrase("errorChurchIsRequired"));
+    e.preventDefault();
   }
 
   if (firstname.trim() === "" && lastname.trim() === "") {
     document.querySelector("#firstname").classList.add("is-invalid");
     formError("#firstname", getPhrase("errorNameIsRequired"));
+    e.preventDefault();
   }
 }
 
@@ -154,9 +170,11 @@ function attachListeners() {
 
 async function init() {
   await populateContent();
+  await syncChurches();
   redirectIfUnauthorized();
   populateChurches();
   populatePhotosPendingReview();
+  populateDeletedChurches();
   attachListeners();
   globalHidePageSpinner();
 }

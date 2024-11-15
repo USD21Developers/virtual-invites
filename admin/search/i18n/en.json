@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "description": "User Search",
+    "path": "/admin/search/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "User Search",
+      "translated": "User Search"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbAdmin",
+      "original": "Admin",
+      "translated": "Admin"
+    },
+    {
+      "key": "breadcrumbUsers",
+      "original": "Users",
+      "translated": "Users"
+    },
+    {
+      "key": "searchResults",
+      "original": "Search Results",
+      "translated": "Search Results"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
