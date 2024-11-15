@@ -76,12 +76,11 @@ function getPermissions() {
   const refreshToken = JSON.parse(
     atob(localStorage.getItem("refreshToken").split(".")[1])
   );
-  const claims = JSON.parse(atob(refreshToken.split(".")[1]));
   const permissions = [];
 
-  if (claims.canAuthToAuth) permissions.push("canAuthToAuth");
-  if (claims.canAuthorize) permissions.push("canAuthorize");
-  if (claims.isAuthorized) permissions.push("isAuthorized");
+  if (refreshToken.canAuthToAuth) permissions.push("canAuthToAuth");
+  if (refreshToken.canAuthorize) permissions.push("canAuthorize");
+  if (refreshToken.isAuthorized) permissions.push("isAuthorized");
 
   return permissions;
 }
