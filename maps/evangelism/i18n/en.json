@@ -218,8 +218,8 @@
     },
     {
       "key": "noResultsParagraph",
-      "original": "No invites were found that were tagged with a location and occurred within the specified date range.",
-      "translated": "No invites were found that were tagged with a location and occurred within the specified date range."
+      "original": "No mappable invites were found in the specified date range.",
+      "translated": "No mappable invites were found in the specified date range."
     },
     {
       "key": "mapBubbleInvited",
