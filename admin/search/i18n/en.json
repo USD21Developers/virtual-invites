@@ -57,6 +57,11 @@
       "key": "registered",
       "original": "Registered on {DATE}",
       "translated": "Registered on {DATE}"
+    },
+    {
+      "key": "searchAgain",
+      "original": "Search again?",
+      "translated": "Search again?"
     }
   ],
 
