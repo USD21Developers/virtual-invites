@@ -73,15 +73,15 @@ function renderUsers(users) {
     const user = users[i];
     const profileURL = `/admin/user/#/${user.userid}`;
     const fullName = `${user.firstname} ${user.lastname}`;
-    const profilePhoto = user.profilephoto;
+    const profilePhoto = user.profilephoto.replaceAll("400.jpg", "140.jpg");
     const txtRegistered = getPhrase("registered").replaceAll(
       "{DATE}",
       moment(user.createdAt).format("LL")
     );
     const li = `
-      <li class="media border-bottom py-4">
+      <li class="media border-bottom border-secondary py-4">
         <a href="${profileURL}">
-          <img class="mr-3" src="${profilePhoto}" alt="${fullName}" width="140" height="140" border="0" class="rounded-circle">
+          <img class="mr-3" src="${profilePhoto}" alt="${fullName}" width="70" height="70" border="0" class="rounded-circle">
         </a>
         <div class="media-body">
           <h4 class="mt-0 mb-1">${fullName}</h4>
