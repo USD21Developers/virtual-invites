@@ -286,6 +286,60 @@
       "translated": "(Select country):"
     },
     {
+      "key": "cameToFaithViaApp",
+      "original": "Did you become a baptized disciple after being invited via the Invites App?",
+      "translated": "Did you become a baptized disciple after being invited via the Invites App?"
+    },
+    {
+      "key": "cameToFaithViaAppNo",
+      "original": "No, I came to faith by a different way.",
+      "translated": "No, I came to faith by a different way.",
+      "changes": [
+        {
+          "original": "No",
+          "translated": "No",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "cameToFaithViaAppYes",
+      "original": "Yes, a disciple used the Invites App to send me a digital invitation. Eventually I was baptized!",
+      "translated": "Yes, a disciple used the Invites App to send me a digital invitation. Eventually I was baptized!",
+      "changes": [
+        {
+          "original": "Yes",
+          "translated": "Yes",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "cameToFaithViaAppError",
+      "original": "Please answer. (If you are uncertain, select No.)",
+      "translated": "Please answer. (If you are uncertain, select No.)",
+      "changes": [
+        {
+          "original": "(If you are uncertain, select No.)",
+          "translated": "(If you are uncertain, select No.)",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        },
+        {
+          "original": "No",
+          "translated": "No",
+          "bold": true,
+          "italic": true,
+          "link": ""
+        }
+      ]
+    },
+    {
       "key": "onlyCountriesWithChurch",
       "original": "(Where we have a church)",
       "translated": "(Where we have a church)"

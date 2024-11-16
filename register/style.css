@@ -2,6 +2,22 @@ label {
   font-size: 16px;
 }
 
+#cameToFaithViaAppContainer label strong,
+#cameToFaithViaAppError em strong {
+  color: var(--primary-light);
+  font-weight: 700 !important;
+}
+
+#cameToFaithViaAppContainer.is-invalid #cameToFaithViaAppError {
+  display: block;
+}
+
+#cameToFaithViaAppError em {
+  color: rgba(0, 0, 0, 0.87);
+  font-style: normal;
+  font-weight: normal;
+}
+
 #photoUpload,
 #photoCapture {
   display: none;

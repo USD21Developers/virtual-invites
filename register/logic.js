@@ -9,7 +9,7 @@ let photoData = {
   orientation: "",
 };
 let vanilla;
-let installPromptEvent;
+let installPromptEvent = null;
 
 async function getChurches() {
   const churchesObj = await syncChurches();
@@ -294,6 +294,14 @@ function validate() {
     const profileImage = await getProfileImage();
     const authCode = document.querySelector("#authCode").value.trim() || "";
     const noAuthCodeEl = document.querySelector("#noAuthCode");
+    const cameToFaithViaAppContainerEl = document.querySelector(
+      "#cameToFaithViaAppContainer"
+    );
+    const cameToFaithViaApp0El = document.querySelector("#cameToFaithViaApp0");
+    const cameToFaithViaApp1El = document.querySelector("#cameToFaithViaApp1");
+    const cameToFaithViaAppErrorEl = document.querySelector(
+      "#cameToFaithViaAppError"
+    );
 
     if (!username.length) {
       formError("#username", getPhrase("usernamerequired"));
@@ -342,6 +350,13 @@ function validate() {
       document
         .querySelector("#unlistedchurchcontainer")
         .classList.add("d-none");
+      return resolve(false);
+    }
+
+    if (!cameToFaithViaApp0El.checked && !cameToFaithViaApp1El.checked) {
+      cameToFaithViaAppContainerEl.classList.add("is-invalid");
+      cameToFaithViaAppErrorEl.innerHTML = getPhrase("cameToFaithViaAppError");
+      customScrollTo("#cameToFaithViaAppContainer");
       return resolve(false);
     }
 
@@ -483,7 +498,7 @@ function onInstallClick(e) {
       .classList.remove("d-none");
   }
 
-  if (!!installPromptEvent) {
+  if (installPromptEvent) {
     e.preventDefault();
     installPromptEvent.prompt();
   }
@@ -525,6 +540,9 @@ async function onSubmit(e) {
   const preAuth = localStorage.getItem("preAuth") || null;
   const authCode = document.querySelector("#authCode").value.trim() || null;
   const noAuthCode = document.querySelector("#noAuthCode").checked;
+  const cameToFaithViaApp = document.querySelector(
+    "[name='cameToFaithViaApp']:checked"
+  ).value;
 
   emailParagraph1 = emailParagraph1.replaceAll(
     "${fullname}",
@@ -547,6 +565,7 @@ async function onSubmit(e) {
       country: country,
       churchid: churchid,
       unlistedchurch: unlistedchurch,
+      cameToFaithViaApp: Number(cameToFaithViaApp),
       profileImage140: profileImage140,
       profileImage400: profileImage400,
       lang: lang,
