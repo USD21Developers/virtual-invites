@@ -79,7 +79,7 @@ function renderUsers(users) {
       moment(user.createdAt).format("LL")
     );
     const li = `
-      <li class="media">
+      <li class="media border-bottom py-4">
         <a href="${profileURL}">
           <img class="mr-3" src="${profilePhoto}" alt="${fullName}" width="140" height="140" border="0" class="rounded-circle">
         </a>
