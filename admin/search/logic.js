@@ -1,3 +1,14 @@
+function nameToFilename(firstName, lastName) {
+  const fullName = `${firstName} ${lastName}`;
+
+  const cleanFilename = fullName
+    .toLowerCase()
+    .replace(/[^a-z\s]/g, "")
+    .replace(/\s+/g, "-");
+
+  return `${cleanFilename}.jpg`;
+}
+
 function populateSearchTerm() {
   const searchTermEl = document.querySelector("#searchTerm");
   const churchNameEl = document.querySelector("#churchName");
@@ -73,6 +84,7 @@ function renderUsers(users) {
     const user = users[i];
     const profileURL = `/admin/user/#/${user.userid}`;
     const fullName = `${user.firstname} ${user.lastname}`;
+    const fullNameSlugged = nameToFilename(user.firstname, user.lastname);
     const profilePhoto = user.profilephoto.replaceAll("400.jpg", "140.jpg");
     const txtRegistered = getPhrase("registered").replaceAll(
       "{DATE}",
@@ -80,8 +92,8 @@ function renderUsers(users) {
     );
     const li = `
       <li class="media border-bottom border-secondary py-4">
-        <a href="${profileURL}">
-          <img class="mr-3" src="${profilePhoto}" alt="${fullName}" width="70" height="70" border="0" class="rounded-circle">
+        <a href="${profileURL}" download="${fullNameSlugged}">
+          <img class="mr-3 align-self-center" src="${profilePhoto}" alt="${fullName}" width="70" height="70" border="0" class="rounded-circle">
         </a>
         <div class="media-body">
           <h4 class="mt-0 mb-1">${fullName}</h4>
