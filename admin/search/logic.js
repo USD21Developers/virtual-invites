@@ -76,7 +76,7 @@ function renderUsers(users) {
     const profilePhoto = user.profilephoto;
     const txtRegistered = getPhrase("registered").replaceAll(
       "{DATE}",
-      moment(user.createdAt).format("MMMM d, YYYY")
+      moment(user.createdAt).format("LL")
     );
     const li = `
       <li class="media">
