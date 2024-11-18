@@ -71,7 +71,7 @@ function renderUsers(users) {
     const searchResult = `
       <a href="${profileURL}" class="list-group-item list-group-item-action border-bottom border-secondary py-4">
         <div class="media">
-          <img class="mr-3 align-self-center" src="${profilePhoto}" alt="${fullName}" width="70" height="70" border="0" class="rounded-circle">
+          <img class="mr-3 align-self-center" src="${profilePhoto}" alt="${fullName}" width="80" height="80" border="0" class="rounded-circle">
           <div class="media-body align-self-center">
             <h4 class="mt-0 mb-1">${fullName}</h4>
             ${txtRegistered}

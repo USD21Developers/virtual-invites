@@ -22,4 +22,6 @@
 
 #usersListItems img {
   border-radius: 50%;
+  height: auto;
+  width: 80px;
 }
