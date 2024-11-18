@@ -16,6 +16,10 @@
   color: var(--dark-light);
 }
 
+#quantityFound {
+  color: var(--secondary-dark);
+}
+
 #usersListItems a.list-group-item-action {
   text-decoration: none;
 }
