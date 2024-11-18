@@ -50,13 +50,13 @@
     },
     {
       "key": "oneUserFound",
-      "original": "One user found:",
-      "translated": "One user found:"
+      "original": "One user found",
+      "translated": "One user found"
     },
     {
       "key": "multipleUsersFound",
-      "original": "{QUANTITY} users found:",
-      "translated": "{QUANTITY} users found:"
+      "original": "{QUANTITY} users found",
+      "translated": "{QUANTITY} users found"
     },
     {
       "key": "registered",
