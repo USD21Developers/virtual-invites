@@ -12,6 +12,14 @@
   font-style: italic;
 }
 
+.searchAgainLink {
+  color: var(--dark-light);
+}
+
+#usersListItems a.list-group-item-action {
+  text-decoration: none;
+}
+
 #usersListItems img {
   border-radius: 50%;
 }

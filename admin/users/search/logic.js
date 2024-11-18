@@ -57,17 +57,7 @@ function renderUsers(users) {
 
   // Render the users
 
-  /*
-    <li class="media">
-      <img class="mr-3" src=".../64x64" alt="Generic placeholder image">
-      <div class="media-body">
-        <h5 class="mt-0 mb-1">List-based media object</h5>
-        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-      </div>
-    </li>
-  */
-
-  let html = ``;
+  let listItems = ``;
 
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
@@ -78,21 +68,21 @@ function renderUsers(users) {
       "{DATE}",
       moment(user.createdAt).format("LL")
     );
-    const li = `
-      <li class="media border-bottom border-secondary py-4">
-        <a href="${profileURL}">
+    const searchResult = `
+      <a href="${profileURL}" class="list-group-item list-group-item-action border-bottom border-secondary py-4">
+        <div class="media">
           <img class="mr-3 align-self-center" src="${profilePhoto}" alt="${fullName}" width="70" height="70" border="0" class="rounded-circle">
-        </a>
-        <div class="media-body">
-          <h4 class="mt-0 mb-1">${fullName}</h4>
-          ${txtRegistered}
+          <div class="media-body">
+            <h4 class="mt-0 mb-1">${fullName}</h4>
+            ${txtRegistered}
+          </div>
         </div>
-      </li>
+      </a>
     `;
-    html += li;
+    listItems += searchResult;
   }
 
-  usersListItemsEl.innerHTML = html;
+  usersListItemsEl.innerHTML = listItems;
   quantityFoundContainerEl.classList.remove("d-none");
   usersListEl.classList.remove("d-none");
 
