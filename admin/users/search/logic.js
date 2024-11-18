@@ -91,8 +91,8 @@ function renderUsers(users) {
           <img class="mr-3 align-self-center" src="${profilePhoto}" alt="${fullName}" width="80" height="80" border="0" class="rounded-circle">
           <div class="media-body align-self-center">
             <h4 class="mt-0 mb-1">${fullName}</h4>
-            <div class="my-1">${txtRegistered}</div>
-            <div>${txtStatus}</div>
+            <div class="my-1 small">${txtRegistered}</div>
+            <div class="small">${txtStatus}</div>
           </div>
         </div>
       </a>
