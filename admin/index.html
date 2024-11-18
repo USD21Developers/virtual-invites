@@ -188,93 +188,16 @@
       <div class="row">
         <div class="col col-md-4 offset-md-4">
           <h2
-            class="text-center text-uppercase m-0 balancedTextWrap mt-3"
+            class="text-center text-uppercase m-0 balancedTextWrap my-3"
             data-i18n="pagetitle"
           ></h2>
         </div>
       </div>
-      <form method="GET" action="search/" id="finduserform" novalidate>
-        <div class="row mb-5">
-          <div class="col-sm-8 offset-sm-2">
-            <h3 class="text-center my-4" data-i18n="users"></h3>
 
-            <label for="churchid" data-i18n="church"></label>
-            <select id="churchid" name="churchid" class="form-control"></select>
-            <div
-              class="invalid-feedback searchedFirstName"
-              data-i18n="errorChurchIsRequired"
-            ></div>
-            <div>
-              <small id="selectedChurchName" class="text-muted"></small>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4 offset-sm-2 mb-4">
-            <div class="form-group">
-              <div class="floating-label">
-                <label for="firstname" data-i18n="firstname"></label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="firstname"
-                  name="firstname"
-                />
-                <div
-                  class="invalid-feedback searchedFirstName"
-                  data-i18n="errorNameIsRequired"
-                ></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 mb-4">
-            <div class="form-group">
-              <div class="floating-label">
-                <label for="lastname" data-i18n="lastname"></label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lastname"
-                  name="lastname"
-                />
-                <div
-                  class="invalid-feedback searchedLastName"
-                  data-i18n="errorNameIsRequired"
-                ></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row mt-4">
-          <div class="col col-sm-4 offset-sm-2">
-            <button
-              type="button"
-              class="btn btn-light"
-              data-i18n-global="reset"
-              id="resetButton"
-            ></button>
-          </div>
-          <div class="col col-sm-4 text-right">
-            <button
-              type="submit"
-              class="btn btn-primary"
-              data-i18n="finduser"
-            ></button>
-          </div>
-        </div>
-      </form>
-
-      <div class="row">
-        <div class="col">
-          <hr class="my-5" />
-        </div>
-      </div>
-
-      <div class="row">
+      <div class="row mt-4">
         <div
           class="col col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-6 offset-lg-3"
         >
-          <h3 class="text-center mb-4" data-i18n="maintenance"></h3>
           <div class="list-group">
             <a
               href="deleted-churches/"
@@ -286,9 +209,10 @@
                   <span data-i18n="deletedChurches"></span>
                 </div>
                 <span
-                  class="badge badge-pill badge-danger ml-3"
+                  class="badge badge-pill badge-danger border border-danger ml-3"
                   id="quantityDeletedChurches"
-                ></span>
+                  >0</span
+                >
               </div>
             </a>
 
@@ -301,9 +225,21 @@
                   <span data-i18n="photoreview"></span>
                 </div>
                 <span
-                  class="badge badge-pill badge-danger ml-3"
+                  class="badge badge-pill badge-light border border-dark ml-3"
                   id="quantityPhotoReview"
                 ></span>
+              </div>
+            </a>
+
+            <a href="users/" class="list-group-item list-group-item-action">
+              <div class="media">
+                <div class="media-body" data-i18n="users"></div>
+                <img
+                  class="ml-3 contactGlyph"
+                  src="../_assets/svg/icons/user-edit.svg"
+                  alt=""
+                  data-i18n-global-aria-label="users"
+                />
               </div>
             </a>
           </div>

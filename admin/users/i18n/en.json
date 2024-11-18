@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "description": "Admin Control Panel",
-    "path": "/admin/",
+    "description": "Administer Users",
+    "path": "/admin/users/",
     "lang": {
       "original": "en",
       "translated": "en"
@@ -10,8 +10,8 @@
   "phrases": [
     {
       "key": "pagetitle",
-      "original": "Administration",
-      "translated": "Administration"
+      "original": "Users",
+      "translated": "Users"
     },
     {
       "key": "breadcrumbHome",
@@ -24,29 +24,39 @@
       "translated": "Admin"
     },
     {
-      "key": "users",
+      "key": "breadcrumbUsers",
       "original": "Users",
       "translated": "Users"
     },
     {
-      "key": "photoreview",
-      "original": "Profile photos to review",
-      "translated": "Profile photos to review"
+      "key": "church",
+      "original": "Church:",
+      "translated": "Church:"
     },
     {
-      "key": "users",
-      "original": "Users",
-      "translated": "Users"
+      "key": "firstname",
+      "original": "First name",
+      "translated": "First name"
     },
     {
-      "key": "deletedChurches",
-      "original": "Deleted churches detected",
-      "translated": "Deleted churches detected"
+      "key": "lastname",
+      "original": "Last name",
+      "translated": "Last name"
     },
     {
-      "key": "deletedChurch",
-      "original": "Deleted church detected",
-      "translated": "Deleted church detected"
+      "key": "finduser",
+      "original": "Find User",
+      "translated": "Find User"
+    },
+    {
+      "key": "errorChurchIsRequired",
+      "original": "User's church is required",
+      "translated": "User's church is required"
+    },
+    {
+      "key": "errorNameIsRequired",
+      "original": "Name is required",
+      "translated": "Name is required"
     }
   ],
 

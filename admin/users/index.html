@@ -2,11 +2,20 @@
 
 <html lang="en">
   <head>
+    <script></script>
     <script id="enforceaccess" src="../../js/enforceaccess.js"></script>
     <meta charset="utf-8" />
     <meta
       content="initial-scale=1, shrink-to-fit=no, width=device-width"
       name="viewport"
+    />
+    <meta
+      property="og:image"
+      content="https://invites.mobi/_assets/img/logo-opengraph.png"
+    />
+    <meta
+      property="twitter-image"
+      content="https://invites.mobi/_assets/img/logo-opengraph.png"
     />
     <title data-i18n="pagetitle"></title>
     <link rel="stylesheet" href="../../css/daemonite-material.css" />
@@ -15,6 +24,7 @@
       rel="stylesheet"
     />
     <link href="../../css/global.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -32,9 +42,7 @@
         <img src="/_assets/img/logo.svg" width="133" height="50" alt="logo" />
       </a>
       <div class="align-items-end">
-        <a href="/profile/" class="d-none">
-          <img class="profileImageNav" />
-        </a>
+        <a href="/profile/" class="profileImageNav"></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -111,8 +119,10 @@
             </span>
             <span data-i18n-global="menuSendInvite"></span>
           </a>
+
           <div class="navdrawer-divider"></div>
-          <a class="nav-item nav-link" href="../../events/">
+
+          <a class="nav-item nav-link" href="../events/../">
             <span class="mr-3">
               <img src="/_assets/svg/icons/event.svg" />
             </span>
@@ -170,10 +180,10 @@
           <a href="../../" data-i18n="breadcrumbHome"></a>
         </li>
         <li class="breadcrumb-item firstOnMobile">
-          <a href="../" data-i18n="breadcrumbEvents"></a>
+          <a href="../" data-i18n="breadcrumbAdmin"></a>
         </li>
         <li class="breadcrumb-item active">
-          <a href="./" data-i18n="breadcrumbDelete"></a>
+          <a href="./" data-i18n="breadcrumbUsers"></a>
         </li>
       </ol>
     </nav>
@@ -191,78 +201,86 @@
       </div>
     </div>
 
-    <div class="container d-none mainContent" id="pageContent">
+    <div class="container d-none mainContent">
       <div class="row">
-        <div class="col col-sm-10 offset-sm-1 mt-3">
+        <div class="col col-md-4 offset-md-4">
           <h2
-            class="text-center text-uppercase m-0"
-            data-i18n="headlineDeleteEvent"
+            class="text-center text-uppercase m-0 balancedTextWrap my-3"
+            data-i18n="pagetitle"
           ></h2>
-          <p class="text-center mt-4">
-            <strong data-i18n="areYouSure" class="text-danger"></strong>
-          </p>
         </div>
       </div>
-      <div class="row">
-        <div class="col col-sm-6 offset-sm-3 mt-4 mb-5">
-          <div
-            id="eventdetails"
-            class="border border-dark bg-light text-center p-2"
-          ></div>
-        </div>
-      </div>
-
-      <div class="row d-none" id="progressbar">
-        <div class="col">
-          <div class="progress">
+      <form method="GET" action="search/" id="finduserform" novalidate>
+        <div class="row mb-5">
+          <div class="col-sm-8 offset-sm-2">
+            <label for="churchid" data-i18n="church"></label>
+            <select id="churchid" name="churchid" class="form-control"></select>
             <div
-              class="progress-bar progress-bar-indeterminate"
-              role="progressbar"
+              class="invalid-feedback searchedFirstName"
+              data-i18n="errorChurchIsRequired"
             ></div>
+            <div>
+              <small id="selectedChurchName" class="text-muted"></small>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="row" id="actionbuttons">
-        <div class="col col-sm-3 offset-sm-3 text-center">
-          <button
-            id="btnDelete"
-            type="submit"
-            class="btn btn-danger"
-            data-i18n="btnDelete"
-          ></button>
+        <div class="row">
+          <div class="col-sm-4 offset-sm-2 mb-4">
+            <div class="form-group">
+              <div class="floating-label">
+                <label for="firstname" data-i18n="firstname"></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstname"
+                  name="firstname"
+                />
+                <div
+                  class="invalid-feedback searchedFirstName"
+                  data-i18n="errorNameIsRequired"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 mb-4">
+            <div class="form-group">
+              <div class="floating-label">
+                <label for="lastname" data-i18n="lastname"></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lastname"
+                  name="lastname"
+                />
+                <div
+                  class="invalid-feedback searchedLastName"
+                  data-i18n="errorNameIsRequired"
+                ></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col col-sm-3 text-center">
-          <a href="../" class="btn btn-link" data-i18n="btnCancel"></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Errors modal -->
-    <div
-      class="modal fade"
-      id="modalFormErrors"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="modaltitleFormErrors"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modaltitleFormErrors"></h5>
+        <div class="row mt-4">
+          <div class="col col-sm-4 offset-sm-2">
             <button
               type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label=""
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
+              class="btn btn-light"
+              data-i18n-global="reset"
+              id="resetButton"
+            ></button>
           </div>
-          <div class="modal-body"></div>
-          <div class="modal-footer"></div>
+          <div class="col col-sm-4 text-right">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              data-i18n="finduser"
+            ></button>
+          </div>
         </div>
+      </form>
+
+      <div class="snackbar">
+        <div class="snackbar-body"></div>
       </div>
     </div>
 
@@ -330,29 +348,9 @@
     <script src="/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/moment.min.js" referrerpolicy="no-referrer"></script>
-    <script
-      src="/js/moment-timezone-with-data-10-year-range.min.js"
-      integrity="sha512-d11VXfxQMn+sZuIgzHITdIuInr4cVRGV/uLiSI643WH/J+p4gPFYSHXRMR2v+w4Rn2TSyzJjsZjc0M7+Qd+UXw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script
-      src="/js/localforage.min.js"
-      integrity="sha512-+BMamP0e7wn39JGL8nKAZ3yAQT2dL5oaXWr4ZYlTGkKOaoXM/Yj7c4oy50Ngz5yoUutAG17flueD4F6QpTlPng=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="../../css/material-4.1.1-dist/js/material.min.js"></script>
-    <script src="../../js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
-    <script src="../../css/material-4.1.1-dist/js/material.min.js"></script>
-    <script src="../../js/linkifyjs/linkify.min.js"></script>
-    <script src="../../js/linkifyjs/linkify-html.min.js"></script>
-    <script src="../../js/sync.js"></script>
-    <script src="../../js/global.js"></script>
-    <script src="../../js/isDateInPast.js"></script>
-    <script src="../../js/getRelativeDate.js"></script>
-    <script src="../../js/getMobileOperatingSystem.js"></script>
+    <script src="/css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="/js/sync.js"></script>
+    <script src="/js/global.js"></script>
     <script src="logic.js"></script>
   </body>
 </html>

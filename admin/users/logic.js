@@ -168,24 +168,24 @@ function onUserSearch(e) {
 }
 
 function attachListeners() {
-  /* document
+  document
     .querySelector("#finduserform")
-    .addEventListener("submit", onUserSearch); */
-  /* document
+    .addEventListener("submit", onUserSearch);
+  document
     .querySelector("#churchid")
-    .addEventListener("change", onChurchChanged); */
-  /* document
+    .addEventListener("change", onChurchChanged);
+  document
     .querySelector("#resetButton")
-    .addEventListener("click", onResetClicked); */
+    .addEventListener("click", onResetClicked);
 }
 
 async function init() {
   await populateContent();
   await syncChurches();
   redirectIfUnauthorized();
-  // populateChurches();
-  populatePhotosPendingReview();
-  populateDeletedChurches();
+  populateChurches();
+  // populatePhotosPendingReview();
+  // populateDeletedChurches();
   attachListeners();
   globalHidePageSpinner();
 }

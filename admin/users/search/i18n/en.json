@@ -29,6 +29,11 @@
       "translated": "Users"
     },
     {
+      "key": "breadcrumbSearch",
+      "original": "Search",
+      "translated": "Search"
+    },
+    {
       "key": "searchResults",
       "original": "Results",
       "translated": "Results"
