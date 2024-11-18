@@ -64,9 +64,26 @@ function renderUsers(users) {
     const profileURL = `/admin/user/#/${user.userid}`;
     const fullName = `${user.firstname} ${user.lastname}`;
     const profilePhoto = user.profilephoto.replaceAll("400.jpg", "140.jpg");
+    const regDate = new Intl.DateTimeFormat(undefined, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    }).format(new Date(user.createdAt));
     const txtRegistered = getPhrase("registered").replaceAll(
       "{DATE}",
-      moment(user.createdAt).format("LL")
+      `<span class="registrationDate">
+        ${regDate}
+      </span>`
+    );
+    const statusCSS =
+      user.userstatus === "frozen" ? "text-danger" : "text-success";
+    const statusText =
+      user.userstatus === "frozen"
+        ? getPhrase("statusFrozen")
+        : getPhrase("statusActive");
+    const txtStatus = getPhrase("status").replaceAll(
+      "{STATUS}",
+      `<strong class="${statusCSS}">${statusText}</strong>`
     );
     const searchResult = `
       <a href="${profileURL}" class="list-group-item list-group-item-action border-bottom border-secondary py-4">
@@ -74,7 +91,8 @@ function renderUsers(users) {
           <img class="mr-3 align-self-center" src="${profilePhoto}" alt="${fullName}" width="80" height="80" border="0" class="rounded-circle">
           <div class="media-body align-self-center">
             <h4 class="mt-0 mb-1">${fullName}</h4>
-            ${txtRegistered}
+            <div class="my-1">${txtRegistered}</div>
+            <div>${txtStatus}</div>
           </div>
         </div>
       </a>

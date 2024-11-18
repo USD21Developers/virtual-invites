@@ -60,8 +60,23 @@
     },
     {
       "key": "registered",
-      "original": "Registered on {DATE}",
-      "translated": "Registered on {DATE}"
+      "original": "Registered: {DATE}",
+      "translated": "Registered: {DATE}"
+    },
+    {
+      "key": "status",
+      "original": "Status: {STATUS}",
+      "translated": "Status: {STATUS}"
+    },
+    {
+      "key": "statusActive",
+      "original": "active",
+      "translated": "active"
+    },
+    {
+      "key": "statusFrozen",
+      "original": "account frozen",
+      "translated": "account frozen"
     },
     {
       "key": "searchAgain",
