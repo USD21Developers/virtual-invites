@@ -69,6 +69,7 @@ const supportedLangs = ["en"];
   refreshFloatingLabelsListener
   setCountry
   show
+  showAdminOnlyContent
   showAlert
   showBottomNavOnIOS
   showEventDateTime
@@ -1409,6 +1410,22 @@ function show(selector) {
   document.querySelector(selector).classList.remove("d-none");
 }
 
+function showAdminOnlyContent() {
+  const refreshTokenJSON = localStorage.getItem("refreshToken");
+
+  if (!refreshTokenJSON) return;
+
+  const refreshToken = JSON.parse(atob(refreshTokenJSON.split(".")[1]));
+
+  const isAdmin = !!refreshToken.canAuthToAuth;
+
+  if (!isAdmin) return;
+
+  document.querySelectorAll(".adminsOnly.d-none").forEach((item) => {
+    item.classList.remove("d-none");
+  });
+}
+
 function showAlert(
   selectorObject,
   message,
@@ -1748,6 +1765,7 @@ function validateEmail(email) {
 }
 
 function initGlobal() {
+  showAdminOnlyContent();
   showMaterialIcons();
   refreshFloatingLabelsListener();
   configureLocalForage();
