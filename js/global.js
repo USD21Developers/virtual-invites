@@ -1417,7 +1417,7 @@ function showAdminOnlyContent() {
 
   const refreshToken = JSON.parse(atob(refreshTokenJSON.split(".")[1]));
 
-  const isAdmin = !!refreshToken.canAuthToAuth;
+  const isAdmin = refreshToken.canAuthToAuth === 1;
 
   if (!isAdmin) return;
 
