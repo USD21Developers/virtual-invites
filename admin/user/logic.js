@@ -204,7 +204,9 @@ function renderUser(user) {
       .forEach((item) => item.setAttribute("disabled", ""));
   }
 
-  // TODO:  show unchangable metadata (createdAt, gender)
+  // TODO:  implement client-side validation
+  // TODO:  create and connect API
+  // TODO:  implement server-enforced validation
   // NOTE:  unless user is a sysadmin, don't permit, or process, any changes to users in other churches
 }
 
