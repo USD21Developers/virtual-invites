@@ -1,0 +1,17 @@
+#profilePhoto {
+  background: rgb(45, 74, 126);
+  background: radial-gradient(
+    circle,
+    rgba(76, 123, 212, 1) 0%,
+    rgba(52, 85, 147, 1) 90%
+  );
+  border: 2px solid #5e7daf;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#profilePhoto img {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
