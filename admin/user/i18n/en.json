@@ -99,24 +99,67 @@
       "translated": "Frozen"
     },
     {
-      "key": "highestLeadershipRole",
-      "original": "Highest leadership role:",
-      "translated": "Highest leadership role:"
+      "key": "preAuthorization",
+      "original": "Pre-authorization:",
+      "translated": "Pre-authorization:"
     },
     {
-      "key": "houseChurchLeaderOrHigher",
-      "original": "House church leader or higher",
-      "translated": "House church leader or higher"
+      "key": "canAuthorize",
+      "original": "Can pre-authorize disciples to become new users",
+      "translated": "Can pre-authorize disciples to become new users"
     },
     {
-      "key": "bibleTalkLeader",
-      "original": "Bible Talk leader",
-      "translated": "Bible Talk leader"
+      "key": "canAuthToAuth",
+      "original": "Can delegate the right to pre-authorize disciples",
+      "translated": "Can delegate the right to pre-authorize disciples"
     },
     {
-      "key": "noneOfAbove",
-      "original": "Neither of the above",
-      "translated": "Neither of the above"
+      "key": "preAuthorization",
+      "original": "Pre-Authorization",
+      "translated": "Pre-Authorization"
+    },
+    {
+      "key": "preauthorizationP1",
+      "original": "All users must be authorized before they can use the Invites App. This is for security purposes, and it ensures that every user is a member in good standing with the International Christian Churches.",
+      "translated": "All users must be authorized before they can use the Invites App. This is for security purposes, and it ensures that every user is a member in good standing with the International Christian Churches."
+    },
+    {
+      "key": "preauthorizationP2",
+      "original": "You can make the process of authorization quick (and barely noticeable) by pre-authorizing disciples, before they complete registration.",
+      "translated": "You can make the process of authorization quick (and barely noticeable) by pre-authorizing disciples, before they complete registration.",
+      "changes": [
+        {
+          "original": "pre-authorizing",
+          "translated": "pre-authorizing",
+          "bold": true,
+          "italic": true,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "delegatingPreAuthorization",
+      "original": "Delegating Pre-authorization",
+      "translated": "Delegating Pre-authorization"
+    },
+    {
+      "key": "delegatingPreauthorizationP1",
+      "original": "If the person that you are pre-authorizing leads a group, or oversees multiple groups, choose this option.",
+      "translated": "If the person that you are pre-authorizing leads a group, or oversees multiple groups, choose this option."
+    },
+    {
+      "key": "delegatingPreauthorizationP2",
+      "original": "By delegating pre-authorization to leaders under your charge, you won't have to manually pre-authorize each person yourself. This will save you time.",
+      "translated": "By delegating pre-authorization to leaders under your charge, you won't have to manually pre-authorize each person yourself. This will save you time.",
+      "changes": [
+        {
+          "original": "delegating",
+          "translated": "delegating",
+          "bold": true,
+          "italic": true,
+          "link": ""
+        }
+      ]
     }
   ],
 

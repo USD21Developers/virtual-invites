@@ -16,8 +16,17 @@
   width: 200px;
 }
 
+label {
+  color: var(--dark);
+  font-weight: 600;
+}
+
 input[type="radio"]:checked + label {
   font-weight: bold;
+}
+
+input[type="checkbox"] + label {
+  font-weight: normal;
 }
 
 #userstatusRegistered:checked + label {

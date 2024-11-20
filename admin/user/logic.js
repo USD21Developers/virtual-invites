@@ -191,17 +191,12 @@ function renderUser(user) {
       .forEach((item) => item.setAttribute("disabled", ""));
   }
 
-  if (canAuthToAuth === 1 && canAuthorize === 1) {
-    document.querySelector("#highestLeadershipRoleHCLUp").checked = true;
-  } else if (canAuthToAuth === 0 && canAuthorize === 1) {
-    document.querySelector("#highestLeadershipRoleBTL").checked = true;
-  } else {
-    document.querySelector("#highestLeadershipRoleNoneOfAbove").checked = true;
+  if (canAuthorize === 1) {
+    document.querySelector("#canAuthorize").checked = true;
   }
-  if (viewingUserId === userid) {
-    document
-      .querySelectorAll("[name='highestLeadershipRole']")
-      .forEach((item) => item.setAttribute("disabled", ""));
+
+  if (canAuthToAuth === 1) {
+    document.querySelector("#canAuthToAuth").checked = true;
   }
 
   // TODO:  implement client-side validation
@@ -235,6 +230,16 @@ function onChurchChanged() {
   churchNameEl.innerText = churchName;
 }
 
+function onHelpClickedForPreauthorization(e) {
+  e.preventDefault();
+  $("#aboutPreauthorizationModal").modal();
+}
+
+function onHelpClickedForDelegatingPreauthorization(e) {
+  e.preventDefault();
+  $("#delegatingPreauthorizationModal").modal();
+}
+
 function onSubmit(e) {
   console.log("Submitted");
   e.preventDefault();
@@ -245,6 +250,12 @@ function attachListeners() {
     .querySelector("#churchid")
     .addEventListener("change", onChurchChanged);
   document.querySelector("#userform").addEventListener("submit", onSubmit);
+  document
+    .querySelector("#helpAboutPreauthorization")
+    .addEventListener("click", onHelpClickedForPreauthorization);
+  document
+    .querySelector("#helpAboutDelegatingPreauthorization")
+    .addEventListener("click", onHelpClickedForDelegatingPreauthorization);
 }
 
 async function init() {
