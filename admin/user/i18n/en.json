@@ -34,16 +34,6 @@
       "translated": "Church:"
     },
     {
-      "key": "firstname",
-      "original": "First name:",
-      "translated": "First name:"
-    },
-    {
-      "key": "lastname",
-      "original": "Last name:",
-      "translated": "Last name:"
-    },
-    {
       "key": "country",
       "original": "Country:",
       "translated": "Country:"
@@ -54,9 +44,39 @@
       "translated": "Language:"
     },
     {
+      "key": "firstname",
+      "original": "First name:",
+      "translated": "First name:"
+    },
+    {
+      "key": "lastname",
+      "original": "Last name:",
+      "translated": "Last name:"
+    },
+    {
+      "key": "email",
+      "original": "E-mail:",
+      "translated": "E-mail:"
+    },
+    {
       "key": "gender",
       "original": "Gender:",
       "translated": "Gender:"
+    },
+    {
+      "key": "usertype",
+      "original": "User type:",
+      "translated": "User type:"
+    },
+    {
+      "key": "userTypeSysadmin",
+      "original": "System administrator",
+      "translated": "System administrator"
+    },
+    {
+      "key": "userTypeUser",
+      "original": "Regular user",
+      "translated": "Regular user"
     }
   ],
 

@@ -233,6 +233,24 @@
         <div class="row my-4">
           <div class="col col-md-8 offset-md-2">
             <div class="form-group">
+              <label for="country" data-i18n="country"></label>
+              <select id="country" class="form-control"></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-4">
+          <div class="col col-md-8 offset-md-2">
+            <div class="form-group">
+              <label for="lang" data-i18n="language"></label>
+              <select id="lang" class="form-control"></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-4">
+          <div class="col col-md-8 offset-md-2">
+            <div class="form-group">
               <label for="firstname" data-i18n="firstname"></label>
               <input type="text" class="form-control" id="firstname" />
             </div>
@@ -251,17 +269,45 @@
         <div class="row my-4">
           <div class="col col-md-8 offset-md-2">
             <div class="form-group">
-              <label for="country" data-i18n="country"></label>
-              <select id="country" class="form-control"></select>
+              <label for="email" data-i18n="email"></label>
+              <input type="text" class="form-control" id="email" />
             </div>
           </div>
         </div>
 
-        <div class="row my-4">
+        <div class="row my-4 d-none" id="userTypeContainer">
           <div class="col col-md-8 offset-md-2">
-            <div class="form-group">
-              <label for="lang" data-i18n="language"></label>
-              <select id="lang" class="form-control"></select>
+            <div class="mb-2 pb-1">
+              <label for="usertype" data-i18n="usertype"></label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="usertype"
+                id="usertypeUser"
+                value="user"
+              />
+              <label
+                class="form-check-label"
+                for="usertypeUser"
+                data-i18n="userTypeUser"
+              ></label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="usertype"
+                id="usertypeSysadmin"
+                value="sysadmin"
+                checked
+              />
+              <label
+                class="form-check-label"
+                for="usertypeSysadmin"
+                data-i18n="userTypeSysadmin"
+              ></label>
             </div>
           </div>
         </div>

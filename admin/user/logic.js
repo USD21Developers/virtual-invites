@@ -106,7 +106,8 @@ function populateUser() {
     })
       .then((res) => res.json())
       .then((data) => {
-        return resolve(data.user);
+        renderUser(data.user);
+        return resolve();
       })
       .catch((error) => {
         console.error(error);
@@ -131,6 +132,7 @@ function renderUser(user) {
     lang,
     lastname,
     profilephoto,
+    userid,
     username,
     userstatus,
     usertype,
@@ -143,10 +145,19 @@ function renderUser(user) {
   ).innerHTML = `<img src="${profilephoto}" alt="${fullname}" />`;
   document.querySelector("#userFullName").innerHTML = fullname;
   document.querySelector(".breadcrumb-item.active").innerHTML = fullname;
-  document.querySelector("#firstname").value = firstname;
-  document.querySelector("#lastname").value = lastname;
   document.querySelector("#country").value = country;
   document.querySelector("#lang").value = lang;
+  document.querySelector("#firstname").value = firstname;
+  document.querySelector("#lastname").value = lastname;
+  document.querySelector("#email").value = email;
+  document.querySelector("[name='usertype']").value = userstatus;
+
+  const viewingUserId = getUserId();
+  const viewingUserType = getUserType();
+
+  if (viewingUserType === "sysadmin" && viewingUserId !== userid) {
+    document.querySelector("#userTypeContainer").classList.remove("d-none");
+  }
 
   // TODO:  user type (sysadmin / user) -- only show this to sysadmins
   // TODO:  account status (active / frozen)
@@ -191,8 +202,7 @@ async function init() {
   populateChurches();
   populateCountries();
   populateLanguages();
-  const user = await populateUser();
-  renderUser(user);
+  await populateUser();
   attachListeners();
   globalHidePageSpinner();
 }

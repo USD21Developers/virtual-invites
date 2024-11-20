@@ -54,6 +54,7 @@ const supportedLangs = ["en"];
   getTimezoneOffset
   getUserChurchId
   getUserId
+  getUserType
   globalHidePageSpinner
   globalShowPageSpinner
   hamburgerClose
@@ -1103,6 +1104,19 @@ function getUserId() {
     atob(localStorage.getItem("refreshToken").split(".")[1])
   ).userid;
   return userid;
+}
+
+function getUserType() {
+  const refreshTokenJSON = localStorage.getItem("refreshToken");
+  if (!refreshTokenJSON) return;
+
+  const refreshToken = JSON.parse(atob(refreshTokenJSON.split(".")[1]));
+
+  console.log(refreshToken);
+
+  const userType = refreshToken.usertype;
+
+  return userType;
 }
 
 function globalHidePageSpinner() {
