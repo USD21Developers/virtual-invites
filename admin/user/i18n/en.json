@@ -29,6 +29,11 @@
       "translated": "Users"
     },
     {
+      "key": "registered",
+      "original": "Registered: {DATE}",
+      "translated": "Registered: {DATE}"
+    },
+    {
       "key": "church",
       "original": "Church:",
       "translated": "Church:"
@@ -77,6 +82,41 @@
       "key": "userTypeUser",
       "original": "Regular user",
       "translated": "Regular user"
+    },
+    {
+      "key": "accountStatus",
+      "original": "Account status:",
+      "translated": "Account status:"
+    },
+    {
+      "key": "userstatusRegistered",
+      "original": "Active",
+      "translated": "Active"
+    },
+    {
+      "key": "userstatusFrozen",
+      "original": "Frozen",
+      "translated": "Frozen"
+    },
+    {
+      "key": "highestLeadershipRole",
+      "original": "Highest leadership role:",
+      "translated": "Highest leadership role:"
+    },
+    {
+      "key": "houseChurchLeaderOrHigher",
+      "original": "House church leader or higher",
+      "translated": "House church leader or higher"
+    },
+    {
+      "key": "bibleTalkLeader",
+      "original": "Bible Talk leader",
+      "translated": "Bible Talk leader"
+    },
+    {
+      "key": "noneOfAbove",
+      "original": "Neither of the above",
+      "translated": "Neither of the above"
     }
   ],
 

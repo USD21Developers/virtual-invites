@@ -1112,8 +1112,6 @@ function getUserType() {
 
   const refreshToken = JSON.parse(atob(refreshTokenJSON.split(".")[1]));
 
-  console.log(refreshToken);
-
   const userType = refreshToken.usertype;
 
   return userType;
@@ -1431,7 +1429,8 @@ function showAdminOnlyContent() {
 
   const refreshToken = JSON.parse(atob(refreshTokenJSON.split(".")[1]));
 
-  const isAdmin = refreshToken.canAuthToAuth === 1;
+  const isAdmin =
+    refreshToken.canAuthToAuth === true || refreshToken.canAuthToAuth === 1;
 
   if (!isAdmin) return;
 

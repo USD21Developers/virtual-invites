@@ -117,6 +117,8 @@ function populateUser() {
 }
 
 function renderUser(user) {
+  const viewingUserId = getUserId();
+  const viewingUserType = getUserType();
   const {
     authorizedby,
     canAuthToAuth,
@@ -138,31 +140,71 @@ function renderUser(user) {
     usertype,
   } = user;
   const fullname = `${firstname} ${lastname}`;
+  const regDate = new Intl.DateTimeFormat(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }).format(new Date(user.createdAt));
+  const txtRegistered = getPhrase("registered").replaceAll(
+    "{DATE}",
+    `<span class="registrationDate">
+      ${regDate}
+    </span>`
+  );
 
   document.title = fullname;
+
   document.querySelector(
     "#profilePhoto"
   ).innerHTML = `<img src="${profilephoto}" alt="${fullname}" />`;
   document.querySelector("#userFullName").innerHTML = fullname;
+  document.querySelector("#registrationDate").innerHTML = txtRegistered;
   document.querySelector(".breadcrumb-item.active").innerHTML = fullname;
   document.querySelector("#country").value = country;
   document.querySelector("#lang").value = lang;
   document.querySelector("#firstname").value = firstname;
   document.querySelector("#lastname").value = lastname;
   document.querySelector("#email").value = email;
-  document.querySelector("[name='usertype']").value = userstatus;
 
-  const viewingUserId = getUserId();
-  const viewingUserType = getUserType();
-
-  if (viewingUserType === "sysadmin" && viewingUserId !== userid) {
-    document.querySelector("#userTypeContainer").classList.remove("d-none");
+  if (usertype === "sysadmin") {
+    document.querySelector("#usertypeSysadmin").checked = true;
+  } else {
+    document.querySelector("#usertypeUser").checked = true;
+    document
+      .querySelectorAll("[name='usertype']")
+      .forEach((item) => item.setAttribute("disabled", ""));
+  }
+  if (viewingUserId === userid) {
+    document
+      .querySelectorAll("[name='usertype']")
+      .forEach((item) => item.setAttribute("disabled", ""));
   }
 
-  // TODO:  user type (sysadmin / user) -- only show this to sysadmins
-  // TODO:  account status (active / frozen)
-  // TODO:  church role (HCL+, BTL, or ordinary member)
-  // TODO:  show unchangable metadata (createdAt, gender, churchEmailUnverified)
+  if (userstatus === "frozen") {
+    document.querySelector("#userstatusFrozen").checked = true;
+  } else {
+    document.querySelector("#userstatusRegistered").checked = true;
+  }
+  if (viewingUserId === userid) {
+    document
+      .querySelectorAll("[name='userstatus']")
+      .forEach((item) => item.setAttribute("disabled", ""));
+  }
+
+  if (canAuthToAuth === 1 && canAuthorize === 1) {
+    document.querySelector("#highestLeadershipRoleHCLUp").checked = true;
+  } else if (canAuthToAuth === 0 && canAuthorize === 1) {
+    document.querySelector("#highestLeadershipRoleBTL").checked = true;
+  } else {
+    document.querySelector("#highestLeadershipRoleNoneOfAbove").checked = true;
+  }
+  if (viewingUserId === userid) {
+    document
+      .querySelectorAll("[name='highestLeadershipRole']")
+      .forEach((item) => item.setAttribute("disabled", ""));
+  }
+
+  // TODO:  show unchangable metadata (createdAt, gender)
   // NOTE:  unless user is a sysadmin, don't permit, or process, any changes to users in other churches
 }
 
@@ -191,10 +233,16 @@ function onChurchChanged() {
   churchNameEl.innerText = churchName;
 }
 
+function onSubmit(e) {
+  console.log("Submitted");
+  e.preventDefault();
+}
+
 function attachListeners() {
   document
     .querySelector("#churchid")
     .addEventListener("change", onChurchChanged);
+  document.querySelector("#userform").addEventListener("submit", onSubmit);
 }
 
 async function init() {

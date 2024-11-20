@@ -5,7 +5,8 @@
 
   const refreshToken = JSON.parse(atob(refreshTokenJSON.split(".")[1]));
 
-  const isAdmin = refreshToken.canAuthToAuth === 1;
+  const isAdmin =
+    refreshToken.canAuthToAuth === true || refreshToken.canAuthToAuth === 1;
 
   if (!isAdmin) {
     window.location.href = "/";

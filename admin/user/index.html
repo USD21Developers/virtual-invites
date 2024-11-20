@@ -206,16 +206,14 @@
       <div class="row">
         <div class="col text-center">
           <div class="text-center mt-3" id="profilePhoto"></div>
-          <h2
-            id="userFullName"
-            class="text-center m-0 balancedTextWrap mt-2 mb-3"
-          >
+          <h2 id="userFullName" class="text-center balancedTextWrap my-2">
             &nbsp;
           </h2>
+          <div class="text-center small mb-3" id="registrationDate"></div>
         </div>
       </div>
 
-      <form>
+      <form id="userform">
         <div class="row mt-3">
           <div class="col col-md-8 offset-md-2">
             <label for="churchid" data-i18n="church"></label>
@@ -275,7 +273,7 @@
           </div>
         </div>
 
-        <div class="row my-4 d-none" id="userTypeContainer">
+        <div class="row my-4">
           <div class="col col-md-8 offset-md-2">
             <div class="mb-2 pb-1">
               <label for="usertype" data-i18n="usertype"></label>
@@ -309,6 +307,102 @@
                 data-i18n="userTypeSysadmin"
               ></label>
             </div>
+          </div>
+        </div>
+
+        <div class="row my-4">
+          <div class="col col-md-8 offset-md-2">
+            <div class="mb-2 pb-1">
+              <label for="userstatus" data-i18n="accountStatus"></label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="userstatus"
+                id="userstatusRegistered"
+                value="registered"
+              />
+              <label
+                class="form-check-label"
+                for="userstatusRegistered"
+                data-i18n="userstatusRegistered"
+              ></label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="userstatus"
+                id="userstatusFrozen"
+                value="frozen"
+              />
+              <label
+                class="form-check-label"
+                for="userstatusFrozen"
+                data-i18n="userstatusFrozen"
+              ></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-4">
+          <div class="col col-md-8 offset-md-2">
+            <div class="mb-2 pb-1">
+              <label for="userstatus" data-i18n="highestLeadershipRole"></label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="highestLeadershipRole"
+                id="highestLeadershipRoleHCLUp"
+                value="HCL and up"
+              />
+              <label
+                class="form-check-label"
+                for="highestLeadershipRoleHCLUp"
+                data-i18n="houseChurchLeaderOrHigher"
+              ></label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="highestLeadershipRole"
+                id="highestLeadershipRoleBTL"
+                value="BTL"
+              />
+              <label
+                class="form-check-label"
+                for="highestLeadershipRoleBTL"
+                data-i18n="bibleTalkLeader"
+              ></label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="highestLeadershipRole"
+                id="highestLeadershipRoleNoneOfAbove"
+                value="neither"
+              />
+              <label
+                class="form-check-label"
+                for="highestLeadershipRoleNoneOfAbove"
+                data-i18n="noneOfAbove"
+              ></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-5 mb-4">
+          <div class="col text-center">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              data-i18n-global="update"
+            ></button>
           </div>
         </div>
       </form>

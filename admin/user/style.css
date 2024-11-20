@@ -15,3 +15,15 @@
   height: 200px;
   width: 200px;
 }
+
+input[type="radio"]:checked + label {
+  font-weight: bold;
+}
+
+#userstatusRegistered:checked + label {
+  color: var(--success);
+}
+
+#userstatusFrozen:checked + label {
+  color: var(--danger);
+}
