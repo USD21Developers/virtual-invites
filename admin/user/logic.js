@@ -151,6 +151,28 @@ function renderUser(user) {
       ${regDate}
     </span>`
   );
+  const txtPreauthorizationP2Male = getPhrase("preauthorizationP2Male")
+    .replaceAll("{FIRST-NAME}", firstname)
+    .replaceAll("{LAST-NAME}", lastname);
+  const txtPreauthorizationP2Female = getPhrase("preauthorizationP2Female")
+    .replaceAll("{FIRST-NAME}", firstname)
+    .replaceAll("{LAST-NAME}", lastname);
+  const txtDelegatingPreauthorizationP1Male = getPhrase(
+    "delegatingPreauthorizationP1Male"
+  )
+    .replaceAll("{FIRST-NAME}", firstname)
+    .replaceAll("{LAST-NAME}", lastname);
+  const txtDelegatingPreauthorizationP1Female = getPhrase(
+    "delegatingPreauthorizationP1Female"
+  )
+    .replaceAll("{FIRST-NAME}", firstname)
+    .replaceAll("{LAST-NAME}", lastname);
+  const txtDelegatingPreauthorizationP2Male = getPhrase(
+    "delegatingPreauthorizationP2Male"
+  );
+  const txtDelegatingPreauthorizationP2Female = getPhrase(
+    "delegatingPreauthorizationP2Female"
+  );
 
   document.title = fullname;
 
@@ -189,6 +211,22 @@ function renderUser(user) {
     document
       .querySelectorAll("[name='userstatus']")
       .forEach((item) => item.setAttribute("disabled", ""));
+  }
+
+  if (gender === "male") {
+    document.querySelector("#preAuthorizationP2").innerHTML =
+      txtPreauthorizationP2Male;
+    document.querySelector("#delegatingPreauthorizationP1").innerHTML =
+      txtDelegatingPreauthorizationP1Male;
+    document.querySelector("#delegatingPreauthorizationP2").innerHTML =
+      txtDelegatingPreauthorizationP2Male;
+  } else if (gender === "female") {
+    document.querySelector("#preAuthorizationP2").innerHTML =
+      txtPreauthorizationP2Female;
+    document.querySelector("#delegatingPreauthorizationP1").innerHTML =
+      txtDelegatingPreauthorizationP1Female;
+    document.querySelector("#delegatingPreauthorizationP2").innerHTML =
+      txtDelegatingPreauthorizationP2Female;
   }
 
   if (canAuthorize === 1) {

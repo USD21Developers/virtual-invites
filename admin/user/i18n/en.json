@@ -124,13 +124,18 @@
       "translated": "All users must be authorized before they can use the Invites App. This is for security purposes, and it ensures that every user is a member in good standing with the International Christian Churches."
     },
     {
-      "key": "preauthorizationP2",
-      "original": "You can make the process of authorization quick (and barely noticeable) by pre-authorizing disciples, before they complete registration.",
-      "translated": "You can make the process of authorization quick (and barely noticeable) by pre-authorizing disciples, before they complete registration.",
+      "key": "preauthorizationP2Male",
+      "original": "You can make the process of authorization quick (and barely noticeable) by letting {FIRST-NAME} {LAST-NAME} pre-authorize disciples, in advance, to register for the Invites App.",
+      "translated": "You can make the process of authorization quick (and barely noticeable) by letting {FIRST-NAME} {LAST-NAME} pre-authorize disciples, in advance, to register for the Invites App."
+    },
+    {
+      "key": "preauthorizationP2Female",
+      "original": "You can make the process of authorization quick (and barely noticeable) by letting {FIRST-NAME} {LAST-NAME} pre-authorize disciples (male or female), in advance, to register for the Invites App.",
+      "translated": "You can make the process of authorization quick (and barely noticeable) by letting {FIRST-NAME} {LAST-NAME} pre-authorize disciples (male or female), in advance, to register for the Invites App.",
       "changes": [
         {
-          "original": "pre-authorizing",
-          "translated": "pre-authorizing",
+          "original": "pre-authorize",
+          "translated": "pre-authorize",
           "bold": true,
           "italic": true,
           "link": ""
@@ -143,23 +148,24 @@
       "translated": "Delegating Pre-authorization"
     },
     {
-      "key": "delegatingPreauthorizationP1",
-      "original": "If the person that you are pre-authorizing leads a group, or oversees multiple groups, choose this option.",
-      "translated": "If the person that you are pre-authorizing leads a group, or oversees multiple groups, choose this option."
+      "key": "delegatingPreauthorizationP1Male",
+      "original": "If {FIRST-NAME} {LAST-NAME} leads a house church or higher, choose this option.",
+      "translated": "If {FIRST-NAME} {LAST-NAME} leads a house church or higher, choose this option."
     },
     {
-      "key": "delegatingPreauthorizationP2",
-      "original": "By delegating pre-authorization to leaders under your charge, you won't have to manually pre-authorize each person yourself. This will save you time.",
-      "translated": "By delegating pre-authorization to leaders under your charge, you won't have to manually pre-authorize each person yourself. This will save you time.",
-      "changes": [
-        {
-          "original": "delegating",
-          "translated": "delegating",
-          "bold": true,
-          "italic": true,
-          "link": ""
-        }
-      ]
+      "key": "delegatingPreauthorizationP1Female",
+      "original": "If {FIRST-NAME} {LAST-NAME} is a Women's Ministry Leader, or co-leads a house church (or higher), choose this option.",
+      "translated": "If {FIRST-NAME} {LAST-NAME} is a Women's Ministry Leader, or co-leads a house church (or higher), choose this option."
+    },
+    {
+      "key": "delegatingPreauthorizationP2Male",
+      "original": "By allowing him to pre-authorize the leaders that he oversees, you can leverage the power of delegation to quickly get all of his people to begin using the Invites App.",
+      "translated": "By allowing him to pre-authorize the leaders that he oversees, you can leverage the power of delegation to quickly get all of his people to begin using the Invites App."
+    },
+    {
+      "key": "delegatingPreauthorizationP2Female",
+      "original": "By allowing her to pre-authorize other leaders (male or female) within her group, you can leverage the power of delegation to quickly get disciples at all levels within that group to begin using the Invites App.",
+      "translated": "By allowing her to pre-authorize other leaders (male or female) within her group, you can leverage the power of delegation to quickly get disciples at all levels within that group to begin using the Invites App."
     }
   ],
 
