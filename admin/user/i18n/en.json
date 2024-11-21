@@ -125,13 +125,13 @@
     },
     {
       "key": "preauthorizationP2Male",
-      "original": "You can make the process of authorization quick (and barely noticeable) by letting {FIRST-NAME} {LAST-NAME} pre-authorize disciples, in advance, to register for the Invites App.",
-      "translated": "You can make the process of authorization quick (and barely noticeable) by letting {FIRST-NAME} {LAST-NAME} pre-authorize disciples, in advance, to register for the Invites App."
+      "original": "You can make the process of authorization quick (and barely noticeable) by letting {FIRST-NAME} {LAST-NAME} authorize disciples, in advance, to register for the Invites App.",
+      "translated": "You can make the process of authorization quick (and barely noticeable) by letting {FIRST-NAME} {LAST-NAME} authorize disciples, in advance, to register for the Invites App."
     },
     {
       "key": "preauthorizationP2Female",
-      "original": "You can make the process of authorization quick (and barely noticeable) by letting {FIRST-NAME} {LAST-NAME} pre-authorize disciples (male or female), in advance, to register for the Invites App.",
-      "translated": "You can make the process of authorization quick (and barely noticeable) by letting {FIRST-NAME} {LAST-NAME} pre-authorize disciples (male or female), in advance, to register for the Invites App.",
+      "original": "You can make the process of authorization quick (and barely noticeable) by letting {FIRST-NAME} {LAST-NAME} authorize disciples (male or female), in advance, to register for the Invites App.",
+      "translated": "You can make the process of authorization quick (and barely noticeable) by letting {FIRST-NAME} {LAST-NAME} authorize disciples (male or female), in advance, to register for the Invites App.",
       "changes": [
         {
           "original": "pre-authorize",
