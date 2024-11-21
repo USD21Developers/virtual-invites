@@ -149,13 +149,13 @@
     },
     {
       "key": "delegatingPreauthorizationP1Male",
-      "original": "If {FIRST-NAME} {LAST-NAME} leads a house church or higher, choose this option.",
-      "translated": "If {FIRST-NAME} {LAST-NAME} leads a house church or higher, choose this option."
+      "original": "If {FIRST-NAME} {LAST-NAME} leads a house church or higher, select this option.",
+      "translated": "If {FIRST-NAME} {LAST-NAME} leads a house church or higher, select this option."
     },
     {
       "key": "delegatingPreauthorizationP1Female",
-      "original": "If {FIRST-NAME} {LAST-NAME} is a Women's Ministry Leader, or co-leads a house church (or higher), choose this option.",
-      "translated": "If {FIRST-NAME} {LAST-NAME} is a Women's Ministry Leader, or co-leads a house church (or higher), choose this option."
+      "original": "If {FIRST-NAME} {LAST-NAME} is a Women's Ministry Leader, or co-leads a house church (or higher), select this option.",
+      "translated": "If {FIRST-NAME} {LAST-NAME} is a Women's Ministry Leader, or co-leads a house church (or higher), select this option."
     },
     {
       "key": "delegatingPreauthorizationP2Male",
