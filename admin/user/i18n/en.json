@@ -110,8 +110,8 @@
     },
     {
       "key": "canAuthToAuth",
-      "original": "Can delegate the right to pre-authorize disciples",
-      "translated": "Can delegate the right to pre-authorize disciples"
+      "original": "Can delegate the ability to pre-authorize disciples",
+      "translated": "Can delegate the ability to pre-authorize disciples"
     },
     {
       "key": "preAuthorization",
