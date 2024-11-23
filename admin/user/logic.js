@@ -106,6 +106,12 @@ function populateUser() {
     })
       .then((res) => res.json())
       .then((data) => {
+        if (data.editable) {
+          document
+            .querySelectorAll(".showOnlyIfEditable")
+            .forEach((item) => item.classList.remove("d-none"));
+        }
+
         renderUser(data.user);
         return resolve();
       })
