@@ -1423,19 +1423,9 @@ function show(selector) {
 }
 
 function showAdminOnlyContent() {
-  const refreshTokenJSON = localStorage.getItem("refreshToken");
-
-  if (!refreshTokenJSON) return;
-
-  const refreshToken = JSON.parse(atob(refreshTokenJSON.split(".")[1]));
-
   let isAdmin = false;
 
-  if (
-    refreshToken.canAuthToAuth === true ||
-    refreshToken.canAuthToAuth === 1 ||
-    getUserType() === "sysadmin"
-  ) {
+  if (getUserType() === "sysadmin") {
     isAdmin = true;
   }
 
