@@ -130,8 +130,8 @@
     },
     {
       "key": "preauthorizationP1",
-      "original": "All users must be authorized before they can use the Invites App. This is for security purposes, and it ensures that every user is a member in good standing with the International Christian Churches.",
-      "translated": "All users must be authorized before they can use the Invites App. This is for security purposes, and it ensures that every user is a member in good standing with the International Christian Churches."
+      "original": "All users must be authorized before they can use the Invites App. This is for security purposes, and it ensures that every registered user is also a member in good standing with the International Christian Churches.",
+      "translated": "All users must be authorized before they can use the Invites App. This is for security purposes, and it ensures that every registered user is also a member in good standing with the International Christian Churches."
     },
     {
       "key": "preauthorizationP2Male",
