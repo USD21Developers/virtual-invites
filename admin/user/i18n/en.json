@@ -104,14 +104,24 @@
       "translated": "Pre-authorization:"
     },
     {
-      "key": "canAuthorize",
-      "original": "Can pre-authorize disciples to become new users",
-      "translated": "Can pre-authorize disciples to become new users"
+      "key": "canAuthorizeMale",
+      "original": "Can pre-authorize any disciples within his congregation to register for the Invites App",
+      "translated": "Can pre-authorize any disciples within his congregation to register for the Invites App"
     },
     {
-      "key": "canAuthToAuth",
-      "original": "Can delegate the ability to pre-authorize disciples",
-      "translated": "Can delegate the ability to pre-authorize disciples"
+      "key": "canAuthorizeFemale",
+      "original": "Can pre-authorize any disciples within her congregation to register for the Invites App",
+      "translated": "Can pre-authorize any disciples within her congregation to register for the Invites App"
+    },
+    {
+      "key": "canAuthToAuthMale",
+      "original": "Can delegate pre-authorization to leaders within his ministry",
+      "translated": "Can delegate pre-authorization to leaders within his ministry"
+    },
+    {
+      "key": "canAuthToAuthFemale",
+      "original": "Can delegate pre-authorization to leaders within the ministry that she co-leads",
+      "translated": "Can delegate pre-authorization to leaders within the ministry that she co-leads"
     },
     {
       "key": "preAuthorization",
@@ -125,13 +135,13 @@
     },
     {
       "key": "preauthorizationP2Male",
-      "original": "You can make the process of authorization quick (and barely noticeable) by letting {FIRST-NAME} {LAST-NAME} authorize disciples, in advance, to register for the Invites App.",
-      "translated": "You can make the process of authorization quick (and barely noticeable) by letting {FIRST-NAME} {LAST-NAME} authorize disciples, in advance, to register for the Invites App."
+      "original": "You can get more disciples to use the Invites App by allowing {FIRST-NAME} {LAST-NAME} to pre-authorize them to register.",
+      "translated": "You can get more disciples to use the Invites App by allowing {FIRST-NAME} {LAST-NAME} to pre-authorize them to register."
     },
     {
       "key": "preauthorizationP2Female",
-      "original": "You can make the process of authorization quick (and barely noticeable) by letting {FIRST-NAME} {LAST-NAME} authorize disciples (male or female), in advance, to register for the Invites App.",
-      "translated": "You can make the process of authorization quick (and barely noticeable) by letting {FIRST-NAME} {LAST-NAME} authorize disciples (male or female), in advance, to register for the Invites App.",
+      "original": "You can get more disciples to use the Invites App by allowing {FIRST-NAME} {LAST-NAME} to pre-authorize them to register (both male and female).",
+      "translated": "You can get more disciples to use the Invites App by allowing {FIRST-NAME} {LAST-NAME} to pre-authorize them to register (both male and female).",
       "changes": [
         {
           "original": "pre-authorize",
@@ -141,6 +151,11 @@
           "link": ""
         }
       ]
+    },
+    {
+      "key": "preauthorizationP3",
+      "original": "This setting is ideal for anyone who leads, or has led, a Bible Talk.",
+      "translated": "This setting is ideal for anyone who leads, or has led, a Bible Talk."
     },
     {
       "key": "delegatingPreAuthorization",
@@ -159,13 +174,34 @@
     },
     {
       "key": "delegatingPreauthorizationP2Male",
-      "original": "By allowing him to pre-authorize the leaders that he oversees, you can leverage the power of delegation to quickly get all of his people to begin using the Invites App.",
-      "translated": "By allowing him to pre-authorize the leaders that he oversees, you can leverage the power of delegation to quickly get all of his people to begin using the Invites App."
+      "original": "By allowing him to pre-authorize the leaders that serve under him, you can leverage the power of delegation to quickly get all of his people to begin using the Invites App.",
+      "translated": "By allowing him to pre-authorize the leaders that serve under him, you can leverage the power of delegation to quickly get all of his people to begin using the Invites App."
     },
     {
       "key": "delegatingPreauthorizationP2Female",
-      "original": "By allowing her to pre-authorize other leaders (male or female) within her group, you can leverage the power of delegation to quickly get disciples at all levels in that group to begin using the Invites App.",
-      "translated": "By allowing her to pre-authorize other leaders (male or female) within her group, you can leverage the power of delegation to quickly get disciples at all levels in that group to begin using the Invites App."
+      "original": "By allowing her to pre-authorize the leaders who are in the group that she co-leads (whether male or female), you can leverage the power of delegation to quickly get disciples at all levels within her group to begin using the Invites App.",
+      "translated": "By allowing her to pre-authorize the leaders who are in the group that she co-leads (whether male or female), you can leverage the power of delegation to quickly get disciples at all levels within her group to begin using the Invites App."
+    },
+    {
+      "key": "delegatingPreauthorizationP3",
+      "original": "Note: delegating pre-authorization not only delegates to one person directly, but also passes on the ability to delegate. It is a powerful setting that is only meant to be enabled for leaders of leaders (specifically, house church leaders or higher).",
+      "translated": "Note: delegating pre-authorization not only delegates to one person directly, but also passes on the ability to delegate. It is a powerful setting that is only meant to be enabled for leaders of leaders (specifically, house church leaders or higher).",
+      "changes": [
+        {
+          "original": "passes on",
+          "translated": "passes on",
+          "bold": true,
+          "italic": true,
+          "link": ""
+        },
+        {
+          "original": "leaders of leaders",
+          "translated": "leaders of leaders",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
     }
   ],
 

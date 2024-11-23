@@ -157,6 +157,7 @@ function renderUser(user) {
       ${regDate}
     </span>`
   );
+
   const txtPreauthorizationP2Male = getPhrase("preauthorizationP2Male")
     .replaceAll("{FIRST-NAME}", firstname)
     .replaceAll("{LAST-NAME}", lastname);
@@ -220,6 +221,10 @@ function renderUser(user) {
   }
 
   if (gender === "male") {
+    document.querySelector("#labelCanAuthorize").innerHTML =
+      getPhrase("canAuthorizeMale");
+    document.querySelector("#labelCanAuthToAuth").innerHTML =
+      getPhrase("canAuthToAuthMale");
     document.querySelector("#preAuthorizationP2").innerHTML =
       txtPreauthorizationP2Male;
     document.querySelector("#delegatingPreauthorizationP1").innerHTML =
@@ -227,6 +232,11 @@ function renderUser(user) {
     document.querySelector("#delegatingPreauthorizationP2").innerHTML =
       txtDelegatingPreauthorizationP2Male;
   } else if (gender === "female") {
+    document.querySelector("#labelCanAuthorize").innerHTML =
+      getPhrase("canAuthorizeFemale");
+    document.querySelector("#labelCanAuthToAuth").innerHTML = getPhrase(
+      "canAuthToAuthFemale"
+    );
     document.querySelector("#preAuthorizationP2").innerHTML =
       txtPreauthorizationP2Female;
     document.querySelector("#delegatingPreauthorizationP1").innerHTML =
