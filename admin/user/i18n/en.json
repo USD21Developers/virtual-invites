@@ -75,8 +75,8 @@
     },
     {
       "key": "userTypeSysadmin",
-      "original": "System administrator",
-      "translated": "System administrator"
+      "original": "Admin",
+      "translated": "Admin"
     },
     {
       "key": "helpUserTypeRegular",
