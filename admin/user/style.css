@@ -38,5 +38,5 @@ input[type="checkbox"] + label {
 }
 
 #help_userType_sysadmin strong {
-  color: var(--success);
+  color: var(--dark);
 }
