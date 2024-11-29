@@ -145,6 +145,7 @@ function renderUser(user) {
     userstatus,
     usertype,
   } = user;
+
   const fullname = `${firstname} ${lastname}`;
   const regDate = new Intl.DateTimeFormat(undefined, {
     year: "numeric",
@@ -199,9 +200,12 @@ function renderUser(user) {
     document.querySelector("#usertypeSysadmin").checked = true;
   } else {
     document.querySelector("#usertypeUser").checked = true;
-    document
-      .querySelectorAll("[name='usertype']")
-      .forEach((item) => item.setAttribute("disabled", ""));
+
+    if (viewingUserType !== "sysadmin") {
+      document
+        .querySelectorAll("[name='usertype']")
+        .forEach((item) => item.setAttribute("disabled", ""));
+    }
   }
   if (viewingUserId === userid) {
     document

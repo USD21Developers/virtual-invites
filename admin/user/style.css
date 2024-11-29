@@ -36,3 +36,7 @@ input[type="checkbox"] + label {
 #userstatusFrozen:checked + label {
   color: var(--danger);
 }
+
+#help_userType_sysadmin strong {
+  color: var(--success);
+}

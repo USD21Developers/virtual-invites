@@ -275,8 +275,8 @@
 
         <div class="row my-4 showOnlyIfEditable d-none" id="userTypeInput">
           <div class="col col-md-8 offset-md-2">
-            <div class="mb-2 pb-1">
-              <label for="usertype" data-i18n="usertype"></label>
+            <div class="mb-3 pb-1">
+              <label data-i18n="usertype"></label>
             </div>
             <div class="form-check">
               <input
@@ -285,12 +285,18 @@
                 name="usertype"
                 id="usertypeUser"
                 value="user"
+                aria-describedby="help_userType_regular"
               />
               <label
                 class="form-check-label"
                 for="usertypeUser"
                 data-i18n="userTypeUser"
               ></label>
+              <small
+                id="help_userType_regular"
+                class="form-text text-muted mt-1 mb-3"
+                data-i18n="helpUserTypeRegular"
+              ></small>
             </div>
             <div class="form-check">
               <input
@@ -299,6 +305,7 @@
                 name="usertype"
                 id="usertypeSysadmin"
                 value="sysadmin"
+                aria-describedby="help_userType_sysadmin"
                 checked
               />
               <label
@@ -306,6 +313,11 @@
                 for="usertypeSysadmin"
                 data-i18n="userTypeSysadmin"
               ></label>
+              <small
+                id="help_userType_sysadmin"
+                class="form-text text-muted mt-1 mb-2"
+                data-i18n="helpUserTypeSysadmin"
+              ></small>
             </div>
           </div>
         </div>
@@ -313,7 +325,7 @@
         <div class="row my-4">
           <div class="col col-md-8 offset-md-2">
             <div class="mb-2 pb-1">
-              <label for="userstatus" data-i18n="accountStatus"></label>
+              <label data-i18n="accountStatus"></label>
             </div>
             <div class="form-check">
               <input

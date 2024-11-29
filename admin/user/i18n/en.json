@@ -79,9 +79,42 @@
       "translated": "System administrator"
     },
     {
+      "key": "helpUserTypeRegular",
+      "original": "Applies to most users.",
+      "translated": "Applies to most users."
+    },
+    {
       "key": "userTypeUser",
       "original": "Regular user",
       "translated": "Regular user"
+    },
+    {
+      "key": "helpUserTypeSysadmin",
+      "original": "Applies only to evangelists, church administrators, Web deacons and similar roles. Must have responsibilities over an entire congregation.",
+      "translated": "Applies only to evangelists, church administrators, Web deacons and similar roles. Must have responsibilities over an entire congregation.",
+      "changes": [
+        {
+          "original": "evangelists",
+          "translated": "evangelists",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        },
+        {
+          "original": "church administrators",
+          "translated": "church administrators",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        },
+        {
+          "original": "Web deacons",
+          "translated": "Web deacons",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "accountStatus",
