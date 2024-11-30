@@ -21,6 +21,11 @@ label {
   font-weight: 600;
 }
 
+label[for="userstatusRegistered"],
+label[for="userstatusFrozen"] {
+  font-weight: 400;
+}
+
 input[type="radio"]:checked + label {
   font-weight: bold;
 }
