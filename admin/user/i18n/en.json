@@ -280,6 +280,16 @@
       "key": "errorUserStatusIsRequired",
       "original": "Account status is required",
       "translated": "Account status is required"
+    },
+    {
+      "key": "update-successful",
+      "original": "Update Successful",
+      "translated": "Update Successful"
+    },
+    {
+      "key": "update-successful-p1",
+      "original": "Your changes were saved.",
+      "translated": "Your changes were saved."
     }
   ],
 

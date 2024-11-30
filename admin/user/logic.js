@@ -412,7 +412,10 @@ async function onSubmit(e) {
     .then((res) => res.json())
     .then((data) => {
       // TODO:  apply server-side validation, if any
-      // TODO:  build UX for a successful update
+
+      // Show success modal
+      document.querySelector("#pageSpinner").classList.add("d-none");
+      $("#updateSuccessfulModal").modal();
     })
     .catch((error) => {
       console.error(error);
@@ -431,6 +434,10 @@ function attachListeners() {
   document
     .querySelector("#helpAboutDelegatingPreauthorization")
     .addEventListener("click", onHelpClickedForDelegatingPreauthorization);
+
+  $("#updateSuccessfulModal").on("hide.bs.modal", (e) => {
+    window.location.reload();
+  });
 }
 
 async function init() {
