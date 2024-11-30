@@ -86,9 +86,7 @@ function getPermissions() {
 }
 
 async function isSysadmin() {
-  const refreshToken = JSON.parse(
-    atob(localStorage.getItem("refreshToken").split(".")[1])
-  );
+  const refreshToken = localStorage.getItem("refreshToken");
   const claims = JSON.parse(atob(refreshToken.split(".")[1]));
   const usertype = claims.usertype || "user";
   return usertype === "sysadmin" ? true : false;
