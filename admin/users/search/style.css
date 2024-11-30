@@ -4,7 +4,7 @@
 }
 
 #searchTerm {
-  /* font-style: italic; */
+  color: var(--primary-dark);
 }
 
 #churchName {
