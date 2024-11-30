@@ -90,8 +90,8 @@
     },
     {
       "key": "helpUserTypeSysadmin",
-      "original": "Applies only to evangelists, church administrators, Web deacons and similar roles. Must have responsibilities over an entire congregation.",
-      "translated": "Applies only to evangelists, church administrators, Web deacons and similar roles. Must have responsibilities over an entire congregation.",
+      "original": "Applies only to evangelists, church administrators, Web deacons and similar roles. Must have responsibilities that pertain to an entire congregation.",
+      "translated": "Applies only to evangelists, church administrators, Web deacons and similar roles. Must have responsibilities that pertain to an entire congregation.",
       "changes": [
         {
           "original": "evangelists",
@@ -235,6 +235,51 @@
           "link": ""
         }
       ]
+    },
+    {
+      "key": "errorChurchIsRequired",
+      "original": "Church is required",
+      "translated": "Church is required"
+    },
+    {
+      "key": "errorCountryIsRequired",
+      "original": "Country is required",
+      "translated": "Country is required"
+    },
+    {
+      "key": "errorLangIsRequired",
+      "original": "Language is required",
+      "translated": "Language is required"
+    },
+    {
+      "key": "errorFirstNameIsRequired",
+      "original": "First name is required",
+      "translated": "First name is required"
+    },
+    {
+      "key": "errorLastNameIsRequired",
+      "original": "Last name is required",
+      "translated": "Last name is required"
+    },
+    {
+      "key": "errorEmailIsRequired",
+      "original": "E-mail address is required",
+      "translated": "E-mail address is required"
+    },
+    {
+      "key": "errorEmailIsInvalid",
+      "original": "E-mail address is invalid",
+      "translated": "E-mail address is invalid"
+    },
+    {
+      "key": "errorUserTypeIsRequired",
+      "original": "User type is required",
+      "translated": "User type is required"
+    },
+    {
+      "key": "errorUserStatusIsRequired",
+      "original": "Account status is required",
+      "translated": "Account status is required"
     }
   ],
 

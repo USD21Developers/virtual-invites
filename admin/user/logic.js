@@ -1,3 +1,5 @@
+let isEditable = false;
+
 async function populateChurches() {
   const churchDropdown = document.querySelector("#churchid");
   const countryData = await getCountries(getLang());
@@ -106,11 +108,17 @@ function populateUser() {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.editable) {
-          document
-            .querySelectorAll(".showOnlyIfEditable")
-            .forEach((item) => item.classList.remove("d-none"));
+        if (data.hasOwnProperty("editable")) {
+          isEditable = data.editable;
+
+          if (isEditable) {
+            document
+              .querySelectorAll(".showOnlyIfEditable")
+              .forEach((item) => item.classList.remove("d-none"));
+          }
         }
+
+        document.querySelector("#userid").value = data.user.userid;
 
         renderUser(data.user);
         return resolve();
@@ -256,11 +264,6 @@ function renderUser(user) {
   if (canAuthToAuth === 1) {
     document.querySelector("#canAuthToAuth").checked = true;
   }
-
-  // TODO:  implement client-side validation
-  // TODO:  create and connect API
-  // TODO:  implement server-enforced validation
-  // NOTE:  unless user is a sysadmin, don't permit, or process, any changes to users in other churches
 }
 
 async function selectUserChurch() {
@@ -298,9 +301,115 @@ function onHelpClickedForDelegatingPreauthorization(e) {
   $("#delegatingPreauthorizationModal").modal();
 }
 
-function onSubmit(e) {
-  console.log("Submitted");
+async function onSubmit(e) {
   e.preventDefault();
+
+  const isSysadmin = await isSysadmin();
+  const form = document.querySelector("#userform");
+  const userid = form["userid"].value;
+  const churchid = form["churchid"].value;
+  const country = form["#country"].value;
+  const lang = form["#lang"].value;
+  const firstname = form["#firstname"].value;
+  const lastname = form["#lastname"].value;
+  const email = form["#email"].value;
+  const usertype = form["usertype"].value;
+  const userstatus = form["userstatus"].value;
+  const canAuthorize = form["canAuthorize"].value;
+  const canAuthToAuth = form["canAuthToAuth"].value;
+
+  document.querySelectorAll(".is-invalid").forEach((item) => {
+    item.classList.remove("is-invalid");
+  });
+  document.querySelector("#errorUserTypeIsRequired").classList.add("d-none");
+  document.querySelector("#errorUserStatusIsRequired").classList.add("d-none");
+
+  if (!isNaN(churchid)) {
+    document.querySelector("#churchid").classList.add("is-invalid");
+    formError("#churchid", getPhrase("errorChurchIsRequired"));
+  }
+
+  if (isEditable) {
+    if (country.length !== 2) {
+      document.querySelector("#country").classList.add("is-invalid");
+      formError("#country", getPhrase("errorCountryIsRequired"));
+    }
+
+    if (lang.length !== 2) {
+      document.querySelector("#lang").classList.add("is-invalid");
+      formError("#lang", getPhrase("errorLangIsRequired"));
+    }
+
+    if (!firstname.trim().length) {
+      document.querySelector("#firstname").classList.add("is-invalid");
+      formError("#firstname", getPhrase("errorFirstNameIsRequired"));
+    }
+
+    if (!lastname.trim().length) {
+      document.querySelector("#lastname").classList.add("is-invalid");
+      formError("#lastname", getPhrase("errorLastNameIsRequired"));
+    }
+
+    if (!email.trim().length) {
+      document.querySelector("#email").classList.add("is-invalid");
+      formError("#email", getPhrase("errorEmailIsRequired"));
+    }
+
+    if (!validateEmail(email.trim())) {
+      document.querySelector("#email").classList.add("is-invalid");
+      formError("#email", getPhrase("errorEmailIsInvalid"));
+    }
+
+    if (!["user", "sysadmin"].includes(usertype)) {
+      document
+        .querySelector("#errorUserTypeIsRequired")
+        .classList.remove("d-none");
+      customScrollTo("#userTypeInput");
+    }
+  }
+
+  if (!["registered", "frozen"].includes(userstatus)) {
+    document
+      .querySelector("#errorUserStatusIsRequired")
+      .classList.remove("d-none");
+    customScrollTo("#userStatusInput");
+  }
+
+  globalShowPageSpinner();
+
+  const endpoint = `${getApiHost()}/admin-user-update`;
+  const accessToken = await getAccessToken();
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "post",
+    body: JSON.stringify({
+      userid: userid,
+      churchid: churchid,
+      country: country,
+      lang: lang,
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      usertype: usertype,
+      userstatus: userstatus,
+      canAuthorize: canAuthorize,
+      canAuthToAuth: canAuthToAuth,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      // TODO:  apply server-side validation, if any
+      // TODO:  build UX for a successful update
+    })
+    .catch((error) => {
+      console.error(error);
+      globalHidePageSpinner();
+    });
 }
 
 function attachListeners() {

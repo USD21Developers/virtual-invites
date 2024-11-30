@@ -214,17 +214,18 @@
       </div>
 
       <form id="userform">
+        <input type="hidden" name="userid" id="userid" />
         <div class="row mt-3" id="churchSelect">
           <div class="col col-md-8 offset-md-2">
             <label for="churchid" data-i18n="church"></label>
             <select id="churchid" name="churchid" class="form-control"></select>
-            <div
-              class="invalid-feedback searchedFirstName"
-              data-i18n="errorChurchIsRequired"
-            ></div>
             <div>
               <small id="selectedChurchName" class="text-muted"></small>
             </div>
+            <div
+              class="invalid-feedback"
+              data-i18n="errorChurchIsRequired"
+            ></div>
           </div>
         </div>
 
@@ -233,6 +234,10 @@
             <div class="form-group">
               <label for="country" data-i18n="country"></label>
               <select id="country" class="form-control"></select>
+              <div
+                class="invalid-feedback"
+                data-i18n="errorCountryIsRequired"
+              ></div>
             </div>
           </div>
         </div>
@@ -242,6 +247,10 @@
             <div class="form-group">
               <label for="lang" data-i18n="language"></label>
               <select id="lang" class="form-control"></select>
+              <div
+                class="invalid-feedback"
+                data-i18n="errorLangIsRequired"
+              ></div>
             </div>
           </div>
         </div>
@@ -251,6 +260,10 @@
             <div class="form-group">
               <label for="firstname" data-i18n="firstname"></label>
               <input type="text" class="form-control" id="firstname" />
+              <div
+                class="invalid-feedback"
+                data-i18n="errorFirstNameIsRequired"
+              ></div>
             </div>
           </div>
         </div>
@@ -260,6 +273,10 @@
             <div class="form-group">
               <label for="lastname" data-i18n="lastname"></label>
               <input type="text" class="form-control" id="lastname" />
+              <div
+                class="invalid-feedback"
+                data-i18n="errorLastNameIsRequired"
+              ></div>
             </div>
           </div>
         </div>
@@ -269,6 +286,10 @@
             <div class="form-group">
               <label for="email" data-i18n="email"></label>
               <input type="text" class="form-control" id="email" />
+              <div
+                class="invalid-feedback"
+                data-i18n="errorEmailIsRequired"
+              ></div>
             </div>
           </div>
         </div>
@@ -287,16 +308,14 @@
                 value="user"
                 aria-describedby="help_userType_regular"
               />
-              <label
-                class="form-check-label"
-                for="usertypeUser"
-                data-i18n="userTypeUser"
-              ></label>
-              <small
-                id="help_userType_regular"
-                class="form-text text-muted mt-1 mb-3"
-                data-i18n="helpUserTypeRegular"
-              ></small>
+              <label class="form-check-label" for="usertypeUser">
+                <span data-i18n="userTypeUser"></span>
+                <small
+                  id="help_userType_regular"
+                  class="form-text text-muted mt-1 mb-3"
+                  data-i18n="helpUserTypeRegular"
+                ></small>
+              </label>
             </div>
             <div class="form-check">
               <input
@@ -308,21 +327,25 @@
                 aria-describedby="help_userType_sysadmin"
                 checked
               />
-              <label
-                class="form-check-label"
-                for="usertypeSysadmin"
-                data-i18n="userTypeSysadmin"
-              ></label>
-              <small
-                id="help_userType_sysadmin"
-                class="form-text text-muted mt-1 mb-2"
-                data-i18n="helpUserTypeSysadmin"
-              ></small>
+              <label class="form-check-label" for="usertypeSysadmin">
+                <span data-i18n="userTypeSysadmin"></span>
+                <small
+                  id="help_userType_sysadmin"
+                  class="form-text text-muted mt-1 mb-2"
+                  data-i18n="helpUserTypeSysadmin"
+                ></small>
+              </label>
             </div>
+
+            <div
+              class="invalid-feedback border-top border-danger mt-3 pt-1 d-none"
+              data-i18n="errorUserTypeIsRequired"
+              id="errorUserTypeIsRequired"
+            ></div>
           </div>
         </div>
 
-        <div class="row my-4">
+        <div class="row my-4" id="userStatusInput">
           <div class="col col-md-8 offset-md-2">
             <div class="mb-2 pb-1">
               <label data-i18n="accountStatus"></label>
@@ -355,6 +378,12 @@
                 data-i18n="userstatusFrozen"
               ></label>
             </div>
+
+            <div
+              class="invalid-feedback border-top border-danger mt-3 pt-1 d-none"
+              data-i18n="errorUserStatusIsRequired"
+              id="errorUserStatusIsRequired"
+            ></div>
           </div>
         </div>
 

@@ -40,3 +40,8 @@ input[type="checkbox"] + label {
 #help_userType_sysadmin strong {
   color: var(--dark-light);
 }
+
+#errorUserTypeIsRequired:not(.d-none),
+#errorUserStatusIsRequired:not(.d-none) {
+  display: block;
+}
