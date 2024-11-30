@@ -304,15 +304,14 @@ function onHelpClickedForDelegatingPreauthorization(e) {
 async function onSubmit(e) {
   e.preventDefault();
 
-  const isSysadmin = await isSysadmin();
   const form = document.querySelector("#userform");
   const userid = form["userid"].value;
   const churchid = form["churchid"].value;
-  const country = form["#country"].value;
-  const lang = form["#lang"].value;
-  const firstname = form["#firstname"].value;
-  const lastname = form["#lastname"].value;
-  const email = form["#email"].value;
+  const country = form["country"].value;
+  const lang = form["lang"].value;
+  const firstname = form["firstname"].value;
+  const lastname = form["lastname"].value;
+  const email = form["email"].value;
   const usertype = form["usertype"].value;
   const userstatus = form["userstatus"].value;
   const canAuthorize = form["canAuthorize"].value;
@@ -324,40 +323,47 @@ async function onSubmit(e) {
   document.querySelector("#errorUserTypeIsRequired").classList.add("d-none");
   document.querySelector("#errorUserStatusIsRequired").classList.add("d-none");
 
-  if (!isNaN(churchid)) {
+  if (!churchid || churchid === "") {
     document.querySelector("#churchid").classList.add("is-invalid");
     formError("#churchid", getPhrase("errorChurchIsRequired"));
+    return;
   }
 
   if (isEditable) {
     if (country.length !== 2) {
       document.querySelector("#country").classList.add("is-invalid");
       formError("#country", getPhrase("errorCountryIsRequired"));
+      return;
     }
 
     if (lang.length !== 2) {
       document.querySelector("#lang").classList.add("is-invalid");
       formError("#lang", getPhrase("errorLangIsRequired"));
+      return;
     }
 
     if (!firstname.trim().length) {
       document.querySelector("#firstname").classList.add("is-invalid");
       formError("#firstname", getPhrase("errorFirstNameIsRequired"));
+      return;
     }
 
     if (!lastname.trim().length) {
       document.querySelector("#lastname").classList.add("is-invalid");
       formError("#lastname", getPhrase("errorLastNameIsRequired"));
+      return;
     }
 
     if (!email.trim().length) {
       document.querySelector("#email").classList.add("is-invalid");
       formError("#email", getPhrase("errorEmailIsRequired"));
+      return;
     }
 
     if (!validateEmail(email.trim())) {
       document.querySelector("#email").classList.add("is-invalid");
       formError("#email", getPhrase("errorEmailIsInvalid"));
+      return;
     }
 
     if (!["user", "sysadmin"].includes(usertype)) {
@@ -365,6 +371,7 @@ async function onSubmit(e) {
         .querySelector("#errorUserTypeIsRequired")
         .classList.remove("d-none");
       customScrollTo("#userTypeInput");
+      return;
     }
   }
 
@@ -373,6 +380,7 @@ async function onSubmit(e) {
       .querySelector("#errorUserStatusIsRequired")
       .classList.remove("d-none");
     customScrollTo("#userStatusInput");
+    return;
   }
 
   globalShowPageSpinner();
@@ -384,17 +392,17 @@ async function onSubmit(e) {
     mode: "cors",
     method: "post",
     body: JSON.stringify({
-      userid: userid,
-      churchid: churchid,
+      userid: Number(userid),
+      churchid: Number(churchid),
       country: country,
       lang: lang,
-      firstname: firstname,
-      lastname: lastname,
-      email: email,
+      firstname: firstname.trim(),
+      lastname: lastname.trim(),
+      email: email.trim().toLowerCase(),
       usertype: usertype,
       userstatus: userstatus,
-      canAuthorize: canAuthorize,
-      canAuthToAuth: canAuthToAuth,
+      canAuthorize: Number(canAuthorize),
+      canAuthToAuth: Number(canAuthToAuth),
     }),
     headers: new Headers({
       "Content-Type": "application/json",
