@@ -314,8 +314,8 @@ async function onSubmit(e) {
   const email = form["email"].value;
   const usertype = form["usertype"].value;
   const userstatus = form["userstatus"].value;
-  const canAuthorize = form["canAuthorize"].value;
-  const canAuthToAuth = form["canAuthToAuth"].value;
+  const canAuthorize = form["canAuthorize"].checked ? 1 : 0;
+  const canAuthToAuth = form["canAuthToAuth"].checked ? 1 : 0;
 
   document.querySelectorAll(".is-invalid").forEach((item) => {
     item.classList.remove("is-invalid");
@@ -401,8 +401,8 @@ async function onSubmit(e) {
       email: email.trim().toLowerCase(),
       usertype: usertype,
       userstatus: userstatus,
-      canAuthorize: Number(canAuthorize),
-      canAuthToAuth: Number(canAuthToAuth),
+      canAuthorize: canAuthorize,
+      canAuthToAuth: canAuthToAuth,
     }),
     headers: new Headers({
       "Content-Type": "application/json",
