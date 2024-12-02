@@ -259,7 +259,12 @@
           <div class="col col-md-8 offset-md-2">
             <div class="form-group">
               <label for="firstname" data-i18n="firstname"></label>
-              <input type="text" class="form-control" id="firstname" />
+              <input
+                type="text"
+                class="form-control"
+                id="firstname"
+                maxlength="255"
+              />
               <div
                 class="invalid-feedback"
                 data-i18n="errorFirstNameIsRequired"
@@ -272,7 +277,12 @@
           <div class="col col-md-8 offset-md-2">
             <div class="form-group">
               <label for="lastname" data-i18n="lastname"></label>
-              <input type="text" class="form-control" id="lastname" />
+              <input
+                type="text"
+                class="form-control"
+                id="lastname"
+                maxlength="255"
+              />
               <div
                 class="invalid-feedback"
                 data-i18n="errorLastNameIsRequired"
@@ -285,7 +295,12 @@
           <div class="col col-md-8 offset-md-2">
             <div class="form-group">
               <label for="email" data-i18n="email"></label>
-              <input type="text" class="form-control" id="email" />
+              <input
+                type="text"
+                class="form-control"
+                id="email"
+                maxlength="255"
+              />
               <div
                 class="invalid-feedback"
                 data-i18n="errorEmailIsRequired"
@@ -562,6 +577,41 @@
           <div class="modal-body pb-1">
             <p data-i18n="update-successful-p1"></p>
           </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              data-i18n="btnCloseModal"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal:  Update unsuccessful -->
+    <div
+      class="modal fade"
+      id="updateUnsuccessfulModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"></h5>
+            <button
+              type="button"
+              class="close ml-3"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-1"></div>
           <div class="modal-footer">
             <button
               type="button"

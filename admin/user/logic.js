@@ -266,6 +266,13 @@ function renderUser(user) {
   }
 }
 
+function showModalUnsuccessful(headline, content) {
+  const modal = document.querySelector("#updateUnsuccessfulModal");
+  modal.querySelector(".modal-title").innerHTML = headline;
+  modal.querySelector(".modal-body").innerHTML = content;
+  $("#updateUnsuccessfulModal").modal();
+}
+
 async function selectUserChurch() {
   const myUserId = getUserId();
   const myChurchId = await getUserChurchId(myUserId);
@@ -411,11 +418,127 @@ async function onSubmit(e) {
   })
     .then((res) => res.json())
     .then((data) => {
-      // TODO:  apply server-side validation, if any
-
-      // Show success modal
       document.querySelector("#pageSpinner").classList.add("d-none");
-      $("#updateSuccessfulModal").modal();
+
+      switch (data.msg) {
+        case "firstname is required":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("input-first-name")
+          );
+          return;
+        case "firstname must not exceed 255 characters":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("first-name-too-long")
+          );
+          return;
+        case "lastname is required":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("input-last-name")
+          );
+          return;
+        case "lastname must not exceed 255 characters":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("last-name-too-long")
+          );
+          return;
+        case "email is required":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("input-email")
+          );
+          return;
+        case "email must not exceed 255 characters":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("email-too-long")
+          );
+          return;
+        case "email format is invalid":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("email-invalid")
+          );
+          return;
+        case "email is already in use":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("email-in-use")
+          );
+          return;
+        case "insufficient permissions to downgrade usertype for this user":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("cannot-downgrade-usertype")
+          );
+          return;
+        case "insufficient permissions to set userstatus to frozen for this user":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("cannot-downgrade-userstatus")
+          );
+          return;
+        case "insufficient permissions to downgrade canAuthorize for this user":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("cannot-downgrade-canAuthorize")
+          );
+          return;
+        case "insufficient permissions to downgrade canAuthToAuth for this user":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("cannot-downgrade-canAuthToAuth")
+          );
+          return;
+        case "sysadmins cannot downgrade their own usertype":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("sysadmins-cannot-downgrade-own-usertype")
+          );
+          return;
+        case "sysadmins cannot downgrade their own userstatus":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("sysadmins-cannot-downgrade-own-userstatus")
+          );
+          return;
+        case "sysadmins cannot downgrade their own canAuthorize setting":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("sysadmins-cannot-downgrade-own-canAuthorize")
+          );
+          return;
+        case "sysadmins cannot downgrade their own canAuthToAuth setting":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("sysadmins-cannot-downgrade-own-canAuthToAuth")
+          );
+          return;
+        case "insufficient permissions to modify a user from another congregation":
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("cannot-modify-user-from-different-congregation")
+          );
+          return;
+        case "user unchanged":
+          showModalUnsuccessful(
+            getPhrase("user-unchanged"),
+            getPhrase("user-unchanged-explanation")
+          );
+          return;
+        case "user updated":
+          document.querySelector("#pageSpinner").classList.add("d-none");
+          $("#updateSuccessfulModal").modal();
+        default:
+          showModalUnsuccessful(
+            getPhrase("changes-not-saved"),
+            getPhrase("unexpected-error")
+          );
+          return;
+      }
     })
     .catch((error) => {
       console.error(error);
@@ -437,6 +560,10 @@ function attachListeners() {
 
   $("#updateSuccessfulModal").on("hide.bs.modal", (e) => {
     window.location.reload();
+  });
+
+  $("#updateUnsuccessfulModal").on("hide.bs.modal", (e) => {
+    globalHidePageSpinner();
   });
 }
 

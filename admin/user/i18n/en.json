@@ -290,6 +290,111 @@
       "key": "update-successful-p1",
       "original": "Your changes were saved.",
       "translated": "Your changes were saved."
+    },
+    {
+      "key": "user-unchanged",
+      "original": "User Unchanged",
+      "translated": "User Unchanged"
+    },
+    {
+      "key": "changes-not-saved",
+      "original": "Update Not Successful",
+      "translated": "Update Not Successful"
+    },
+    {
+      "key": "input-first-name",
+      "original": "Please input the first name.",
+      "translated": "Please input the first name."
+    },
+    {
+      "key": "first-name-too-long",
+      "original": "The first name must not exceed 255 characters.",
+      "translated": "The first name must not exceed 255 characters."
+    },
+    {
+      "key": "input-last-name",
+      "original": "Please input the last name.",
+      "translated": "Please input the last name."
+    },
+    {
+      "key": "last-name-too-long",
+      "original": "The last name must not exceed 255 characters.",
+      "translated": "The last name must not exceed 255 characters."
+    },
+    {
+      "key": "input-email",
+      "original": "Please input the e-mail address.",
+      "translated": "Please input the e-mail address."
+    },
+    {
+      "key": "email-too-long",
+      "original": "The e-mail address must not exceed 255 characters.",
+      "translated": "The e-mail address must not exceed 255 characters."
+    },
+    {
+      "key": "email-invalid",
+      "original": "Please check the e-mail address for accuracy and proper formatting.",
+      "translated": "Please check the e-mail address for accuracy and proper formatting."
+    },
+    {
+      "key": "email-in-use",
+      "original": "Another user is already using that e-mail address.",
+      "translated": "Another user is already using that e-mail address."
+    },
+    {
+      "key": "cannot-downgrade-usertype",
+      "original": "The user type for this user cannot be downgraded.",
+      "translated": "The user type for this user cannot be downgraded."
+    },
+    {
+      "key": "cannot-downgrade-userstatus",
+      "original": "The user status for this user cannot be downgraded.",
+      "translated": "The user status for this user cannot be downgraded."
+    },
+    {
+      "key": "cannot-downgrade-canAuthorize",
+      "original": "You do not have sufficient permissions to prevent this user from pre-authorizing disciples to become new users.",
+      "translated": "You do not have sufficient permissions to prevent this user from pre-authorizing disciples to become new users."
+    },
+    {
+      "key": "cannot-downgrade-canAuthToAuth",
+      "original": "You do not have sufficient permissions to prevent this user from delegating pre-authorization to other leaders.",
+      "translated": "You do not have sufficient permissions to prevent this user from delegating pre-authorization to other leaders."
+    },
+    {
+      "key": "sysadmins-cannot-downgrade-own-usertype",
+      "original": "Admins cannot downgrade the user type of their own account.",
+      "translated": "Admins cannot downgrade the user type of their own account."
+    },
+    {
+      "key": "sysadmins-cannot-downgrade-own-userstatus",
+      "original": "Admins cannot downgrade their own account status.",
+      "translated": "Admins cannot downgrade their own account status."
+    },
+    {
+      "key": "sysadmins-cannot-downgrade-own-canAuthorize",
+      "original": "Admins cannot turn off the setting on their own account that allows them to pre-authorize disciples to become new users.",
+      "translated": "Admins cannot turn off the setting on their own account that allows them to pre-authorize disciples to become new users."
+    },
+    {
+      "key": "sysadmins-cannot-downgrade-own-canAuthToAuth",
+      "original": "Admins cannot turn off the setting on their own account that allows them to delegate pre-authorization to other leaders.",
+      "translated": "Admins cannot turn off the setting on their own account that allows them to delegate pre-authorization to other leaders."
+    },
+    {
+      "key": "cannot-modify-user-from-different-congregation",
+      "original": "You cannot modify a user from a different congregation.",
+      "translated": "You cannot modify a user from a different congregation."
+    },
+    {
+      "key": "user-unchanged-explanation",
+      "original": "No changes to this user have been made, and so no settings were updated.",
+      "translated": "No changes to this user have been made, and so no settings were updated."
+    },
+    {
+      "key": "unexpected-error",
+      "original": "An unexpected error occurred. Please ensure that you are connected to the internet, and perhaps try again.",
+      "translated": "An unexpected error occurred. Please ensure that you are connected to the internet, and perhaps try again."
     }
   ],
 
