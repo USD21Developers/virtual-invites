@@ -532,6 +532,7 @@ async function onSubmit(e) {
         case "user updated":
           document.querySelector("#pageSpinner").classList.add("d-none");
           $("#updateSuccessfulModal").modal();
+          return;
         default:
           showModalUnsuccessful(
             getPhrase("changes-not-saved"),
