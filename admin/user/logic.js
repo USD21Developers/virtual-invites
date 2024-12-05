@@ -219,6 +219,14 @@ function renderUser(user) {
     document
       .querySelectorAll("[name='usertype']")
       .forEach((item) => item.setAttribute("disabled", ""));
+
+    if (canAuthorize) {
+      document.querySelector("#canAuthorize").setAttribute("disabled", "");
+    }
+
+    if (canAuthToAuth) {
+      document.querySelector("#canAuthToAuth").setAttribute("disabled", "");
+    }
   }
 
   if (userstatus === "frozen") {
