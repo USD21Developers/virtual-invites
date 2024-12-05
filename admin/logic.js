@@ -1,5 +1,5 @@
 async function populatePhotosPendingReview() {
-  const photoReviewLinkEl = document.querySelector("#photoReviewLink");
+  const reviewLinkEl = document.querySelector("#reviewLink");
   const quantityPhotoReviewEl = document.querySelector("#quantityPhotoReview");
   const endpoint = `${getApiHost()}/photos-pending-review`;
   const accessToken = await getAccessToken();
@@ -20,7 +20,7 @@ async function populatePhotosPendingReview() {
       if (!Array.isArray(photos)) return;
 
       if (photos.length === 0) {
-        photoReviewLinkEl.classList.add("d-none");
+        reviewLinkEl.classList.add("d-none");
         return;
       }
 
