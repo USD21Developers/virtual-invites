@@ -315,8 +315,8 @@
     },
     {
       "key": "headlineNotifications",
-      "original": "To Unsubscribe:",
-      "translated": "To Unsubscribe:"
+      "original": "Unsubscribe:",
+      "translated": "Unsubscribe:"
     },
     {
       "key": "notificationsExplanation",
