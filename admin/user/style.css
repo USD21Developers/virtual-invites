@@ -50,3 +50,8 @@ input[type="checkbox"] + label {
 #errorUserStatusIsRequired:not(.d-none) {
   display: block;
 }
+
+.user-full-name {
+  color: var(--info-dark);
+  font-weight: 800;
+}

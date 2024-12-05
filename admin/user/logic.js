@@ -168,21 +168,21 @@ function renderUser(user) {
   );
 
   const txtPreauthorizationP2Male = getPhrase("preauthorizationP2Male")
-    .replaceAll("{FIRST-NAME}", firstname)
-    .replaceAll("{LAST-NAME}", lastname);
+    .replaceAll("{FIRST-NAME}", `<span class="user-full-name">${firstname}`)
+    .replaceAll("{LAST-NAME}", `${lastname}</span>`);
   const txtPreauthorizationP2Female = getPhrase("preauthorizationP2Female")
-    .replaceAll("{FIRST-NAME}", firstname)
-    .replaceAll("{LAST-NAME}", lastname);
+    .replaceAll("{FIRST-NAME}", `<span class="text-primary">${firstname}`)
+    .replaceAll("{LAST-NAME}", `${lastname}</span>`);
   const txtDelegatingPreauthorizationP1Male = getPhrase(
     "delegatingPreauthorizationP1Male"
   )
-    .replaceAll("{FIRST-NAME}", firstname)
-    .replaceAll("{LAST-NAME}", lastname);
+    .replaceAll("{FIRST-NAME}", `<span class="user-full-name">${firstname}`)
+    .replaceAll("{LAST-NAME}", `${lastname}</span>`);
   const txtDelegatingPreauthorizationP1Female = getPhrase(
     "delegatingPreauthorizationP1Female"
   )
-    .replaceAll("{FIRST-NAME}", firstname)
-    .replaceAll("{LAST-NAME}", lastname);
+    .replaceAll("{FIRST-NAME}", `<span class="user-full-name">${firstname}`)
+    .replaceAll("{LAST-NAME}", `${lastname}</span>`);
   const txtDelegatingPreauthorizationP2Male = getPhrase(
     "delegatingPreauthorizationP2Male"
   );
