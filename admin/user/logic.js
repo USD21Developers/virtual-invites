@@ -197,6 +197,7 @@ function renderUser(user) {
   ).innerHTML = `<img src="${profilephoto}" alt="${fullname}" />`;
   document.querySelector("#userFullName").innerHTML = fullname;
   document.querySelector("#registrationDate").innerHTML = txtRegistered;
+  document.querySelector("#churchid").value = churchid;
   document.querySelector(".breadcrumb-item.active").innerHTML = fullname;
   document.querySelector("#country").value = country;
   document.querySelector("#lang").value = lang;
