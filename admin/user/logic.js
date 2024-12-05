@@ -506,12 +506,16 @@ async function onSubmit(e) {
           );
           return;
         case "sysadmins cannot downgrade their own canAuthorize setting":
+          document.querySelector("#canAuthorize").checked = true;
+          document.querySelector("#canAuthToAuth").checked = true;
           showModalUnsuccessful(
             getPhrase("changes-not-saved"),
             getPhrase("sysadmins-cannot-downgrade-own-canAuthorize")
           );
           return;
         case "sysadmins cannot downgrade their own canAuthToAuth setting":
+          document.querySelector("#canAuthorize").checked = true;
+          document.querySelector("#canAuthToAuth").checked = true;
           showModalUnsuccessful(
             getPhrase("changes-not-saved"),
             getPhrase("sysadmins-cannot-downgrade-own-canAuthToAuth")
@@ -525,8 +529,8 @@ async function onSubmit(e) {
           return;
         case "user unchanged":
           showModalUnsuccessful(
-            getPhrase("user-unchanged"),
-            getPhrase("user-unchanged-explanation")
+            getPhrase("settings-unchanged"),
+            getPhrase("settings-unchanged-explanation")
           );
           return;
         case "user updated":

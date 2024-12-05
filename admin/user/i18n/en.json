@@ -292,9 +292,9 @@
       "translated": "Your changes were saved."
     },
     {
-      "key": "user-unchanged",
-      "original": "User Unchanged",
-      "translated": "User Unchanged"
+      "key": "settings-unchanged",
+      "original": "Settings Unchanged",
+      "translated": "Settings Unchanged"
     },
     {
       "key": "changes-not-saved",
@@ -373,13 +373,13 @@
     },
     {
       "key": "sysadmins-cannot-downgrade-own-canAuthorize",
-      "original": "Admins cannot turn off the setting on their own account that allows them to pre-authorize disciples to become new users.",
-      "translated": "Admins cannot turn off the setting on their own account that allows them to pre-authorize disciples to become new users."
+      "original": "Admins cannot turn off their own ability pre-authorize disciples.",
+      "translated": "Admins cannot turn off their own ability pre-authorize disciples."
     },
     {
       "key": "sysadmins-cannot-downgrade-own-canAuthToAuth",
-      "original": "Admins cannot turn off the setting on their own account that allows them to delegate pre-authorization to other leaders.",
-      "translated": "Admins cannot turn off the setting on their own account that allows them to delegate pre-authorization to other leaders."
+      "original": "Admins cannot turn off their own ability to delegate pre-authorization.",
+      "translated": "Admins cannot turn off their own ability to delegate pre-authorization."
     },
     {
       "key": "cannot-modify-user-from-different-congregation",
@@ -387,9 +387,9 @@
       "translated": "You cannot modify a user from a different congregation."
     },
     {
-      "key": "user-unchanged-explanation",
-      "original": "No changes to this user have been made, and so no settings were updated.",
-      "translated": "No changes to this user have been made, and so no settings were updated."
+      "key": "settings-unchanged-explanation",
+      "original": "You did not make any changes to the status quo.",
+      "translated": "You did not make any changes to the status quo."
     },
     {
       "key": "unexpected-error",
