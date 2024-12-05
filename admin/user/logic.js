@@ -536,10 +536,8 @@ async function onSubmit(e) {
           );
           return;
         case "user unchanged":
-          showModalUnsuccessful(
-            getPhrase("settings-unchanged"),
-            getPhrase("settings-unchanged-explanation")
-          );
+          document.querySelector("#pageSpinner").classList.add("d-none");
+          $("#settingsUnchangedModal").modal();
           return;
         case "user updated":
           document.querySelector("#pageSpinner").classList.add("d-none");
@@ -572,6 +570,10 @@ function attachListeners() {
     .addEventListener("click", onHelpClickedForDelegatingPreauthorization);
 
   $("#updateSuccessfulModal").on("hide.bs.modal", (e) => {
+    window.location.reload();
+  });
+
+  $("#settingsUnchangedModal").on("hide.bs.modal", (e) => {
     window.location.reload();
   });
 
