@@ -363,13 +363,13 @@
     },
     {
       "key": "sysadmins-cannot-downgrade-own-usertype",
-      "original": "Admins cannot downgrade the user type of their own account.",
-      "translated": "Admins cannot downgrade the user type of their own account."
+      "original": "As an admin, you cannot downgrade the user type of your own account.",
+      "translated": "As an admin, you cannot downgrade the user type of your own account."
     },
     {
       "key": "sysadmins-cannot-downgrade-own-userstatus",
-      "original": "Admins cannot downgrade their own account status.",
-      "translated": "Admins cannot downgrade their own account status."
+      "original": "As an admin, you cannot downgrade your own account status.",
+      "translated": "As an admin, you cannot downgrade your own account status."
     },
     {
       "key": "sysadmins-cannot-downgrade-own-canAuthorize",
