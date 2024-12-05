@@ -373,13 +373,13 @@
     },
     {
       "key": "sysadmins-cannot-downgrade-own-canAuthorize",
-      "original": "Admins cannot turn off their own ability pre-authorize disciples.",
-      "translated": "Admins cannot turn off their own ability pre-authorize disciples."
+      "original": "As an admin, you cannot turn off your own ability pre-authorize disciples.",
+      "translated": "As an admin, you cannot turn off your own ability pre-authorize disciples."
     },
     {
       "key": "sysadmins-cannot-downgrade-own-canAuthToAuth",
-      "original": "Admins cannot turn off their own ability to delegate pre-authorization.",
-      "translated": "Admins cannot turn off their own ability to delegate pre-authorization."
+      "original": "As an admin, you cannot turn off your own ability to delegate pre-authorization.",
+      "translated": "As an admin, you cannot turn off your own ability to delegate pre-authorization."
     },
     {
       "key": "cannot-modify-user-from-different-congregation",
