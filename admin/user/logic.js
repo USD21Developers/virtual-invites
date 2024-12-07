@@ -56,36 +56,40 @@ async function populateCountries() {
   });
 }
 
-async function populateLanguages() {
-  const langEl = document.querySelector("#lang");
-  const userLang = getLang();
-  const langListEnglish = await fetch("../../data/json/languages.json").then(
-    (res) => res.json()
-  );
-  let langListNative;
-  let listToUse = langListEnglish;
-
-  if (userLang !== "en") {
-    const entries = Object.entries(listToUse);
-    entries.sort((a, b) =>
-      a[1].nativeName.localeCompare(b[1].nativeName, undefined, {
-        sensitivity: "base",
-      })
+function populateLanguages() {
+  return new Promise(async (resolve, reject) => {
+    const langEl = document.querySelector("#lang");
+    const userLang = getLang();
+    const langListEnglish = await fetch("../../data/json/languages.json").then(
+      (res) => res.json()
     );
-    langListNative = Object.fromEntries(entries);
-    listToUse = langListNative;
-  }
+    let langListNative;
+    let listToUse = langListEnglish;
 
-  Object.keys(listToUse).forEach((iso) => {
-    const { name, nativeName } = listToUse[iso];
-    const el = document.createElement("option");
-    let displayedNameNonEnglish = nativeName;
-    let displayedNameEnglish = name;
+    if (userLang !== "en") {
+      const entries = Object.entries(listToUse);
+      entries.sort((a, b) =>
+        a[1].nativeName.localeCompare(b[1].nativeName, undefined, {
+          sensitivity: "base",
+        })
+      );
+      langListNative = Object.fromEntries(entries);
+      listToUse = langListNative;
+    }
 
-    el.value = iso;
-    el.innerHTML =
-      userLang === "en" ? displayedNameEnglish : displayedNameNonEnglish;
-    langEl.appendChild(el);
+    Object.keys(listToUse).forEach((iso) => {
+      const { name, nativeName } = listToUse[iso];
+      const el = document.createElement("option");
+      let displayedNameNonEnglish = nativeName;
+      let displayedNameEnglish = name;
+
+      el.value = iso;
+      el.innerHTML =
+        userLang === "en" ? displayedNameEnglish : displayedNameNonEnglish;
+      langEl.appendChild(el);
+    });
+
+    return resolve();
   });
 }
 
@@ -587,7 +591,7 @@ async function init() {
   await populateContent();
   populateChurches();
   populateCountries();
-  populateLanguages();
+  await populateLanguages();
   await populateUser();
   attachListeners();
   globalHidePageSpinner();
