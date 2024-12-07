@@ -27,6 +27,11 @@
       "key": "breadcrumbPhotoReview",
       "original": "Review",
       "translated": "Review"
+    },
+    {
+      "key": "instructions",
+      "original": "Click on any photo below to examine it more closely, or to flag it.",
+      "translated": "Click on any photo below to examine it more closely, or to flag it."
     }
   ],
 
