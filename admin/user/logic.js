@@ -578,11 +578,11 @@ function attachListeners() {
     globalHidePageSpinner();
   });
 
-  $("#settingsUnchangedModal").on("hide.bs.modal", (e) => {
+  $("#settingsUnchangedModal").on("hidden.bs.modal", (e) => {
     globalHidePageSpinner();
   });
 
-  $("#updateUnsuccessfulModal").on("hide.bs.modal", (e) => {
+  $("#updateUnsuccessfulModal").on("hidden.bs.modal", (e) => {
     globalHidePageSpinner();
   });
 }
