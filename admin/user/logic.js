@@ -575,11 +575,11 @@ function attachListeners() {
     .addEventListener("click", onHelpClickedForDelegatingPreauthorization);
 
   $("#updateSuccessfulModal").on("hide.bs.modal", (e) => {
-    window.location.reload();
+    // window.location.reload();
   });
 
   $("#settingsUnchangedModal").on("hide.bs.modal", (e) => {
-    window.location.reload();
+    // window.location.reload();
   });
 
   $("#updateUnsuccessfulModal").on("hide.bs.modal", (e) => {
