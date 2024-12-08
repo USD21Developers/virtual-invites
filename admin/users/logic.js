@@ -2,8 +2,12 @@ async function populateChurches() {
   const churchDropdown = document.querySelector("#churchid");
   const countryData = await getCountries(getLang());
   const countries = countryData.names;
-  const churches = await getChurches();
+  let churches = JSON.parse(localStorage.getItem("churches"));
   let churchesHtml = "";
+
+  if (!churches.length) {
+    churches = await getChurches();
+  }
 
   countries.sort((a, b) => (a.name > b.name ? 1 : -1));
 
@@ -106,7 +110,7 @@ function attachListeners() {
 
 async function init() {
   await populateContent();
-  await syncChurches();
+  syncChurches();
   populateChurches();
   attachListeners();
   globalHidePageSpinner();
