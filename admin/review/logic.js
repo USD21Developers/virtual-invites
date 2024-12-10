@@ -220,6 +220,8 @@ function populatePhotosPendingReview() {
 function renderPhotos(photos) {
   const photosEl = document.querySelector("#photos");
 
+  let html = "";
+
   photos.forEach((item) => {
     const {
       createdAt,
@@ -232,36 +234,49 @@ function renderPhotos(photos) {
       userstatus,
       usertype,
     } = item;
+    const profilePhoto400 = profilephoto;
     const profilePhoto140 = profilephoto.replaceAll("__400.jpg", "__140.jpg");
-    const photoNode = document.createElement("div");
-    photoNode.setAttribute("class", "col text-center");
-    photoNode.innerHTML = `
-      <a href="#" class="thumbnail" data-userid="${userid}">
-        <img src="${profilePhoto140}" width="70" height="70" alt="${firstname} ${lastname}" />
-        <br><small>${firstname} ${lastname}</small>
-      </a>
-    `;
 
-    photosEl.appendChild(photoNode);
+    html += `
+        <tr data-userid="${userid}">
+          <td class="text-center">
+            <div class="my-4">
+              <a href="#" data-userid="${userid}" class="photolink">
+                <img src="${profilePhoto400}" width="200" height="200" alt="${firstname} ${lastname}" />
+                <h4 class="my-2 name">
+                  ${firstname} ${lastname}
+                </h4>
+              </a>
+            </div>
+          </td>
+        </tr>
+      `;
   });
+
+  photosEl.innerHTML = `
+    <thead>
+      <tr>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      ${html}
+    </tbody>
+  `;
 }
 
 function onThumbClicked(e) {
   e.preventDefault();
 }
 
-function attachListeners() {
-  document.querySelectorAll(".thumbnail").forEach((item) => {
-    item.addEventListener("click", onThumbClicked);
-  });
-}
+function attachListeners() {}
 
 async function init() {
   await populateContent();
   await populatePhotosPendingReview();
+  await addDatatablesTranslationToCache();
 
-  // await populateRecipientsTable();
-  // await addDatatablesTranslationToCache();
+  $("#photos").DataTable();
 
   attachListeners();
   globalHidePageSpinner();

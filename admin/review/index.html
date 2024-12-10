@@ -23,6 +23,16 @@
       href="../../js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../js/datatables.net/jquery.dataTables.min.css"
+    />
+    <link
+      type="text/css"
+      href="../../js/datatables.net/dataTables.checkboxes.css"
+      rel="stylesheet"
+    />
     <link href="../../css/global.css" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
 
@@ -218,7 +228,11 @@
         </div>
       </div>
 
-      <div class="row align-items-start my-2" id="photos"></div>
+      <div class="row align-items-start my-2">
+        <div class="col col-sm-10 offset-sm-1">
+          <table id="photos"></table>
+        </div>
+      </div>
 
       <div class="snackbar">
         <div class="snackbar-body"></div>
