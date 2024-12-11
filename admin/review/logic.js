@@ -238,19 +238,19 @@ function renderPhotos(photos) {
     html += `
         <div class="photo mt-4" data-userid="${userid}">
           <div class="text-center">
-            <img class="profilephoto" src="${profilephoto}" width="200" height="200" alt="${firstname} ${lastname}" />
+            <img class="profilephoto" src="${profilephoto}" width="200" height="200" alt="${firstname} ${lastname}" data-userid="${userid}" />
             <h4 class="mt-2 mb-3 name text-center">
               ${firstname} ${lastname}
             </h4>
             <div class="form-check form-check-inline mr-4">
               <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="decision_${userid}" value="approve" data-on-approve="reasons_${userid}" checked>
+                <input class="form-check-input" type="radio" name="decision_${userid}" data-userid="${userid}" value="approve" data-on-approve="reasons_${userid}" checked>
                 <span>${getPhrase("approve")}</span>
               </label>
             </div>
             <div class="form-check form-check-inline">
               <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="decision_${userid}" value="flag" data-on-flag="reasons_${userid}">
+                <input class="form-check-input" type="radio" name="decision_${userid}" data-userid="${userid}" value="flag" data-on-flag="reasons_${userid}">
                 <span>${getPhrase("flag")}</span>
               </label>
             </div>
@@ -270,9 +270,9 @@ function renderPhotos(photos) {
                 </div>
 
                 <div class="form-check">
-                  <label class="form-check-label" for="reason_${userid}_face_not_clear_enough">
-                    <input class="form-check-input" type="checkbox" value="face not clear enough" id="reason_${userid}_face_not_clear_enough">
-                    <span>${getPhrase("usersFaceNotClearEnough")}</span>
+                  <label class="form-check-label" for="reason_${userid}_face_not_prominent_enough">
+                    <input class="form-check-input" type="checkbox" value="face not prominent enough" id="reason_${userid}_face_not_prominent_enough">
+                    <span>${getPhrase("usersFaceNotProminentEnough")}</span>
                   </label>
                 </div>
 

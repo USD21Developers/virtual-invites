@@ -49,9 +49,9 @@
       "translated": "Does not show user's face"
     },
     {
-      "key": "usersFaceNotClearEnough",
-      "original": "User's face is not clear enough",
-      "translated": "User's face is not clear enough"
+      "key": "usersFaceNotProminentEnough",
+      "original": "User's face is not prominent enough",
+      "translated": "User's face is not prominent enough"
     },
     {
       "key": "additionalPeople",
