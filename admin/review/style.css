@@ -1,16 +1,30 @@
-#photos a {
-  color: var(--dark);
-  display: inline-block;
-  text-decoration: none;
+.profilephoto {
+  height: auto;
+  max-width: 100%;
+  width: 200px;
 }
 
-.photolink img {
+.photo {
+  border-top: 2px solid var(--secondary);
+  margin-bottom: 2rem;
+  margin-top: 3rem !important;
+  padding-top: 3rem;
+}
+
+.photo:first-child {
+  border-top: none;
+  margin-top: 1rem !important;
+  padding-top: 0;
+}
+
+#photos img {
   border: 2px solid var(--secondary-light);
   border-radius: 50%;
+  display: inline-block;
   padding: 3px;
 }
 
-.photolink.flagged img {
+#photos img.flagged {
   border-color: var(--danger);
   border-width: 4px;
 }

@@ -234,49 +234,110 @@ function renderPhotos(photos) {
       userstatus,
       usertype,
     } = item;
-    const profilePhoto400 = profilephoto;
-    const profilePhoto140 = profilephoto.replaceAll("__400.jpg", "__140.jpg");
 
     html += `
-        <tr data-userid="${userid}">
-          <td class="text-center">
-            <div class="my-4">
-              <a href="#" data-userid="${userid}" class="photolink">
-                <img src="${profilePhoto400}" width="200" height="200" alt="${firstname} ${lastname}" />
-                <h4 class="my-2 name">
-                  ${firstname} ${lastname}
-                </h4>
-              </a>
+        <div class="photo mt-4" data-userid="${userid}">
+          <div class="text-center">
+            <img class="profilephoto" src="${profilephoto}" width="200" height="200" alt="${firstname} ${lastname}" />
+            <h4 class="mt-2 mb-3 name text-center">
+              ${firstname} ${lastname}
+            </h4>
+            <div class="form-check form-check-inline mr-4">
+              <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="decision_${userid}" value="approve" data-on-approve="reasons_${userid}" checked>
+                <span>${getPhrase("approve")}</span>
+              </label>
             </div>
-          </td>
-        </tr>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="decision_${userid}" value="flag" data-on-flag="reasons_${userid}">
+                <span>${getPhrase("flag")}</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="text-center mt-3 d-none" id="reasons_${userid}">
+            <div class="d-inline-block text-left">
+              <details open>
+                <summary class="mb-2">
+                  ${getPhrase("reasonsForFlagging")}
+                </summary>
+                <div class="form-check">
+                  <label class="form-check-label" for="reason_${userid}_no_face">
+                    <input class="form-check-input" type="checkbox" value="no face" id="reason_${userid}_no_face">
+                    <span>${getPhrase("doesNotShowUsersFace")}</span>
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <label class="form-check-label" for="reason_${userid}_face_not_clear_enough">
+                    <input class="form-check-input" type="checkbox" value="face not clear enough" id="reason_${userid}_face_not_clear_enough">
+                    <span>${getPhrase("usersFaceNotClearEnough")}</span>
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <label class="form-check-label" for="reason_${userid}_additional_people">
+                    <input class="form-check-input" type="checkbox" value="additional people" id="reason_${userid}_additional_people">
+                    <span>${getPhrase("additionalPeople")}</span>
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <label class="form-check-label" for="reason_${userid}_not_appropriate">
+                    <input class="form-check-input" type="checkbox" value="not appropriate" id="reason_${userid}_not_appropriate">
+                    <span>${getPhrase("notAppropriate")}</span>
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <label class="form-check-label" for="reason_${userid}_other">
+                    <input class="form-check-input" type="checkbox" value="other" id="reason_${userid}_other">
+                    <span>${getPhrase("other")}</span>
+                  </label>
+                </div>
+                <div class="form-group ml-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="other_${userid}_reason"
+                    placeholder="${getPhrase("otherReason")}"
+                  >
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
       `;
   });
 
-  photosEl.innerHTML = `
-    <thead>
-      <tr>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      ${html}
-    </tbody>
-  `;
+  photosEl.innerHTML = html;
 }
 
-function onThumbClicked(e) {
-  e.preventDefault();
+function onPhotoFlagged(e) {
+  const selector = e.target.getAttribute("data-on-flag");
+  const detailsEl = document.querySelector(`#${selector}`);
+  detailsEl.classList.remove("d-none");
 }
 
-function attachListeners() {}
+function onPhotoApproved(e) {
+  const selector = e.target.getAttribute("data-on-approve");
+  const detailsEl = document.querySelector(`#${selector}`);
+  detailsEl.classList.add("d-none");
+}
+
+function attachListeners() {
+  document
+    .querySelector("[data-on-flag]")
+    .addEventListener("click", onPhotoFlagged);
+  document
+    .querySelector("[data-on-approve]")
+    .addEventListener("click", onPhotoApproved);
+}
 
 async function init() {
   await populateContent();
   await populatePhotosPendingReview();
-  await addDatatablesTranslationToCache();
-
-  $("#photos").DataTable();
 
   attachListeners();
   globalHidePageSpinner();

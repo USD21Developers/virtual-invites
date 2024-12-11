@@ -10,8 +10,8 @@
   "phrases": [
     {
       "key": "pagetitle",
-      "original": "Review",
-      "translated": "Review"
+      "original": "Photo Review",
+      "translated": "Photo Review"
     },
     {
       "key": "breadcrumbHome",
@@ -29,9 +29,49 @@
       "translated": "Review"
     },
     {
-      "key": "instructions",
-      "original": "Click on any photo below to examine it more closely, or to flag it.",
-      "translated": "Click on any photo below to examine it more closely, or to flag it."
+      "key": "approve",
+      "original": "Approve",
+      "translated": "Approve"
+    },
+    {
+      "key": "flag",
+      "original": "Flag",
+      "translated": "Flag"
+    },
+    {
+      "key": "reasonsForFlagging",
+      "original": "Reasons for flagging:",
+      "translated": "Reasons for flagging:"
+    },
+    {
+      "key": "doesNotShowUsersFace",
+      "original": "Does not show user's face",
+      "translated": "Does not show user's face"
+    },
+    {
+      "key": "usersFaceNotClearEnough",
+      "original": "User's face is not clear enough",
+      "translated": "User's face is not clear enough"
+    },
+    {
+      "key": "additionalPeople",
+      "original": "Shows additional people",
+      "translated": "Shows additional people"
+    },
+    {
+      "key": "notAppropriate",
+      "original": "Photo is not appropriate",
+      "translated": "Photo is not appropriate"
+    },
+    {
+      "key": "other",
+      "original": "Other:",
+      "translated": "Other:"
+    },
+    {
+      "key": "otherReason",
+      "original": "Other reason",
+      "translated": "Other reason"
     }
   ],
 
