@@ -219,6 +219,7 @@ function populatePhotosPendingReview() {
 
 function renderPhotos(photos) {
   const photosEl = document.querySelector("#photos");
+  const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
 
   let html = "";
 
@@ -233,15 +234,23 @@ function renderPhotos(photos) {
       userid,
       userstatus,
       usertype,
+      photoAddedAt,
+      photoUpdatedAt,
     } = item;
+
+    const datePhotoAdded = Intl.DateTimeFormat(userDateTimePrefs.locale, {
+      dateStyle: "short",
+      timeZone: userDateTimePrefs.timeZone,
+    }).format(new Date(photoAddedAt));
 
     html += `
         <div class="photo mt-4" data-userid="${userid}">
           <div class="text-center">
             <img class="profilephoto" src="${profilephoto}" width="200" height="200" alt="${firstname} ${lastname}" data-userid="${userid}" />
-            <h4 class="mt-2 mb-3 name text-center">
+            <h4 class="mt-2 mb-0 name text-center">
               ${firstname} ${lastname}
             </h4>
+            <div class="text-muted small my-2">Photo added on ${datePhotoAdded}</div>
             <div class="form-check form-check-inline mr-4">
               <label class="form-check-label">
                 <input class="form-check-input" type="radio" name="decision_${userid}" data-userid="${userid}" value="approve" data-on-approve="reasons_${userid}" checked>
@@ -263,44 +272,46 @@ function renderPhotos(photos) {
                   ${getPhrase("reasonsForFlagging")}
                 </summary>
                 <div class="form-check">
-                  <label class="form-check-label" for="reason_${userid}_no_face">
-                    <input class="form-check-input" type="checkbox" value="no face" id="reason_${userid}_no_face">
+                  <label class="form-check-label">
+                    <input class="form-check-input reason" type="radio" name="reason_${userid}" value="no face" data-userid="${userid}">
                     <span>${getPhrase("doesNotShowUsersFace")}</span>
                   </label>
                 </div>
 
                 <div class="form-check">
-                  <label class="form-check-label" for="reason_${userid}_face_not_prominent_enough">
-                    <input class="form-check-input" type="checkbox" value="face not prominent enough" id="reason_${userid}_face_not_prominent_enough">
+                  <label class="form-check-label">
+                    <input class="form-check-input reason" type="radio" name="reason_${userid}" value="face not prominent enough" data-userid="${userid}">
                     <span>${getPhrase("usersFaceNotProminentEnough")}</span>
                   </label>
                 </div>
 
                 <div class="form-check">
-                  <label class="form-check-label" for="reason_${userid}_additional_people">
-                    <input class="form-check-input" type="checkbox" value="additional people" id="reason_${userid}_additional_people">
+                  <label class="form-check-label reason">
+                    <input class="form-check-input" type="radio" name="reason_${userid}" value="additional people" data-userid="${userid}">
                     <span>${getPhrase("additionalPeople")}</span>
                   </label>
                 </div>
 
                 <div class="form-check">
-                  <label class="form-check-label" for="reason_${userid}_not_appropriate">
-                    <input class="form-check-input" type="checkbox" value="not appropriate" id="reason_${userid}_not_appropriate">
+                  <label class="form-check-label reason">
+                    <input class="form-check-input" type="radio" name="reason_${userid}" value="not appropriate" data-userid="${userid}">
                     <span>${getPhrase("notAppropriate")}</span>
                   </label>
                 </div>
 
                 <div class="form-check">
-                  <label class="form-check-label" for="reason_${userid}_other">
-                    <input class="form-check-input" type="checkbox" value="other" id="reason_${userid}_other">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="reason_${userid}" value="other" data-userid="${userid}" id="reason_${userid}_other">
                     <span>${getPhrase("other")}</span>
                   </label>
                 </div>
                 <div class="form-group ml-2">
                   <input
+                    class="otherInput"
                     type="text"
                     class="form-control"
                     id="other_${userid}_reason"
+                    data-userid="${userid}"
                     placeholder="${getPhrase("otherReason")}"
                   >
                 </div>
@@ -326,6 +337,8 @@ function onPhotoApproved(e) {
   detailsEl.classList.add("d-none");
 }
 
+function toggleOther(domId) {}
+
 function attachListeners() {
   document
     .querySelector("[data-on-flag]")
@@ -333,6 +346,26 @@ function attachListeners() {
   document
     .querySelector("[data-on-approve]")
     .addEventListener("click", onPhotoApproved);
+  document.querySelectorAll(".reason").forEach((el) => {
+    el.addEventListener("change", (e) => {
+      if (e.target.checked) {
+        const userid = e.target.getAttribute("data-userid");
+        const otherReasonEl = document.querySelector(`#other_${userid}_reason`);
+        otherReasonEl.value = "";
+      }
+    });
+  });
+  document.querySelectorAll(".otherInput").forEach((el) => {
+    el.addEventListener("input", (e) => {
+      const otherReason = el.value.trim();
+
+      if (otherReason && otherReason.length) {
+        const userid = el.getAttribute("data-userid");
+        const radioEl = document.querySelector(`#reason_${userid}_other`);
+        radioEl.checked = true;
+      }
+    });
+  });
 }
 
 async function init() {
