@@ -87,6 +87,11 @@
       "key": "explanation1",
       "original": "One profile photo is awaiting review:",
       "translated": "One profile photo is awaiting review:"
+    },
+    {
+      "key": "reasonIsRequired",
+      "original": "A reason for flagging is required.",
+      "translated": "A reason for flagging is required."
     }
   ],
 

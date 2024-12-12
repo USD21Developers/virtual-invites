@@ -342,7 +342,58 @@ function onPhotoApproved(e) {
   detailsEl.classList.add("d-none");
 }
 
-function toggleOther(domId) {}
+function onSubmit(e) {
+  let userIdsApproved = [];
+  let userIdsFlagged = [];
+  let usersFlagged = [];
+
+  document
+    .querySelectorAll("input[type='radio'][value='approve']:checked")
+    .forEach((el) => {
+      const userid = el.getAttribute("data-userid");
+      userIdsApproved.push(Number(userid));
+    });
+
+  document
+    .querySelectorAll("input[type='radio'][value='flag']:checked")
+    .forEach((el) => {
+      const userid = el.getAttribute("data-userid");
+      userIdsFlagged.push(Number(userid));
+    });
+
+  if (userIdsFlagged.length) {
+    for (var i = 0; i < userIdsFlagged.length; i++) {
+      const userid = userIdsFlagged[i];
+      const reasonEl = document.querySelector(
+        `[name='reason_${userid}']:checked`
+      );
+      const reasonOther = document
+        .querySelector(`#reason_${userid}_other_text`)
+        .value.trim();
+
+      if (!reasonEl) {
+        const errorSelector = `#reason_${userid}_other_text`;
+        const errorText = getPhrase("reasonIsRequired");
+
+        return formError(errorSelector, errorText);
+      }
+
+      const flagObject = {
+        userid: userid,
+        reason: reasonEl.value,
+        other: reasonOther,
+      };
+
+      usersFlagged.push(flagObject);
+    }
+  }
+
+  // TODO: create a UI for when no photos are awaiting review (provide a link back to Admin page)
+  // TODO: validate
+  // TODO: create API endpoint
+  // TODO: send data to API
+  // TODO: on success, hide UI for photos, replace with UI for no photos
+}
 
 function attachListeners() {
   document
