@@ -85,13 +85,13 @@
     },
     {
       "key": "headlineFollowUp",
-      "original": "Follow Up with {RECIPIENT-NAME}:",
-      "translated": "Follow Up with {RECIPIENT-NAME}:"
+      "original": "Follow Up with {RECIPIENT-NAME}",
+      "translated": "Follow Up with {RECIPIENT-NAME}"
     },
     {
       "key": "headlineFollowUpInPerson",
-      "original": "Follow Up with {RECIPIENT-NAME} in Person:",
-      "translated": "Follow Up with {RECIPIENT-NAME} in Person:"
+      "original": "Follow Up with {RECIPIENT-NAME} in Person",
+      "translated": "Follow Up with {RECIPIENT-NAME} in Person"
     },
     {
       "key": "qrCodeWithLocation",
@@ -230,8 +230,8 @@
     },
     {
       "key": "headlineNotes",
-      "original": "Notes:",
-      "translated": "Notes:"
+      "original": "Notes",
+      "translated": "Notes"
     },
     {
       "key": "no-notes",
@@ -315,8 +315,8 @@
     },
     {
       "key": "headlineNotifications",
-      "original": "Unsubscribe:",
-      "translated": "Unsubscribe:"
+      "original": "Unsubscribe",
+      "translated": "Unsubscribe"
     },
     {
       "key": "notificationsExplanation",
@@ -410,8 +410,8 @@
     },
     {
       "key": "headlineManage",
-      "original": "Manage:",
-      "translated": "Manage:"
+      "original": "Manage",
+      "translated": "Manage"
     },
     {
       "key": "editInvite",
