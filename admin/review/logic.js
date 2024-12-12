@@ -239,7 +239,8 @@ function renderPhotos(photos) {
     } = item;
 
     const datePhotoAdded = Intl.DateTimeFormat(userDateTimePrefs.locale, {
-      dateStyle: "short",
+      dateStyle: "medium",
+      timeStyle: "short",
       timeZone: userDateTimePrefs.timeZone,
     }).format(new Date(photoAddedAt));
 
