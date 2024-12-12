@@ -77,6 +77,16 @@
       "key": "reasonIsRequired",
       "original": "Reason is required",
       "translated": "Reason is required"
+    },
+    {
+      "key": "explanation",
+      "original": "There are {QUANTITY} user profile photos awaiting review:",
+      "translated": "There are {QUANTITY} user profile photos awaiting review:"
+    },
+    {
+      "key": "explanation1",
+      "original": "One user profile photo is awaiting review:",
+      "translated": "One user profile photo is awaiting review:"
     }
   ],
 

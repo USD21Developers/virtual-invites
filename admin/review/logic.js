@@ -219,7 +219,14 @@ function populatePhotosPendingReview() {
 
 function renderPhotos(photos) {
   const photosEl = document.querySelector("#photos");
+  const explanationEl = document.querySelector("#explanation");
   const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
+  const explanationText =
+    photos.length === 1
+      ? getPhrase("explanation1")
+      : getPhrase("explanation").replaceAll("{QUANTITY}", photos.length);
+
+  explanationEl.innerHTML = explanationText;
 
   let html = "";
 
@@ -251,7 +258,7 @@ function renderPhotos(photos) {
             <h4 class="mt-2 mb-0 name text-center">
               ${firstname} ${lastname}
             </h4>
-            <div class="text-muted small my-2">Photo added on ${datePhotoAdded}</div>
+            <div class="text-muted small my-2 balancedTextWrap">Photo added on ${datePhotoAdded}</div>
             <div class="form-check form-check-inline mr-4">
               <label class="form-check-label">
                 <input class="form-check-input" type="radio" name="decision_${userid}" data-userid="${userid}" value="approve" data-on-approve="possible_reasons_${userid}" checked>
