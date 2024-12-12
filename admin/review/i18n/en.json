@@ -39,9 +39,9 @@
       "translated": "Flag"
     },
     {
-      "key": "reasonsForFlagging",
-      "original": "Reasons for flagging:",
-      "translated": "Reasons for flagging:"
+      "key": "reasonForFlagging",
+      "original": "Reason for flagging:",
+      "translated": "Reason for flagging:"
     },
     {
       "key": "doesNotShowUsersFace",
@@ -72,6 +72,11 @@
       "key": "otherReason",
       "original": "Other reason",
       "translated": "Other reason"
+    },
+    {
+      "key": "reasonIsRequired",
+      "original": "Reason is required",
+      "translated": "Reason is required"
     }
   ],
 
