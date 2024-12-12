@@ -253,69 +253,66 @@ function renderPhotos(photos) {
             <div class="text-muted small my-2">Photo added on ${datePhotoAdded}</div>
             <div class="form-check form-check-inline mr-4">
               <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="decision_${userid}" data-userid="${userid}" value="approve" data-on-approve="reason_${userid}" checked>
+                <input class="form-check-input" type="radio" name="decision_${userid}" data-userid="${userid}" value="approve" data-on-approve="possible_reasons_${userid}" checked>
                 <span>${getPhrase("approve")}</span>
               </label>
             </div>
             <div class="form-check form-check-inline">
               <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="decision_${userid}" data-userid="${userid}" value="flag" data-on-flag="reason_${userid}">
+                <input class="form-check-input" type="radio" name="decision_${userid}" data-userid="${userid}" value="flag" data-on-flag="possible_reasons_${userid}">
                 <span>${getPhrase("flag")}</span>
               </label>
             </div>
           </div>
 
-          <div class="text-center mt-3 d-none" id="reason_${userid}">
+          <div class="text-center mt-3 d-none" id="possible_reasons_${userid}">
             <div class="d-inline-block text-left">
-              <details open>
-                <summary class="mb-2">
-                  ${getPhrase("reasonForFlagging")}
-                </summary>
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input reason" type="radio" name="reason_${userid}" value="no face" data-userid="${userid}">
-                    <span>${getPhrase("doesNotShowUsersFace")}</span>
-                  </label>
-                </div>
+              <p>${getPhrase("reasonForFlagging")}</p>
 
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input reason" type="radio" name="reason_${userid}" value="face not prominent enough" data-userid="${userid}">
-                    <span>${getPhrase("usersFaceNotProminentEnough")}</span>
-                  </label>
-                </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input reason" type="radio" name="reason_${userid}" value="no face" data-userid="${userid}">
+                  <span>${getPhrase("doesNotShowUsersFace")}</span>
+                </label>
+              </div>
 
-                <div class="form-check">
-                  <label class="form-check-label reason">
-                    <input class="form-check-input" type="radio" name="reason_${userid}" value="additional people" data-userid="${userid}">
-                    <span>${getPhrase("additionalPeople")}</span>
-                  </label>
-                </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input reason" type="radio" name="reason_${userid}" value="face not prominent enough" data-userid="${userid}">
+                  <span>${getPhrase("usersFaceNotProminentEnough")}</span>
+                </label>
+              </div>
 
-                <div class="form-check">
-                  <label class="form-check-label reason">
-                    <input class="form-check-input" type="radio" name="reason_${userid}" value="not appropriate" data-userid="${userid}">
-                    <span>${getPhrase("notAppropriate")}</span>
-                  </label>
-                </div>
+              <div class="form-check">
+                <label class="form-check-label reason">
+                  <input class="form-check-input" type="radio" name="reason_${userid}" value="additional people" data-userid="${userid}">
+                  <span>${getPhrase("additionalPeople")}</span>
+                </label>
+              </div>
 
-                <div class="form-check">
-                  <label class="form-check-label mb-0">
-                    <input class="otherRadio form-check-input" type="radio" name="reason_${userid}" value="other" data-userid="${userid}" id="reason_${userid}_other">
-                    <span>${getPhrase("other")}</span>
-                  </label>
-                </div>
-                <div class="form-group pl-4">
-                  <input
-                    class="otherInput form-control"
-                    type="text"
-                    id="reason_${userid}_other_text"
-                    data-userid="${userid}"
-                    placeholder="${getPhrase("otherReason")}"
-                  >
-                  <div class="invalid-feedback" data-i18n="reasonIsRequired"></div>
-                </div>
-              </details>
+              <div class="form-check">
+                <label class="form-check-label reason">
+                  <input class="form-check-input" type="radio" name="reason_${userid}" value="not appropriate" data-userid="${userid}">
+                  <span>${getPhrase("notAppropriate")}</span>
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label mb-0">
+                  <input class="otherRadio form-check-input" type="radio" name="reason_${userid}" value="other" data-userid="${userid}" id="reason_${userid}_other">
+                  <span>${getPhrase("other")}</span>
+                </label>
+              </div>
+              <div class="form-group pl-4">
+                <input
+                  class="otherInput form-control"
+                  type="text"
+                  id="reason_${userid}_other_text"
+                  data-userid="${userid}"
+                  placeholder="${getPhrase("otherReason")}"
+                >
+                <div class="invalid-feedback" data-i18n="reasonIsRequired"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -328,7 +325,6 @@ function renderPhotos(photos) {
 function onPhotoFlagged(e) {
   const selector = e.target.getAttribute("data-on-flag");
   const detailsEl = document.querySelector(`#${selector}`);
-  detailsEl.setAttribute("open", "");
   detailsEl.classList.remove("d-none");
 }
 
