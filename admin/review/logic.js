@@ -254,7 +254,7 @@ function renderPhotos(photos) {
     html += `
         <div class="photo mt-4" data-userid="${userid}">
           <div class="text-center">
-            <img class="profilephoto" src="${profilephoto}" width="200" height="200" alt="${firstname} ${lastname}" data-userid="${userid}" />
+            <img class="profileImage" src="${profilephoto}" width="200" height="200" alt="${firstname} ${lastname}" data-userid="${userid}" />
             <h4 class="mt-2 mb-0 name text-center">
               ${firstname} ${lastname}
             </h4>
