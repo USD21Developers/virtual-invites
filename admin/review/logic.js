@@ -328,6 +328,7 @@ function renderPhotos(photos) {
 function onPhotoFlagged(e) {
   const selector = e.target.getAttribute("data-on-flag");
   const detailsEl = document.querySelector(`#${selector}`);
+  detailsEl.setAttribute("open", "");
   detailsEl.classList.remove("d-none");
 }
 
