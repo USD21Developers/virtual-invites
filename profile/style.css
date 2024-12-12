@@ -5,7 +5,7 @@
     rgba(76, 123, 212, 1) 0%,
     rgba(52, 85, 147, 1) 90%
   );
-  border: 2px solid #5e7daf;
+  border: 2px solid var(--secondary);
   border-radius: 50%;
   display: inline-block;
 }
