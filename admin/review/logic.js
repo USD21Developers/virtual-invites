@@ -299,35 +299,35 @@ function renderPhotos(photos) {
 
               <div class="form-check">
                 <label class="form-check-label">
-                  <input class="form-check-input reason" type="radio" name="reason_${userid}" value="no face" data-userid="${userid}">
+                  <input class="form-check-input reason" type="radio" name="reason_${userid}" value="no face" data-userid="${userid}" data-gender="${gender}">
                   <span>${getPhrase("doesNotShowUsersFace")}</span>
                 </label>
               </div>
 
               <div class="form-check">
                 <label class="form-check-label">
-                  <input class="form-check-input reason" type="radio" name="reason_${userid}" value="face not prominent enough" data-userid="${userid}">
+                  <input class="form-check-input reason" type="radio" name="reason_${userid}" value="face not prominent enough" data-userid="${userid}" data-gender="${gender}">
                   <span>${getPhrase("usersFaceNotProminentEnough")}</span>
                 </label>
               </div>
 
               <div class="form-check">
                 <label class="form-check-label reason">
-                  <input class="form-check-input" type="radio" name="reason_${userid}" value="additional people" data-userid="${userid}">
+                  <input class="form-check-input" type="radio" name="reason_${userid}" value="additional people" data-userid="${userid}" data-gender="${gender}">
                   <span>${getPhrase("additionalPeople")}</span>
                 </label>
               </div>
 
               <div class="form-check">
                 <label class="form-check-label reason">
-                  <input class="form-check-input" type="radio" name="reason_${userid}" value="not appropriate" data-userid="${userid}">
+                  <input class="form-check-input" type="radio" name="reason_${userid}" value="not appropriate" data-userid="${userid}" data-gender="${gender}">
                   <span>${getPhrase("notAppropriate")}</span>
                 </label>
               </div>
 
               <div class="form-check">
                 <label class="form-check-label mb-0">
-                  <input class="otherRadio form-check-input" type="radio" name="reason_${userid}" value="other" data-userid="${userid}" id="reason_${userid}_other">
+                  <input class="otherRadio form-check-input" type="radio" name="reason_${userid}" value="other" data-userid="${userid}" id="reason_${userid}_other" data-gender="${gender}">
                   <span>${getPhrase("other")}</span>
                 </label>
               </div>
@@ -337,6 +337,7 @@ function renderPhotos(photos) {
                   type="text"
                   id="reason_${userid}_other_text"
                   data-userid="${userid}"
+                  data-gender="${gender}"
                   placeholder="${getPhrase("otherReason")}"
                 >
                 <div class="invalid-feedback" data-i18n="reasonIsRequired"></div>
@@ -394,6 +395,7 @@ async function onSubmit(e) {
       const reasonOther = document
         .querySelector(`#reason_${userid}_other_text`)
         .value.trim();
+      const gender = reasonEl.getAttribute("data-gender");
 
       if (!reasonEl) {
         const errorSelector = `#reason_${userid}_other_text`;
@@ -406,6 +408,7 @@ async function onSubmit(e) {
         userid: userid,
         reason: reasonEl.value,
         other: reasonOther,
+        gender: gender,
       };
 
       photosFlagged.push(flagObject);
@@ -418,12 +421,39 @@ async function onSubmit(e) {
 
   const accessToken = await getAccessToken();
 
+  const htmlYourPhotoWasFlagged = await fetch(
+    "./email-your-photo-was-flagged.html"
+  ).then((res = res.text()));
+
+  const emailPhrasesPhotoWasFlagged = {
+    emailYourPhotoWasFlagged: getPhrase("emailYourPhotoWasFlagged"),
+    emailFlaggedP1: getPhrase("emailFlaggedP1"),
+    emailFlaggedP2: getPhrase("emailFlaggedP2"),
+    emailFlaggedReason: getPhrase("emailFlaggedReason"),
+    emailFlaggedP4: getPhrase("emailFlaggedP4"),
+    emailFlaggedPhoto: getPhrase("emailFlaggedPhoto"),
+    emailFlaggedP6: getPhrase("emailFlaggedP6"),
+    emailFlaggedGeneric: getPhrase("emailFlaggedGeneric"),
+    emailFlaggedP8: getPhrase("emailFlaggedP8"),
+    emailUpdatePhotoLink: getPhrase("emailUpdatePhotoLink"),
+    emailFlaggedP10: getPhrase("emailFlaggedP10"),
+    emailFlaggedP11: getPhrase("emailFlaggedP11"),
+    emailFlaggedSincerely: getPhrase("emailFlaggedSincerely"),
+    emailFlaggedTheCyberministry: getPhrase("emailFlaggedTheCyberministry"),
+    emailAboutAppHeadline: getPhrase("email-about-app-headline"),
+    emailTimezoneNotice: getPhrase("email-timezone-notice"),
+    emailMessageID: getPhrase("email-message-id-text"),
+  };
+
   fetch(endpoint, {
     mode: "cors",
     method: "post",
     body: JSON.stringify({
       userIdsApproved: userIdsApproved,
+      userIdsFlagged: userIdsFlagged,
       photosFlagged: photosFlagged,
+      htmlYourPhotoWasFlagged: htmlYourPhotoWasFlagged,
+      emailPhrasesPhotoWasFlagged: emailPhrasesPhotoWasFlagged,
     }),
     headers: new Headers({
       "Content-Type": "application/json",

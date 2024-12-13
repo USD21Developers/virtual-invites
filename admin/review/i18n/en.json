@@ -117,6 +117,91 @@
       "key": "reviewsProcessedSuccessfully",
       "original": "All photo reviews were processed successfully.",
       "translated": "All photo reviews were processed successfully."
+    },
+    {
+      "key": "emailYourPhotoWasFlagged",
+      "original": "Your profile photo was flagged",
+      "translated": "Your profile photo was flagged"
+    },
+    {
+      "key": "emailFlaggedP1",
+      "original": "Hi, {FIRST-NAME}. This message pertains to your account with the Invites App, a tool for evangelism created for disciples in the International Christian Churches.",
+      "translated": "Hi, {FIRST-NAME}. This message pertains to your account with the Invites App, a tool for evangelism created for disciples in the International Christian Churches."
+    },
+    {
+      "key": "emailFlaggedP2",
+      "original": "Your profile photo was flagged by {FLAGGED-BY-FIRST-NAME} {FLAGGED-BY-LAST-NAME} on {FLAGGED-ON-DATE}, for the following reason:",
+      "translated": "Your profile photo was flagged by {FLAGGED-BY-FIRST-NAME} {FLAGGED-BY-LAST-NAME} on {FLAGGED-ON-DATE}, for the following reason:"
+    },
+    {
+      "key": "emailFlaggedReason",
+      "original": "Reason:",
+      "translated": "Reason:"
+    },
+    {
+      "key": "emailFlaggedP4",
+      "original": "Below is the photo, which you added to your profile on {FLAGGED-PHOTO-ADDED-ON-DATE}:",
+      "translated": "Below is the photo, which you added to your profile on {FLAGGED-PHOTO-ADDED-ON-DATE}:"
+    },
+    {
+      "key": "emailFlaggedPhoto",
+      "original": "Flagged photo:",
+      "translated": "Flagged photo:"
+    },
+    {
+      "key": "emailFlaggedP6",
+      "original": "While we wait for your revised photo, your profile will temporarily show the following generic photo instead:",
+      "translated": "While we wait for your revised photo, your profile will temporarily show the following generic photo instead:"
+    },
+    {
+      "key": "emailFlaggedGeneric",
+      "original": "Temporary photo:",
+      "translated": "Temporary photo:"
+    },
+    {
+      "key": "emailFlaggedP8",
+      "original": "You can revise your photo immediately, by visiting the following Web address:",
+      "translated": "You can revise your photo immediately, by visiting the following Web address:"
+    },
+    {
+      "key": "emailUpdatePhotoLink",
+      "original": "Update my profile photo now",
+      "translated": "Update my profile photo now"
+    },
+    {
+      "key": "emailFlaggedP10",
+      "original": "We apologize for the inconvenience!",
+      "translated": "We apologize for the inconvenience!"
+    },
+    {
+      "key": "emailFlaggedP11",
+      "original": "If you have any questions or feedback, please reach out to {FLAGGED-BY-FIRST-NAME} at your convenience.  Thank you for your patience!",
+      "translated": "If you have any questions or feedback, please reach out to {FLAGGED-BY-FIRST-NAME} at your convenience.  Thank you for your patience!"
+    },
+    {
+      "key": "emailFlaggedSincerely",
+      "original": "Sincerely,",
+      "translated": "Sincerely,"
+    },
+    {
+      "key": "emailFlaggedTheCyberministry",
+      "original": "The Cyberministry",
+      "translated": "The Cyberministry"
+    },
+    {
+      "key": "email-about-app-headline",
+      "original": "About the Invites App",
+      "translated": "About the Invites App"
+    },
+    {
+      "key": "email-timezone-notice",
+      "original": "Times shown above are in the {EVENT-TIMEZONE} time zone.",
+      "translated": "Times shown above are in the {EVENT-TIMEZONE} time zone."
+    },
+    {
+      "key": "email-message-id-text",
+      "original": "Message ID:",
+      "translated": "Message ID:"
     }
   ],
 
