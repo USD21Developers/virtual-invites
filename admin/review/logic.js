@@ -433,11 +433,14 @@ async function onSubmit(e) {
     .then((res) => res.json())
     .then((data) => {
       const photosContainerEl = document.querySelector("#photosContainer");
+      const photosEl = document.querySelector("#photos");
       const noPhotosEl = document.querySelector("#nophotos");
 
-      // DO STUFF
+      // TODO:  HANDLE ERRORS
 
-      if (data.msgType === "success") {
+      // TODO:  HANDLE SUCCESS
+      if (data.msg === "photo reviews processed successfully") {
+        photosEl.innerHTML = "";
         photosContainerEl.classList.add("d-none");
         noPhotosEl.classList.remove("d-none");
         globalHidePageSpinner();
