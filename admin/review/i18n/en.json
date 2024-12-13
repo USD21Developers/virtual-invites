@@ -92,6 +92,16 @@
       "key": "reasonIsRequired",
       "original": "A reason for flagging is required.",
       "translated": "A reason for flagging is required."
+    },
+    {
+      "key": "nophotos",
+      "original": "No photos are awaiting review at this time.",
+      "translated": "No photos are awaiting review at this time."
+    },
+    {
+      "key": "returnToAdministration",
+      "original": "Administration",
+      "translated": "Administration"
     }
   ],
 

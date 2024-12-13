@@ -214,8 +214,24 @@
 
       <div class="row align-items-start">
         <div class="col col-sm-10 offset-sm-1">
-          <p class="mb-4 text-center balancedTextWrap" id="explanation"></p>
-          <div id="photos"></div>
+          <div id="nophotos" class="d-none mt-2">
+            <div
+              data-i18n="nophotos"
+              class="text-center balancedTextWrap"
+            ></div>
+            <div class="text-center mt-4 pt-1">
+              <a
+                href="../"
+                class="btn btn-primary"
+                data-i18n="returnToAdministration"
+              ></a>
+            </div>
+          </div>
+
+          <div class="d-none" id="photosContainer">
+            <p class="mb-4 text-center balancedTextWrap" id="explanation"></p>
+            <div id="photos"></div>
+          </div>
         </div>
       </div>
 

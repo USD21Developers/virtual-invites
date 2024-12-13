@@ -196,14 +196,25 @@ function populatePhotosPendingReview() {
     })
       .then((res) => res.json())
       .then((data) => {
+        const photosContainerEl = document.querySelector("#photosContainer");
+        const noPhotosEl = document.querySelector("#nophotos");
         const { photos } = data;
 
-        if (!photos) return resolve([]);
-        if (!Array.isArray(photos))
-          return reject(new Error("photos must be an array of objects"));
+        if (!photos) {
+          photosContainerEl.classList.add("d-none");
+          noPhotosEl.classList.remove("d-none");
+          return resolve([]);
+        }
 
-        if (photos.length === 0) {
-          reviewLinkEl.classList.add("d-none");
+        if (!Array.isArray(photos)) {
+          photosContainerEl.classList.add("d-none");
+          noPhotosEl.classList.remove("d-none");
+          return reject(new Error("photos must be an array of objects"));
+        }
+
+        if (!photos.length) {
+          photosContainerEl.classList.add("d-none");
+          noPhotosEl.classList.remove("d-none");
           return resolve([]);
         }
 
@@ -218,7 +229,7 @@ function populatePhotosPendingReview() {
 }
 
 function renderPhotos(photos) {
-  const photosEl = document.querySelector("#photos");
+  const photosContainerEl = document.querySelector("#photosContainer");
   const explanationEl = document.querySelector("#explanation");
   const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
   const explanationText =
@@ -255,9 +266,9 @@ function renderPhotos(photos) {
         <div class="photo mt-4" data-userid="${userid}">
           <div class="text-center">
             <img class="profileImage" src="${profilephoto}" width="200" height="200" alt="${firstname} ${lastname}" data-userid="${userid}" />
-            <h4 class="mt-2 mb-0 name text-center">
+            <h3 class="mt-2 mb-0 name text-center">
               ${firstname} ${lastname}
-            </h4>
+            </h3>
             <div class="text-muted small my-2 balancedTextWrap">Photo added on ${datePhotoAdded}</div>
             <div class="form-check form-check-inline mr-4">
               <label class="form-check-label">
@@ -327,7 +338,8 @@ function renderPhotos(photos) {
       `;
   });
 
-  photosEl.innerHTML = html;
+  photosContainerEl.innerHTML = html;
+  photosContainerEl.classList.remove("d-none");
 }
 
 function onPhotoFlagged(e) {
