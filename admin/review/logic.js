@@ -286,7 +286,7 @@ function renderPhotos(photos) {
 
           <div class="text-center mt-3 d-none" id="possible_reasons_${userid}">
             <div class="d-inline-block text-left">
-              <p>${getPhrase("reasonForFlagging")}</p>
+              <p class="text-center">${getPhrase("reasonForFlagging")}</p>
 
               <div class="form-check">
                 <label class="form-check-label">
