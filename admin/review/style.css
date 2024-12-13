@@ -28,3 +28,7 @@
 #photos .name {
   font-weight: 400;
 }
+
+#photos .reasonForFlagging {
+  font-weight: 600;
+}

@@ -229,6 +229,8 @@ function populatePhotosPendingReview() {
 }
 
 function renderPhotos(photos) {
+  const noPhotosEl = document.querySelector("#nophotos");
+  const photosEl = document.querySelector("#photos");
   const photosContainerEl = document.querySelector("#photosContainer");
   const explanationEl = document.querySelector("#explanation");
   const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
@@ -262,6 +264,11 @@ function renderPhotos(photos) {
       timeZone: userDateTimePrefs.timeZone,
     }).format(new Date(photoAddedAt));
 
+    const photoAddedOn = getPhrase("photoAddedOn").replaceAll(
+      "{DATE}",
+      datePhotoAdded
+    );
+
     html += `
         <div class="photo mt-4" data-userid="${userid}">
           <div class="text-center">
@@ -269,7 +276,7 @@ function renderPhotos(photos) {
             <h3 class="mt-2 mb-0 name text-center">
               ${firstname} ${lastname}
             </h3>
-            <div class="text-muted small my-2 balancedTextWrap">Photo added on ${datePhotoAdded}</div>
+            <div class="text-muted small my-2 balancedTextWrap">${photoAddedOn}</div>
             <div class="form-check form-check-inline mr-4">
               <label class="form-check-label">
                 <input class="form-check-input" type="radio" name="decision_${userid}" data-userid="${userid}" value="approve" data-on-approve="possible_reasons_${userid}" checked>
@@ -286,7 +293,9 @@ function renderPhotos(photos) {
 
           <div class="text-center mt-3 d-none" id="possible_reasons_${userid}">
             <div class="d-inline-block text-left">
-              <p class="text-center">${getPhrase("reasonForFlagging")}</p>
+              <p class="text-center reasonForFlagging">${getPhrase(
+                "reasonForFlagging"
+              )}</p>
 
               <div class="form-check">
                 <label class="form-check-label">
@@ -338,7 +347,8 @@ function renderPhotos(photos) {
       `;
   });
 
-  photosContainerEl.innerHTML = html;
+  photosEl.innerHTML = html;
+  noPhotosEl.classList.add("d-none");
   photosContainerEl.classList.remove("d-none");
 }
 
@@ -354,10 +364,12 @@ function onPhotoApproved(e) {
   detailsEl.classList.add("d-none");
 }
 
-function onSubmit(e) {
+async function onSubmit(e) {
   let userIdsApproved = [];
   let userIdsFlagged = [];
-  let usersFlagged = [];
+  let photosFlagged = [];
+
+  e.preventDefault();
 
   document
     .querySelectorAll("input[type='radio'][value='approve']:checked")
@@ -396,15 +408,46 @@ function onSubmit(e) {
         other: reasonOther,
       };
 
-      usersFlagged.push(flagObject);
+      photosFlagged.push(flagObject);
     }
   }
 
-  // TODO: create a UI for when no photos are awaiting review (provide a link back to Admin page)
-  // TODO: validate
-  // TODO: create API endpoint
-  // TODO: send data to API
-  // TODO: on success, hide UI for photos, replace with UI for no photos
+  const endpoint = `${getApiHost()}/photo-reviews`;
+
+  globalHidePageSpinner();
+
+  const accessToken = await getAccessToken();
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "post",
+    body: JSON.stringify({
+      userIdsApproved: userIdsApproved,
+      photosFlagged: photosFlagged,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      const photosContainerEl = document.querySelector("#photosContainer");
+      const noPhotosEl = document.querySelector("#nophotos");
+
+      // DO STUFF
+
+      if (data.msgType === "success") {
+        photosContainerEl.classList.add("d-none");
+        noPhotosEl.classList.remove("d-none");
+        globalHidePageSpinner();
+        showToast(getPhrase("reviewsProcessedSuccessfully"), 5000, "success");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      globalHidePageSpinner();
+    });
 }
 
 function attachListeners() {
@@ -436,6 +479,7 @@ function attachListeners() {
       }
     });
   });
+  document.querySelector("#photosForm").addEventListener("submit", onSubmit);
 }
 
 async function init() {

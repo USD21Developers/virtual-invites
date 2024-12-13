@@ -29,6 +29,11 @@
       "translated": "Review"
     },
     {
+      "key": "photoAddedOn",
+      "original": "Photo added on {DATE}",
+      "translated": "Photo added on {DATE}"
+    },
+    {
       "key": "approve",
       "original": "Approve",
       "translated": "Approve"
@@ -102,6 +107,16 @@
       "key": "returnToAdministration",
       "original": "Administration",
       "translated": "Administration"
+    },
+    {
+      "key": "submitButton",
+      "original": "Process",
+      "translated": "Process"
+    },
+    {
+      "key": "reviewsProcessedSuccessfully",
+      "original": "All photo reviews were processed successfully.",
+      "translated": "All photo reviews were processed successfully."
     }
   ],
 
