@@ -423,18 +423,31 @@ async function onSubmit(e) {
 
   const htmlYourPhotoWasFlagged = await fetch(
     "./email-your-photo-was-flagged.html"
-  ).then((res = res.text()));
+  ).then((res) => res.text());
+
+  const regPhrases = await fetch(`/register/i18n/${getLang()}.json`).then(
+    (res) => res.json()
+  );
 
   const emailPhrasesPhotoWasFlagged = {
-    headlineRulesAboutPhotos: getPhrase("headlineRulesAboutPhotos"),
-    ruleMustShowYourFace: getPhrase("ruleMustShowYourFace"),
-    explanationMustShowYourFace: getPhrase("explanationMustShowYourFace"),
-    ruleFaceMustBeProminent: getPhrase("ruleFaceMustBeProminent"),
-    explanationFaceMustBeProminent: getPhrase("explanationFaceMustBeProminent"),
-    ruleOnlyYou: getPhrase("ruleOnlyYou"),
-    explanationOnlyYou: getPhrase("explanationOnlyYou"),
-    ruleMustBeAppropriate: getPhrase("ruleMustBeAppropriate"),
-    explanationMustBeAppropriate: getPhrase("explanationMustBeAppropriate"),
+    headlineRulesAboutPhotos: getPhrase("headlineRulesAboutPhotos", regPhrases),
+    ruleMustShowYourFace: getPhrase("ruleMustShowYourFace", regPhrases),
+    explanationMustShowYourFace: getPhrase(
+      "explanationMustShowYourFace",
+      regPhrases
+    ),
+    ruleFaceMustBeProminent: getPhrase("ruleFaceMustBeProminent", regPhrases),
+    explanationFaceMustBeProminent: getPhrase(
+      "explanationFaceMustBeProminent",
+      regPhrases
+    ),
+    ruleOnlyYou: getPhrase("ruleOnlyYou", regPhrases),
+    explanationOnlyYou: getPhrase("explanationOnlyYou", regPhrases),
+    ruleMustBeAppropriate: getPhrase("ruleMustBeAppropriate", regPhrases),
+    explanationMustBeAppropriate: getPhrase(
+      "explanationMustBeAppropriate",
+      regPhrases
+    ),
   };
 
   fetch(endpoint, {
