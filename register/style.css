@@ -123,3 +123,28 @@ label[for="photoCapture"] {
     display: none !important;
   }
 }
+
+#photorules {
+  text-align: left;
+}
+
+#photorules summary {
+  text-align: center;
+  color: v;
+}
+
+#photorules details[open] summary {
+  font-weight: 600;
+}
+
+#photorules .small {
+  font-size: 85%;
+}
+
+#photorules li {
+  margin-top: 1.5rem;
+}
+
+#photorules li:first-child {
+  margin-top: 0;
+}

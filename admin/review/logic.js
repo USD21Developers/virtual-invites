@@ -426,23 +426,15 @@ async function onSubmit(e) {
   ).then((res = res.text()));
 
   const emailPhrasesPhotoWasFlagged = {
-    emailYourPhotoWasFlagged: getPhrase("emailYourPhotoWasFlagged"),
-    emailFlaggedP1: getPhrase("emailFlaggedP1"),
-    emailFlaggedP2: getPhrase("emailFlaggedP2"),
-    emailFlaggedReason: getPhrase("emailFlaggedReason"),
-    emailFlaggedP4: getPhrase("emailFlaggedP4"),
-    emailFlaggedPhoto: getPhrase("emailFlaggedPhoto"),
-    emailFlaggedP6: getPhrase("emailFlaggedP6"),
-    emailFlaggedGeneric: getPhrase("emailFlaggedGeneric"),
-    emailFlaggedP8: getPhrase("emailFlaggedP8"),
-    emailUpdatePhotoLink: getPhrase("emailUpdatePhotoLink"),
-    emailFlaggedP10: getPhrase("emailFlaggedP10"),
-    emailFlaggedP11: getPhrase("emailFlaggedP11"),
-    emailFlaggedSincerely: getPhrase("emailFlaggedSincerely"),
-    emailFlaggedTheCyberministry: getPhrase("emailFlaggedTheCyberministry"),
-    emailAboutAppHeadline: getPhrase("email-about-app-headline"),
-    emailTimezoneNotice: getPhrase("email-timezone-notice"),
-    emailMessageID: getPhrase("email-message-id-text"),
+    headlineRulesAboutPhotos: getPhrase("headlineRulesAboutPhotos"),
+    ruleMustShowYourFace: getPhrase("ruleMustShowYourFace"),
+    explanationMustShowYourFace: getPhrase("explanationMustShowYourFace"),
+    ruleFaceMustBeProminent: getPhrase("ruleFaceMustBeProminent"),
+    explanationFaceMustBeProminent: getPhrase("explanationFaceMustBeProminent"),
+    ruleOnlyYou: getPhrase("ruleOnlyYou"),
+    explanationOnlyYou: getPhrase("explanationOnlyYou"),
+    ruleMustBeAppropriate: getPhrase("ruleMustBeAppropriate"),
+    explanationMustBeAppropriate: getPhrase("explanationMustBeAppropriate"),
   };
 
   fetch(endpoint, {

@@ -54,6 +54,51 @@
       "translated": "Profile photo:"
     },
     {
+      "key": "headlineRulesAboutPhotos",
+      "original": "Rules about profile photos",
+      "translated": "Rules about profile photos"
+    },
+    {
+      "key": "ruleMustShowYourFace",
+      "original": "Must show your face",
+      "translated": "Must show your face"
+    },
+    {
+      "key": "explanationMustShowYourFace",
+      "original": "The photo must show your actual face.",
+      "translated": "The photo must show your actual face."
+    },
+    {
+      "key": "ruleFaceMustBeProminent",
+      "original": "Face must be prominent",
+      "translated": "Face must be prominent"
+    },
+    {
+      "key": "explanationFaceMustBeProminent",
+      "original": "Only your head and shoulders may be visible. The photo should not be zoomed out.",
+      "translated": "Only your head and shoulders may be visible. The photo should not be zoomed out."
+    },
+    {
+      "key": "ruleOnlyYou",
+      "original": "Just you",
+      "translated": "Just you"
+    },
+    {
+      "key": "explanationOnlyYou",
+      "original": "The photo may show you, and only you. No other people should be visible.",
+      "translated": "The photo may show you, and only you. No other people should be visible."
+    },
+    {
+      "key": "ruleMustBeAppropriate",
+      "original": "Must be appropriate",
+      "translated": "Must be appropriate"
+    },
+    {
+      "key": "explanationMustBeAppropriate",
+      "original": "The photo must have a modest, dignified and wholesome quality.",
+      "translated": "The photo must have a modest, dignified and wholesome quality."
+    },
+    {
       "key": "label-gender-male",
       "original": "Male",
       "translated": "Male"
@@ -255,8 +300,8 @@
     },
     {
       "key": "photoIsRequired",
-      "original": "Please provide a profile photo:",
-      "translated": "Please provide a profile photo:"
+      "original": "Please provide a profile photo.",
+      "translated": "Please provide a profile photo."
     },
     {
       "key": "checkyouremailtitle",

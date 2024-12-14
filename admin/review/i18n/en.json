@@ -119,47 +119,56 @@
       "translated": "All photo reviews were processed successfully."
     },
     {
-      "key": "emailYourPhotoWasFlagged",
-      "original": "Your profile photo was flagged",
-      "translated": "Your profile photo was flagged"
+      "key": "emailSubject",
+      "original": "Please revise your profile photo on the Invites App",
+      "translated": "Please revise your profile photo on the Invites App"
     },
     {
-      "key": "emailFlaggedP1",
-      "original": "Hi, {FIRST-NAME}. This message pertains to your account with the Invites App, a tool for evangelism created for disciples in the International Christian Churches.",
-      "translated": "Hi, {FIRST-NAME}. This message pertains to your account with the Invites App, a tool for evangelism created for disciples in the International Christian Churches."
+      "key": "emailP1",
+      "original": "Hello {FIRST-NAME}!",
+      "translated": "Hello {FIRST-NAME}!"
     },
     {
-      "key": "emailFlaggedP2",
-      "original": "Your profile photo was flagged by {FLAGGED-BY-FIRST-NAME} {FLAGGED-BY-LAST-NAME} on {FLAGGED-ON-DATE}, for the following reason:",
-      "translated": "Your profile photo was flagged by {FLAGGED-BY-FIRST-NAME} {FLAGGED-BY-LAST-NAME} on {FLAGGED-ON-DATE}, for the following reason:"
+      "key": "emailP2",
+      "original": "Your profile photo on the Invites App needs to be revised.",
+      "translated": "Your profile photo on the Invites App needs to be revised.",
+      "changes": [
+        {
+          "original": "Invites App",
+          "translated": "Invites App",
+          "bold": false,
+          "italic": false,
+          "link": "https://invites.mobi/"
+        }
+      ]
     },
     {
-      "key": "emailFlaggedReason",
+      "key": "emailP3",
       "original": "Reason:",
       "translated": "Reason:"
     },
     {
-      "key": "emailFlaggedP4",
-      "original": "Below is the photo, which you added to your profile on {FLAGGED-PHOTO-ADDED-ON-DATE}:",
-      "translated": "Below is the photo, which you added to your profile on {FLAGGED-PHOTO-ADDED-ON-DATE}:"
+      "key": "emailP4",
+      "original": "Flagged photo",
+      "translated": "Flagged photo"
     },
     {
-      "key": "emailFlaggedPhoto",
-      "original": "Flagged photo:",
-      "translated": "Flagged photo:"
+      "key": "emailP5",
+      "original": "Below is the photo the requires revision. You added it to your profile on {FLAGGED-PHOTO-ADDED-ON-DATE}:",
+      "translated": "Below is the photo the requires revision. You added it to your profile on {FLAGGED-PHOTO-ADDED-ON-DATE}:"
     },
     {
-      "key": "emailFlaggedP6",
+      "key": "emailP6",
+      "original": "Temporary photo",
+      "translated": "Temporary photo"
+    },
+    {
+      "key": "emailP7",
       "original": "While we wait for your revised photo, your profile will temporarily show the following generic photo instead:",
       "translated": "While we wait for your revised photo, your profile will temporarily show the following generic photo instead:"
     },
     {
-      "key": "emailFlaggedGeneric",
-      "original": "Temporary photo:",
-      "translated": "Temporary photo:"
-    },
-    {
-      "key": "emailFlaggedP8",
+      "key": "emailP8",
       "original": "You can revise your photo immediately, by visiting the following Web address:",
       "translated": "You can revise your photo immediately, by visiting the following Web address:"
     },
@@ -169,22 +178,17 @@
       "translated": "Update my profile photo now"
     },
     {
-      "key": "emailFlaggedP10",
+      "key": "emailP10",
       "original": "We apologize for the inconvenience!",
       "translated": "We apologize for the inconvenience!"
     },
     {
-      "key": "emailFlaggedP11",
-      "original": "If you have any questions or feedback, please reach out to {FLAGGED-BY-FIRST-NAME} at your convenience.  Thank you for your patience!",
-      "translated": "If you have any questions or feedback, please reach out to {FLAGGED-BY-FIRST-NAME} at your convenience.  Thank you for your patience!"
-    },
-    {
-      "key": "emailFlaggedSincerely",
+      "key": "emailSincerely",
       "original": "Sincerely,",
       "translated": "Sincerely,"
     },
     {
-      "key": "emailFlaggedTheCyberministry",
+      "key": "emailTheCyberministry",
       "original": "The Cyberministry",
       "translated": "The Cyberministry"
     },
