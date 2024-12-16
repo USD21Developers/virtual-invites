@@ -149,18 +149,18 @@
     },
     {
       "key": "emailP4",
-      "original": "Flagged photo",
-      "translated": "Flagged photo"
+      "original": "Flagged photo:",
+      "translated": "Flagged photo:"
     },
     {
       "key": "emailP5",
-      "original": "Below is the photo the requires revision. You added it to your profile on {FLAGGED-PHOTO-ADDED-ON-DATE}:",
-      "translated": "Below is the photo the requires revision. You added it to your profile on {FLAGGED-PHOTO-ADDED-ON-DATE}:"
+      "original": "Below is the photo that requires revision:",
+      "translated": "Below is the photo that requires revision:"
     },
     {
       "key": "emailP6",
-      "original": "Temporary photo",
-      "translated": "Temporary photo"
+      "original": "Temporary photo:",
+      "translated": "Temporary photo:"
     },
     {
       "key": "emailP7",
@@ -169,13 +169,13 @@
     },
     {
       "key": "emailP8",
-      "original": "You can revise your photo immediately, by visiting the following Web address:",
-      "translated": "You can revise your photo immediately, by visiting the following Web address:"
+      "original": "You can revise your photo immediately, by clicking on the following link:",
+      "translated": "You can revise your photo immediately, by clicking on the following link:"
     },
     {
       "key": "emailUpdatePhotoLink",
-      "original": "Update my profile photo now",
-      "translated": "Update my profile photo now"
+      "original": "Revise my profile photo now",
+      "translated": "Revise my profile photo now"
     },
     {
       "key": "emailP10",
@@ -193,17 +193,17 @@
       "translated": "The Cyberministry"
     },
     {
-      "key": "email-about-app-headline",
+      "key": "emailAboutApp",
       "original": "About the Invites App",
       "translated": "About the Invites App"
     },
     {
-      "key": "email-timezone-notice",
+      "key": "emailTimezone",
       "original": "Times shown above are in the {EVENT-TIMEZONE} time zone.",
       "translated": "Times shown above are in the {EVENT-TIMEZONE} time zone."
     },
     {
-      "key": "email-message-id-text",
+      "key": "emailMessageID",
       "original": "Message ID:",
       "translated": "Message ID:"
     }
