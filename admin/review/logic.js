@@ -249,24 +249,45 @@ async function onSubmit(e) {
   );
 
   const emailPhrasesPhotoWasFlagged = {
-    headlineRulesAboutPhotos: getPhrase("headlineRulesAboutPhotos", regPhrases),
-    ruleMustShowYourFace: getPhrase("ruleMustShowYourFace", regPhrases),
-    explanationMustShowYourFace: getPhrase(
-      "explanationMustShowYourFace",
-      regPhrases
-    ),
-    ruleFaceMustBeProminent: getPhrase("ruleFaceMustBeProminent", regPhrases),
-    explanationFaceMustBeProminent: getPhrase(
-      "explanationFaceMustBeProminent",
-      regPhrases
-    ),
-    ruleOnlyYou: getPhrase("ruleOnlyYou", regPhrases),
-    explanationOnlyYou: getPhrase("explanationOnlyYou", regPhrases),
-    ruleMustBeAppropriate: getPhrase("ruleMustBeAppropriate", regPhrases),
-    explanationMustBeAppropriate: getPhrase(
-      "explanationMustBeAppropriate",
-      regPhrases
-    ),
+    emailSubject: getPhrase("emailSubject"),
+    emailP1: getPhrase("emailP1"),
+    emailP2: getPhrase("emailP2"),
+    emailP3: getPhrase("emailP3"),
+    emailP4: getPhrase("emailP4"),
+    emailP5: getPhrase("emailP5"),
+    emailP6: getPhrase("emailP6"),
+    emailP7: getPhrase("emailP7"),
+    emailP8: getPhrase("emailP8"),
+    emailUpdatePhotoLink: getPhrase("emailUpdatePhotoLink"),
+    emailP10: getPhrase("emailP10"),
+    emailSincerely: getPhrase("emailSincerely"),
+    emailTheCyberministry: getPhrase("emailTheCyberministry"),
+    emailAboutApp: getPhrase("emailAboutApp"),
+    emailTimezone: getPhrase("emailTimezone"),
+    emailMessageID: getPhrase("emailMessageID"),
+    photoRules: {
+      headlineRulesAboutPhotos: getPhrase(
+        "headlineRulesAboutPhotos",
+        regPhrases
+      ),
+      ruleMustShowYourFace: getPhrase("ruleMustShowYourFace", regPhrases),
+      explanationMustShowYourFace: getPhrase(
+        "explanationMustShowYourFace",
+        regPhrases
+      ),
+      ruleFaceMustBeProminent: getPhrase("ruleFaceMustBeProminent", regPhrases),
+      explanationFaceMustBeProminent: getPhrase(
+        "explanationFaceMustBeProminent",
+        regPhrases
+      ),
+      ruleOnlyYou: getPhrase("ruleOnlyYou", regPhrases),
+      explanationOnlyYou: getPhrase("explanationOnlyYou", regPhrases),
+      ruleMustBeAppropriate: getPhrase("ruleMustBeAppropriate", regPhrases),
+      explanationMustBeAppropriate: getPhrase(
+        "explanationMustBeAppropriate",
+        regPhrases
+      ),
+    },
   };
 
   fetch(endpoint, {
