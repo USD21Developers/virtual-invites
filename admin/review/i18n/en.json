@@ -199,8 +199,8 @@
     },
     {
       "key": "emailTimezone",
-      "original": "Times shown above are in the {EVENT-TIMEZONE} time zone.",
-      "translated": "Times shown above are in the {EVENT-TIMEZONE} time zone."
+      "original": "Times shown above are in the {ADMIN-TIMEZONE} time zone.",
+      "translated": "Times shown above are in the {ADMIN-TIMEZONE} time zone."
     },
     {
       "key": "emailMessageID",
