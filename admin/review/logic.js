@@ -188,6 +188,7 @@ async function onSubmit(e) {
   let userIdsApproved = [];
   let userIdsFlagged = [];
   let photosFlagged = [];
+  const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
 
   e.preventDefault();
 
@@ -299,6 +300,7 @@ async function onSubmit(e) {
       photosFlagged: photosFlagged,
       htmlYourPhotoWasFlagged: htmlYourPhotoWasFlagged,
       emailPhrasesPhotoWasFlagged: emailPhrasesPhotoWasFlagged,
+      adminTimeZone: userDateTimePrefs.timeZone,
     }),
     headers: new Headers({
       "Content-Type": "application/json",
