@@ -110,8 +110,8 @@
     },
     {
       "key": "submitButton",
-      "original": "Process",
-      "translated": "Process"
+      "original": "Submit",
+      "translated": "Submit"
     },
     {
       "key": "reviewsProcessedSuccessfully",
