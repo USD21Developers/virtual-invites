@@ -35,12 +35,6 @@
     </style>
 
     <div id="invitesNotification">
-      <header>
-        <b data-i18n="profile-photo-was-flagged">
-          Please change your profile photo
-        </b>
-      </header>
-
       <p data-i18n="emailP1">Hello {FIRST-NAME}!</p>
 
       <p data-i18n="emailP2">
@@ -52,64 +46,61 @@
         <span class="invitesFlaggedReason">{REASON}</span>
       </p>
 
-      <div>
-        <details style="display: inline-block">
-          <summary data-i18n="headlineRulesAboutPhotos" style="cursor: pointer">
+      <div
+        style="
+          background-color: #efefef;
+          border: 1px solid #999;
+          display: inline-block;
+          margin-top: 1rem;
+        "
+      >
+        <div style="margin-top: 1rem; text-align: center; font-size: 1.2rem">
+          <strong data-i18n="headlineRulesAboutPhotos">
             Rules about profile photos
-          </summary>
-          <br />
-          <div
-            style="
-              background-color: #efefef;
-              border: 1px solid #999;
-              display: inline-block;
-              margin-top: 1rem;
-            "
-          >
-            <ol style="margin: 0; padding: 1rem 2rem">
-              <li>
-                <strong data-i18n="ruleMustShowYourFace">
-                  Must show your face
-                </strong>
-                <div>
-                  <small data-i18n="explanationMustShowYourFace">
-                    The photo must show your actual face.
-                  </small>
-                </div>
-              </li>
-              <li style="margin-top: 1rem">
-                <strong data-i18n="ruleFaceMustBeProminent"
-                  >Face must be prominent</strong
-                >
-                <div>
-                  <small data-i18n="explanationFaceMustBeProminent">
-                    Only your head and shoulders may be visible. The photo
-                    should not be zoomed out.
-                  </small>
-                </div>
-              </li>
-              <li style="margin-top: 1rem">
-                <strong data-i18n="ruleOnlyYou">Just you</strong>
-                <div>
-                  <small data-i18n="explanationOnlyYou">
-                    The photo may show you, and only you. No other people should
-                    be visible.
-                  </small>
-                </div>
-              </li>
-              <li style="margin-top: 1rem">
-                <strong data-i18n="ruleMustBeAppropriate">
-                  Must be appropriate
-                </strong>
-                <div>
-                  <small data-i18n="explanationMustBeAppropriate">
-                    The photo must be modest, dignified and wholesome.
-                  </small>
-                </div>
-              </li>
-            </ol>
-          </div>
-        </details>
+          </strong>
+        </div>
+        <ol style="margin: 0; padding: 1rem 2rem">
+          <li>
+            <strong data-i18n="ruleMustShowYourFace">
+              Must show your face
+            </strong>
+            <div>
+              <small data-i18n="explanationMustShowYourFace">
+                The photo must show your actual face.
+              </small>
+            </div>
+          </li>
+          <li style="margin-top: 1rem">
+            <strong data-i18n="ruleFaceMustBeProminent"
+              >Face must be prominent</strong
+            >
+            <div>
+              <small data-i18n="explanationFaceMustBeProminent">
+                Only your head and shoulders may be visible. The photo should
+                not be zoomed out.
+              </small>
+            </div>
+          </li>
+          <li style="margin-top: 1rem">
+            <strong data-i18n="ruleOnlyYou">Just you</strong>
+            <div>
+              <small data-i18n="explanationOnlyYou">
+                The photo may show you, and only you. No other people should be
+                visible.
+              </small>
+            </div>
+          </li>
+          <li style="margin-top: 1rem">
+            <strong data-i18n="ruleMustBeAppropriate">
+              Must be appropriate
+            </strong>
+            <div>
+              <small data-i18n="explanationMustBeAppropriate">
+                The photo must be modest, dignified and wholesome.
+              </small>
+            </div>
+          </li>
+        </ol>
       </div>
 
       <hr noshade size="1" style="margin: 40px 0" />

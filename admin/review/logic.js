@@ -406,10 +406,10 @@ async function onSubmit(e) {
 function attachListeners() {
   document
     .querySelector("[data-on-flag]")
-    .addEventListener("click", onPhotoFlagged);
+    ?.addEventListener("click", onPhotoFlagged);
   document
     .querySelector("[data-on-approve]")
-    .addEventListener("click", onPhotoApproved);
+    ?.addEventListener("click", onPhotoApproved);
   document.querySelectorAll(".reason").forEach((el) => {
     el.addEventListener("change", (e) => {
       if (e.target.checked) {
@@ -432,7 +432,7 @@ function attachListeners() {
       }
     });
   });
-  document.querySelector("#photosForm").addEventListener("submit", onSubmit);
+  document.querySelector("#photosForm")?.addEventListener("submit", onSubmit);
 }
 
 async function init() {
