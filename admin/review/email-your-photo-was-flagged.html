@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Please revise your profile photo on the Invites App</title>
+    <title>Please revise your profile photo</title>
   </head>
   <body>
     <style type="text/css">
@@ -37,7 +37,7 @@
     <div id="invitesNotification">
       <header>
         <b data-i18n="profile-photo-was-flagged">
-          Please revise your profile photo on the Invites App
+          Please change your profile photo
         </b>
       </header>
 
@@ -48,8 +48,8 @@
       </p>
 
       <p>
-        <span data-i18n="emailP3">Reason:</span>
-        <strong>{REASON}</strong>
+        <strong data-i18n="emailP3">Reason:</strong>
+        <span class="invitesFlaggedReason">{REASON}</span>
       </p>
 
       <div>
@@ -57,6 +57,7 @@
           <summary data-i18n="headlineRulesAboutPhotos" style="cursor: pointer">
             Rules about profile photos
           </summary>
+          <br />
           <div
             style="
               background-color: #efefef;
@@ -114,7 +115,9 @@
       <hr noshade size="1" style="margin: 40px 0" />
 
       <p style="text-align: center">
-        <strong data-i18n="emailP4"> Flagged Photo </strong>
+        <strong data-i18n="emailP4" style="font-size: 1.2rem">
+          Flagged Photo
+        </strong>
       </p>
 
       <p data-i18n="emailP5" style="text-align: center; text-wrap: balance">
