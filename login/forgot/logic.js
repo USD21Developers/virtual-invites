@@ -87,7 +87,7 @@ function onSubmit(e) {
     });
 
   setTimeout(() => {
-    controller.abort();
+    controller.abort(`Timeout reached (30 seconds)`);
     if (state === "during") {
       state = "aborted";
       hide(progressBar);

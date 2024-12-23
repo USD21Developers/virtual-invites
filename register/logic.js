@@ -656,7 +656,7 @@ async function onSubmit(e) {
     });
 
   setTimeout(() => {
-    controller.abort();
+    controller.abort(`Timeout reached (25 seconds)`);
     hide(spinner);
     show(submitButton);
   }, 25000);

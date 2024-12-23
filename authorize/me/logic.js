@@ -6,7 +6,7 @@ function abortFetches() {
   if (!fetches.length) return;
 
   fetches.forEach((controller) => {
-    controller.abort();
+    controller.abort(`Clearing all timeouts`);
   });
 }
 

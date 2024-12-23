@@ -206,7 +206,7 @@ function onSubmit(e) {
 
   setTimeout(() => {
     if (!fetchSettled) {
-      controller.abort();
+      controller.abort(`Timeout reached (30 seconds)`);
       hide(spinner);
       show(submitButton);
       const phrase = getPhrase("timedout");

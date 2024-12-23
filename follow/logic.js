@@ -635,7 +635,7 @@ async function onNameSearched(e) {
     });
 
   setTimeout(() => {
-    controller.abort();
+    controller.abort(`Timeout reached (${timeout / 1000} seconds)`);
     hideSpinner();
     showTimeoutMessage();
   }, timeout);

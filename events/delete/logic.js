@@ -176,7 +176,7 @@ async function onSubmit() {
     });
 
   setTimeout(() => {
-    controller.abort();
+    controller.abort("Timeout reached (8 seconds)");
 
     // TODO:  handle timeout
 

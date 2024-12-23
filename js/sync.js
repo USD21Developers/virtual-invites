@@ -53,7 +53,7 @@ function syncChurches() {
 
     setTimeout(() => {
       if (!syncSuccessful) {
-        controller.abort();
+        controller.abort(`"Timeout reached (${timeout / 1000} seconds)"`);
         return reject(new Error("Churches sync timed out"));
       }
     }, timeout);
@@ -204,7 +204,7 @@ async function syncEvents() {
 
     setTimeout(() => {
       if (!syncSuccessful) {
-        controller.abort();
+        controller.abort(`"Timeout reached (${timeout / 1000} seconds)"`);
         return reject(new Error("Events sync timed out"));
       }
     }, timeout);
@@ -254,7 +254,7 @@ function syncFollowing() {
 
     setTimeout(() => {
       if (!syncSuccessful) {
-        controller.abort();
+        controller.abort(`"Timeout reached (${timeout / 1000} seconds)"`);
         return reject(new Error("Following sync timed out"));
       }
     }, timeout);
@@ -319,7 +319,9 @@ function syncPushSubscription() {
                 });
 
               setTimeout(() => {
-                controller.abort();
+                controller.abort(
+                  `"Timeout reached (${timeout / 1000} seconds)"`
+                );
                 return reject(new Error("Push subscription sync timed out"));
               }, timeout);
             })
@@ -377,7 +379,7 @@ function syncUpdatedInvites() {
 
     setTimeout(() => {
       if (!syncSuccessful) {
-        controller.abort();
+        controller.abort(`Timeout reached (${timeout / 1000} seconds)`);
         return reject(new Error("Updated invites sync timed out"));
       }
     }, timeout);
@@ -511,7 +513,7 @@ function syncInvites() {
 
     setTimeout(() => {
       if (!syncSuccessful) {
-        controller.abort();
+        controller.abort(`Timeout reached (${timeout / 1000} seconds)`);
         return reject(new Error("Invites sync timed out"));
       }
     }, timeout);
@@ -604,7 +606,7 @@ function syncNotesForInvite(invitationid, unsyncedNotes = []) {
 
     setTimeout(() => {
       if (!syncSuccessful) {
-        controller.abort();
+        controller.abort(`Timeout reached (30 seconds)`);
         return reject(new Error("Sync of notes for an invite timed out"));
       }
     }, 30000);
@@ -693,7 +695,7 @@ function syncAllNotes() {
 
     setTimeout(() => {
       if (!syncSuccessful) {
-        controller.abort();
+        controller.abort(`Timeout reached (30 seconds)`);
         return reject(new Error("Sync of all notes timed out"));
       }
     }, 30000);

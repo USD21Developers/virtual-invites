@@ -88,7 +88,7 @@ async function onSubmit(e) {
     });
 
   setTimeout(() => {
-    controller.abort();
+    controller.abort(`Timeout reached (5 seconds)`);
     hide(progressBar);
     show(submitButton);
   }, 5000);
