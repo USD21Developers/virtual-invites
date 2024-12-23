@@ -31,6 +31,7 @@ function getEmailPhrases() {
           emailP6: getPhrase("emailP6", revPhrases),
           emailP7: getPhrase("emailP7", revPhrases),
           emailP8: getPhrase("emailP8", revPhrases),
+          emailP9: getPhrase("emailP9", revPhrases),
           emailUpdatePhotoLink: getPhrase("emailUpdatePhotoLink", revPhrases),
           emailP10: getPhrase("emailP10", revPhrases),
           emailSincerely: getPhrase("emailSincerely", revPhrases),

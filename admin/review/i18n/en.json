@@ -159,16 +159,21 @@
     },
     {
       "key": "emailP6",
+      "original": "Added on {DATE}",
+      "translated": "Added on {DATE}"
+    },
+    {
+      "key": "emailP7",
       "original": "Temporary Photo",
       "translated": "Temporary Photo"
     },
     {
-      "key": "emailP7",
+      "key": "emailP8",
       "original": "While we wait for your revised photo, your profile will temporarily show the following generic photo instead:",
       "translated": "While we wait for your revised photo, your profile will temporarily show the following generic photo instead:"
     },
     {
-      "key": "emailP8",
+      "key": "emailP9",
       "original": "You can revise your photo immediately, by clicking on the following link:",
       "translated": "You can revise your photo immediately, by clicking on the following link:"
     },
