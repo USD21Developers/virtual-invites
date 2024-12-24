@@ -38,12 +38,29 @@
       <p data-i18n="emailP1">Hello {FIRST-NAME}!</p>
 
       <p data-i18n="emailP2">
-        Your profile photo on the Invites App needs to be revised.
+        Your profile photo on the
+        <a href="https://invites.mobi/">Invites App</a> was flagged, and needs
+        to be revised.
+      </p>
+
+      <p style="color: #808080; font-size: smaller; font-style: italic">
+        <span data-i18n="dateUploadedLabel">
+          Time when photo was uploaded:
+        </span>
+        <br />
+        <span id="dateUploaded"> Dec 24, 2024, 11:30 AM </span>
+      </p>
+
+      <p style="color: #808080; font-size: smaller; font-style: italic">
+        <span data-i18n="dateFlaggedLabel"> Time when photo was flagged: </span>
+        <br />
+        <span id="dateFlagged"> Dec 24, 2024, 11:31 AM </span>
       </p>
 
       <p>
-        <strong data-i18n="emailP3">Reason:</strong>
-        <span class="invitesFlaggedReason">{REASON}</span>
+        <strong data-i18n="emailP3"> Reason for flagging: </strong>
+        <br />
+        <span id="actualReason" style="color: red"> {REASON} </span>
       </p>
 
       <div

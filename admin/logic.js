@@ -20,12 +20,14 @@ async function populatePhotosPendingReview() {
       if (!Array.isArray(photos)) return;
 
       if (photos.length === 0) {
-        reviewLinkEl.classList.add("d-none");
+        if (reviewLinkEl) reviewLinkEl.classList.add("d-none");
         return;
       }
 
-      quantityPhotoReviewEl.classList.add("badge-danger", "border-danger");
-      quantityPhotoReviewEl.innerHTML = photos.length;
+      if (quantityPhotoReviewEl) {
+        quantityPhotoReviewEl.classList.add("badge-danger", "border-danger");
+        quantityPhotoReviewEl.innerHTML = photos.length;
+      }
     })
     .catch((error) => {
       console.error(error);

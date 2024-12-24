@@ -25,6 +25,8 @@ function getEmailPhrases() {
           emailSubject: getPhrase("emailSubject", revPhrases),
           emailP1: getPhrase("emailP1", revPhrases),
           emailP2: getPhrase("emailP2", revPhrases),
+          dateUploadedLabel: getPhrase("dateUploadedLabel", revPhrases),
+          dateFlaggedLabel: getPhrase("dateFlaggedLabel", revPhrases),
           emailP3: getPhrase("emailP3", revPhrases),
           emailP4: getPhrase("emailP4", revPhrases),
           emailP5: getPhrase("emailP5", revPhrases),
@@ -316,16 +318,16 @@ async function onSubmit(e) {
 
       switch (reasonValue) {
         case "no face":
-          reason = getPhrase("doesNotShowUsersFace");
+          reason = getPhrase("doesNotShowUsersFaceEmail");
           break;
         case "face not prominent enough":
-          reason = getPhrase("usersFaceNotProminentEnough");
+          reason = getPhrase("usersFaceNotProminentEnoughEmail");
           break;
         case "additional people":
-          reason = getPhrase("additionalPeople");
+          reason = getPhrase("additionalPeopleEmail");
           break;
         case "not appropriate":
-          reason = getPhrase("notAppropriate");
+          reason = getPhrase("notAppropriateEmail");
           break;
         case "other":
           reason = getPhrase("other");

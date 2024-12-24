@@ -54,9 +54,19 @@
       "translated": "Does not show user's face"
     },
     {
+      "key": "doesNotShowUsersFaceEmail",
+      "original": "Does not show your face",
+      "translated": "Does not show your face"
+    },
+    {
       "key": "usersFaceNotProminentEnough",
       "original": "User's face is not prominent enough",
       "translated": "User's face is not prominent enough"
+    },
+    {
+      "key": "usersFaceNotProminentEnoughEmail",
+      "original": "Your face is not prominent enough",
+      "translated": "Your face is not prominent enough"
     },
     {
       "key": "additionalPeople",
@@ -64,7 +74,17 @@
       "translated": "Shows additional people"
     },
     {
+      "key": "additionalPeopleEmail",
+      "original": "Shows additional people",
+      "translated": "Shows additional people"
+    },
+    {
       "key": "notAppropriate",
+      "original": "Photo is not appropriate",
+      "translated": "Photo is not appropriate"
+    },
+    {
+      "key": "notAppropriateEmail",
       "original": "Photo is not appropriate",
       "translated": "Photo is not appropriate"
     },
@@ -120,8 +140,8 @@
     },
     {
       "key": "emailSubject",
-      "original": "Please change your profile photo",
-      "translated": "Please change your profile photo"
+      "original": "Your profile photo was flagged",
+      "translated": "Your profile photo was flagged"
     },
     {
       "key": "emailP1",
@@ -130,8 +150,8 @@
     },
     {
       "key": "emailP2",
-      "original": "Your profile photo on the Invites App needs to be revised.",
-      "translated": "Your profile photo on the Invites App needs to be revised.",
+      "original": "Your profile photo on the Invites App was flagged, and needs to be revised.",
+      "translated": "Your profile photo on the Invites App was flagged, and needs to be revised.",
       "changes": [
         {
           "original": "Invites App",
@@ -144,8 +164,18 @@
     },
     {
       "key": "emailP3",
-      "original": "Reason:",
-      "translated": "Reason:"
+      "original": "Reason for flagging:",
+      "translated": "Reason for flagging:"
+    },
+    {
+      "key": "dateUploadedLabel",
+      "original": "Time when photo was uploaded:",
+      "translated": "Time when photo was uploaded:"
+    },
+    {
+      "key": "dateFlaggedLabel",
+      "original": "Time when photo was flagged:",
+      "translated": "Time when photo was flagged:"
     },
     {
       "key": "emailP4",

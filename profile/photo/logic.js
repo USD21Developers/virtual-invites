@@ -238,8 +238,6 @@ async function onSubmit(e) {
   const profileImage140 = await getProfileImage(140, 140);
   const spinner = document.querySelector("#progressbar");
   const submitButton = document.querySelector("#formsubmit");
-  const controller = new AbortController();
-  const signal = controller.signal;
   const endpoint = `${getApiHost()}/profile-photo`;
   const accessToken = await getAccessToken();
 
@@ -257,7 +255,6 @@ async function onSubmit(e) {
       "Content-Type": "application/json",
       authorization: `Bearer ${accessToken}`,
     }),
-    signal: signal,
   })
     .then((res) => res.json())
     .then((data) => {
@@ -275,12 +272,6 @@ async function onSubmit(e) {
           break;
       }
     });
-
-  setTimeout(() => {
-    controller.abort("Timeout reached (25 seconds)");
-    hide(spinner);
-    show(submitButton);
-  }, 25000);
 }
 
 function attachListeners() {
