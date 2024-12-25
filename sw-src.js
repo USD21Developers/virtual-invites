@@ -10,28 +10,6 @@ workbox.precaching.precacheAndRoute(self.__WB_MANIFEST, {
   directoryIndex: "index.html",
 });
 
-// Add runtime caching
-self.addEventListener("fetch", (event) => {
-  if (
-    (event.request.url.includes("/profiles/") &&
-      event.request.url.endsWith("__400.jpg")) ||
-    (event.request.url.includes("/profiles/") &&
-      event.request.url.endsWith("__140.jpg"))
-  ) {
-    event.respondWith(
-      caches.open("user-images").then((cache) => {
-        return cache.match(event.request).then((response) => {
-          const fetchPromise = fetch(event.request).then((networkResponse) => {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
-          });
-          return response || fetchPromise;
-        });
-      })
-    );
-  }
-});
-
 // Add push event listener
 self.addEventListener("push", (event) => {
   const { title, body, data } = event.data.json();
