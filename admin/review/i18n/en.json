@@ -184,8 +184,8 @@
     },
     {
       "key": "emailP5",
-      "original": "Below is the photo that requires revision:",
-      "translated": "Below is the photo that requires revision:"
+      "original": "Below is the photo that must be changed:",
+      "translated": "Below is the photo that must be changed:"
     },
     {
       "key": "emailP6",
@@ -199,18 +199,18 @@
     },
     {
       "key": "emailP8",
-      "original": "While we wait for your revised photo, your profile will temporarily show the following generic photo instead:",
-      "translated": "While we wait for your revised photo, your profile will temporarily show the following generic photo instead:"
+      "original": "Your profile will temporarily show the following generic photo until you change it:",
+      "translated": "Your profile will temporarily show the following generic photo until you change it:"
     },
     {
       "key": "emailP9",
-      "original": "You can revise your photo immediately, by clicking on the following link:",
-      "translated": "You can revise your photo immediately, by clicking on the following link:"
+      "original": "Click below to revise your photo immediately:",
+      "translated": "Click below to revise your photo immediately:"
     },
     {
       "key": "emailUpdatePhotoLink",
-      "original": "Revise my profile photo now",
-      "translated": "Revise my profile photo now"
+      "original": "Change my profile photo",
+      "translated": "Change my profile photo"
     },
     {
       "key": "emailP10",
