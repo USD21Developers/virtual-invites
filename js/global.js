@@ -1300,7 +1300,7 @@ function populateGlobalContent() {
             )?.content;
             if (matchedcontent) item.setAttribute("aria-label", matchedcontent);
           });
-        const profileImageNav = document.querySelector(".profileImageNav");
+        /* const profileImageNav = document.querySelector(".profileImageNav");
         const refreshToken = localStorage.getItem("refreshToken");
         const accessToken = sessionStorage.getItem("accessToken");
         if (profileImageNav && refreshToken && accessToken) {
@@ -1319,7 +1319,7 @@ function populateGlobalContent() {
             ?.querySelector("img")
             .setAttribute("src", profilePhotoNav);
           profileImageNav?.classList.remove("d-none");
-        }
+        } */
         return resolve();
       })
       .catch((err) => {
