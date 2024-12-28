@@ -1,0 +1,21 @@
+ul.keyFeatures {
+  margin-top: 1rem;
+}
+
+li.keyFeature {
+  margin-bottom: 1.5rem;
+}
+
+li.keyFeature:last-child {
+  margin-bottom: 0;
+}
+
+[data-i18n="headlineOrLearnMore"] {
+  color: var(--secondary);
+  font-size: 1rem;
+  font-style: italic;
+}
+
+li.keyFeature.current {
+  display: none;
+}

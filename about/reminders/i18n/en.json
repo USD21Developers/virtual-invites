@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "description": "Whatever",
+    "path": "/about/template/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Whatever",
+      "translated": "Whatever"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbAbout",
+      "original": "About",
+      "translated": "About"
+    },
+    {
+      "key": "breadcrumbWhatever",
+      "original": "Whatever",
+      "translated": "Whatever"
+    },
+    {
+      "key": "register",
+      "original": "Register",
+      "translated": "Register"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
