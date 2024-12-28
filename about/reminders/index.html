@@ -118,21 +118,93 @@
           <a href="/about/" data-i18n="breadcrumbAbout"></a>
         </li>
         <li class="breadcrumb-item active">
-          <a href="/about/whatever/" data-i18n="breadcrumbWhatever"></a>
+          <a href="/about/reminders/" data-i18n="breadcrumbReminders"></a>
         </li>
       </ol>
     </nav>
 
     <div class="container d-none mainContent">
       <div class="row mt-2 mb-4">
-        <div class="col col-md-6 offset-md-3">
+        <div class="col">
           <h2 class="text-center text-uppercase m-0" data-i18n="pagetitle"></h2>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
-          <a href="/register/" data-i18n="register"></a>
+          <div class="text-center mt-2 mb-4 pb-2">
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/sDxt-QEhd28?si=gm8xzQw9tYwO8EhL&cc_load_policy=1&hl=en"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <p data-i18n="p1"></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-md-6 offset-md-3">
+          <p class="text-center mt-4" data-i18n="convincedHeadline"></p>
+
+          <div class="text-center mb-4">
+            <a
+              href="/register/"
+              class="btn btn-primary"
+              data-i18n="registerButton"
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" id="keyFeaturesContainer">
+        <div class="col">
+          <hr />
+
+          <p class="text-center mt-4 pt-2" data-i18n="headlineOrLearnMore"></p>
+
+          <h3 data-i18n="keyFeatures"></h3>
+          <ul class="keyFeatures">
+            <li class="keyFeature">
+              <strong data-i18n="whenTimeIsLimitedHeadline"></strong>
+              <div data-i18n="whenTimeIsLimitedDetails"></div>
+              <div>
+                <a href="/about/time-limited/" data-i18n="learnMoreLink"></a>
+              </div>
+            </li>
+            <li class="keyFeature current">
+              <strong data-i18n="remindersHeadline"></strong>
+              <div data-i18n="remindersDetails"></div>
+              <div>
+                <a href="/about/reminders/" data-i18n="learnMoreLink"></a>
+              </div>
+            </li>
+            <li class="keyFeature">
+              <strong data-i18n="followUpHeadline"></strong>
+              <div data-i18n="followUpDetails"></div>
+              <div>
+                <a href="/about/follow-up/" data-i18n="learnMoreLink"></a>
+              </div>
+            </li>
+            <li class="keyFeature">
+              <strong data-i18n="mapsHeadline"></strong>
+              <div data-i18n="mapsDetails"></div>
+              <div><a href="/about/maps/" data-i18n="learnMoreLink"></a></div>
+            </li>
+            <li class="keyFeature">
+              <strong data-i18n="leadersHeadline"></strong>
+              <div data-i18n="leadersDetails"></div>
+              <div>
+                <a href="/about/leaders/" data-i18n="learnMoreLink"></a>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
 
