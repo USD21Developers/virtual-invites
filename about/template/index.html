@@ -8,7 +8,7 @@
       name="viewport"
     />
     <title data-i18n="pagetitle"></title>
-    <link rel="stylesheet" href="../css/daemonite-material.css" />
+    <link rel="stylesheet" href="/css/daemonite-material.css" />
     <link href="/css/global.css" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
 
@@ -86,7 +86,7 @@
             </span>
             <span data-i18n-global="menuHome"></span>
           </a>
-          <a class="nav-item nav-link" href="../support/">
+          <a class="nav-item nav-link" href="/support/">
             <span class="mr-3">
               <img src="/_assets/svg/icons/contact_support.svg" />
             </span>
@@ -95,17 +95,6 @@
         </nav>
       </div>
     </div>
-
-    <nav aria-label="breadcrumb" id="breadcrumbs" class="d-none">
-      <ol class="breadcrumb bg-white my-0">
-        <li class="breadcrumb-item firstOnMobile">
-          <a href="/" data-i18n="breadcrumbHome"></a>
-        </li>
-        <li class="breadcrumb-item active">
-          <a href="/about/" data-i18n="breadcrumbAbout"></a>
-        </li>
-      </ol>
-    </nav>
 
     <div class="container" id="pageSpinner">
       <div class="row">
@@ -120,6 +109,20 @@
       </div>
     </div>
 
+    <nav aria-label="breadcrumb" id="breadcrumbs" class="d-none">
+      <ol class="breadcrumb bg-white my-0">
+        <li class="breadcrumb-item">
+          <a href="/" data-i18n="breadcrumbHome"></a>
+        </li>
+        <li class="breadcrumb-item firstOnMobile">
+          <a href="/about/" data-i18n="breadcrumbAbout"></a>
+        </li>
+        <li class="breadcrumb-item active">
+          <a href="/about/whatever/" data-i18n="breadcrumbWhatever"></a>
+        </li>
+      </ol>
+    </nav>
+
     <div class="container d-none mainContent">
       <div class="row mt-2 mb-4">
         <div class="col col-md-6 offset-md-3">
@@ -129,57 +132,7 @@
 
       <div class="row">
         <div class="col">
-          <p data-i18n="p1"></p>
-          <p data-i18n="p2"></p>
-          <h3 data-i18n="keyFeatures"></h3>
-          <ul>
-            <li>
-              <strong data-i18n="whenTimeIsLimitedHeadline"></strong>
-              <div data-i18n="whenTimeIsLimitedDetails"></div>
-              <div>
-                <a href="/about/time-limited/" data-i18n="learnMoreLink"></a>
-              </div>
-            </li>
-            <li>
-              <strong data-i18n="remindersHeadline"></strong>
-              <div data-i18n="remindersDetails"></div>
-              <div>
-                <a href="/about/reminders/" data-i18n="learnMoreLink"></a>
-              </div>
-            </li>
-            <li>
-              <strong data-i18n="followUpHeadline"></strong>
-              <div data-i18n="followUpDetails"></div>
-              <div>
-                <a href="/about/follow-up/" data-i18n="learnMoreLink"></a>
-              </div>
-            </li>
-            <li>
-              <strong data-i18n="mapsHeadline"></strong>
-              <div data-i18n="mapsDetails"></div>
-              <div><a href="/about/maps/" data-i18n="learnMoreLink"></a></div>
-            </li>
-            <li>
-              <strong data-i18n="leadersHeadline"></strong>
-              <div data-i18n="leadersDetails"></div>
-              <div>
-                <a href="/about/leaders/" data-i18n="learnMoreLink"></a>
-              </div>
-            </li>
-            <li>
-              <strong data-i18n="otherBenefits"></strong>
-            </li>
-          </ul>
-
-          <p class="mt-4 pt-2 text-center" data-i18n="convincedHeadline"></p>
-
-          <div class="text-center">
-            <a
-              href="/register/"
-              class="btn btn-primary"
-              data-i18n="registerButton"
-            ></a>
-          </div>
+          <a href="/register/" data-i18n="register"></a>
         </div>
       </div>
 
@@ -218,7 +171,7 @@
     <br /><br /><br /><br />
 
     <!-- Nav buttons (only visible in standalone mode) -->
-    <nav id="navButtons" class="d-none container-fluid fixed-bottom p-0">
+    <nav id="navButtons" class="container-fluid fixed-bottom p-0">
       <table width="100%" cellpadding="10">
         <tr>
           <td>

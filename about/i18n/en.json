@@ -10,13 +10,121 @@
   "phrases": [
     {
       "key": "pagetitle",
-      "original": "About Invites",
-      "translated": "About Invites"
+      "original": "About the Invites App",
+      "translated": "About the Invites App"
     },
     {
-      "key": "register",
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbAbout",
+      "original": "About",
+      "translated": "About"
+    },
+    {
+      "key": "p1",
+      "original": "The Invites App is a tool for evangelism, created for disciples of Jesus who are both eager and grateful to share their faith. If this describes you, then this app can be of great benefit to your evangelism!",
+      "translated": "The Invites App is a tool for evangelism, created for disciples of Jesus who are both eager and grateful to share their faith. If this describes you, then this app can be of great benefit to your evangelism!",
+      "changes": [
+        {
+          "original": "share their faith",
+          "translated": "share their faith",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "p2",
+      "original": "The Invites App lets you share your faith by inviting someone to a church-related event.  The app generates a link, and you send that link to the invitee (via SMS, e-mail, WhatsApp, or QR code).  The recipient clicks on the link, and sees a Web page with all of the event details (including maps). The link is specific to (1) the sender, (2) the recipient, and (3) the event, enabling the invitation to be completely personalized.",
+      "translated": "The Invites App lets you share your faith by inviting someone to a church-related event.  The app generates a link, and you send that link to the invitee (via SMS, e-mail, WhatsApp, or QR code).  The recipient clicks on the link, and sees a Web page with all of the event details (including maps). The link is specific to (1) the sender, (2) the recipient, and (3) the event, enabling the invitation to be completely personalized."
+    },
+    {
+      "key": "keyFeatures",
+      "original": "Key Features",
+      "translated": "Key Features"
+    },
+    {
+      "key": "whenTimeIsLimitedHeadline",
+      "original": "Even When Time is Limited: ",
+      "translated": "Even When Time is Limited: "
+    },
+    {
+      "key": "whenTimeIsLimitedDetails",
+      "original": "Share all of the event's details to the invitee's device instantly, freeing you up to use your limited time to build rapport. The whole interaction can take place within one minute.",
+      "translated": "Share all of the event's details to the invitee's device instantly, freeing you up to use your limited time to build rapport. The whole interaction can take place within one minute."
+    },
+    {
+      "key": "remindersHeadline",
+      "original": "Automatic Reminders:",
+      "translated": "Automatic Reminders:"
+    },
+    {
+      "key": "remindersDetails",
+      "original": "Leverage the power of calendar reminders to help invitees remember to attend, even when their device does not have a signal.",
+      "translated": "Leverage the power of calendar reminders to help invitees remember to attend, even when their device does not have a signal."
+    },
+    {
+      "key": "followUpHeadline",
+      "original": "Follow Up:",
+      "translated": "Follow Up:"
+    },
+    {
+      "key": "followUpDetails",
+      "original": "Never again forget or overlook anyone you've invited. Centralize all of your follow-up texts and calls. Take notes. Even send yourself follow-up reminders. All from one convenient place!",
+      "translated": "Never again forget or overlook anyone you've invited. Centralize all of your follow-up texts and calls. Take notes. Even send yourself follow-up reminders. All from one convenient place!"
+    },
+    {
+      "key": "mapsHeadline",
+      "original": "Maps:",
+      "translated": "Maps:"
+    },
+    {
+      "key": "mapsDetails",
+      "original": "Use digital maps to plan your outreach and maximize your likelihood of meeting open people.",
+      "translated": "Use digital maps to plan your outreach and maximize your likelihood of meeting open people."
+    },
+    {
+      "key": "leadersHeadline",
+      "original": "Leaders:",
+      "translated": "Leaders:"
+    },
+    {
+      "key": "leadersDetails",
+      "original": "If you lead a group within the church (whether it's a Bible Talk or even a world sector), you can easily equip your entire membership with the Invites App.",
+      "translated": "If you lead a group within the church (whether it's a Bible Talk or even a world sector), you can easily equip your entire membership with the Invites App."
+    },
+    {
+      "key": "otherBenefits",
+      "original": "Many other benefits!",
+      "translated": "Many other benefits!"
+    },
+    {
+      "key": "convincedHeadline",
+      "original": "Convinced?  Register for access:",
+      "translated": "Convinced?  Register for access:",
+      "changes": [
+        {
+          "original": "Convinced?",
+          "translated": "Convinced?",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "registerButton",
       "original": "Register",
       "translated": "Register"
+    },
+    {
+      "key": "learnMoreLink",
+      "original": "Learn more...",
+      "translated": "Learn more..."
     }
   ],
 
