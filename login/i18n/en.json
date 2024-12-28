@@ -77,6 +77,30 @@
       "key": "headlineAccountUnconfirmed",
       "original": "Account still unconfirmed",
       "translated": "Account still unconfirmed"
+    },
+    {
+      "key": "aboutThisAppHeadline",
+      "original": "About this App",
+      "translated": "About this App"
+    },
+    {
+      "key": "aboutThisAppP1",
+      "original": "The Invites App is a tool for evangelism created for disciples of Jesus who are members of the International Christian Churches. To learn more, click on the button below:",
+      "translated": "The Invites App is a tool for evangelism created for disciples of Jesus who are members of the International Christian Churches. To learn more, click on the button below:",
+      "changes": [
+        {
+          "original": "International Christian Churches",
+          "translated": "International Christian Churches",
+          "bold": false,
+          "italic": false,
+          "link": "https://usd21.org/"
+        }
+      ]
+    },
+    {
+      "key": "aboutButton",
+      "original": "About the Invites App",
+      "translated": "About the Invites App"
     }
   ],
 

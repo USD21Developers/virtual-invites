@@ -1,7 +1,11 @@
-ul {
+ul.keyFeatures {
   margin-top: 1rem;
 }
 
-li {
-  margin-bottom: 1rem;
+li.keyFeature {
+  margin-bottom: 1.5rem;
+}
+
+li.keyFeature:last-child {
+  margin-bottom: 0;
 }

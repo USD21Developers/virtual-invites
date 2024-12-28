@@ -49,13 +49,13 @@
     },
     {
       "key": "whenTimeIsLimitedHeadline",
-      "original": "When Time is Limited: ",
-      "translated": "When Time is Limited: "
+      "original": "Share Even When Time is Limited:",
+      "translated": "Share Even When Time is Limited: "
     },
     {
       "key": "whenTimeIsLimitedDetails",
-      "original": "Share all of the event's details to the invitee's device instantly, freeing you up to use your limited time to build rapport. The whole interaction can take place within one minute.",
-      "translated": "Share all of the event's details to the invitee's device instantly, freeing you up to use your limited time to build rapport. The whole interaction can take place within one minute."
+      "original": "Share all of the event's details to the invitee's device instantly, freeing you to use a brief moment to build rapport instead of fixating on details. The whole interaction can take place within one minute.",
+      "translated": "Share all of the event's details to the invitee's device instantly, freeing you to use a brief moment to build rapport instead of fixating on details. The whole interaction can take place within one minute."
     },
     {
       "key": "remindersHeadline",
@@ -74,8 +74,8 @@
     },
     {
       "key": "followUpDetails",
-      "original": "Never again forget or overlook anyone you've invited. Centralize all of your follow-up calls and texts. Take notes. You can even send yourself follow-up reminders. All from one convenient place!",
-      "translated": "Never again forget or overlook anyone you've invited. Centralize all of your follow-up calls and texts. Take notes. You can even send yourself follow-up reminders. All from one convenient place!"
+      "original": "Never again forget or overlook anyone you've invited. Centralize all of your follow-up calls and texts. Take notes. You can even send yourself follow-up reminders, all from one convenient place.",
+      "translated": "Never again forget or overlook anyone you've invited. Centralize all of your follow-up calls and texts. Take notes. You can even send yourself follow-up reminders, all from one convenient place."
     },
     {
       "key": "mapsHeadline",
