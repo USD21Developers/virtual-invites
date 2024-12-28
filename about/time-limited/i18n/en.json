@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "description": "About",
-    "path": "/about/",
+    "description": "Share your Faith, Even When Time is Limited",
+    "path": "/about/time-limited/",
     "lang": {
       "original": "en",
       "translated": "en"
@@ -10,8 +10,8 @@
   "phrases": [
     {
       "key": "pagetitle",
-      "original": "About the Invites App",
-      "translated": "About the Invites App"
+      "original": "When Time is Limited",
+      "translated": "When Time is Limited"
     },
     {
       "key": "breadcrumbHome",
@@ -24,13 +24,18 @@
       "translated": "About"
     },
     {
+      "key": "breadcrumbTimeLimited",
+      "original": "Time Limited",
+      "translated": "Time Limited"
+    },
+    {
       "key": "p1",
-      "original": "The Invites App is a tool for evangelism, created for disciples of Jesus who are both eager and grateful to share their faith. If this describes you, then this app can be of great benefit to your evangelism!",
-      "translated": "The Invites App is a tool for evangelism, created for disciples of Jesus who are both eager and grateful to share their faith. If this describes you, then this app can be of great benefit to your evangelism!",
+      "original": "Have you ever been in a situation where you neglected to share your faith because there didn't seem to be enough time? Even if you have just a minute, with the Invites App one minute is all you need! Send all the event details instantly, freeing you to use that brief moment to build rapport.",
+      "translated": "Have you ever been in a situation where you neglected to share your faith because there didn't seem to be enough time? Even if you have just a minute, with the Invites App one minute is all you need! Send all the event details instantly, freeing you to use that brief moment to build rapport.",
       "changes": [
         {
-          "original": "share their faith",
-          "translated": "share their faith",
+          "original": "one minute is all you need!",
+          "translated": "one minute is all you need!",
           "bold": true,
           "italic": false,
           "link": ""
@@ -38,9 +43,9 @@
       ]
     },
     {
-      "key": "p2",
-      "original": "The Invites App lets you share your faith by inviting someone to a church-related event.  The app generates a link, and you send that link to the invitee (via SMS, e-mail, WhatsApp, or QR code).  The recipient clicks on the link, and sees a Web page with all of the event details (including maps). The link is specific to (1) the sender, (2) the recipient, and (3) the event, enabling the invitation to be completely personalized.",
-      "translated": "The Invites App lets you share your faith by inviting someone to a church-related event.  The app generates a link, and you send that link to the invitee (via SMS, e-mail, WhatsApp, or QR code).  The recipient clicks on the link, and sees a Web page with all of the event details (including maps). The link is specific to (1) the sender, (2) the recipient, and (3) the event, enabling the invitation to be completely personalized."
+      "key": "headlineOrLearnMore",
+      "original": "Or learn more:",
+      "translated": "Or learn more:"
     },
     {
       "key": "keyFeatures",
