@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "description": "Whatever",
-    "path": "/about/template/",
+    "description": "Follow Up",
+    "path": "/about/follow-up/",
     "lang": {
       "original": "en",
       "translated": "en"
@@ -10,8 +10,8 @@
   "phrases": [
     {
       "key": "pagetitle",
-      "original": "Whatever",
-      "translated": "Whatever"
+      "original": "Follow Up",
+      "translated": "Follow Up"
     },
     {
       "key": "breadcrumbHome",
@@ -25,8 +25,68 @@
     },
     {
       "key": "breadcrumbFollowUp",
-      "original": "Whatever",
-      "translated": "Whatever"
+      "original": "Follow Up",
+      "translated": "Follow Up"
+    },
+    {
+      "key": "p1",
+      "original": "After you have shared your faith with an interested person, you need to stay in touch by following up with them.",
+      "translated": "After you have shared your faith with an interested person, you need to stay in touch by following up with them."
+    },
+    {
+      "key": "p2Headline",
+      "original": "Centralized Follow Up",
+      "translated": "Centralized Follow Up"
+    },
+    {
+      "key": "p2",
+      "original": "Every invite recipient has a profile page in your account where you can do all of your follow up. Never again lose anyone's contact information.  Make phone calls, send text messages, take notes and schedule follow-ups, all from one convenient place.",
+      "translated": "Every invite recipient has a profile page in your account where you can do all of your follow up. Never again lose anyone's contact information.  Make phone calls, send text messages, take notes and schedule follow-ups, all from one convenient place."
+    },
+    {
+      "key": "p3Headline",
+      "original": "Receive Notifications about Your Invitees",
+      "translated": "Receive Notifications about Your Invitees"
+    },
+    {
+      "key": "p3",
+      "original": "Whenever a recipient views their invitation, you will be notified (via e-mail and/or push message). This will enable you to follow up with them in a timely manner.  This can happen at any time, even months or years after you first invited them.  In this way, you will be making the most of every opportunity to follow up, so that no one you invite will ever be forgotten or overlooked.",
+      "translated": "Whenever a recipient views their invitation, you will be notified (via e-mail and/or push message). This will enable you to follow up with them in a timely manner.  This can happen at any time, even months or years after you first invited them.  In this way, you will be making the most of every opportunity to follow up, so that no one you invite will ever be forgotten or overlooked.",
+      "changes": [
+        {
+          "original": "you will be notified",
+          "translated": "you will be notified",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "p4Headline",
+      "original": "Secure and Protected",
+      "translated": "Secure and Protected"
+    },
+    {
+      "key": "p4",
+      "original": "Every follow up profile page is secure. The Invites App uses digital encryption to safeguard both (a) the invite recipient's contact info, and (b) your notes.  This information is encrypted on your device (not on the server) before it ever gets backed up to the server in its encrypted form. The encryption is done in such a way that no one can decrypt and read the information except you, the very person to whom the recipient disclosed their contact info in the first place. Even the administrators and owners of this app are unable to decrypt this private information, and that is by design.",
+      "translated": "Every follow up profile page is secure. The Invites App uses digital encryption to safeguard both (a) the invite recipient's contact info, and (b) your notes.  This information is encrypted on your device (not on the server) before it ever gets backed up to the server in its encrypted form. The encryption is done in such a way that no one can decrypt and read the information except you, the very person to whom the recipient disclosed their contact info in the first place. Even the administrators and owners of this app are unable to decrypt this private information, and that is by design.",
+      "changes": [
+        {
+          "original": "secure",
+          "translated": "secure",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        },
+        {
+          "original": "no one can decrypt and read the information except you,",
+          "translated": "no one can decrypt and read the information except you,",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "headlineOrLearnMore",
