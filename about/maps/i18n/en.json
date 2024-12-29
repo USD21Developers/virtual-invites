@@ -50,8 +50,8 @@
     },
     {
       "key": "p3",
-      "original": "Every map marker indicates an evangelistic success, and not just an attempt (because the invite recipient agreed to receive an invitation at that place). Red markers indicate your invites (and they are clickable, showing you details). Blue markers indicate where other registered users have sent invites. You can filter how many markers will appear on a map by specifying a time range.",
-      "translated": "Every map marker indicates an evangelistic success, and not just an attempt (because the invite recipient agreed to receive an invitation at that place). Red markers indicate your invites (and they are clickable, showing you details). Blue markers indicate where other registered users have sent invites. You can filter how many markers will appear on a map by specifying a time range.",
+      "original": "Every map marker indicates an evangelistic success, and not just an attempt (because the invite recipient agreed to receive an invitation at that location). Red markers indicate your invites (and they are clickable, showing details). Blue markers indicate where other registered users have sent invites. You can filter how many markers will appear on a map by specifying a time range.",
+      "translated": "Every map marker indicates an evangelistic success, and not just an attempt (because the invite recipient agreed to receive an invitation at that location). Red markers indicate your invites (and they are clickable, showing details). Blue markers indicate where other registered users have sent invites. You can filter how many markers will appear on a map by specifying a time range.",
       "changes": [
         {
           "original": "success",
@@ -61,10 +61,17 @@
           "link": ""
         },
         {
-          "original": "Red markers indicate your invites",
-          "translated": "Red markers indicate your invites",
-          "bold": true,
-          "italic": false,
+          "original": "Red",
+          "translated": "Red",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        },
+        {
+          "original": "Blue",
+          "translated": "Blue",
+          "bold": false,
+          "italic": true,
           "link": ""
         }
       ]

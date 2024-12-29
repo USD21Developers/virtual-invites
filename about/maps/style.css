@@ -36,6 +36,18 @@ li.keyFeature.current {
   height: 100%;
 }
 
+p[data-i18n="p3"] em:nth-child(2) {
+  color: red;
+  font-style: normal;
+  font-weight: bold;
+}
+
+p[data-i18n="p3"] em:nth-child(3) {
+  color: blue;
+  font-style: normal;
+  font-weight: bold;
+}
+
 [data-i18n="p4"] strong:nth-child(1) {
   color: var(--danger);
   font-size: 1.1rem;
