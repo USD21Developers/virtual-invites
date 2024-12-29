@@ -1,0 +1,220 @@
+{
+  "metadata": {
+    "description": "Maps",
+    "path": "/about/maps/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Maps",
+      "translated": "Maps"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbAbout",
+      "original": "About",
+      "translated": "About"
+    },
+    {
+      "key": "breadcrumbMaps",
+      "original": "Maps",
+      "translated": "Maps"
+    },
+    {
+      "key": "p1",
+      "original": "The Invites App uses digital maps to help you decide where to focus your evangelistic activity. Are you taking your group out to go sharing? Use the maps feature to find places where you're more likely to meet people who are open. Or use it to identify places that you have not yet evangelized.",
+      "translated": "The Invites App uses digital maps to help you decide where to focus your evangelistic activity. Are you taking your group out to go sharing? Use the maps feature to find places where you're more likely to meet people who are open. Or use it to identify places that you have not yet evangelized."
+    },
+    {
+      "key": "p2Headline",
+      "original": "How Maps and Users' Evangelism are Connected",
+      "translated": "How Maps and Users' Evangelism are Connected"
+    },
+    {
+      "key": "p2",
+      "original": "Maps are made possible whenever any user tags an invite with their location just before sending it (doing this is optional). Your mobile device can detect its own coordinates, and these coordinates will be associated with an invite if you tag it with your location.",
+      "translated": "Maps are made possible whenever any user tags an invite with their location just before sending it (doing this is optional). Your mobile device can detect its own coordinates, and these coordinates will be associated with an invite if you tag it with your location."
+    },
+    {
+      "key": "p3Headline",
+      "original": "How to Read the Map",
+      "translated": "How to Read the Map"
+    },
+    {
+      "key": "p3",
+      "original": "Every map marker indicates an evangelistic success, and not just an attempt (because the invite recipient agreed to receive an invitation at that place). Red markers indicate your invites (and they are clickable, showing you details). Blue markers indicate where other registered users have sent invites. You can filter how many markers will appear on a map by specifying a time range.",
+      "translated": "Every map marker indicates an evangelistic success, and not just an attempt (because the invite recipient agreed to receive an invitation at that place). Red markers indicate your invites (and they are clickable, showing you details). Blue markers indicate where other registered users have sent invites. You can filter how many markers will appear on a map by specifying a time range.",
+      "changes": [
+        {
+          "original": "success",
+          "translated": "success",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        },
+        {
+          "original": "Red markers indicate your invites",
+          "translated": "Red markers indicate your invites",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "p4Headline",
+      "original": "When NOT to Tag Your Location",
+      "translated": "When NOT to Tag Your Location"
+    },
+    {
+      "key": "p4",
+      "original": "Note: For the sake of the recipient's privacy, you should not tag an invite with your location if you are at the recipient's personal residence. Also, for the sake of accuracy, you should not tag an invite with your location if the recipient is not in your presence (e.g. don't tag invites with your location if you are sending invites from your home).",
+      "translated": "Note: For the sake of the recipient's privacy, you should not tag an invite with your location if you are at the recipient's personal residence. Also, for the sake of accuracy, you should not tag an invite with your location if the recipient is not in your presence (e.g. don't tag invites with your location if you are sending invites from your home).",
+      "changes": [
+        {
+          "original": "Note:",
+          "translated": "Note:",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        },
+        {
+          "original": "privacy",
+          "translated": "privacy",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        },
+        {
+          "original": "accuracy",
+          "translated": "accuracy",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "headlineOrLearnMore",
+      "original": "Or learn more:",
+      "translated": "Or learn more:"
+    },
+    {
+      "key": "keyFeatures",
+      "original": "Key Features",
+      "translated": "Key Features"
+    },
+    {
+      "key": "whenTimeIsLimitedHeadline",
+      "original": "Share your Faith, Even When Time is Limited:",
+      "translated": "Share your Faith, Even When Time is Limited: "
+    },
+    {
+      "key": "whenTimeIsLimitedDetails",
+      "original": "Share all of the event's details to the invitee's device instantly, freeing you to use a brief moment to build rapport instead of fixating on details. The whole interaction can take place within one minute.",
+      "translated": "Share all of the event's details to the invitee's device instantly, freeing you to use a brief moment to build rapport instead of fixating on details. The whole interaction can take place within one minute."
+    },
+    {
+      "key": "remindersHeadline",
+      "original": "Automatic Reminders:",
+      "translated": "Automatic Reminders:"
+    },
+    {
+      "key": "remindersDetails",
+      "original": "Leverage the power of calendar reminders to help invitees remember to attend, even when their device does not have a signal.",
+      "translated": "Leverage the power of calendar reminders to help invitees remember to attend, even when their device does not have a signal."
+    },
+    {
+      "key": "followUpHeadline",
+      "original": "Follow Up:",
+      "translated": "Follow Up:"
+    },
+    {
+      "key": "followUpDetails",
+      "original": "Never again forget or overlook anyone you've invited. Make all of your follow-up calls and texts. Take notes. Create follow-up reminders to yourself, all from one convenient place.",
+      "translated": "Never again forget or overlook anyone you've invited. Make all of your follow-up calls and texts. Take notes. Create follow-up reminders to yourself, all from one convenient place."
+    },
+    {
+      "key": "mapsHeadline",
+      "original": "Maps:",
+      "translated": "Maps:"
+    },
+    {
+      "key": "mapsDetails",
+      "original": "Use digital maps to plan your local outreach, maximizing your likelihood of meeting open people.",
+      "translated": "Use digital maps to plan your local outreach, maximizing your likelihood of meeting open people."
+    },
+    {
+      "key": "leadersHeadline",
+      "original": "Leaders:",
+      "translated": "Leaders:"
+    },
+    {
+      "key": "leadersDetails",
+      "original": "Within the church, if you lead a group (whether a Bible Talk or even a world sector) you can easily equip your entire membership with access to the Invites App.",
+      "translated": "Within the church, if you lead a group (whether a Bible Talk or even a world sector) you can easily equip your entire membership with access to the Invites App."
+    },
+    {
+      "key": "otherBenefits",
+      "original": "Many other benefits!",
+      "translated": "Many other benefits!"
+    },
+    {
+      "key": "convincedHeadline",
+      "original": "Convinced?  Register for access:",
+      "translated": "Convinced?  Register for access:",
+      "changes": [
+        {
+          "original": "Convinced?",
+          "translated": "Convinced?",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "registerButton",
+      "original": "Register",
+      "translated": "Register"
+    },
+    {
+      "key": "learnMoreLink",
+      "original": "Learn more...",
+      "translated": "Learn more..."
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
