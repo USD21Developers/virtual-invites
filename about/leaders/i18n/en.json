@@ -1,0 +1,200 @@
+{
+  "metadata": {
+    "description": "Leaders",
+    "path": "/about/leaders/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Leaders",
+      "translated": "Leaders"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbAbout",
+      "original": "About",
+      "translated": "About"
+    },
+    {
+      "key": "breadcrumbLeaders",
+      "original": "Leaders",
+      "translated": "Leaders"
+    },
+    {
+      "key": "p1",
+      "original": "Do you lead a group? Whether it's a Bible Talk or a world sector, the Invites App can help you quickly equip all of your people with access to the app.",
+      "translated": "Do you lead a group? Whether it's a Bible Talk or a world sector, the Invites App can help you quickly equip all of your people with access to the app."
+    },
+    {
+      "key": "p2Headline",
+      "original": "All Users are Verified Disciples",
+      "translated": "All Users are Verified Disciples"
+    },
+    {
+      "key": "p2",
+      "original": "Every user must be verified as a genuine disciple of Jesus and a member in good standing with your local church congregation, before they can begin using the app. This is achieved with a vouching concept: if a leader recognizes that a registrant for the app is a genuine disciple, then they can decide to authorize that registrant. The most seamless way for leaders to act on this is through 'pre-authorization,' where they authorize a known disciple before the disciple registers for (or even knows about) the Invites App.",
+      "translated": "Every user must be verified as a genuine disciple of Jesus and a member in good standing with your local church congregation, before they can begin using the app. This is achieved with a vouching concept: if a leader recognizes that a registrant for the app is a genuine disciple, then they can decide to authorize that registrant. The most seamless way for leaders to act on this is through 'pre-authorization,' where they authorize a known disciple before the disciple registers for (or even knows about) the Invites App."
+    },
+    {
+      "key": "p3Headline",
+      "original": "Delegating Authorization",
+      "translated": "Delegating Authorization"
+    },
+    {
+      "key": "p3",
+      "original": "Leaders of Bible Talks only need to authorize their members. But leaders of larger groups can simply authorize their top leaders, and ask them to continue the authorization process for members of their groups, until an entire organization of disciples is equipped with access to the Invites App.",
+      "translated": "Leaders of Bible Talks only need to authorize their members. But leaders of larger groups can simply authorize their top leaders, and ask them to continue the authorization process for members of their groups, until an entire organization of disciples is equipped with access to the Invites App."
+    },
+    {
+      "key": "p4Headline",
+      "original": "How to Pre-Authorize Disciples",
+      "translated": "How to Pre-Authorize Disciples"
+    },
+    {
+      "key": "p4",
+      "original": "Pre-authorizing a disciple is easy. Just log in to the Invites App and click on 'Pre-authorize a new user.'",
+      "translated": "Pre-authorizing a disciple is easy. Just log in to the Invites App and click on 'Pre-authorize a new user.'",
+      "changes": [
+        {
+          "original": "Pre-authorize a new user.",
+          "translated": "Pre-authorize a new user.",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "p5",
+      "original": "There is also a less-common authorization process, where a disciple finds the Invites App and registers on their own initiative. In such cases, the registrant will need to show a QR code to a designated leader in the same congregation. When that leader scans the barcode, they will be asked to vouch that the disciple is a member of that congregation.",
+      "translated": "There is also a less-common authorization process, where a disciple finds the Invites App and registers on their own initiative. In such cases, the registrant will need to show a QR code to a designated leader in the same congregation. When that leader scans the barcode, they will be asked to vouch that the disciple is a member of that congregation."
+    },
+    {
+      "key": "p5Headline",
+      "original": "User-Initiated Authorization",
+      "translated": "User-Initiated Authorization"
+    },
+    {
+      "key": "headlineOrLearnMore",
+      "original": "Or learn more:",
+      "translated": "Or learn more:"
+    },
+    {
+      "key": "keyFeatures",
+      "original": "Key Features",
+      "translated": "Key Features"
+    },
+    {
+      "key": "whenTimeIsLimitedHeadline",
+      "original": "Share your Faith, Even When Time is Limited:",
+      "translated": "Share your Faith, Even When Time is Limited: "
+    },
+    {
+      "key": "whenTimeIsLimitedDetails",
+      "original": "Share all of the event's details to the invitee's device instantly, freeing you to use a brief moment to build rapport instead of fixating on details. The whole interaction can take place within one minute.",
+      "translated": "Share all of the event's details to the invitee's device instantly, freeing you to use a brief moment to build rapport instead of fixating on details. The whole interaction can take place within one minute."
+    },
+    {
+      "key": "remindersHeadline",
+      "original": "Automatic Reminders:",
+      "translated": "Automatic Reminders:"
+    },
+    {
+      "key": "remindersDetails",
+      "original": "Leverage the power of calendar reminders to help invitees remember to attend, even when their device does not have a signal.",
+      "translated": "Leverage the power of calendar reminders to help invitees remember to attend, even when their device does not have a signal."
+    },
+    {
+      "key": "followUpHeadline",
+      "original": "Follow Up:",
+      "translated": "Follow Up:"
+    },
+    {
+      "key": "followUpDetails",
+      "original": "Never again forget or overlook anyone you've invited. Make all of your follow-up calls and texts. Take notes. Create follow-up reminders to yourself, all from one convenient place.",
+      "translated": "Never again forget or overlook anyone you've invited. Make all of your follow-up calls and texts. Take notes. Create follow-up reminders to yourself, all from one convenient place."
+    },
+    {
+      "key": "mapsHeadline",
+      "original": "Maps:",
+      "translated": "Maps:"
+    },
+    {
+      "key": "mapsDetails",
+      "original": "Use digital maps to plan your local outreach, maximizing your likelihood of meeting open people.",
+      "translated": "Use digital maps to plan your local outreach, maximizing your likelihood of meeting open people."
+    },
+    {
+      "key": "leadersHeadline",
+      "original": "Leaders:",
+      "translated": "Leaders:"
+    },
+    {
+      "key": "leadersDetails",
+      "original": "Within the church, if you lead a group (whether a Bible Talk or even a world sector) you can easily equip your entire membership with access to the Invites App.",
+      "translated": "Within the church, if you lead a group (whether a Bible Talk or even a world sector) you can easily equip your entire membership with access to the Invites App."
+    },
+    {
+      "key": "otherBenefits",
+      "original": "Many other benefits!",
+      "translated": "Many other benefits!"
+    },
+    {
+      "key": "convincedHeadline",
+      "original": "Convinced?  Register for access:",
+      "translated": "Convinced?  Register for access:",
+      "changes": [
+        {
+          "original": "Convinced?",
+          "translated": "Convinced?",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "registerButton",
+      "original": "Register",
+      "translated": "Register"
+    },
+    {
+      "key": "learnMoreLink",
+      "original": "Learn more...",
+      "translated": "Learn more..."
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}
