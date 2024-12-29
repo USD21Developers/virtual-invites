@@ -51,7 +51,16 @@
     {
       "key": "p3",
       "original": "Leaders of Bible Talks only need to authorize their members. But leaders of larger groups can simply authorize their top leaders, and ask them to continue the authorization process for members of their groups, until an entire organization of disciples is equipped with access to the Invites App.",
-      "translated": "Leaders of Bible Talks only need to authorize their members. But leaders of larger groups can simply authorize their top leaders, and ask them to continue the authorization process for members of their groups, until an entire organization of disciples is equipped with access to the Invites App."
+      "translated": "Leaders of Bible Talks only need to authorize their members. But leaders of larger groups can simply authorize their top leaders, and ask them to continue the authorization process for members of their groups, until an entire organization of disciples is equipped with access to the Invites App.",
+      "changes": [
+        {
+          "original": "top leaders",
+          "translated": "top leaders",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "p4Headline",
