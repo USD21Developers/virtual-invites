@@ -1,9 +1,9 @@
 ul.keyFeatures {
-  margin-top: 1rem;
+  margin-top: 1.2rem;
 }
 
 li.keyFeature {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.7rem;
 }
 
 li.keyFeature:last-child {
@@ -52,4 +52,14 @@ p[data-i18n="p3"] em:nth-child(3) {
   color: var(--danger);
   font-size: 1.1rem;
   margin-right: 0.6rem;
+}
+
+.learnMoreLink {
+  display: block;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+.learnMoreLink img {
+  vertical-align: middle;
 }
