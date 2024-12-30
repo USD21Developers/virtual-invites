@@ -40,8 +40,8 @@
     },
     {
       "key": "p2",
-      "original": "Maps are made possible whenever any user tags an invite with their location just before sending it (doing this is optional). Your mobile device can detect its own coordinates, and these coordinates will be associated with an invite if you tag it with your location.",
-      "translated": "Maps are made possible whenever any user tags an invite with their location just before sending it (doing this is optional). Your mobile device can detect its own coordinates, and these coordinates will be associated with an invite if you tag it with your location."
+      "original": "Maps are made possible whenever any user tags an invite with their location just before sending the invite (doing this is optional). Your mobile device can detect its own coordinates, and these coordinates will be associated with an invite if you tag it with your location.",
+      "translated": "Maps are made possible whenever any user tags an invite with their location just before sending the invite (doing this is optional). Your mobile device can detect its own coordinates, and these coordinates will be associated with an invite if you tag it with your location."
     },
     {
       "key": "p3Headline",
