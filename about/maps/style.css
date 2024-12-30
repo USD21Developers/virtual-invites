@@ -63,3 +63,8 @@ p[data-i18n="p3"] em:nth-child(3) {
 .learnMoreLink img {
   vertical-align: middle;
 }
+
+body,
+td {
+  font-size: 1rem;
+}

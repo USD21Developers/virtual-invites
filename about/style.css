@@ -19,3 +19,8 @@ li.keyFeature:last-child {
 .learnMoreLink img {
   vertical-align: middle;
 }
+
+body,
+td {
+  font-size: 1rem;
+}
