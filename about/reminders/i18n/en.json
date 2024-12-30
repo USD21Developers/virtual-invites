@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "description": "Automatic Reminders",
+    "description": "Calendar Reminders",
     "path": "/about/reminders/",
     "lang": {
       "original": "en",
@@ -10,8 +10,8 @@
   "phrases": [
     {
       "key": "pagetitle",
-      "original": "Automatic Reminders",
-      "translated": "Automatic Reminders"
+      "original": "Calendar Reminders",
+      "translated": "Calendar Reminders"
     },
     {
       "key": "breadcrumbHome",
@@ -30,8 +30,8 @@
     },
     {
       "key": "p1",
-      "original": "Once you have invited a friend to a church-related event using the Invites App, now you need to help them remember to attend.  Follow up reminders will do that!  But sometimes you just can't manage to reach them in alive conversation.  All the while, the date of the event is approaching.  The Invites App helps the invitee remember to attend by showing them an automatic reminder from their own device's Calendar app, and at just the right time. This will work even when their device does not have a signal.",
-      "translated": "Once you have invited a friend to a church-related event using the Invites App, now you need to help them remember to attend.  Follow up reminders will do that!  But sometimes you just can't manage to reach them in a live conversation.  All the while, the date of the event is approaching.  The Invites App helps the invitee remember to attend by showing them an automatic reminder from their own device's Calendar app, and at just the right time. This will work even when their device does not have a signal.",
+      "original": "Once you have invited a friend to a church-related event using the Invites App, now you need to help them remember to attend. Follow up calls will do that! But sometimes you just can't manage to reach them in alive conversation. All the while the date of the event is approaching, and you don't want them to miss it. The Invites App helps the invitee remember to attend by showing them an automatic reminder from their own device's Calendar app, and at just the right time. This will work even when their device does not have a signal.",
+      "translated": "Once you have invited a friend to a church-related event using the Invites App, now you need to help them remember to attend. Follow up calls will do that! But sometimes you just can't manage to reach them in a live conversation. All the while the date of the event is approaching, and you don't want them to miss it. The Invites App helps the invitee remember to attend by showing them an automatic reminder from their own device's Calendar app, and at just the right time. This will work even when their device does not have a signal.",
       "changes": [
         {
           "original": "even when their device does not have a signal.",
@@ -64,8 +64,8 @@
     },
     {
       "key": "remindersHeadline",
-      "original": "Automatic Reminders:",
-      "translated": "Automatic Reminders:"
+      "original": "Calendar Reminders:",
+      "translated": "Calendar Reminders:"
     },
     {
       "key": "remindersDetails",
