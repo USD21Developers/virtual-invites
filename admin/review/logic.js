@@ -406,12 +406,12 @@ async function onSubmit(e) {
 }
 
 function attachListeners() {
-  document
-    .querySelector("[data-on-flag]")
-    ?.addEventListener("click", onPhotoFlagged);
-  document
-    .querySelector("[data-on-approve]")
-    ?.addEventListener("click", onPhotoApproved);
+  document.querySelectorAll("[data-on-flag]").forEach((item) => {
+    item.addEventListener("click", onPhotoFlagged);
+  });
+  document.querySelectorAll("[data-on-approve]").forEach((item) => {
+    item.addEventListener("click", onPhotoApproved);
+  });
   document.querySelectorAll(".reason").forEach((el) => {
     el.addEventListener("change", (e) => {
       if (e.target.checked) {
