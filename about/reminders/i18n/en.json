@@ -50,8 +50,8 @@
     },
     {
       "key": "p3",
-      "original": "For recurring events like Bible Talks or weekly church services, the calender reminders will repeat at least once per week when start time of the event is near. These weekly reminders will continue for up to eight weeks before they expire. So even if you cannot get through to the recipient with a live phone call, the recipient's own calendar reminders will reliably supplement your follow up attempts for several weeks.",
-      "translated": "For recurring events like Bible Talks or weekly church services, the calender reminders will repeat at least once per week when start time of the event is near. These weekly reminders will continue for up to eight weeks before they expire. So even if you cannot get through to the recipient with a live phone call, the recipient's own calendar reminders will reliably supplement your follow up attempts for several weeks."
+      "original": "For recurring events (like Bible Talks or weekly church services) the reminder notifications will appear at least once per week, when the event's start time is near. These notifications will repeat at the same time each week, for up to eight weeks, before they expire. These automatic reminders are a power addition to ordinary follow-up methods.",
+      "translated": "For recurring events (like Bible Talks or weekly church services) the reminder notification will appear at least once per week, when the event's start time is near. These notifications will repeat at the same time each week, for up to eight weeks, before they expire. These automatic reminders are a power addition to ordinary follow-up methods."
     },
     {
       "key": "p4Headline",
