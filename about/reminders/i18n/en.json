@@ -40,8 +40,8 @@
     },
     {
       "key": "p2",
-      "original": "If the recipient adds the event to their device's calendar, they'll receive reminders about the event at just the right time. These calendar reminders do not require any kind of internet connection, nor even a cell phone signal.",
-      "translated": "If the recipient adds the event to their device's calendar, they'll receive reminders about the event at just the right time. These calendar reminders do not require any kind of internet connection, nor even a cell phone signal."
+      "original": "If the recipient adds the event to their device's calendar, they will receive reminders about it at just the right time. These calendar reminders do not require any kind of internet connection, nor even a cell phone signal.",
+      "translated": "If the recipient adds the event to their device's calendar, they will receive reminders about it at just the right time. These calendar reminders do not require any kind of internet connection, nor even a cell phone signal."
     },
     {
       "key": "p3Headline",
@@ -50,8 +50,8 @@
     },
     {
       "key": "p3",
-      "original": "For recurring events (like Bible Talks or weekly church services) the reminder notifications will repeat weekly, for up to eight weeks, before expiring. Such automatic reminders can be a powerful addition to traditional follow-up methods.",
-      "translated": "For recurring events (like Bible Talks or weekly church services) the reminder notification will repeat weekly, for up to eight weeks, before expiring. Such automatic reminders can be a powerful addition to traditional follow-up methods."
+      "original": "For recurring events (like Bible Talks or weekly church services) the reminder notifications will repeat weekly, for up to eight weeks, before expiring. Such automatic reminders can be a powerful addition to normal follow-up methods.",
+      "translated": "For recurring events (like Bible Talks or weekly church services) the reminder notification will repeat weekly, for up to eight weeks, before expiring. Such automatic reminders can be a powerful addition to normal follow-up methods."
     },
     {
       "key": "p4Headline",
