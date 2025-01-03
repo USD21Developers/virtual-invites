@@ -50,8 +50,8 @@
     },
     {
       "key": "p3",
-      "original": "For recurring events (like Bible Talks or weekly church services) the reminder notifications will appear at least once per week, when the event's start time is close at hand. The notifications will repeat weekly for up to eight weeks, before expiring. Such automatic reminders can be a powerful addition to traditional follow-up methods.",
-      "translated": "For recurring events (like Bible Talks or weekly church services) the reminder notification will appear at least once per week, when the event's start time is close at hand. The notifications will repeat weekly for up to eight weeks, before expiring. Such automatic reminders can be a powerful addition to traditional follow-up methods."
+      "original": "For recurring events (like Bible Talks or weekly church services) the reminder notifications will repeat weekly, for up to eight weeks, before expiring. Such automatic reminders can be a powerful addition to traditional follow-up methods.",
+      "translated": "For recurring events (like Bible Talks or weekly church services) the reminder notification will repeat weekly, for up to eight weeks, before expiring. Such automatic reminders can be a powerful addition to traditional follow-up methods."
     },
     {
       "key": "p4Headline",
@@ -60,8 +60,17 @@
     },
     {
       "key": "p4",
-      "original": "Of all the features in the Invites App, calendar reminders are probably the most significant feature of them all. But you must remember to remind the recipient to use them, ideally while you're still standing together. Calendar reminders are only enabled by the recipient's deliberate decision; they do not happen automatically.",
-      "translated": "Of all the features in the Invites App, calendar reminders are probably the most significant feature of them all. But you must remember to remind the recipient to use them, ideally while you're still standing together. Calendar reminders are only enabled by the recipient's deliberate decision; they do not happen automatically."
+      "original": "Calendar reminders are probably the most significant feature of this app. But you must remember to remind the recipient to use them, ideally while you're still standing together. Calendar reminders are only enabled by the recipient's deliberate decision; they do not happen automatically.",
+      "translated": "Calendar reminders are probably the most significant feature of this app. But you must remember to remind the recipient to use them, ideally while you're still standing together. Calendar reminders are only enabled by the recipient's deliberate decision; they do not happen automatically.",
+      "changes": [
+        {
+          "original": "remind the recipient",
+          "translated": "remind the recipient",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "headlineOrLearnMore",
