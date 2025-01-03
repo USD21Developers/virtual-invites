@@ -30,17 +30,28 @@
     },
     {
       "key": "p1",
-      "original": "Once you have invited a friend to a church-related event using the Invites App, now you need to help them remember to attend. Follow up calls will do that! But sometimes you just can't manage to reach them in alive conversation. All the while the date of the event is approaching, and you don't want them to miss it. The Invites App helps the invitee remember to attend by showing them an automatic reminder from their own device's Calendar app, and at just the right time. This will work even when their device does not have a signal.",
-      "translated": "Once you have invited a friend to a church-related event using the Invites App, now you need to help them remember to attend. Follow up calls will do that! But sometimes you just can't manage to reach them in a live conversation. All the while the date of the event is approaching, and you don't want them to miss it. The Invites App helps the invitee remember to attend by showing them an automatic reminder from their own device's Calendar app, and at just the right time. This will work even when their device does not have a signal.",
-      "changes": [
-        {
-          "original": "even when their device does not have a signal.",
-          "translated": "even when their device does not have a signal.",
-          "bold": false,
-          "italic": true,
-          "link": ""
-        }
-      ]
+      "original": "Once you have invited a friend to a church-related event using the Invites App, now you need to help them remember to attend. Follow up calls will do that! But sometimes you just can't manage to reach them in alive conversation. All the while the date of the event is approaching, and you don't want them to miss it. The Invites App helps the invitee remember to attend by enabling optional calendar reminder notifications.",
+      "translated": "Once you have invited a friend to a church-related event using the Invites App, now you need to help them remember to attend. Follow up calls will do that! But sometimes you just can't manage to reach them in alive conversation. All the while the date of the event is approaching, and you don't want them to miss it. The Invites App helps the invitee remember to attend by enabling optional calendar reminder notifications."
+    },
+    {
+      "key": "p2Headline",
+      "original": "Reliable Reminders",
+      "translated": "Reliable Reminders"
+    },
+    {
+      "key": "p2",
+      "original": "If the recipient adds the event to their device's calendar, they'll receive reminders about the event at just the right time. These calendar reminders do not require any kind of internet connection, nor a cell phone signal.",
+      "translated": "If the recipient adds the event to their device's calendar, they'll receive reminders about the event at just the right time. These calendar reminders do not require any kind of internet connection, nor a cell phone signal."
+    },
+    {
+      "key": "p3Headline",
+      "original": "Recurring Reminders for Recurring Events",
+      "translated": "Recurring Reminders for Recurring Events"
+    },
+    {
+      "key": "p3",
+      "original": "For recurring events like Bible Talks or weekly church services, the calender reminders will repeat at least once per week when start time of the event is near. These weekly reminders will continue for up to eight weeks before they expire. So even if you cannot get through to the recipient with a live phone call, the recipient's own calendar reminders will reliably supplement your follow up attempts for several weeks.",
+      "translated": "For recurring events like Bible Talks or weekly church services, the calender reminders will repeat at least once per week when start time of the event is near. These weekly reminders will continue for up to eight weeks before they expire. So even if you cannot get through to the recipient with a live phone call, the recipient's own calendar reminders will reliably supplement your follow up attempts for several weeks."
     },
     {
       "key": "headlineOrLearnMore",
