@@ -1,9 +1,9 @@
 function toggleRegistrationPromotion() {
-  const refreshTokenStored = localStorage.getItem("refreshToken");
+  const refreshToken = localStorage.getItem("refreshToken") || null;
 
-  if (!refreshTokenStored) {
+  if (refreshToken) {
     document.querySelectorAll(".promotesRegistration").forEach((item) => {
-      item.classList.remove("d-none");
+      item.classList.add("d-none");
     });
   }
 }
