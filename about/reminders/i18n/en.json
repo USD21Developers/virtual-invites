@@ -55,13 +55,13 @@
     },
     {
       "key": "p4Headline",
-      "original": "Help Them Remember to Attend",
-      "translated": "Help Them Remember to Attend"
+      "original": "Help Them Add to their Calendar",
+      "translated": "Help Them Add to their Calendar"
     },
     {
       "key": "p4",
-      "original": "Calendar reminders are possibly the single most important feature of this app. But you must remember to remind the recipient to use them, ideally while you're still standing together. Calendar reminders are only enabled by the recipient's deliberate decision; they do not happen automatically.",
-      "translated": "Calendar reminders are possibly the single most important feature of this app. But you must remember to remind the recipient to use them, ideally while you're still standing together. Calendar reminders are only enabled by the recipient's deliberate decision; they do not happen automatically.",
+      "original": "Calendar reminders are possibly the single most important feature of this app. But you must remember to remind the recipient to use them, ideally while you're still standing together. They simply need to click on the 'Add to my calendar' button, and follow the prompts. Calendar reminders are only enabled by the recipient's deliberate decision; they do not happen automatically.",
+      "translated": "Calendar reminders are possibly the single most important feature of this app. But you must remember to remind the recipient to use them, ideally while you're still standing together. They simply need to click on the 'Add to my calendar' button, and follow the prompts. Calendar reminders are only enabled by the recipient's deliberate decision; they do not happen automatically.",
       "changes": [
         {
           "original": "remind the recipient",
