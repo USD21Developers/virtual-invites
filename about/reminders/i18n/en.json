@@ -60,17 +60,8 @@
     },
     {
       "key": "p4",
-      "original": "Of all the features in the Invites App, calendar reminders are possibly the most significant one of all. But you must remember to remind the recipient to use them, ideally while you're still standing together. Calendar reminders are only enabled by the recipient's deliberate decision; they do not happen automatically.",
-      "translated": "Of all the features in the Invites App, calendar reminders are possibly the most significant one of all. But you must remember to remind the recipient to use them, ideally while you're still standing together. Calendar reminders are only enabled by the recipient's deliberate decision; they do not happen automatically.",
-      "changes": [
-        {
-          "original": "remind",
-          "translated": "remind",
-          "bold": false,
-          "italic": true,
-          "link": ""
-        }
-      ]
+      "original": "Of all the features in the Invites App, calendar reminders are probably the most significant feature of all. But you must remember to remind the recipient to use them, ideally while you're still standing together. Calendar reminders are only enabled by the recipient's deliberate decision; they do not happen automatically.",
+      "translated": "Of all the features in the Invites App, calendar reminders are probably the most significant feature of all. But you must remember to remind the recipient to use them, ideally while you're still standing together. Calendar reminders are only enabled by the recipient's deliberate decision; they do not happen automatically."
     },
     {
       "key": "headlineOrLearnMore",
