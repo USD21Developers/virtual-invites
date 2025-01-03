@@ -54,6 +54,25 @@
       "translated": "For recurring events like Bible Talks or weekly church services, the calender reminders will repeat at least once per week when start time of the event is near. These weekly reminders will continue for up to eight weeks before they expire. So even if you cannot get through to the recipient with a live phone call, the recipient's own calendar reminders will reliably supplement your follow up attempts for several weeks."
     },
     {
+      "key": "p4Headline",
+      "original": "Don't Forget to Remind Them",
+      "translated": "Don't Forget to Remind Them"
+    },
+    {
+      "key": "p4",
+      "original": "Of all the features in the Invites App, calendar reminders (especially for recurring events) are possibly the most significant feature of them all. But you must remember to remind the recipient to use them, possibly while you're still standing together. This is because calendar reminders are enabled only by the recipient's deliberate decision; they do not happen automatically.",
+      "translated": "Of all the features in the Invites App, calendar reminders (especially for recurring events) are possibly the most significant feature of them all. But you must remember to remind the recipient to use them, possibly while you're still standing together. This is because calendar reminders are enabled only by the recipient's deliberate decision; they do not happen automatically.",
+      "changes": [
+        {
+          "original": "the most significant feature",
+          "translated": "the most significant feature",
+          "bold": true,
+          "italic": true,
+          "link": ""
+        }
+      ]
+    },
+    {
       "key": "headlineOrLearnMore",
       "original": "Or learn more:",
       "translated": "Or learn more:"
