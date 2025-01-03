@@ -66,7 +66,7 @@
         {
           "original": "remind the recipient",
           "translated": "remind the recipient",
-          "bold": false,
+          "bold": true,
           "italic": true,
           "link": ""
         }
