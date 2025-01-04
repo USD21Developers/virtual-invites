@@ -109,7 +109,12 @@
       </div>
     </div>
 
-    <nav aria-label="breadcrumb" id="breadcrumbs" class="d-none">
+    <nav
+      aria-label="breadcrumb"
+      aria-hidden="true"
+      id="breadcrumbs"
+      class="d-none"
+    >
       <ol class="breadcrumb bg-white my-0">
         <li class="breadcrumb-item">
           <a href="/" data-i18n="breadcrumbHome"></a>
@@ -123,7 +128,7 @@
       </ol>
     </nav>
 
-    <div class="container d-none mainContent">
+    <main class="container d-none mainContent">
       <div class="row mt-2 mb-4">
         <div class="col col-md-6 offset-md-3">
           <h2 class="text-center text-uppercase m-0" data-i18n="pagetitle"></h2>
@@ -133,7 +138,7 @@
       <div class="row">
         <div class="col">
           <div class="text-center mt-2 mb-4 pb-2">
-            <div class="video-container">
+            <div class="video-container" aria-hidden="true">
               <iframe
                 src="https://www.youtube-nocookie.com/embed/s9yxEGEL624?si=3msdItuhoNwpskX1&cc_load_policy=1&hl=en"
                 title="YouTube video player"
@@ -259,7 +264,7 @@
       <div class="snackbar">
         <div class="snackbar-body"></div>
       </div>
-    </div>
+    </main>
 
     <!-- Modal -->
     <div

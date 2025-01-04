@@ -23,7 +23,7 @@
     <meta name="theme-color" content="#102951" />
   </head>
   <body>
-    <nav class="navbar bg-white sticky-top">
+    <nav class="navbar bg-white sticky-top" aria-hidden="true">
       <a class="navbar-brand" href="/">
         <img src="/_assets/img/logo.svg" width="133" height="50" alt="logo" />
       </a>
@@ -96,7 +96,7 @@
       </div>
     </div>
 
-    <div class="container" id="pageSpinner">
+    <div class="container" id="pageSpinner" aria-hidden="true">
       <div class="row">
         <div class="col col-sm-10 offset-sm-1 mt-3 mb-4 text-center">
           <img
@@ -109,7 +109,12 @@
       </div>
     </div>
 
-    <nav aria-label="breadcrumb" id="breadcrumbs" class="d-none">
+    <nav
+      aria-label="breadcrumb"
+      aria-hidden="true"
+      id="breadcrumbs"
+      class="d-none"
+    >
       <ol class="breadcrumb bg-white my-0">
         <li class="breadcrumb-item">
           <a href="/" data-i18n="breadcrumbHome"></a>
@@ -123,7 +128,7 @@
       </ol>
     </nav>
 
-    <div class="container d-none mainContent">
+    <main class="container d-none mainContent">
       <div class="row mt-2 mb-4">
         <div class="col">
           <h2 class="text-center text-uppercase m-0" data-i18n="pagetitle"></h2>
@@ -133,7 +138,7 @@
       <div class="row">
         <div class="col">
           <div class="text-center mt-2 mb-4 pb-2">
-            <div class="video-container">
+            <div class="video-container" aria-hidden="true">
               <iframe
                 src="https://www.youtube.com/embed/sDxt-QEhd28?si=gm8xzQw9tYwO8EhL&cc_load_policy=1&hl=en"
                 title="YouTube video player"
@@ -257,7 +262,7 @@
       <div class="snackbar">
         <div class="snackbar-body"></div>
       </div>
-    </div>
+    </main>
 
     <!-- Modal -->
     <div
