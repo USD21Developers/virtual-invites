@@ -69,8 +69,8 @@
     },
     {
       "key": "p4",
-      "original": "Pre-authorizing a disciple is easy. Just log in to the Invites App and click on 'Pre-authorize a new user.'",
-      "translated": "Pre-authorizing a disciple is easy. Just log in to the Invites App and click on 'Pre-authorize a new user.'",
+      "original": "Pre-authorizing a disciple is easy. Just log in to the Invites App and click on Pre-authorize a new user.",
+      "translated": "Pre-authorizing a disciple is easy. Just log in to the Invites App and click on Pre-authorize a new user.",
       "changes": [
         {
           "original": "Pre-authorize a new user.",
