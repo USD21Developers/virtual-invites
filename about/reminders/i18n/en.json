@@ -60,14 +60,21 @@
     },
     {
       "key": "p4",
-      "original": "Calendar reminders are possibly the single most important feature of this app. But you must remember to remind the recipient to use them, ideally while you are both still standing together. They simply need to click on the 'Add to my calendar' button within their invite, then follow the prompts. Remember: calendar reminders can only be set by the recipient's deliberate decision; they do not happen automatically.",
-      "translated": "Calendar reminders are possibly the single most important feature of this app. But you must remember to remind the recipient to use them, ideally while you are both still standing together. They simply need to click on the 'Add to my calendar' button within their invite, then follow the prompts. Remember: calendar reminders can only be set by the recipient's deliberate decision; they do not happen automatically.",
+      "original": "Calendar reminders are possibly the single most important feature of this app. But you must remember to remind the recipient to use them, ideally in the moment when they receive the invite. They simply need to click on the Add to my calendar button within their invite, then follow the prompts. Remember: calendar reminders can only be set by the recipient's deliberate decision; they do not happen automatically.",
+      "translated": "Calendar reminders are possibly the single most important feature of this app. But you must remember to remind the recipient to use them, ideally in the moment when they receive the invite. They simply need to click on the Add to my calendar button within their invite, then follow the prompts. Remember: calendar reminders can only be set by the recipient's deliberate decision; they do not happen automatically.",
       "changes": [
         {
           "original": "remind the recipient",
           "translated": "remind the recipient",
           "bold": true,
           "italic": true,
+          "link": ""
+        },
+        {
+          "original": "Add to my calendar",
+          "translated": "Add to my calendar",
+          "bold": true,
+          "italic": false,
           "link": ""
         }
       ]
