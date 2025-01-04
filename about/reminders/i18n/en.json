@@ -40,8 +40,8 @@
     },
     {
       "key": "p2",
-      "original": "If the recipient adds the event to their device's calendar, they will receive reminders about it at just the right time. These calendar reminders do not require any kind of internet connection, nor even a cell phone signal.",
-      "translated": "If the recipient adds the event to their device's calendar, they will receive reminders about it at just the right time. These calendar reminders do not require any kind of internet connection, nor even a cell phone signal."
+      "original": "If the recipient adds the event to their device's calendar, they will receive reminders about it at just the right time. These calendar reminders do not require any kind of internet connection, nor even a cell phone signal. All of the event details are included within the calendar reminder, so they don't necessarily need to reopen the invite in their Web browser.",
+      "translated": "If the recipient adds the event to their device's calendar, they will receive reminders about it at just the right time. These calendar reminders do not require any kind of internet connection, nor even a cell phone signal. All of the event details are included within the calendar reminder, so they don't necessarily need to reopen the invite in their Web browser."
     },
     {
       "key": "p3Headline",
@@ -50,18 +50,18 @@
     },
     {
       "key": "p3",
-      "original": "For recurring events (like Bible Talks or weekly church services) the reminder notifications will repeat weekly, for up to eight weeks, before expiring. Such automatic reminders can be a powerful addition to normal follow-up methods.",
-      "translated": "For recurring events (like Bible Talks or weekly church services) the reminder notification will repeat weekly, for up to eight weeks, before expiring. Such automatic reminders can be a powerful addition to normal follow-up methods."
+      "original": "For recurring events (like Bible Talks or Sunday services) the reminder notifications will occur twice weekly (on iPhones), or once weekly (on Androids), for up to eight weeks before expiring. Such automatic reminders can be a powerful addition to normal follow-up methods.",
+      "translated": "For recurring events (like Bible Talks or Sunday services) the reminder notification will occur twice weekly (on iPhones), or once weekly (on Androids), for up to eight weeks before expiring. Such automatic reminders can be a powerful addition to normal follow-up methods."
     },
     {
       "key": "p4Headline",
-      "original": "Help Them Add to their Calendar",
-      "translated": "Help Them Add to their Calendar"
+      "original": "Remind Them!",
+      "translated": "Remind Them!"
     },
     {
       "key": "p4",
-      "original": "Calendar reminders are possibly the single most important feature of this app. But you must remember to remind the recipient to use them, ideally while you're still standing together. They simply need to click on the 'Add to my calendar' button within their invite, then follow the prompts. Remember: calendar reminders can only be set by the recipient's deliberate decision; they do not happen automatically.",
-      "translated": "Calendar reminders are possibly the single most important feature of this app. But you must remember to remind the recipient to use them, ideally while you're still standing together. They simply need to click on the 'Add to my calendar' button within their invite, then follow the prompts. Remember: calendar reminders can only be set by the recipient's deliberate decision; they do not happen automatically.",
+      "original": "Calendar reminders are possibly the single most important feature of this app. But you must remember to remind the recipient to use them, ideally while you are both still standing together. They simply need to click on the 'Add to my calendar' button within their invite, then follow the prompts. Remember: calendar reminders can only be set by the recipient's deliberate decision; they do not happen automatically.",
+      "translated": "Calendar reminders are possibly the single most important feature of this app. But you must remember to remind the recipient to use them, ideally while you are both still standing together. They simply need to click on the 'Add to my calendar' button within their invite, then follow the prompts. Remember: calendar reminders can only be set by the recipient's deliberate decision; they do not happen automatically.",
       "changes": [
         {
           "original": "remind the recipient",
