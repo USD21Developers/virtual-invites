@@ -40,8 +40,8 @@
     },
     {
       "key": "p2",
-      "original": "If the recipient adds the event to their device's calendar, they will receive reminders about it at just the right time. These calendar reminders do not require any kind of internet connection, nor even a cell phone signal. All of the event details are included within the calendar reminder, so they don't necessarily need to reopen the invite in their Web browser.",
-      "translated": "If the recipient adds the event to their device's calendar, they will receive reminders about it at just the right time. These calendar reminders do not require any kind of internet connection, nor even a cell phone signal. All of the event details are included within the calendar reminder, so they don't necessarily need to reopen the invite in their Web browser."
+      "original": "If the recipient adds the event to their device's calendar, they will receive reminders about it at just the right time. These calendar reminders do not require any kind of internet connection, nor even a cell phone signal. All of the event details are included within the calendar reminder itself, making a Web browser unnecessary in order to view them.",
+      "translated": "If the recipient adds the event to their device's calendar, they will receive reminders about it at just the right time. These calendar reminders do not require any kind of internet connection, nor even a cell phone signal. All of the event details are included within the calendar reminder itself, making a Web browser unnecessary in order to view them."
     },
     {
       "key": "p3Headline",
