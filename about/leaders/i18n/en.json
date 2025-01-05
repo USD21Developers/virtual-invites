@@ -107,8 +107,17 @@
     },
     {
       "key": "p7",
-      "original": "Although user-initiated authorization is acceptable, it is less convenient for everyone. Pre-authorization is therefore advised whenever possible (instead of promoting the app's Web site address).",
-      "translated": "Although user-initiated authorization is acceptable, it is less convenient for everyone. Pre-authorization is therefore advised whenever possible (instead of promoting the app's Web site address)."
+      "original": "Although user-initiated authorization is acceptable, it is less convenient for everyone. Pre-authorization is advised whenever possible (instead of promoting the app's Web site address).",
+      "translated": "Although user-initiated authorization is acceptable, it is less convenient for everyone. Pre-authorization is advised whenever possible (instead of promoting the app's Web site address).",
+      "changes": [
+        {
+          "original": "Pre-authorization is advised whenever possible",
+          "translated": "Pre-authorization is advised whenever possible",
+          "bold": true,
+          "italic": true,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "headlineOrLearnMore",
