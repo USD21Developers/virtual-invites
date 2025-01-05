@@ -102,8 +102,8 @@
     },
     {
       "key": "p6",
-      "original": "In this alternative process, the new registrant will be shown a list of designated leaders in the same congregation. They'll pick a leader from that list, and show them a QR code. When one of those leaders scans the QR code on the registrant's device, this will open a Web page on the leader's device. On that page, the leader will see a form where they can vouch that the registrant is a member of the same congregation.",
-      "translated": "In this alternative process, the new registrant will be shown a list of designated leaders in the same congregation. They'll pick a leader from that list, and show them a QR code. When one of those leaders scans the QR code on the registrant's device, this will open a Web page on the leader's device. On that page, the leader will see a form where they can vouch that the registrant is a member of the same congregation."
+      "original": "In this alternative process, a QR code will appear on the device of the new registrant. They will also be shown a list of designated leaders in the same congregation. They'll pick a leader from that list, and show them a QR code. When one of those leaders scans the QR code on the registrant's device, this will open a Web page on the leader's device. On that page, the leader will see a form where they can vouch that the registrant is a member of the same congregation.",
+      "translated": "In this alternative process, a QR code will appear on the device of the new registrant. They will also be shown a list of designated leaders in the same congregation. They'll pick a leader from that list, and show them a QR code. When one of those leaders scans the QR code on the registrant's device, this will open a Web page on the leader's device. On that page, the leader will see a form where they can vouch that the registrant is a member of the same congregation."
     },
     {
       "key": "headlineOrLearnMore",
