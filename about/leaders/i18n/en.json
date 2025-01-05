@@ -111,8 +111,8 @@
       "translated": "Although user-initiated authorization is acceptable, it is less convenient for everyone. Pre-authorization is therefore the preferred method (instead of promoting the Web site address).",
       "changes": [
         {
-          "original": "it is less convenient for everyone",
-          "translated": "it is less convenient for everyone",
+          "original": "it is less convenient",
+          "translated": "it is less convenient",
           "bold": false,
           "italic": true,
           "link": ""
