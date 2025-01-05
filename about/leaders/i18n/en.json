@@ -83,8 +83,8 @@
     },
     {
       "key": "p5",
-      "original": "There is also a less-common authorization process, where a disciple finds the Invites App and registers on their own initiative. In such cases, the registrant will need to show a QR code to a designated leader in the same congregation. When that leader scans the barcode, they will be asked to vouch that the disciple is a member of that congregation.",
-      "translated": "There is also a less-common authorization process, where a disciple finds the Invites App and registers on their own initiative. In such cases, the registrant will need to show a QR code to a designated leader in the same congregation. When that leader scans the barcode, they will be asked to vouch that the disciple is a member of that congregation."
+      "original": "There is also a less-common authorization process, where a disciple finds the Invites App and registers on their own initiative. In such cases, the registrant will need to show a QR code to a designated leader in the same congregation. When that leader scans the barcode, they will be taken to a Web page where they can vouch that the registrant is a member of that congregation.",
+      "translated": "There is also a less-common authorization process, where a disciple finds the Invites App and registers on their own initiative. In such cases, the registrant will need to show a QR code to a designated leader in the same congregation. When that leader scans the barcode, they will be taken to a Web page where they can vouch that the registrant is a member of that congregation."
     },
     {
       "key": "p5Headline",
