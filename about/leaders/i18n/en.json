@@ -102,8 +102,8 @@
     },
     {
       "key": "p6",
-      "original": "On the new registrant's device, they will see a QR code and a list of leaders with their profile pictures. In person, they can find one of those leaders and show them a QR code. Once the leader scans the registrant's QR code, a form will appear on the leader's device in which they can grant authorization.",
-      "translated": "On the new registrant's device, they will see a QR code and a list of leaders with their profile pictures. In person, they can find one of those leaders and show them a QR code. Once the leader scans the registrant's QR code, a form will appear on the leader's device in which they can grant authorization."
+      "original": "Upon logging in, the new registrant will be asked to find a leader to authorize them. There will be a QR code and a list of leaders with profile pictures. They will need to find one of those leaders and show them the QR code (in person). When the leader scans the registrant's QR code, a form will appear on the leader's device enabling them to grant authorization.",
+      "translated": "Upon logging in, the new registrant will be asked to find a leader to authorize them. There will be a QR code and a list of leaders with profile pictures. They will need to find one of those leaders and show them the QR code (in person). When the leader scans the registrant's QR code, a form will appear on the leader's device enabling them to grant authorization."
     },
     {
       "key": "headlineOrLearnMore",
