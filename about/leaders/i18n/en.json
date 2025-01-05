@@ -111,8 +111,8 @@
       "translated": "Although user-initiated authorization is acceptable, it is less convenient for everyone. Pre-authorization is advised whenever possible (instead of promoting the app's Web site address).",
       "changes": [
         {
-          "original": "it is less convenient",
-          "translated": "it is less convenient",
+          "original": "less convenient",
+          "translated": "less convenient",
           "bold": true,
           "italic": true,
           "link": ""
