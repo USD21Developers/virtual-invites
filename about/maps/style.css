@@ -16,10 +16,6 @@ li.keyFeature:last-child {
   font-style: italic;
 }
 
-li.keyFeature.current {
-  display: none;
-}
-
 .video-container {
   position: relative;
   width: 100%;
