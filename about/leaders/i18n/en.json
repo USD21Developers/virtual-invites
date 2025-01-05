@@ -83,8 +83,8 @@
     },
     {
       "key": "p5",
-      "original": "There is also an alternative authorization process, where a disciple finds the Web site of Invites App and registers on their own initiative. In such cases, the new registrant will be shown a list of designated leaders in the same congregation. They'll pick a leader from that list, and show them a QR code. When one of those leaders scans the QR code on the registrant's device, this will open a Web page on the leader's device. On that page, the leader will see a form where they can vouch that the registrant is a member of the same congregation.",
-      "translated": "There is also an alternative authorization process, where a disciple finds the Web site of Invites App and registers on their own initiative. In such cases, the new registrant will be shown a list of designated leaders in the same congregation. They'll pick a leader from that list, and show them a QR code. When one of those leaders scans the QR code on the registrant's device, this will open a Web page on the leader's device. On that page, the leader will see a form where they can vouch that the registrant is a member of the same congregation.",
+      "original": "There is also an alternative authorization process, where a disciple can visit the Web site of the Invites App and register for an account. This will be on the disciple's own initiative, rather than through being pre-authorized.",
+      "translated": "There is also an alternative authorization process, where a disciple can visit the Web site of the Invites App and register for an account. This will be on the disciple's own initiative, rather than through being pre-authorized.",
       "changes": [
         {
           "original": "alternative",
@@ -94,6 +94,11 @@
           "link": ""
         }
       ]
+    },
+    {
+      "key": "p6",
+      "original": "In this alternative process, the new registrant will be shown a list of designated leaders in the same congregation. They'll pick a leader from that list, and show them a QR code. When one of those leaders scans the QR code on the registrant's device, this will open a Web page on the leader's device. On that page, the leader will see a form where they can vouch that the registrant is a member of the same congregation.",
+      "translated": "In this alternative process, the new registrant will be shown a list of designated leaders in the same congregation. They'll pick a leader from that list, and show them a QR code. When one of those leaders scans the QR code on the registrant's device, this will open a Web page on the leader's device. On that page, the leader will see a form where they can vouch that the registrant is a member of the same congregation."
     },
     {
       "key": "p5Headline",
