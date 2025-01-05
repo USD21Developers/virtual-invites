@@ -59,13 +59,13 @@
     },
     {
       "key": "firstName",
-      "original": "User's first name:",
-      "translated": "User's first name:"
+      "original": "First name:",
+      "translated": "First name:"
     },
     {
       "key": "lastName",
-      "original": "User's last name:",
-      "translated": "User's last name:"
+      "original": "Last name:",
+      "translated": "Last name:"
     },
     {
       "key": "church",
