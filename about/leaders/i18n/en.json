@@ -108,8 +108,8 @@
     },
     {
       "key": "whenTimeIsLimitedDetails",
-      "original": "Share all of the event's details to the invitee's device instantly, freeing you to use a brief moment to build rapport instead of fixating on details. The whole interaction can take place within one minute.",
-      "translated": "Share all of the event's details to the invitee's device instantly, freeing you to use a brief moment to build rapport instead of fixating on details. The whole interaction can take place within one minute."
+      "original": "Share all of the event's details to the recipient's device instantly, freeing you to use a brief moment to build rapport instead of fixating on details. The whole interaction can take place within one minute.",
+      "translated": "Share all of the event's details to the recipient's device instantly, freeing you to use a brief moment to build rapport instead of fixating on details. The whole interaction can take place within one minute."
     },
     {
       "key": "remindersHeadline",
@@ -118,8 +118,8 @@
     },
     {
       "key": "remindersDetails",
-      "original": "Leverage the power of calendar reminders to help invitees remember to attend, even when their device does not have a signal.",
-      "translated": "Leverage the power of calendar reminders to help invitees remember to attend, even when their device does not have a signal."
+      "original": "Leverage the power of calendar reminders to help recipients remember to attend, even when their device does not have a signal.",
+      "translated": "Leverage the power of calendar reminders to help recipients remember to attend, even when their device does not have a signal."
     },
     {
       "key": "followUpHeadline",
