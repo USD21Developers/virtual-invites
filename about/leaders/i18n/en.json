@@ -95,7 +95,7 @@
           "original": "invites.mobi",
           "translated": "invites.mobi",
           "bold": true,
-          "italic": true,
+          "italic": false,
           "link": "https://invites.mobi/"
         }
       ]
