@@ -102,8 +102,8 @@
     },
     {
       "key": "p6",
-      "original": "Upon logging in for the first time, the new registrant see a QR code and a list of leaders with their profile photos. They will be asked to find one of those leaders (in person) to authorize them. If one of those leaders scans the registrant's QR code, a form will appear on the leader's device in which they can grant authorization.",
-      "translated": "Upon logging in for the first time, the new registrant see a QR code and a list of leaders with their profile photos. They will be asked to find one of those leaders (in person) to authorize them. If one of those leaders scans the registrant's QR code, a form will appear on the leader's device in which they can grant authorization."
+      "original": "Upon logging in for the first time, the new registrant will see a QR code and a list of leaders with their profile photos. They will be asked to find one of those leaders (in person) to authorize them. If one of those leaders scans the registrant's QR code, a form will appear on the leader's device in which they can grant authorization.",
+      "translated": "Upon logging in for the first time, the new registrant will see a QR code and a list of leaders with their profile photos. They will be asked to find one of those leaders (in person) to authorize them. If one of those leaders scans the registrant's QR code, a form will appear on the leader's device in which they can grant authorization."
     },
     {
       "key": "p7",
