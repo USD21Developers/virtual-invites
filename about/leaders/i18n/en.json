@@ -83,8 +83,8 @@
     },
     {
       "key": "p5",
-      "original": "There is also an alternative authorization process, where a disciple finds the Web site of Invites App and registers on their own initiative. In such cases, the registrant will need to show a QR code to any one of a list of designated leaders in the same congregation. When one of those leaders scans the QR code, this will open a Web page on the leader's device where they can vouch that the registrant is a member of that congregation.",
-      "translated": "There is also an alternative authorization process, where a disciple finds the Web site of Invites App and registers on their own initiative. In such cases, the registrant will need to show a QR code to any one of a list of designated leaders in the same congregation. When one of those leaders scans the QR code, this will open a Web page on the leader's device where they can vouch that the registrant is a member of that congregation."
+      "original": "There is also an alternative authorization process, where a disciple finds the Web site of Invites App and registers on their own initiative. In such cases, the new registrant will be shown a list of designated leaders in the same congregation. They'll pick a leader from that list, and show them a QR code. When one of those leaders scans the QR code on the registrant's device, this will open a Web page on the leader's device. On that page, the leader will then be able to vouch that the registrant is a member of the same congregation.",
+      "translated": "There is also an alternative authorization process, where a disciple finds the Web site of Invites App and registers on their own initiative. In such cases, the new registrant will be shown a list of designated leaders in the same congregation. They'll pick a leader from that list, and show them a QR code. When one of those leaders scans the QR code on the registrant's device, this will open a Web page on the leader's device. On that page, the leader will then be able to vouch that the registrant is a member of the same congregation."
     },
     {
       "key": "p5Headline",
