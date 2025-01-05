@@ -102,8 +102,13 @@
     },
     {
       "key": "p6",
-      "original": "Upon logging in, the new registrant will be asked to find a leader to authorize them. There will be a QR code and a list of leaders with profile pictures. They will need to find one of those leaders and show them the QR code (in person). When the leader scans the registrant's QR code, a form will appear on the leader's device enabling them to grant authorization.",
-      "translated": "Upon logging in, the new registrant will be asked to find a leader to authorize them. There will be a QR code and a list of leaders with profile pictures. They will need to find one of those leaders and show them the QR code (in person). When the leader scans the registrant's QR code, a form will appear on the leader's device enabling them to grant authorization."
+      "original": "Upon logging in for the first time, the new registrant will be asked to find a leader (in person) to authorize them. On that page the registrant will see a QR code next to a list of leaders with their profile pictures. When one of those leaders scans the registrant's QR code, a form will appear on the leader's device in which they can grant authorization.",
+      "translated": "Upon logging in for the first time, the new registrant will be asked to find a leader (in person) to authorize them. On that page the registrant will see a QR code next to a list of leaders with their profile pictures. When one of those leaders scans the registrant's QR code, a form will appear on the leader's device in which they can grant authorization."
+    },
+    {
+      "key": "p7",
+      "original": "Although user-initiated authorization is acceptable, it is less convenient than pre-authorization. Pre-authorization is therefore the preferred method (whenever possible).",
+      "translated": "Although user-initiated authorization is acceptable, it is less convenient than pre-authorization. Pre-authorization is therefore the preferred method (whenever possible)."
     },
     {
       "key": "headlineOrLearnMore",
