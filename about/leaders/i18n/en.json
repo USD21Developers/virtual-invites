@@ -88,22 +88,22 @@
     },
     {
       "key": "p5",
-      "original": "There is also an alternative authorization process, where a disciple can visit the Web site of the Invites App and register for an account. This will be on the disciple's own initiative, rather than through being pre-authorized.",
-      "translated": "There is also an alternative authorization process, where a disciple can visit the Web site of the Invites App and register for an account. This will be on the disciple's own initiative, rather than through being pre-authorized.",
+      "original": "There is also an alternative authorization process, where a disciple can visit the Web site of the Invites App (invites.mobi) and register for an account.",
+      "translated": "There is also an alternative authorization process, where a disciple can visit the Web site of the Invites App (invites.mobi) and register for an account.",
       "changes": [
         {
-          "original": "alternative",
-          "translated": "alternative",
-          "bold": false,
+          "original": "invites.mobi",
+          "translated": "invites.mobi",
+          "bold": true,
           "italic": true,
-          "link": ""
+          "link": "https://invites.mobi/"
         }
       ]
     },
     {
       "key": "p6",
-      "original": "A QR code will appear on the new registrant's device, and they will also see a list of designated leaders from the same congregation. They'll pick a leader from that list, and show them a QR code. The leader will then scan the registrant's QR code, which will open a Web page on the leader's device. From there, the leader can vouch that the registrant is a baptized disciple and a member of the same congregation.",
-      "translated": "A QR code will appear on the new registrant's device, and they will also see a list of designated leaders from the same congregation. They'll pick a leader from that list, and show them a QR code. The leader will then scan the registrant's QR code, which will open a Web page on the leader's device. From there, the leader can vouch that the registrant is a baptized disciple and a member of the same congregation."
+      "original": "On the new registrant's device, they will see a QR code and a list of leaders with their profile pictures. In person, they can find one of those leaders and show them a QR code. Once the leader scans the registrant's QR code, a form will appear on the leader's device in which they can grant authorization.",
+      "translated": "On the new registrant's device, they will see a QR code and a list of leaders with their profile pictures. In person, they can find one of those leaders and show them a QR code. Once the leader scans the registrant's QR code, a form will appear on the leader's device in which they can grant authorization."
     },
     {
       "key": "headlineOrLearnMore",
