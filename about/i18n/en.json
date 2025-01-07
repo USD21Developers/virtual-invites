@@ -44,8 +44,17 @@
     },
     {
       "key": "keyFeatures",
-      "original": "Key Features",
-      "translated": "Key Features"
+      "original": "Key Features (see videos):",
+      "translated": "Key Features (see videos):",
+      "changes": [
+        {
+          "original": "(see videos)",
+          "translated": "(see videos)",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "whenTimeIsLimitedHeadline",

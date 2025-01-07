@@ -24,3 +24,8 @@ body,
 td {
   font-size: 1rem;
 }
+
+[data-i18n="keyFeatures"] em {
+  font-style: normal;
+  font-weight: 100;
+}
