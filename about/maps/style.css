@@ -52,8 +52,9 @@ p[data-i18n="p3"] em:nth-child(3) {
 
 .learnMoreLink {
   display: block;
-  margin-top: 0.5rem;
-  text-align: left;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .learnMoreLink img {

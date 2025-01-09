@@ -34,8 +34,9 @@ li.keyFeature:last-child {
 
 .learnMoreLink {
   display: block;
-  margin-top: 0.5rem;
-  text-align: left;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .learnMoreLink img {
