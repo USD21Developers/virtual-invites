@@ -578,6 +578,7 @@ async function showQrCode() {
 }
 
 function onAfterQrCodeScanned(e) {
+  saveAndSync("qrcode");
   $("#qrCodeModal").modal("hide");
   onAfterSubmitted("qrcode");
 }
@@ -903,7 +904,6 @@ async function onSubmitButtonClick(e) {
     default:
       // Probably a QR Code
       e.preventDefault();
-      saveAndSync(sendVia);
       showQrCode();
   }
 }
