@@ -798,7 +798,7 @@ function onSearch(e) {
     method: "POST",
     body: JSON.stringify({
       eventid: inviteObj.event.eventid,
-      userid: inviteObj.user.userid,
+      userid: inviteObj.user?.userid,
       recipientid: inviteObj?.recipient?.recipientid,
       country: country,
       countryFromIP: countryFromIP,
