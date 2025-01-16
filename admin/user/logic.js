@@ -208,6 +208,7 @@ function renderUser(user) {
   document.querySelector("#firstname").value = firstname;
   document.querySelector("#lastname").value = lastname;
   document.querySelector("#email").value = email;
+  document.querySelector("#profileLink").setAttribute("href", `/u/#/${userid}`);
 
   if (usertype === "sysadmin") {
     document.querySelector("#usertypeSysadmin").checked = true;

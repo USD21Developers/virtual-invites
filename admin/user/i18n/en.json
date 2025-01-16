@@ -395,6 +395,11 @@
       "key": "unexpected-error",
       "original": "An unexpected error occurred. Please ensure that you are connected to the internet, and perhaps try again.",
       "translated": "An unexpected error occurred. Please ensure that you are connected to the internet, and perhaps try again."
+    },
+    {
+      "key": "profile",
+      "original": "Profile",
+      "translated": "Profile"
     }
   ],
 
