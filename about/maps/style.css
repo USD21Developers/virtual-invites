@@ -58,6 +58,7 @@ p[data-i18n="p3"] em:nth-child(3) {
 }
 
 .learnMoreLink img {
+  max-width: 100%;
   vertical-align: middle;
 }
 
