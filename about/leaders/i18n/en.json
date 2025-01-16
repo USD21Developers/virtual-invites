@@ -107,12 +107,12 @@
     },
     {
       "key": "p7",
-      "original": "Although user-initiated authorization is acceptable, it is less convenient than pre-authorization. The preferred method is pre-authorization, instead of referring new users to the Web site.",
-      "translated": "Although user-initiated authorization is acceptable, it is less convenient than pre-authorization. The preferred method is pre-authorization, instead of referring new users to the Web site.",
+      "original": "Although user-initiated authorization is acceptable, it is less convenient than pre-authorization. Therefore the preferred method of onboarding new users is pre-authorization, instead of telling them to visit the Web site.",
+      "translated": "Although user-initiated authorization is acceptable, it is less convenient than pre-authorization. Therefore the preferred method of onboarding new users is pre-authorization, instead of telling them to visit the Web site.",
       "changes": [
         {
-          "original": "it is less convenient for everyone.",
-          "translated": "it is less convenient for everyone.",
+          "original": "less convenient",
+          "translated": "less convenient",
           "bold": false,
           "italic": true,
           "link": ""
