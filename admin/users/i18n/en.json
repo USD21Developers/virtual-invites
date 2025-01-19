@@ -49,6 +49,11 @@
       "translated": "Find User"
     },
     {
+      "key": "findAUser",
+      "original": "Find a User",
+      "translated": "Find a User"
+    },
+    {
       "key": "errorChurchIsRequired",
       "original": "User's church is required",
       "translated": "User's church is required"
