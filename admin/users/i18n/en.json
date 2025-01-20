@@ -54,6 +54,16 @@
       "translated": "Find a User"
     },
     {
+      "key": "listUsers",
+      "original": "List Users",
+      "translated": "List Users"
+    },
+    {
+      "key": "list",
+      "original": "List",
+      "translated": "List"
+    },
+    {
       "key": "errorChurchIsRequired",
       "original": "User's church is required",
       "translated": "User's church is required"

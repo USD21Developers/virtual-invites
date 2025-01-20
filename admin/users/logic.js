@@ -1,5 +1,6 @@
 async function populateChurches() {
   const churchDropdown = document.querySelector("#churchid");
+  const churchDropdown2 = document.querySelector("#churchid2");
   const countryData = await getCountries(getLang());
   const countries = countryData.names;
   let churches = JSON.parse(localStorage.getItem("churches"));
@@ -36,6 +37,7 @@ async function populateChurches() {
   }
 
   churchDropdown.innerHTML = churchesHtml;
+  churchDropdown2.innerHTML = churchesHtml;
 
   selectUserChurch();
 
@@ -48,21 +50,33 @@ async function selectUserChurch() {
   const church = getStoredChurch(myChurchId);
   const userChurchId = church.id;
   const churchEl = document.querySelector("#churchid");
+  const churchEl2 = document.querySelector("#churchid2");
 
   if (typeof userChurchId !== "number") return;
 
   churchEl.value = userChurchId;
+  churchEl2.value = userChurchId;
 
   const churchName = church.name;
   const churchNameEl = document.querySelector("#selectedChurchName");
+  const churchNameEl2 = document.querySelector("#selectedChurchName2");
 
   churchNameEl.innerText = churchName;
+  churchNameEl2.innerText = churchName;
 }
 
 function onChurchChanged() {
   const churchEl = document.querySelector("#churchid");
   const churchName = churchEl.selectedOptions[0].getAttribute("data-name");
   const churchNameEl = document.querySelector("#selectedChurchName");
+
+  churchNameEl.innerText = churchName;
+}
+
+function onChurch2Changed() {
+  const churchEl = document.querySelector("#churchid2");
+  const churchName = churchEl.selectedOptions[0].getAttribute("data-name");
+  const churchNameEl = document.querySelector("#selectedChurchName2");
 
   churchNameEl.innerText = churchName;
 }
@@ -103,6 +117,9 @@ function attachListeners() {
   document
     .querySelector("#churchid")
     .addEventListener("change", onChurchChanged);
+  document
+    .querySelector("#churchid2")
+    .addEventListener("change", onChurch2Changed);
   document
     .querySelector("#resetButton")
     .addEventListener("click", onResetClicked);

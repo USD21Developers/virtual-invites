@@ -287,6 +287,43 @@
         </div>
       </form>
 
+      <br />
+      <br />
+
+      <form
+        class="mt-5 mb-2"
+        method="GET"
+        action="list/"
+        id="listusersform"
+        novalidate
+      >
+        <div class="row">
+          <div class="col col-sm-8 offset-sm-2">
+            <h3 class="mb-4 text-center" data-i18n="listUsers"></h3>
+            <label for="churchid2" data-i18n="church"></label>
+            <select
+              id="churchid2"
+              name="churchid"
+              class="form-control"
+            ></select>
+            <div
+              class="invalid-feedback"
+              data-i18n="errorChurchIsRequired"
+            ></div>
+            <div>
+              <small id="selectedChurchName2" class="text-muted"></small>
+            </div>
+            <div class="mt-4 pt-2 text-center">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                data-i18n="list"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </form>
+
       <div class="snackbar">
         <div class="snackbar-body"></div>
       </div>
