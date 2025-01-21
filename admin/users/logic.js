@@ -1,3 +1,43 @@
+function hideChurchesWithoutUsers() {
+  return new Promise(async (resolve, reject) => {
+    const endpoint = `${getApiHost()}/churches-with-users`;
+    const accessToken = await getAccessToken();
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`
+      })
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const {churches} = data;
+
+        document.querySelectorAll("#churchid option").forEach((item) => {
+          if (!churches.includes(item.value)) {
+            item.remove();
+          }
+        });
+
+        document.querySelectorAll("#churchid2 option").forEach((item) => {
+          if (!churches.includes(item.value
+
+            
+          )) {
+            item.remove();
+          }
+        });
+
+        return resolve(data);
+      })
+      .catch((error) => {
+        return reject(error);
+      });
+  })
+}
+
 async function populateChurches() {
   const churchDropdown = document.querySelector("#churchid");
   const churchDropdown2 = document.querySelector("#churchid2");
@@ -129,6 +169,7 @@ async function init() {
   await populateContent();
   syncChurches();
   populateChurches();
+  hideChurchesWithoutUsers();
   attachListeners();
   globalHidePageSpinner();
 }
