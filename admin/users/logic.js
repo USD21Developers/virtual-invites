@@ -14,18 +14,21 @@ function hideChurchesWithoutUsers() {
       .then((res) => res.json())
       .then((data) => {
         const {churches} = data;
+        
+        if (!churches.length) {
+          return resolve();
+        }
+
+        const churchids = churches.map((item) => item.churchid);
 
         document.querySelectorAll("#churchid option").forEach((item) => {
-          if (!churches.includes(item.value)) {
+          if (!churchids.includes(item.value)) {
             item.remove();
           }
         });
 
         document.querySelectorAll("#churchid2 option").forEach((item) => {
-          if (!churches.includes(item.value
-
-            
-          )) {
+          if (!churchids.includes(item.value)) {
             item.remove();
           }
         });
