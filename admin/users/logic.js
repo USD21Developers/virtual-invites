@@ -8,13 +8,13 @@ function hideChurchesWithoutUsers() {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`
-      })
+        authorization: `Bearer ${accessToken}`,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
-        const {churches} = data;
-        
+        const { churches } = data;
+
         if (!churches.length) {
           return resolve();
         }
@@ -22,14 +22,26 @@ function hideChurchesWithoutUsers() {
         const churchids = churches.map((item) => item.churchid);
 
         document.querySelectorAll("#churchid option").forEach((item) => {
-          if (!churchids.includes(item.value)) {
+          if (!churchids.includes(Number(item.value))) {
             item.remove();
           }
         });
 
         document.querySelectorAll("#churchid2 option").forEach((item) => {
-          if (!churchids.includes(item.value)) {
+          if (!churchids.includes(Number(item.value))) {
             item.remove();
+          }
+        });
+
+        document.querySelectorAll("#churchid optgroup").forEach((optgroup) => {
+          if (!optgroup.querySelector("option")) {
+            optgroup.remove();
+          }
+        });
+
+        document.querySelectorAll("#churchid2 optgroup").forEach((optgroup) => {
+          if (!optgroup.querySelector("option")) {
+            optgroup.remove();
           }
         });
 
@@ -38,7 +50,7 @@ function hideChurchesWithoutUsers() {
       .catch((error) => {
         return reject(error);
       });
-  })
+  });
 }
 
 async function populateChurches() {
