@@ -120,6 +120,19 @@ async function selectUserChurch() {
   churchNameEl2.innerText = churchName;
 }
 
+function toggleListUsersProgress(status = "on") {
+  const btnListUsersEl = document.querySelector("#btnListUsers");
+  const progressListUsersEl = document.querySelector("#progressListUsers");
+
+  if (status === "on") {
+    btnListUsersEl.classList.add("d-none");
+    progressListUsersEl.classList.remove("d-none");
+  } else {
+    btnListUsersEl.classList.remove("d-none");
+    progressListUsersEl.classList.add("d-none");
+  }
+}
+
 function onChurchChanged() {
   const churchEl = document.querySelector("#churchid");
   const churchName = churchEl.selectedOptions[0].getAttribute("data-name");
@@ -141,12 +154,10 @@ function onListUsersClicked(e) {
   const progressListUsersEl = document.querySelector("#progressListUsers");
   const numSeconds = 15;
 
-  btnListUsersEl.classList.add("d-none");
-  progressListUsersEl.classList.remove("d-none");
+  toggleListUsersProgress("on");
 
   setTimeout(() => {
-    btnListUsersEl.classList.remove("d-none");
-    progressListUsersEl.classList.add("d-none");
+    toggleListUsersProgress("off");
   }, numSeconds * 1000);
 }
 
@@ -203,6 +214,7 @@ async function init() {
   syncChurches();
   populateChurches();
   hideChurchesWithoutUsers();
+  toggleListUsersProgress("off");
   attachListeners();
   globalHidePageSpinner();
 }
