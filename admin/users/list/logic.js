@@ -17,9 +17,7 @@ function renderUsers(users) {
       lastInvitationDate,
     } = user;
     const shortDateFormatter = new Intl.DateTimeFormat(locale, {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
+      dateStyle: "short",
     });
     const dateOfRegistration = shortDateFormatter.format(new Date(createdAt));
     const dateOfLastInvitation = lastInvitationDate
