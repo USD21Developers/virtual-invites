@@ -158,6 +158,8 @@ function renderUser(user) {
     usertype,
   } = user;
 
+  selectUserChurch(userid);
+
   const fullname = `${firstname} ${lastname}`;
   const regDate = new Intl.DateTimeFormat(undefined, {
     year: "numeric",
@@ -287,10 +289,10 @@ function showModalUnsuccessful(headline, content) {
   $("#updateUnsuccessfulModal").modal();
 }
 
-async function selectUserChurch() {
-  const myUserId = getUserId();
-  const myChurchId = await getUserChurchId(myUserId);
-  const church = getStoredChurch(myChurchId);
+async function selectUserChurch(userIdArg) {
+  const userId = userIdArg ? userIdArg : Number(getHash().split("/")[1]);
+  const churchId = await getUserChurchId(userId);
+  const church = getStoredChurch(churchId);
   const userChurchId = church.id;
   const churchEl = document.querySelector("#churchid");
 
@@ -594,6 +596,7 @@ async function init() {
   populateCountries();
   await populateLanguages();
   await populateUser();
+  selectUserChurch();
   attachListeners();
   globalHidePageSpinner();
 }
