@@ -35,8 +35,6 @@ async function populateChurches() {
 
   churchDropdown.innerHTML = churchesHtml;
 
-  selectUserChurch();
-
   syncChurches();
 }
 
@@ -158,7 +156,7 @@ function renderUser(user) {
     usertype,
   } = user;
 
-  selectUserChurch(userid);
+  selectUserChurch(churchid);
 
   const fullname = `${firstname} ${lastname}`;
   const regDate = new Intl.DateTimeFormat(undefined, {
@@ -289,16 +287,14 @@ function showModalUnsuccessful(headline, content) {
   $("#updateUnsuccessfulModal").modal();
 }
 
-async function selectUserChurch(userIdArg) {
-  const userId = userIdArg ? userIdArg : Number(getHash().split("/")[1]);
-  const churchId = await getUserChurchId(userId);
-  const church = getStoredChurch(churchId);
-  const userChurchId = church.id;
+async function selectUserChurch(churchid) {
   const churchEl = document.querySelector("#churchid");
 
-  if (typeof userChurchId !== "number") return;
+  if (typeof churchid !== "number") return;
 
-  churchEl.value = userChurchId;
+  const church = getStoredChurch(churchid);
+
+  churchEl.value = church.id;
 
   const churchName = church.name;
   const churchNameEl = document.querySelector("#selectedChurchName");
@@ -596,7 +592,6 @@ async function init() {
   populateCountries();
   await populateLanguages();
   await populateUser();
-  selectUserChurch();
   attachListeners();
   globalHidePageSpinner();
 }
