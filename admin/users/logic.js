@@ -207,6 +207,10 @@ function attachListeners() {
   document
     .querySelector("#listusersform")
     .addEventListener("submit", onListUsersClicked);
+
+  window.addEventListener("pageshow", () => {
+    toggleListUsersProgress("off");
+  });
 }
 
 async function init() {
@@ -214,7 +218,6 @@ async function init() {
   syncChurches();
   populateChurches();
   hideChurchesWithoutUsers();
-  toggleListUsersProgress("off");
   attachListeners();
   globalHidePageSpinner();
 }
