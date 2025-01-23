@@ -8,13 +8,23 @@ function renderUsers(users) {
 
   for (let i = 0; i < usersLen; i++) {
     const user = users[i];
-    const { userid, firstname, lastname, profilephoto, createdAt } = user;
+    const {
+      userid,
+      firstname,
+      lastname,
+      profilephoto,
+      createdAt,
+      lastInvitationDate,
+    } = user;
     const shortDateFormatter = new Intl.DateTimeFormat(locale, {
       year: "numeric",
       month: "short",
       day: "numeric",
     });
-    const shortDate = shortDateFormatter.format(new Date(createdAt));
+    const dateOfRegistration = shortDateFormatter.format(new Date(createdAt));
+    const dateOfLastInvitation = lastInvitationDate
+      ? shortDateFormatter.format(new Date(lastInvitationDate))
+      : "N/A";
     const profilePhotoSmall = profilephoto
       ? profilephoto.replaceAll("400", "140")
       : "";
@@ -39,8 +49,8 @@ function renderUsers(users) {
             </div>
           </a>
         </td>
-        <td class="text-center">${shortDate}</td>
-        <td class="text-center">N/A</td>
+        <td class="text-center">${dateOfRegistration}</td>
+        <td class="text-center">${dateOfLastInvitation}</td>
       </tr>
     `;
 
