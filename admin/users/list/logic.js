@@ -1,5 +1,51 @@
 function renderUsers(users) {
-  // TODO
+  const userTableContainerEl = document.querySelector("#userTableContainer");
+  const userTableEl = document.querySelector("#userTable");
+  const tbody = userTableEl.querySelector("tbody");
+  const usersLen = users.length;
+  const locale = "en-US"; // TODO
+  let rowsHTML = "";
+
+  for (let i = 0; i < usersLen; i++) {
+    const user = users[i];
+    const { userid, firstname, lastname, profilephoto, createdAt } = user;
+    const shortDateFormatter = new Intl.DateTimeFormat(locale, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+    const shortDate = shortDateFormatter.format(new Date(createdAt));
+    const profilePhotoSmall = profilephoto
+      ? profilephoto.replaceAll("400", "140")
+      : "";
+
+    rowsHTML += `
+      <tr>
+        <td>
+          <a
+            href="/admin/user/#/${userid}"
+            class="d-inline-block text-center"
+          >
+            <div class="profileImage">
+              <img
+                src="${profilePhotoSmall}"
+                alt="${firstname} ${lastname}"
+              />
+            </div>
+            <div class="pt-2">
+              <strong>
+                ${firstname} ${lastname}
+              </strong>
+            </div>
+          </a>
+        </td>
+        <td class="text-center">${shortDate}</td>
+        <td class="text-center">N/A</td>
+      </tr>
+    `;
+
+    tbody.innerHTML = rowsHTML;
+  }
 }
 
 function showChurchName() {
