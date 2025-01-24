@@ -1,5 +1,5 @@
 async function populatePhotosPendingReview() {
-  const reviewLinkEl = document.querySelector("#reviewLink");
+  const reviewLinkEl = document.querySelector("#photoReviewLink");
   const quantityPhotoReviewEl = document.querySelector("#quantityPhotoReview");
   const endpoint = `${getApiHost()}/photos-pending-review`;
   const accessToken = await getAccessToken();
@@ -19,14 +19,10 @@ async function populatePhotosPendingReview() {
       if (!photos) return;
       if (!Array.isArray(photos)) return;
 
-      if (photos.length === 0) {
-        if (reviewLinkEl) reviewLinkEl.classList.add("d-none");
-        return;
-      }
-
-      if (quantityPhotoReviewEl) {
+      if (photos.length > 0) {
         quantityPhotoReviewEl.classList.add("badge-danger", "border-danger");
         quantityPhotoReviewEl.innerHTML = photos.length;
+        if (reviewLinkEl) reviewLinkEl.classList.remove("d-none");
       }
     })
     .catch((error) => {
