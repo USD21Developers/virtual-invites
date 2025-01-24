@@ -27,8 +27,11 @@ function syncChurches() {
           throw new Error(data.msg);
         }
 
-        const { churches } = data;
+        const { churches, churchesWithRegisteredUsers } = data;
         const churchesJSON = JSON.stringify(churches);
+        const churchesWithRegisteredUsersJSON = JSON.stringify(
+          churchesWithRegisteredUsers
+        );
         const churchesJSONStored = localStorage.getItem("churches");
         const hashChurchesRemote = await invitesCrypto.hash(churchesJSON);
         const hashChurchesLocal = await invitesCrypto.hash(churchesJSONStored);
@@ -39,11 +42,17 @@ function syncChurches() {
           localStorage.setItem("churches", churchesJSON);
         }
 
+        localStorage.setItem(
+          "churchesWithRegisteredUsers",
+          churchesWithRegisteredUsersJSON
+        );
+
         syncSuccessful = true;
 
         return resolve({
           churchesHaveChanged: churchesHaveChanged,
           churches: churches,
+          churchesWithRegisteredUsers: churchesWithRegisteredUsers,
         });
       })
       .catch((err) => {
