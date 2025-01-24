@@ -2,7 +2,49 @@ function hideChurchesWithoutUsers() {
   return new Promise(async (resolve, reject) => {
     const endpoint = `${getApiHost()}/churches-with-users`;
     const accessToken = await getAccessToken();
+    const churchesWithRegisteredUsersJSON = localStorage.getItem(
+      "churchesWithRegisteredUsers"
+    );
 
+    // Try with localStorage first
+    if (
+      churchesWithRegisteredUsersJSON &&
+      churchesWithRegisteredUsersJSON.length
+    ) {
+      const churchesWithRegisteredUsers = JSON.parse(
+        churchesWithRegisteredUsersJSON
+      );
+      const churchids =
+        churchesWithRegisteredUsers.map((item) => item.churchid) || [];
+
+      document.querySelectorAll("#churchid option").forEach((item) => {
+        if (!churchids.includes(Number(item.value))) {
+          item.remove();
+        }
+      });
+
+      document.querySelectorAll("#churchid2 option").forEach((item) => {
+        if (!churchids.includes(Number(item.value))) {
+          item.remove();
+        }
+      });
+
+      document.querySelectorAll("#churchid optgroup").forEach((optgroup) => {
+        if (!optgroup.querySelector("option")) {
+          optgroup.remove();
+        }
+      });
+
+      document.querySelectorAll("#churchid2 optgroup").forEach((optgroup) => {
+        if (!optgroup.querySelector("option")) {
+          optgroup.remove();
+        }
+      });
+
+      return resolve(churchids);
+    }
+
+    // Try with network
     fetch(endpoint, {
       mode: "cors",
       method: "GET",
@@ -45,7 +87,7 @@ function hideChurchesWithoutUsers() {
           }
         });
 
-        return resolve(data);
+        return resolve(churchids);
       })
       .catch((error) => {
         return reject(error);
@@ -217,7 +259,7 @@ async function init() {
   await populateContent();
   syncChurches();
   populateChurches();
-  hideChurchesWithoutUsers();
+  await hideChurchesWithoutUsers();
   attachListeners();
   globalHidePageSpinner();
 }
