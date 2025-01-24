@@ -32,6 +32,21 @@
       "key": "breadcrumbList",
       "original": "List",
       "translated": "List"
+    },
+    {
+      "key": "headerUser",
+      "original": "User",
+      "translated": "User"
+    },
+    {
+      "key": "headerRegistered",
+      "original": "Registered",
+      "translated": "Registered"
+    },
+    {
+      "key": "headerLastInvite",
+      "original": "Last Invite",
+      "translated": "Last Invite"
     }
   ],
 
