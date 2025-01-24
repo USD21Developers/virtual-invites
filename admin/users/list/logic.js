@@ -1,3 +1,10 @@
+function populateLeafBreadcrumb(place) {
+  const el = document.querySelector("[data-i18n='breadcrumbList']");
+  if (!el) return;
+
+  el.innerText = place;
+}
+
 function renderUsers(users) {
   const userTableContainerEl = document.querySelector("#userTableContainer");
   const userTableEl = document.querySelector("#userTable");
@@ -67,6 +74,7 @@ function showChurchName() {
       return reject(new Error("unable to find church"));
     }
 
+    populateLeafBreadcrumb(church.place);
     churchNameEl.innerHTML = church.name;
 
     return resolve(church.name);
