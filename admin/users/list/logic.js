@@ -29,10 +29,10 @@ function renderUsers(users) {
 
     rowsHTML += `
       <tr>
-        <td>
+        <td class="text-center">
           <a
             href="/admin/user/#/${userid}"
-            class="d-inline-block text-center"
+            class="d-inline-block"
           >
             <div class="profileImage">
               <img
