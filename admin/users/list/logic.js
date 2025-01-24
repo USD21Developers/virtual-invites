@@ -5,6 +5,23 @@ function populateLeafBreadcrumb(place) {
   el.innerText = place;
 }
 
+function populateQuantityOfUsers(quantity) {
+  const el = document.querySelector("#quantityUsers");
+  let text = getPhrase("quantityOfUsers");
+
+  if (quantity < 1) {
+    return;
+  }
+
+  if (quantity === 1) {
+    text = getPhrase("quantityOfUsers1");
+  }
+
+  text = text.replaceAll("{QUANTITY}", quantity);
+
+  el.innerHTML = text;
+}
+
 function renderUsers(users) {
   const userTableContainerEl = document.querySelector("#userTableContainer");
   const userTableEl = document.querySelector("#userTable");
@@ -12,6 +29,8 @@ function renderUsers(users) {
   const usersLen = users.length;
   const locale = "en-US"; // TODO
   let rowsHTML = "";
+
+  populateQuantityOfUsers(users.length);
 
   for (let i = 0; i < usersLen; i++) {
     const user = users[i];

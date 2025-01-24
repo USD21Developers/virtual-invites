@@ -39,6 +39,16 @@
       "translated": "List"
     },
     {
+      "key": "quantityOfUsers",
+      "original": "{QUANTITY} users:",
+      "translated": "{QUANTITY} users:"
+    },
+    {
+      "key": "quantityOfUsers1",
+      "original": "{QUANTITY} user:",
+      "translated": "{QUANTITY} user:"
+    },
+    {
       "key": "headerUser",
       "original": "User",
       "translated": "User"
