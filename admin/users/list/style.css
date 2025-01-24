@@ -16,3 +16,9 @@ td {
   height: 70px;
   width: 70px;
 }
+
+@media (max-width: 576px) {
+  tbody a {
+    white-space: nowrap;
+  }
+}
