@@ -656,10 +656,10 @@ async function onSubmit(e) {
     });
 
   setTimeout(() => {
-    controller.abort(`Timeout reached (25 seconds)`);
+    controller.abort(`Timeout reached (3 minutes)`);
     hide(spinner);
     show(submitButton);
-  }, 25000);
+  }, 180000);
 }
 
 function attachListeners() {
