@@ -546,6 +546,7 @@ async function onSubmit(e) {
         case "user updated":
           document.querySelector("#pageSpinner").classList.add("d-none");
           $("#updateSuccessfulModal").on("hide.bs.modal", function (e) {
+            globalShowPageSpinner();
             window.location.reload();
           });
           $("#updateSuccessfulModal").modal();
