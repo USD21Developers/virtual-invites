@@ -50,7 +50,7 @@ function renderUsers(users) {
       ? shortDateFormatter.format(new Date(lastInvitationDate))
       : "N/A";
     const profilePhotoSmall = profilephoto
-      ? profilephoto.replaceAll("400", "140")
+      ? profilephoto.replaceAll("__400.jpg", "__140.jpg")
       : "";
 
     rowsHTML += `
