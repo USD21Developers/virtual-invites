@@ -22,6 +22,10 @@ $warning: (
   light: lighten(#e2b93b, 10%),
 );
 
+.breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+}
+
 $font-size-root: 18px;
 
 $btn-font-weight: 600;
