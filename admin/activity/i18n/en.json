@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "description": "Evangelistic Activity",
+    "description": "Sharing Activity",
     "path": "/admin/actvity/",
     "lang": {
       "original": "en",
@@ -10,8 +10,8 @@
   "phrases": [
     {
       "key": "pagetitle",
-      "original": "Evangelistic Activity",
-      "translated": "Evangelistic Activity"
+      "original": "Sharing Activity",
+      "translated": "Sharing Activity"
     },
     {
       "key": "breadcrumbHome",
@@ -30,8 +30,8 @@
     },
     {
       "key": "headline",
-      "original": "Evangelistic Activity",
-      "translated": "Evangelistic Activity"
+      "original": "Sharing Activity",
+      "translated": "Sharing Activity"
     },
     {
       "key": "selectADateRange",
