@@ -19,7 +19,7 @@ function showContentForDesktop() {
 async function init() {
   await populateContent();
   hideNavs();
-  showContentForDesktop();
+  // showContentForDesktop();
   globalHidePageSpinner();
 }
 
