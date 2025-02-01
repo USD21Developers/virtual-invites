@@ -213,7 +213,7 @@ function onSubmit(e) {
       const headline = getPhrase("timedoutHeadline");
       showAlert(alert, phrase, headline);
     }
-  }, 30000);
+  }, 90000);
 }
 
 function attachListeners() {
