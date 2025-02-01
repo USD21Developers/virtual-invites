@@ -4,7 +4,7 @@
   <head>
     <script></script>
     <script src="/admin/enforceAdminAccess.js"></script>
-    <script id="enforceaccess" src="../js/enforceaccess.js"></script>
+    <script id="enforceaccess" src="/js/enforceaccess.js"></script>
     <meta charset="utf-8" />
     <meta
       content="initial-scale=1, shrink-to-fit=no, width=device-width"
@@ -19,12 +19,8 @@
       content="https://invites.mobi/_assets/img/logo-opengraph.png"
     />
     <title data-i18n="pagetitle"></title>
-    <link rel="stylesheet" href="../css/daemonite-material.css" />
-    <link
-      href="../js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
-      rel="stylesheet"
-    />
-    <link href="../css/global.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/daemonite-material.css" />
+    <link href="/css/global.css" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -73,7 +69,7 @@
             <div class="col-9 d-flex justify-content-start">
               <a
                 class="navbar-brand px-0"
-                href="../"
+                href="/"
                 data-i18n-global="menuHeadline"
               ></a>
             </div>
@@ -102,56 +98,56 @@
             </span>
             <span data-i18n-global="menuHome"></span>
           </a>
-          <a class="nav-item nav-link" href="../invites/">
+          <a class="nav-item nav-link" href="/invites/">
             <span class="mr-3">
               <img src="/_assets/svg/icons/people.svg" />
             </span>
             <span data-i18n-global="menuMyInvites"></span>
           </a>
-          <a class="nav-item nav-link" href="../followup/">
+          <a class="nav-item nav-link" href="/followup/">
             <span class="mr-3">
               <img src="/_assets/svg/icons/list_alt.svg" />
             </span>
             <span data-i18n-global="menuFollowUp"></span>
           </a>
-          <a class="nav-item nav-link" href="../send/">
+          <a class="nav-item nav-link" href="/send/">
             <span class="mr-3">
               <img src="/_assets/svg/icons/send.svg" />
             </span>
             <span data-i18n-global="menuSendInvite"></span>
           </a>
           <div class="navdrawer-divider"></div>
-          <a class="nav-item nav-link" href="../events/">
+          <a class="nav-item nav-link" href="/events/">
             <span class="mr-3">
               <img src="/_assets/svg/icons/event.svg" />
             </span>
             <span data-i18n-global="menuEventsImSharing"></span>
           </a>
-          <a class="nav-item nav-link" href="../maps/evangelism/">
+          <a class="nav-item nav-link" href="/maps/evangelism/">
             <span class="mr-3">
               <img src="/_assets/svg/icons/place.svg" />
             </span>
             <span data-i18n-global="menuMaps"></span>
           </a>
-          <a class="nav-item nav-link" href="../settings/">
+          <a class="nav-item nav-link" href="/settings/">
             <span class="mr-3">
               <img src="/_assets/svg/icons/settings.svg" />
             </span>
             <span data-i18n-global="menuSettings"></span>
           </a>
-          <a class="nav-item nav-link" href="../profile/">
+          <a class="nav-item nav-link" href="/profile/">
             <span class="mr-3">
               <img src="/_assets/svg/icons/account_circle.svg" />
             </span>
             <span data-i18n-global="menuMyProfile"></span>
           </a>
-          <a class="nav-item nav-link" href="../support/">
+          <a class="nav-item nav-link" href="/support/">
             <span class="mr-3">
               <img src="/_assets/svg/icons/contact_support.svg" />
             </span>
             <span data-i18n-global="menuSupport"></span>
           </a>
-          <a class="nav-item nav-link" href="../logout/">
+          <a class="nav-item nav-link" href="/logout/">
             <span class="mr-3">
               <img src="/_assets/svg/icons/logout.svg" />
             </span>
@@ -169,10 +165,13 @@
     >
       <ol class="breadcrumb bg-white my-0">
         <li class="breadcrumb-item">
-          <a href="../" data-i18n="breadcrumbHome"></a>
+          <a href="/" data-i18n="breadcrumbHome"></a>
+        </li>
+        <li class="breadcrumb-item firstOnMobile">
+          <a href="/admin/" data-i18n="breadcrumbAdmin"></a>
         </li>
         <li class="breadcrumb-item active">
-          <a href="./" data-i18n="breadcrumbAdmin"></a>
+          <a href="/admin/activity/" data-i18n="breadcrumbActivity"></a>
         </li>
       </ol>
     </nav>
@@ -192,9 +191,9 @@
 
     <main class="container d-none mainContent">
       <div class="row">
-        <div class="col col-md-4 offset-md-4">
+        <div class="col">
           <h2
-            class="text-center text-uppercase m-0 balancedTextWrap my-3"
+            class="text-center m-0 balancedTextWrap my-3"
             data-i18n="pagetitle"
           ></h2>
         </div>
@@ -202,65 +201,136 @@
 
       <div class="row mt-4">
         <div
-          class="col col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-6 offset-lg-3"
+          class="col col-sm-10 offset-sm-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3"
         >
-          <div class="list-group">
-            <a
-              href="deleted-churches/"
-              class="list-group-item list-group-item-action d-none"
-              id="deletedChurchesLink"
-            >
-              <div class="media">
-                <div class="media-body">
-                  <span data-i18n="deletedChurches"></span>
+          <form id="activityForm" class="mb-5">
+            <fieldset class="mb-5">
+              <legend data-i18n="labelFrom"></legend>
+              <div class="mb-4 pb-1">
+                <select id="fromPresets" class="form-control">
+                  <option value="thisMorning" data-i18n="thisMorning"></option>
+                  <option value="yesterday" data-i18n="yesterday"></option>
+                  <option
+                    value="beginningOfThisWeek"
+                    data-i18n="beginningOfThisWeek"
+                    selected
+                  ></option>
+                  <option
+                    value="beginningOfThisMonth"
+                    data-i18n="beginningOfThisMonth"
+                  ></option>
+                  <option
+                    value="beginningOfLastMonth"
+                    data-i18n="beginningOfLastMonth"
+                  ></option>
+                  <option
+                    value="beginningOfThisYear"
+                    data-i18n="beginningOfThisYear"
+                  ></option>
+                  <option value="daysAgo3" data-i18n="daysAgo3"></option>
+                  <option value="daysAgo7" data-i18n="daysAgo7"></option>
+                  <option value="daysAgo10" data-i18n="daysAgo10"></option>
+                  <option value="daysAgo14" data-i18n="daysAgo14"></option>
+                  <option value="daysAgo21" data-i18n="daysAgo21"></option>
+                  <option value="daysAgo30" data-i18n="daysAgo30"></option>
+                  <option value="daysAgo60" data-i18n="daysAgo60"></option>
+                  <option value="monthsAgo3" data-i18n="monthsAgo3"></option>
+                  <option value="monthsAgo6" data-i18n="monthsAgo6"></option>
+                  <option value="monthsAgo9" data-i18n="monthsAgo9"></option>
+                  <option value="yearsAgo1" data-i18n="yearsAgo1"></option>
+                  <option
+                    value="specificDateTime"
+                    data-i18n="specificDateAndTime"
+                  ></option>
+                </select>
+              </div>
+              <div id="fromDateTimeContainer" class="d-none">
+                <div class="form-group mt-2">
+                  <label
+                    class="d-block mb-1 text-dark font-weight-bold text-uppercase datetime-label"
+                    data-i18n="date"
+                    for="fromDate"
+                  ></label>
+                  <div class="mt-1 mb-4 pb-1">
+                    <input
+                      type="date"
+                      class="form-control datetime-field"
+                      id="fromDate"
+                    />
+                  </div>
+                  <label
+                    class="d-block mt-4 pt-1 mb-1 text-dark font-weight-bold text-uppercase datetime-label"
+                    data-i18n="time"
+                    for="fromTime"
+                  ></label>
+                  <div class="mt-1 mb-2 pb-2">
+                    <input
+                      type="time"
+                      class="form-control datetime-field"
+                      id="fromTime"
+                    />
+                  </div>
                 </div>
-                <span
-                  class="badge badge-pill badge-danger border border-danger ml-3"
-                  id="quantityDeletedChurches"
-                  >0</span
-                >
               </div>
-            </a>
+            </fieldset>
 
-            <a
-              href="review/"
-              class="list-group-item list-group-item-action d-none"
-              id="photoReviewLink"
-            >
-              <div class="media">
-                <div class="media-body">
-                  <span data-i18n="photoreview"></span>
+            <fieldset class="mb-5">
+              <legend data-i18n="labelTo"></legend>
+              <div class="form-group mt-2 mb-4">
+                <select id="toPresets" class="form-control">
+                  <option value="now" data-i18n="now"></option>
+                  <option
+                    value="specificDateTime"
+                    data-i18n="specificDateAndTime"
+                  ></option>
+                </select>
+              </div>
+              <div id="toDateTimeContainer" class="d-none">
+                <div class="form-group mt-4">
+                  <label
+                    class="d-block mb-1 text-dark font-weight-bold text-uppercase datetime-label"
+                    data-i18n="date"
+                    for="toDate"
+                  ></label>
+                  <div class="mt-1 mb-4 pb-1">
+                    <input
+                      type="date"
+                      class="form-control datetime-field"
+                      id="toDate"
+                    />
+                  </div>
+                  <label
+                    class="d-block mb-1 text-dark font-weight-bold text-uppercase datetime-label"
+                    data-i18n="time"
+                    for="toTime"
+                  ></label>
+                  <div class="mt-1 mb-2 pb-2">
+                    <input
+                      type="time"
+                      class="form-control datetime-field"
+                      id="toTime"
+                    />
+                  </div>
                 </div>
-                <span
-                  class="badge badge-pill badge-danger border border-danger ml-3"
-                  id="quantityPhotoReview"
-                ></span>
               </div>
-            </a>
+            </fieldset>
 
-            <a href="activity/" class="list-group-item list-group-item-action">
-              <div class="media">
-                <div class="media-body" data-i18n="activity"></div>
-                <img
-                  class="ml-3 contactGlyph"
-                  src="../_assets/svg/icons/activity.svg"
-                  alt=""
-                  data-i18n-global-aria-label="users"
-                />
-              </div>
-            </a>
+            <div class="form-group mt-4 mb-5 pb-3 text-center">
+              <button
+                id="submitButton"
+                class="btn btn-primary"
+                data-i18n="showActivity"
+              ></button>
+            </div>
+          </form>
+        </div>
+      </div>
 
-            <a href="users/" class="list-group-item list-group-item-action">
-              <div class="media">
-                <div class="media-body" data-i18n="users"></div>
-                <img
-                  class="ml-3 contactGlyph"
-                  src="../_assets/svg/icons/user-edit.svg"
-                  alt=""
-                  data-i18n-global-aria-label="users"
-                />
-              </div>
-            </a>
+      <div id="noResultsFound" class="d-none row mb-4">
+        <div class="col col-md-6 offset-md-3">
+          <div class="alert alert-danger shadow" role="alert">
+            <h3 class="alert-heading" data-i18n="noResultsHeading"></h3>
+            <div data-i18n="noResultsParagraph"></div>
           </div>
         </div>
       </div>
@@ -331,6 +401,13 @@
       </table>
     </nav>
 
+    <script src="/js/moment.min.js" referrerpolicy="no-referrer"></script>
+    <script
+      src="/js/moment-timezone-with-data-10-year-range.min.js"
+      integrity="sha512-d11VXfxQMn+sZuIgzHITdIuInr4cVRGV/uLiSI643WH/J+p4gPFYSHXRMR2v+w4Rn2TSyzJjsZjc0M7+Qd+UXw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
