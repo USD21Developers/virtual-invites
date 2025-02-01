@@ -73,6 +73,13 @@ function getAPIHost(forceRemote = false) {
 }
 
 function getPermissions() {
+  const refreshTokenStored = localStorage.getItem("refreshToken");
+
+  if (!refreshTokenStored) {
+    window.location.href = "/logout/";
+    return;
+  }
+
   const refreshToken = JSON.parse(
     atob(localStorage.getItem("refreshToken").split(".")[1])
   );
