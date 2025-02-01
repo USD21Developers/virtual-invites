@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "description": "Sharing Activity",
+    "description": "Activity",
     "path": "/admin/actvity/",
     "lang": {
       "original": "en",
@@ -10,8 +10,8 @@
   "phrases": [
     {
       "key": "pagetitle",
-      "original": "Sharing Activity",
-      "translated": "Sharing Activity"
+      "original": "Activity",
+      "translated": "Activity"
     },
     {
       "key": "breadcrumbHome",
@@ -30,8 +30,8 @@
     },
     {
       "key": "headline",
-      "original": "Sharing Activity",
-      "translated": "Sharing Activity"
+      "original": "Activity",
+      "translated": "Activity"
     },
     {
       "key": "selectADateRange",
