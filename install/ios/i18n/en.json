@@ -49,8 +49,8 @@
     },
     {
       "key": "browserAdvisory",
-      "original": "The following steps pertain to the Safari Web browser on iOS:",
-      "translated": "The following steps pertain to the Safari Web browser on iOS:",
+      "original": "The following steps pertain to the Safari Web browser on iOS.",
+      "translated": "The following steps pertain to the Safari Web browser on iOS.",
       "changes": [
         {
           "original": "Safari",
@@ -61,6 +61,16 @@
           "underline": true
         }
       ]
+    },
+    {
+      "key": "useThisBrowser",
+      "original": "Installation on iOS requires this browser:",
+      "translated": "Installation on iOS requires this browser:"
+    },
+    {
+      "key": "safari",
+      "original": "Apple Safari",
+      "translated": "Apple Safari"
     },
     {
       "key": "step1",

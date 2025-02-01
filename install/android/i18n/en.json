@@ -54,8 +54,8 @@
     },
     {
       "key": "step1instructions",
-      "original": "Use the Google Chrome browser for best results.",
-      "translated": "Use the Google Chrome browser for best results.",
+      "original": "Use the Google Chrome browser for best results:",
+      "translated": "Use the Google Chrome browser for best results:",
       "changes": [
         {
           "original": "Google Chrome",
@@ -66,6 +66,11 @@
           "link": "https://www.google.com/chrome/dr/download/"
         }
       ]
+    },
+    {
+      "key": "chrome",
+      "original": "Google Chrome",
+      "translated": "Google Chrome"
     },
     {
       "key": "step2",

@@ -429,3 +429,9 @@ strong {
   opacity: 0;
   pointer-events: none;
 }
+
+.browserlogo {
+  height: auto !important;
+  max-width: 80px !important;
+  width: 25% !important;
+}
