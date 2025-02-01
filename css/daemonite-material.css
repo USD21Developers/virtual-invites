@@ -1,8 +1,4 @@
 @charset "UTF-8";
-.breadcrumb-item + .breadcrumb-item::before {
-  content: ">";
-}
-
 :root {
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
