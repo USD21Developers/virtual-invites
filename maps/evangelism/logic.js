@@ -35,29 +35,40 @@ function askToConnect() {
 }
 
 function getMapKey() {
-  let keys;
+  return new Promise(async (resolve, reject) => {
+    let keys;
 
-  try {
-    keys = JSON.parse(
-      atob(localStorage.getItem("refreshToken").split(".")[1])
-    ).mapsApiKeys;
-  } catch (err) {
-    keys = null;
-  }
+    try {
+      keys = JSON.parse(
+        atob(localStorage.getItem("refreshToken").split(".")[1])
+      ).mapsApiKeys;
+    } catch (err) {
+      keys = null;
+    }
 
-  if (!keys) {
-    sessionStorage.setItem("redirectOnLogin", window.location.href);
-    window.location.href = "../../logout/";
-  }
+    if (!keys) {
+      keys = await getMapsApiKeys();
+    }
 
-  switch (window.location.hostname) {
-    case "localhost":
-      return keys.dev;
-    case "staging.invites.mobi":
-      return keys.staging;
-    case "invites.mobi":
-      return keys.prod;
-  }
+    if (!keys) {
+      window.location.href = "/logout/";
+      return reject();
+    }
+
+    if (typeof keys !== "object") {
+      window.location.href = "/logout/";
+      return reject();
+    }
+
+    switch (window.location.hostname) {
+      case "localhost":
+        return resolve(keys.dev);
+      case "staging.invites.mobi":
+        return resolve(keys.staging);
+      case "invites.mobi":
+        return resolve(keys.prod);
+    }
+  });
 }
 
 function getDefaultMapInfo() {
@@ -223,7 +234,7 @@ async function loadGoogleMapsLibs() {
   const userChurch = churches.find((item) => item.id === userChurchId);
   const mapCountry = userChurch.country;
   const mapLanguage = getLang();
-  const mapKey = getMapKey();
+  const mapKey = await getMapKey();
 
   return ((g) => {
     var h,
