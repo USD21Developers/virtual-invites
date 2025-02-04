@@ -43,6 +43,7 @@ const supportedLangs = ["en"];
   getLocale
   getKilometers
   getMiles
+  getMapsApiKeys
   getNextRecurringWeekday
   getPhrase
   getGlobalPhrase
@@ -848,6 +849,40 @@ function getMiles(metersFloat) {
   let miles = metersFloat * 0.000621371192;
   miles = parseFloat(miles.toFixed(1));
   return miles;
+}
+
+function getMapsApiKeys() {
+  return new Promise(async (resolve, reject) => {
+    const accessToken = await getAccessToken();
+    const endpoint = `${getApiHost()}/maps-api-keys`;
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data) throw new Error("no data received");
+        if (!data.msg) throw new Error("no msg property on API response");
+        if (!data.msgType)
+          throw new Error("no msgType property on API response");
+        if (!data.mapsApiKeys)
+          throw new Error("no mapsApiKeys property on API response");
+        if (data.msgType !== "success") return reject(data.msg);
+        if (typeof data.mapsApiKeys !== "object")
+          return reject("mapsApiKeys property must be an object");
+
+        localStorage.setItem("mapsApiKeys", JSON.stringify(data.mapsApiKeys));
+        return resolve(data.mapsApiKeys);
+      })
+      .catch((error) => {
+        return reject(error);
+      });
+  });
 }
 
 function getNextRecurringWeekday(date, time) {

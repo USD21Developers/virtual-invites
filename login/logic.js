@@ -28,6 +28,20 @@ async function forwardAuthenticatedUser() {
   window.location.href = "../";
 }
 
+async function storeMapKeys(refreshToken) {
+  if (!refreshToken) return;
+  if (typeof refreshToken !== "string") return;
+  if (!refreshToken.length) return;
+
+  const parsed = JSON.parse(atob(refreshToken.split(".")[1]));
+  const mapsApiKeys = parsed.mapsApiKeys;
+
+  if (!mapsApiKeys) await getMapApiKeys();
+  if (typeof mapsApiKeys !== "object") return;
+
+  localStorage.setItem("mapsApiKeys", JSON.stringify(mapsApiKeys));
+}
+
 function unsubscribeFromNotifications() {
   return new Promise(async (resolve, reject) => {
     const unsubscribeJSON = sessionStorage.getItem(
@@ -170,6 +184,8 @@ function onSubmit(e) {
         localStorage.setItem("datakey", data.datakey);
         localStorage.setItem("refreshToken", data.refreshToken);
         sessionStorage.setItem("accessToken", data.accessToken);
+
+        storeMapKeys(data.refreshToken);
 
         return forwardAuthenticatedUser();
       } else if (data.msg === "user status is not registered") {
