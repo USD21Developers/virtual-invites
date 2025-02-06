@@ -109,7 +109,7 @@ async function initMap(searchResults) {
 
   let latitude;
   let longitude;
-  let zoom;
+  let zoom = 11;
 
   if (searchResults.userInvites.length) {
     latitude = searchResults.userInvites[0].lat;
@@ -126,7 +126,7 @@ async function initMap(searchResults) {
 
   churchDefaultLatitude = latitude;
   churchDefaultLongitude = longitude;
-  churchDefaultZoom = zoom ? zoom : 11;
+  churchDefaultZoom = zoom;
 
   map = new Map(document.getElementById("map"), {
     zoom: zoom,
