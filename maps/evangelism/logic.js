@@ -122,6 +122,7 @@ async function initMap(searchResults) {
   if (defaultMapInfo) {
     latitude = defaultMapInfo.latitude ? defaultMapInfo.latitude : latitude;
     longitude = defaultMapInfo.longitude ? defaultMapInfo.longitude : longitude;
+    zoom = defaultMapInfo.zoom ? defaultMapInfo.zoom : zoom;
   }
 
   churchDefaultLatitude = latitude;
