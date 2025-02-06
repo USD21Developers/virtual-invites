@@ -107,13 +107,26 @@ async function initMap(searchResults) {
   );
   const defaultMapInfo = await getDefaultMapInfo();
 
-  if (!defaultMapInfo) return;
+  let latitude;
+  let longitude;
+  let zoom;
 
-  const { latitude, longitude, zoom } = defaultMapInfo;
+  if (searchResults.userInvites.length) {
+    latitude = searchResults.userInvites[0].lat;
+    longitude = searchResults.userInvites[0].lng;
+  } else if (searchResults.othersInvites.length) {
+    latitude = searchResults.othersInvites[0].lat;
+    longitude = searchResults.othersInvites[0].lng;
+  }
+
+  if (defaultMapInfo) {
+    latitude = defaultMapInfo.latitude ? defaultMapInfo.latitude : latitude;
+    longitude = defaultMapInfo.longitude ? defaultMapInfo.longitude : longitude;
+  }
 
   churchDefaultLatitude = latitude;
   churchDefaultLongitude = longitude;
-  churchDefaultZoom = zoom;
+  churchDefaultZoom = zoom ? zoom : 11;
 
   map = new Map(document.getElementById("map"), {
     zoom: zoom,
