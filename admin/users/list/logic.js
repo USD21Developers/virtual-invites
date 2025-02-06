@@ -8,6 +8,7 @@ async function initializeDatatable() {
     initializedDatatable = true;
     let table = $(".table.table-striped").DataTable({
       language: languageData,
+      order: [[1, "desc"]],
     });
   }
 }
