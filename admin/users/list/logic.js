@@ -1,3 +1,17 @@
+let initializedDatatable = false;
+
+async function initializeDatatable() {
+  const translationURL = getDatatablesTranslationURL();
+  const languageData = await fetch(translationURL).then((res) => res.json());
+
+  if (!initializedDatatable) {
+    initializedDatatable = true;
+    let table = $(".table.table-striped").DataTable({
+      language: languageData,
+    });
+  }
+}
+
 function populateLeafBreadcrumb(place) {
   const el = document.querySelector("[data-i18n='breadcrumbList']");
   if (!el) return;
@@ -22,12 +36,15 @@ function populateQuantityOfUsers(quantity) {
   el.innerHTML = text;
 }
 
-function renderUsers(users) {
+async function renderUsers(users) {
   const userTableContainerEl = document.querySelector("#userTableContainer");
   const userTableEl = document.querySelector("#userTable");
   const tbody = userTableEl.querySelector("tbody");
   const usersLen = users.length;
-  const locale = "en-US"; // TODO
+  const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
+  const locale = userDateTimePrefs.locale;
+  const translationURL = getDatatablesTranslationURL();
+  const languageData = await fetch(translationURL).then((res) => res.json());
   let rowsHTML = "";
 
   populateQuantityOfUsers(users.length);
@@ -79,6 +96,8 @@ function renderUsers(users) {
     `;
 
     tbody.innerHTML = rowsHTML;
+
+    initializeDatatable();
   }
 }
 
