@@ -46,6 +46,7 @@ async function renderUsers(users) {
   const locale = userDateTimePrefs.locale;
   const translationURL = getDatatablesTranslationURL();
   const languageData = await fetch(translationURL).then((res) => res.json());
+  const now = Date.now();
   let rowsHTML = "";
 
   populateQuantityOfUsers(users.length);
@@ -64,16 +65,21 @@ async function renderUsers(users) {
       dateStyle: "short",
     });
     const dateOfRegistration = shortDateFormatter.format(new Date(createdAt));
+    const dataOfRegistrationEpoch = new Date(createdAt).getTime();
     const dateOfLastInvitation = lastInvitationDate
       ? shortDateFormatter.format(new Date(lastInvitationDate))
       : "N/A";
+    const dateOfLastInvitationEpoch =
+      dateOfLastInvitation === "NA"
+        ? now
+        : new Date(lastInvitationDate).getTime();
     const profilePhotoSmall = profilephoto
       ? profilephoto.replaceAll("__400.jpg", "__140.jpg")
       : "";
 
     rowsHTML += `
       <tr>
-        <td class="text-center">
+        <td class="text-center" data-search="${firstname} ${lastname}">
           <a
             href="/admin/user/#/${userid}"
             class="d-inline-block"
@@ -91,8 +97,8 @@ async function renderUsers(users) {
             </div>
           </a>
         </td>
-        <td class="text-center">${dateOfRegistration}</td>
-        <td class="text-center">${dateOfLastInvitation}</td>
+        <td class="text-center" data-order="${dataOfRegistrationEpoch}">${dateOfRegistration}</td>
+        <td class="text-center" data-order="${dateOfLastInvitationEpoch}">${dateOfLastInvitation}</td>
       </tr>
     `;
 
