@@ -103,6 +103,14 @@ function redirectIfUnauthorized() {
   }
 }
 
+function renderActivity(activity) {
+  if (!activity) return;
+  if (!Array.isArray(activity)) return;
+  if (!activity.length) return;
+
+  // TODO
+}
+
 function toggleFromPreset(e) {
   const fromDateTimeContainerEl = document.querySelector(
     "#fromDateTimeContainer"
@@ -361,6 +369,54 @@ async function onSubmit(e) {
   }
 
   noResultsEl.classList.add("d-none");
+
+  globalShowPageSpinner();
+
+  const accessToken = await getAccessToken();
+  const endpoint = `${getApiHost()}/admin-activity`;
+
+  fetch(endpoint, {
+    mode: "cors",
+    method: "post",
+    body: JSON.stringify({
+      fromDateTime: fromDateTime,
+      toDateTime: toDateTime,
+    }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      switch (data.msg) {
+        case "invalid from datetime":
+          // TODO:  Handle error
+          break;
+        case "invalid to datetime":
+          // TODO:  Handle error
+          break;
+        case "fromDateTime must come before toDateTime":
+          // TODO:  Handle error
+          break;
+        case "unable to query as admin for activity":
+          // TODO:  Handle error
+          break;
+        case "activity retrieved":
+          const activity = data.activity;
+          renderActivity(activity);
+          break;
+        default:
+          throw new Error("unrecognized API response");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      // TODO:  Handle error
+    })
+    .finally(() => {
+      globalHidePageSpinner();
+    });
 }
 
 function addEventListeners() {
