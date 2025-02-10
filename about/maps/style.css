@@ -57,9 +57,30 @@ p[data-i18n="p3"] em:nth-child(3) {
   text-align: center;
 }
 
+.learnMoreLink a {
+  display: inline-block;
+  position: relative;
+}
+
+.learnMoreLink a:hover .play-button {
+  opacity: 1;
+}
+
 .learnMoreLink img {
   max-width: 100%;
   vertical-align: middle;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  background: url("/_assets/svg/youtube-play-button.svg") no-repeat center;
+  background-size: contain;
+  transform: translate(-50%, -50%);
+  /* opacity: 0.8; */
 }
 
 body,
