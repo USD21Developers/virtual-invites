@@ -9,8 +9,8 @@ $allowedPrefixes = [
     "https://localhost:4000/"
 ];
 
-// Get the requested target URL
-$targetUrl = $_POST['url'] ?? '';
+// Get the target URL from the URL parameter
+$targetUrl = $_GET['target'] ?? '';
 
 if (!$targetUrl) {
     http_response_code(400);

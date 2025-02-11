@@ -157,7 +157,9 @@ function onSubmit(e) {
   }
 
   const proxyEndpoint =
-    window.location.hostname === "localhost" ? endpoint : "/login/proxy.php";
+    window.location.hostname === "localhost"
+      ? endpoint
+      : `/login/proxy.php?target=${endpoint}`;
   const requestBody =
     window.location.hostname === "localhost"
       ? {
