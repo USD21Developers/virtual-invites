@@ -156,10 +156,14 @@ function onSubmit(e) {
     return showToast(getGlobalPhrase("youAreOffline"), 5000, "danger");
   }
 
-  fetch(endpoint, {
+  const proxyEndpoint =
+    window.location.hostname === "localhost" ? endpoint : "proxy.php";
+
+  fetch(proxyEndpoint, {
     mode: "cors",
     method: "POST",
     body: JSON.stringify({
+      url: endpoint,
       username: username,
       password: password,
     }),
