@@ -157,16 +157,23 @@ function onSubmit(e) {
   }
 
   const proxyEndpoint =
-    window.location.hostname === "localhost" ? endpoint : "proxy.php";
+    window.location.hostname === "localhost" ? endpoint : "/login/proxy.php";
+  const requestBody =
+    window.location.hostname === "localhost"
+      ? {
+          username: username,
+          password: password,
+        }
+      : {
+          url: endpoint,
+          username: username,
+          password: password,
+        };
 
   fetch(proxyEndpoint, {
     mode: "cors",
     method: "POST",
-    body: JSON.stringify({
-      url: endpoint,
-      username: username,
-      password: password,
-    }),
+    body: JSON.stringify(requestBody),
     headers: new Headers({
       "Content-Type": "application/json",
     }),
