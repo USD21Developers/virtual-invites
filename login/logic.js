@@ -161,7 +161,7 @@ function onSubmit(e) {
       ? endpoint
       : `/login/proxy.php?target=${endpoint}`;
 
-  fetch(proxyEndpoint, {
+  fetch(endpoint, {
     mode: "cors",
     method: "POST",
     body: JSON.stringify({
