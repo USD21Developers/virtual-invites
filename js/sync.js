@@ -570,6 +570,18 @@ function syncNotesForInvite(invitationid, unsyncedNotes = []) {
         const notes = data.notes.map(async (note) => {
           const decryptedNote = note;
 
+          if (!note.hasOwnProperty("recipient")) {
+            return;
+          }
+
+          if (!note.hasOwnProperty("summary")) {
+            return;
+          }
+
+          if (!note.hasOwnProperty("text")) {
+            return;
+          }
+
           if (note.recipient) {
             const encryptionObject = note.recipient;
             const decrypted = await invitesCrypto.decrypt(
