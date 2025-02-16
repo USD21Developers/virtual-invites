@@ -582,34 +582,39 @@ function syncNotesForInvite(invitationid, unsyncedNotes = []) {
             return;
           }
 
-          if (note.recipient) {
-            const encryptionObject = note.recipient;
-            const decrypted = await invitesCrypto.decrypt(
-              datakey,
-              encryptionObject
-            );
-            decryptedNote.recipient = JSON.parse(decrypted);
-          }
+          try {
+            if (note.recipient) {
+              const encryptionObject = note.recipient;
+              const decrypted = await invitesCrypto.decrypt(
+                datakey,
+                encryptionObject
+              );
+              decryptedNote.recipient = JSON.parse(decrypted);
+            }
 
-          if (note.summary) {
-            const encryptionObject = note.summary;
-            const decrypted = await invitesCrypto.decrypt(
-              datakey,
-              encryptionObject
-            );
-            decryptedNote.summary = JSON.parse(decrypted);
-          }
+            if (note.summary) {
+              const encryptionObject = note.summary;
+              const decrypted = await invitesCrypto.decrypt(
+                datakey,
+                encryptionObject
+              );
+              decryptedNote.summary = JSON.parse(decrypted);
+            }
 
-          if (note.text) {
-            const encryptionObject = note.text;
-            const decrypted = await invitesCrypto.decrypt(
-              datakey,
-              encryptionObject
-            );
-            decryptedNote.text = JSON.parse(decrypted);
-          }
+            if (note.text) {
+              const encryptionObject = note.text;
+              const decrypted = await invitesCrypto.decrypt(
+                datakey,
+                encryptionObject
+              );
+              decryptedNote.text = JSON.parse(decrypted);
+            }
 
-          return decryptedNote;
+            return decryptedNote;
+          } catch (error) {
+            console.error(error);
+            return resolve();
+          }
         });
 
         // Remove unsyncedNotes because sync succeeded
