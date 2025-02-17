@@ -809,7 +809,7 @@ async function populateNotes() {
         ? notesObj.filter((item) => item.invitationid !== invitationid)
         : [];
 
-      const combinedNotesUnsorted = notesForInvite.concat(otherNotes);
+      const combinedNotesUnsorted = notesForInvite?.concat(otherNotes);
       const combinedNotesSorted = combinedNotesUnsorted
         .slice()
         .sort(compareDates);
