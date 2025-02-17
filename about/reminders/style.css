@@ -53,6 +53,11 @@ li.keyFeature:last-child {
   vertical-align: middle;
 }
 
+.learnMoreLink a:first-child img {
+  height: auto;
+  width: 320px;
+}
+
 .play-button {
   position: absolute;
   top: 50%;
