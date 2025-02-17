@@ -467,7 +467,6 @@ function syncInvites() {
             const decrypted = await invitesCrypto
               .decrypt(datakey, encryptionObject)
               .catch((error) => {
-                console.error(error);
                 decryptedInvite.recipient.sms = "";
                 return;
               });
@@ -480,7 +479,6 @@ function syncInvites() {
             const decrypted = await invitesCrypto
               .decrypt(datakey, encryptionObject)
               .catch((error) => {
-                console.error(error);
                 decryptedInvite.recipient.email = "";
                 return;
               });
@@ -623,7 +621,6 @@ function syncNotesForInvite(invitationid, unsyncedNotes = []) {
 
             return decryptedNote;
           } catch (error) {
-            console.error(error);
             return resolve();
           }
         });
