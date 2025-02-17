@@ -468,6 +468,7 @@ function syncInvites() {
               datakey,
               encryptionObject
             );
+            if (!decrypted) decryptedInvite.recipient.sms = "";
             decryptedInvite.recipient.sms = decrypted;
           }
 
@@ -478,6 +479,8 @@ function syncInvites() {
               datakey,
               encryptionObject
             );
+            if (!decrypted) decryptedInvite.recipient.email = "";
+            if (!validateEmail(decrypted)) decryptedInvite.recipient.email = "";
             decryptedInvite.recipient.email = decrypted;
           }
 

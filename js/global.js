@@ -108,7 +108,9 @@ const invitesCrypto = {
     if (storedHash) {
       const computedHash = await invitesCrypto.hash(plainText);
       if (computedHash !== storedHash) {
-        throw new Error("Decryption failed: Integrity check failed");
+        return Promise.reject(
+          new Error("Decryption failed: Integrity check failed")
+        );
       }
     }
 
