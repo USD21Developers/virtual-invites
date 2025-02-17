@@ -464,24 +464,32 @@ function syncInvites() {
           // Replace SMS encryption object with decrypted string
           if (invite.recipient.sms) {
             const encryptionObject = JSON.parse(invite.recipient.sms);
-            const decrypted = await invitesCrypto.decrypt(
-              datakey,
-              encryptionObject
-            );
-            if (!decrypted) decryptedInvite.recipient.sms = "";
+            const decrypted = await invitesCrypto
+              .decrypt(datakey, encryptionObject)
+              .catch((error) => {
+                console.error(error);
+                decryptedInvite.recipient.sms = "";
+                return;
+              });
             decryptedInvite.recipient.sms = decrypted;
           }
 
           // Replace e-mail encryption object with decrypted string
           if (invite.recipient.email) {
             const encryptionObject = JSON.parse(invite.recipient.email);
-            const decrypted = await invitesCrypto.decrypt(
-              datakey,
-              encryptionObject
-            );
-            if (!decrypted) decryptedInvite.recipient.email = "";
-            if (!validateEmail(decrypted)) decryptedInvite.recipient.email = "";
-            decryptedInvite.recipient.email = decrypted;
+            const decrypted = await invitesCrypto
+              .decrypt(datakey, encryptionObject)
+              .catch((error) => {
+                console.error(error);
+                decryptedInvite.recipient.email = "";
+                return;
+              });
+
+            if (validateEmail(decrypted)) {
+              decryptedInvite.recipient.email = decrypted;
+            } else {
+              decryptedInvite.recipient.email = "";
+            }
           }
 
           return decryptedInvite;
