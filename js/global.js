@@ -90,16 +90,28 @@ const invitesCrypto = {
     const key = await invitesCrypto.key.deserialize(strKey);
     const iv = invitesCrypto.iv.deserialize(encryptionObject.iv);
     const ciphertextBase64 = encryptionObject.ciphertext;
+    const storedHash = encryptionObject.hash || null; // Handle missing hash
+
     const ciphertextArray = new Uint8Array(
       atob(ciphertextBase64)
         .split("")
         .map((c) => c.charCodeAt(0))
     );
+
     const plainText = await invitesCrypto.decryptMessage(
       key,
       iv,
       ciphertextArray.buffer
     );
+
+    // Only verify the hash if it exists (to support older records)
+    if (storedHash) {
+      const computedHash = await invitesCrypto.hash(plainText);
+      if (computedHash !== storedHash) {
+        throw new Error("Decryption failed: Integrity check failed");
+      }
+    }
+
     return plainText;
   },
 
@@ -121,69 +133,33 @@ const invitesCrypto = {
   encrypt: async (strKey, plaintext) => {
     if (typeof strKey !== "string" || strKey.length === 0)
       return new Error("key must be a string");
+
     const iv = invitesCrypto.iv.generate();
     const strIV = invitesCrypto.iv.serialize(iv);
     const algorithm = { name: "AES-CTR", counter: iv, length: 64 };
     const key = await invitesCrypto.key.deserialize(strKey);
     const plaintextBuffer = new TextEncoder().encode(plaintext).buffer;
+
     const ciphertext = await crypto.subtle.encrypt(
       algorithm,
       key,
       plaintextBuffer
     );
+
     const ciphertextBase64 = btoa(
       String.fromCharCode(...new Uint8Array(ciphertext))
     );
+
+    // Compute hash of plaintext for integrity checking
+    const plaintextHash = await invitesCrypto.hash(plaintext);
+
     const encryptionObject = {
       iv: strIV,
       ciphertext: ciphertextBase64,
+      hash: plaintextHash, // Store hash with encrypted data
     };
 
     return encryptionObject;
-  },
-
-  encryptMessage: async (key, iv, message) => {
-    const encoded = invitesCrypto.getMessageEncoding(message);
-    const ciphertext = await window.crypto.subtle.encrypt(
-      {
-        name: "AES-GCM",
-        iv: iv,
-      },
-      key,
-      encoded
-    );
-
-    return ciphertext;
-  },
-
-  generateKey: () => {
-    return new Promise((resolve, reject) => {
-      window.crypto.subtle
-        .generateKey(
-          {
-            name: "AES-CTR",
-            length: 256,
-          },
-          true,
-          ["encrypt", "decrypt"]
-        )
-        .then(async (cryptoKey) => {
-          const arrayBuffer = await window.crypto.subtle.exportKey(
-            "raw",
-            cryptoKey
-          );
-          const strKey = invitesCrypto.key.serialize(arrayBuffer);
-          return resolve(strKey);
-        })
-        .catch((err) => {
-          return reject(new Error(err));
-        });
-    });
-  },
-
-  getMessageEncoding: (message) => {
-    const enc = new TextEncoder();
-    return enc.encode(message);
   },
 
   hash: async (str) => {
@@ -196,67 +172,63 @@ const invitesCrypto = {
       .join("");
   },
 
-  importSecretKey: (rawKey) => {
-    return window.crypto.subtle.importKey("raw", rawKey, "AES-GCM", true, [
-      "encrypt",
-      "decrypt",
-    ]);
-  },
-
   iv: {
     generate: () => {
       const iv = window.crypto.getRandomValues(new Uint8Array(16));
       return iv;
     },
     serialize: (iv) => {
-      const encoded = String.fromCharCode(...iv);
-      const strIV = btoa(encoded);
-      return strIV;
+      return btoa(String.fromCharCode(...iv));
     },
     deserialize: (strIV) => {
-      const encoded = atob(strIV);
-      const iv = Uint8Array.from(encoded, (c) => c.charCodeAt(0));
-      return iv;
+      return Uint8Array.from(atob(strIV), (c) => c.charCodeAt(0));
     },
   },
 
   key: {
     serialize: (key) => {
-      const buffer = new Uint8Array(key);
-      const strKey = JSON.stringify(Array.from(buffer));
-      return strKey;
+      return JSON.stringify(Array.from(new Uint8Array(key)));
     },
 
-    deserialize: (strKey) => {
-      return new Promise(async (resolve, reject) => {
-        if (strKey.indexOf(",") <= -1) strKey = atob(strKey);
-        const array = strKey.split(",").map(Number);
-        const key = await window.crypto.subtle.importKey(
-          "raw",
-          new Uint8Array(array),
-          "AES-CTR",
-          true,
-          ["encrypt", "decrypt"]
-        );
-
-        return resolve(key);
-      });
+    deserialize: async (strKey) => {
+      const array = JSON.parse(strKey);
+      return window.crypto.subtle.importKey(
+        "raw",
+        new Uint8Array(array),
+        "AES-CTR",
+        true,
+        ["encrypt", "decrypt"]
+      );
     },
-  },
-
-  serialize: (buffer) => {
-    const serialized = JSON.stringify(Array.from(buffer));
-    return serialized;
   },
 
   test: async () => {
     const message = "Cuppa coffee for the big time!";
-    console.log(message);
+    console.log("Original Message:", message);
+
     const strKey = await invitesCrypto.generateKey();
     const encryptionObject = await invitesCrypto.encrypt(strKey, message);
-    console.log(encryptionObject);
-    const decrypted = await invitesCrypto.decrypt(strKey, encryptionObject);
-    console.log(decrypted);
+    console.log("Encrypted Object:", encryptionObject);
+
+    try {
+      const decrypted = await invitesCrypto.decrypt(strKey, encryptionObject);
+      console.log("Decrypted Message:", decrypted);
+    } catch (error) {
+      console.error("Decryption failed:", error.message);
+    }
+  },
+
+  generateKey: async () => {
+    const cryptoKey = await window.crypto.subtle.generateKey(
+      {
+        name: "AES-CTR",
+        length: 256,
+      },
+      true,
+      ["encrypt", "decrypt"]
+    );
+    const arrayBuffer = await window.crypto.subtle.exportKey("raw", cryptoKey);
+    return invitesCrypto.key.serialize(arrayBuffer);
   },
 };
 
