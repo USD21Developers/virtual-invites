@@ -49,8 +49,10 @@ li.keyFeature:last-child {
 }
 
 .learnMoreLink img {
+  height: auto;
   max-width: 100%;
   vertical-align: middle;
+  width: 320px;
 }
 
 .play-button {
