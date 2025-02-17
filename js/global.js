@@ -1826,7 +1826,6 @@ initGlobal();
 const pagesWithoutServiceWorker = [
   "/i/",
   "/i/alt/",
-  "/login/",
   "/unsubscribe/",
   "/unsubscribe/done/",
 ];
