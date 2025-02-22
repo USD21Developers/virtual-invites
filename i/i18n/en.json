@@ -45,13 +45,13 @@
     },
     {
       "key": "default-greeting-paragraph-1-bible-talk",
-      "original": "Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to Bible Talk. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
-      "translated": "Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to Bible Talk. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
+      "original": "Hi {RECIPIENT-NAME}, it's {SENDER-NAME}. I invited you {INVITED-DATE} to Bible Talk. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi {RECIPIENT-NAME}, it's {SENDER-NAME}. I invited you {INVITED-DATE} to Bible Talk. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
     },
     {
       "key": "default-greeting-paragraph-1-bible-talk-unknown-recipient",
-      "original": "Hi! It's {SENDER-FIRST-NAME}. I'm glad that I could invite you to Bible Talk. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
-      "translated": "Hi! It's {SENDER-FIRST-NAME}. I'm glad that I could invite you to Bible Talk. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
+      "original": "Hi! It's {SENDER-NAME}. I'm glad that I could invite you to Bible Talk. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi! It's {SENDER-NAME}. I'm glad that I could invite you to Bible Talk. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
     },
     {
       "key": "default-greeting-paragraph-1-bible-talk-unknown-sender-unknown-recipient",
@@ -60,13 +60,13 @@
     },
     {
       "key": "default-greeting-paragraph-1-church",
-      "original": "Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to church. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
-      "translated": "Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to church. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
+      "original": "Hi {RECIPIENT-NAME}, it's {SENDER-NAME}. I invited you {INVITED-DATE} to church. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi {RECIPIENT-NAME}, it's {SENDER-NAME}. I invited you {INVITED-DATE} to church. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
     },
     {
       "key": "default-greeting-paragraph-1-church-unknown-recipient",
-      "original": "Hi! It's {SENDER-FIRST-NAME}. I'm glad that I could invite you to church. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
-      "translated": "Hi! It's {SENDER-FIRST-NAME}. I'm glad that I could invite you to church. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
+      "original": "Hi! It's {SENDER-NAME}. I'm glad that I could invite you to church. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi! It's {SENDER-NAME}. I'm glad that I could invite you to church. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
     },
     {
       "key": "default-greeting-paragraph-1-church-unknown-sender-unknown-recipient",
@@ -75,13 +75,13 @@
     },
     {
       "key": "default-greeting-paragraph-1-other",
-      "original": "Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to {EVENT-TITLE}. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
-      "translated": "Hi {RECIPIENT-NAME}, it's {SENDER-FIRST-NAME}. I invited you {INVITED-DATE} to {EVENT-TITLE}. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
+      "original": "Hi {RECIPIENT-NAME}, it's {SENDER-NAME}. I invited you {INVITED-DATE} to {EVENT-TITLE}. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi {RECIPIENT-NAME}, it's {SENDER-NAME}. I invited you {INVITED-DATE} to {EVENT-TITLE}. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
     },
     {
       "key": "default-greeting-paragraph-1-other-unknown-recipient",
-      "original": "Hi! It's {SENDER-FIRST-NAME}. I'm glad that I could invite you to {EVENT-TITLE}. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
-      "translated": "Hi! It's {SENDER-FIRST-NAME}. I'm glad that I could invite you to {EVENT-TITLE}. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
+      "original": "Hi! It's {SENDER-NAME}. I'm glad that I could invite you to {EVENT-TITLE}. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}.",
+      "translated": "Hi! It's {SENDER-NAME}. I'm glad that I could invite you to {EVENT-TITLE}. We will be meeting on {EVENT-START-DATE} at {EVENT-START-TIME}."
     },
     {
       "key": "default-greeting-paragraph-1-other-unknown-sender-unknown-recipient",
