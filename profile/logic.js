@@ -128,6 +128,7 @@ function populateForm() {
     email,
     firstname,
     lastname,
+    nameDisplayedOnInvite,
     churchid,
     gender,
   } = userData;
@@ -159,6 +160,12 @@ function populateForm() {
   document.querySelector("#email").value = email;
   document.querySelector("#firstname").value = firstname;
   document.querySelector("#lastname").value = lastname;
+  if (nameDisplayedOnInvite) {
+    document.querySelector("#nameDisplayedOnInvite").value =
+      nameDisplayedOnInvite;
+  } else {
+    document.querySelector("#nameDisplayedOnInvite").value = firstname;
+  }
   document.querySelector("#churchid").value = churchid;
 }
 
@@ -224,6 +231,8 @@ async function onSubmit(e) {
     document.querySelector("#email").value.trim().toLowerCase() || "";
   const firstname = document.querySelector("#firstname").value.trim() || "";
   const lastname = document.querySelector("#lastname").value.trim() || "";
+  const nameDisplayedOnInvite =
+    document.querySelector("#nameDisplayedOnInvite").value.trim() || "";
   const churchid = document.querySelector("#churchid").value.trim() || "";
   const datakey = localStorage.getItem("datakey");
 
@@ -252,6 +261,13 @@ async function onSubmit(e) {
     return formError("#lastname", getPhrase("lastnamerequired", regContent));
   }
 
+  if (!nameDisplayedOnInvite.length) {
+    return formError(
+      "#nameDisplayedOnInvite",
+      getPhrase("nameDisplayedOnInviteRequired")
+    );
+  }
+
   if (!churchid.length) {
     return formError("#churchid", getPhrase("churchrequired", regContent));
   }
@@ -275,6 +291,7 @@ async function onSubmit(e) {
       email: email,
       firstname: firstname,
       lastname: lastname,
+      nameDisplayedOnInvite: nameDisplayedOnInvite,
       churchid: churchid,
       emailSenderText: emailSenderText,
       emailSubject: emailSubject,

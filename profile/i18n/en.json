@@ -54,6 +54,16 @@
       "translated": "Last name:"
     },
     {
+      "key": "nameDisplayedOnInvite",
+      "original": "My name as displayed on recipient's invite:",
+      "translated": "My name as displayed on recipient's invite:"
+    },
+    {
+      "key": "nameDisplayedOnInviteRequired",
+      "original": "This field is required.",
+      "translated": "This field is required."
+    },
+    {
       "key": "church",
       "original": "Church:",
       "translated": "Church:"
