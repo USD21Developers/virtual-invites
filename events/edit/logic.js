@@ -1339,7 +1339,7 @@ async function populateInterpolatedPhrases() {
   );
   newHTML = newHTML.replaceAll(
     "{SENDER-NAME}",
-    `<span data-interpolated='SENDER-FIRST-NAME'>${senderFirstName}</span>`
+    `<span data-interpolated='{SENDER-NAME}'>${senderFirstName}</span>`
   );
   newHTML = newHTML.replaceAll(
     "{SENDER-FIRST-NAME}",
