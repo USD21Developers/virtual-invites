@@ -1059,6 +1059,7 @@ function populateGreetingParagraph1() {
 
   text = text.replaceAll("{RECIPIENT-NAME}", recipientname);
   text = text.replaceAll("{SENDER-NAME}", senderName);
+  text = text.replaceAll("{SENDER-FIRST-NAME}", senderName);
   text = text.replaceAll("{INVITED-DATE}", invitedDate);
   text = canUseTitleCase
     ? text.replaceAll("{EVENT-TITLE}", eventTitle.toTitleCase())
