@@ -214,7 +214,7 @@ function getDefaultInvitedDate() {
 function getSenderFirstName() {
   const firstName =
     JSON.parse(atob(localStorage.getItem("refreshToken").split(".")[1]))
-      .firstname || "John";
+      .nameDisplayedOnInvite || "John";
   return firstName;
 }
 
@@ -1336,6 +1336,10 @@ async function populateInterpolatedPhrases() {
   newHTML = newHTML.replaceAll(
     "{RECIPIENT-NAME}",
     `<span data-interpolated='RECIPIENT-NAME'>${recipientName}</span>`
+  );
+  newHTML = newHTML.replaceAll(
+    "{SENDER-NAME}",
+    `<span data-interpolated='SENDER-FIRST-NAME'>${senderFirstName}</span>`
   );
   newHTML = newHTML.replaceAll(
     "{SENDER-FIRST-NAME}",
