@@ -63,6 +63,7 @@ const supportedLangs = ["en"];
   hideToast
   isMobileDevice
   isPushPermitted
+  logRocketIdentify
   populateContent
   populateGlobalContent
   popupQuantityOfEvents
@@ -1191,6 +1192,29 @@ function isPushPermitted() {
   return isPermitted;
 }
 
+function logRocketIdentify() {
+  if (!LogRocket) return;
+
+  const refreshTokenJSON = localStorage.getItem("refreshToken");
+
+  if (!refreshTokenJSON) return;
+
+  const refreshToken = JSON.parse(atob(refreshTokenJSON.split(".")[1]));
+
+  LogRocket.identify(refreshToken.username, {
+    name: `${refreshToken.firstname} ${refreshToken.lastname}`,
+    email: refreshToken.email,
+    canAuthToAuth: refreshToken.canAuthToAuth,
+    canAuthorize: refreshToken.canAuthorize,
+    gender: refreshToken.gender,
+    isAuthorized: refreshToken.isAuthorized,
+    profilephoto: refreshToken.profilephoto,
+    userid: refreshToken.userid,
+    username: refreshToken.username,
+    usertype: refreshToken.usertype,
+  });
+}
+
 async function populateContent(customEndpoint, variable = "pageContent") {
   return new Promise((resolve, reject) => {
     const lang = getLang();
@@ -1824,6 +1848,7 @@ function initGlobal() {
 }
 
 initGlobal();
+logRocketIdentify();
 
 const pagesWithoutServiceWorker = [
   "/i/",
