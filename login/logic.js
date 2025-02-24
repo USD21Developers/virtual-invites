@@ -180,6 +180,7 @@ function onSubmit(e) {
         hide(spinner);
         show(submitButton);
         showAlert(alert, phrase, headline);
+        logRocketIdentify(phrase);
         return;
       } else if (data.msg === "user is not authorized") {
         localStorage.setItem("userToken", data.userToken);
@@ -217,6 +218,7 @@ function onSubmit(e) {
     })
     .catch((err) => {
       console.error(err);
+      logRocketIdentify(err);
       hide(spinner);
       show(submitButton);
     })

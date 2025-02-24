@@ -1192,8 +1192,9 @@ function isPushPermitted() {
   return isPermitted;
 }
 
-function logRocketIdentify() {
+function logRocketIdentify(errorMessage) {
   if (!LogRocket) return;
+  const err = errorMessage ? errorMessage : "N/A";
 
   const refreshTokenJSON = localStorage.getItem("refreshToken");
 
@@ -1206,6 +1207,7 @@ function logRocketIdentify() {
     email: refreshToken.email,
     canAuthToAuth: refreshToken.canAuthToAuth,
     canAuthorize: refreshToken.canAuthorize,
+    errorMessage: err,
     gender: refreshToken.gender,
     isAuthorized: refreshToken.isAuthorized,
     profilephoto: refreshToken.profilephoto,
@@ -1848,7 +1850,6 @@ function initGlobal() {
 }
 
 initGlobal();
-logRocketIdentify();
 
 const pagesWithoutServiceWorker = [
   "/i/",
