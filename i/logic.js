@@ -669,15 +669,18 @@ async function getInvite() {
 }
 
 function getRelativeTime(dateUtc) {
-  const { locale, timeZone } = Intl.DateTimeFormat().resolvedOptions();
+  // Detect locale and timezone, with a fallback for locale
+  const options = Intl.DateTimeFormat().resolvedOptions();
+  const locale = options.locale || "en-US";
+  const timeZone = options.timeZone || "UTC";
 
   // Convert UTC date to the user's local time zone
-  const dateLocal = new Date(dateUtc).toLocaleString("en-US", { timeZone });
+  const dateLocal = new Date(dateUtc).toLocaleString(locale, { timeZone });
   const dateLocalObj = new Date(dateLocal);
   const now = new Date();
 
   // Get date components in the local time zone
-  const localDate = new Date(now.toLocaleString("en-US", { timeZone }));
+  const localDate = new Date(now.toLocaleString(locale, { timeZone }));
   const midnightToday = new Date(localDate);
   midnightToday.setHours(0, 0, 0, 0);
 
