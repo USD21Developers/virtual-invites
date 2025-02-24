@@ -668,6 +668,57 @@ async function getInvite() {
   });
 }
 
+function getRelativeTime(dateUtc) {
+  const { locale, timeZone } = Intl.DateTimeFormat().resolvedOptions();
+
+  // Convert UTC date to the user's local time zone
+  const dateLocal = new Date(dateUtc).toLocaleString("en-US", { timeZone });
+  const dateLocalObj = new Date(dateLocal);
+  const now = new Date();
+
+  // Get date components in the local time zone
+  const localDate = new Date(now.toLocaleString("en-US", { timeZone }));
+  const midnightToday = new Date(localDate);
+  midnightToday.setHours(0, 0, 0, 0);
+
+  const midnightYesterday = new Date(midnightToday);
+  midnightYesterday.setDate(midnightToday.getDate() - 1);
+
+  const diffInMilliseconds = dateLocalObj - localDate;
+  const diffInDays = Math.round(diffInMilliseconds / (1000 * 60 * 60 * 24));
+
+  let value, unit;
+
+  if (dateLocalObj >= midnightToday) {
+    return new Intl.RelativeTimeFormat(locale, { numeric: "auto" }).format(
+      0,
+      "day"
+    ); // "today"
+  } else if (dateLocalObj >= midnightYesterday) {
+    return new Intl.RelativeTimeFormat(locale, { numeric: "auto" }).format(
+      -1,
+      "day"
+    ); // "yesterday"
+  } else if (diffInDays >= 720) {
+    value = Math.round(diffInDays / 365);
+    unit = "year";
+  } else if (diffInDays >= 60) {
+    value = Math.round(diffInDays / 30);
+    unit = "month";
+  } else if (diffInDays >= 7) {
+    value = Math.round(diffInDays / 7);
+    unit = "week";
+  } else {
+    value = diffInDays;
+    unit = "day";
+  }
+
+  return new Intl.RelativeTimeFormat(locale, { numeric: "auto" }).format(
+    value,
+    unit
+  );
+}
+
 function personalizeGreeting() {
   const { event, user, recipient } = inviteObject;
 
@@ -1005,7 +1056,8 @@ function populateGreetingParagraph1() {
   const dateNowMoment = moment().tz(recipientTimeZone);
   const daysAgo = moment.duration(dateInvitedMoment.diff(dateNowMoment))._data
     .days;
-  const invitedDate = getRelativeDate(daysAgo, locale);
+  const invitedDate = getRelativeTime(invitedAt);
+
   const isRecurringEvent = frequency === "once" ? false : true;
   const isMultiDay = multidaybegindate ? true : false;
   let eventStartDateTime;
