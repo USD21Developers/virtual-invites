@@ -5,6 +5,9 @@ let inviteObj = {};
 let eventObj = {};
 let notesObj = [];
 let itiPhone;
+let addNoteFormSubmitted = false;
+let editNoteFormSubmitted = false;
+let deleteNoteFormSubmitted = false;
 
 function closeModal() {
   const followUpFormEl = document.querySelector("#followUpForm");
@@ -1242,6 +1245,8 @@ function onSaveNote(e) {
 
     syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
 
+    addNoteFormSubmitted = true;
+
     return resolve(note);
   });
 }
@@ -1526,6 +1531,8 @@ function onEditNote() {
 
     syncNotesForInvite(inviteObj.invitationid, unsyncedNotesSorted);
 
+    editNoteFormSubmitted = true;
+
     return resolve(updatedNote);
   });
 }
@@ -1573,6 +1580,8 @@ async function onDeleteNote(evt) {
   await localforage.setItem("notes", notesSorted);
 
   renderNotes();
+
+  deleteNoteFormSubmitted = true;
 
   $("#deleteNoteModal").modal("hide");
 
@@ -2024,15 +2033,24 @@ function attachListeners() {
     .addEventListener("submit", onEditSubmitted);
 
   $("#addNoteModal").on("hidden.bs.modal", () => {
-    onAfterSaveNote();
+    if (addNoteFormSubmitted) {
+      addNoteFormSubmitted = false;
+      onAfterSaveNote();
+    }
   });
 
   $("#editNoteModal").on("hidden.bs.modal", () => {
-    onAfterEditNote();
+    if (editNoteFormSubmitted) {
+      editNoteFormSubmitted = false;
+      onAfterEditNote();
+    }
   });
 
   $("#deleteNoteModal").on("hidden.bs.modal", () => {
-    onAfterDeleteNote();
+    if (deleteNoteFormSubmitted) {
+      deleteNoteFormSubmitted = false;
+      onAfterDeleteNote();
+    }
   });
 }
 
