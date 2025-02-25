@@ -660,7 +660,7 @@ async function onSubmit(e) {
 
   const formdata = getCalendarObject();
   const accessToken = await getAccessToken();
-  const endpoint = `${getAPIHost()}/event-add`;
+  const endpoint = `${getApiHost()}/event-add`;
 
   showSpinner();
 
