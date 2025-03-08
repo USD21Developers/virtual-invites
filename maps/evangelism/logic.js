@@ -138,6 +138,23 @@ async function initMap(searchResults) {
 
   const bounds = new google.maps.LatLngBounds();
 
+  othersInvites.forEach((invite) => {
+    const { lat, lng } = invite;
+    const pin = new PinElement({
+      background: defaultColorOthersInvites,
+      borderColor: "white",
+      glyphColor: "white",
+    });
+    const marker = new google.maps.marker.AdvancedMarkerElement({
+      map,
+      position: { lat: lat, lng: lng },
+      content: pin.element,
+    });
+
+    markersOthersInvites.push(marker);
+    bounds.extend(marker.position);
+  });
+
   userInvites.forEach((invite) => {
     const { lat, lng, recipientname, invitedAt, invitationid, eventid } =
       invite;
@@ -194,23 +211,6 @@ async function initMap(searchResults) {
     bounds.extend(marker.position);
   });
 
-  othersInvites.forEach((invite) => {
-    const { lat, lng } = invite;
-    const pin = new PinElement({
-      background: defaultColorOthersInvites,
-      borderColor: "white",
-      glyphColor: "white",
-    });
-    const marker = new google.maps.marker.AdvancedMarkerElement({
-      map,
-      position: { lat: lat, lng: lng },
-      content: pin.element,
-    });
-
-    markersOthersInvites.push(marker);
-    bounds.extend(marker.position);
-  });
-
   // Calculate the center of the bounds
   const center = bounds.getCenter();
 
@@ -225,12 +225,12 @@ async function initMap(searchResults) {
   // Enable heat map
   await google.maps.importLibrary("visualization");
   var heatmapData = [];
-  userInvites.forEach((invite) => {
+  othersInvites.forEach((invite) => {
     const { lat, lng } = invite;
     const point = new google.maps.LatLng(lat, lng);
     heatmapData.push(point);
   });
-  othersInvites.forEach((invite) => {
+  userInvites.forEach((invite) => {
     const { lat, lng } = invite;
     const point = new google.maps.LatLng(lat, lng);
     heatmapData.push(point);
