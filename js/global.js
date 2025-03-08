@@ -1145,6 +1145,10 @@ function globalShowPageSpinner() {
   const pageSpinner = document.querySelector("#pageSpinner");
   const mainContent = document.querySelector(".mainContent");
 
+  document.querySelectorAll(".supplementalContent").forEach((item) => {
+    item.classList.add("d-none");
+  });
+
   breadcrumbs?.classList.add("d-none");
   pageSpinner.classList.remove("d-none");
   mainContent.classList.add("d-none");
