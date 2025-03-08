@@ -189,7 +189,7 @@ async function initEnforceAccess() {
     verifyDataKey();
 
     const permissions = getPermissions();
-    if (!permissions.includes("isAuthorized")) {
+    if (!permissions?.includes("isAuthorized")) {
       sessionStorage.setItem("redirectOnLogin", window.location.href);
       window.location.href = "/logout/";
     }
