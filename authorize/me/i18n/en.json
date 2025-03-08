@@ -15,8 +15,13 @@
     },
     {
       "key": "paragraph1",
-      "original": "Hello, {FIRST-NAME}! Although your login is accurate, you'll still need to get authorized before you can start using the Invites App. Just follow the instructions below.",
-      "translated": "Hello, {FIRST-NAME}! Although your login is accurate, you'll still need to get authorized before you can start using the Invites App. Just follow the instructions below."
+      "original": "Hello, {FIRST-NAME}! Although your login is accurate, you'll still need to get authorized before you can start using the Invites App.",
+      "translated": "Hello, {FIRST-NAME}! Although your login is accurate, you'll still need to get authorized before you can start using the Invites App."
+    },
+    {
+      "key": "paragraph2",
+      "original": "This is necessary in order to ensure that every user is a genuine disciple of Jesus and is a member in good standing with their local church congregation.",
+      "translated": "This is necessary in order to ensure that every user is a genuine disciple of Jesus and is a member in good standing with their local church congregation."
     },
     {
       "key": "instructionsHeadline",
@@ -35,8 +40,8 @@
     },
     {
       "key": "listOfAuthorizingUsers",
-      "original": "Here's a list of authorizing users.",
-      "translated": "Here's a list of authorizing users.",
+      "original": "Here is a list of authorizing users.",
+      "translated": "Here is a list of authorizing users.",
       "changes": [
         {
           "original": "authorizing users",
@@ -60,13 +65,13 @@
     },
     {
       "key": "instructions3",
-      "original": "Once you are approved, just log out and log back in again.",
-      "translated": "Once you are approved, just log out and log back in again.",
+      "original": "Once you are approved, log in again.",
+      "translated": "Once you are approved, log in again.",
       "changes": [
         {
-          "original": "log out",
-          "translated": "log out",
-          "bold": false,
+          "original": "log in again",
+          "translated": "log in again",
+          "bold": true,
           "italic": false,
           "link": "/logout/"
         }

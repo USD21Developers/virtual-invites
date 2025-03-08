@@ -13,3 +13,7 @@ a[href="/logout/"] {
 [data-i18n="authorizationInProgress"] {
   font-weight: 600;
 }
+
+a[href="#authorizers"] {
+  color: var(--danger);
+}
