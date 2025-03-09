@@ -309,6 +309,16 @@
       "translated": "Check your e-mail"
     },
     {
+      "key": "checkThisEmail",
+      "original": "Check This E-mail Account:",
+      "translated": "Check This E-mail Account:"
+    },
+    {
+      "key": "checkSpamFolder",
+      "original": "Don't forget to look in your spam folder.",
+      "translated": "Don't forget to look in your spam folder."
+    },
+    {
       "key": "checkyouremailtext",
       "original": "Please check your e-mail.  We have sent you a message containing a special link. In order to confirm your registration, you must click on that link.",
       "translated": "Please check your e-mail.  We have sent you a message containing a special link. In order to confirm your registration, you must click on that link.",
@@ -411,17 +421,53 @@
     },
     {
       "key": "waitingTooLong",
-      "original": "Waiting too long? Remember to check in your spam folder.",
-      "translated": "Waiting too long? Remember to check in your spam folder.",
-      "changes": [
-        {
-          "original": "Waiting too long?",
-          "translated": "Waiting too long?",
-          "bold": true,
-          "italic": false,
-          "link": ""
-        }
-      ]
+      "original": "Waiting Too Long?",
+      "translated": "Waiting Too Long?"
+    },
+    {
+      "key": "sendAgain",
+      "original": "Send E-mail Again",
+      "translated": "Send E-mail Again"
+    },
+    {
+      "key": "retrying",
+      "original": "Retrying...",
+      "translated": "Retrying..."
+    },
+    {
+      "key": "emailBlocked",
+      "original": "E-mail Blocked?",
+      "translated": "E-mail Blocked?"
+    },
+    {
+      "key": "emailBlockedExplanation",
+      "original": "If sending the e-mail again isn't working, your e-mail provider may be blocking the message. To fix this, you can use an alternative e-mail address (if you have one).",
+      "translated": "If sending the e-mail again isn't working, your e-mail provider may be blocking the message. To fix this, you can use an alternative e-mail address (if you have one)."
+    },
+    {
+      "key": "labelAlternativeEmailAddress",
+      "original": "Alternative e-mail address:",
+      "translated": "Alternative e-mail address:"
+    },
+    {
+      "key": "email",
+      "original": "E-mail",
+      "translated": "E-mail"
+    },
+    {
+      "key": "updateEmailButton",
+      "original": "Update E-mail Address",
+      "translated": "Update E-mail Address"
+    },
+    {
+      "key": "emailSentAgain",
+      "original": "E-mail sent again.",
+      "translated": "E-mail sent again."
+    },
+    {
+      "key": "emailUpdatedAndSentAgain",
+      "original": "E-mail updated, and sent again.",
+      "translated": "E-mail updated, and sent again."
     },
     {
       "key": "installationHeadline",

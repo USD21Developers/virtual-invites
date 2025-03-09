@@ -110,6 +110,141 @@ function unsubscribeFromNotifications() {
   });
 }
 
+function onResendEmail() {
+  return new Promise(async (resolve, reject) => {
+    const emailDisplayedEl = document.querySelector("#emailDisplayed");
+    const waitingTooLongEl = document.querySelector("#waitingTooLong");
+    const alternativeEmailEl = document.querySelector("#alternativeEmail");
+    const storedToken = localStorage.getItem("pendingConfirmationToken");
+
+    if (!storedToken) {
+      return reject("pendingConfirmationToken not found in localStorage");
+    }
+
+    const parsedToken = JSON.parse(atob(storedToken.split(".")[1]));
+
+    const {
+      createdAt,
+      email,
+      exp,
+      firstname,
+      iat,
+      lastname,
+      updatedAt,
+      userid,
+      username,
+    } = parsedToken;
+
+    const expiresAt = exp * 1000;
+    const now = Date.now();
+
+    if (now > expiresAt) {
+      localStorage.removeItem("pendingConfirmationToken");
+      return reject("pendingConfirmationToken is expired");
+    }
+
+    const registrationPageContent = await fetch(
+      `../register/i18n/${getLang()}.json`
+    ).then((res) => res.json());
+
+    const emailSenderText = getPhrase(
+      "emailSenderText",
+      registrationPageContent
+    );
+    const emailSubject = getPhrase("emailSubject", registrationPageContent);
+    let emailParagraph1 = getPhrase("emailParagraph1", registrationPageContent);
+    const emailLinkText = getPhrase("emailLinkText", registrationPageContent);
+    const emailSignature = getPhrase("emailSignature", registrationPageContent);
+    const endpoint = `${getApiHost()}/register-resend-confirmation`;
+
+    emailParagraph1 = emailParagraph1.replaceAll(
+      "${fullname}",
+      `${firstname} ${lastname}`
+    );
+
+    alternativeEmailEl.value = "";
+
+    waitingTooLongEl.classList.add("d-none");
+
+    globalShowPageSpinner();
+
+    document
+      .querySelectorAll(".modal")
+      .forEach((item) => item.classList.add("d-none"));
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "post",
+      body: JSON.stringify({
+        emailSenderText: emailSenderText,
+        emailSubject: emailSubject,
+        emailParagraph1: emailParagraph1,
+        emailLinkText: emailLinkText,
+        emailSignature: emailSignature,
+        lang: getLang(),
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${storedToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem(
+          "pendingConfirmationToken",
+          data.pendingConfirmationToken
+        );
+
+        const parsedToken = JSON.parse(
+          atob(data.pendingConfirmationToken.split(".")[1])
+        );
+
+        document.querySelector(".modal-title").innerText = getPhrase(
+          "checkyouremailtitle",
+          registrationPageContent
+        );
+
+        emailDisplayedEl.innerText = parsedToken.email;
+
+        document.querySelector(".modal-title").scrollIntoView();
+
+        document
+          .querySelector("#modalAccountUnconfirmed")
+          .classList.remove("d-none");
+
+        globalHidePageSpinner();
+
+        setTimeout(() => {
+          waitingTooLongEl.classList.remove("d-none");
+        }, 15000);
+
+        // TODO:  Validate response
+
+        showToast(
+          getPhrase("emailSentAgain"),
+          5000,
+          "success",
+          "#contentdone .snackbar"
+        );
+      });
+  });
+}
+
+async function onAlternateEmailUpdated(e) {
+  const emailDisplayedEl = document.querySelector("#emailDisplayed");
+  const alternativeEmailEl = document.querySelector("#alternativeEmail");
+  const alternativeEmail = alternativeEmailEl.value.trim().toLowerCase();
+
+  // TODO:  confirm that "pendingConfirmationToken" exists in localStorage
+  // TODO:  validate, to prevent too many form submissions (maybe wait at least 1 minute)
+  // TODO:  validate, to prevent previously attempted email addresses from going through
+  // TODO:  validate e-mail address
+  // TODO:  contact API
+  // TODO:  update displayed e-mail
+  // TODO:  clear alternative e-mail field
+  // TODO:  show toast
+}
+
 function onSubmit(e) {
   e.preventDefault();
   const spinner = document.querySelector("#progressbar");
@@ -187,26 +322,94 @@ function onSubmit(e) {
       } else if (data.msg === "user authenticated") {
         localStorage.setItem("datakey", data.datakey);
         localStorage.setItem("refreshToken", data.refreshToken);
+        localStorage.removeItem("pendingConfirmationToken");
         sessionStorage.setItem("accessToken", data.accessToken);
 
         storeMapKeys(data.refreshToken);
 
         return forwardAuthenticatedUser();
       } else if (data.msg === "user status is not registered") {
+        if (data.pendingConfirmationToken) {
+          localStorage.setItem(
+            "pendingConfirmationToken",
+            data.pendingConfirmationToken
+          );
+        }
+
         const registrationPageContent = await fetch(
           `../register/i18n/${getLang()}.json`
         ).then((res) => res.json());
-        let content = getPhrase("checkyouremailtext", registrationPageContent);
-        content += `
-          <br /><br />
-          ${getPhrase("waitingTooLong", registrationPageContent)}
-        `;
 
-        const headline = getPhrase("headlineAccountUnconfirmed");
+        document.querySelector(".modal-title").innerText = getPhrase(
+          "headlineAccountUnconfirmed"
+        );
+
+        document.querySelector("[data-i18n='checkyouremailtext']").innerHTML =
+          getPhrase("checkyouremailtext", registrationPageContent);
+
+        const pendingConfirmationTokenJSON = localStorage.getItem(
+          "pendingConfirmationToken"
+        );
+
+        if (!pendingConfirmationTokenJSON) return;
+
+        const pendingConfirmationToken = JSON.parse(
+          atob(pendingConfirmationTokenJSON.split(".")[1])
+        );
+
+        const now = Date.now();
+
+        const expires = pendingConfirmationToken.exp * 1000;
+
+        if (now > expires) return;
+
+        document.querySelector("[data-i18n='checkThisEmail']").innerText =
+          getPhrase("checkThisEmail", registrationPageContent);
+
+        document.querySelector("#emailDisplayed").innerText =
+          pendingConfirmationToken.email;
+
+        document.querySelector("[data-i18n='checkSpamFolder']").innerText =
+          getPhrase("checkSpamFolder", registrationPageContent);
+
+        document.querySelector("[data-i18n='waitingTooLong']").innerText =
+          getPhrase("waitingTooLong", registrationPageContent);
+
+        document.querySelector("[data-i18n='sendAgain']").innerText = getPhrase(
+          "sendAgain",
+          registrationPageContent
+        );
+
+        document.querySelector("[data-i18n='emailBlocked']").innerText =
+          getPhrase("emailBlocked", registrationPageContent);
+
+        document.querySelector(
+          "[data-i18n='emailBlockedExplanation']"
+        ).innerText = getPhrase(
+          "emailBlockedExplanation",
+          registrationPageContent
+        );
+
+        document.querySelector(
+          "[data-i18n='labelAlternativeEmailAddress']"
+        ).innerText = getPhrase(
+          "labelAlternativeEmailAddress",
+          registrationPageContent
+        );
+
+        document
+          .querySelector("[data-i18n-placeholder='email']")
+          .setAttribute(
+            "placeholder",
+            getPhrase("email", registrationPageContent)
+          );
+
+        document.querySelector("[data-i18n='updateEmailButton']").innerText =
+          getPhrase("updateEmailButton", registrationPageContent);
 
         hide(spinner);
         show(submitButton);
-        showAlert(alert, content, headline);
+        $("#modalAccountUnconfirmed").modal();
         return;
       } else {
         const glitchMessage = getPhrase("glitchMessage");
@@ -238,6 +441,15 @@ function onSubmit(e) {
 
 function attachListeners() {
   document.querySelector("#formlogin").addEventListener("submit", onSubmit);
+  document
+    .querySelector("#buttonSendAgain")
+    .addEventListener("click", onResendEmail);
+  document
+    .querySelector("#formAlternativeEmail")
+    .addEventListener("submit", onAlternateEmailUpdated);
+  $("#modalAccountUnconfirmed").on("hide.bs.modal", function (e) {
+    window.location.reload();
+  });
 }
 
 async function init() {

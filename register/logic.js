@@ -208,6 +208,18 @@ function initCroppie() {
   init();
 }
 
+function pageSpinnerHide(containerSelector) {
+  document.querySelector("#pageSpinner").classList.add("d-none");
+  document.querySelector(containerSelector).classList.remove("d-none");
+}
+
+function pageSpinnerShow(containerSelector) {
+  document
+    .querySelectorAll(".container")
+    .forEach((item) => item.classList.add("d-none"));
+  globalShowPageSpinner();
+}
+
 function populateChurches() {
   const churchDropdown = document.querySelector("#churchid");
   const emptyOption = document.createElement("option");
@@ -504,6 +516,117 @@ function onInstallClick(e) {
   }
 }
 
+function onResendEmail() {
+  return new Promise(async (resolve, reject) => {
+    const emailDisplayedEl = document.querySelector("#emailDisplayed");
+    const waitingTooLongEl = document.querySelector("#waitingTooLong");
+    const alternativeEmailEl = document.querySelector("#alternativeEmail");
+    const storedToken = localStorage.getItem("pendingConfirmationToken");
+
+    if (!storedToken) {
+      return reject("pendingConfirmationToken not found in localStorage");
+    }
+
+    const parsedToken = JSON.parse(atob(storedToken.split(".")[1]));
+
+    const { createdAt, email, exp, iat, updatedAt, userid, username } =
+      parsedToken;
+
+    const expiresAt = exp * 1000;
+    const now = Date.now();
+
+    if (now > expiresAt) {
+      localStorage.removeItem("pendingConfirmationToken");
+      return reject("pendingConfirmationToken is expired");
+    }
+
+    const firstname = document.querySelector("#firstname").value.trim() || "";
+    const lastname = document.querySelector("#lastname").value.trim() || "";
+    const emailSenderText = getPhrase("emailSenderText");
+    const emailSubject = getPhrase("emailSubject");
+    let emailParagraph1 = getPhrase("emailParagraph1");
+    const emailLinkText = getPhrase("emailLinkText");
+    const emailSignature = getPhrase("emailSignature");
+    const endpoint = `${getApiHost()}/register-resend-confirmation`;
+
+    emailParagraph1 = emailParagraph1.replaceAll(
+      "${fullname}",
+      `${firstname} ${lastname}`
+    );
+
+    alternativeEmailEl.value = "";
+
+    waitingTooLongEl.classList.add("d-none");
+
+    pageSpinnerShow();
+
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "post",
+      body: JSON.stringify({
+        emailSenderText: emailSenderText,
+        emailSubject: emailSubject,
+        emailParagraph1: emailParagraph1,
+        emailLinkText: emailLinkText,
+        emailSignature: emailSignature,
+        lang: getLang(),
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${storedToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem(
+          "pendingConfirmationToken",
+          data.pendingConfirmationToken
+        );
+
+        const parsedToken = JSON.parse(
+          atob(data.pendingConfirmationToken.split(".")[1])
+        );
+
+        emailDisplayedEl.innerText = parsedToken.email;
+
+        pageSpinnerHide("#contentdone");
+
+        setTimeout(() => {
+          waitingTooLongEl.classList.remove("d-none");
+        }, 15000);
+
+        // TODO:  Validate response
+
+        showToast(
+          getPhrase("emailSentAgain"),
+          5000,
+          "success",
+          "#contentdone .snackbar"
+        );
+      });
+  });
+}
+
+async function onAlternateEmailUpdated(e) {
+  const emailDisplayedEl = document.querySelector("#emailDisplayed");
+  const alternativeEmailEl = document.querySelector("#alternativeEmail");
+  const alternativeEmail = alternativeEmailEl.value.trim().toLowerCase();
+
+  // TODO:  confirm that "pendingConfirmationToken" exists in localStorage
+  // TODO:  validate, to prevent too many form submissions (maybe wait at least 1 minute)
+  // TODO:  validate, to prevent previously attempted email addresses from going through
+  // TODO:  validate e-mail address
+  // TODO:  contact API
+  // TODO:  update displayed e-mail
+  // TODO:  clear alternative e-mail field
+  // TODO:  show toast
+}
+
 async function onSubmit(e) {
   e.preventDefault();
 
@@ -645,6 +768,32 @@ async function onSubmit(e) {
         case "confirmation e-mail sent":
           const defaultContent = document.querySelector("#contentdefault");
           const doneContent = document.querySelector("#contentdone");
+          const pendingConfirmationToken = data.pendingConfirmationToken;
+
+          if (pendingConfirmationToken && pendingConfirmationToken.length) {
+            localStorage.setItem(
+              "pendingConfirmationToken",
+              pendingConfirmationToken
+            );
+
+            const parsedToken = JSON.parse(
+              atob(pendingConfirmationToken.split(".")[1])
+            );
+
+            document.querySelector("#emailDisplayed").innerText =
+              parsedToken.email;
+
+            document.querySelector("#contentinstall").classList.add("d-none");
+
+            document
+              .querySelector("#waitingTooLong")
+              .classList.remove("d-none");
+
+            window.scrollTo({
+              top: 0,
+              behavior: "auto",
+            });
+          }
 
           hide(defaultContent);
           show(doneContent);
@@ -697,6 +846,12 @@ function attachListeners() {
       authCodeContainerEl.classList.remove("d-none");
     }
   });
+  document
+    .querySelector("#buttonSendAgain")
+    .addEventListener("click", onResendEmail);
+  document
+    .querySelector("#formAlternativeEmail")
+    .addEventListener("submit", onAlternateEmailUpdated);
 }
 
 async function init() {
