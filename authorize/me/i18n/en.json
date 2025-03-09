@@ -35,8 +35,8 @@
     },
     {
       "key": "instructions1",
-      "original": "Within your congregation there are other registered users of the Invites App who have the necessary access to authorize you. You'll need to find one of them (in person).",
-      "translated": "Within your congregation there are other registered users of the Invites App who have the necessary access to authorize you. You'll need to find one of them (in person)."
+      "original": "Within your congregation there are other registered users who can authorize you. You'll need to find one of them (in person).",
+      "translated": "Within your congregation there are other registered users who can authorize you. You'll need to find one of them (in person)."
     },
     {
       "key": "listOfAuthorizingUsers",
