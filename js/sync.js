@@ -658,9 +658,7 @@ function syncAllNotes() {
     fetch(endpoint, {
       mode: "cors",
       method: "POST",
-      body: JSON.stringify({
-        unsyncedNotes: unsyncedNotes,
-      }),
+      body: JSON.stringify({ unsyncedNotes }),
       headers: new Headers({
         "Content-Type": "application/json",
         authorization: `Bearer ${accessToken}`,
@@ -672,67 +670,60 @@ function syncAllNotes() {
         const datakey = localStorage.getItem("datakey") || "";
 
         if (!datakey.length) {
-          const errorMessage =
-            "Sync of notes for an invite failed:  datakey is missing";
+          const errorMessage = "Sync of notes failed: datakey is missing";
           console.error(errorMessage);
           return reject(new Error(errorMessage));
         }
 
         if (!Array.isArray(data.notes)) {
           const errorMessage =
-            "Sync of notes for an invite failed:  returned notes key is not an array";
+            "Sync of notes failed: returned notes key is not an array";
           console.error(errorMessage);
           return reject(new Error(errorMessage));
         }
 
-        const notes = data.notes.map(async (note) => {
-          const decryptedNote = note;
-
-          if (note.recipient) {
-            const encryptionObject = note.recipient;
-            const decrypted = await invitesCrypto.decrypt(
-              datakey,
-              encryptionObject
-            );
-            decryptedNote.recipient = JSON.parse(decrypted);
+        const notesPromises = data.notes.map(async (note) => {
+          try {
+            if (note.recipient) {
+              note.recipient = JSON.parse(
+                await invitesCrypto.decrypt(datakey, note.recipient)
+              );
+            }
+            if (note.summary) {
+              note.summary = JSON.parse(
+                await invitesCrypto.decrypt(datakey, note.summary)
+              );
+            }
+            if (note.text) {
+              note.text = JSON.parse(
+                await invitesCrypto.decrypt(datakey, note.text)
+              );
+            }
+            return note;
+          } catch (error) {
+            console.error("Failed to decrypt note:", error);
+            return null; // Skip this note
           }
-
-          if (note.summary) {
-            const encryptionObject = note.summary;
-            const decrypted = await invitesCrypto.decrypt(
-              datakey,
-              encryptionObject
-            );
-            decryptedNote.summary = JSON.parse(decrypted);
-          }
-
-          if (note.text) {
-            const encryptionObject = note.text;
-            const decrypted = await invitesCrypto.decrypt(
-              datakey,
-              encryptionObject
-            );
-            decryptedNote.text = JSON.parse(decrypted);
-          }
-
-          return decryptedNote;
         });
 
-        // Overwrite notes with response from the server
-        Promise.all(notes)
-          .then((notes) => {
-            localforage.setItem("notes", notes).then(() => {
-              syncSuccessful = true;
-              return resolve(notes);
-            });
-          })
-          .catch((err) => console.error("Unable to decrypt notes", err));
-      })
-      .catch((err) => console.error("Unable to decrypt notes", err));
+        // Handle all decryption results and remove failed ones
+        Promise.allSettled(notesPromises).then((results) => {
+          const validNotes = results
+            .filter(
+              (result) => result.status === "fulfilled" && result.value !== null
+            )
+            .map((result) => result.value);
+
+          localforage.setItem("notes", validNotes).then(() => {
+            syncSuccessful = true;
+            return resolve(validNotes);
+          });
+        });
+      });
 
     setTimeout(() => {
       if (!syncSuccessful) {
-        controller.abort(`Timeout reached (30 seconds)`);
+        controller.abort();
         return reject(new Error("Sync of all notes timed out"));
       }
     }, 30000);
