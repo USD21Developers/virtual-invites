@@ -387,6 +387,86 @@
           </div>
         </div>
 
+        <!-- CUSTOM CONTACT INFO (for events from followed users) -->
+        <div class="row mb-5">
+          <div class="col-12 col-md-8 offset-md-2">
+            <h3
+              class="bg-light border px-3 py-2"
+              data-i18n="followedUsersHeadline"
+            >
+              Followed Users
+            </h3>
+
+            <div class="px-3">
+              <p class="mt-3" data-i18n="followedUsersExplanation">
+                Within events that you get by following other users, you can
+                override the contact information that invite recipients will
+                see.
+              </p>
+
+              <!-- Override Event Contact Info  -->
+              <div class="form-check pt-1 pb-2 my-4">
+                <label for="overrideEventContactInfo" class="d-block has-value">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="true"
+                    id="overrideEventContactInfo"
+                    name="overrideEventContactInfo"
+                    checked=""
+                  />
+                  <span
+                    data-i18n="overrideEventContactInfo"
+                    class="font-weight-bold"
+                    >Override event contact info</span
+                  >
+                </label>
+              </div>
+
+              <!-- Custom Event Contact Info -->
+              <div>
+                Use the following contact info instead:
+
+                <div class="form-group mt-4">
+                  <label for="customEventContactName" class="font-weight-bold"
+                    >Name:</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="customEventContactName"
+                  />
+                </div>
+
+                <div class="form-group py-2 my-4">
+                  <label for="customEventContactPhone" class="font-weight-bold"
+                    >Phone:</label
+                  >
+                  <input
+                    type="tel"
+                    pattern="[0-9]"
+                    class="form-control"
+                    id="customEventContactPhone"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="customEventContactEmail" class="font-weight-bold"
+                    >E-mail:</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="customEventContactEmail"
+                  />
+                </div>
+              </div>
+
+              <br />
+            </div>
+          </div>
+        </div>
+
         <!-- NOTIFICATIONS -->
         <div class="row mb-5">
           <div class="col-12 col-md-8 offset-md-2">
