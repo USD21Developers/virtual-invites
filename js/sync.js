@@ -719,13 +719,16 @@ function syncAllNotes() {
         });
 
         // Overwrite notes with response from the server
-        Promise.all(notes).then((notes) => {
-          localforage.setItem("notes", notes).then(() => {
-            syncSuccessful = true;
-            return resolve(notes);
-          });
-        });
-      });
+        Promise.all(notes)
+          .then((notes) => {
+            localforage.setItem("notes", notes).then(() => {
+              syncSuccessful = true;
+              return resolve(notes);
+            });
+          })
+          .catch((err) => console.error("Unable to decrypt notes", err));
+      })
+      .catch((err) => console.error("Unable to decrypt notes", err));
 
     setTimeout(() => {
       if (!syncSuccessful) {
