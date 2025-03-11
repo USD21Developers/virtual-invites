@@ -112,9 +112,15 @@ const invitesCrypto = {
           new Error("Decryption failed: Integrity check failed")
         );
       }
+
+      return resolve(plainText);
     }
 
-    return plainText;
+    return Promise.reject(
+      new Error(
+        "Decryption failed: Integrity check skipped due to missing hash"
+      )
+    );
   },
 
   decryptMessage: async (key, iv, ciphertext) => {
