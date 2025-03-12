@@ -2,6 +2,7 @@ const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 const iOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
 let randomRecipientName;
 let iti;
+let settings;
 
 async function initIntlTelInput() {
   const input = document.querySelector("#customEventContactPhone");
@@ -368,6 +369,39 @@ async function onSubmit(e) {
   // Custom Invite Text
   customInviteText = document.querySelector("#bodyText").value.trim();
 
+  // Events by Followed Users
+  /*
+    const contactFirstName = document.querySelector("#customEventContactFirstName").value.trim();
+    const contactPhone = document.querySelector("#customEventContactLastName").value.trim();
+    const contactEmail = document.querySelector("#customEventContactEmail").value.trim();
+
+    if (!contactFirstName.length) {
+      showError(
+        getPhrase("validateMissingContactFirstName"),
+        "#contactFirstName",
+        getPhrase("fieldIsRequired")
+      );
+      return false;
+    }
+
+    if (!contactPhone.length && !contactEmail.length) {
+      showError(getPhrase("validateMissingContactMethod"), "#contactPhone");
+      return false;
+    }
+
+    if (contactEmail.length) {
+      const isValidEmail = validateEmail(contactEmail);
+      if (!isValidEmail) {
+        showError(
+          getPhrase("validateInvalidEmail"),
+          "#contactEmail",
+          getPhrase("validEmailIsRequired")
+        );
+        return false;
+      }
+    }
+  */
+
   // Receive Email Notifications
   receiveEmailNotifications = document.querySelector("#notifyViaEmail").checked
     ? true
@@ -574,6 +608,9 @@ async function init() {
     showReceivePushNotificationsCheckbox();
     togglePushNotificationExampleButton();
     toggleOverrideContactInfo(result.settings);
+    if (result && result.settings) {
+      settings = result.settings;
+    }
   });
 
   if (navigator.onLine) syncPushSubscription();
