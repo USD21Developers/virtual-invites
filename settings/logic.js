@@ -521,6 +521,22 @@ function attachListeners() {
         .classList.replace("d-inline-block", "d-none");
     }
   });
+
+  document
+    .querySelector("#overrideEventContactInfo_yes")
+    .addEventListener("click", () => {
+      document
+        .querySelector("#customEventContactInfoContainer")
+        .classList.remove("d-none");
+    });
+
+  document
+    .querySelector("#overrideEventContactInfo_no")
+    .addEventListener("click", () => {
+      document
+        .querySelector("#customEventContactInfoContainer")
+        .classList.add("d-none");
+    });
 }
 
 async function init() {
