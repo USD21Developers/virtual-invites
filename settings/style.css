@@ -57,6 +57,12 @@ label {
   font-weight: normal;
 }
 
+label[for="customEventContactLastName"] strong {
+  color: var(--dark-light);
+  font-weight: normal !important;
+  margin-left: 0.3rem;
+}
+
 .iti {
   display: block;
 }

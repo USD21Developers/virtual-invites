@@ -411,8 +411,18 @@
     },
     {
       "key": "lastname",
-      "original": "Last name:",
-      "translated": "Last name:"
+      "original": "Last name (optional):",
+      "translated": "Last name (optional):",
+      "changes": [
+        {
+          "original": "(optional)",
+          "translated": "(optional)",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
     },
     {
       "key": "mobilePhoneNumber",
