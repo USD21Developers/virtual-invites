@@ -237,9 +237,12 @@ function hideSpinner() {
   submitbuttons.classList.remove("d-none");
 }
 
-function initIntlTelInput() {
+async function initIntlTelInput() {
   const input = document.querySelector("#contactPhone");
-  const initialCountry = localStorage.getItem("countryIso") || "us";
+  const churches = await getChurches();
+  const churchid = await getUserChurchId();
+  const church = churches.find((item) => item.id === churchid);
+  const initialCountry = church?.country ? church.country : "us";
   iti = window.intlTelInput(input, {
     autoPlaceholder: "",
     initialCountry: initialCountry,
