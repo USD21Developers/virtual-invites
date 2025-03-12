@@ -51,3 +51,12 @@ label {
 #webPushNotSupportedModal a[href="/install/"] {
   color: var(--primary);
 }
+
+.iti {
+  display: block;
+}
+
+label[for="customEventContactPhone"] {
+  display: block;
+  margin-bottom: 5px;
+}

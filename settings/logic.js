@@ -1,6 +1,31 @@
 const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 const iOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
 let randomRecipientName;
+let iti;
+
+function initIntlTelInput() {
+  const input = document.querySelector("#customEventContactPhone");
+  const initialCountry = localStorage.getItem("countryIso") || "us";
+  iti = window.intlTelInput(input, {
+    autoPlaceholder: "",
+    initialCountry: initialCountry,
+    preferredCountries: [initialCountry],
+    showOnly: [initialCountry],
+    utilsScript: "../js/intl-tel-input-17.0.0/js/utils.js",
+  });
+
+  iti.promise.then(() => {
+    document
+      .querySelector(".iti__selected-flag")
+      .setAttribute("tabindex", "-1");
+
+    if (input.value.trim().length > 0) {
+      document
+        .querySelector("label[for='customEventContactPhone']")
+        .parentElement.classList.add("has-value");
+    }
+  });
+}
 
 function populateDefaultName() {
   return new Promise((resolve, reject) => {
@@ -555,6 +580,7 @@ async function init() {
   await populateForm();
   attachListeners();
   await togglePushNotificationExampleButton();
+  initIntlTelInput();
   globalHidePageSpinner();
 }
 

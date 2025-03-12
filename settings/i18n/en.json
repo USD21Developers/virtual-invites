@@ -378,6 +378,46 @@
       "key": "pushBody",
       "original": "This is a push notification.",
       "translated": "This is a push notification."
+    },
+    {
+      "key": "followedUsersHeadline",
+      "original": "Events by Followed Users",
+      "translated": "Events by Followed Users"
+    },
+    {
+      "key": "followedUsersExplanation",
+      "original": "For events that you get by following other users, you can change the contact information that recipients see at the bottom of their invite.",
+      "translated": "For events that you get by following other users, you can change the contact information that recipients see at the bottom of their invite."
+    },
+    {
+      "key": "keepEventContactInfo",
+      "original": "Use contact info provided by users I follow",
+      "translated": "Use contact info provided by users I follow"
+    },
+    {
+      "key": "overrideEventContactInfo",
+      "original": "Change the contact info",
+      "translated": "Change the contact info"
+    },
+    {
+      "key": "firstname",
+      "original": "First name:",
+      "translated": "First name:"
+    },
+    {
+      "key": "lastname",
+      "original": "Last name:",
+      "translated": "Last name:"
+    },
+    {
+      "key": "mobilePhoneNumber",
+      "original": "Mobile phone number:",
+      "translated": "Mobile phone number:"
+    },
+    {
+      "key": "emailAddress",
+      "original": "E-mail address:",
+      "translated": "E-mail address:"
     }
   ],
 
