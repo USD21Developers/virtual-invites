@@ -271,6 +271,15 @@ async function togglePushNotificationExampleButton() {
   }
 }
 
+function toggleOverrideContactInfo(settings) {
+  const { overriddenContactInfo } = settings;
+
+  if (!overriddenContactInfo) return;
+
+  const { overrideEventContactInfo, firstname, lastname, phone, email } =
+    overriddenContactInfo;
+}
+
 async function onEnablePushClicked(e) {
   const isChecked = e.target.checked ? true : false;
 
@@ -519,6 +528,7 @@ async function init() {
     populateReceivePushNotificationsCheckbox(result);
     showReceivePushNotificationsCheckbox();
     togglePushNotificationExampleButton();
+    toggleOverrideContactInfo(result.settings);
   });
 
   if (navigator.onLine) syncPushSubscription();

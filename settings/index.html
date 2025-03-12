@@ -394,70 +394,112 @@
               class="bg-light border px-3 py-2"
               data-i18n="followedUsersHeadline"
             >
-              Followed Users
+              Events by Followed Users
             </h3>
 
             <div class="px-3">
               <p class="mt-3" data-i18n="followedUsersExplanation">
                 Within events that you get by following other users, you can
-                override the contact information that invite recipients will
-                see.
+                change the contact information that recipients will see at the
+                bottom of their invites.
               </p>
 
               <!-- Override Event Contact Info  -->
-              <div class="form-check pt-1 pb-2 my-4">
-                <label for="overrideEventContactInfo" class="d-block has-value">
+              <div class="form-check pt-1 mt-4 mb-0">
+                <label
+                  for="overrideEventContactInfo_no"
+                  class="d-block has-value mb-2"
+                >
                   <input
                     class="form-check-input"
-                    type="checkbox"
-                    value="true"
-                    id="overrideEventContactInfo"
+                    type="radio"
+                    value="false"
+                    id="overrideEventContactInfo_no"
                     name="overrideEventContactInfo"
-                    checked=""
+                    checked="checked"
                   />
                   <span
                     data-i18n="overrideEventContactInfo"
                     class="font-weight-bold"
-                    >Override event contact info</span
                   >
+                    Use contact info provided by users I follow
+                  </span>
+                </label>
+
+                <label
+                  for="overrideEventContactInfo_yes"
+                  class="d-block has-value"
+                >
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="true"
+                    id="overrideEventContactInfo_yes"
+                    name="overrideEventContactInfo"
+                  />
+                  <span
+                    data-i18n="overrideEventContactInfo"
+                    class="font-weight-bold"
+                  >
+                    Customize contact info
+                  </span>
                 </label>
               </div>
 
               <!-- Custom Event Contact Info -->
-              <div>
-                Use the following contact info instead:
-
-                <div class="form-group mt-4">
-                  <label for="customEventContactName" class="font-weight-bold"
-                    >Name:</label
+              <div id="customEventContactInfoContainer" class="d-none">
+                <div class="form-group mt-4 pt-2">
+                  <label
+                    for="customEventContactFirstName"
+                    class="font-weight-bold"
                   >
+                    First name:
+                  </label>
                   <input
                     type="text"
                     class="form-control"
-                    id="customEventContactName"
+                    id="customEventContactFirstName"
+                    disabled
+                  />
+                </div>
+
+                <div class="form-group mt-4">
+                  <label
+                    for="customEventContactLastName"
+                    class="font-weight-bold"
+                  >
+                    Last name:
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="customEventContactLastName"
+                    disabled
                   />
                 </div>
 
                 <div class="form-group py-2 my-4">
-                  <label for="customEventContactPhone" class="font-weight-bold"
-                    >Phone:</label
-                  >
+                  <label for="customEventContactPhone" class="font-weight-bold">
+                    Mobile phone number:
+                  </label>
                   <input
                     type="tel"
                     pattern="[0-9]"
                     class="form-control"
                     id="customEventContactPhone"
+                    disabled
                   />
                 </div>
 
                 <div class="form-group">
-                  <label for="customEventContactEmail" class="font-weight-bold"
-                    >E-mail:</label
-                  >
+                  <label for="customEventContactEmail" class="font-weight-bold">
+                    E-mail address:
+                  </label>
                   <input
                     type="email"
                     class="form-control"
                     id="customEventContactEmail"
+                    disabled
                   />
                 </div>
               </div>
