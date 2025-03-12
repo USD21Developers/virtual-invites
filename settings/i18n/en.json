@@ -391,8 +391,8 @@
     },
     {
       "key": "keepEventContactInfo",
-      "original": "Use the contact info provided by users I follow",
-      "translated": "Use the contact info provided by users I follow"
+      "original": "Use the event contact info provided by users I follow",
+      "translated": "Use the event contact info provided by users I follow"
     },
     {
       "key": "default",
