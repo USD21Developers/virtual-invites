@@ -387,7 +387,17 @@
     {
       "key": "followedUsersExplanation",
       "original": "For events that you get by following other users, you can change the contact information that your invite recipients see at the bottom of their invite.",
-      "translated": "For events that you get by following other users, you can change the contact information that your invite recipients see at the bottom of their invite."
+      "translated": "For events that you get by following other users, you can change the contact information that your invite recipients see at the bottom of their invite.",
+      "changes": [
+        {
+          "original": "following",
+          "translated": "following",
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "link": "/follow/"
+        }
+      ]
     },
     {
       "key": "keepEventContactInfo",
