@@ -3,9 +3,13 @@ const iOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
 let randomRecipientName;
 let iti;
 
-function initIntlTelInput() {
+async function initIntlTelInput() {
   const input = document.querySelector("#customEventContactPhone");
-  const initialCountry = localStorage.getItem("countryIso") || "us";
+  const churches = await getChurches();
+  const churchid = await getUserChurchId();
+  const church = churches.find((item) => item.id === churchid);
+  const initialCountry = church?.country ? church.country : "us";
+
   iti = window.intlTelInput(input, {
     autoPlaceholder: "",
     initialCountry: initialCountry,
