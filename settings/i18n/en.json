@@ -395,6 +395,11 @@
       "translated": "Use contact info provided by users I follow"
     },
     {
+      "key": "default",
+      "original": "(default)",
+      "translated": "(default)"
+    },
+    {
       "key": "overrideEventContactInfo",
       "original": "Change the contact info",
       "translated": "Change the contact info"

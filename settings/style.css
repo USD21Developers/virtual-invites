@@ -52,6 +52,11 @@ label {
   color: var(--primary);
 }
 
+[data-i18n="default"] {
+  color: var(--success-dark);
+  font-weight: normal;
+}
+
 .iti {
   display: block;
 }
