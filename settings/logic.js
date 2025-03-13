@@ -370,31 +370,74 @@ async function onSubmit(e) {
   customInviteText = document.querySelector("#bodyText").value.trim();
 
   // Events by Followed Users
-  /*
-    const contactFirstName = document.querySelector("#customEventContactFirstName").value.trim();
-    const contactPhone = document.querySelector("#customEventContactLastName").value.trim();
-    const contactEmail = document.querySelector("#customEventContactEmail").value.trim();
+  const eventsByFollowedUsers = {
+    contactInfo: {
+      override: false,
+      firstName: "",
+      lastName: "",
+      phone: "",
+      phoneCountryData: {},
+      email: "",
+    },
+  };
 
+  eventsByFollowedUsers.contactInfo.override =
+    document.querySelector("[name='overrideEventContactInfo']:checked")
+      .value === "true";
+
+  eventsByFollowedUsers.contactInfo.firstName = document
+    .querySelector("#customEventContactFirstName")
+    .value.trim();
+  eventsByFollowedUsers.contactInfo.lastName = document
+    .querySelector("#customEventContactLastName")
+    .value.trim();
+  eventsByFollowedUsers.contactInfo.email = document
+    .querySelector("#customEventContactEmail")
+    .value.trim();
+  eventsByFollowedUsers.contactInfo.phone = iti.getNumber();
+  if (iti.isValidNumber()) {
+    eventsByFollowedUsers.contactInfo.phoneCountryData =
+      iti.getSelectedCountryData();
+  }
+
+  // TODO:  redo "showError" logic
+  /*
     if (!contactFirstName.length) {
       showError(
         getPhrase("validateMissingContactFirstName"),
-        "#contactFirstName",
+        "#customEventContactFirstName",
         getPhrase("fieldIsRequired")
       );
       return false;
     }
 
-    if (!contactPhone.length && !contactEmail.length) {
-      showError(getPhrase("validateMissingContactMethod"), "#contactPhone");
+    if (
+      !eventsByFollowedUsers.contactInfo.phone.length &&
+      !eventsByFollowedUsers.contactInfo.email.length
+    ) {
+      showError(
+        getPhrase("validateMissingContactMethod"),
+        "#customEventContactPhone"
+      );
       return false;
     }
 
-    if (contactEmail.length) {
-      const isValidEmail = validateEmail(contactEmail);
+    if (eventsByFollowedUsers.contactInfo.phone.length) {
+      const isValidPhone = iti.isValidNumber();
+      if (!isValidPhone) {
+        showError(
+          getPhrase("validPhoneIsRequired"),
+          "#customEventContactPhone"
+        );
+      }
+    }
+
+    if (eventsByFollowedUsers.contactInfo.email.length) {
+      const isValidEmail = validateEmail(eventsByFollowedUsers.contactInfo.email);
       if (!isValidEmail) {
         showError(
           getPhrase("validateInvalidEmail"),
-          "#contactEmail",
+          "#customEventContactEmail",
           getPhrase("validEmailIsRequired")
         );
         return false;
@@ -424,6 +467,7 @@ async function onSubmit(e) {
     enableEmailNotifications: receiveEmailNotifications,
     enablePushNotifications: receivePushNotifications,
     autoAddToFollowupList: autoAddToFollowupList,
+    eventsByFollowedUsers: eventsByFollowedUsers,
   };
 
   await localforage.setItem("settings", settings);
@@ -603,6 +647,12 @@ function attachListeners() {
 }
 
 async function init() {
+  const storedSettings = await localforage.getItem("settings");
+
+  if (storedSettings) {
+    settings = storedSettings;
+  }
+
   syncSettings().then(async (result) => {
     populateReceivePushNotificationsCheckbox(result);
     showReceivePushNotificationsCheckbox();
