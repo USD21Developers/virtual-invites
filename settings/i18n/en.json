@@ -420,6 +420,11 @@
       "translated": "First name:"
     },
     {
+      "key": "firstNameRequired",
+      "original": "First name is required.",
+      "translated": "First name is required."
+    },
+    {
       "key": "lastname",
       "original": "Last name (optional):",
       "translated": "Last name (optional):",
@@ -440,9 +445,24 @@
       "translated": "Mobile phone number:"
     },
     {
+      "key": "validPhoneIsRequired",
+      "original": "A valid phone number is required.",
+      "translated": "A valid phone number is required."
+    },
+    {
       "key": "emailAddress",
       "original": "E-mail address:",
       "translated": "E-mail address:"
+    },
+    {
+      "key": "validEmailIsRequired",
+      "original": "A valid e-mail address is required.",
+      "translated": "A valid e-mail address is required."
+    },
+    {
+      "key": "oneContactMethodIsRequired",
+      "original": "Either a phone number, or e-mail address, is required.",
+      "translated": "Either a phone number, or e-mail address, is required."
     }
   ],
 

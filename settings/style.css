@@ -71,3 +71,7 @@ label[for="customEventContactPhone"] {
   display: block;
   margin-bottom: 5px;
 }
+
+.iti.is-invalid + .invalid-feedback {
+  display: block;
+}

@@ -358,6 +358,8 @@ async function onSubmit(e) {
   let receivePushNotifications = false;
   let autoAddToFollowupList = false;
 
+  formErrorsReset();
+
   // Opening Page
   document.querySelectorAll("[name='openingPage']").forEach((item) => {
     if (item.checked) {
@@ -381,10 +383,10 @@ async function onSubmit(e) {
     },
   };
 
+  // Populate eventsByFollowedUsers object from form
   eventsByFollowedUsers.contactInfo.override =
     document.querySelector("[name='overrideEventContactInfo']:checked")
       .value === "true";
-
   eventsByFollowedUsers.contactInfo.firstName = document
     .querySelector("#customEventContactFirstName")
     .value.trim();
@@ -400,50 +402,67 @@ async function onSubmit(e) {
       iti.getSelectedCountryData();
   }
 
-  // TODO:  redo "showError" logic
-  /*
-    if (!contactFirstName.length) {
-      showError(
-        getPhrase("validateMissingContactFirstName"),
-        "#customEventContactFirstName",
-        getPhrase("fieldIsRequired")
-      );
+  // Validate only if user overrides event contact info
+  if (eventsByFollowedUsers.contactInfo.override) {
+    // Validate first name
+    if (!eventsByFollowedUsers.contactInfo.firstName.length) {
+      formError("#customEventContactFirstName", getPhrase("firstNameRequired"));
       return false;
     }
 
+    // Validate: either phone or email is required
     if (
       !eventsByFollowedUsers.contactInfo.phone.length &&
       !eventsByFollowedUsers.contactInfo.email.length
     ) {
-      showError(
-        getPhrase("validateMissingContactMethod"),
-        "#customEventContactPhone"
+      document
+        .querySelector("#customEventContactPhone")
+        .classList.add("is-invalid");
+      document.querySelector("#invalidFeedbackPhone").innerHTML = getPhrase(
+        "oneContactMethodIsRequired"
       );
+      document
+        .querySelector("#customEventContactEmail")
+        .classList.add("is-invalid");
+      document.querySelector(
+        "#customEventContactEmail + .invalid-feedback"
+      ).innerHTML = getPhrase("oneContactMethodIsRequired");
+      document.querySelector(".iti").classList.add("is-invalid");
+      customScrollTo("#invalidFeedbackPhone");
       return false;
     }
 
+    // Validate phone if provided
     if (eventsByFollowedUsers.contactInfo.phone.length) {
       const isValidPhone = iti.isValidNumber();
       if (!isValidPhone) {
-        showError(
-          getPhrase("validPhoneIsRequired"),
-          "#customEventContactPhone"
+        formError(
+          "#customEventContactPhone",
+          getPhrase("validPhoneIsRequired")
         );
+        document.querySelector("#invalidFeedbackPhone").innerHTML = getPhrase(
+          "validPhoneIsRequired"
+        );
+        document.querySelector(".iti").classList.add("is-invalid");
+        customScrollTo("#invalidFeedbackPhone");
+        return false;
       }
     }
 
+    // Validate email if provided
     if (eventsByFollowedUsers.contactInfo.email.length) {
-      const isValidEmail = validateEmail(eventsByFollowedUsers.contactInfo.email);
+      const isValidEmail = validateEmail(
+        eventsByFollowedUsers.contactInfo.email
+      );
       if (!isValidEmail) {
-        showError(
-          getPhrase("validateInvalidEmail"),
+        formError(
           "#customEventContactEmail",
           getPhrase("validEmailIsRequired")
         );
         return false;
       }
     }
-  */
+  }
 
   // Receive Email Notifications
   receiveEmailNotifications = document.querySelector("#notifyViaEmail").checked
