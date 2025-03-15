@@ -54,7 +54,7 @@ label[for="photoCapture"] {
 }
 
 /* Browser mode on mobile */
-@media screen and (max-width: 767px) and (orientation: portrait) and (display-mode: browser) {
+/* @media screen and (max-width: 767px) and (orientation: portrait) and (display-mode: browser) {
   #contentdefault {
     display: none !important;
   }
@@ -66,8 +66,8 @@ label[for="photoCapture"] {
   #afterInstall:not(.d-none) {
     display: block !important;
   }
-}
-@media screen and (max-width: 991px) and (orientation: landscape) and (display-mode: browser) {
+} */
+/* @media screen and (max-width: 991px) and (orientation: landscape) and (display-mode: browser) {
   #contentdefault {
     display: none !important;
   }
@@ -79,10 +79,10 @@ label[for="photoCapture"] {
   #afterInstall:not(.d-none) {
     display: block !important;
   }
-}
+} */
 
 /* Browser mode on non-mobile */
-@media screen and (min-width: 768px) and (orientation: portrait) and (display-mode: browser) {
+/* @media screen and (min-width: 768px) and (orientation: portrait) and (display-mode: browser) {
   #contentdefault:not(.d-none) {
     display: block !important;
   }
@@ -94,8 +94,8 @@ label[for="photoCapture"] {
   #afterInstall {
     display: none !important;
   }
-}
-@media screen and (min-width: 992px) and (orientation: landscape) and (display-mode: browser) {
+} */
+/* @media screen and (min-width: 992px) and (orientation: landscape) and (display-mode: browser) {
   #contentdefault:not(.d-none) {
     display: block !important;
   }
@@ -107,10 +107,10 @@ label[for="photoCapture"] {
   #afterInstall {
     display: none !important;
   }
-}
+} */
 
 /* Standalone mode */
-@media screen and (display-mode: standalone) {
+/* @media screen and (display-mode: standalone) {
   #contentdefault:not(.d-none) {
     display: block !important;
   }
@@ -122,7 +122,7 @@ label[for="photoCapture"] {
   #afterInstall {
     display: none !important;
   }
-}
+} */
 
 #photorules {
   text-align: left;
