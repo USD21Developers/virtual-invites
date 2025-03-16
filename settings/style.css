@@ -27,7 +27,7 @@ label {
 }
 
 .customTextPlaceholder {
-  font-family: "Roboto Mono", "Courier New", Courier, monospace;
+  font-family: "Roboto Mono", monospace;
   font-optical-sizing: auto;
   font-size: 1rem;
   font-style: normal;
