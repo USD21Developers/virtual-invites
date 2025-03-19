@@ -1367,13 +1367,54 @@ function populateQuestionsSection() {
   const contactViaEmailContainerEl = document.querySelector(
     "#contactViaEmailContainer"
   );
-  const {
+  let {
     contactemail,
     contactfirstname,
     contactlastname,
     contactphone,
     contactphonecountrydata,
   } = inviteObject.event;
+
+  if (inviteObject.user.hasOwnProperty("contactInfo")) {
+    const {
+      email,
+      firstName,
+      lastName,
+      override,
+      phone,
+      contactphonecountrydata,
+    } = inviteObject.user.contactInfo;
+    const eventIsFromFollowedUser =
+      inviteObject.event.createdBy === inviteObject.user.userid ? true : false;
+
+    if (eventIsFromFollowedUser) {
+      if (override) {
+        if (firstName && firstName.length) {
+          contactfirstname = firstName;
+          contactlastname = "";
+        }
+
+        if (lastName && lastName.length) {
+          contactlastname = lastName;
+        }
+
+        if (email && email.length) {
+          contactemail = email;
+        } else {
+          contactemail = "";
+        }
+
+        if (phone && phone.length) {
+          contactphone = phone;
+          contactphonecountrydata =
+            inviteObject.user.contactInfo.contactphonecountrydata;
+        } else {
+          contactphone = "";
+          contactphonecountrydata = {};
+        }
+      }
+    }
+  }
 
   const contactName =
     contactlastname && contactlastname.length
