@@ -1385,7 +1385,7 @@ function populateQuestionsSection() {
       contactphonecountrydata,
     } = inviteObject.user.contactInfo;
     const eventIsFromFollowedUser =
-      inviteObject.event.createdBy === inviteObject.user.userid ? true : false;
+      inviteObject.event.createdBy !== inviteObject.user.userid ? true : false;
 
     if (eventIsFromFollowedUser) {
       if (override) {
