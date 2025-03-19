@@ -1048,11 +1048,14 @@ function populateGreetingParagraph1() {
   } = inviteObject.event;
   const { invitedAt, recipientname, sharedfromtimezone } =
     inviteObject.recipient;
-  const {
-    firstname: senderFirstName,
-    lastname: senderLastname,
-    nameDisplayedOnInvite: senderName,
-  } = inviteObject.user;
+  const { firstname: senderFirstName, lastname: senderLastname } =
+    inviteObject.user;
+  let nameDisplayedOnInvite = inviteObject.user.nameDisplayedOnInvite;
+
+  if (!nameDisplayedOnInvite) {
+    nameDisplayedOnInvite = senderFirstName;
+  }
+
   const recipientDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
   const { locale, timeZone: recipientTimeZone } = recipientDateTimePrefs;
   const dateInvitedMoment = moment.tz(invitedAt, sharedfromtimezone);
@@ -1113,8 +1116,8 @@ function populateGreetingParagraph1() {
   }
 
   text = text.replaceAll("{RECIPIENT-NAME}", recipientname);
-  text = text.replaceAll("{SENDER-NAME}", senderName);
-  text = text.replaceAll("{SENDER-FIRST-NAME}", senderName);
+  text = text.replaceAll("{SENDER-NAME}", nameDisplayedOnInvite);
+  text = text.replaceAll("{SENDER-FIRST-NAME}", nameDisplayedOnInvite);
   text = text.replaceAll("{INVITED-DATE}", invitedDate);
   text = canUseTitleCase
     ? text.replaceAll("{EVENT-TITLE}", eventTitle.toTitleCase())
@@ -1154,11 +1157,13 @@ function populateGreetingParagraph1UnknownRecipient() {
     multidayenddate,
     timezone: eventTimeZone,
   } = inviteObject.event;
-  const {
-    firstname: senderFirstName,
-    lastname: senderLastname,
-    nameDisplayedOnInvite: senderName,
-  } = inviteObject.user;
+  const { firstname: senderFirstName, lastname: senderLastname } =
+    inviteObject.user;
+  let nameDisplayedOnInvite = inviteObject.user.nameDisplayedOnInvite;
+  if (!nameDisplayedOnInvite) {
+    nameDisplayedOnInvite = senderFirstName;
+  }
+
   const recipientDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
   const isRecurringEvent = frequency === "once" ? false : true;
   const isMultiDay = multidaybegindate ? true : false;
@@ -1213,7 +1218,7 @@ function populateGreetingParagraph1UnknownRecipient() {
     canUseTitleCase = true;
   }
 
-  text = text.replaceAll("{SENDER-NAME}", senderName);
+  text = text.replaceAll("{SENDER-NAME}", nameDisplayedOnInvite);
   text = canUseTitleCase
     ? text.replaceAll("{EVENT-TITLE}", eventTitle.toTitleCase())
     : text.replaceAll("{EVENT-TITLE}", eventTitle);
