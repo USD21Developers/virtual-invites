@@ -1406,8 +1406,10 @@ function populateQuestionsSection() {
 
         if (phone && phone.length) {
           contactphone = phone;
-          contactphonecountrydata =
-            inviteObject.user.contactInfo.contactphonecountrydata;
+          if (contactphonecountrydata) {
+            contactphonecountrydata =
+              inviteObject.user.contactInfo.contactphonecountrydata;
+          }
         } else {
           contactphone = "";
           contactphonecountrydata = {};
