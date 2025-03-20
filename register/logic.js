@@ -672,7 +672,7 @@ function attachListeners() {
     .querySelector("#churchid")
     .addEventListener("change", onChurchChange);
   document.querySelector("#formlogin").addEventListener("submit", onSubmit);
-  installButtonPWA.addEventListener("click", onInstallClick);
+  // installButtonPWA.addEventListener("click", onInstallClick);
   window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     installPromptEvent = e;
@@ -708,7 +708,7 @@ async function init() {
     populateCountries();
     attachListeners();
 
-    document.querySelector("#contentinstall").classList.remove("d-none");
+    /* document.querySelector("#contentinstall").classList.remove("d-none");
     if (iOS) {
       const clickedInstall = sessionStorage.getItem("clickedInstall");
       if (clickedInstall) {
@@ -720,7 +720,7 @@ async function init() {
 
     if (screen.width <= 767) {
       document.querySelector("#contentdefault").classList.add("d-none");
-    }
+    } */
 
     globalHidePageSpinner();
   });

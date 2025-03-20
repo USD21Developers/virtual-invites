@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,600;1,600&display=swap");
+
 label {
   color: var(--dark);
   font-size: 0.9rem;
@@ -25,9 +27,11 @@ label {
 }
 
 .customTextPlaceholder {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
   font-size: 1rem;
-  font-weight: bold;
+  font-style: normal;
+  font-weight: 600;
 }
 
 .text-blue {
