@@ -378,6 +378,91 @@
       "key": "pushBody",
       "original": "This is a push notification.",
       "translated": "This is a push notification."
+    },
+    {
+      "key": "followedUsersHeadline",
+      "original": "Events by Followed Users",
+      "translated": "Events by Followed Users"
+    },
+    {
+      "key": "followedUsersExplanation",
+      "original": "For events that you get by following other users, you can change the contact information that your invite recipients see at the bottom of their invite.",
+      "translated": "For events that you get by following other users, you can change the contact information that your invite recipients see at the bottom of their invite.",
+      "changes": [
+        {
+          "original": "following",
+          "translated": "following",
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "link": "/follow/"
+        }
+      ]
+    },
+    {
+      "key": "keepEventContactInfo",
+      "original": "Use the event contact info provided by users I follow",
+      "translated": "Use the event contact info provided by users I follow"
+    },
+    {
+      "key": "default",
+      "original": "(default)",
+      "translated": "(default)"
+    },
+    {
+      "key": "overrideEventContactInfo",
+      "original": "Change the contact info",
+      "translated": "Change the contact info"
+    },
+    {
+      "key": "firstname",
+      "original": "First name:",
+      "translated": "First name:"
+    },
+    {
+      "key": "firstNameRequired",
+      "original": "First name is required.",
+      "translated": "First name is required."
+    },
+    {
+      "key": "lastname",
+      "original": "Last name (optional):",
+      "translated": "Last name (optional):",
+      "changes": [
+        {
+          "original": "(optional)",
+          "translated": "(optional)",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "mobilePhoneNumber",
+      "original": "Mobile phone number:",
+      "translated": "Mobile phone number:"
+    },
+    {
+      "key": "validPhoneIsRequired",
+      "original": "A valid phone number is required.",
+      "translated": "A valid phone number is required."
+    },
+    {
+      "key": "emailAddress",
+      "original": "E-mail address:",
+      "translated": "E-mail address:"
+    },
+    {
+      "key": "validEmailIsRequired",
+      "original": "A valid e-mail address is required.",
+      "translated": "A valid e-mail address is required."
+    },
+    {
+      "key": "oneContactMethodIsRequired",
+      "original": "Either a phone number, or e-mail address, is required.",
+      "translated": "Either a phone number, or e-mail address, is required."
     }
   ],
 

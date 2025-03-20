@@ -1106,7 +1106,6 @@ function getUserChurchId(userid) {
       : null;
 
     if (refreshTokenParsed) {
-      churchid = refreshTokenParsed.churchid;
       return resolve(refreshTokenParsed.churchid);
     }
 

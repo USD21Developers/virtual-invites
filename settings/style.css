@@ -55,3 +55,27 @@ label {
 #webPushNotSupportedModal a[href="/install/"] {
   color: var(--primary);
 }
+
+[data-i18n="default"] {
+  color: var(--success-dark);
+  font-weight: normal;
+}
+
+label[for="customEventContactLastName"] strong {
+  color: var(--dark-light);
+  font-weight: normal !important;
+  margin-left: 0.3rem;
+}
+
+.iti {
+  display: block;
+}
+
+label[for="customEventContactPhone"] {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.iti.is-invalid + .invalid-feedback {
+  display: block;
+}
