@@ -302,12 +302,29 @@ async function togglePushNotificationExampleButton() {
 }
 
 function toggleOverrideContactInfo(settings) {
-  const { overriddenContactInfo } = settings;
+  const { eventsByFollowedUsers } = settings;
 
-  if (!overriddenContactInfo) return;
+  if (!eventsByFollowedUsers) return;
+  if (!eventsByFollowedUsers.contactInfo) return;
 
-  const { overrideEventContactInfo, firstname, lastname, phone, email } =
-    overriddenContactInfo;
+  const { email, firstName, lastName, override, phone, phoneCountryData } =
+    eventsByFollowedUsers.contactInfo;
+  const customEventContactInfoContainerEl = document.querySelector(
+    "#customEventContactInfoContainer"
+  );
+
+  if (override) {
+    document.querySelector("#overrideEventContactInfo_yes").checked = true;
+    customEventContactInfoContainerEl.classList.remove("d-none");
+  } else {
+    document.querySelector("#overrideEventContactInfo_no").checked = true;
+    customEventContactInfoContainerEl.classList.add("d-none");
+  }
+
+  document.querySelector("#customEventContactFirstName").value = firstName;
+  document.querySelector("#customEventContactLastName").value = lastName;
+  document.querySelector("#customEventContactPhone").value = phone;
+  document.querySelector("#customEventContactEmail").value = email;
 }
 
 async function onEnablePushClicked(e) {
@@ -384,9 +401,11 @@ async function onSubmit(e) {
   };
 
   // Populate eventsByFollowedUsers object from form
-  eventsByFollowedUsers.contactInfo.override =
-    document.querySelector("[name='overrideEventContactInfo']:checked")
-      .value === "true";
+  eventsByFollowedUsers.contactInfo.override = document.querySelector(
+    "#overrideEventContactInfo_yes"
+  ).checked
+    ? true
+    : false;
   eventsByFollowedUsers.contactInfo.firstName = document
     .querySelector("#customEventContactFirstName")
     .value.trim();
@@ -649,19 +668,19 @@ function attachListeners() {
   });
 
   document
-    .querySelector("#overrideEventContactInfo_yes")
-    .addEventListener("click", () => {
-      document
-        .querySelector("#customEventContactInfoContainer")
-        .classList.remove("d-none");
-    });
-
-  document
-    .querySelector("#overrideEventContactInfo_no")
-    .addEventListener("click", () => {
-      document
-        .querySelector("#customEventContactInfoContainer")
-        .classList.add("d-none");
+    .querySelectorAll("input[type=radio][name=overrideEventContactInfo]")
+    .forEach((radio) => {
+      radio.addEventListener("change", (item) => {
+        if (radio.checked && radio.value === "true") {
+          document
+            .querySelector("#customEventContactInfoContainer")
+            .classList.remove("d-none");
+        } else {
+          document
+            .querySelector("#customEventContactInfoContainer")
+            .classList.add("d-none");
+        }
+      });
     });
 }
 
