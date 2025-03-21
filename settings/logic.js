@@ -710,12 +710,7 @@ async function init() {
   attachListeners();
   await togglePushNotificationExampleButton();
   initIntlTelInput();
-
-  const settings = await localforage.getItem("settings");
-  if (settings && settings.hasOwnProperty("eventsByFollowedUsers")) {
-    toggleOverrideContactInfo(settings);
-  }
-
+  toggleOverrideContactInfo(settings);
   globalHidePageSpinner();
 }
 
