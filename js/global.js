@@ -113,7 +113,7 @@ const invitesCrypto = {
         );
       }
 
-      return resolve(plainText);
+      return Promise.resolve(plainText);
     }
 
     return Promise.reject(
