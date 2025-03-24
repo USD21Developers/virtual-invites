@@ -5,6 +5,7 @@ class PWAInstallBanner extends HTMLElement {
   }
 
   connectedCallback() {
+    if (phrases) this.phrases = phrases;
     this.render();
     this.setupEventListeners();
     this.show();
