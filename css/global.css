@@ -256,6 +256,10 @@ strong {
   font-variant: small-caps;
 }
 
+pwa-install-banner {
+  display: none;
+}
+
 @media (max-width: 767px) {
   .breadcrumb-item {
     display: none;
@@ -285,6 +289,10 @@ strong {
 
   .snackbar-body {
     width: 100%;
+  }
+
+  pwa-install-banner {
+    display: block;
   }
 }
 
@@ -417,6 +425,10 @@ strong {
 
   #installLink {
     display: none;
+  }
+
+  pwa-install-banner {
+    display: none !important;
   }
 }
 

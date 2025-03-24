@@ -401,6 +401,21 @@
       "key": "reset",
       "original": "Reset",
       "translated": "Reset"
+    },
+    {
+      "key": "installBannerTitle",
+      "original": "The Invites App",
+      "translated": "The Invites App"
+    },
+    {
+      "key": "installBannerOrganization",
+      "original": "International Christian Churches",
+      "translated": "International Christian Churches"
+    },
+    {
+      "key": "installBannerButton",
+      "original": "Install",
+      "translated": "Install"
     }
   ],
 

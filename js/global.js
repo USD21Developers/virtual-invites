@@ -66,6 +66,7 @@ const supportedLangs = ["en"];
   populateContent
   populateGlobalContent
   popupQuantityOfEvents
+  pwaInstallBanner
   randomIntFromInterval
   refreshFloatingLabels
   refreshFloatingLabelsListener
