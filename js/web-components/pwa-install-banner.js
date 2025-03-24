@@ -2,6 +2,37 @@ class PWAInstallBanner extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
+
+    this.getGlobalPhrase = (key) => {
+      let content = "";
+      const errorMessage = `phrase key "${key}" was not found`;
+      if (!key) throw errorMessage;
+      if (!this.globalContent.hasOwnProperty("phrases")) throw errorMessage;
+      if (!Array.isArray(this.globalContent.phrases)) throw errorMessage;
+      const phrase = this.globalContent.phrases.find((item) => item.key == key);
+      if (!phrase) throw errorMessage;
+      content = phrase.translated || "";
+      const hasChanges = Array.isArray(phrase.changes);
+      if (hasChanges) {
+        phrase.changes.forEach((change) => {
+          const { original, translated, bold, italic, underline, link } =
+            change;
+          let changed = translated;
+          if (link)
+            changed = `<a href="${link}" class="alert-link">${changed}</a>`;
+          if (bold) changed = `<strong>${changed}</strong>`;
+          if (italic) changed = `<em>${changed}</em>`;
+          if (underline) changed = `<u>${changed}</u>`;
+          content = content.replaceAll(original, changed);
+        });
+      }
+      try {
+        return content;
+      } catch (err) {
+        console.error(err);
+        return content;
+      }
+    };
   }
 
   connectedCallback() {
@@ -65,15 +96,15 @@ class PWAInstallBanner extends HTMLElement {
         </div>
         <div class="box">
           <div class="title">
-            ${getGlobalPhrase("installBannerTitle")}
+            ${this.getGlobalPhrase("installBannerTitle")}
           </div>
           <div class="muted">
-            ${getGlobalPhrase("installBannerOrganization")}
+            ${this.getGlobalPhrase("installBannerOrganization")}
           </div>
         </div>
         <div class="box" style="margin-left: auto;">
           <a href="/install/" id="installBannerButton">
-            ${getGlobalPhrase("installBannerButton")}
+            ${this.getGlobalPhrase("installBannerButton")}
           </a>
         </div>
       </div>
@@ -96,36 +127,6 @@ class PWAInstallBanner extends HTMLElement {
     const banner = this.shadowRoot.querySelector("#installBanner");
     banner.style.visibility = "hidden";
     this.style.marginTop = "auto";
-  }
-
-  getGlobalPhrase(key) {
-    let content = "";
-    const errorMessage = `phrase key "${key}" was not found`;
-    if (!key) throw errorMessage;
-    if (!this.globalContent.hasOwnProperty("phrases")) throw errorMessage;
-    if (!Array.isArray(this.globalContent.phrases)) throw errorMessage;
-    const phrase = this.globalContent.phrases.find((item) => item.key == key);
-    if (!phrase) throw errorMessage;
-    content = phrase.translated || "";
-    const hasChanges = Array.isArray(phrase.changes);
-    if (hasChanges) {
-      phrase.changes.forEach((change) => {
-        const { original, translated, bold, italic, underline, link } = change;
-        let changed = translated;
-        if (link)
-          changed = `<a href="${link}" class="alert-link">${changed}</a>`;
-        if (bold) changed = `<strong>${changed}</strong>`;
-        if (italic) changed = `<em>${changed}</em>`;
-        if (underline) changed = `<u>${changed}</u>`;
-        content = content.replaceAll(original, changed);
-      });
-    }
-    try {
-      return content;
-    } catch (err) {
-      console.error(err);
-      return content;
-    }
   }
 }
 
