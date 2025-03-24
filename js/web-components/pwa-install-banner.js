@@ -5,13 +5,13 @@ class PWAInstallBanner extends HTMLElement {
   }
 
   connectedCallback() {
-    if (phrases) this.phrases = phrases;
     this.render();
     this.setupEventListeners();
     this.show();
   }
 
   render() {
+    this.globalContent = globalContent;
     this.shadowRoot.innerHTML = `
       <style>
         #installBanner {
@@ -102,9 +102,9 @@ class PWAInstallBanner extends HTMLElement {
     let content = "";
     const errorMessage = `phrase key "${key}" was not found`;
     if (!key) throw errorMessage;
-    if (!globalContent.hasOwnProperty("phrases")) throw errorMessage;
-    if (!Array.isArray(globalContent.phrases)) throw errorMessage;
-    const phrase = globalContent.phrases.find((item) => item.key == key);
+    if (!this.globalContent.hasOwnProperty("phrases")) throw errorMessage;
+    if (!Array.isArray(this.globalContent.phrases)) throw errorMessage;
+    const phrase = this.globalContent.phrases.find((item) => item.key == key);
     if (!phrase) throw errorMessage;
     content = phrase.translated || "";
     const hasChanges = Array.isArray(phrase.changes);
