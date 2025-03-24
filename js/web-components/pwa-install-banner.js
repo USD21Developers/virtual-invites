@@ -96,6 +96,36 @@ class PWAInstallBanner extends HTMLElement {
     banner.style.visibility = "hidden";
     this.style.marginTop = "auto";
   }
+
+  getGlobalPhrase(key) {
+    let content = "";
+    const errorMessage = `phrase key "${key}" was not found`;
+    if (!key) throw errorMessage;
+    if (!globalContent.hasOwnProperty("phrases")) throw errorMessage;
+    if (!Array.isArray(globalContent.phrases)) throw errorMessage;
+    const phrase = globalContent.phrases.find((item) => item.key == key);
+    if (!phrase) throw errorMessage;
+    content = phrase.translated || "";
+    const hasChanges = Array.isArray(phrase.changes);
+    if (hasChanges) {
+      phrase.changes.forEach((change) => {
+        const { original, translated, bold, italic, underline, link } = change;
+        let changed = translated;
+        if (link)
+          changed = `<a href="${link}" class="alert-link">${changed}</a>`;
+        if (bold) changed = `<strong>${changed}</strong>`;
+        if (italic) changed = `<em>${changed}</em>`;
+        if (underline) changed = `<u>${changed}</u>`;
+        content = content.replaceAll(original, changed);
+      });
+    }
+    try {
+      return content;
+    } catch (err) {
+      console.error(err);
+      return content;
+    }
+  }
 }
 
 customElements.define("pwa-install-banner", PWAInstallBanner);
