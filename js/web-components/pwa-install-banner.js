@@ -63,11 +63,17 @@ class PWAInstallBanner extends HTMLElement {
           <img src="/android-chrome-192x192.png" width="50" style="border-radius: 12px; max-height: 48px;" />
         </div>
         <div class="box">
-          <div class="title" data-i18n-global="installBannerTitle">The Invites App</div>
-          <div class="muted" data-i18n-global="installBannerOrganization">International Christian Churches</div>
+          <div class="title">
+            ${getGlobalPhrase("installBannerTitle")}
+          </div>
+          <div class="muted">
+            ${getGlobalPhrase("installBannerOrganization")}
+          </div>
         </div>
         <div class="box" style="margin-left: auto;">
-          <a href="/install/" id="installBannerButton" data-i18n-global="installBannerButton">Install</a>
+          <a href="/install/" id="installBannerButton">
+            ${getGlobalPhrase("installBannerButton")}
+          </a>
         </div>
       </div>
     `;
