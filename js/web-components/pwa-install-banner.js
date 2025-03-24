@@ -96,15 +96,15 @@ class PWAInstallBanner extends HTMLElement {
         </div>
         <div class="box">
           <div class="title">
-            ${this.getGlobalPhrase("installBannerTitle")}
+            The Invites App
           </div>
           <div class="muted">
-            ${this.getGlobalPhrase("installBannerOrganization")}
+            International Christian Churches
           </div>
         </div>
         <div class="box" style="margin-left: auto;">
           <a href="/install/" id="installBannerButton">
-            ${this.getGlobalPhrase("installBannerButton")}
+            Install
           </a>
         </div>
       </div>
