@@ -1257,6 +1257,7 @@ async function populateContent(customEndpoint, variable = "pageContent") {
           if (matchedcontent) item.setAttribute("placeholder", matchedcontent);
         });
         await populateGlobalContent();
+        pwaInstallBanner();
         refreshFloatingLabels();
         return resolve();
       })
@@ -1399,6 +1400,22 @@ async function popupQuantityOfEvents(type) {
   } else {
     showToast(toastHTML, 4000, "info", selector);
   }
+}
+
+function pwaInstallBanner() {
+  const banner = document.querySelector("pwa-install-banner");
+
+  if (!banner) return;
+
+  banner.setAttribute("data-title", getGlobalPhrase("installBannerTitle"));
+  banner.setAttribute(
+    "data-organization",
+    getGlobalPhrase("installBannerOrganization")
+  );
+  banner.setAttribute(
+    "data-button-text",
+    getGlobalPhrase("installBannerButton")
+  );
 }
 
 function refreshFloatingLabels() {
