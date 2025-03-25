@@ -113,6 +113,21 @@ async function init() {
     populateContent().then(() => {
       toggleUsersIFollow();
       globalHidePageSpinner();
+      document
+        .querySelector("pwa-install-banner")
+        .setAttribute("data-title", getGlobalPhrase("installBannerTitle"));
+      document
+        .querySelector("pwa-install-banner")
+        .setAttribute(
+          "data-organization",
+          getGlobalPhrase("installBannerOrganization")
+        );
+      document
+        .querySelector("pwa-install-banner")
+        .setAttribute(
+          "data-button-text",
+          getGlobalPhrase("installBannerButton")
+        );
     });
   }
 

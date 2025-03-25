@@ -412,6 +412,10 @@ pwa-install-banner {
     max-width: 660px;
     width: 60%;
   }
+
+  pwa-install-banner {
+    display: none;
+  }
 }
 
 @media all and (display-mode: standalone) {

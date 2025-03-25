@@ -2,52 +2,40 @@ class PWAInstallBanner extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-
-    this.getGlobalPhrase = (key) => {
-      let content = "";
-      const errorMessage = `phrase key "${key}" was not found`;
-      if (!key) throw errorMessage;
-      if (!this.globalContent.hasOwnProperty("phrases")) throw errorMessage;
-      if (!Array.isArray(this.globalContent.phrases)) throw errorMessage;
-      const phrase = this.globalContent.phrases.find((item) => item.key == key);
-      if (!phrase) throw errorMessage;
-      content = phrase.translated || "";
-      const hasChanges = Array.isArray(phrase.changes);
-      if (hasChanges) {
-        phrase.changes.forEach((change) => {
-          const { original, translated, bold, italic, underline, link } =
-            change;
-          let changed = translated;
-          if (link)
-            changed = `<a href="${link}" class="alert-link">${changed}</a>`;
-          if (bold) changed = `<strong>${changed}</strong>`;
-          if (italic) changed = `<em>${changed}</em>`;
-          if (underline) changed = `<u>${changed}</u>`;
-          content = content.replaceAll(original, changed);
-        });
-      }
-      try {
-        return content;
-      } catch (err) {
-        console.error(err);
-        return content;
-      }
+    this.defaults = {
+      title: "The Invites App",
+      organization: "International Christian Churches",
+      buttonText: "INSTALL",
+      installUrl: "/install/",
     };
+  }
+
+  static get observedAttributes() {
+    return ["data-title", "data-organization", "data-button-text"];
+  }
+
+  attributeChangedCallback() {
+    this.render();
   }
 
   connectedCallback() {
     this.render();
-    this.setupEventListeners();
     this.show();
   }
 
   render() {
-    this.globalContent = globalContent;
+    const title = this.getAttribute("data-title") || this.defaults.title;
+    const organization =
+      this.getAttribute("data-organization") || this.defaults.organization;
+    const buttonText =
+      this.getAttribute("data-button-text") || this.defaults.buttonText;
+    const installUrl =
+      this.getAttribute("data-install-url") || this.defaults.installUrl;
+
     this.shadowRoot.innerHTML = `
       <style>
         #installBanner {
           position: absolute;
-          visibility: hidden;
           top: 0;
           left: 0;
           background-color: #f2f2f6;
@@ -83,50 +71,54 @@ class PWAInstallBanner extends HTMLElement {
           border-radius: 40px;
           padding: 6px 13px;
           font-weight: 600;
-          text-transform: uppercase;
           text-decoration: none;
         }
       </style>
       <div id="installBanner">
-        <div>
-          <button class="close">&times;</button>
-        </div>
+        <button id="closeButton" class="close">&times;</button>
         <div class="box flex">
           <img src="/android-chrome-192x192.png" width="50" style="border-radius: 12px; max-height: 48px;" />
         </div>
         <div class="box">
           <div class="title">
-            The Invites App
+            ${title}
           </div>
           <div class="muted">
-            International Christian Churches
+            ${organization}
           </div>
         </div>
         <div class="box" style="margin-left: auto;">
-          <a href="/install/" id="installBannerButton">
-            Install
+          <a href="${installUrl}" id="installBannerButton">
+            ${buttonText}
           </a>
         </div>
       </div>
     `;
+
+    // Call setupEventListeners after rendering
+    this.setupEventListeners();
   }
 
   setupEventListeners() {
-    this.shadowRoot
-      .querySelector(".close")
-      .addEventListener("click", () => this.hide());
+    const closeButton = this.shadowRoot.querySelector("#closeButton");
+    if (closeButton) {
+      closeButton.addEventListener("click", () => this.hide());
+    }
   }
 
   show() {
     const banner = this.shadowRoot.querySelector("#installBanner");
-    banner.style.visibility = "visible";
-    this.style.marginTop = `${banner.clientHeight + 5}px`;
+    if (banner) {
+      this.style.marginTop = `${banner.clientHeight + 5}px`;
+    }
   }
 
   hide() {
     const banner = this.shadowRoot.querySelector("#installBanner");
-    banner.style.visibility = "hidden";
-    this.style.marginTop = "auto";
+    if (banner) {
+      banner.style.visibility = "hidden";
+      this.style.marginTop = "auto";
+    }
   }
 }
 
