@@ -11,7 +11,13 @@ class PWAInstallBanner extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["data-title", "data-organization", "data-button-text"];
+    return [
+      "data-title",
+      "data-organization",
+      "data-button-text",
+      "data-install-url",
+      "data-hide-if-dismissed",
+    ];
   }
 
   attributeChangedCallback() {
@@ -31,6 +37,7 @@ class PWAInstallBanner extends HTMLElement {
       this.getAttribute("data-button-text") || this.defaults.buttonText;
     const installUrl =
       this.getAttribute("data-install-url") || this.defaults.installUrl;
+    const hideIfDismissed = this.hasAttribute("data-hide-if-dismissed");
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -97,12 +104,25 @@ class PWAInstallBanner extends HTMLElement {
 
     // Call setupEventListeners after rendering
     this.setupEventListeners();
+
+    if (hideIfDismissed) {
+      const wasDismissed = localStorage.getItem("pwaInstallBannerDismissed");
+
+      if (!!wasDismissed) {
+        this.hide();
+      }
+    }
   }
 
   setupEventListeners() {
     const closeButton = this.shadowRoot.querySelector("#closeButton");
     if (closeButton) {
-      closeButton.addEventListener("click", () => this.hide());
+      closeButton.addEventListener("click", () => {
+        if (this.hasAttribute("data-hide-if-dismissed")) {
+          localStorage.setItem("pwaInstallBannerDismissed", "true");
+        }
+        this.hide();
+      });
     }
   }
 
