@@ -52,9 +52,13 @@ class PWAInstallBanner extends HTMLElement {
           display: flex;
           align-items: center;
           font-family: Arial, sans-serif;
+          font-size: 14.4px;
         }
         #installBanner .box {
           margin: 0 10px 0 0;
+        }
+        .muted {
+          font-size: 13px;
         }
         .flex {
           display: flex;
