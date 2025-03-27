@@ -125,7 +125,17 @@ class PWAInstallBanner extends HTMLElement {
   }
 
   show() {
-    this.parentElement.classList.add("pwaInstallBanner");
+    if (this.hasAttribute("data-hide-if-dismissed")) {
+      const pwaInstallBannerDismissed = localStorage.getItem(
+        "pwaInstallBannerDismissed"
+      );
+
+      if (!pwaInstallBannerDismissed) {
+        this.parentElement.classList.add("pwaInstallBanner");
+      }
+    } else {
+      this.parentElement.classList.add("pwaInstallBanner");
+    }
   }
 
   hide() {
