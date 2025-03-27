@@ -65,7 +65,6 @@ class PWAInstallBanner extends HTMLElement {
           color: #aaa;
           font-size: 25px;
           cursor: pointer;
-          margin-top: 3px;
           padding-left: 15px;
           padding-right: 15px;
         }
