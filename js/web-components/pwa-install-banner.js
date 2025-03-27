@@ -47,8 +47,7 @@ class PWAInstallBanner extends HTMLElement {
           left: 0;
           background-color: #f2f2f6;
           border-bottom: 1px solid #bbb;
-          min-height: 56px;
-          padding: 3px 0;
+          padding: 5px 0;
           width: 100%;
           display: flex;
           align-items: center;
@@ -127,18 +126,11 @@ class PWAInstallBanner extends HTMLElement {
   }
 
   show() {
-    const banner = this.shadowRoot.querySelector("#installBanner");
-    if (banner) {
-      this.style.marginTop = `${banner.clientHeight + 5}px`;
-    }
+    this.parentElement.classList.add("pwaInstallBanner");
   }
 
   hide() {
-    const banner = this.shadowRoot.querySelector("#installBanner");
-    if (banner) {
-      banner.style.visibility = "hidden";
-      this.style.marginTop = "auto";
-    }
+    this.parentElement.classList.remove("pwaInstallBanner");
   }
 }
 

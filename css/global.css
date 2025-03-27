@@ -234,14 +234,6 @@ strong {
   font-weight: 600 !important;
 }
 
-/* @supports (font-variation-settings: "wght" 900) {
-  .font-weight-bold,
-  strong {
-    font-family: "Inter", sans-serif;
-    font-weight: 900;
-  }
-} */
-
 .invalid-feedback-unbound {
   font-size: 0.85rem;
   font-weight: 400;
@@ -254,10 +246,6 @@ strong {
 
 .text-small-caps {
   font-variant: small-caps;
-}
-
-pwa-install-banner {
-  display: none;
 }
 
 @media (max-width: 767px) {
@@ -289,10 +277,6 @@ pwa-install-banner {
 
   .snackbar-body {
     width: 100%;
-  }
-
-  pwa-install-banner {
-    display: block;
   }
 }
 
@@ -412,10 +396,6 @@ pwa-install-banner {
     max-width: 660px;
     width: 60%;
   }
-
-  pwa-install-banner {
-    display: none;
-  }
 }
 
 @media all and (display-mode: standalone) {
@@ -429,10 +409,6 @@ pwa-install-banner {
 
   #installLink {
     display: none;
-  }
-
-  pwa-install-banner {
-    display: none !important;
   }
 }
 
@@ -451,3 +427,41 @@ pwa-install-banner {
   max-width: 80px !important;
   width: 25% !important;
 }
+
+/************************
+/*  PWA Install Banner  *
+/************************/
+
+pwa-install-banner {
+  display: none;
+}
+
+@media all and (display-mode: standalone) {
+  pwa-install-banner {
+    display: none !important;
+  }
+}
+
+@media not all and (display-mode: standalone) and (max-width: 576px) {
+  body.pwaInstallBanner {
+    margin-top: 70px;
+  }
+
+  body.pwaInstallBanner pwa-install-banner {
+    display: block;
+  }
+}
+
+@media (min-width: 577px) {
+  body.pwaInstallBanner {
+    margin-top: auto;
+  }
+
+  pwa-install-banner {
+    display: none !important;
+  }
+}
+
+/*************************
+/*  /PWA Install Banner  *
+/*************************/
