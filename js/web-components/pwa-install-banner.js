@@ -25,8 +25,26 @@ class PWAInstallBanner extends HTMLElement {
   }
 
   connectedCallback() {
+    if (this.shouldHide()) {
+      return this.hide();
+    }
+
     this.render();
     this.show();
+  }
+
+  shouldHide() {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.has("nobanner")) {
+      return true;
+    }
+
+    if (params.has("utm_source") && params.get("utm_source") === "email") {
+      return true;
+    }
+
+    return false;
   }
 
   render() {
