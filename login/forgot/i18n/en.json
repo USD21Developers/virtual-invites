@@ -114,6 +114,11 @@
       "key": "glitchHeadline",
       "original": "Unable to Reset Password",
       "translated": "Unable to Reset Password"
+    },
+    {
+      "key": "hereIsYourUsername",
+      "original": "Here is your username:",
+      "translated": "Here is your username:"
     }
   ],
 
