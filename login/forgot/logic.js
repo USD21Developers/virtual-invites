@@ -16,6 +16,7 @@ function onSubmit(e) {
   const emailParagraph3 = getPhrase("emailParagraph3");
   const emailNotFound = getPhrase("emailNotFound");
   const emailNotFoundHeadline = getPhrase("emailNotFoundHeadline");
+  const hereIsYourUsername = getPhrase("hereIsYourUsername");
   const glitch = getPhrase("glitch");
   const glitchHeadline = getPhrase("glitchHeadline");
   const endpoint = `${getApiHost()}/forgot-password`;
@@ -43,6 +44,7 @@ function onSubmit(e) {
       emailParagraph1: emailParagraph1,
       emailParagraph2: emailParagraph2,
       emailParagraph3: emailParagraph3,
+      hereIsYourUsername: hereIsYourUsername,
     }),
     headers: new Headers({
       "Content-Type": "application/json",
