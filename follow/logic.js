@@ -105,7 +105,7 @@ function noMatchesFound() {
 }
 
 async function populateChurches() {
-  const churchDropdown = document.querySelector("#churchid");
+  const churchDropdown = document.querySelector("#latestRegistrantsChurchID");
   const countryData = await getCountries(getLang());
   const countries = countryData.names;
   const churches = await getChurches();
