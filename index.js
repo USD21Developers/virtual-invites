@@ -1,3 +1,17 @@
+function hideChurchCity() {
+  const latestRegistrants = document.querySelector("#latestRegistrants");
+  latestRegistrants.querySelectorAll(".churchCity").forEach((item) => {
+    item.classList.add("d-none");
+  });
+}
+
+function showChurchCity() {
+  const latestRegistrants = document.querySelector("#latestRegistrants");
+  latestRegistrants.querySelectorAll(".churchCity").forEach((item) => {
+    item.classList.remove("d-none");
+  });
+}
+
 function latestRegistrants() {
   return new Promise(async (resolve, reject) => {
     populateChurches();
@@ -57,8 +71,8 @@ function latestRegistrants() {
           />
           <div class="media-body">
             <h4 class="my-0">${firstName} ${lastName}</h4>
-            <div class="my-1 text-muted">${church.place}</div>
-            <div class="mt-1 small text-black">${daysAgo}</div>
+            <div class="my-1 text-muted churchCity">${church.place}</div>
+            <div class="mt-1 small text-black daysAgo">${daysAgo}</div>
           </div>
         `;
 
@@ -103,10 +117,7 @@ function latestRegistrants() {
 
         localforage.setItem("latestRegistrants", data.registrants);
 
-        // TODO:  Use localStorage to save user's selection on the church (or all churches) for Latest Registrants
-        // TODO:  Call "selectUserChurch()" only if we don't have a value stored in localStorage
         // TODO:  Add an event listener to "#latestRegistrantsChurchID" which repopulates based on the selected dropdown value
-        // TODO:  Convert all phrases to i18n
       });
   });
 }
@@ -143,6 +154,12 @@ async function populateChurches() {
       churchesHtml += churchesInCountryHtml;
     }
   }
+
+  churchesHtml =
+    `<option value="0" data-name="${getPhrase("allchurches")}">
+${getPhrase("allchurches")}
+</option>
+` + churchesHtml;
 
   churchDropdown.innerHTML = churchesHtml;
 
@@ -198,15 +215,35 @@ async function selectUserChurch() {
   const church = getStoredChurch(myChurchId);
   const userChurchId = church.id;
   const churchEl = document.querySelector("#latestRegistrantsChurchID");
+  const churchNameEl = document.querySelector("#selectedChurchName");
+  const storedChurch = localStorage.getItem("latestRegistrantsChurch");
 
-  if (typeof userChurchId !== "number") return;
+  if (storedChurch) {
+    churchEl.value = storedChurch;
+
+    if (Number(storedChurch) === 0) {
+      churchNameEl.classList.add("d-none");
+      hideChurchCity();
+      return;
+    }
+  }
+
+  if (typeof userChurchId !== "number") {
+    churchEl.value = 0;
+    churchNameEl.classList.add("d-none");
+    hideChurchCity();
+    return;
+  }
 
   churchEl.value = userChurchId;
 
   const churchName = church.name;
-  const churchNameEl = document.querySelector("#selectedChurchName");
 
   churchNameEl.innerText = churchName;
+
+  churchNameEl.classList.remove("d-none");
+
+  showChurchCity();
 }
 
 function showContentForLeaders() {
@@ -269,6 +306,31 @@ async function toggleUsersIFollow() {
   });
 }
 
+function onChurchChanged(e) {
+  const churchEl = document.querySelector("#latestRegistrantsChurchID");
+  const churchName = churchEl.selectedOptions[0].getAttribute("data-name");
+  const churchNameEl = document.querySelector("#selectedChurchName");
+  const churchid = Number(e.target.value);
+
+  if (churchid === 0) {
+    churchNameEl.classList.add("d-none");
+    churchNameEl.innerText = "";
+    showChurchCity();
+  } else {
+    churchNameEl.innerText = churchName;
+    churchNameEl.classList.remove("d-none");
+    hideChurchCity();
+  }
+
+  localStorage.setItem("latestRegistrantsChurch", churchid);
+}
+
+function attachListeners() {
+  document
+    .querySelector("#latestRegistrantsChurchID")
+    .addEventListener("change", onChurchChanged);
+}
+
 async function init() {
   await syncOnLogin();
 
@@ -280,9 +342,10 @@ async function init() {
       null,
       location.origin + location.pathname.split("/")[0]
     );
-    populateContent().then(() => {
+    populateContent().then(async () => {
       toggleUsersIFollow();
-      latestRegistrants();
+      await latestRegistrants();
+      attachListeners();
       globalHidePageSpinner();
     });
   }

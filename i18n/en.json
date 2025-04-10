@@ -79,9 +79,19 @@
       "translated": "About This App"
     },
     {
+      "key": "latestRegistrants",
+      "original": "Latest Registrants",
+      "translated": "Latest Registrants"
+    },
+    {
       "key": "latestRegistrantsNoneFound",
       "original": "No registrants found.",
       "translated": "No registrants found."
+    },
+    {
+      "key": "allchurches",
+      "original": "All Churches",
+      "translated": "All Churches"
     }
   ],
 
