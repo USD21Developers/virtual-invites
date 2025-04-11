@@ -14,6 +14,10 @@
   text-decoration: none;
 }
 
+#latestRegistrants .registrant:first-child {
+  padding-top: 0.5rem;
+}
+
 #latestRegistrants .media-body {
   color: var(--dark) !important;
 }

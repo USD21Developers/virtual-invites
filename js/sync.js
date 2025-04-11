@@ -766,6 +766,63 @@ function syncInviteNotifications() {
   });
 }
 
+function syncLatestRegistrants(churchids = [], maxQuantity = 10) {
+  return new Promise(async (resolve, reject) => {
+    const endpoint = `${getApiHost()}/latest-registrants`;
+    const accessToken = await getAccessToken();
+    const myUserId = getUserId();
+    const myChurchId = await getUserChurchId(myUserId);
+    const controller = new AbortController();
+    const timeout = 60000;
+    let syncSuccessful = false;
+    let churchIdsToFetch = [myChurchId];
+
+    if (isNaN(maxQuantity) || maxQuantity < 1) {
+      maxQuantity = 10;
+    }
+
+    if (Array.isArray(churchids) && churchids.length) {
+      const allAreIntegers = churchids.every(Number.isInteger);
+      if (allAreIntegers) churchIdsToFetch = churchids;
+    }
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "post",
+      body: JSON.stringify({
+        maxQuantity: maxQuantity,
+        churchids: churchIdsToFetch,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+    })
+      .then((res) => res.json())
+      .then(async (data) => {
+        if (!data) return resolve();
+        if (!data.registrants) return resolve();
+        if (data.msgType && data.msgType === "error") {
+          console.error(data.msg);
+          return resolve();
+        }
+
+        syncSuccessful = true;
+
+        await localforage.setItem("latestRegistrants", data.registrants);
+
+        return resolve(data.registrants);
+      });
+
+    setTimeout(() => {
+      if (!syncSuccessful) {
+        controller.abort(`"Timeout reached (${timeout / 1000} seconds)"`);
+        return reject(new Error("syncLatestRegistrants timed out"));
+      }
+    }, timeout);
+  });
+}
+
 function syncSettings() {
   return new Promise(async (resolve, reject) => {
     const unsyncedSettings =

@@ -14,111 +14,76 @@ function showChurchCity() {
 
 function latestRegistrants() {
   return new Promise(async (resolve, reject) => {
-    populateChurches();
+    const latestRegistrantsEl = document.querySelector("#latestRegistrants");
+    const churchid = Number(
+      document.querySelector("#latestRegistrantsChurchID").selectedOptions[0]
+        .value
+    );
+    let registrants = await localforage.getItem("latestRegistrants");
 
-    let latestRegistrants = await localforage.getItem("latestRegistrants");
+    latestRegistrantsEl.innerHTML = "";
 
-    const populate = (registrants) => {
-      const latestRegistrantsEl = document.querySelector("#latestRegistrants");
-
-      latestRegistrantsEl.innerHTML = "";
-
-      if (!Array.isArray(registrants)) {
-        return console.error(
-          "unable to populate latest registrants; registrants must be an array"
-        );
-      }
-
-      if (!registrants.length) {
-        latestRegistrantsEl.innerHTML = getPhrase("latestRegistrantsNoneFound");
-        return resolve();
-      }
-
-      registrants.forEach((item) => {
-        const {
-          userid,
-          churchid,
-          firstName,
-          lastName,
-          gender,
-          createdAt,
-          profilePhoto,
-        } = item;
-        const profilePhoto140 = profilePhoto.replaceAll(
-          "__400.jpg",
-          "__140.jpg"
-        );
-        const el = document.createElement("a");
-        const church = getStoredChurch(churchid);
-
-        const createdDate = new Date(createdAt);
-        const now = new Date();
-        const msPerDay = 1000 * 60 * 60 * 24;
-        const diffInMs = now - createdDate;
-        const diffInDays = Math.floor(diffInMs / msPerDay);
-        const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
-        const daysAgo = rtf.format(-diffInDays, "day");
-
-        el.classList.add("media");
-        el.classList.add("registrant");
-        el.classList.add(gender);
-        el.setAttribute("href", `/u/#${userid}`);
-        el.innerHTML = `
-          <img
-            class="mr-3"
-            src="${profilePhoto140}"
-            alt="${firstName} ${lastName}"
-          />
-          <div class="media-body">
-            <h4 class="my-0">${firstName} ${lastName}</h4>
-            <div class="my-1 text-muted churchCity">${church.place}</div>
-            <div class="mt-1 small text-black daysAgo">${daysAgo}</div>
-          </div>
-        `;
-
-        latestRegistrantsEl.appendChild(el);
-
-        resolve();
-      });
-    };
-
-    if (latestRegistrants && latestRegistrants.length) {
-      populate(latestRegistrants);
+    if (!registrants) {
+      registrants = await syncLatestRegistrants([churchid]);
     }
 
-    const endpoint = `${getApiHost()}/latest-registrants`;
-    const accessToken = await getAccessToken();
-    const myUserId = getUserId();
-    const myChurchId = await getUserChurchId(myUserId);
-    let churchids = [myChurchId];
+    if (churchid !== 0) {
+      registrants = registrants.filter((item) => item.churchid === churchid);
+    }
 
-    fetch(endpoint, {
-      mode: "cors",
-      method: "post",
-      body: JSON.stringify({
-        maxQuantity: 10,
-        churchids: churchids,
-      }),
-      headers: new Headers({
-        "Content-Type": "application/json",
-        authorization: `Bearer ${accessToken}`,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (!data) return resolve();
-        if (!data.registrants) return resolve();
-        if (data.msgType && data.msgType === "error") {
-          console.error(data.msg);
-          return resolve();
-        }
+    if (!registrants.length) {
+      latestRegistrantsEl.innerHTML = getPhrase("latestRegistrantsNoneFound");
+      syncLatestRegistrants([churchid]);
+      return resolve();
+    }
 
-        populate(data.registrants);
+    registrants.forEach((item) => {
+      const {
+        userid,
+        churchid,
+        firstName,
+        lastName,
+        gender,
+        createdAt,
+        profilePhoto,
+      } = item;
+      const profilePhoto140 = profilePhoto.replaceAll("__400.jpg", "__140.jpg");
+      const el = document.createElement("a");
+      const church = getStoredChurch(churchid);
 
-        localforage.setItem("latestRegistrants", data.registrants);
+      const createdDate = new Date(createdAt);
+      const now = new Date();
+      const msPerDay = 1000 * 60 * 60 * 24;
+      const diffInMs = now - createdDate;
+      const diffInDays = Math.floor(diffInMs / msPerDay);
+      const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
+      const daysAgo = rtf.format(-diffInDays, "day");
 
-        // TODO:  Add an event listener to "#latestRegistrantsChurchID" which repopulates based on the selected dropdown value
+      el.classList.add("media");
+      el.classList.add("registrant");
+      el.classList.add(gender);
+      el.setAttribute("href", `/u/#${userid}`);
+      el.innerHTML = `
+        <img
+          class="mr-3"
+          src="${profilePhoto140}"
+          alt="${firstName} ${lastName}"
+        />
+        <div class="media-body">
+          <h4 class="my-0">${firstName} ${lastName}</h4>
+          <div class="my-1 text-muted churchCity">${church.place}</div>
+          <div class="mt-1 small text-black daysAgo">${daysAgo}</div>
+        </div>
+      `;
+
+      latestRegistrantsEl.appendChild(el);
+
+      syncLatestRegistrants().then(() => {
+        latestRegistrants();
       });
+
+      return resolve();
+    });
   });
 }
 
@@ -278,6 +243,7 @@ function syncOnLogin() {
         syncUpdatedInvites(),
         syncAllNotes(),
         syncSettings(),
+        syncLatestRegistrants(),
       ]).then((result) => {
         try {
           syncPushSubscription();
@@ -311,6 +277,7 @@ function onChurchChanged(e) {
   const churchName = churchEl.selectedOptions[0].getAttribute("data-name");
   const churchNameEl = document.querySelector("#selectedChurchName");
   const churchid = Number(e.target.value);
+  const latestRegistrantsEl = document.querySelector("#latestRegistrants");
 
   if (churchid === 0) {
     churchNameEl.classList.add("d-none");
@@ -323,6 +290,29 @@ function onChurchChanged(e) {
   }
 
   localStorage.setItem("latestRegistrantsChurch", churchid);
+
+  latestRegistrantsEl.innerHTML = `
+    <div class="mt-3">
+      <img
+        src="/_assets/img/spinner.svg"
+        width="200"
+        height="200"
+        style="max-width: 100%"
+      />
+    </div>
+  `;
+
+  syncLatestRegistrants([churchid])
+    .then(() => {
+      latestRegistrants();
+    })
+    .catch(() => {
+      latestRegistrantsEl.innerHTML = `
+        <div class="mt-3">
+          ${getPhrase("timedOut")};
+        </div>
+      `;
+    });
 }
 
 function attachListeners() {
@@ -344,6 +334,7 @@ async function init() {
     );
     populateContent().then(async () => {
       toggleUsersIFollow();
+      await populateChurches();
       await latestRegistrants();
       attachListeners();
       globalHidePageSpinner();

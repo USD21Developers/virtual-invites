@@ -89,6 +89,11 @@
       "translated": "No registrants found."
     },
     {
+      "key": "timedOut",
+      "original": "Timed out. Please reconnect.",
+      "translated": "Timed out. Please reconnect."
+    },
+    {
       "key": "allchurches",
       "original": "All Churches",
       "translated": "All Churches"
