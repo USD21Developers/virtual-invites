@@ -80,8 +80,13 @@
     },
     {
       "key": "latestInvites",
-      "original": "Latest Invite Senders",
-      "translated": "Latest Invite Senders"
+      "original": "Latest Activity",
+      "translated": "Latest Activity"
+    },
+    {
+      "key": "latestInvitesAction",
+      "original": "Sent an invite for {EVENT-TYPE}",
+      "translated": "Sent an invite for {EVENT-TYPE}"
     },
     {
       "key": "latestRegistrants",

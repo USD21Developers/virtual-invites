@@ -72,13 +72,22 @@ function latestInvites() {
       const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
       const daysAgo = rtf.format(-diffInDays, "day");
 
-      let eventType;
+      let eventType = getPhrase("latestInvitesAction");
       if (eventtype === "bible talk") {
-        eventType = getGlobalPhrase("bibletalk");
+        eventType = eventType.replaceAll(
+          "{EVENT-TYPE}",
+          getGlobalPhrase("bibletalk")
+        );
       } else if (eventtype === "church") {
-        eventType = getGlobalPhrase("churchservice");
+        eventType = eventType.replaceAll(
+          "{EVENT-TYPE}",
+          getGlobalPhrase("churchservice").toLowerCase()
+        );
       } else {
-        eventType = getGlobalPhrase("otherevent");
+        eventType = eventType.replaceAll(
+          "{EVENT-TYPE}",
+          getGlobalPhrase("otherevent").toLowerCase()
+        );
       }
 
       el.classList.add("media");
