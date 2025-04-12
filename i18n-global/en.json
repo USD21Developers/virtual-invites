@@ -204,6 +204,11 @@
       "translated": "Church service"
     },
     {
+      "key": "otherevent",
+      "original": "Other event",
+      "translated": "Other event"
+    },
+    {
       "key": "streamed",
       "original": "Streamed",
       "translated": "Streamed"

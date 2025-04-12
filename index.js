@@ -1,14 +1,108 @@
-function hideChurchCity() {
+function hideChurchCityLatestInvites() {
+  const latestInvites = document.querySelector("#latestInvites");
+  latestInvites.querySelectorAll(".churchCity").forEach((item) => {
+    item.classList.add("d-none");
+  });
+}
+
+function showChurchCityLatestInvites() {
+  const latestInvites = document.querySelector("#latestInvites");
+  latestInvites.querySelectorAll(".churchCity").forEach((item) => {
+    item.classList.remove("d-none");
+  });
+}
+
+function hideChurchCityLatestRegistrants() {
   const latestRegistrants = document.querySelector("#latestRegistrants");
   latestRegistrants.querySelectorAll(".churchCity").forEach((item) => {
     item.classList.add("d-none");
   });
 }
 
-function showChurchCity() {
+function showChurchCityLatestRegistrants() {
   const latestRegistrants = document.querySelector("#latestRegistrants");
   latestRegistrants.querySelectorAll(".churchCity").forEach((item) => {
     item.classList.remove("d-none");
+  });
+}
+
+function latestInvites() {
+  return new Promise(async (resolve, reject) => {
+    const latestInvitesEl = document.querySelector("#latestInvites");
+    const churchid = Number(
+      document.querySelector("#latestInvitesChurchID").selectedOptions[0].value
+    );
+    let invites = await localforage.getItem("latestInvites");
+
+    latestInvitesEl.innerHTML = "";
+
+    if (!invites) {
+      invites = await syncLatestInvites([churchid]);
+    }
+
+    if (churchid !== 0) {
+      invites = invites.filter((item) => item.churchid === churchid);
+    }
+
+    if (!invites.length) {
+      latestInvitesEl.innerHTML = getPhrase("latestInvitesNoneFound");
+      return resolve();
+    }
+
+    invites.forEach((item) => {
+      const {
+        invitationid,
+        userid,
+        eventtype,
+        firstName,
+        lastName,
+        churchid,
+        gender,
+        createdAt,
+        profilePhoto,
+      } = item;
+      const profilePhoto140 = profilePhoto.replaceAll("__400.jpg", "__140.jpg");
+      const el = document.createElement("a");
+      const church = getStoredChurch(churchid);
+      const createdDate = new Date(createdAt);
+      const now = new Date();
+      const msPerDay = 1000 * 60 * 60 * 24;
+      const diffInMs = now - createdDate;
+      const diffInDays = Math.floor(diffInMs / msPerDay);
+      const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
+      const daysAgo = rtf.format(-diffInDays, "day");
+
+      let eventType;
+      if (eventtype === "bible talk") {
+        eventType = getGlobalPhrase("bibletalk");
+      } else if (eventtype === "church") {
+        eventType = getGlobalPhrase("churchservice");
+      } else {
+        eventType = getGlobalPhrase("otherevent");
+      }
+
+      el.classList.add("media");
+      el.classList.add("invite");
+      el.classList.add(gender);
+      el.setAttribute("href", `/u/#${userid}`);
+      el.innerHTML = `
+        <img
+          class="mr-3"
+          src="${profilePhoto140}"
+          alt="${firstName} ${lastName}"
+        />
+        <div class="media-body">
+          <h4 class="my-0">${firstName} ${lastName}</h4>
+          <div class="my-1 small text-muted churchCity">${church.place}</div>
+          <div class="my-1 small text-black eventType">${eventType}</div>
+          <div class="mt-1 small text-black daysAgo">${daysAgo}</div>
+        </div>
+      `;
+
+      latestInvitesEl.appendChild(el);
+
+      return resolve();
+    });
   });
 }
 
@@ -83,7 +177,12 @@ function latestRegistrants() {
 }
 
 async function populateChurches() {
-  const churchDropdown = document.querySelector("#latestRegistrantsChurchID");
+  const churchDropdownLatestInvites = document.querySelector(
+    "#latestInvitesChurchID"
+  );
+  const churchDropdownLatestRegistrants = document.querySelector(
+    "#latestRegistrantsChurchID"
+  );
   const countryData = await getCountries(getLang());
   const countries = countryData.names;
   const churches = await getChurches();
@@ -121,9 +220,11 @@ ${getPhrase("allchurches")}
 </option>
 ` + churchesHtml;
 
-  churchDropdown.innerHTML = churchesHtml;
+  churchDropdownLatestRegistrants.innerHTML = churchesHtml;
+  churchDropdownLatestInvites.innerHTML = churchesHtml;
 
-  selectUserChurch();
+  selectUserChurchLatestInvites();
+  selectUserChurchLatestRegistrants();
 
   syncChurches();
 }
@@ -169,41 +270,88 @@ function redirectIfNecessary() {
   });
 }
 
-async function selectUserChurch() {
+async function selectUserChurchLatestInvites() {
   const myUserId = getUserId();
   const myChurchId = await getUserChurchId(myUserId);
   const church = getStoredChurch(myChurchId);
   const userChurchId = church.id;
-  const churchEl = document.querySelector("#latestRegistrantsChurchID");
-  const churchNameEl = document.querySelector("#selectedChurchName");
-  const storedChurch = localStorage.getItem("latestRegistrantsChurch");
+  const churchElLatestInvites = document.querySelector(
+    "#latestInvitesChurchID"
+  );
+  const churchNameElLatestInvites = document.querySelector(
+    "#selectedChurchNameLatestInvites"
+  );
+  const storedChurchLatestInvites = localStorage.getItem("latestInvitesChurch");
 
-  if (storedChurch) {
-    churchEl.value = storedChurch;
+  if (storedChurchLatestInvites) {
+    churchElLatestInvites.value = storedChurchLatestInvites;
 
-    if (Number(storedChurch) === 0) {
-      churchNameEl.classList.add("d-none");
-      hideChurchCity();
+    if (Number(storedChurchLatestInvites) === 0) {
+      churchNameElLatestInvites.classList.add("d-none");
+      hideChurchCityLatestInvites();
       return;
     }
   }
 
   if (typeof userChurchId !== "number") {
-    churchEl.value = 0;
-    churchNameEl.classList.add("d-none");
-    hideChurchCity();
+    churchElLatestInvites.value = 0;
+    churchNameElLatestInvites.classList.add("d-none");
+    hideChurchCityLatestInvites();
     return;
   }
 
-  churchEl.value = userChurchId;
+  churchElLatestInvites.value = userChurchId;
 
   const churchName = church.name;
 
-  churchNameEl.innerText = churchName;
+  churchNameElLatestInvites.innerText = churchName;
 
-  churchNameEl.classList.remove("d-none");
+  churchNameElLatestInvites.classList.remove("d-none");
 
-  showChurchCity();
+  showChurchCityLatestInvites();
+}
+
+async function selectUserChurchLatestRegistrants() {
+  const myUserId = getUserId();
+  const myChurchId = await getUserChurchId(myUserId);
+  const church = getStoredChurch(myChurchId);
+  const userChurchId = church.id;
+  const churchElLatestRegistrants = document.querySelector(
+    "#latestRegistrantsChurchID"
+  );
+  const churchNameElLatestRegistrants = document.querySelector(
+    "#selectedChurchNameLatestRegistrants"
+  );
+  const storedChurchLatestRegistrants = localStorage.getItem(
+    "latestRegistrantsChurch"
+  );
+
+  if (storedChurchLatestRegistrants) {
+    churchElLatestRegistrants.value = storedChurchLatestRegistrants;
+
+    if (Number(storedChurchLatestRegistrants) === 0) {
+      churchNameElLatestRegistrants.classList.add("d-none");
+      hideChurchCityLatestRegistrants();
+      return;
+    }
+  }
+
+  if (typeof userChurchId !== "number") {
+    churchElLatestRegistrants.value = 0;
+    churchNameElLatestRegistrants.classList.add("d-none");
+    hideChurchCityLatestRegistrants();
+    return;
+  }
+
+  churchElLatestRegistrants.value = userChurchId;
+
+  const churchName = church.name;
+
+  churchNameElLatestRegistrants.innerText = churchName;
+
+  churchNameElLatestRegistrants.classList.remove("d-none");
+
+  showChurchCityLatestRegistrants();
 }
 
 function showContentForLeaders() {
@@ -267,21 +415,68 @@ async function toggleUsersIFollow() {
   });
 }
 
-function onChurchChanged(e) {
+function onChurchChangedLatestInvites(e) {
+  const churchEl = document.querySelector("#latestInvitesChurchID");
+  const churchName = churchEl.selectedOptions[0].getAttribute("data-name");
+  const churchNameEl = document.querySelector(
+    "#selectedChurchNameLatestInvites"
+  );
+  const churchid = Number(e.target.value);
+  const latestInvitesEl = document.querySelector("#latestInvites");
+
+  if (churchid === 0) {
+    churchNameEl.classList.add("d-none");
+    churchNameEl.innerText = "";
+    showChurchCityLatestInvites();
+  } else {
+    churchNameEl.innerText = churchName;
+    churchNameEl.classList.remove("d-none");
+    hideChurchCityLatestInvites();
+  }
+
+  localStorage.setItem("latestInvitesChurch", churchid);
+
+  latestInvitesEl.innerHTML = `
+    <div class="mt-3">
+      <img
+        src="/_assets/img/spinner.svg"
+        width="200"
+        height="200"
+        style="max-width: 100%"
+      />
+    </div>
+  `;
+
+  syncLatestInvites([churchid])
+    .then(() => {
+      latestInvites();
+    })
+    .catch(() => {
+      latestInvitesEl.innerHTML = `
+        <div class="mt-3">
+          ${getPhrase("timedOut")};
+        </div>
+      `;
+    });
+}
+
+function onChurchChangedLatestRegistrants(e) {
   const churchEl = document.querySelector("#latestRegistrantsChurchID");
   const churchName = churchEl.selectedOptions[0].getAttribute("data-name");
-  const churchNameEl = document.querySelector("#selectedChurchName");
+  const churchNameEl = document.querySelector(
+    "#selectedChurchNameLatestRegistrants"
+  );
   const churchid = Number(e.target.value);
   const latestRegistrantsEl = document.querySelector("#latestRegistrants");
 
   if (churchid === 0) {
     churchNameEl.classList.add("d-none");
     churchNameEl.innerText = "";
-    showChurchCity();
+    showChurchCityLastRegistrants();
   } else {
     churchNameEl.innerText = churchName;
     churchNameEl.classList.remove("d-none");
-    hideChurchCity();
+    hideChurchCityLatestRegistrants();
   }
 
   localStorage.setItem("latestRegistrantsChurch", churchid);
@@ -313,7 +508,11 @@ function onChurchChanged(e) {
 function attachListeners() {
   document
     .querySelector("#latestRegistrantsChurchID")
-    .addEventListener("change", onChurchChanged);
+    .addEventListener("change", onChurchChangedLatestRegistrants);
+
+  document
+    .querySelector("#latestInvitesChurchID")
+    .addEventListener("change", onChurchChangedLatestInvites);
 }
 
 async function init() {
@@ -330,6 +529,7 @@ async function init() {
     populateContent().then(async () => {
       toggleUsersIFollow();
       await populateChurches();
+      await latestInvites().then(() => syncLatestInvites());
       await latestRegistrants().then(() => syncLatestRegistrants());
       attachListeners();
       globalHidePageSpinner();
