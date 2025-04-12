@@ -74,7 +74,12 @@ function latestInvites() {
       const diffInMs = now - createdDate;
       const diffInDays = Math.floor(diffInMs / msPerDay);
       const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
-      const daysAgo = rtf.format(-diffInDays, "day");
+      const daysAgo =
+        diffInDays === 0
+          ? `<span class="text-capitalize">
+            ${rtf.format(-diffInDays, "day")}
+            </span>`
+          : rtf.format(-diffInDays, "day");
       let eventAction = getPhrase("latestInvitesAction");
 
       eventAction = eventAction.replaceAll("{DAYS-AGO}", daysAgo);
