@@ -13,8 +13,6 @@ function showChurchCity() {
 }
 
 function latestRegistrants() {
-  syncLatestRegistrants();
-
   return new Promise(async (resolve, reject) => {
     const latestRegistrantsEl = document.querySelector("#latestRegistrants");
     const churchid = Number(
@@ -332,7 +330,7 @@ async function init() {
     populateContent().then(async () => {
       toggleUsersIFollow();
       await populateChurches();
-      await latestRegistrants();
+      await latestRegistrants().then(() => syncLatestRegistrants());
       attachListeners();
       globalHidePageSpinner();
     });
