@@ -109,9 +109,18 @@ function latestInvites() {
       `;
 
       latestInvitesEl.appendChild(el);
-
-      return resolve();
     });
+
+    // Hide or show church city
+    const selectedChurch = document.querySelector("#latestInvitesChurchID")
+      .selectedOptions[0].value;
+    if (selectedChurch == 0) {
+      showChurchCityLatestInvites();
+    } else {
+      hideChurchCityLatestInvites();
+    }
+
+    return resolve();
   });
 }
 
@@ -179,9 +188,18 @@ function latestRegistrants() {
       `;
 
       latestRegistrantsEl.appendChild(el);
-
-      return resolve();
     });
+
+    // Hide or show church city
+    const selectedChurch = document.querySelector("#latestRegistrantsChurchID")
+      .selectedOptions[0].value;
+    if (selectedChurch == 0) {
+      showChurchCityLatestRegistrants();
+    } else {
+      hideChurchCityLatestRegistrants();
+    }
+
+    return resolve();
   });
 }
 
