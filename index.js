@@ -41,7 +41,10 @@ function latestInvites() {
     latestInvitesEl.innerHTML = "";
 
     if (!invites) {
-      invites = await syncLatestInvites([churchid]);
+      invites =
+        churchid > 0
+          ? await syncLatestInvites([churchid])
+          : await syncLatestInvites();
     }
 
     if (churchid !== 0) {
@@ -140,7 +143,10 @@ function latestRegistrants() {
     latestRegistrantsEl.innerHTML = "";
 
     if (!registrants) {
-      registrants = await syncLatestRegistrants([churchid]);
+      registrants =
+        churchid > 0
+          ? await syncLatestRegistrants([churchid])
+          : await syncLatestRegistrants();
     }
 
     if (churchid !== 0) {
@@ -189,7 +195,7 @@ function latestRegistrants() {
         <div class="media-body">
           <h4 class="my-0">${firstName} ${lastName}</h4>
           <div class="my-1 text-muted churchCity">${church.place}</div>
-          <div class="mt-1 small text-black daysAgo">${registeredWhen}</div>
+          <div class="mt-1 text-black daysAgo">${registeredWhen}</div>
         </div>
       `;
 
