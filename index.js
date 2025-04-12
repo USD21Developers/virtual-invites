@@ -1,29 +1,29 @@
 function hideChurchCityLatestInvites() {
-  const latestInvites = document.querySelector("#latestInvites");
-  latestInvites.querySelectorAll(".churchCity").forEach((item) => {
-    item.classList.add("d-none");
-  });
+  document
+    .querySelector("#latestInvites")
+    .querySelectorAll(".churchCity")
+    .forEach((item) => item.classList.add("d-none"));
 }
 
 function showChurchCityLatestInvites() {
-  const latestInvites = document.querySelector("#latestInvites");
-  latestInvites.querySelectorAll(".churchCity").forEach((item) => {
-    item.classList.remove("d-none");
-  });
+  document
+    .querySelector("#latestInvites")
+    .querySelectorAll(".churchCity")
+    .forEach((item) => item.classList.remove("d-none"));
 }
 
 function hideChurchCityLatestRegistrants() {
-  const latestRegistrants = document.querySelector("#latestRegistrants");
-  latestRegistrants.querySelectorAll(".churchCity").forEach((item) => {
-    item.classList.add("d-none");
-  });
+  document
+    .querySelector("#latestRegistrants")
+    .querySelectorAll(".churchCity")
+    .forEach((item) => item.classList.add("d-none"));
 }
 
 function showChurchCityLatestRegistrants() {
-  const latestRegistrants = document.querySelector("#latestRegistrants");
-  latestRegistrants.querySelectorAll(".churchCity").forEach((item) => {
-    item.classList.remove("d-none");
-  });
+  document
+    .querySelector("#latestRegistrants")
+    .querySelectorAll(".churchCity")
+    .forEach((item) => item.classList.remove("d-none"));
 }
 
 function latestInvites() {
