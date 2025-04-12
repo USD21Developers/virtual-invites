@@ -102,7 +102,7 @@ function latestInvites() {
         <img
           class="mr-3"
           src="${profilePhoto140}"
-          alt="${firstName} ${lastName}"
+          alt="${firstname} ${lastname}"
         />
         <div class="media-body">
           <h4 class="my-0">${firstname} ${lastname}</h4>
@@ -184,7 +184,7 @@ function latestRegistrants() {
         <img
           class="mr-3"
           src="${profilePhoto140}"
-          alt="${firstName} ${lastName}"
+          alt="${firstname} ${lastname}"
         />
         <div class="media-body">
           <h4 class="my-0">${firstname} ${lastname}</h4>
