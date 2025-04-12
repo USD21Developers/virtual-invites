@@ -85,8 +85,8 @@
     },
     {
       "key": "latestInvitesAction",
-      "original": "Sent an invite for {EVENT-TYPE}",
-      "translated": "Sent an invite for {EVENT-TYPE}"
+      "original": "Sent an invite to {EVENT-TYPE}",
+      "translated": "Sent an invite to {EVENT-TYPE}"
     },
     {
       "key": "latestInvitesActionOther",
