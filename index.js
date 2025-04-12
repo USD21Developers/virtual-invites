@@ -106,8 +106,8 @@ function latestInvites() {
         <div class="media-body">
           <h4 class="my-0">${firstname} ${lastname}</h4>
           <div class="my-1 churchCity">${church.place}</div>
-          <div class="my-1 eventType">${eventAction}</div>
           <div class="mt-1 daysAgo">${daysAgo}</div>
+          <div class="my-1 eventType">${eventAction}</div>
         </div>
       `;
 

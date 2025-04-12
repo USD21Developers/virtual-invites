@@ -85,13 +85,13 @@
     },
     {
       "key": "latestInvitesAction",
-      "original": "Sent an invite {DAYS-AGO} for {EVENT-TYPE}",
-      "translated": "Sent an invite {DAYS-AGO} for {EVENT-TYPE}"
+      "original": "Sent an invite for {EVENT-TYPE}",
+      "translated": "Sent an invite for {EVENT-TYPE}"
     },
     {
       "key": "latestInvitesActionOther",
-      "original": "Sent an invite {DAYS-AGO}",
-      "translated": "Sent an invite {DAYS-AGO}"
+      "original": "Sent an invite",
+      "translated": "Sent an invite"
     },
     {
       "key": "latestRegistrants",
