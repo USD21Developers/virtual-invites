@@ -80,8 +80,8 @@
     },
     {
       "key": "latestInvites",
-      "original": "Latest Invites",
-      "translated": "Latest Invites"
+      "original": "Latest Invite Senders",
+      "translated": "Latest Invite Senders"
     },
     {
       "key": "latestRegistrants",
@@ -90,8 +90,8 @@
     },
     {
       "key": "latestInvitesNoneFound",
-      "original": "No invites found.",
-      "translated": "No invites found."
+      "original": "No invite senders found.",
+      "translated": "No invite senders found."
     },
     {
       "key": "latestRegistrantsNoneFound",
