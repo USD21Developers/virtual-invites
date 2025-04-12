@@ -41,10 +41,7 @@ function latestInvites() {
     latestInvitesEl.innerHTML = "";
 
     if (!invites) {
-      invites =
-        churchid > 0
-          ? await syncLatestInvites([churchid])
-          : await syncLatestInvites();
+      invites = await syncLatestInvites([churchid]);
     }
 
     if (churchid !== 0) {
@@ -143,10 +140,7 @@ function latestRegistrants() {
     latestRegistrantsEl.innerHTML = "";
 
     if (!registrants) {
-      registrants =
-        churchid > 0
-          ? await syncLatestRegistrants([churchid])
-          : await syncLatestRegistrants();
+      registrants = await syncLatestRegistrants([churchid]);
     }
 
     if (churchid !== 0) {
