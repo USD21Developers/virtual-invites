@@ -481,7 +481,7 @@ function onChurchChangedLatestRegistrants(e) {
   if (churchid === 0) {
     churchNameEl.classList.add("d-none");
     churchNameEl.innerText = "";
-    showChurchCityLastRegistrants();
+    showChurchCityLatestRegistrants();
   } else {
     churchNameEl.innerText = churchName;
     churchNameEl.classList.remove("d-none");
