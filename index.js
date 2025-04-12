@@ -1,29 +1,49 @@
 function hideChurchCityLatestInvites() {
-  document
-    .querySelector("#latestInvites")
+  const latestInvitesEl = document.querySelector("#latestInvites");
+
+  latestInvitesEl
     .querySelectorAll(".churchCity")
     .forEach((item) => item.classList.add("d-none"));
+
+  latestInvitesEl
+    .querySelectorAll(".daysAgo")
+    .forEach((item) => item.classList.remove("small"));
 }
 
 function showChurchCityLatestInvites() {
-  document
-    .querySelector("#latestInvites")
+  const latestInvitesEl = document.querySelector("#latestInvites");
+
+  latestInvitesEl
     .querySelectorAll(".churchCity")
     .forEach((item) => item.classList.remove("d-none"));
+
+  latestInvitesEl
+    .querySelectorAll(".daysAgo")
+    .forEach((item) => item.classList.add("small"));
 }
 
 function hideChurchCityLatestRegistrants() {
-  document
-    .querySelector("#latestRegistrants")
+  const latestRegistrantsEl = document.querySelector("#latestRegistrants");
+
+  latestRegistrantsEl
     .querySelectorAll(".churchCity")
     .forEach((item) => item.classList.add("d-none"));
+
+  latestRegistrantsEl
+    .querySelectorAll(".daysAgo")
+    .forEach((item) => item.classList.add("small"));
 }
 
 function showChurchCityLatestRegistrants() {
-  document
-    .querySelector("#latestRegistrants")
+  const latestRegistrantsEl = document.querySelector("#latestRegistrants");
+
+  latestRegistrantsEl
     .querySelectorAll(".churchCity")
     .forEach((item) => item.classList.remove("d-none"));
+
+  latestRegistrantsEl
+    .querySelectorAll(".daysAgo")
+    .forEach((item) => item.classList.remove("small"));
 }
 
 function latestInvites() {
