@@ -63,9 +63,9 @@ function latestInvites() {
         churchid,
         gender,
         createdAt,
-        profilePhoto,
+        profilephoto,
       } = item;
-      const profilePhoto140 = profilePhoto.replaceAll("__400.jpg", "__140.jpg");
+      const profilePhoto140 = profilephoto.replaceAll("__400.jpg", "__140.jpg");
       const el = document.createElement("a");
       const church = getStoredChurch(churchid);
       const createdDate = new Date(createdAt);
@@ -160,9 +160,9 @@ function latestRegistrants() {
         lastName,
         gender,
         createdAt,
-        profilePhoto,
+        profilephoto,
       } = item;
-      const profilePhoto140 = profilePhoto.replaceAll("__400.jpg", "__140.jpg");
+      const profilePhoto140 = profilephoto.replaceAll("__400.jpg", "__140.jpg");
       const el = document.createElement("a");
       const church = getStoredChurch(churchid);
       const createdDate = new Date(createdAt);
