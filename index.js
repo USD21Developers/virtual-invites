@@ -13,6 +13,8 @@ function showChurchCity() {
 }
 
 function latestRegistrants() {
+  syncLatestRegistrants();
+
   return new Promise(async (resolve, reject) => {
     const latestRegistrantsEl = document.querySelector("#latestRegistrants");
     const churchid = Number(
@@ -33,7 +35,6 @@ function latestRegistrants() {
 
     if (!registrants.length) {
       latestRegistrantsEl.innerHTML = getPhrase("latestRegistrantsNoneFound");
-      syncLatestRegistrants([churchid]);
       return resolve();
     }
 
@@ -77,10 +78,6 @@ function latestRegistrants() {
       `;
 
       latestRegistrantsEl.appendChild(el);
-
-      syncLatestRegistrants().then(() => {
-        latestRegistrants();
-      });
 
       return resolve();
     });
