@@ -75,8 +75,10 @@ function latestInvites() {
       const diffInDays = Math.floor(diffInMs / msPerDay);
       const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
       const daysAgo = rtf.format(-diffInDays, "day");
-
       let eventAction = getPhrase("latestInvitesAction");
+
+      eventAction = eventAction.replaceAll("{DAYS-AGO}", daysAgo);
+
       if (eventtype === "bible talk") {
         eventAction = eventAction.replaceAll(
           "{EVENT-TYPE}",
