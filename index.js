@@ -295,7 +295,7 @@ async function selectUserChurchLatestInvites() {
   if (storedChurchLatestInvites) {
     churchElLatestInvites.value = storedChurchLatestInvites;
 
-    if (Number(storedChurchLatestInvites) === 0) {
+    if (storedChurchLatestInvites == 0) {
       churchNameElLatestInvites.classList.add("d-none");
       hideChurchCityLatestInvites();
       return;
@@ -317,7 +317,7 @@ async function selectUserChurchLatestInvites() {
 
   churchNameElLatestInvites.classList.remove("d-none");
 
-  showChurchCityLatestInvites();
+  hideChurchCityLatestInvites();
 }
 
 async function selectUserChurchLatestRegistrants() {
@@ -338,9 +338,9 @@ async function selectUserChurchLatestRegistrants() {
   if (storedChurchLatestRegistrants) {
     churchElLatestRegistrants.value = storedChurchLatestRegistrants;
 
-    if (Number(storedChurchLatestRegistrants) === 0) {
+    if (storedChurchLatestRegistrants == 0) {
       churchNameElLatestRegistrants.classList.add("d-none");
-      hideChurchCityLatestRegistrants();
+      showChurchCityLatestRegistrants();
       return;
     }
   }
@@ -360,7 +360,7 @@ async function selectUserChurchLatestRegistrants() {
 
   churchNameElLatestRegistrants.classList.remove("d-none");
 
-  showChurchCityLatestRegistrants();
+  hideChurchCityLatestRegistrants();
 }
 
 function showContentForLeaders() {
