@@ -170,7 +170,7 @@ function latestRegistrants() {
       const daysAgo = rtf.format(-diffInDays, "day");
 
       let registeredWhen = getPhrase("latestRegistrantsAction");
-      registeredWhen = registeredWhen.replaceAll("DAYS-AGO", daysAgo);
+      registeredWhen = registeredWhen.replaceAll("{DAYS-AGO}", daysAgo);
 
       el.classList.add("media");
       el.classList.add("registrant");
