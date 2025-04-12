@@ -106,9 +106,9 @@ function latestInvites() {
         />
         <div class="media-body">
           <h4 class="my-0">${firstName} ${lastName}</h4>
-          <div class="my-1 text-muted churchCity">${church.place}</div>
-          <div class="my-1 text-black eventType">${eventType}</div>
-          <div class="mt-1 text-black daysAgo">${daysAgo}</div>
+          <div class="my-1 churchCity">${church.place}</div>
+          <div class="my-1 eventType">${eventType}</div>
+          <div class="mt-1 daysAgo">${daysAgo}</div>
         </div>
       `;
 
@@ -188,8 +188,8 @@ function latestRegistrants() {
         />
         <div class="media-body">
           <h4 class="my-0">${firstName} ${lastName}</h4>
-          <div class="my-1 text-muted churchCity">${church.place}</div>
-          <div class="mt-1 text-black daysAgo">${registeredWhen}</div>
+          <div class="my-1 churchCity">${church.place}</div>
+          <div class="mt-1 daysAgo">${registeredWhen}</div>
         </div>
       `;
 
