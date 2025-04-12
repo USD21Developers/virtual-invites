@@ -109,7 +109,7 @@ function latestInvites() {
           alt="${firstname} ${lastname}"
         />
         <div class="media-body">
-          <h4 class="my-0">${firstname} ${lastname}</h4>
+          <h4 class="my-0" senderName>${firstname} ${lastname}</h4>
           <div class="my-1 churchCity">${church.place}</div>
           <div class="mt-1 daysAgo">${daysAgo}</div>
           <div class="my-1 eventType">${eventAction}</div>
@@ -191,7 +191,7 @@ function latestRegistrants() {
           alt="${firstname} ${lastname}"
         />
         <div class="media-body">
-          <h4 class="my-0">${firstname} ${lastname}</h4>
+          <h4 class="my-0" registrantName>${firstname} ${lastname}</h4>
           <div class="my-1 churchCity">${church.place}</div>
           <div class="mt-1 daysAgo">${registeredWhen}</div>
         </div>

@@ -30,3 +30,8 @@
 #latestInvites .media-body {
   color: var(--dark) !important;
 }
+
+.registrantName,
+.senderName {
+  font-weight: 400;
+}
