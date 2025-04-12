@@ -4,10 +4,6 @@ function hideChurchCityLatestInvites() {
   latestInvitesEl
     .querySelectorAll(".churchCity")
     .forEach((item) => item.classList.add("d-none"));
-
-  latestInvitesEl
-    .querySelectorAll(".daysAgo")
-    .forEach((item) => item.classList.remove("small"));
 }
 
 function showChurchCityLatestInvites() {
@@ -16,10 +12,6 @@ function showChurchCityLatestInvites() {
   latestInvitesEl
     .querySelectorAll(".churchCity")
     .forEach((item) => item.classList.remove("d-none"));
-
-  latestInvitesEl
-    .querySelectorAll(".daysAgo")
-    .forEach((item) => item.classList.add("small"));
 }
 
 function hideChurchCityLatestRegistrants() {
@@ -28,10 +20,6 @@ function hideChurchCityLatestRegistrants() {
   latestRegistrantsEl
     .querySelectorAll(".churchCity")
     .forEach((item) => item.classList.add("d-none"));
-
-  latestRegistrantsEl
-    .querySelectorAll(".daysAgo")
-    .forEach((item) => item.classList.add("small"));
 }
 
 function showChurchCityLatestRegistrants() {
@@ -40,10 +28,6 @@ function showChurchCityLatestRegistrants() {
   latestRegistrantsEl
     .querySelectorAll(".churchCity")
     .forEach((item) => item.classList.remove("d-none"));
-
-  latestRegistrantsEl
-    .querySelectorAll(".daysAgo")
-    .forEach((item) => item.classList.remove("small"));
 }
 
 function latestInvites() {
@@ -122,9 +106,9 @@ function latestInvites() {
         />
         <div class="media-body">
           <h4 class="my-0">${firstName} ${lastName}</h4>
-          <div class="my-1 small text-muted churchCity">${church.place}</div>
-          <div class="my-1 small text-black eventType">${eventType}</div>
-          <div class="mt-1 small text-black daysAgo">${daysAgo}</div>
+          <div class="my-1 text-muted churchCity">${church.place}</div>
+          <div class="my-1 text-black eventType">${eventType}</div>
+          <div class="mt-1 text-black daysAgo">${daysAgo}</div>
         </div>
       `;
 
