@@ -90,8 +90,8 @@
     },
     {
       "key": "latestInvitesNoneFound",
-      "original": "No invite senders found.",
-      "translated": "No invite senders found."
+      "original": "No invite activity found.",
+      "translated": "No invite activity found."
     },
     {
       "key": "latestRegistrantsNoneFound",
