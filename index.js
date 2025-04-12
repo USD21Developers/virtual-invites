@@ -76,22 +76,19 @@ function latestInvites() {
       const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
       const daysAgo = rtf.format(-diffInDays, "day");
 
-      let eventType = getPhrase("latestInvitesAction");
+      let eventAction = getPhrase("latestInvitesAction");
       if (eventtype === "bible talk") {
-        eventType = eventType.replaceAll(
+        eventAction = eventAction.replaceAll(
           "{EVENT-TYPE}",
           getGlobalPhrase("bibletalk")
         );
       } else if (eventtype === "church") {
-        eventType = eventType.replaceAll(
+        eventAction = eventAction.replaceAll(
           "{EVENT-TYPE}",
-          getGlobalPhrase("churchservice").toLowerCase()
+          getGlobalPhrase("church")
         );
       } else {
-        eventType = eventType.replaceAll(
-          "{EVENT-TYPE}",
-          getGlobalPhrase("otherevent").toLowerCase()
-        );
+        eventAction = getPhrase("latestInvitesActionOther");
       }
 
       el.classList.add("media");
@@ -107,7 +104,7 @@ function latestInvites() {
         <div class="media-body">
           <h4 class="my-0">${firstname} ${lastname}</h4>
           <div class="my-1 churchCity">${church.place}</div>
-          <div class="my-1 eventType">${eventType}</div>
+          <div class="my-1 eventType">${eventAction}</div>
           <div class="mt-1 daysAgo">${daysAgo}</div>
         </div>
       `;
