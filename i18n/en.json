@@ -94,6 +94,11 @@
       "translated": "Latest Registrants"
     },
     {
+      "key": "latestRegistrantsAction",
+      "original": "Registered {DAYS-AGO}",
+      "translated": "Registered {DAYS-AGO}"
+    },
+    {
       "key": "latestInvitesNoneFound",
       "original": "No invite activity found.",
       "translated": "No invite activity found."

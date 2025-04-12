@@ -161,7 +161,6 @@ function latestRegistrants() {
       const profilePhoto140 = profilePhoto.replaceAll("__400.jpg", "__140.jpg");
       const el = document.createElement("a");
       const church = getStoredChurch(churchid);
-
       const createdDate = new Date(createdAt);
       const now = new Date();
       const msPerDay = 1000 * 60 * 60 * 24;
@@ -169,6 +168,9 @@ function latestRegistrants() {
       const diffInDays = Math.floor(diffInMs / msPerDay);
       const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
       const daysAgo = rtf.format(-diffInDays, "day");
+
+      let registeredWhen = getPhrase("latestRegistrantsAction");
+      registeredWhen = registeredWhen.replaceAll("DAYS-AGO", daysAgo);
 
       el.classList.add("media");
       el.classList.add("registrant");
@@ -183,7 +185,7 @@ function latestRegistrants() {
         <div class="media-body">
           <h4 class="my-0">${firstName} ${lastName}</h4>
           <div class="my-1 text-muted churchCity">${church.place}</div>
-          <div class="mt-1 small text-black daysAgo">${daysAgo}</div>
+          <div class="mt-1 small text-black daysAgo">${registeredWhen}</div>
         </div>
       `;
 
