@@ -566,10 +566,13 @@ async function init() {
     populateContent().then(async () => {
       toggleUsersIFollow();
       await populateChurches();
-      await latestInvites().then(() => syncLatestInvites());
-      await latestRegistrants().then(() => syncLatestRegistrants());
+      await latestInvites();
+      await latestRegistrants();
       attachListeners();
       globalHidePageSpinner();
+
+      syncLatestInvites().then(() => latestInvites());
+      syncLatestRegistrants().then(() => latestRegistrants());
     });
   }
 
