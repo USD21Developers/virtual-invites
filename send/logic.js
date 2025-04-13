@@ -650,9 +650,13 @@ function onFinish() {
   $("#modal").modal("hide");
   globalShowPageSpinner();
 
-  syncInvites().then(() => {
-    window.location.href = "../";
-  });
+  syncInvites()
+    .then(() => {
+      syncLatestInvites();
+    })
+    .then(() => {
+      window.location.href = "../";
+    });
 
   setTimeout(() => {
     window.location.href = "../";
