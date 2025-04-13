@@ -650,13 +650,11 @@ function onFinish() {
   $("#modal").modal("hide");
   globalShowPageSpinner();
 
-  syncInvites()
-    .then(() => {
-      syncLatestInvites();
-    })
-    .then(() => {
-      window.location.href = "../";
-    });
+  syncLatestInvites();
+
+  syncInvites().then(() => {
+    window.location.href = "../";
+  });
 
   setTimeout(() => {
     window.location.href = "../";
@@ -1164,6 +1162,8 @@ function saveAndSync(sendvia) {
 
     // Sync invites via fetch + keepalive
     const invitesSynced = await syncInvites();
+
+    syncLatestInvites();
 
     return resolve(invitesSynced);
   });
