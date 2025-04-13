@@ -797,6 +797,7 @@ function syncLatestInvites(churchids = [], maxQuantity = 25) {
         "Content-Type": "application/json",
         authorization: `Bearer ${accessToken}`,
       }),
+      keepalive: true,
     })
       .then((res) => res.json())
       .then(async (data) => {
@@ -854,6 +855,7 @@ function syncLatestRegistrants(churchids = [], maxQuantity = 10) {
         "Content-Type": "application/json",
         authorization: `Bearer ${accessToken}`,
       }),
+      keepalive: true,
     })
       .then((res) => res.json())
       .then(async (data) => {
