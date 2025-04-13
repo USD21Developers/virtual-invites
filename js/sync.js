@@ -774,8 +774,15 @@ function syncLatestInvites(churchids = [], maxQuantity = 25) {
     const myChurchId = await getUserChurchId(myUserId);
     const controller = new AbortController();
     const timeout = 60000;
+    const latestInvitesChurchStored = localStorage.getItem(
+      "latestInvitesChurch"
+    );
     let syncSuccessful = false;
     let churchIdsToFetch = [myChurchId];
+
+    if (latestInvitesChurchStored) {
+      churchIdsToFetch = [Number(latestInvitesChurchStored)];
+    }
 
     if (isNaN(maxQuantity) || maxQuantity < 1) {
       maxQuantity = 10;
