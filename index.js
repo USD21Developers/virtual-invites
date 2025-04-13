@@ -75,7 +75,7 @@ function latestInvites() {
       const diffInDays = Math.floor(diffInMs / msPerDay);
       const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
       const daysAgo =
-        diffInDays >= 1
+        diffInDays <= 1
           ? `<span class="text-capitalize">
             ${rtf.format(-diffInDays, "day")}
             </span>`
