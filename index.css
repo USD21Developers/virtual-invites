@@ -35,3 +35,7 @@
 .senderName {
   font-weight: 400;
 }
+
+#latestInvites .daysAgo {
+  text-transform: capitalize;
+}

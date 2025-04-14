@@ -75,10 +75,7 @@ function latestInvites() {
       const daysAgo = getRelativeTime(diffInSeconds);
       let eventAction = getPhrase("latestInvitesAction");
 
-      eventAction = eventAction.replaceAll(
-        "{DAYS-AGO}",
-        `<span class="text-capitalize">${daysAgo}</span>`
-      );
+      eventAction = eventAction.replaceAll("{DAYS-AGO}", daysAgo);
 
       if (eventtype === "bible talk") {
         eventAction = eventAction.replaceAll(
