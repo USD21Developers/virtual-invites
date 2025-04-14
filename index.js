@@ -164,13 +164,11 @@ function latestRegistrants() {
       const church = getStoredChurch(churchid);
       const createdDate = new Date(createdAt);
       const now = new Date();
-      const msPerDay = 1000 * 60 * 60 * 24;
-      const diffInMs = now - createdDate;
-      const diffInDays = Math.floor(diffInMs / msPerDay);
-      const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
-      const daysAgo = rtf.format(-diffInDays, "day");
-
+      const diffInMs = createdDate - now;
+      const diffInSeconds = Math.round(diffInMs / 1000);
+      const daysAgo = getRelativeTime(diffInSeconds);
       let registeredWhen = getPhrase("latestRegistrantsAction");
+
       registeredWhen = registeredWhen.replaceAll("{DAYS-AGO}", daysAgo);
 
       el.classList.add("media");
