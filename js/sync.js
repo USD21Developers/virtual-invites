@@ -766,7 +766,7 @@ function syncInviteNotifications() {
   });
 }
 
-function syncLatestInvites(churchids = [], maxQuantity = 25) {
+function syncLatestInvites(churchids = [], maxQuantity = 5) {
   return new Promise(async (resolve, reject) => {
     const endpoint = `${getApiHost()}/latest-invites`;
     const accessToken = await getAccessToken();
@@ -785,7 +785,7 @@ function syncLatestInvites(churchids = [], maxQuantity = 25) {
     }
 
     if (isNaN(maxQuantity) || maxQuantity < 1) {
-      maxQuantity = 10;
+      maxQuantity = 5;
     }
 
     if (Array.isArray(churchids) && churchids.length) {
@@ -831,7 +831,7 @@ function syncLatestInvites(churchids = [], maxQuantity = 25) {
   });
 }
 
-function syncLatestRegistrants(churchids = [], maxQuantity = 10) {
+function syncLatestRegistrants(churchids = [], maxQuantity = 5) {
   return new Promise(async (resolve, reject) => {
     const endpoint = `${getApiHost()}/latest-registrants`;
     const accessToken = await getAccessToken();
@@ -843,7 +843,7 @@ function syncLatestRegistrants(churchids = [], maxQuantity = 10) {
     let churchIdsToFetch = [myChurchId];
 
     if (isNaN(maxQuantity) || maxQuantity < 1) {
-      maxQuantity = 10;
+      maxQuantity = 5;
     }
 
     if (Array.isArray(churchids) && churchids.length) {
