@@ -70,19 +70,15 @@ function latestInvites() {
       const church = getStoredChurch(churchid);
       const createdDate = new Date(createdAt);
       const now = new Date();
-      const msPerDay = 1000 * 60 * 60 * 24;
-      const diffInMs = now - createdDate;
-      const diffInDays = Math.floor(diffInMs / msPerDay);
-      const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: "auto" });
-      const daysAgo =
-        diffInDays <= 1
-          ? `<span class="text-capitalize">
-            ${rtf.format(-diffInDays, "day")}
-            </span>`
-          : rtf.format(-diffInDays, "day");
+      const diffInMs = createdDate - now;
+      const diffInSeconds = Math.round(diffInMs / 1000);
+      const daysAgo = getRelativeTime(diffInSeconds);
       let eventAction = getPhrase("latestInvitesAction");
 
-      eventAction = eventAction.replaceAll("{DAYS-AGO}", daysAgo);
+      eventAction = eventAction.replaceAll(
+        "{DAYS-AGO}",
+        `<span class="text-capitalize">${daysAgo}</span>`
+      );
 
       if (eventtype === "bible talk") {
         eventAction = eventAction.replaceAll(

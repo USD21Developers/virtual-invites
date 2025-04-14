@@ -51,6 +51,7 @@ const supportedLangs = ["en"];
   getDefaultName
   getRandomName
   getRecurringWeekdayName
+  getRelativeTime
   getStoredChurch
   getTimezoneOffset
   getUserChurchId
@@ -1047,6 +1048,32 @@ function getRandomName(sex = "either", lang = getLang()) {
 
     return resolve(name);
   });
+}
+
+function getRelativeTime(diffInSeconds) {
+  const userDateTimePrefs = Intl.DateTimeFormat().resolvedOptions();
+  const rtf = new Intl.RelativeTimeFormat(userDateTimePrefs.locale, {
+    numeric: "auto",
+  });
+
+  const divisions = [
+    { unit: "year", seconds: 31536000 },
+    { unit: "month", seconds: 2592000 },
+    { unit: "week", seconds: 604800 },
+    { unit: "day", seconds: 86400 },
+    { unit: "hour", seconds: 3600 },
+    { unit: "minute", seconds: 60 },
+    { unit: "second", seconds: 1 },
+  ];
+
+  for (const { unit, seconds } of divisions) {
+    const delta = diffInSeconds / seconds;
+    if (Math.abs(delta) >= 1) {
+      return rtf.format(Math.round(delta), unit);
+    }
+  }
+
+  return getGlobalPhrase("justnow");
 }
 
 function getRecurringWeekdayName(frequency) {

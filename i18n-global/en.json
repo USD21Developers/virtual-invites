@@ -426,6 +426,11 @@
       "key": "installBannerButton",
       "original": "INSTALL",
       "translated": "INSTALL"
+    },
+    {
+      "key": "justnow",
+      "original": "Just now",
+      "translated": "Just now"
     }
   ],
 
