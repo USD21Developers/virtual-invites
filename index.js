@@ -194,7 +194,7 @@ function latestRegistrants() {
           <h4 class="my-0 registrantName">${firstname} ${lastname}</h4>
           <div class="my-1 churchCity">${church.place}</div>
           <div class="mt-1 daysAgo">${registeredWhen}</div>
-          <div class="mt-1">&nbsp;</div>
+          <div class="my-1">&nbsp;</div>
         </div>
       `;
 
