@@ -12,19 +12,24 @@ const supportedLangs = ["en"];
     .decryptMessage
     .deserialize
     .encrypt
+    .encryptWithPublicKey
     .encryptMessage
     .generateIV
     .generateKey
+    .generateKeyPair
     .getMessageEncoding
+    .importPublicKey
     .hash
     .importSecretKey
     .serialize
+    .uint8ArrayToBase64
   breakify
   chooseNewChurch
   clearErrorMessages
   clearStorage
   compareDates
   customScrollTo
+  enableAccountRecovery
   enableTooltips
   formError
   formErrorsReset
@@ -140,14 +145,14 @@ const invitesCrypto = {
     return dec.decode(decrypted);
   },
 
-  encrypt: async (strKey, plaintext) => {
-    if (typeof strKey !== "string" || strKey.length === 0)
+  encrypt: async (strSymmetricKey, plaintext) => {
+    if (typeof strSymmetricKey !== "string" || strSymmetricKey.length === 0)
       return new Error("key must be a string");
 
     const iv = invitesCrypto.iv.generate();
     const strIV = invitesCrypto.iv.serialize(iv);
     const algorithm = { name: "AES-CTR", counter: iv, length: 64 };
-    const key = await invitesCrypto.key.deserialize(strKey);
+    const key = await invitesCrypto.key.deserialize(strSymmetricKey);
     const plaintextBuffer = new TextEncoder().encode(plaintext).buffer;
 
     const ciphertext = await crypto.subtle.encrypt(
@@ -170,6 +175,22 @@ const invitesCrypto = {
     };
 
     return encryptionObject;
+  },
+
+  encryptWithPublicKey: async (strPlainText, publicKeyPem) => {
+    const publicKey = await invitesCrypto.importPublicKey(publicKeyPem);
+    const uint8Array = new TextEncoder().encode(strPlainText);
+    const encrypted = await window.crypto.subtle.encrypt(
+      { name: "RSA-OAEP" },
+      publicKey,
+      uint8Array
+    );
+
+    const encryptedUint8Array = new Uint8Array(encrypted);
+
+    const base64 = invitesCrypto.uint8ArrayToBase64(encryptedUint8Array);
+
+    return base64;
   },
 
   hash: async (str) => {
@@ -240,6 +261,102 @@ const invitesCrypto = {
     const arrayBuffer = await window.crypto.subtle.exportKey("raw", cryptoKey);
     return invitesCrypto.key.serialize(arrayBuffer);
   },
+
+  generateKeyPair: async () => {
+    const subtle = crypto.subtle;
+
+    const keyPair = await subtle.generateKey(
+      {
+        name: "RSA-OAEP",
+        modulusLength: 2048,
+        publicExponent: new Uint8Array([1, 0, 1]), // 0x10001
+        hash: "SHA-256",
+      },
+      true,
+      ["encrypt", "decrypt"]
+    );
+
+    const arrayBufferToBase64 = (buffer) => {
+      const bytes = new Uint8Array(buffer);
+      let binary = "";
+      for (let i = 0; i < bytes.byteLength; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      return btoa(binary);
+    };
+
+    const exportKey = async (format, key) => {
+      const exported = await subtle.exportKey(format, key);
+      const base64 = arrayBufferToBase64(exported);
+      const lines = base64.match(/.{1,64}/g).join("\n");
+
+      if (format === "pkcs8") {
+        return `-----BEGIN PRIVATE KEY-----\n${lines}\n-----END PRIVATE KEY-----`;
+      } else if (format === "spki") {
+        return `-----BEGIN PUBLIC KEY-----\n${lines}\n-----END PUBLIC KEY-----`;
+      }
+    };
+
+    const privateKeyPem = await exportKey("pkcs8", keyPair.privateKey);
+    const publicKeyPem = await exportKey("spki", keyPair.publicKey);
+
+    return {
+      publicKey: publicKeyPem,
+      privateKey: privateKeyPem,
+    };
+  },
+
+  importPrivateKey: async (pem) => {
+    const binaryDer = Uint8Array.from(
+      atob(
+        pem
+          .replace(/-----(BEGIN|END) PRIVATE KEY-----/g, "")
+          .replace(/\s+/g, "")
+      ),
+      (c) => c.charCodeAt(0)
+    );
+
+    return crypto.subtle.importKey(
+      "pkcs8",
+      binaryDer.buffer,
+      {
+        name: "RSA-OAEP",
+        hash: "SHA-256",
+      },
+      true,
+      ["decrypt"]
+    );
+  },
+
+  importPublicKey: async (pem) => {
+    const binaryDer = Uint8Array.from(
+      atob(
+        pem.replace(/-----(BEGIN|END) PUBLIC KEY-----/g, "").replace(/\s+/g, "")
+      ),
+      (c) => c.charCodeAt(0)
+    );
+
+    return crypto.subtle.importKey(
+      "spki",
+      binaryDer.buffer,
+      {
+        name: "RSA-OAEP",
+        hash: "SHA-256",
+      },
+      false,
+      ["encrypt"]
+    );
+  },
+
+  uint8ArrayToBase64: (uint8Array) => {
+    let binary = "";
+
+    for (let i = 0; i < uint8Array.length; i++) {
+      binary += String.fromCharCode(uint8Array[i]);
+    }
+
+    return btoa(binary);
+  },
 };
 
 function breakify(text) {
@@ -306,6 +423,61 @@ function customScrollTo(selector, offset = 94) {
 
 function enableTooltips() {
   $('[data-toggle="tooltip"]').tooltip();
+}
+
+function enableAccountRecovery() {
+  return new Promise(async (resolve, reject) => {
+    const refreshTokenJSON = localStorage.getItem("refreshToken");
+    const refreshToken = JSON.parse(atob(refreshTokenJSON.split(".")[1]));
+    const alreadyEnabled = refreshToken?.accountRecoveryEnabled ? true : false;
+
+    if (alreadyEnabled) return resolve();
+
+    if (!navigator.onLine) {
+      return reject(
+        "unable to enable account recovery due to lack of connection"
+      );
+    }
+
+    const accountRecoveryPublicKeyPEM = await fetch(
+      "../data/accountRecoveryPublicKey.pem"
+    ).then((res) => res.text());
+
+    const datakey = localStorage.getItem("datakey");
+
+    const datakeyCt = await invitesCrypto.encryptWithPublicKey(
+      datakey,
+      accountRecoveryPublicKeyPEM
+    );
+
+    const keyPair = await invitesCrypto.generateKeyPair();
+
+    const keyPairCt = await invitesCrypto.encrypt(
+      datakey,
+      JSON.stringify(keyPair)
+    );
+
+    const accessToken = await getAccessToken();
+    if (!accessToken) return reject("unable to get accessToken");
+
+    const endpoint = `${getApiHost()}/enable-account-recovery`;
+
+    fetch(endpoint, {
+      mode: "cors",
+      method: "post",
+      body: JSON.stringify({
+        datakeyCt: datakeyCt,
+        keyPairCt: keyPairCt,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      }),
+      keepalive: true,
+    })
+      .then((res) => res.json())
+      .then((data) => {});
+  });
 }
 
 function formError(selector, message = "") {
