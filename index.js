@@ -138,6 +138,9 @@ function latestInvites() {
       if (selectedChurch == 0) {
         selectedChurchEl.classList.add("d-none");
       }
+      if (selectedChurchEl.selectedOptions.length === 1) {
+        selectedChurchEl.classList.add("d-none");
+      }
       latestInvitesEl.innerHTML = getPhrase("latestInvitesNoneFound");
       return resolve();
     }
@@ -246,6 +249,9 @@ function latestRegistrants() {
 
     if (!registrants.length) {
       if (selectedChurch == 0) {
+        selectedChurchEl.classList.add("d-none");
+      }
+      if (selectedChurchEl.selectedOptions.length === 1) {
         selectedChurchEl.classList.add("d-none");
       }
       latestRegistrantsEl.innerHTML = getPhrase("latestRegistrantsNoneFound");
