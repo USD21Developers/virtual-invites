@@ -48,10 +48,7 @@ function latestInvites() {
       invites = invites.filter((item) => item.churchid === churchid);
     }
 
-    if (!invites.length) {
-      latestInvitesEl.innerHTML = getPhrase("latestInvitesNoneFound");
-      return resolve();
-    }
+    let churchIds = [];
 
     invites.forEach((item) => {
       const {
@@ -65,6 +62,9 @@ function latestInvites() {
         createdAt,
         profilephoto,
       } = item;
+
+      churchIds.push(churchid);
+
       const profilePhoto140 = profilephoto.replaceAll("__400.jpg", "__140.jpg");
       const el = document.createElement("a");
       const church = getStoredChurch(churchid);
@@ -112,9 +112,37 @@ function latestInvites() {
       latestInvitesEl.appendChild(el);
     });
 
+    // Show only churches that have invites
+    const selectedChurchEl = document.querySelector("#latestInvitesChurchID");
+
+    selectedChurchEl.querySelectorAll("optgroup").forEach((item) => {
+      item.classList.add("d-none");
+    });
+    selectedChurchEl.querySelectorAll("option").forEach((item) => {
+      const shouldHide =
+        churchIds.indexOf(Number(item.value)) === -1 ? true : false;
+
+      if (shouldHide) {
+        item.classList.add("d-none");
+      } else {
+        const parentElement = item.parentElement;
+        if (parentElement && parentElement.tagName === "OPTGROUP") {
+          parentElement.classList.remove("d-none");
+        }
+      }
+    });
+
+    const selectedChurch = selectedChurchEl.selectedOptions[0].value;
+
+    if (!invites.length) {
+      if (selectedChurch == 0) {
+        selectedChurchEl.classList.add("d-none");
+      }
+      latestInvitesEl.innerHTML = getPhrase("latestInvitesNoneFound");
+      return resolve();
+    }
+
     // Hide or show church city
-    const selectedChurch = document.querySelector("#latestInvitesChurchID")
-      .selectedOptions[0].value;
     if (selectedChurch == 0) {
       showChurchCityLatestInvites();
     } else {
@@ -144,10 +172,7 @@ function latestRegistrants() {
       registrants = registrants.filter((item) => item.churchid === churchid);
     }
 
-    if (!registrants.length) {
-      latestRegistrantsEl.innerHTML = getPhrase("latestRegistrantsNoneFound");
-      return resolve();
-    }
+    let churchIds = [];
 
     registrants.forEach((item) => {
       const {
@@ -159,6 +184,9 @@ function latestRegistrants() {
         createdAt,
         profilephoto,
       } = item;
+
+      churchIds.push(churchid);
+
       const profilePhoto140 = profilephoto.replaceAll("__400.jpg", "__140.jpg");
       const el = document.createElement("a");
       const church = getStoredChurch(churchid);
@@ -192,9 +220,39 @@ function latestRegistrants() {
       latestRegistrantsEl.appendChild(el);
     });
 
+    // Show only churches that have invites
+    const selectedChurchEl = document.querySelector(
+      "#latestRegistrantsChurchID"
+    );
+
+    selectedChurchEl.querySelectorAll("optgroup").forEach((item) => {
+      item.classList.add("d-none");
+    });
+    selectedChurchEl.querySelectorAll("option").forEach((item) => {
+      const shouldHide =
+        churchIds.indexOf(Number(item.value)) === -1 ? true : false;
+
+      if (shouldHide) {
+        item.classList.add("d-none");
+      } else {
+        const parentElement = item.parentElement;
+        if (parentElement && parentElement.tagName === "OPTGROUP") {
+          parentElement.classList.remove("d-none");
+        }
+      }
+    });
+
+    const selectedChurch = selectedChurchEl.selectedOptions[0].value;
+
+    if (!registrants.length) {
+      if (selectedChurch == 0) {
+        selectedChurchEl.classList.add("d-none");
+      }
+      latestRegistrantsEl.innerHTML = getPhrase("latestRegistrantsNoneFound");
+      return resolve();
+    }
+
     // Hide or show church city
-    const selectedChurch = document.querySelector("#latestRegistrantsChurchID")
-      .selectedOptions[0].value;
     if (selectedChurch == 0) {
       showChurchCityLatestRegistrants();
     } else {
