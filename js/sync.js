@@ -841,6 +841,13 @@ function syncLatestRegistrants(churchids = [], maxQuantity = 5) {
     const timeout = 60000;
     let syncSuccessful = false;
     let churchIdsToFetch = [myChurchId];
+    const latestRegistrantsChurchStored = localStorage.getItem(
+      "latestRegistrantsChurch"
+    );
+
+    if (latestRegistrantsChurchStored) {
+      churchIdsToFetch = [Number(latestRegistrantsChurchStored)];
+    }
 
     if (isNaN(maxQuantity) || maxQuantity < 1) {
       maxQuantity = 5;
