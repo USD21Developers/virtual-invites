@@ -123,7 +123,9 @@ function latestInvites() {
         churchIds.indexOf(Number(item.value)) === -1 ? true : false;
 
       if (shouldHide) {
-        item.classList.add("d-none");
+        if (item.value != 0) {
+          item.classList.add("d-none");
+        }
       } else {
         const parentElement = item.parentElement;
         if (parentElement && parentElement.tagName === "OPTGROUP") {
@@ -237,7 +239,9 @@ function latestRegistrants() {
         churchIds.indexOf(Number(item.value)) === -1 ? true : false;
 
       if (shouldHide) {
-        item.classList.add("d-none");
+        if (item.value != 0) {
+          item.classList.add("d-none");
+        }
       } else {
         const parentElement = item.parentElement;
         if (parentElement && parentElement.tagName === "OPTGROUP") {
