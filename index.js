@@ -133,12 +133,13 @@ function latestInvites() {
     });
 
     const selectedChurch = selectedChurchEl.selectedOptions[0].value;
+    const numChurches = selectedChurchEl.querySelectorAll("option").length;
 
     if (!invites.length) {
       if (selectedChurch == 0) {
         selectedChurchEl.classList.add("d-none");
       }
-      if (selectedChurchEl.selectedOptions.length === 1) {
+      if (numChurches === 1) {
         selectedChurchEl.classList.add("d-none");
       }
       latestInvitesEl.innerHTML = getPhrase("latestInvitesNoneFound");
@@ -246,12 +247,13 @@ function latestRegistrants() {
     });
 
     const selectedChurch = selectedChurchEl.selectedOptions[0].value;
+    const numChurches = selectedChurchEl.querySelectorAll("option").length;
 
     if (!registrants.length) {
       if (selectedChurch == 0) {
         selectedChurchEl.classList.add("d-none");
       }
-      if (selectedChurchEl.selectedOptions.length === 1) {
+      if (numChurches === 1) {
         selectedChurchEl.classList.add("d-none");
       }
       latestRegistrantsEl.innerHTML = getPhrase("latestRegistrantsNoneFound");
