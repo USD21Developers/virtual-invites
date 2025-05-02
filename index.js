@@ -115,9 +115,6 @@ function latestInvites() {
     // Show only churches that have invites
     const selectedChurchEl = document.querySelector("#latestInvitesChurchID");
 
-    selectedChurchEl.querySelectorAll("optgroup").forEach((item) => {
-      item.classList.add("d-none");
-    });
     selectedChurchEl.querySelectorAll("option").forEach((item) => {
       const shouldHide =
         churchIds.indexOf(Number(item.value)) === -1 ? true : false;
@@ -133,8 +130,10 @@ function latestInvites() {
         }
       }
     });
-    selectedChurchEl.querySelectorAll("optgroup.d-none").forEach((item) => {
-      item.remove();
+    selectedChurchEl.querySelectorAll("optgroup").forEach((optgroup) => {
+      if (optgroup.querySelectorAll("option").length === 0) {
+        optgroup.remove();
+      }
     });
 
     const selectedChurch = selectedChurchEl.selectedOptions[0].value;
@@ -234,9 +233,6 @@ function latestRegistrants() {
       "#latestRegistrantsChurchID"
     );
 
-    selectedChurchEl.querySelectorAll("optgroup").forEach((item) => {
-      item.classList.add("d-none");
-    });
     selectedChurchEl.querySelectorAll("option").forEach((item) => {
       const shouldHide =
         churchIds.indexOf(Number(item.value)) === -1 ? true : false;
@@ -252,8 +248,10 @@ function latestRegistrants() {
         }
       }
     });
-    selectedChurchEl.querySelectorAll("optgroup.d-none").forEach((item) => {
-      item.remove();
+    selectedChurchEl.querySelectorAll("optgroup").forEach((optgroup) => {
+      if (optgroup.querySelectorAll("option").length === 0) {
+        optgroup.remove();
+      }
     });
 
     const selectedChurch = selectedChurchEl.selectedOptions[0].value;
