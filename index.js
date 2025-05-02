@@ -124,7 +124,7 @@ function latestInvites() {
 
       if (shouldHide) {
         if (item.value != 0) {
-          item.classList.add("d-none");
+          item.remove();
         }
       } else {
         const parentElement = item.parentElement;
@@ -240,7 +240,7 @@ function latestRegistrants() {
 
       if (shouldHide) {
         if (item.value != 0) {
-          item.classList.add("d-none");
+          item.remove();
         }
       } else {
         const parentElement = item.parentElement;
