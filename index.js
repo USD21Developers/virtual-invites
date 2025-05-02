@@ -133,6 +133,9 @@ function latestInvites() {
         }
       }
     });
+    selectedChurchEl.querySelectorAll("optgroup.d-none").forEach((item) => {
+      item.remove();
+    });
 
     const selectedChurch = selectedChurchEl.selectedOptions[0].value;
     const numChurches = selectedChurchEl.querySelectorAll("option").length;
@@ -248,6 +251,9 @@ function latestRegistrants() {
           parentElement.classList.remove("d-none");
         }
       }
+    });
+    selectedChurchEl.querySelectorAll("optgroup.d-none").forEach((item) => {
+      item.remove();
     });
 
     const selectedChurch = selectedChurchEl.selectedOptions[0].value;
