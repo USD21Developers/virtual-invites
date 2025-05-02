@@ -123,11 +123,6 @@ function latestInvites() {
         if (item.value != 0) {
           item.remove();
         }
-      } else {
-        const parentElement = item.parentElement;
-        if (parentElement && parentElement.tagName === "OPTGROUP") {
-          parentElement.classList.remove("d-none");
-        }
       }
     });
     selectedChurchEl.querySelectorAll("optgroup").forEach((optgroup) => {
@@ -240,11 +235,6 @@ function latestRegistrants() {
       if (shouldHide) {
         if (item.value != 0) {
           item.remove();
-        }
-      } else {
-        const parentElement = item.parentElement;
-        if (parentElement && parentElement.tagName === "OPTGROUP") {
-          parentElement.classList.remove("d-none");
         }
       }
     });
