@@ -264,7 +264,7 @@ async function populateChurches(churchIds) {
 
   if (churchIds && Array.isArray(churchIds)) {
     churches = churches.map((item) => {
-      if (churchIds.includes(item.churchid)) {
+      if (churchIds.includes(item.id)) {
         return item;
       }
     });
