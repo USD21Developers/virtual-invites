@@ -132,18 +132,6 @@ function latestInvites() {
     });
 
     const selectedChurch = selectedChurchEl.selectedOptions[0].value;
-    const numChurches = selectedChurchEl.querySelectorAll("option").length;
-
-    if (!invites.length) {
-      if (selectedChurch == 0) {
-        selectedChurchEl.classList.add("d-none");
-      }
-      if (numChurches === 1) {
-        selectedChurchEl.classList.add("d-none");
-      }
-      latestInvitesEl.innerHTML = getPhrase("latestInvitesNoneFound");
-      return resolve();
-    }
 
     // Hide or show church city
     if (selectedChurch == 0) {
@@ -151,6 +139,8 @@ function latestInvites() {
     } else {
       hideChurchCityLatestInvites();
     }
+
+    populateChurches(churchIds);
 
     return resolve();
   });
@@ -245,18 +235,8 @@ function latestRegistrants() {
     });
 
     const selectedChurch = selectedChurchEl.selectedOptions[0].value;
-    const numChurches = selectedChurchEl.querySelectorAll("option").length;
 
-    if (!registrants.length) {
-      if (selectedChurch == 0) {
-        selectedChurchEl.classList.add("d-none");
-      }
-      if (numChurches === 1) {
-        selectedChurchEl.classList.add("d-none");
-      }
-      latestRegistrantsEl.innerHTML = getPhrase("latestRegistrantsNoneFound");
-      return resolve();
-    }
+    populateChurches(churchIds);
 
     // Hide or show church city
     if (selectedChurch == 0) {
@@ -269,7 +249,7 @@ function latestRegistrants() {
   });
 }
 
-async function populateChurches() {
+async function populateChurches(churchIds) {
   const churchDropdownLatestInvites = document.querySelector(
     "#latestInvitesChurchID"
   );
@@ -278,7 +258,16 @@ async function populateChurches() {
   );
   const countryData = await getCountries(getLang());
   const countries = countryData.names;
-  const churches = await getChurches();
+  let churches = await getChurches();
+
+  if (churchIds && Array.isArray(churchIds)) {
+    churches = churches.map((item) => {
+      if (churchIds.includes(item.churchid)) {
+        return item;
+      }
+    });
+  }
+
   let churchesHtml = "";
 
   countries.sort((a, b) => (a.name > b.name ? 1 : -1));
