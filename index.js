@@ -586,13 +586,12 @@ function onChurchChangedLatestRegistrants(e) {
 }
 
 function attachListeners() {
-  document
+  /* document
     .querySelector("#latestRegistrantsChurchID")
-    .addEventListener("change", onChurchChangedLatestRegistrants);
-
-  document
+    .addEventListener("change", onChurchChangedLatestRegistrants); */
+  /* document
     .querySelector("#latestInvitesChurchID")
-    .addEventListener("change", onChurchChangedLatestInvites);
+    .addEventListener("change", onChurchChangedLatestInvites); */
 }
 
 async function init() {
@@ -609,17 +608,17 @@ async function init() {
     populateContent().then(async () => {
       toggleUsersIFollow();
       await populateChurches();
-      await latestInvites();
-      await latestRegistrants();
+      // await latestInvites();
+      // await latestRegistrants();
       attachListeners();
       globalHidePageSpinner();
 
       syncLatestInvites().then((data) => {
-        latestInvites();
+        // latestInvites();
       });
 
       syncLatestRegistrants().then((data) => {
-        latestRegistrants();
+        // latestRegistrants();
       });
     });
   }
