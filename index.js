@@ -30,6 +30,40 @@ function showChurchCityLatestRegistrants() {
     .forEach((item) => item.classList.remove("d-none"));
 }
 
+function showOnlyChurchesWithInvites(churchIds) {
+  const dropdownEl = document.querySelector("#latestInvitesChurchID");
+
+  dropdownEl.querySelectorAll("option").forEach((item) => {
+    if (!churchIds.includes(item)) {
+      if (item.value == 0) return;
+      item.remove();
+    }
+  });
+
+  dropdownEl.querySelectorAll("optgroup").forEach((optgroup) => {
+    if (optgroup.querySelectorAll("option").length === 0) {
+      optgroup.remove();
+    }
+  });
+}
+
+function showOnlyChurchesWithRegistrants(churchIds) {
+  const dropdownEl = document.querySelector("#latestRegistrantsChurchID");
+
+  dropdownEl.querySelectorAll("option").forEach((item) => {
+    if (!churchIds.includes(item)) {
+      if (item.value == 0) return;
+      item.remove();
+    }
+  });
+
+  dropdownEl.querySelectorAll("optgroup").forEach((optgroup) => {
+    if (optgroup.querySelectorAll("option").length === 0) {
+      optgroup.remove();
+    }
+  });
+}
+
 function latestInvites() {
   return new Promise(async (resolve, reject) => {
     const latestInvitesEl = document.querySelector("#latestInvites");
@@ -115,6 +149,8 @@ function latestInvites() {
     const selectedChurchEl = document.querySelector("#latestInvitesChurchID");
     const selectedChurch = selectedChurchEl.selectedOptions[0].value;
 
+    await populateChurches(churchIds);
+
     // Hide or show church city
     if (selectedChurch == 0) {
       showChurchCityLatestInvites();
@@ -122,7 +158,7 @@ function latestInvites() {
       hideChurchCityLatestInvites();
     }
 
-    populateChurches(churchIds);
+    showOnlyChurchesWithInvites(churchIds);
 
     return resolve();
   });
@@ -200,7 +236,7 @@ function latestRegistrants() {
     );
     const selectedChurch = selectedChurchEl.selectedOptions[0].value;
 
-    populateChurches(churchIds);
+    await populateChurches(churchIds);
 
     // Hide or show church city
     if (selectedChurch == 0) {
@@ -208,6 +244,8 @@ function latestRegistrants() {
     } else {
       hideChurchCityLatestRegistrants();
     }
+
+    showOnlyChurchesWithRegistrants(churchIds);
 
     return resolve();
   });
@@ -494,7 +532,7 @@ function onChurchChangedLatestInvites(e) {
   `;
 
   syncLatestInvites([churchid])
-    .then(() => {
+    .then((data) => {
       latestInvites();
     })
     .catch(() => {
@@ -539,7 +577,7 @@ function onChurchChangedLatestRegistrants(e) {
   `;
 
   syncLatestRegistrants([churchid])
-    .then(() => {
+    .then((data) => {
       latestRegistrants();
     })
     .catch(() => {
@@ -580,8 +618,13 @@ async function init() {
       attachListeners();
       globalHidePageSpinner();
 
-      syncLatestInvites().then(() => latestInvites());
-      syncLatestRegistrants().then(() => latestRegistrants());
+      syncLatestInvites().then((data) => {
+        latestInvites();
+      });
+
+      syncLatestRegistrants().then((data) => {
+        latestRegistrants();
+      });
     });
   }
 
