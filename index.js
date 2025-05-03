@@ -112,25 +112,7 @@ function latestInvites() {
       latestInvitesEl.appendChild(el);
     });
 
-    // Show only churches that have invites
     const selectedChurchEl = document.querySelector("#latestInvitesChurchID");
-
-    selectedChurchEl.querySelectorAll("option").forEach((item) => {
-      const shouldHide =
-        churchIds.indexOf(Number(item.value)) === -1 ? true : false;
-
-      if (shouldHide) {
-        if (item.value != 0) {
-          item.remove();
-        }
-      }
-    });
-    selectedChurchEl.querySelectorAll("optgroup").forEach((optgroup) => {
-      if (optgroup.querySelectorAll("option").length === 0) {
-        optgroup.remove();
-      }
-    });
-
     const selectedChurch = selectedChurchEl.selectedOptions[0].value;
 
     // Hide or show church city
@@ -213,27 +195,9 @@ function latestRegistrants() {
       latestRegistrantsEl.appendChild(el);
     });
 
-    // Show only churches that have invites
     const selectedChurchEl = document.querySelector(
       "#latestRegistrantsChurchID"
     );
-
-    selectedChurchEl.querySelectorAll("option").forEach((item) => {
-      const shouldHide =
-        churchIds.indexOf(Number(item.value)) === -1 ? true : false;
-
-      if (shouldHide) {
-        if (item.value != 0) {
-          item.remove();
-        }
-      }
-    });
-    selectedChurchEl.querySelectorAll("optgroup").forEach((optgroup) => {
-      if (optgroup.querySelectorAll("option").length === 0) {
-        optgroup.remove();
-      }
-    });
-
     const selectedChurch = selectedChurchEl.selectedOptions[0].value;
 
     populateChurches(churchIds);
