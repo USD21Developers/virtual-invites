@@ -263,11 +263,7 @@ async function populateChurches(churchIds) {
   let churches = await getChurches();
 
   if (churchIds && Array.isArray(churchIds)) {
-    churches = churches.map((item) => {
-      if (churchIds.includes(item.id)) {
-        return item;
-      }
-    });
+    churches = churches.filter((item) => churchIds.includes(item.id));
   }
 
   let churchesHtml = "";
