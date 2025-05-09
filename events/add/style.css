@@ -156,3 +156,7 @@ a.contactMethod:hover img {
   border: 2px solid #2a2e53;
   border-radius: 50%;
 }
+
+.text-muted {
+  color: var(--dark-light);
+}
