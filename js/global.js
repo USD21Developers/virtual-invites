@@ -523,6 +523,9 @@ function getApiHost() {
     case "invites.usd21.org":
       host = "https://api.usd21.org/invites";
       break;
+    case "invites.world":
+      host = "https://api.invites.world";
+      break;
     default:
       host = `http://${window.location.hostname}:4000/invites`;
       break;
