@@ -58,8 +58,8 @@ function getProfileImage(height = 400, width = 400) {
   return vanilla.result({
     type: "base64",
     size: { width: width, height: height },
-    format: "jpg",
-    quality: 0.75,
+    format: "webp",
+    quality: 0.8,
     circle: false,
   });
 }
@@ -146,8 +146,8 @@ function initCroppie() {
         .result({
           type: "base64",
           size: "viewport",
-          format: "jpeg",
-          quality: 1,
+          format: "webp",
+          quality: 0.8,
           circle: true,
         })
         .then((response) => {
