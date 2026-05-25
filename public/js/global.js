@@ -97,13 +97,13 @@ const invitesCrypto = {
     const ciphertextArray = new Uint8Array(
       atob(ciphertextBase64)
         .split("")
-        .map((c) => c.charCodeAt(0))
+        .map((c) => c.charCodeAt(0)),
     );
 
     const plainText = await invitesCrypto.decryptMessage(
       key,
       iv,
-      ciphertextArray.buffer
+      ciphertextArray.buffer,
     );
 
     // Only verify the hash if it exists (to support older records)
@@ -111,7 +111,7 @@ const invitesCrypto = {
       const computedHash = await invitesCrypto.hash(plainText);
       if (computedHash !== storedHash) {
         return Promise.reject(
-          new Error("Decryption failed: Integrity check failed")
+          new Error("Decryption failed: Integrity check failed"),
         );
       }
 
@@ -120,8 +120,8 @@ const invitesCrypto = {
 
     return Promise.reject(
       new Error(
-        "Decryption failed: Integrity check skipped due to missing hash"
-      )
+        "Decryption failed: Integrity check skipped due to missing hash",
+      ),
     );
   },
 
@@ -133,7 +133,7 @@ const invitesCrypto = {
         length: 64,
       },
       key,
-      ciphertext
+      ciphertext,
     );
 
     const dec = new TextDecoder();
@@ -153,11 +153,11 @@ const invitesCrypto = {
     const ciphertext = await crypto.subtle.encrypt(
       algorithm,
       key,
-      plaintextBuffer
+      plaintextBuffer,
     );
 
     const ciphertextBase64 = btoa(
-      String.fromCharCode(...new Uint8Array(ciphertext))
+      String.fromCharCode(...new Uint8Array(ciphertext)),
     );
 
     // Compute hash of plaintext for integrity checking
@@ -175,7 +175,7 @@ const invitesCrypto = {
   hash: async (str) => {
     const buf = await window.crypto.subtle.digest(
       "SHA-256",
-      new TextEncoder("utf-8").encode(str)
+      new TextEncoder("utf-8").encode(str),
     );
     return Array.prototype.map
       .call(new Uint8Array(buf), (x) => ("00" + x.toString(16)).slice(-2))
@@ -207,7 +207,7 @@ const invitesCrypto = {
         new Uint8Array(array),
         "AES-CTR",
         true,
-        ["encrypt", "decrypt"]
+        ["encrypt", "decrypt"],
       );
     },
   },
@@ -235,7 +235,7 @@ const invitesCrypto = {
         length: 256,
       },
       true,
-      ["encrypt", "decrypt"]
+      ["encrypt", "decrypt"],
     );
     const arrayBuffer = await window.crypto.subtle.exportKey("raw", cryptoKey);
     return invitesCrypto.key.serialize(arrayBuffer);
@@ -619,7 +619,7 @@ function getCountries(lang) {
           case "success":
             localStorage.setItem(
               "countries",
-              JSON.stringify(data.countryNames)
+              JSON.stringify(data.countryNames),
             );
             resolve(data.countryNames);
           default:
@@ -772,7 +772,7 @@ function getLang() {
 
   if (typeof refreshToken === "string") {
     lang = JSON.parse(
-      atob(localStorage.getItem("refreshToken").split(".")[1])
+      atob(localStorage.getItem("refreshToken").split(".")[1]),
     ).lang;
     if (typeof lang === "undefined") {
       return (window.location.href = "/logout/");
@@ -798,7 +798,7 @@ function getCountry() {
 
   if (typeof refreshToken === "string") {
     country = JSON.parse(
-      atob(localStorage.getItem("refreshToken").split(".")[1])
+      atob(localStorage.getItem("refreshToken").split(".")[1]),
     ).country;
     if (typeof country === "undefined") {
       return (window.location.href = "/logout/");
@@ -880,7 +880,7 @@ function getNextRecurringWeekday(date, time) {
     return console.error(
       "The date and time passed to getNextRecurringWeekday() are invalid:",
       date,
-      time
+      time,
     );
   }
 
@@ -993,12 +993,12 @@ function getPreviewPhrase(key) {
 function getDefaultName(sex = "either", lang = getLang()) {
   return new Promise(async (resolve, reject) => {
     const names = await fetch(`/i18n-names/${lang}.json`).then((res) =>
-      res.json()
+      res.json(),
     );
 
     if (!names) {
       return reject(
-        new Error(`could not find list of names at "/i18n-names/${lang}.json`)
+        new Error(`could not find list of names at "/i18n-names/${lang}.json`),
       );
     }
 
@@ -1024,12 +1024,12 @@ function getDefaultName(sex = "either", lang = getLang()) {
 function getRandomName(sex = "either", lang = getLang()) {
   return new Promise(async (resolve, reject) => {
     const names = await fetch(`/i18n-names/${lang}.json`).then((res) =>
-      res.json()
+      res.json(),
     );
 
     if (!names) {
       return reject(
-        new Error(`could not find list of names at "/i18n-names/${lang}.json"`)
+        new Error(`could not find list of names at "/i18n-names/${lang}.json"`),
       );
     }
 
@@ -1149,7 +1149,7 @@ function getUserChurchId(userid) {
 
 function getUserId() {
   const userid = JSON.parse(
-    atob(localStorage.getItem("refreshToken").split(".")[1])
+    atob(localStorage.getItem("refreshToken").split(".")[1]),
   ).userid;
   return userid;
 }
@@ -1237,7 +1237,11 @@ function isPushPermitted() {
 async function populateContent(customEndpoint, variable = "pageContent") {
   return new Promise((resolve, reject) => {
     const lang = getLang();
-    const endpoint = customEndpoint ? customEndpoint : `i18n/${lang}.json`;
+    let endpoint = customEndpoint ? customEndpoint : `i18n/${lang}.json`;
+
+    if (window.location.pathname.substr(0, 3) === "/i/") {
+      endpoint = `/i/${endpoint}`;
+    }
 
     fetch(endpoint)
       .then((res) => res.json())
@@ -1278,14 +1282,14 @@ async function populateContent(customEndpoint, variable = "pageContent") {
         document.querySelectorAll("[data-i18n]").forEach((item) => {
           const key = item.getAttribute("data-i18n");
           const matchedcontent = contentitems.find(
-            (contentitem) => contentitem.key == key
+            (contentitem) => contentitem.key == key,
           )?.content;
           if (matchedcontent) item.innerHTML = matchedcontent;
         });
         document.querySelectorAll("[data-i18n-placeholder]").forEach((item) => {
           const key = item.getAttribute("data-i18n-placeholder");
           const matchedcontent = contentitems.find(
-            (contentitem) => contentitem.key == key
+            (contentitem) => contentitem.key == key,
           )?.content;
           if (matchedcontent) item.setAttribute("placeholder", matchedcontent);
         });
@@ -1303,7 +1307,7 @@ async function populateContent(customEndpoint, variable = "pageContent") {
 function populateGlobalContent() {
   return new Promise((resolve, reject) => {
     const lang = getLang();
-    const endpoint = `/i18n-global/${lang}.json`;
+    let endpoint = `/i18n-global/${lang}.json`;
 
     fetch(endpoint)
       .then((res) => res.json())
@@ -1340,7 +1344,7 @@ function populateGlobalContent() {
         document.querySelectorAll("[data-i18n-global]").forEach((item) => {
           const key = item.getAttribute("data-i18n-global");
           const matchedcontent = contentitems.find(
-            (contentitem) => contentitem.key == key
+            (contentitem) => contentitem.key == key,
           )?.content;
           if (matchedcontent) item.innerHTML = matchedcontent;
         });
@@ -1349,7 +1353,7 @@ function populateGlobalContent() {
           .forEach((item) => {
             const key = item.getAttribute("data-i18n-global-aria-label");
             const matchedcontent = contentitems.find(
-              (contentitem) => contentitem.key == key
+              (contentitem) => contentitem.key == key,
             )?.content;
             if (matchedcontent) item.setAttribute("aria-label", matchedcontent);
           });
@@ -1385,7 +1389,7 @@ function populateGlobalContent() {
 async function popupQuantityOfEvents(type) {
   const eventsByUser = await localforage.getItem("events");
   const eventsByFollowedUsers = await localforage.getItem(
-    "eventsByFollowedUsers"
+    "eventsByFollowedUsers",
   );
   const quantityEventsByUser = eventsByUser ? eventsByUser.length : 0;
   const quantityEventsByFollowedUsers = eventsByFollowedUsers
@@ -1395,7 +1399,7 @@ async function popupQuantityOfEvents(type) {
   const phraseSendAnInvite = getGlobalPhrase("sendAnInvite");
   const phrasePlural = getGlobalPhrase("quantityOfEvents").replace(
     "{quantity}",
-    totalQuantity
+    totalQuantity,
   );
   const phraseSingular = getGlobalPhrase("quantityOfEvents1");
 
@@ -1443,11 +1447,11 @@ function pwaInstallBanner() {
   banner.setAttribute("data-title", getGlobalPhrase("installBannerTitle"));
   banner.setAttribute(
     "data-organization",
-    getGlobalPhrase("installBannerOrganization")
+    getGlobalPhrase("installBannerOrganization"),
   );
   banner.setAttribute(
     "data-button-text",
-    getGlobalPhrase("installBannerButton")
+    getGlobalPhrase("installBannerButton"),
   );
 }
 
@@ -1509,7 +1513,7 @@ function showAlert(
   selectorObject,
   message,
   headline = "",
-  dismissable = false
+  dismissable = false,
 ) {
   const offset = selectorObject.offsetTop - 64;
   const contentEl = selectorObject.querySelector(".alert");
@@ -1547,32 +1551,32 @@ function showEventDateTime(eventObj) {
     const lang = getLang();
     const locale = `${lang.toLowerCase()}-${country.toUpperCase()}`;
     const eventPhrasesAll = await fetch(`/events/i18n/${lang}.json`).then(
-      (res) => res.json()
+      (res) => res.json(),
     );
     const eventPhrases = eventPhrasesAll.phrases;
     const from = eventPhrases.filter((item) => item.key === "from")[0]
       .translated;
     const to = eventPhrases.filter((item) => item.key === "to")[0].translated;
     const frequencyEverySunday = eventPhrases.filter(
-      (item) => item.key === "frequencyEverySunday"
+      (item) => item.key === "frequencyEverySunday",
     )[0].translated;
     const frequencyEveryMonday = eventPhrases.filter(
-      (item) => item.key === "frequencyEveryMonday"
+      (item) => item.key === "frequencyEveryMonday",
     )[0].translated;
     const frequencyEveryTuesday = eventPhrases.filter(
-      (item) => item.key === "frequencyEveryTuesday"
+      (item) => item.key === "frequencyEveryTuesday",
     )[0].translated;
     const frequencyEveryWednesday = eventPhrases.filter(
-      (item) => item.key === "frequencyEveryWednesday"
+      (item) => item.key === "frequencyEveryWednesday",
     )[0].translated;
     const frequencyEveryThursday = eventPhrases.filter(
-      (item) => item.key === "frequencyEveryThursday"
+      (item) => item.key === "frequencyEveryThursday",
     )[0].translated;
     const frequencyEveryFriday = eventPhrases.filter(
-      (item) => item.key === "frequencyEveryFriday"
+      (item) => item.key === "frequencyEveryFriday",
     )[0].translated;
     const frequencyEverySaturday = eventPhrases.filter(
-      (item) => item.key === "frequencyEverySaturday"
+      (item) => item.key === "frequencyEverySaturday",
     )[0].translated;
     const isRecurring = frequency !== "once";
     let html = "";
@@ -1618,10 +1622,10 @@ function showEventDateTime(eventObj) {
       html = `<span class="eventDate">${whenDate}</span> <span class="eventSeparator">&bull;</span> <span class="eventTime">${whenTime}</span>`;
     } else if (duration === "multiple days") {
       const multidayBeginDateLocal = new Date(
-        moment.tz(multidaybegindate, timezone).format()
+        moment.tz(multidaybegindate, timezone).format(),
       );
       const multidayEndDateLocal = new Date(
-        moment.tz(multidayenddate, timezone).format()
+        moment.tz(multidayenddate, timezone).format(),
       );
       const whenDateFrom = Intl.DateTimeFormat(locale, {
         dateStyle: "short",
@@ -1655,7 +1659,7 @@ function showModal(
   body = "",
   title = "",
   backdrop = "static",
-  selector = "#modal"
+  selector = "#modal",
 ) {
   const modal = document.querySelector(selector);
   const modalTitle = modal.querySelector(".modal-title");
@@ -1687,7 +1691,7 @@ function showToast(
   duration = 5000,
   type = "dark",
   selector = ".snackbar",
-  multiline = false
+  multiline = false,
 ) {
   const snackbar = document.querySelector(selector);
   const body = snackbar.querySelector(".snackbar-body");
@@ -1893,7 +1897,7 @@ const pagesWithoutServiceWorker = [
 ];
 
 const serveThisPageFromServiceWorker = !pagesWithoutServiceWorker.includes(
-  window.location.pathname
+  window.location.pathname,
 );
 
 if (serveThisPageFromServiceWorker) {
