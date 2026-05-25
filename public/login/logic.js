@@ -45,7 +45,7 @@ async function storeMapKeys(refreshToken) {
 function unsubscribeFromNotifications() {
   return new Promise(async (resolve, reject) => {
     const unsubscribeJSON = sessionStorage.getItem(
-      "unsubscribeFromNotifications"
+      "unsubscribeFromNotifications",
     );
     if (!unsubscribeJSON) return reject();
 
@@ -156,11 +156,6 @@ function onSubmit(e) {
     return showToast(getGlobalPhrase("youAreOffline"), 5000, "danger");
   }
 
-  const proxyEndpoint =
-    window.location.hostname === "localhost"
-      ? endpoint
-      : `/login/proxy.php?target=${endpoint}`;
-
   fetch(proxyEndpoint, {
     method: "POST",
     body: JSON.stringify({
@@ -194,7 +189,7 @@ function onSubmit(e) {
         return forwardAuthenticatedUser();
       } else if (data.msg === "user status is not registered") {
         const registrationPageContent = await fetch(
-          `../register/i18n/${getLang()}.json`
+          `../register/i18n/${getLang()}.json`,
         ).then((res) => res.json());
         let content = getPhrase("checkyouremailtext", registrationPageContent);
         content += `
@@ -244,7 +239,7 @@ async function init() {
   let redirectOnLogin = sessionStorage.getItem("redirectOnLogin");
   const isFromHomeScreen = sessionStorage.getItem("isFromHomeScreen");
   const unsubscribeFromNotifications = sessionStorage.getItem(
-    "unsubscribeFromNotifications"
+    "unsubscribeFromNotifications",
   );
 
   if (isFromHomeScreen) {

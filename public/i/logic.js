@@ -620,9 +620,11 @@ async function getInvite() {
   }
 
   let endpoint = `${getApiHost()}/invite`;
-  if (window.location.hostname !== "localhost") {
-    endpoint = "invite-proxy.php";
-  }
+  /* 
+    if (window.location.hostname !== "localhost") {
+      endpoint = "invite-proxy.php";
+    }
+  */
 
   showSpinner();
 

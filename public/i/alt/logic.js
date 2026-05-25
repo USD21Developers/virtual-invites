@@ -7,9 +7,11 @@ function getInviteInfo() {
     let recipientid;
     let endpoint = `${getApiHost()}/alt-events-invite`;
 
-    if (window.location.hostname !== "localhost") {
-      endpoint = "alt-events-invite-proxy.php";
-    }
+    /*
+      if (window.location.hostname !== "localhost") {
+        endpoint = "alt-events-invite-proxy.php";
+      }
+    */
 
     try {
       const urlParts = window.location.hash.split("#")[1].split("/");
@@ -55,10 +57,6 @@ function getLanguagesOfEvents() {
     let recipientid;
     let endpoint = `${getApiHost()}/languages-of-events`;
 
-    if (window.location.hostname !== "localhost") {
-      endpoint = "languages-of-events-proxy.php";
-    }
-
     try {
       const urlParts = window.location.hash.split("#")[1].split("/");
       eventid = Number(urlParts[1]);
@@ -102,7 +100,7 @@ function populateCountries() {
     const selectEl = document.querySelector("#country");
     const detectedLang = navigator.languages[0].substring(0, 2);
     const countries = await fetch(
-      `../../data/json/countries/${detectedLang}/world.json`
+      `../../data/json/countries/${detectedLang}/world.json`,
     ).then((res) => res.json());
 
     if (!Array.isArray(countries)) return reject();
@@ -130,7 +128,7 @@ function populateLanguages() {
     const selectEl = document.querySelector("#lang");
     const langsOfEvents = await getLanguagesOfEvents();
     const langs = await fetch("../../data/json/languages.json").then((res) =>
-      res.json()
+      res.json(),
     );
     const detectedLang = navigator.languages[0].substring(0, 2);
     let selectedLang = langsOfEvents[detectedLang] ? detectedLang : "en";
@@ -158,7 +156,7 @@ function populateInPersonResults(events) {
   const { recurring, onetime, multiday } = events;
   const eventsQuantity = recurring.length + onetime.length + multiday.length;
   let headlineInPersonEventsTxt = getPhrase(
-    "headlineInPersonEvents"
+    "headlineInPersonEvents",
   ).replaceAll("{QUANTITY}", eventsQuantity);
   if (eventsQuantity === 0) {
     headlineInPersonEventsTxt = getPhrase("headlineInPersonEventsZero");
@@ -218,7 +216,7 @@ function populateInPersonResults(events) {
       distanceUnit === "miles"
         ? `${getMiles(item.distanceInMeters)} ${getPhrase("milesAbbreviation")}`
         : `${getKilometers(item.distanceInMeters)} ${getPhrase(
-            "kilometersAbbreviation"
+            "kilometersAbbreviation",
           )}`;
 
     const isMultiDay =
@@ -272,7 +270,7 @@ function populateVirtualResults(events) {
   const eventsQuantity = recurring.length + onetime.length + multiday.length;
   let headlineVirtualEventsTxt = getPhrase("headlineVirtualEvents").replaceAll(
     "{QUANTITY}",
-    eventsQuantity
+    eventsQuantity,
   );
   if (eventsQuantity === 0) {
     headlineVirtualEventsTxt = getPhrase("headlineVirtualEventsZero");
@@ -309,7 +307,7 @@ function populateVirtualResults(events) {
       distanceUnit === "miles"
         ? `${getMiles(item.distanceInMeters)} ${getPhrase("milesAbbreviation")}`
         : `${getKilometers(item.distanceInMeters)} ${getPhrase(
-            "kilometersAbbreviation"
+            "kilometersAbbreviation",
           )}`;
     const isMultiDay =
       item.multidaybegindate && item.multidayenddate ? true : false;
@@ -472,7 +470,7 @@ function setDefaultDistanceUnit() {
 
         originLocationEl.setAttribute(
           "data-countryFromIP",
-          country_code.toLowerCase()
+          country_code.toLowerCase(),
         );
 
         const countryEl = document.querySelector("#country");
@@ -508,12 +506,8 @@ function showMap() {
     const label = getPhrase("mapLabelOrigin");
     const searchResultsEl = document.querySelector("#searchResults");
     const searchResultsSpinnerEl = document.querySelector(
-      "#searchResultsSpinner"
+      "#searchResultsSpinner",
     );
-
-    if (window.location.hostname !== "localhost") {
-      endpoint = "map-static-proxy.php";
-    }
 
     mapContainerEl.classList.remove("d-none");
     searchResultsEl.classList.add("d-none");
@@ -569,10 +563,6 @@ function toggleBottomNav() {
 function updateCountryToMatchCoordinates(latitude, longitude) {
   return new Promise((resolve, reject) => {
     let endpoint = `${getApiServicesHost()}/country-of-coordinates`;
-
-    if (window.location.hostname !== "localhost") {
-      endpoint = "country-of-coordinates-proxy.php";
-    }
 
     fetch(endpoint, {
       mode: "cors",
@@ -653,7 +643,7 @@ function onDetectLocationClick() {
         enableHighAccuracy: true,
         timeout: 5000,
         maximumAge: 0,
-      }
+      },
     );
   }
 }
@@ -781,10 +771,6 @@ function onSearch(e) {
   const dateFromUTC = moment(dateFrom).utc().format();
   const dateToUTC = moment(`${dateTo}T23:59:59`).utc().format();
   let endpoint = `${getApiHost()}/alt-events-search`;
-
-  if (window.location.hostname !== "localhost") {
-    endpoint = "alt-events-search-proxy.php";
-  }
 
   hide("#searchResults");
   show("#searchResultsSpinner");
