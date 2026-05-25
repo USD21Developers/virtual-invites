@@ -29,7 +29,7 @@ app.use((req, res) => {
 });
 
 // Use the environment port or default to 3001
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.INVITES_MOBI_PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server is running internally on port ${PORT}`);
 });
