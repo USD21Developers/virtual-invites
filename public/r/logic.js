@@ -51,7 +51,7 @@ function fixBreadcrumbIfArrivedFromFollowup() {
 
   if (cameFromFollowup) {
     const breadcrumb = document.querySelector(
-      "#breadcrumbs a[href='../invites/']"
+      "#breadcrumbs a[href='../invites/']",
     );
     if (breadcrumb) {
       breadcrumb.setAttribute("href", "../followup/");
@@ -85,7 +85,7 @@ function getFollowUpDescription() {
   const utcDateTime = moment
     .tz(
       moment.tz(inviteObj.utctime, "UTC").format(),
-      userDateTimePrefs.timeZone
+      userDateTimePrefs.timeZone,
     )
     .format();
   const inviteDateTime = Intl.DateTimeFormat(inviteDateTimeLocal.locale, {
@@ -95,7 +95,7 @@ function getFollowUpDescription() {
   }).format(new Date(utcDateTime));
   const paragraph1 = getPhrase("followUpAppointmentParagraph1").replaceAll(
     "{RECIPIENT-NAME}",
-    inviteObj.recipient.name
+    inviteObj.recipient.name,
   );
   const paragraph2 = getPhrase("followUpAppointmentParagraph2")
     .replaceAll("{RECIPIENT-NAME}", inviteObj.recipient.name)
@@ -121,7 +121,7 @@ function getFollowUpDescriptionWithoutURL() {
   const utcDateTime = moment
     .tz(
       moment.tz(inviteObj.utctime, "UTC").format(),
-      userDateTimePrefs.timeZone
+      userDateTimePrefs.timeZone,
     )
     .format();
   const inviteDateTime = Intl.DateTimeFormat(inviteDateTimeLocal.locale, {
@@ -170,7 +170,7 @@ function getRecipient() {
       invites = await localforage.getItem("invites");
       syncedInvites = true;
       invite = invites.find(
-        (item) => item.invitationid === parseInt(Math.abs(invitationid))
+        (item) => item.invitationid === parseInt(Math.abs(invitationid)),
       );
 
       if (invite) {
@@ -259,7 +259,7 @@ async function renderRecipient(invite) {
 
   timezoneNoticeEl.innerText = getPhrase("timezone-notice").replaceAll(
     "{EVENT-TIMEZONE}",
-    userTimezone
+    userTimezone,
   );
 
   document.title = getPhrase("pagetitle").replaceAll("{RECIPIENT-NAME}", name);
@@ -272,7 +272,7 @@ async function renderRecipient(invite) {
   if (inviteViews.length === 0) {
     const phraseNoViews = getPhrase("paragraph_no_views").replaceAll(
       "{RECIPIENT-NAME}",
-      name
+      name,
     );
 
     inviteViewsHTML = phraseNoViews;
@@ -281,7 +281,7 @@ async function renderRecipient(invite) {
     if (inviteViews.length > 1) {
       phraseTotalViews = getPhrase("total_views").replaceAll(
         "{QUANTITY-VIEWS}",
-        `<span class="inviteViewsQuantity">${inviteViews.length}</span>`
+        `<span class="inviteViewsQuantity">${inviteViews.length}</span>`,
       );
     }
     inviteViews.forEach((item) => {
@@ -297,7 +297,7 @@ async function renderRecipient(invite) {
 
   if (eventNameEl && eventName) {
     const txtEventIsDeleted = getPhrase("eventIsDeleted");
-    const url = `../i/#/${eventid}/${getUserId()}/${invite.recipient.id}`;
+    const url = `../i/${eventid}/${getUserId()}/${invite.recipient.id}`;
 
     if (eventObj.isDeleted === 1) {
       eventNameEl.innerHTML = `
@@ -331,7 +331,7 @@ async function renderRecipient(invite) {
       const operatingSystem = getMobileOperatingSystem();
       const mapPointLabel = getPhrase("mapPointLabel").replaceAll(
         "{RECIPIENT-NAME}",
-        name
+        name,
       );
 
       if (operatingSystem === "iOS") {
@@ -348,7 +348,7 @@ async function renderRecipient(invite) {
       invitedFromLocationEl.setAttribute("href", mapLink);
     } else {
       const invitedFromLocationContainer = document.querySelector(
-        "#invitedFromLocationContainer"
+        "#invitedFromLocationContainer",
       );
       if (invitedFromLocationContainer) invitedFromLocationContainer.remove();
     }
@@ -360,32 +360,32 @@ async function renderRecipient(invite) {
     const smsLinkContainerEl = document.querySelector("#smsLinkContainer");
     const smsLinkEl = document.querySelector("#smsLink");
     const whatsAppLinkContainerEl = document.querySelector(
-      "#whatsAppLinkContainer"
+      "#whatsAppLinkContainer",
     );
     const whatsAppLinkEl = document.querySelector("#whatsAppLink");
     const emailLinkContainerEl = document.querySelector("#emailLinkContainer");
     const emailLinkEl = document.querySelector("#emailLink");
     const addCalendarReminderLinkEl = document.querySelector(
-      "#addCalendarReminderLink"
+      "#addCalendarReminderLink",
     );
     const resendLinkContainerEl = document.querySelector(
-      "#resendLinkContainer"
+      "#resendLinkContainer",
     );
     const resendLinkEl = document.querySelector("#resendLink");
     const addToPhonebookLinkContainerEl = document.querySelector(
-      "#addToPhonebookLinkContainer"
+      "#addToPhonebookLinkContainer",
     );
     const addToPhonebookLinkEl = document.querySelector("#addToPhonebookLink");
     const qrCodeMapLinkEl = document.querySelector("#qrCodeMapLink");
     const followupQRCodeWithLocationEl = document.querySelector(
-      "#followupQRCodeWithLocation"
+      "#followupQRCodeWithLocation",
     );
     const followupQRCodeWithoutLocationEl = document.querySelector(
-      "#followupQRCodeWithoutLocation"
+      "#followupQRCodeWithoutLocation",
     );
     const qrCodeWithLocationEl = document.querySelector("#qrCodeWithLocation");
     const qrCodeWithoutLocationEl = document.querySelector(
-      "#qrCodeWithoutLocation"
+      "#qrCodeWithoutLocation",
     );
 
     if (sms && sms.length) {
@@ -396,7 +396,7 @@ async function renderRecipient(invite) {
         smsLinkEl.setAttribute("href", `sms:${sms}`);
         headlineFollowUpEl.innerText = getPhrase("headlineFollowUp").replaceAll(
           "{RECIPIENT-NAME}",
-          name
+          name,
         );
         whatsAppLinkContainerEl.classList.remove("d-none");
         phoneLinkContainerEl.classList.remove("d-none");
@@ -407,13 +407,13 @@ async function renderRecipient(invite) {
       smsLinkEl.setAttribute("href", `sms:${sms}`);
       headlineFollowUpEl.innerText = getPhrase("headlineFollowUp").replaceAll(
         "{RECIPIENT-NAME}",
-        name
+        name,
       );
       phoneLinkContainerEl.classList.remove("d-none");
       smsLinkContainerEl.classList.remove("d-none");
       addToPhonebookLinkEl.innerText = getPhrase("addToPhonebook").replaceAll(
         "{RECIPIENT-NAME}",
-        name
+        name,
       );
       addToPhonebookLinkContainerEl.classList.remove("d-none");
 
@@ -425,7 +425,7 @@ async function renderRecipient(invite) {
       emailLinkContainerEl.classList.remove("d-none");
       headlineFollowUpEl.innerText = getPhrase("headlineFollowUp").replaceAll(
         "{RECIPIENT-NAME}",
-        name
+        name,
       );
 
       if (sms && sms.length) {
@@ -438,17 +438,17 @@ async function renderRecipient(invite) {
 
     if (sentvia === "qrcode" && !email && !sms) {
       headlineFollowUpEl.innerText = getPhrase(
-        "headlineFollowUpInPerson"
+        "headlineFollowUpInPerson",
       ).replaceAll("{RECIPIENT-NAME}", name);
       if (latitude && longitude) {
         qrCodeMapLinkEl.setAttribute("href", directionsLink);
         qrCodeWithLocationEl.innerText = getPhrase(
-          "qrCodeWithLocation"
+          "qrCodeWithLocation",
         ).replaceAll("{RECIPIENT-NAME}", name);
         followupQRCodeWithLocationEl.classList.remove("d-none");
       } else {
         qrCodeWithoutLocationEl.innerText = getPhrase(
-          "qrCodeWithoutLocation"
+          "qrCodeWithoutLocation",
         ).replaceAll("{RECIPIENT-NAME}", name);
         followupQRCodeWithoutLocationEl.classList.remove("d-none");
       }
@@ -542,7 +542,7 @@ async function onAddToPhoneBook(e) {
 
   let events = await localforage.getItem("events");
   let eventsByFollowedUsers = await localforage.getItem(
-    "eventsByFollowedUsers"
+    "eventsByFollowedUsers",
   );
   if (!events) return;
   if (!Array.isArray(events)) return;
@@ -573,10 +573,10 @@ END:VCARD`;
 async function populateNotificationsExplanation() {
   let text = getPhrase("notificationsExplanation").replaceAll(
     "{RECIPIENT-NAME}",
-    inviteObj.recipient.name
+    inviteObj.recipient.name,
   );
   const notificationsExplanationEl = document.querySelector(
-    "#notificationsExplanation"
+    "#notificationsExplanation",
   );
   notificationsExplanationEl.innerHTML = text;
 }
@@ -591,10 +591,10 @@ async function populateNotificationsSettings() {
   if (typeof inviteid !== "number") return;
 
   const unsubscribeFromEmailNotificationsEl = document.querySelector(
-    "#unsubscribeFromEmailNotifications"
+    "#unsubscribeFromEmailNotifications",
   );
   const unsubscribeFromPushNotificationsEl = document.querySelector(
-    "#unsubscribeFromPushNotifications"
+    "#unsubscribeFromPushNotifications",
   );
 
   const invite = invites.find((item) => item.invitationid === inviteid);
@@ -616,7 +616,7 @@ async function populateResendInvite(e) {
   const eventid = invite.eventid;
   const events = await localforage.getItem("events");
   const eventsByFollowedUsers = await localforage.getItem(
-    "eventsByFollowedUsers"
+    "eventsByFollowedUsers",
   );
   if (!events && !eventsByFollowedUsers) return;
   let event = events.find((item) => item.eventid === eventid);
@@ -628,7 +628,7 @@ async function populateResendInvite(e) {
   const userid = getUserId();
   const recipientid = invite.recipient.id;
   const phrasesForSendInvite = await fetch(
-    `../send/i18n/${event.lang}.json`
+    `../send/i18n/${event.lang}.json`,
   ).then((res) => res.json());
   const inviteLink =
     window.location.hostname === "localhost"
@@ -637,7 +637,7 @@ async function populateResendInvite(e) {
 
   if (invite.recipient.sms) {
     const clickBelowTranslationObject = phrasesForSendInvite.phrases.find(
-      (item) => item.key === "clickBelow"
+      (item) => item.key === "clickBelow",
     );
     if (!clickBelowTranslationObject) return;
     const clickBelow = clickBelowTranslationObject.translated;
@@ -646,18 +646,18 @@ async function populateResendInvite(e) {
     if (inviteObj.sentvia === "whatsapp") {
       const phoneNumberNoPlus = invite.recipient.sms.replaceAll("+", "");
       const whatsAppUrl = `https://wa.me/${phoneNumberNoPlus}/?text=${encodeURI(
-        sendBody
+        sendBody,
       )}`;
       resendLinkEl.setAttribute("href", whatsAppUrl);
     } else {
       resendLinkEl.setAttribute(
         "href",
-        "sms:" + invite.recipient.sms + ";?&body=" + encodeURI(sendBody)
+        "sms:" + invite.recipient.sms + ";?&body=" + encodeURI(sendBody),
       );
     }
   } else if (invite.recipient.email) {
     const invitationToTranslationObject = phrasesForSendInvite.phrases.find(
-      (item) => item.key === "invitationto"
+      (item) => item.key === "invitationto",
     );
     const invitationTo = invitationToTranslationObject.translated;
     const emailSubjectLine =
@@ -677,7 +677,7 @@ async function populateResendInvite(e) {
         "?subject=" +
         encodeURI(emailSubjectLine) +
         "&body=" +
-        encodeURI(sendBody)
+        encodeURI(sendBody),
     );
   }
 }
@@ -685,24 +685,24 @@ async function populateResendInvite(e) {
 async function populateAddToFollowupLinks() {
   const addToFollowUpListEl = document.querySelector("#addToFollowUpList");
   const removeFromFollowUpListEl = document.querySelector(
-    "#removeFromFollowUpList"
+    "#removeFromFollowUpList",
   );
 
   addToFollowUpListEl.innerText = getPhrase("addToFollowUpList").replaceAll(
     "{RECIPIENT-NAME}",
-    inviteObj.recipient.name
+    inviteObj.recipient.name,
   );
 
   removeFromFollowUpListEl.innerText = getPhrase(
-    "removeFromFollowUpList"
+    "removeFromFollowUpList",
   ).replaceAll("{RECIPIENT-NAME}", inviteObj.recipient.name);
 
   const id = Number(getHash().split("/")[1]);
   const addToFollowUpListContainerEl = document.querySelector(
-    "#addToFollowUpListContainer"
+    "#addToFollowUpListContainer",
   );
   const removeFromFollowUpListContainerEl = document.querySelector(
-    "#removeFromFollowUpListContainer"
+    "#removeFromFollowUpListContainer",
   );
 
   const invites = await localforage.getItem("invites");
@@ -731,7 +731,7 @@ async function populateFollowUpReminder() {
   const invite = invites.find((item) => item.invitationid === inviteid);
   if (!invite) {
     const addCalendarReminderLinkContainerEl = document.querySelector(
-      "#addCalendarReminderLinkContainer"
+      "#addCalendarReminderLinkContainer",
     );
     addCalendarReminderLinkContainerEl.classList.add("d-none");
     return;
@@ -739,7 +739,7 @@ async function populateFollowUpReminder() {
   const followUpParagraphEl = document.querySelector("#followUpParagraph");
   const followUpParagraphContent = getPhrase("followUpParagraph").replaceAll(
     "{RECIPIENT-NAME}",
-    invite.recipient.name
+    invite.recipient.name,
   );
   followUpParagraphEl.innerText = followUpParagraphContent;
 }
@@ -795,7 +795,7 @@ async function populateNotes() {
   const noNotesEl = document.querySelector("#no-notes");
   noNotesEl.innerText = getPhrase("no-notes").replaceAll(
     "{RECIPIENT-NAME}",
-    inviteObj.recipient.name
+    inviteObj.recipient.name,
   );
   const invitationid = Number(getHash().split("/")[1]);
   const notesLocal = filterNotes(allNotesLocal);
@@ -819,7 +819,7 @@ async function populateNotes() {
 
       const hashBeforeSync = await invitesCrypto.hash(JSON.stringify(notesObj));
       const hashAfterSync = await invitesCrypto.hash(
-        JSON.stringify(combinedNotesSorted)
+        JSON.stringify(combinedNotesSorted),
       );
       const hashesAreIdentical = hashBeforeSync === hashAfterSync;
 
@@ -948,14 +948,14 @@ function onAfterAllNotesSynced(allNotes) {
 function onClickAway(event) {
   const addToCalendar = document.querySelector("#addToCalendar");
   const interactionViews = document.querySelector(
-    "#interactionViews > details"
+    "#interactionViews > details",
   );
   const clickedCalendar = addToCalendar.contains(event.target);
   const clickedViews = interactionViews
     ? interactionViews.contains(event.target)
     : false;
   const addToCalendarButton = addToCalendar.querySelector(
-    "#addToCalendarButton"
+    "#addToCalendarButton",
   );
   if (!clickedCalendar) {
     $("#modal .collapse").collapse("hide");
@@ -981,10 +981,10 @@ function onAtcbApple(e) {
 
   const title = getPhrase("followUpAppointmentTitle").replaceAll(
     "{RECIPIENT-NAME}",
-    inviteObj.recipient.name
+    inviteObj.recipient.name,
   );
   const titleComingUp = getPhrase(
-    "followUpAppointmentTitleComingUp"
+    "followUpAppointmentTitleComingUp",
   ).replaceAll("{RECIPIENT-NAME}", inviteObj.recipient.name);
   const description = getFollowUpDescription();
   const utcDateTimeStart = getFollowUpDateTime();
@@ -1002,7 +1002,7 @@ function onAtcbApple(e) {
   const calendar = new datebook.ICalendar(options);
 
   const alarmWarningTime = new Date(
-    moment(options.start).subtract(15, "minutes").format()
+    moment(options.start).subtract(15, "minutes").format(),
   );
 
   const alarm1 = {
@@ -1052,7 +1052,7 @@ function onAtcbGoogle(e) {
 
   const title = getPhrase("followUpAppointmentTitle").replaceAll(
     "{RECIPIENT-NAME}",
-    inviteObj.recipient.name
+    inviteObj.recipient.name,
   );
   const description = getFollowUpDescription();
   const utcDateTimeStart = getFollowUpDateTime();
@@ -1101,7 +1101,7 @@ async function onAddToFollowupList(e) {
     (await localforage.getItem("unsyncedFollowups")) || [];
   if (unsyncedFollowups.length) {
     unsyncedFollowups = unsyncedFollowups.filter(
-      (item) => item.invitationid !== id
+      (item) => item.invitationid !== id,
     );
   }
   unsyncedFollowups.push({ invitationid: id, followup: 1 });
@@ -1109,10 +1109,10 @@ async function onAddToFollowupList(e) {
 
   // Update UI
   const addToFollowUpListContainerEl = document.querySelector(
-    "#addToFollowUpListContainer"
+    "#addToFollowUpListContainer",
   );
   const removeFromFollowUpListContainerEl = document.querySelector(
-    "#removeFromFollowUpListContainer"
+    "#removeFromFollowUpListContainer",
   );
   addToFollowUpListContainerEl.classList.add("d-none");
   removeFromFollowUpListContainerEl.classList.remove("d-none");
@@ -1145,7 +1145,7 @@ async function onRemoveFromFollowupList(e) {
     (await localforage.getItem("unsyncedFollowups")) || [];
   if (unsyncedFollowups.length) {
     unsyncedFollowups = unsyncedFollowups.filter(
-      (item) => item.invitationid !== id
+      (item) => item.invitationid !== id,
     );
   }
   unsyncedFollowups.push({ invitationid: id, followup: 0 });
@@ -1153,10 +1153,10 @@ async function onRemoveFromFollowupList(e) {
 
   // Update UI
   const addToFollowUpListContainerEl = document.querySelector(
-    "#addToFollowUpListContainer"
+    "#addToFollowUpListContainer",
   );
   const removeFromFollowUpListContainerEl = document.querySelector(
-    "#removeFromFollowUpListContainer"
+    "#removeFromFollowUpListContainer",
   );
   removeFromFollowUpListContainerEl.classList.add("d-none");
   addToFollowUpListContainerEl.classList.remove("d-none");
@@ -1211,15 +1211,15 @@ function onSaveNote(e) {
 
     noteEncrypted.summary = await invitesCrypto.encrypt(
       datakey,
-      JSON.stringify(noteEncrypted.summary)
+      JSON.stringify(noteEncrypted.summary),
     );
     noteEncrypted.text = await invitesCrypto.encrypt(
       datakey,
-      JSON.stringify(noteEncrypted.text)
+      JSON.stringify(noteEncrypted.text),
     );
     noteEncrypted.recipient = await invitesCrypto.encrypt(
       datakey,
-      JSON.stringify(noteEncrypted.recipient)
+      JSON.stringify(noteEncrypted.recipient),
     );
 
     // Get existing notes from IndexedDB
@@ -1255,7 +1255,7 @@ function onAfterSaveNote(e) {
   const noteid = notesObj[notesObj.length - 1].noteid;
   const noteEl = document.querySelector(`[data-note-id='${noteid}']`);
   const noteContainerEl = document.querySelector(
-    `[data-note-container-id='${noteid}']`
+    `[data-note-container-id='${noteid}']`,
   );
 
   if (noteEl && noteContainerEl) {
@@ -1278,7 +1278,7 @@ function onAfterEditNote(e) {
   const noteid = document.querySelector("#editNoteId").value;
   const noteEl = document.querySelector(`[data-note-id='${noteid}']`);
   const noteContainerEl = document.querySelector(
-    `[data-note-container-id='${noteid}']`
+    `[data-note-container-id='${noteid}']`,
   );
 
   if (!noteid) return;
@@ -1403,7 +1403,7 @@ async function undeleteInvite(e) {
   }
 
   const inviteDeletedContainerEl = document.querySelector(
-    "#inviteDeletedContainer"
+    "#inviteDeletedContainer",
   );
   const invitationid = Number(getHash().split("/")[1]);
   const endpoint = `${getApiHost()}/undelete-invite`;
@@ -1489,15 +1489,15 @@ function onEditNote() {
 
     noteEncrypted.summary = await invitesCrypto.encrypt(
       datakey,
-      JSON.stringify(noteEncrypted.summary)
+      JSON.stringify(noteEncrypted.summary),
     );
     noteEncrypted.text = await invitesCrypto.encrypt(
       datakey,
-      JSON.stringify(noteEncrypted.text)
+      JSON.stringify(noteEncrypted.text),
     );
     noteEncrypted.recipient = await invitesCrypto.encrypt(
       datakey,
-      JSON.stringify(noteEncrypted.recipient)
+      JSON.stringify(noteEncrypted.recipient),
     );
 
     // Update the note
@@ -1506,7 +1506,7 @@ function onEditNote() {
     notes.push(updatedNote);
 
     unsyncedNotes = unsyncedNotes.filter(
-      (item) => item.noteid !== updatedNote.noteid
+      (item) => item.noteid !== updatedNote.noteid,
     );
     unsyncedNotes.push(noteEncrypted);
 
@@ -1551,15 +1551,15 @@ async function onDeleteNote(evt) {
   // Even though we're deleting, encrypt the note anyway, for consistency's sake on the server
   noteEncrypted.summary = await invitesCrypto.encrypt(
     datakey,
-    JSON.stringify(noteEncrypted.summary)
+    JSON.stringify(noteEncrypted.summary),
   );
   noteEncrypted.text = await invitesCrypto.encrypt(
     datakey,
-    JSON.stringify(noteEncrypted.text)
+    JSON.stringify(noteEncrypted.text),
   );
   noteEncrypted.recipient = await invitesCrypto.encrypt(
     datakey,
-    JSON.stringify(noteEncrypted.recipient)
+    JSON.stringify(noteEncrypted.recipient),
   );
 
   // Add note with its deleted state to unsyncedNotes
@@ -1600,19 +1600,19 @@ function onInviteToDifferentEvent(e) {
 
   sessionStorage.setItem(
     "inviteRecipientObj",
-    JSON.stringify(inviteRecipientObj)
+    JSON.stringify(inviteRecipientObj),
   );
 }
 
 function onUpdateNotifications(e) {
   const bodyEl = document.querySelector("#notificationsModal .modal-body");
   const unsubFromEmail = document.querySelector(
-    "#unsubscribeFromEmailNotifications"
+    "#unsubscribeFromEmailNotifications",
   ).checked
     ? true
     : false;
   const unsubFromPush = document.querySelector(
-    "#unsubscribeFromPushNotifications"
+    "#unsubscribeFromPushNotifications",
   ).checked
     ? true
     : false;
@@ -1643,12 +1643,12 @@ async function onConfirmNotifications(e) {
   e.preventDefault();
   const now = new Date().toISOString();
   const unsubFromEmail = document.querySelector(
-    "#unsubscribeFromEmailNotifications"
+    "#unsubscribeFromEmailNotifications",
   ).checked
     ? true
     : false;
   const unsubFromPush = document.querySelector(
-    "#unsubscribeFromPushNotifications"
+    "#unsubscribeFromPushNotifications",
   ).checked
     ? true
     : false;
@@ -1690,7 +1690,7 @@ async function onConfirmNotifications(e) {
     (await localforage.getItem("unsyncedInviteNotifications")) || [];
   if (unsyncedInviteNotifications && unsyncedInviteNotifications.length) {
     unsyncedInviteNotifications = unsyncedInviteNotifications.filter(
-      (item) => item.invitationid !== inviteId
+      (item) => item.invitationid !== inviteId,
     );
   }
   const unsubFromEmailAt = unsubFromEmail ? now : null;
@@ -1705,7 +1705,7 @@ async function onConfirmNotifications(e) {
   unsyncedInviteNotifications.push(newItem);
   await localforage.setItem(
     "unsyncedInviteNotifications",
-    unsyncedInviteNotifications
+    unsyncedInviteNotifications,
   );
 
   e.preventDefault();
@@ -1724,7 +1724,7 @@ async function onDelete(e) {
   e.preventDefault();
   const lang = getLang();
   const deletePhrases = await fetch(`../invites/i18n/${lang}.json`).then(
-    (res) => res.json()
+    (res) => res.json(),
   );
   const txtConfirm = getPhrase("confirm", deletePhrases);
   const txtDelete = getPhrase("delete", deletePhrases);
@@ -1862,7 +1862,7 @@ async function onEditSubmitted(e) {
   if (phoneNumber.length) {
     if (!isValidPhoneNumber) {
       const invalidFeedback = document.querySelector(
-        "#editPhoneInvalidFeedback"
+        "#editPhoneInvalidFeedback",
       );
       formError("#editPhone", getPhrase("phoneNumberIsInvalid"));
       invalidFeedback.innerHTML = getPhrase("phoneNumberIsInvalid");
@@ -2066,7 +2066,7 @@ async function init() {
       0,
       "danger",
       ".snackbar",
-      true
+      true,
     );
     return;
   }
