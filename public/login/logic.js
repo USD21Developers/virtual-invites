@@ -156,7 +156,7 @@ function onSubmit(e) {
     return showToast(getGlobalPhrase("youAreOffline"), 5000, "danger");
   }
 
-  fetch(proxyEndpoint, {
+  fetch(endpoint, {
     method: "POST",
     body: JSON.stringify({
       username: username,
