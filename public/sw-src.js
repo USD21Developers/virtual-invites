@@ -1,8 +1,8 @@
-importScripts("/third_party/workbox/workbox-v7.0.0/workbox-sw.js");
+importScripts("./third_party/workbox/workbox-v7.0.0/workbox-sw.js");
 
 workbox.setConfig({
   debug: false,
-  modulePathPrefix: "/third_party/workbox/workbox-v7.0.0/",
+  modulePathPrefix: "./third_party/workbox/workbox-v7.0.0/",
 });
 
 // Use workbox methods
@@ -25,7 +25,7 @@ self.addEventListener("push", (event) => {
           client.postMessage({ type: "pushReceived" });
         });
       });
-    })
+    }),
   );
 });
 
@@ -88,5 +88,5 @@ self.addEventListener(
       });
     event.waitUntil(subscription);
   },
-  false
+  false,
 );
