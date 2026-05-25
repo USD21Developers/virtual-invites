@@ -552,9 +552,18 @@ async function getInvite() {
     throw new Error("Required URL parameters are missing");
   }
 
-  const eventid = Number(inviteParts[1]) || null;
-  const userid = Number(inviteParts[2]) || null;
-  const recipientid = inviteParts[3] || null;
+  const eventid =
+    Number(
+      document.querySelector("meta[property=eventid]").getAttribute("content"),
+    ) || null;
+  const userid =
+    Number(
+      document.querySelector("meta[property=userid]").getAttribute("content"),
+    ) || null;
+  const recipientid =
+    document
+      .querySelector("meta[property=recipientid]")
+      .getAttribute("content") || null;
 
   if (!eventid) throw new Error("Missing event ID");
 
