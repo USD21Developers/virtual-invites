@@ -4,8 +4,8 @@
   "description": "Send digital invites for church-related events",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -r ./server.js",
-    "build": "npx workbox-cli injectManifest public/workbox-config.js",
+    "start": "nodemon -r dotenv/config server.js",
+    "build": "cd public && npx workbox-cli injectManifest workbox-config.js",
     "ssh:prod": "ssh root@api.usd21.org -p 1773 -i ~/.ssh/usd21/id_rsa",
     "deploy:prod": "ssh root@api.usd21.org -p 1773 -i ~/.ssh/usd21/id_rsa \"cd /var/www/invites.mobi; ./pull.sh\"",
     "test": "echo \"Error: no test specified\" && exit 1"
