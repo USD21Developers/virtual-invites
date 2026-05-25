@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "description": "Profile Photo",
+    "path": "/profile/photo/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "My Photo",
+      "translated": "My Photo"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbProfile",
+      "original": "Profile",
+      "translated": "Profile"
+    },
+    {
+      "key": "breadcrumbPhoto",
+      "original": "Photo",
+      "translated": "Photo"
+    },
+    {
+      "key": "photo-byline",
+      "original": "To change your photo, upload a new one below.",
+      "translated": "To change your photo, upload a new one below."
+    },
+    {
+      "key": "update-button",
+      "original": "UPDATE",
+      "translated": "UPDATE"
+    },
+    {
+      "key": "rotate",
+      "original": "Rotate",
+      "translated": "Rotate"
+    },
+    {
+      "key": "takeASelfie",
+      "original": "Take a selfie",
+      "translated": "Take a selfie"
+    },
+    {
+      "key": "selectAPhoto",
+      "original": "Select photo",
+      "translated": "Select photo"
+    },
+    {
+      "key": "profilePhoto",
+      "original": "Photo of {FIRST-NAME} {LAST-NAME}",
+      "translated": "Photo of {FIRST-NAME} {LAST-NAME}"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+ul.keyFeatures {
+  margin-top: 1.2rem;
+}
+
+li.keyFeature {
+  margin-bottom: 1.7rem;
+}
+
+li.keyFeature:last-child {
+  margin-bottom: 0;
+}
+
+.learnMoreLink {
+  display: block;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.learnMoreLink a {
+  display: inline-block;
+  position: relative;
+}
+
+.learnMoreLink a:hover .play-button {
+  opacity: 1;
+}
+
+.learnMoreLink img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.learnMoreLink a:first-child img {
+  height: auto;
+  width: 320px;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  background: url("/_assets/svg/youtube-play-button.svg") no-repeat center;
+  background-size: contain;
+  transform: translate(-50%, -50%);
+  /* opacity: 0.8; */
+}
+
+body,
+td {
+  font-size: 1rem;
+}
+
+[data-i18n="keyFeatures"] em {
+  font-style: normal;
+  font-weight: 100;
+}

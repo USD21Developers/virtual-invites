@@ -1,0 +1,362 @@
+{
+  "metadata": {
+    "description": "Alternative Events",
+    "path": "/i/alt/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Coming Events",
+      "translated": "Coming Events"
+    },
+    {
+      "key": "explainParagraph",
+      "original": "For a list of events closest to you, please provide your location below:",
+      "translated": "For a list of events closest to you, please provide your location below:"
+    },
+    {
+      "key": "mapLabelOrigin",
+      "original": "My location:",
+      "translated": "My location:"
+    },
+    {
+      "key": "originLocationHelp",
+      "original": "e.g. a postal code, cross streets, an address, or latitude/longitude coordinates",
+      "translated": "e.g. a postal code, cross streets, an address, or latitude/longitude coordinates"
+    },
+    {
+      "key": "locationAllowedValues",
+      "original": "Valid locations:",
+      "translated": "Valid locations:"
+    },
+    {
+      "key": "locationPostalCode",
+      "original": "a postal code",
+      "translated": "a postal code"
+    },
+    {
+      "key": "locationCrossStreets",
+      "original": "cross streets",
+      "translated": "cross streets"
+    },
+    {
+      "key": "locationAddress",
+      "original": "an address",
+      "translated": "an address"
+    },
+    {
+      "key": "locationCoordinates",
+      "original": "latitude/longitude coordinates",
+      "translated": "latitude/longitude coordinates"
+    },
+    {
+      "key": "detectMyLocation",
+      "original": "Detect my location",
+      "translated": "Detect my location"
+    },
+    {
+      "key": "promptAdvisory",
+      "original": "Your browser may prompt you for permission",
+      "translated": "Your browser may prompt you for permission"
+    },
+    {
+      "key": "detectLocationOptional",
+      "original": "Optional:",
+      "translated": "Optional:"
+    },
+    {
+      "key": "placeholderLocation",
+      "original": "Location",
+      "translated": "Location"
+    },
+    {
+      "key": "searchOptions",
+      "original": "Options:",
+      "translated": "Options:"
+    },
+    {
+      "key": "labelLanguage",
+      "original": "Language:",
+      "translated": "Language:"
+    },
+    {
+      "key": "labelRadius",
+      "original": "Radius:",
+      "translated": "Radius:"
+    },
+    {
+      "key": "optionMiles",
+      "original": "miles",
+      "translated": "miles"
+    },
+    {
+      "key": "optionKilos",
+      "original": "kilometers",
+      "translated": "kilometers"
+    },
+    {
+      "key": "sortBy",
+      "original": "Sort By:",
+      "translated": "Sort By:"
+    },
+    {
+      "key": "sortByDate",
+      "original": "Date",
+      "translated": "Date"
+    },
+    {
+      "key": "sortByDistance",
+      "original": "Distance",
+      "translated": "Distance"
+    },
+    {
+      "key": "labelVirtualAttendance",
+      "original": "Virtual Bttendance:",
+      "translated": "Virtual Attendance:"
+    },
+    {
+      "key": "includeVirtualEvents",
+      "original": "Include events that can be attended online",
+      "translated": "Include events that can be attended online"
+    },
+    {
+      "key": "includeVirtualEventsParenthesis",
+      "original": "(even if they are outside of the above radius)",
+      "translated": "(even if they are outside of the above radius)"
+    },
+    {
+      "key": "regardlessOfDistance",
+      "original": "(regardless of distance)",
+      "translated": "(regardless of distance)"
+    },
+    {
+      "key": "btnSubmit",
+      "original": "Show Events",
+      "translated": "Show Events"
+    },
+    {
+      "key": "geocoordinatesErrorMessage",
+      "original": "Unable to detect location",
+      "translated": "Unable to detect location"
+    },
+    {
+      "key": "geocoordinatesSuccessMessage",
+      "original": "Location detected successfully",
+      "translated": "Location detected successfully"
+    },
+    {
+      "key": "selectLanguage",
+      "original": "(Select)",
+      "translated": "(Select)"
+    },
+    {
+      "key": "loadingMap",
+      "original": "Loading map...",
+      "translated": "Loading map..."
+    },
+    {
+      "key": "dates",
+      "original": "Dates:",
+      "translated": "Dates:"
+    },
+    {
+      "key": "dateFrom",
+      "original": "From:",
+      "translated": "From:"
+    },
+    {
+      "key": "dateTo",
+      "original": "To:",
+      "translated": "To:"
+    },
+    {
+      "key": "pleaseProvideLocation",
+      "original": "Please provide a location.",
+      "translated": "Please provide a location."
+    },
+    {
+      "key": "pleaseSelectLanguage",
+      "original": "Please select your preferred language.",
+      "translated": "Please select your preferred language."
+    },
+    {
+      "key": "pleaseInputRadius",
+      "original": "Please input the radius from your location.",
+      "translated": "Please input the radius from your location."
+    },
+    {
+      "key": "radiusMustBeNumeric",
+      "original": "The radius must be a number.",
+      "translated": "The radius must be a number."
+    },
+    {
+      "key": "radiusMustBePositive",
+      "original": "The radius must be a positive number.",
+      "translated": "The radius must be a positive number."
+    },
+    {
+      "key": "radiusMustNotBeZero",
+      "original": "The radius must not be equal to zero.",
+      "translated": "The radius must not be equal to zero."
+    },
+    {
+      "key": "pleaseInputFromDate",
+      "original": "Please input the 'From' date.",
+      "translated": "Please input the 'From' date."
+    },
+    {
+      "key": "invalidFromDate",
+      "original": "Please input a valid 'From' date.",
+      "translated": "Please input a valid 'From' date."
+    },
+    {
+      "key": "fromDateMustNotBeInPast",
+      "original": "The 'From' date must not be in the past.",
+      "translated": "The 'From' date must not be in the past."
+    },
+    {
+      "key": "pleaseInputToDate",
+      "original": "Please input the 'To' date.",
+      "translated": "Please input the 'To' date."
+    },
+    {
+      "key": "invalidToDate",
+      "original": "Please input a valid 'To' date.",
+      "translated": "Please input a valid 'To' date."
+    },
+    {
+      "key": "toDateMustNotBeInPast",
+      "original": "The 'To' date must not be in the past.",
+      "translated": "The 'To' date must not be in the past."
+    },
+    {
+      "key": "fromDateMustPrecedeToDate",
+      "original": "The 'From' date must come before the 'To' date.",
+      "translated": "The 'From' date must come before the 'To' date."
+    },
+    {
+      "key": "headlineSearchResults",
+      "original": "Matching Events",
+      "translated": "Matching Events"
+    },
+    {
+      "key": "noResultsFound",
+      "original": "No results found.",
+      "translated": "No results found."
+    },
+    {
+      "key": "noResultsParagraph",
+      "original": "Please revise your search criteria, then try again.",
+      "translated": "Please revise your search criteria, then try again."
+    },
+    {
+      "key": "selectCountry",
+      "original": "(Select country)",
+      "translated": "(Select country)"
+    },
+    {
+      "key": "country",
+      "original": "Country:",
+      "translated": "Country:"
+    },
+    {
+      "key": "pleaseProvideCountry",
+      "original": "Please select a country.",
+      "translated": "Please select a country."
+    },
+    {
+      "key": "headlineInPersonEvents",
+      "original": "Events in person ({QUANTITY}):",
+      "translated": "Events in person ({QUANTITY}):"
+    },
+    {
+      "key": "headlineInPersonEventsZero",
+      "original": "Events in person:",
+      "translated": "Events in person:"
+    },
+    {
+      "key": "headlineVirtualEvents",
+      "original": "Virtual events ({QUANTITY}):",
+      "translated": "Virtual events ({QUANTITY}):"
+    },
+    {
+      "key": "headlineVirtualEventsZero",
+      "original": "Virtual events:",
+      "translated": "Virtual events:"
+    },
+    {
+      "key": "explanationVirtual",
+      "original": "You can attend a virtual event via the internet, by using streaming software such as Zoom or Google Meet.",
+      "translated": "You can attend a virtual event via the internet, by using streaming software such as Zoom or Google Meet."
+    },
+    {
+      "key": "resultsDistance",
+      "original": "Distance:",
+      "translated": "Distance:"
+    },
+    {
+      "key": "milesAbbreviation",
+      "original": "mi.",
+      "translated": "mi."
+    },
+    {
+      "key": "kilometersAbbreviation",
+      "original": "km.",
+      "translated": "km."
+    },
+    {
+      "key": "inPersonNoneFound",
+      "original": "No in-person events matched your search.",
+      "translated": "No in-person events matched your search."
+    },
+    {
+      "key": "virtualNoneFound",
+      "original": "No virtual events matched your search.",
+      "translated": "No virtual events matched your search."
+    },
+    {
+      "key": "locationNotRecognized",
+      "original": "Your location could not be found. If possible, please revise it.",
+      "translated": "Your location could not be found. If possible, please revise it.",
+      "changes": [
+        {
+          "original": "please revise it",
+          "translated": "please revise it",
+          "bold": true,
+          "italic": false,
+          "underline": true,
+          "link": "javascript:customScrollTo('#myLocationContainer', 20); hideToast()"
+        }
+      ]
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

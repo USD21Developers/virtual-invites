@@ -1,0 +1,185 @@
+{
+  "metadata": {
+    "description": "How to Install (iOS)",
+    "path": "/install/ios/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "How to Install",
+      "translated": "How to Install"
+    },
+    {
+      "key": "subhead",
+      "original": "For Apple Devices",
+      "translated": "For Apple Devices"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbInstall",
+      "original": "Install",
+      "translated": "Install"
+    },
+    {
+      "key": "breadcrumbInstallIOS",
+      "original": "Apple",
+      "translated": "Apple"
+    },
+    {
+      "key": "ifAlreadyInstalled",
+      "original": "Note: If you have already followed the steps below, then your installation is complete. Just open the app from your Home screen, and you will no longer see these installation instructions.",
+      "translated": "Note: If you have already followed the steps below, then your installation is complete. Just open the app from your Home screen, and you will no longer see these installation instructions.",
+      "changes": [
+        {
+          "original": "Note:",
+          "translated": "Note:",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "browserAdvisory",
+      "original": "The following steps pertain to the Safari Web browser on iOS.",
+      "translated": "The following steps pertain to the Safari Web browser on iOS.",
+      "changes": [
+        {
+          "original": "Safari",
+          "translated": "Safari",
+          "bold": false,
+          "italic": false,
+          "link": "https://www.apple.com/safari/",
+          "underline": true
+        }
+      ]
+    },
+    {
+      "key": "useThisBrowser",
+      "original": "Installation on iOS requires this browser:",
+      "translated": "Installation on iOS requires this browser:"
+    },
+    {
+      "key": "safari",
+      "original": "Apple Safari",
+      "translated": "Apple Safari"
+    },
+    {
+      "key": "step1",
+      "original": "Step 1:",
+      "translated": "Step 1:"
+    },
+    {
+      "key": "step1instructions",
+      "original": "Within Safari, find this navbar at the bottom of your screen:",
+      "translated": "Within Safari, find this navbar at the bottom of your screen:"
+    },
+    {
+      "key": "step2",
+      "original": "Step 2:",
+      "translated": "Step 2:"
+    },
+    {
+      "key": "step2instructions",
+      "original": "Click on the Share icon (a square containing an upward-pointing arrow).",
+      "translated": "Click on the Share icon (a square containing an upward-pointing arrow)."
+    },
+    {
+      "key": "step3",
+      "original": "Step 3:",
+      "translated": "Step 3:"
+    },
+    {
+      "key": "step3instructions",
+      "original": "A 'share sheet' will open:",
+      "translated": "A 'share sheet' will open:"
+    },
+    {
+      "key": "step4",
+      "original": "Step 4:",
+      "translated": "Step 4:"
+    },
+    {
+      "key": "step4instructions",
+      "original": "Click on 'Add to Home Screen.'",
+      "translated": "Click on 'Add to Home Screen.'"
+    },
+    {
+      "key": "step5",
+      "original": "Step 5:",
+      "translated": "Step 5:"
+    },
+    {
+      "key": "step5instructions",
+      "original": "The 'Add to Home Screen' dialog will appear:",
+      "translated": "The 'Add to Home Screen' dialog will appear:"
+    },
+    {
+      "key": "step6",
+      "original": "Step 6:",
+      "translated": "Step 6:"
+    },
+    {
+      "key": "step6instructions",
+      "original": "Click on 'Add'",
+      "translated": "Click on 'Add'"
+    },
+    {
+      "key": "finalStep",
+      "original": "Final step:",
+      "translated": "Final step:"
+    },
+    {
+      "key": "step7instructions",
+      "original": "Go to your device's home screen and find the icon for the Invites App.",
+      "translated": "Go to your device's home screen and find the icon for the Invites App."
+    },
+    {
+      "key": "step7final",
+      "original": "You're done! From now on, just open the Invites app from your device's home screen.",
+      "translated": "You're done! From now on, just open the Invites app from your device's home screen.",
+      "changes": [
+        {
+          "original": "You're done!",
+          "translated": "You're done!",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your profile photo has been flagged</title>
+  </head>
+  <body>
+    <style type="text/css">
+      #invitesNotification {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height: 150%;
+      }
+
+      #invitesNotification header {
+        font-size: 1.2rem;
+      }
+
+      #invitesNotification a {
+        text-decoration: underline !important;
+      }
+
+      #invitesNotification .updatePhotoLink {
+        color: #504390;
+        font-size: 1.3rem;
+        font-style: unset;
+        line-height: 100%;
+        text-decoration: underline;
+      }
+
+      #invitesNotification footer {
+        font-size: 0.9rem;
+      }
+    </style>
+
+    <div id="invitesNotification">
+      <p data-i18n="emailP1">Hello {FIRST-NAME}!</p>
+
+      <p data-i18n="emailP2">
+        Your profile photo on the
+        <a href="https://invites.mobi/">Invites App</a> was flagged, and needs
+        to be revised.
+      </p>
+
+      <p style="color: #808080; font-size: smaller; font-style: italic">
+        <span data-i18n="dateUploadedLabel">
+          Time when photo was uploaded:
+        </span>
+        <br />
+        <span id="dateUploaded"> Dec 24, 2024, 11:30 AM </span>
+      </p>
+
+      <p style="color: #808080; font-size: smaller; font-style: italic">
+        <span data-i18n="dateFlaggedLabel"> Time when photo was flagged: </span>
+        <br />
+        <span id="dateFlagged"> Dec 24, 2024, 11:31 AM </span>
+      </p>
+
+      <p>
+        <strong data-i18n="emailP3"> Reason for flagging: </strong>
+        <br />
+        <span id="actualReason" style="color: red"> {REASON} </span>
+      </p>
+
+      <div
+        style="
+          background-color: #efefef;
+          border: 1px solid #999;
+          display: inline-block;
+          margin-top: 1rem;
+        "
+      >
+        <div style="margin-top: 1rem; text-align: center; font-size: 1.2rem">
+          <strong data-i18n="headlineRulesAboutPhotos">
+            Rules about profile photos
+          </strong>
+        </div>
+        <ol style="margin: 0; padding: 1rem 2rem">
+          <li>
+            <strong data-i18n="ruleMustShowYourFace">
+              Must show your face
+            </strong>
+            <div>
+              <small data-i18n="explanationMustShowYourFace">
+                The photo must show your actual face.
+              </small>
+            </div>
+          </li>
+          <li style="margin-top: 1rem">
+            <strong data-i18n="ruleFaceMustBeProminent"
+              >Face must be prominent</strong
+            >
+            <div>
+              <small data-i18n="explanationFaceMustBeProminent">
+                Only your head and shoulders may be visible. The photo should
+                not be zoomed out.
+              </small>
+            </div>
+          </li>
+          <li style="margin-top: 1rem">
+            <strong data-i18n="ruleOnlyYou">Just you</strong>
+            <div>
+              <small data-i18n="explanationOnlyYou">
+                The photo may show you, and only you. No other people should be
+                visible.
+              </small>
+            </div>
+          </li>
+          <li style="margin-top: 1rem">
+            <strong data-i18n="ruleMustBeAppropriate">
+              Must be appropriate
+            </strong>
+            <div>
+              <small data-i18n="explanationMustBeAppropriate">
+                The photo must be modest, dignified and wholesome.
+              </small>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <hr noshade size="1" style="margin: 40px 0" />
+
+      <p style="text-align: center">
+        <strong data-i18n="emailP4" style="font-size: 1.2rem">
+          Flagged Photo
+        </strong>
+      </p>
+
+      <p data-i18n="emailP5" style="text-align: center; text-wrap: balance">
+        Below is the photo that must be changed:
+      </p>
+
+      <div style="text-align: center">
+        <div style="display: inline-block">
+          <img
+            src="{FLAGGED-PHOTO-URL}"
+            id="flaggedPhoto"
+            width="200"
+            height="200"
+            style="border-radius: 50%; border: 2px solid #5d7daf"
+          />
+          <div>
+            <small data-i18n="emailP6" style="color: #999">
+              Added on {DATE}
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <hr noshade size="1" style="margin: 40px 0" />
+
+      <p style="text-align: center">
+        <strong data-i18n="emailP7" style="font-size: 1.2rem">
+          Temporary Photo
+        </strong>
+      </p>
+
+      <p data-i18n="emailP8" style="text-align: center; text-wrap: balance">
+        Your profile will temporarily show the following generic photo until you
+        change it:
+      </p>
+
+      <div style="text-align: center">
+        <img
+          src="/_assets/img/profile-generic-male.png"
+          id="temporaryPhoto"
+          width="200"
+          height="200"
+          style="border-radius: 50%; border: 2px solid #5d7daf"
+        />
+      </div>
+
+      <hr noshade size="1" style="margin: 60px 0" />
+
+      <p data-i18n="emailP9" style="text-align: center; text-wrap: balance">
+        Click below to revise your photo immediately:
+      </p>
+
+      <p style="text-align: center">
+        <strong>
+          <a
+            href="https://invites.mobi/profile/photo/"
+            data-i18n="emailUpdatePhotoLink"
+            style="font-size: 1.2rem; text-decoration: underline"
+          >
+            Change my profile photo
+          </a>
+        </strong>
+      </p>
+
+      <hr noshade size="1" style="margin: 60px 0 40px 0" />
+
+      <p data-i18n="emailP10">We apologize for the inconvenience!</p>
+
+      <p data-i18n="emailSincerely">Sincerely,</p>
+
+      <p data-i18n="emailTheCyberministry">The Cyberministry</p>
+
+      <hr size="1" noshade style="margin-top: 40px" />
+
+      <footer>
+        <small>
+          <p>
+            <a href="https://invites.mobi/about/" data-i18n="emailAboutApp">
+              About the Invites App
+            </a>
+          </p>
+
+          <p data-i18n="emailTimezone">
+            <em> Times shown above are in the {ADMIN-TIMEZONE} time zone. </em>
+          </p>
+
+          <p>
+            <small>
+              <span
+                data-i18n="emailMessageID"
+                style="color: #dddddd !important"
+              >
+                Message ID:
+              </span>
+              <span data-var="messageID" style="color: #dddddd !important">
+                8bc5c41e-f513-422c-be47-7c9858a9bb83
+              </span>
+            </small>
+          </p>
+        </small>
+      </footer>
+
+      <br />
+      <br />
+    </div>
+  </body>
+</html>

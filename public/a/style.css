@@ -1,0 +1,24 @@
+html {
+  background: rgba(93, 125, 175, 1);
+  background: linear-gradient(
+    circle,
+    rgba(93, 125, 175, 1) 50%,
+    rgba(33, 109, 224, 1) 90%
+  );
+  font-size: 18px;
+  height: 100vh;
+}
+
+body {
+  background: unset;
+}
+
+#modal a {
+  color: lab(40 9.2 -55.3) !important;
+}
+
+@media (max-width: 575px) {
+  #btnMoreInfo {
+    display: block;
+  }
+}

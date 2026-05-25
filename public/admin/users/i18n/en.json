@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "description": "Administer Users",
+    "path": "/admin/users/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Users",
+      "translated": "Users"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbAdmin",
+      "original": "Admin",
+      "translated": "Admin"
+    },
+    {
+      "key": "breadcrumbUsers",
+      "original": "Users",
+      "translated": "Users"
+    },
+    {
+      "key": "church",
+      "original": "Church:",
+      "translated": "Church:"
+    },
+    {
+      "key": "firstname",
+      "original": "First name",
+      "translated": "First name"
+    },
+    {
+      "key": "lastname",
+      "original": "Last name",
+      "translated": "Last name"
+    },
+    {
+      "key": "finduser",
+      "original": "Find User",
+      "translated": "Find User"
+    },
+    {
+      "key": "findAUser",
+      "original": "Find a User",
+      "translated": "Find a User"
+    },
+    {
+      "key": "listUsers",
+      "original": "List Users",
+      "translated": "List Users"
+    },
+    {
+      "key": "list",
+      "original": "List",
+      "translated": "List"
+    },
+    {
+      "key": "errorChurchIsRequired",
+      "original": "User's church is required",
+      "translated": "User's church is required"
+    },
+    {
+      "key": "errorNameIsRequired",
+      "original": "Name is required",
+      "translated": "Name is required"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "metadata": {
+    "description": "Dashboard",
+    "path": "/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Invites",
+      "translated": "Invites"
+    },
+    {
+      "key": "registerlink",
+      "original": "Register",
+      "translated": "Register"
+    },
+    {
+      "key": "invitelink",
+      "original": "Send an Invite",
+      "translated": "Send an Invite"
+    },
+    {
+      "key": "myinviteslink",
+      "original": "My Invites",
+      "translated": "My Invites"
+    },
+    {
+      "key": "eventslink",
+      "original": "Events",
+      "translated": "Events"
+    },
+    {
+      "key": "followlink",
+      "original": "Follow a User",
+      "translated": "Follow a User"
+    },
+    {
+      "key": "followinglink",
+      "original": "Following",
+      "translated": "Following"
+    },
+    {
+      "key": "evangelismMapLink",
+      "original": "Evangelism Map",
+      "translated": "Evangelism Map"
+    },
+    {
+      "key": "evangelismMapListLink",
+      "original": "Map",
+      "translated": "Map"
+    },
+    {
+      "key": "authorizeLink",
+      "original": "Pre-authorize a New User",
+      "translated": "Pre-authorize a New User"
+    },
+    {
+      "key": "manageUsers",
+      "original": "Manage Users",
+      "translated": "Manage Users"
+    },
+    {
+      "key": "evangelism",
+      "original": "Evangelism",
+      "translated": "Evangelism"
+    },
+    {
+      "key": "administration",
+      "original": "Administration",
+      "translated": "Administration"
+    },
+    {
+      "key": "aboutThisApp",
+      "original": "About This App",
+      "translated": "About This App"
+    },
+    {
+      "key": "latestInvites",
+      "original": "Latest Activity",
+      "translated": "Latest Activity"
+    },
+    {
+      "key": "latestInvitesAction",
+      "original": "Invited someone to {EVENT-TYPE}",
+      "translated": "Invited someone to {EVENT-TYPE}"
+    },
+    {
+      "key": "latestInvitesActionOther",
+      "original": "Invited someone",
+      "translated": "Invited someone"
+    },
+    {
+      "key": "latestRegistrants",
+      "original": "Latest Registrants",
+      "translated": "Latest Registrants"
+    },
+    {
+      "key": "latestRegistrantsAction",
+      "original": "Registered {DAYS-AGO}",
+      "translated": "Registered {DAYS-AGO}"
+    },
+    {
+      "key": "latestInvitesNoneFound",
+      "original": "No invite activity found.",
+      "translated": "No invite activity found."
+    },
+    {
+      "key": "latestRegistrantsNoneFound",
+      "original": "No registrants found.",
+      "translated": "No registrants found."
+    },
+    {
+      "key": "timedOut",
+      "original": "Timed out. Please reconnect.",
+      "translated": "Timed out. Please reconnect."
+    },
+    {
+      "key": "allchurches",
+      "original": "All Churches",
+      "translated": "All Churches"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

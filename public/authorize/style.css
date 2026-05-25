@@ -1,0 +1,74 @@
+.iti {
+  display: block;
+}
+
+label.notbold {
+  font-weight: normal;
+}
+
+.is-focused > label[for="contactPhone"],
+.has-value > label[for="contactPhone"] {
+  margin-left: 0;
+}
+
+hr {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+label {
+  color: var(--dark-dark);
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.form-check:not(.form-check-inline) label {
+  display: block;
+}
+
+[data-i18n="labelHighestLeadershipRole"] em {
+  font-style: normal;
+  font-weight: normal;
+}
+
+label[for="oath"] {
+  font-weight: 400;
+}
+
+label[for="oath"] em {
+  color: var(--dark-dark);
+  font-style: normal;
+  font-weight: bold;
+}
+
+#churchInvalidFeedback em {
+  font-style: normal;
+  font-weight: normal;
+}
+
+html[lang="en"] #isExpectingContainer * {
+  word-break: keep-all;
+}
+
+#alertMessage strong {
+  font-weight: 600 !important;
+}
+
+#alertMessage h3 {
+  margin-bottom: 12px;
+}
+
+details summary {
+  font-size: 0.85rem !important;
+}
+
+details[open] summary {
+  color: black !important;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+details a {
+  color: var(--primary);
+  text-decoration: underline;
+}

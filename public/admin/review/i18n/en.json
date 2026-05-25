@@ -1,0 +1,271 @@
+{
+  "metadata": {
+    "description": "Photo Review",
+    "path": "/admin/photoreview/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Photo Review",
+      "translated": "Photo Review"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbAdmin",
+      "original": "Admin",
+      "translated": "Admin"
+    },
+    {
+      "key": "breadcrumbPhotoReview",
+      "original": "Review",
+      "translated": "Review"
+    },
+    {
+      "key": "photoAddedOn",
+      "original": "Photo added on {DATE}",
+      "translated": "Photo added on {DATE}"
+    },
+    {
+      "key": "approve",
+      "original": "Approve",
+      "translated": "Approve"
+    },
+    {
+      "key": "flag",
+      "original": "Flag",
+      "translated": "Flag"
+    },
+    {
+      "key": "reasonForFlagging",
+      "original": "Reason for flagging:",
+      "translated": "Reason for flagging:"
+    },
+    {
+      "key": "doesNotShowUsersFace",
+      "original": "Does not show user's face",
+      "translated": "Does not show user's face"
+    },
+    {
+      "key": "doesNotShowUsersFaceEmail",
+      "original": "Does not show your face",
+      "translated": "Does not show your face"
+    },
+    {
+      "key": "usersFaceNotProminentEnough",
+      "original": "User's face is not prominent enough",
+      "translated": "User's face is not prominent enough"
+    },
+    {
+      "key": "usersFaceNotProminentEnoughEmail",
+      "original": "Your face is not prominent enough",
+      "translated": "Your face is not prominent enough"
+    },
+    {
+      "key": "additionalPeople",
+      "original": "Shows additional people",
+      "translated": "Shows additional people"
+    },
+    {
+      "key": "additionalPeopleEmail",
+      "original": "Shows additional people",
+      "translated": "Shows additional people"
+    },
+    {
+      "key": "notAppropriate",
+      "original": "Photo is not appropriate",
+      "translated": "Photo is not appropriate"
+    },
+    {
+      "key": "notAppropriateEmail",
+      "original": "Photo is not appropriate",
+      "translated": "Photo is not appropriate"
+    },
+    {
+      "key": "other",
+      "original": "Other:",
+      "translated": "Other:"
+    },
+    {
+      "key": "otherReason",
+      "original": "Other reason",
+      "translated": "Other reason"
+    },
+    {
+      "key": "reasonIsRequired",
+      "original": "Reason is required",
+      "translated": "Reason is required"
+    },
+    {
+      "key": "explanation",
+      "original": "There are {QUANTITY} profile photos awaiting review:",
+      "translated": "There are {QUANTITY} profile photos awaiting review:"
+    },
+    {
+      "key": "explanation1",
+      "original": "One profile photo is awaiting review:",
+      "translated": "One profile photo is awaiting review:"
+    },
+    {
+      "key": "reasonIsRequired",
+      "original": "A reason for flagging is required.",
+      "translated": "A reason for flagging is required."
+    },
+    {
+      "key": "nophotos",
+      "original": "No photos are awaiting review at this time.",
+      "translated": "No photos are awaiting review at this time."
+    },
+    {
+      "key": "returnToAdministration",
+      "original": "Administration",
+      "translated": "Administration"
+    },
+    {
+      "key": "submitButton",
+      "original": "Submit",
+      "translated": "Submit"
+    },
+    {
+      "key": "reviewsProcessedSuccessfully",
+      "original": "All photo reviews were processed successfully.",
+      "translated": "All photo reviews were processed successfully."
+    },
+    {
+      "key": "emailSubject",
+      "original": "Your profile photo was flagged",
+      "translated": "Your profile photo was flagged"
+    },
+    {
+      "key": "emailP1",
+      "original": "Hello {FIRST-NAME}!",
+      "translated": "Hello {FIRST-NAME}!"
+    },
+    {
+      "key": "emailP2",
+      "original": "Your profile photo on the Invites App was flagged, and needs to be revised.",
+      "translated": "Your profile photo on the Invites App was flagged, and needs to be revised.",
+      "changes": [
+        {
+          "original": "Invites App",
+          "translated": "Invites App",
+          "bold": false,
+          "italic": false,
+          "link": "https://invites.mobi/"
+        }
+      ]
+    },
+    {
+      "key": "emailP3",
+      "original": "Reason for flagging:",
+      "translated": "Reason for flagging:"
+    },
+    {
+      "key": "dateUploadedLabel",
+      "original": "Time when photo was uploaded:",
+      "translated": "Time when photo was uploaded:"
+    },
+    {
+      "key": "dateFlaggedLabel",
+      "original": "Time when photo was flagged:",
+      "translated": "Time when photo was flagged:"
+    },
+    {
+      "key": "emailP4",
+      "original": "Flagged Photo",
+      "translated": "Flagged Photo"
+    },
+    {
+      "key": "emailP5",
+      "original": "Below is the photo that must be changed:",
+      "translated": "Below is the photo that must be changed:"
+    },
+    {
+      "key": "emailP6",
+      "original": "Added on {DATE}",
+      "translated": "Added on {DATE}"
+    },
+    {
+      "key": "emailP7",
+      "original": "Temporary Photo",
+      "translated": "Temporary Photo"
+    },
+    {
+      "key": "emailP8",
+      "original": "Your profile will temporarily show the following generic photo until you change it:",
+      "translated": "Your profile will temporarily show the following generic photo until you change it:"
+    },
+    {
+      "key": "emailP9",
+      "original": "Click below to revise your photo immediately:",
+      "translated": "Click below to revise your photo immediately:"
+    },
+    {
+      "key": "emailUpdatePhotoLink",
+      "original": "Change my profile photo",
+      "translated": "Change my profile photo"
+    },
+    {
+      "key": "emailP10",
+      "original": "We apologize for the inconvenience!",
+      "translated": "We apologize for the inconvenience!"
+    },
+    {
+      "key": "emailSincerely",
+      "original": "Sincerely,",
+      "translated": "Sincerely,"
+    },
+    {
+      "key": "emailTheCyberministry",
+      "original": "The Cyberministry",
+      "translated": "The Cyberministry"
+    },
+    {
+      "key": "emailAboutApp",
+      "original": "About the Invites App",
+      "translated": "About the Invites App"
+    },
+    {
+      "key": "emailTimezone",
+      "original": "Times shown above are in the {ADMIN-TIMEZONE} time zone.",
+      "translated": "Times shown above are in the {ADMIN-TIMEZONE} time zone."
+    },
+    {
+      "key": "emailMessageID",
+      "original": "Message ID:",
+      "translated": "Message ID:"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,461 @@
+{
+  "metadata": {
+    "description": "Global",
+    "path": "/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "apptitle",
+      "original": "Invites",
+      "translated": "Invites"
+    },
+    {
+      "key": "menuHeadline",
+      "original": "Menu",
+      "translated": "Menu"
+    },
+    {
+      "key": "menuHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "menuSendInvite",
+      "original": "Send an Invite",
+      "translated": "Send an Invite"
+    },
+    {
+      "key": "menuFollowUp",
+      "original": "Follow Up List",
+      "translated": "Follow Up List"
+    },
+    {
+      "key": "menuMyInvites",
+      "original": "My Invites",
+      "translated": "My Invites"
+    },
+    {
+      "key": "menuEventsImSharing",
+      "original": "Events",
+      "translated": "Events"
+    },
+    {
+      "key": "menuMaps",
+      "original": "Evangelism Map",
+      "translated": "Evangelism Map"
+    },
+    {
+      "key": "menuSettings",
+      "original": "Settings",
+      "translated": "Settings"
+    },
+    {
+      "key": "menuMyProfile",
+      "original": "My Profile",
+      "translated": "My Profile"
+    },
+    {
+      "key": "menuSupport",
+      "original": "Support",
+      "translated": "Support"
+    },
+    {
+      "key": "menuLogOut",
+      "original": "Log Out",
+      "translated": "Log Out"
+    },
+    {
+      "key": "menuAdmin",
+      "original": "Administration",
+      "translated": "Administration"
+    },
+    {
+      "key": "toggleNavigation",
+      "original": "Toggle navigation",
+      "translated": "Toggle navigation"
+    },
+    {
+      "key": "menuAuthorizeUser",
+      "original": "Authorize a New User",
+      "translated": "Authorize a New User"
+    },
+    {
+      "key": "ok",
+      "original": "OK",
+      "translated": "OK"
+    },
+    {
+      "key": "close",
+      "original": "Close",
+      "translated": "Close"
+    },
+    {
+      "key": "recently",
+      "original": "recently",
+      "translated": "recently"
+    },
+    {
+      "key": "sunday",
+      "original": "Sunday",
+      "translated": "Sunday"
+    },
+    {
+      "key": "monday",
+      "original": "Monday",
+      "translated": "Monday"
+    },
+    {
+      "key": "tuesday",
+      "original": "Tuesday",
+      "translated": "Tuesday"
+    },
+    {
+      "key": "wednesday",
+      "original": "Wednesday",
+      "translated": "Wednesday"
+    },
+    {
+      "key": "thursday",
+      "original": "Thursday",
+      "translated": "Thursday"
+    },
+    {
+      "key": "friday",
+      "original": "Friday",
+      "translated": "Friday"
+    },
+    {
+      "key": "saturday",
+      "original": "Saturday",
+      "translated": "Saturday"
+    },
+    {
+      "key": "frequencyEverySunday",
+      "original": "Every Sunday",
+      "translated": "Sundays"
+    },
+    {
+      "key": "frequencyEveryMonday",
+      "original": "Every Monday",
+      "translated": "Mondays"
+    },
+    {
+      "key": "frequencyEveryTuesday",
+      "original": "Every Tuesday",
+      "translated": "Tuesdays"
+    },
+    {
+      "key": "frequencyEveryWednesday",
+      "original": "Every Wednesday",
+      "translated": "Wednesdays"
+    },
+    {
+      "key": "frequencyEveryThursday",
+      "original": "Every Thursday",
+      "translated": "Thursdays"
+    },
+    {
+      "key": "frequencyEveryFriday",
+      "original": "Every Friday",
+      "translated": "Fridays"
+    },
+    {
+      "key": "frequencyEverySaturday",
+      "original": "Every Saturday",
+      "translated": "Saturdays"
+    },
+    {
+      "key": "syncing",
+      "original": "Syncing...",
+      "translated": "Syncing..."
+    },
+    {
+      "key": "synced",
+      "original": "Synced.",
+      "translated": "Synced."
+    },
+    {
+      "key": "uncategorized",
+      "original": "Uncategorized",
+      "translated": "Uncategorized"
+    },
+    {
+      "key": "male",
+      "original": "male",
+      "translated": "male"
+    },
+    {
+      "key": "female",
+      "original": "female",
+      "translated": "female"
+    },
+    {
+      "key": "bibletalk",
+      "original": "Bible Talk",
+      "translated": "Bible Talk"
+    },
+    {
+      "key": "churchservice",
+      "original": "Church service",
+      "translated": "Church service"
+    },
+    {
+      "key": "church",
+      "original": "church",
+      "translated": "church"
+    },
+    {
+      "key": "otherevent",
+      "original": "Other event",
+      "translated": "Other event"
+    },
+    {
+      "key": "streamed",
+      "original": "Streamed",
+      "translated": "Streamed"
+    },
+    {
+      "key": "yes",
+      "original": "Yes",
+      "translated": "Yes"
+    },
+    {
+      "key": "no",
+      "original": "No",
+      "translated": "No"
+    },
+    {
+      "key": "profilePhotoAlt",
+      "original": "Photo of {name}",
+      "translated": "Photo of {name}"
+    },
+    {
+      "key": "follow",
+      "original": "Follow",
+      "translated": "Follow"
+    },
+    {
+      "key": "unfollow",
+      "original": "Unfollow",
+      "translated": "Unfollow"
+    },
+    {
+      "key": "cancel",
+      "original": "Cancel",
+      "translated": "Cancel"
+    },
+    {
+      "key": "quantityOfEvents1",
+      "original": "You now have 1 event.",
+      "translated": "You now have 1 event."
+    },
+    {
+      "key": "quantityOfEvents",
+      "original": "You now have {quantity} events.",
+      "translated": "You now have {quantity} events."
+    },
+    {
+      "key": "events",
+      "original": "Events",
+      "translated": "Events"
+    },
+    {
+      "key": "sendAnInvite",
+      "original": "Send an Invite",
+      "translated": "Send an Invite"
+    },
+    {
+      "key": "addToCalendarApple",
+      "original": "Apple",
+      "translated": "Apple"
+    },
+    {
+      "key": "addToCalendarGoogle",
+      "original": "Google",
+      "translated": "Google"
+    },
+    {
+      "key": "addToCalendarIcalFile",
+      "original": "iCal file",
+      "translated": "iCal file"
+    },
+    {
+      "key": "update",
+      "original": "Update",
+      "translated": "Update"
+    },
+    {
+      "key": "delete",
+      "original": "Delete",
+      "translated": "Delete"
+    },
+    {
+      "key": "edit",
+      "original": "Edit",
+      "translated": "Edit"
+    },
+    {
+      "key": "reload",
+      "original": "Reload",
+      "translated": "Reload"
+    },
+    {
+      "key": "copyToClipboard",
+      "original": "Copy",
+      "translated": "Copy"
+    },
+    {
+      "key": "copiedToClipboard",
+      "original": "Copied!",
+      "translated": "Copied!"
+    },
+    {
+      "key": "notesUpdatedReload",
+      "original": "Notes were updated. Reload?",
+      "translated": "Notes were updated. Reload?",
+      "changes": [
+        {
+          "original": "Reload?",
+          "translated": "Reload?",
+          "bold": false,
+          "italic": false,
+          "link": "javascript: window.location.reload()"
+        }
+      ]
+    },
+    {
+      "key": "confirm",
+      "original": "Confirm",
+      "translated": "Confirm"
+    },
+    {
+      "key": "textmessage",
+      "original": "text message",
+      "translated": "text message"
+    },
+    {
+      "key": "email",
+      "original": "e-mail",
+      "translated": "e-mail"
+    },
+    {
+      "key": "whatsapp",
+      "original": "WhatsApp",
+      "translated": "WhatsApp"
+    },
+    {
+      "key": "multidayFromLabel",
+      "original": "From:",
+      "translated": "From:"
+    },
+    {
+      "key": "multidayToLabel",
+      "original": "To:",
+      "translated": "To:"
+    },
+    {
+      "key": "navbarHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "navbarBack",
+      "original": "Back",
+      "translated": "Back"
+    },
+    {
+      "key": "navbarMyInvites",
+      "original": "My Invites",
+      "translated": "My Invites"
+    },
+    {
+      "key": "navbarFollowUp",
+      "original": "Follow Up",
+      "translated": "Follow Up"
+    },
+    {
+      "key": "navbarSendAnInvite",
+      "original": "Send",
+      "translated": "Send"
+    },
+    {
+      "key": "navbarForward",
+      "original": "Forward",
+      "translated": "Forward"
+    },
+    {
+      "key": "himPronoun",
+      "original": "him",
+      "translated": "him"
+    },
+    {
+      "key": "herPronoun",
+      "original": "her",
+      "translated": "her"
+    },
+    {
+      "key": "youAreOffline",
+      "original": "You are offline. Please reconnect.",
+      "translated": "You are offline. Please reconnect."
+    },
+    {
+      "key": "comingSoon",
+      "original": "Coming Soon",
+      "translated": "Coming Soon"
+    },
+    {
+      "key": "reset",
+      "original": "Reset",
+      "translated": "Reset"
+    },
+    {
+      "key": "installBannerTitle",
+      "original": "The Invites App",
+      "translated": "The Invites App"
+    },
+    {
+      "key": "installBannerOrganization",
+      "original": "International Christian Churches",
+      "translated": "International Christian Churches"
+    },
+    {
+      "key": "installBannerButton",
+      "original": "INSTALL",
+      "translated": "INSTALL"
+    },
+    {
+      "key": "justnow",
+      "original": "Just now",
+      "translated": "Just now"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

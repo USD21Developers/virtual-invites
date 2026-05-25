@@ -1,0 +1,497 @@
+{
+  "metadata": {
+    "description": "Recipient Profile",
+    "path": "/r/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "{RECIPIENT-NAME}",
+      "translated": "{RECIPIENT-NAME}"
+    },
+    {
+      "key": "label_event",
+      "original": "Event:",
+      "translated": "Event:"
+    },
+    {
+      "key": "label_dateInvited",
+      "original": "Date invited:",
+      "translated": "Date invited:"
+    },
+    {
+      "key": "label_invitedFromLocation",
+      "original": "Invited from location:",
+      "translated": "Invited from location:"
+    },
+    {
+      "key": "map",
+      "original": "Map",
+      "translated": "Map"
+    },
+    {
+      "key": "mapPointLabel",
+      "original": "Invited {RECIPIENT-NAME}",
+      "translated": "Invited {RECIPIENT-NAME}"
+    },
+    {
+      "key": "label_views",
+      "original": "Invite was viewed:",
+      "translated": "Invite was viewed:"
+    },
+    {
+      "key": "total_views",
+      "original": "{QUANTITY-VIEWS} times",
+      "translated": "{QUANTITY-VIEWS} times"
+    },
+    {
+      "key": "paragraph_1_view",
+      "original": "1 time",
+      "translated": "1 time"
+    },
+    {
+      "key": "paragraph_no_views",
+      "original": "(No views yet)",
+      "translated": "(No views yet)"
+    },
+    {
+      "key": "timezone-notice",
+      "original": "Times shown above are in the {EVENT-TIMEZONE} time zone.",
+      "translated": "Times shown above are in the {EVENT-TIMEZONE} time zone."
+    },
+    {
+      "key": "follow-up",
+      "original": "Follow Up:",
+      "translated": "Follow Up:"
+    },
+    {
+      "key": "textTheRecipient",
+      "original": "Send a text message to {RECIPIENT-NAME}",
+      "translated": "Send a text message to {RECIPIENT-NAME}"
+    },
+    {
+      "key": "callTheRecipient",
+      "original": "Call {RECIPIENT-NAME}",
+      "translated": "Call {RECIPIENT-NAME}"
+    },
+    {
+      "key": "emailTheRecipient",
+      "original": "Send an e-mail to {RECIPIENT-NAME}",
+      "translated": "Send an e-mail to {RECIPIENT-NAME}"
+    },
+    {
+      "key": "headlineFollowUp",
+      "original": "Follow Up with {RECIPIENT-NAME}",
+      "translated": "Follow Up with {RECIPIENT-NAME}"
+    },
+    {
+      "key": "headlineFollowUpInPerson",
+      "original": "Follow Up with {RECIPIENT-NAME} in Person",
+      "translated": "Follow Up with {RECIPIENT-NAME} in Person"
+    },
+    {
+      "key": "qrCodeWithLocation",
+      "original": "Since this invite was sent via QR code, no contact information was exchanged. But you did tag the invite with your location when you sent it. So, if you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return to that location in order to follow up in person.",
+      "translated": "Since this invite was sent via QR code, no contact information was exchanged. But you did tag the invite with your location when you sent it. So, if you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return to that location in order to follow up in person."
+    },
+    {
+      "key": "qrCodeWithoutLocation",
+      "original": "Since this invite was sent via QR code, no contact information was exchanged. You did not tag the invite with your location. But if you still remember the location, and if you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return there in order to follow up in person.",
+      "translated": "Since this invite was sent via QR code, no contact information was exchanged. You did not tag the invite with your location. But if you still remember the location, and if you believe it's likely that you will find {RECIPIENT-NAME} there again, you could return there in order to follow up in person."
+    },
+    {
+      "key": "mapAndDrivingDirections",
+      "original": "Map and driving directions",
+      "translated": "Map and driving directions"
+    },
+    {
+      "key": "phone-call",
+      "original": "Phone call",
+      "translated": "Phone call"
+    },
+    {
+      "key": "send-sms",
+      "original": "Text message",
+      "translated": "Text message"
+    },
+    {
+      "key": "contactViaWhatsApp",
+      "original": "WhatsApp",
+      "translated": "WhatsApp"
+    },
+    {
+      "key": "send-email",
+      "original": "Send an e-mail",
+      "translated": "Send an e-mail"
+    },
+    {
+      "key": "email",
+      "original": "E-mail",
+      "translated": "E-mail"
+    },
+    {
+      "key": "add-calendar-reminder",
+      "original": "Add a follow up reminder to my calendar",
+      "translated": "Add a follow up reminder to my calendar"
+    },
+    {
+      "key": "resend",
+      "original": "Resend the invite",
+      "translated": "Resend the invite"
+    },
+    {
+      "key": "inviteToDifferentEvent",
+      "original": "Invite to a different event",
+      "translated": "Invite to a different event"
+    },
+    {
+      "key": "addToPhonebook",
+      "original": "Add {RECIPIENT-NAME} to my phonebook",
+      "translated": "Add {RECIPIENT-NAME} to my phonebook"
+    },
+    {
+      "key": "addToPhonebookNote",
+      "original": "Invited to {EVENT-TITLE} on {INVITATION-DATE}",
+      "translated": "Invited to {EVENT-TITLE} on {INVITATION-DATE}"
+    },
+    {
+      "key": "followUpReminder",
+      "original": "Follow Up Reminder",
+      "translated": "Follow Up Reminder"
+    },
+    {
+      "key": "followUpParagraph",
+      "original": "Choose a date and time to follow up with {RECIPIENT-NAME}:",
+      "translated": "Choose a date and time to follow up with {RECIPIENT-NAME}:"
+    },
+    {
+      "key": "date",
+      "original": "Date:",
+      "translated": "Date:"
+    },
+    {
+      "key": "time",
+      "original": "Time:",
+      "translated": "Time:"
+    },
+    {
+      "key": "add-to-my-calendar",
+      "original": "Add to my calendar",
+      "translated": "Add to my calendar"
+    },
+    {
+      "key": "followUpAppointmentTitle",
+      "original": "Follow Up with {RECIPIENT-NAME}",
+      "translated": "Follow Up with {RECIPIENT-NAME}"
+    },
+    {
+      "key": "followUpAppointmentTitleComingUp",
+      "original": "Coming up: follow Up with {RECIPIENT-NAME}",
+      "translated": "Coming up: follow Up with {RECIPIENT-NAME}"
+    },
+    {
+      "key": "followUpAppointmentParagraph1",
+      "original": "Click below to follow up with {RECIPIENT-NAME}:",
+      "translated": "Click below to follow up with {RECIPIENT-NAME}:"
+    },
+    {
+      "key": "followUpAppointmentParagraph2",
+      "original": "You invited {RECIPIENT-NAME} to {EVENT-NAME} on {INVITED-DATE}.",
+      "translated": "You invited {RECIPIENT-NAME} to {EVENT-NAME} on {INVITED-DATE}."
+    },
+    {
+      "key": "followUpDateRequired",
+      "original": "Date is required.",
+      "translated": "Date is required."
+    },
+    {
+      "key": "followUpTimeRequired",
+      "original": "Time is required.",
+      "translated": "Time is required."
+    },
+    {
+      "key": "followUpDateInvalid",
+      "original": "Date must be valid.",
+      "translated": "Date must be valid."
+    },
+    {
+      "key": "invalidDate",
+      "original": "Invalid Date",
+      "translated": "Invalid Date"
+    },
+    {
+      "key": "futureOnly",
+      "original": "Date and time must be in the future.",
+      "translated": "Date and time must be in the future."
+    },
+    {
+      "key": "headlineNotes",
+      "original": "Notes",
+      "translated": "Notes"
+    },
+    {
+      "key": "no-notes",
+      "original": "(You don't have any notes for {RECIPIENT-NAME})",
+      "translated": "(You don't have any notes for {RECIPIENT-NAME})"
+    },
+    {
+      "key": "addNote",
+      "original": "Add a Note",
+      "translated": "Add a Note"
+    },
+    {
+      "key": "summaryLabel",
+      "original": "Summary:",
+      "translated": "Summary:"
+    },
+    {
+      "key": "summaryRequired",
+      "original": "Summary is required",
+      "translated": "Summary is required"
+    },
+    {
+      "key": "noteLabel",
+      "original": "Note:",
+      "translated": "Note:"
+    },
+    {
+      "key": "noteRequired",
+      "original": "Note is required",
+      "translated": "Note is required"
+    },
+    {
+      "key": "saveNote",
+      "original": "Save Note",
+      "translated": "Save Note"
+    },
+    {
+      "key": "editNote",
+      "original": "Edit Note",
+      "translated": "Edit Note"
+    },
+    {
+      "key": "deleteNote",
+      "original": "Confirm Delete",
+      "translated": "Confirm Delete"
+    },
+    {
+      "key": "addToFollowUpList",
+      "original": "Add {RECIPIENT-NAME} to my Follow Up list",
+      "translated": "Add {RECIPIENT-NAME} to my Follow Up list"
+    },
+    {
+      "key": "removeFromFollowUpList",
+      "original": "Remove {RECIPIENT-NAME} from my Follow Up list",
+      "translated": "Remove {RECIPIENT-NAME} from my Follow Up list"
+    },
+    {
+      "key": "noteAdded",
+      "original": "Note added.",
+      "translated": "Note added."
+    },
+    {
+      "key": "noteUpdated",
+      "original": "Note updated.",
+      "translated": "Note updated."
+    },
+    {
+      "key": "deleteNote",
+      "original": "Delete",
+      "translated": "Delete"
+    },
+    {
+      "key": "noteUpdated",
+      "original": "Note updated.",
+      "translated": "Note updated."
+    },
+    {
+      "key": "deleteThisNote",
+      "original": "Delete this note?",
+      "translated": "Delete this note?"
+    },
+    {
+      "key": "headlineNotifications",
+      "original": "Unsubscribe",
+      "translated": "Unsubscribe"
+    },
+    {
+      "key": "notificationsExplanation",
+      "original": "Normally you will be immediately notified when {RECIPIENT-NAME} views or interacts with this invite, enabling you to follow up in a timely manner. But if you prefer, you can unsubscribe from notifications for this particular invite.",
+      "translated": "Normally you will be immediately notified when {RECIPIENT-NAME} views or interacts with this invite, enabling you to follow up in a timely manner. But if you prefer, you can unsubscribe from notifications for this particular invite."
+    },
+    {
+      "key": "unsubscribeFromEmailNotifications",
+      "original": "Unsubscribe from e-mail notifications",
+      "translated": "Unsubscribe from e-mail notifications"
+    },
+    {
+      "key": "unsubscribeFromPushNotifications",
+      "original": "Unsubscribe from push notifications",
+      "translated": "Unsubscribe from push notifications"
+    },
+    {
+      "key": "notificationsSubmitButton",
+      "original": "Update",
+      "translated": "Update"
+    },
+    {
+      "key": "areYouSure",
+      "original": "Are You Sure?",
+      "translated": "Are You Sure?"
+    },
+    {
+      "key": "unsubscribeFromBoth",
+      "original": "By confirming, you will be prevented from receiving both e-mail and push notifications about this invite.",
+      "translated": "By confirming, you will be prevented from receiving both e-mail and push notifications about this invite."
+    },
+    {
+      "key": "unsubscribeFromEmail",
+      "original": "By confirming, you will be prevented from receiving e-mail notifications about this invite.",
+      "translated": "By confirming, you will be prevented from receiving e-mail notifications about this invite."
+    },
+    {
+      "key": "unsubscribeFromPush",
+      "original": "By confirming, you will be prevented from receiving push notifications about this invite.",
+      "translated": "By confirming, you will be prevented from receiving push notifications about this invite."
+    },
+    {
+      "key": "unsubscribeFromNeither",
+      "original": "By confirming, you will be able to receive both e-mail and push notifications about this invite.",
+      "translated": "By confirming, you will be able to receive both e-mail and push notifications about this invite."
+    },
+    {
+      "key": "notificationsUpdated",
+      "original": "Notifications updated.",
+      "translated": "Notifications updated."
+    },
+    {
+      "key": "eventIsDeleted",
+      "original": "(inactive)",
+      "translated": "(inactive)"
+    },
+    {
+      "key": "menuFollowUp",
+      "original": "Follow Up",
+      "translated": "Follow Up"
+    },
+    {
+      "key": "reload",
+      "original": "Reload?",
+      "translated": "Reload?"
+    },
+    {
+      "key": "recipientNotFound",
+      "original": "Recipient not found.",
+      "translated": "Recipient not found."
+    },
+    {
+      "key": "inviteDeleted",
+      "original": "INVITE DELETED",
+      "translated": "INVITE DELETED"
+    },
+    {
+      "key": "undelete",
+      "original": "Undelete",
+      "translated": "Undelete"
+    },
+    {
+      "key": "inviteUndeleted",
+      "original": "Invite undeleted",
+      "translated": "Invite undeleted"
+    },
+    {
+      "key": "recipientCouldNotBeFound",
+      "original": "This invite recipient could not be found.",
+      "translated": "This invite recipient could not be found."
+    },
+    {
+      "key": "headlineManage",
+      "original": "Manage",
+      "translated": "Manage"
+    },
+    {
+      "key": "editInvite",
+      "original": "Edit invite",
+      "translated": "Edit invite"
+    },
+    {
+      "key": "deleteInvite",
+      "original": "Delete invite",
+      "translated": "Delete invite"
+    },
+    {
+      "key": "editName",
+      "original": "Name:",
+      "translated": "Name:"
+    },
+    {
+      "key": "editEmail",
+      "original": "E-mail address:",
+      "translated": "E-mail address:"
+    },
+    {
+      "key": "editPhone",
+      "original": "Phone number:",
+      "translated": "Phone number:"
+    },
+    {
+      "key": "isWhatsApp",
+      "original": "This is a WhatsApp phone number",
+      "translated": "This is a WhatsApp phone number"
+    },
+    {
+      "key": "nameIsRequired",
+      "original": "Name is required",
+      "translated": "Name is required"
+    },
+    {
+      "key": "emailIsInvalid",
+      "original": "Invalid e-mail address",
+      "translated": "Invalid e-mail address"
+    },
+    {
+      "key": "phoneNumberIsInvalid",
+      "original": "Invalid phone number",
+      "translated": "Invalid phone number"
+    },
+    {
+      "key": "removeMapLabel",
+      "original": "Invited from location:",
+      "translated": "Invited from location:"
+    },
+    {
+      "key": "removeMapCheckboxLabel",
+      "original": "Remove the mapped location from this invite",
+      "translated": "Remove the mapped location from this invite"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

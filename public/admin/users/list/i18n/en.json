@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "description": "List Users",
+    "path": "/admin/users/list/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "List of Users",
+      "translated": "List of Users"
+    },
+    {
+      "key": "pageheadline",
+      "original": "Users",
+      "translated": "Users"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbAdmin",
+      "original": "Admin",
+      "translated": "Admin"
+    },
+    {
+      "key": "breadcrumbUsers",
+      "original": "Users",
+      "translated": "Users"
+    },
+    {
+      "key": "breadcrumbList",
+      "original": "List",
+      "translated": "List"
+    },
+    {
+      "key": "quantityOfUsers",
+      "original": "{QUANTITY} users found:",
+      "translated": "{QUANTITY} users found:"
+    },
+    {
+      "key": "quantityOfUsers1",
+      "original": "{QUANTITY} user found:",
+      "translated": "{QUANTITY} user found:"
+    },
+    {
+      "key": "headerUser",
+      "original": "User",
+      "translated": "User"
+    },
+    {
+      "key": "headerRegistered",
+      "original": "Registered",
+      "translated": "Registered"
+    },
+    {
+      "key": "headerLastInvite",
+      "original": "Last Invite",
+      "translated": "Last Invite"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

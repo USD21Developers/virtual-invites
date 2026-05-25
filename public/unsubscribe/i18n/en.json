@@ -1,0 +1,155 @@
+{
+  "metadata": {
+    "description": "Unsubscribe",
+    "path": "/unsubscribe/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Unsubscribe",
+      "translated": "Unsubscribe"
+    },
+    {
+      "key": "invalidUnsubscribeLink",
+      "original": "Unable to unsubscribe.",
+      "translated": "Unable to unsubscribe."
+    },
+    {
+      "key": "invalidUnsubscribeExplanation",
+      "original": "Please check to ensure that the link has not been modified, then try again.",
+      "translated": "Please check to ensure that the link has not been modified, then try again."
+    },
+    {
+      "key": "inviteDetails",
+      "original": "Invite Details",
+      "translated": "Invite Details"
+    },
+    {
+      "key": "recipient",
+      "original": "Recipient:",
+      "translated": "Recipient:"
+    },
+    {
+      "key": "event",
+      "original": "Event:",
+      "translated": "Event:"
+    },
+    {
+      "key": "dateInvited",
+      "original": "Date Invited:",
+      "translated": "Date Invited:"
+    },
+    {
+      "key": "timezoneText",
+      "original": "Times shown above are in the {TIME-ZONE} time zone",
+      "translated": "Times shown above are in the {TIME-ZONE} time zone"
+    },
+    {
+      "key": "explanationParagraph",
+      "original": "To process your unsubscription, select an option below:",
+      "translated": "To process your unsubscription, select an option below:"
+    },
+    {
+      "key": "headerJustThisInvite",
+      "original": "This Invite Only",
+      "translated": "This Invite Only"
+    },
+    {
+      "key": "headerRecipient",
+      "original": "{RECIPIENT-NAME}",
+      "translated": "{RECIPIENT-NAME}"
+    },
+    {
+      "key": "headerEntireApp",
+      "original": "Entire App",
+      "translated": "Entire App"
+    },
+    {
+      "key": "optionJustThisInvite",
+      "original": "Unsubscribe from notifications only about the invite above. Any other invites you have sent to {RECIPIENT-NAME} will remain unchanged.",
+      "translated": "Unsubscribe from notifications only about the invite above. Any other invites you have sent to {RECIPIENT-NAME} will remain unchanged."
+    },
+    {
+      "key": "optionRecipient",
+      "original": "Unsubscribe from notifications about all invites you have sent to {RECIPIENT-NAME} via {SENT-VIA}.",
+      "translated": "Unsubscribe from notifications about all invites you have sent to {RECIPIENT-NAME} via {SENT-VIA}.",
+      "changes": [
+        {
+          "original": "all ",
+          "translated": "all ",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "optionEntireApp",
+      "original": "Unsubscribe from notifications about invites you have sent to any recipient (not just {RECIPIENT-NAME}).",
+      "translated": "Unsubscribe from notifications about invites you have sent to any recipient (not just {RECIPIENT-NAME}).",
+      "changes": [
+        {
+          "original": "any",
+          "translated": "any",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "yourdevice",
+      "original": "your device",
+      "translated": "your device"
+    },
+    {
+      "key": "unsubscribeButton",
+      "original": "Unsubscribe",
+      "translated": "Unsubscribe"
+    },
+    {
+      "key": "requiresLogin",
+      "original": "NOTE: this option requires logging in.",
+      "translated": "NOTE: this option requires logging in."
+    },
+    {
+      "key": "from",
+      "original": "From:",
+      "translated": "From:"
+    },
+    {
+      "key": "to",
+      "original": "To:",
+      "translated": "To:"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

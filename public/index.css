@@ -1,0 +1,41 @@
+.list-group .list-group-item {
+  padding: 2.5rem 1.5rem 2.5rem 1.75rem;
+}
+
+#latestRegistrants img,
+#latestInvites img {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+}
+
+#latestRegistrants .registrant,
+#latestInvites .invite {
+  border-bottom: 1px solid var(--light-dark);
+  padding: 1.5rem 0;
+  text-decoration: none;
+}
+
+#latestRegistrants .registrant:last-child,
+#latestInvites .invite:last-child {
+  border-bottom: none;
+}
+
+#latestRegistrants .registrant:first-child,
+#latestInvites .invite:first-child {
+  padding-top: 0.5rem;
+}
+
+#latestRegistrants .media-body,
+#latestInvites .media-body {
+  color: var(--dark) !important;
+}
+
+.registrantName,
+.senderName {
+  font-weight: 400;
+}
+
+#latestInvites .daysAgo {
+  text-transform: capitalize;
+}

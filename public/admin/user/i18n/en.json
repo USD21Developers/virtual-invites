@@ -1,0 +1,430 @@
+{
+  "metadata": {
+    "description": "Administer a User",
+    "path": "/admin/user/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "User Administration",
+      "translated": "User Administration"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbAdmin",
+      "original": "Admin",
+      "translated": "Admin"
+    },
+    {
+      "key": "breadcrumbUsers",
+      "original": "Users",
+      "translated": "Users"
+    },
+    {
+      "key": "registered",
+      "original": "Registered: {DATE}",
+      "translated": "Registered: {DATE}"
+    },
+    {
+      "key": "church",
+      "original": "Church:",
+      "translated": "Church:"
+    },
+    {
+      "key": "country",
+      "original": "Country:",
+      "translated": "Country:"
+    },
+    {
+      "key": "language",
+      "original": "Language:",
+      "translated": "Language:"
+    },
+    {
+      "key": "firstname",
+      "original": "First name:",
+      "translated": "First name:"
+    },
+    {
+      "key": "lastname",
+      "original": "Last name:",
+      "translated": "Last name:"
+    },
+    {
+      "key": "email",
+      "original": "E-mail:",
+      "translated": "E-mail:"
+    },
+    {
+      "key": "gender",
+      "original": "Gender:",
+      "translated": "Gender:"
+    },
+    {
+      "key": "usertype",
+      "original": "User type:",
+      "translated": "User type:"
+    },
+    {
+      "key": "userTypeSysadmin",
+      "original": "Admin",
+      "translated": "Admin"
+    },
+    {
+      "key": "helpUserTypeRegular",
+      "original": "Applies to most users.",
+      "translated": "Applies to most users."
+    },
+    {
+      "key": "userTypeUser",
+      "original": "Regular user",
+      "translated": "Regular user"
+    },
+    {
+      "key": "helpUserTypeSysadmin",
+      "original": "Applies only to evangelists, church administrators, Web deacons and similar roles. Must have responsibilities that pertain to an entire congregation.",
+      "translated": "Applies only to evangelists, church administrators, Web deacons and similar roles. Must have responsibilities that pertain to an entire congregation.",
+      "changes": [
+        {
+          "original": "evangelists",
+          "translated": "evangelists",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        },
+        {
+          "original": "church administrators",
+          "translated": "church administrators",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        },
+        {
+          "original": "Web deacons",
+          "translated": "Web deacons",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "accountStatus",
+      "original": "Account status:",
+      "translated": "Account status:"
+    },
+    {
+      "key": "userstatusRegistered",
+      "original": "Active",
+      "translated": "Active"
+    },
+    {
+      "key": "userstatusFrozen",
+      "original": "Frozen",
+      "translated": "Frozen"
+    },
+    {
+      "key": "preAuthorization",
+      "original": "Pre-authorization:",
+      "translated": "Pre-authorization:"
+    },
+    {
+      "key": "canAuthorizeMale",
+      "original": "Can pre-authorize any disciples within his congregation to register for the Invites App",
+      "translated": "Can pre-authorize any disciples within his congregation to register for the Invites App"
+    },
+    {
+      "key": "canAuthorizeFemale",
+      "original": "Can pre-authorize any disciples within her congregation to register for the Invites App",
+      "translated": "Can pre-authorize any disciples within her congregation to register for the Invites App"
+    },
+    {
+      "key": "canAuthToAuthMale",
+      "original": "Can delegate pre-authorization to leaders within his ministry",
+      "translated": "Can delegate pre-authorization to leaders within his ministry"
+    },
+    {
+      "key": "canAuthToAuthFemale",
+      "original": "Can delegate pre-authorization to leaders within the ministry that she co-leads",
+      "translated": "Can delegate pre-authorization to leaders within the ministry that she co-leads"
+    },
+    {
+      "key": "preAuthorization",
+      "original": "Pre-Authorization",
+      "translated": "Pre-Authorization"
+    },
+    {
+      "key": "preauthorizationP1",
+      "original": "All users must be authorized before they can use the Invites App. This is for security purposes, and it ensures that every registered user is also a member in good standing with the International Christian Churches.",
+      "translated": "All users must be authorized before they can use the Invites App. This is for security purposes, and it ensures that every registered user is also a member in good standing with the International Christian Churches."
+    },
+    {
+      "key": "preauthorizationP2Male",
+      "original": "You can get more disciples to use the Invites App by allowing {FIRST-NAME} {LAST-NAME} to pre-authorize them to register.",
+      "translated": "You can get more disciples to use the Invites App by allowing {FIRST-NAME} {LAST-NAME} to pre-authorize them to register."
+    },
+    {
+      "key": "preauthorizationP2Female",
+      "original": "You can get more disciples to use the Invites App by allowing {FIRST-NAME} {LAST-NAME} to pre-authorize them to register (both male and female).",
+      "translated": "You can get more disciples to use the Invites App by allowing {FIRST-NAME} {LAST-NAME} to pre-authorize them to register (both male and female).",
+      "changes": [
+        {
+          "original": "pre-authorize",
+          "translated": "pre-authorize",
+          "bold": true,
+          "italic": true,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "preauthorizationP3",
+      "original": "This setting is ideal for anyone who leads, or has led, a Bible Talk.",
+      "translated": "This setting is ideal for anyone who leads, or has led, a Bible Talk."
+    },
+    {
+      "key": "delegatingPreAuthorization",
+      "original": "Delegating Pre-authorization",
+      "translated": "Delegating Pre-authorization"
+    },
+    {
+      "key": "delegatingPreauthorizationP1Male",
+      "original": "If {FIRST-NAME} {LAST-NAME} leads a house church or higher, select this option.",
+      "translated": "If {FIRST-NAME} {LAST-NAME} leads a house church or higher, select this option."
+    },
+    {
+      "key": "delegatingPreauthorizationP1Female",
+      "original": "If {FIRST-NAME} {LAST-NAME} is a Women's Ministry Leader, or co-leads a house church (or higher), select this option.",
+      "translated": "If {FIRST-NAME} {LAST-NAME} is a Women's Ministry Leader, or co-leads a house church (or higher), select this option."
+    },
+    {
+      "key": "delegatingPreauthorizationP2Male",
+      "original": "By allowing him to pre-authorize the leaders that serve under him, you can leverage the power of delegation to quickly get all of his people to begin using the Invites App.",
+      "translated": "By allowing him to pre-authorize the leaders that serve under him, you can leverage the power of delegation to quickly get all of his people to begin using the Invites App."
+    },
+    {
+      "key": "delegatingPreauthorizationP2Female",
+      "original": "By allowing her to pre-authorize the leaders who are in the group that she co-leads (whether male or female), you can leverage the power of delegation to quickly get disciples at all levels within her group to begin using the Invites App.",
+      "translated": "By allowing her to pre-authorize the leaders who are in the group that she co-leads (whether male or female), you can leverage the power of delegation to quickly get disciples at all levels within her group to begin using the Invites App."
+    },
+    {
+      "key": "delegatingPreauthorizationP3",
+      "original": "Note: delegating pre-authorization not only delegates to one person directly, but also passes on the ability to delegate. It is a powerful setting that is only meant to be enabled for leaders of leaders (specifically, house church leaders or higher).",
+      "translated": "Note: delegating pre-authorization not only delegates to one person directly, but also passes on the ability to delegate. It is a powerful setting that is only meant to be enabled for leaders of leaders (specifically, house church leaders or higher).",
+      "changes": [
+        {
+          "original": "passes on",
+          "translated": "passes on",
+          "bold": true,
+          "italic": true,
+          "link": ""
+        },
+        {
+          "original": "leaders of leaders",
+          "translated": "leaders of leaders",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "errorChurchIsRequired",
+      "original": "Church is required",
+      "translated": "Church is required"
+    },
+    {
+      "key": "errorCountryIsRequired",
+      "original": "Country is required",
+      "translated": "Country is required"
+    },
+    {
+      "key": "errorLangIsRequired",
+      "original": "Language is required",
+      "translated": "Language is required"
+    },
+    {
+      "key": "errorFirstNameIsRequired",
+      "original": "First name is required",
+      "translated": "First name is required"
+    },
+    {
+      "key": "errorLastNameIsRequired",
+      "original": "Last name is required",
+      "translated": "Last name is required"
+    },
+    {
+      "key": "errorEmailIsRequired",
+      "original": "E-mail address is required",
+      "translated": "E-mail address is required"
+    },
+    {
+      "key": "errorEmailIsInvalid",
+      "original": "E-mail address is invalid",
+      "translated": "E-mail address is invalid"
+    },
+    {
+      "key": "errorUserTypeIsRequired",
+      "original": "User type is required",
+      "translated": "User type is required"
+    },
+    {
+      "key": "errorUserStatusIsRequired",
+      "original": "Account status is required",
+      "translated": "Account status is required"
+    },
+    {
+      "key": "update-successful",
+      "original": "Update Successful",
+      "translated": "Update Successful"
+    },
+    {
+      "key": "update-successful-p1",
+      "original": "Your changes were saved.",
+      "translated": "Your changes were saved."
+    },
+    {
+      "key": "settings-unchanged",
+      "original": "Settings Unchanged",
+      "translated": "Settings Unchanged"
+    },
+    {
+      "key": "changes-not-saved",
+      "original": "Update Not Successful",
+      "translated": "Update Not Successful"
+    },
+    {
+      "key": "input-first-name",
+      "original": "Please input the first name.",
+      "translated": "Please input the first name."
+    },
+    {
+      "key": "first-name-too-long",
+      "original": "The first name must not exceed 255 characters.",
+      "translated": "The first name must not exceed 255 characters."
+    },
+    {
+      "key": "input-last-name",
+      "original": "Please input the last name.",
+      "translated": "Please input the last name."
+    },
+    {
+      "key": "last-name-too-long",
+      "original": "The last name must not exceed 255 characters.",
+      "translated": "The last name must not exceed 255 characters."
+    },
+    {
+      "key": "input-email",
+      "original": "Please input the e-mail address.",
+      "translated": "Please input the e-mail address."
+    },
+    {
+      "key": "email-too-long",
+      "original": "The e-mail address must not exceed 255 characters.",
+      "translated": "The e-mail address must not exceed 255 characters."
+    },
+    {
+      "key": "email-invalid",
+      "original": "Please check the e-mail address for accuracy and proper formatting.",
+      "translated": "Please check the e-mail address for accuracy and proper formatting."
+    },
+    {
+      "key": "email-in-use",
+      "original": "Another user is already using that e-mail address.",
+      "translated": "Another user is already using that e-mail address."
+    },
+    {
+      "key": "cannot-downgrade-usertype",
+      "original": "The user type for this user cannot be downgraded.",
+      "translated": "The user type for this user cannot be downgraded."
+    },
+    {
+      "key": "cannot-downgrade-userstatus",
+      "original": "The user status for this user cannot be downgraded.",
+      "translated": "The user status for this user cannot be downgraded."
+    },
+    {
+      "key": "cannot-downgrade-canAuthorize",
+      "original": "You do not have sufficient permissions to prevent this user from pre-authorizing disciples to become new users.",
+      "translated": "You do not have sufficient permissions to prevent this user from pre-authorizing disciples to become new users."
+    },
+    {
+      "key": "cannot-downgrade-canAuthToAuth",
+      "original": "You do not have sufficient permissions to prevent this user from delegating pre-authorization to other leaders.",
+      "translated": "You do not have sufficient permissions to prevent this user from delegating pre-authorization to other leaders."
+    },
+    {
+      "key": "sysadmins-cannot-downgrade-own-usertype",
+      "original": "As an admin, you cannot downgrade your own user type.",
+      "translated": "As an admin, you cannot downgrade your own user type."
+    },
+    {
+      "key": "sysadmins-cannot-downgrade-own-userstatus",
+      "original": "As an admin, you cannot downgrade your own account status.",
+      "translated": "As an admin, you cannot downgrade your own account status."
+    },
+    {
+      "key": "sysadmins-cannot-downgrade-own-canAuthorize",
+      "original": "As an admin, you cannot turn off your own ability pre-authorize disciples.",
+      "translated": "As an admin, you cannot turn off your own ability pre-authorize disciples."
+    },
+    {
+      "key": "sysadmins-cannot-downgrade-own-canAuthToAuth",
+      "original": "As an admin, you cannot turn off your own ability to delegate pre-authorization.",
+      "translated": "As an admin, you cannot turn off your own ability to delegate pre-authorization."
+    },
+    {
+      "key": "cannot-modify-user-from-different-congregation",
+      "original": "You cannot modify a user from a different congregation.",
+      "translated": "You cannot modify a user from a different congregation."
+    },
+    {
+      "key": "settings-unchanged-explanation",
+      "original": "You did not make any changes to the status quo.",
+      "translated": "You did not make any changes to the status quo."
+    },
+    {
+      "key": "unexpected-error",
+      "original": "An unexpected error occurred. Please ensure that you are connected to the internet, and perhaps try again.",
+      "translated": "An unexpected error occurred. Please ensure that you are connected to the internet, and perhaps try again."
+    },
+    {
+      "key": "profile",
+      "original": "Profile",
+      "translated": "Profile"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="initial-scale=1, shrink-to-fit=no, width=device-width"
+      name="viewport"
+    />
+    <title data-i18n="pagetitle"></title>
+    <script id="enforceaccess" src="../js/enforceaccess.js"></script>
+    <link rel="stylesheet" href="../css/daemonite-material.css" />
+    <link
+      href="../js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
+      rel="stylesheet"
+    />
+    <link href="../css/global.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest/" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#3d316b" />
+    <meta name="apple-mobile-web-app-title" content="Invites" />
+    <meta name="application-name" content="Invites" />
+    <meta name="msapplication-TileColor" content="#6551b4" />
+    <meta name="theme-color" content="#102951" />
+    <script src="/js/web-components/pwa-install-banner.js"></script>
+  </head>
+  <body>
+    <pwa-install-banner></pwa-install-banner>
+    <nav class="navbar bg-white sticky-top" aria-hidden="true">
+      <a class="navbar-brand" href="/">
+        <img src="/_assets/img/logo.svg" width="133" height="50" alt="logo" />
+      </a>
+      <div class="align-items-end">
+        <a href="/profile/" class="d-none">
+          <img class="profileImageNav" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="navdrawer"
+          data-target="#navdrawerDefault"
+          aria-controls="navdrawerDefault"
+          aria-expanded="false"
+          aria-label=""
+          data-i18n-global-aria-label="toggleNavigation"
+        >
+          <span>
+            <img src="/_assets/svg/icons/menu.svg" />
+          </span>
+        </button>
+      </div>
+    </nav>
+
+    <div
+      aria-hidden="true"
+      class="navdrawer navdrawer-right navbar-collapse collapse"
+      id="navdrawerDefault"
+      tabindex="-1"
+    >
+      <div class="navdrawer-content">
+        <div class="navdrawer-header">
+          <div class="row">
+            <div class="col-9 d-flex justify-content-start">
+              <a
+                class="navbar-brand px-0"
+                href="../"
+                data-i18n-global="menuHeadline"
+              ></a>
+            </div>
+            <div class="col-3 d-flex justify-content-end align-items-center">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="navdrawer"
+                data-target="#navdrawerDefault"
+                aria-controls="navdrawerDefault"
+                aria-expanded="false"
+                aria-label=""
+                data-i18n-global-aria-label="toggleNavigation"
+              >
+                <span>
+                  <img src="/_assets/svg/icons/close.svg" />
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <nav class="navdrawer-nav">
+          <a class="nav-item nav-link" href="../">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/home.svg" />
+            </span>
+            <span data-i18n-global="menuHome"></span>
+          </a>
+          <a class="nav-item nav-link" href="../invites/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/people.svg" />
+            </span>
+            <span data-i18n-global="menuMyInvites"></span>
+          </a>
+          <a class="nav-item nav-link" href="../followup/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/list_alt.svg" />
+            </span>
+            <span data-i18n-global="menuFollowUp"></span>
+          </a>
+          <a class="nav-item nav-link" href="../send/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/send.svg" />
+            </span>
+            <span data-i18n-global="menuSendInvite"></span>
+          </a>
+          <div class="navdrawer-divider"></div>
+          <a class="nav-item nav-link" href="../events/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/event.svg" />
+            </span>
+            <span data-i18n-global="menuEventsImSharing"></span>
+          </a>
+          <a class="nav-item nav-link" href="../maps/evangelism/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/place.svg" />
+            </span>
+            <span data-i18n-global="menuMaps"></span>
+          </a>
+          <!-- <a class="nav-item nav-link" href="../authorize/">
+            <span class="material-icons mr-3 material-icons-outlined">
+              approval
+            </span>
+            <span data-i18n-global="menuAuthorizeUser"></span>
+          </a> -->
+          <a class="nav-item nav-link active" href="../settings/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/settings.svg" />
+            </span>
+            <span data-i18n-global="menuSettings"></span>
+          </a>
+          <a class="nav-item nav-link" href="../profile/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/account_circle.svg" />
+            </span>
+            <span data-i18n-global="menuMyProfile"></span>
+          </a>
+
+          <div class="navdrawer-divider"></div>
+
+          <div class="adminsOnly d-none">
+            <a class="nav-item nav-link" href="/admin/">
+              <span class="mr-3">
+                <img src="/_assets/svg/icons/admin.svg" />
+              </span>
+              <span data-i18n-global="menuAdmin"></span>
+            </a>
+          </div>
+
+          <a class="nav-item nav-link" href="../support/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/contact_support.svg" />
+            </span>
+            <span data-i18n-global="menuSupport"></span>
+          </a>
+          <a class="nav-item nav-link" href="../logout/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/logout.svg" />
+            </span>
+            <span data-i18n-global="menuLogOut"></span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <nav
+      aria-label="breadcrumb"
+      aria-hidden="true"
+      id="breadcrumbs"
+      class="d-none"
+    >
+      <ol class="breadcrumb bg-white my-0">
+        <li class="breadcrumb-item">
+          <a href="../" data-i18n="breadcrumbHome"></a>
+        </li>
+        <li class="breadcrumb-item active">
+          <a href="./" data-i18n="breadcrumbSettings"></a>
+        </li>
+      </ol>
+    </nav>
+
+    <div class="container" id="pageSpinner" aria-hidden="true">
+      <div class="row">
+        <div class="col col-sm-10 offset-sm-1 mt-3 mb-4 text-center">
+          <img
+            src="/_assets/img/spinner.svg"
+            width="200"
+            height="200"
+            style="max-width: 100%"
+          />
+        </div>
+      </div>
+    </div>
+
+    <main class="container d-none mainContent">
+      <div class="row">
+        <div class="col col-sm-10 offset-sm-1">
+          <h2
+            class="text-center text-uppercase my-4"
+            data-i18n="pagetitle"
+          ></h2>
+        </div>
+      </div>
+
+      <form id="settingsForm" novalidate>
+        <!-- OPENING PAGE -->
+        <div class="row mb-5">
+          <div class="col-12 col-md-8 offset-md-2">
+            <h3 class="bg-light border px-3 py-2" data-i18n="openingPage"></h3>
+
+            <div class="px-3">
+              <p class="mt-3" data-i18n="openingPageExplanation"></p>
+
+              <!-- Home -->
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="openingPage"
+                  id="openingPageHome"
+                  value="home"
+                />
+                <label
+                  class="form-check-label font-weight-bold d-block"
+                  for="openingPageHome"
+                  data-i18n="openingPageHome"
+                ></label>
+              </div>
+
+              <!-- My Invites -->
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="openingPage"
+                  id="openingPageMyInvites"
+                  value="my invites"
+                />
+                <label
+                  class="form-check-label font-weight-bold d-block"
+                  for="openingPageMyInvites"
+                  data-i18n="openingPageMyInvites"
+                ></label>
+              </div>
+
+              <!-- Follow Up List -->
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="openingPage"
+                  id="openingPageFollowUpList"
+                  value="follow up list"
+                />
+                <label
+                  class="form-check-label font-weight-bold d-block"
+                  for="openingPageFollowUpList"
+                  data-i18n="openingPageFollowUpList"
+                ></label>
+              </div>
+
+              <!-- Send an Invite -->
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="openingPage"
+                  id="openingPageSendAnInvite"
+                  value="send an invite"
+                  checked
+                />
+                <label
+                  class="form-check-label font-weight-bold d-block"
+                  for="openingPageSendAnInvite"
+                  data-i18n="openingPageSendAnInvite"
+                ></label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CUSTOM TEXT -->
+        <div class="row mt-3 mb-4 pb-4">
+          <div class="col-12 col-md-8 offset-md-2">
+            <h3
+              class="bg-light border px-3 py-2"
+              data-i18n="customInviteTextHeadline"
+            ></h3>
+            <div class="px-3">
+              <p class="mt-3" data-i18n="customInviteTextExplanation"></p>
+              <p class="mt-4 mb-4">
+                <span data-i18n="customInviteTextExampleHeading"></span><br />
+                <span
+                  data-i18n="customInviteTextExample"
+                  class="text-blue"
+                ></span>
+              </p>
+              <div class="form-group">
+                <label
+                  for="bodyText"
+                  data-i18n="customInviteText"
+                  class="font-weight-bold"
+                ></label>
+                <textarea
+                  class="form-control"
+                  id="bodyText"
+                  rows="3"
+                  onblur="this.value = this.value.trim()"
+                ></textarea>
+              </div>
+
+              <details class="mt-4 pt-3" id="toggleCustomTextInstructions">
+                <summary class="text-center">
+                  <strong data-i18n="advanced"></strong>
+                  <span
+                    data-i18n="personalizeYourCustomText"
+                    class="text-nowrap"
+                  ></span>
+                </summary>
+                <div class="mt-3 bg-light border border-dark p-4">
+                  <div>
+                    <strong><em data-i18n="optional"></em></strong>
+                  </div>
+                  <div
+                    class="mt-2"
+                    data-i18n="templatePlaceholderExplanation1"
+                  ></div>
+                  <div
+                    class="mt-2 mb-4"
+                    data-i18n="templatePlaceholderExplanation2"
+                  ></div>
+                  <div
+                    class="text-blue"
+                    data-i18n="templatePlaceholderBefore"
+                  ></div>
+                  <div
+                    class="my-4 mb-2"
+                    data-i18n="templatePlaceholderWillBeConvertedTo"
+                  ></div>
+                  <div
+                    class="mb-4 pb-3 text-blue"
+                    data-i18n="templatePlaceholderAfter"
+                  ></div>
+                  <table class="table border border-dark" id="placeholderTable">
+                    <thead>
+                      <tr>
+                        <th
+                          class="text-dark"
+                          data-i18n="placeholderColumnHeading1"
+                        ></th>
+                        <th
+                          class="text-dark"
+                          data-i18n="placeholderColumnHeading2"
+                        ></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span
+                            class="text-dark font-weight-bold customTextPlaceholder"
+                          >
+                            [RECIPIENT]
+                          </span>
+                        </td>
+                        <td data-i18n="recipientPlaceholderConverted"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span
+                            class="text-dark font-weight-bold customTextPlaceholder"
+                          >
+                            [EVENT]
+                          </span>
+                        </td>
+                        <td data-i18n="eventTitlePlaceholderConverted"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+
+        <!-- CUSTOM CONTACT INFO (for events from followed users) -->
+        <div class="row mb-5">
+          <div class="col-12 col-md-8 offset-md-2">
+            <h3
+              class="bg-light border px-3 py-2"
+              data-i18n="followedUsersHeadline"
+            ></h3>
+
+            <div class="px-3">
+              <p class="mt-3" data-i18n="followedUsersExplanation"></p>
+
+              <!-- Override Event Contact Info  -->
+              <div class="form-check pt-1 mt-4 mb-0">
+                <label
+                  for="overrideEventContactInfo_no"
+                  class="d-block has-value mb-3"
+                >
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="false"
+                    id="overrideEventContactInfo_no"
+                    name="overrideEventContactInfo"
+                    checked="checked"
+                  />
+                  <span
+                    data-i18n="keepEventContactInfo"
+                    class="font-weight-bold"
+                  >
+                  </span>
+                  <span
+                    data-i18n="default"
+                    class="ml-1"
+                    data-i18n="default"
+                  ></span>
+                </label>
+
+                <label
+                  for="overrideEventContactInfo_yes"
+                  class="d-block has-value"
+                >
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    value="true"
+                    id="overrideEventContactInfo_yes"
+                    name="overrideEventContactInfo"
+                  />
+                  <span
+                    data-i18n="overrideEventContactInfo"
+                    class="font-weight-bold"
+                  >
+                  </span>
+                </label>
+              </div>
+
+              <!-- Custom Event Contact Info -->
+              <div id="customEventContactInfoContainer" class="d-none">
+                <div class="form-group mt-4 pt-2">
+                  <label
+                    for="customEventContactFirstName"
+                    class="font-weight-bold"
+                    data-i18n="firstname"
+                  >
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="customEventContactFirstName"
+                  />
+                  <div
+                    class="invalid-feedback"
+                    data-i18n="fieldIsRequired"
+                  ></div>
+                </div>
+
+                <div class="form-group mt-4 pt-3">
+                  <label
+                    for="customEventContactLastName"
+                    class="font-weight-bold"
+                    data-i18n="lastname"
+                  >
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="customEventContactLastName"
+                  />
+                  <div class="invalid-feedback"></div>
+                </div>
+
+                <div class="form-group mt-4 pt-3">
+                  <label
+                    for="customEventContactPhone"
+                    class="font-weight-bold"
+                    data-i18n="mobilePhoneNumber"
+                  >
+                  </label>
+                  <input
+                    type="tel"
+                    pattern="[0-9]"
+                    class="form-control"
+                    id="customEventContactPhone"
+                  />
+                  <div class="invalid-feedback" id="invalidFeedbackPhone"></div>
+                </div>
+
+                <div class="form-group mt-4 pt-2 mb-0">
+                  <label
+                    for="customEventContactEmail"
+                    class="font-weight-bold"
+                    data-i18n="emailAddress"
+                  >
+                  </label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="customEventContactEmail"
+                  />
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+
+              <br />
+            </div>
+          </div>
+        </div>
+
+        <!-- NOTIFICATIONS -->
+        <div class="row mb-5">
+          <div class="col-12 col-md-8 offset-md-2">
+            <h3
+              class="bg-light border px-3 py-2"
+              data-i18n="notificationsHeadline"
+            ></h3>
+
+            <div class="px-3">
+              <p class="mt-3" data-i18n="notificationsExplanation"></p>
+              <br />
+
+              <!-- Receive e-mail notifications -->
+              <div class="form-check mb-3">
+                <label for="notifyViaEmail" class="d-block">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="true"
+                    id="notifyViaEmail"
+                    name="notifyViaEmail"
+                    checked
+                  />
+                  <span
+                    data-i18n="receiveEmailNotifications"
+                    class="font-weight-bold"
+                  ></span>
+                </label>
+              </div>
+
+              <!-- Receive push notifications -->
+              <div class="form-check my-3 d-none" id="notifyViaPushContainer">
+                <label for="notifyViaPush" class="d-block">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="true"
+                    id="notifyViaPush"
+                    name="notifyViaPush"
+                  />
+                  <span
+                    data-i18n="receivePushNotifications"
+                    class="font-weight-bold mr-1"
+                  ></span>
+                </label>
+              </div>
+
+              <!-- Enable push notifications -->
+              <div
+                class="form-check my-3"
+                id="enablePushContainer"
+                class="d-none"
+              >
+                <label for="enablePushNotifications" class="d-block">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="true"
+                    id="enablePushNotifications"
+                    name="enablePushNotifications"
+                  />
+                  <span
+                    data-i18n="enablePushNotifications"
+                    class="font-weight-bold mr-1"
+                  ></span>
+                  <span data-i18n="onThisDevice" class="text-nowrap"> </span>
+                </label>
+              </div>
+
+              <div class="mt-4 mb-3 ml-4 d-none" id="testWebPushContainer">
+                <a
+                  id="testWebPush"
+                  class="btn btn-outline-primary border border-primary btn-sm"
+                  data-i18n="showASamplePushNotification"
+                ></a>
+
+                <div id="testSpinner" class="d-none">
+                  <img
+                    src="/_assets/img/spinner.svg"
+                    width="40"
+                    height="40"
+                    style="max-width: 100%"
+                  />
+                </div>
+              </div>
+
+              <!-- Disabling vs. Unsubscribing -->
+              <br />
+              <p
+                id="notificationClarification"
+                data-i18n="notificationClarification"
+              ></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUTOMATICALLY ADD TO FOLLOW UP LIST -->
+        <div class="row mb-5">
+          <div class="col-12 col-md-8 offset-md-2">
+            <h3
+              class="bg-light border px-3 py-2"
+              data-i18n="followUpListHeadline"
+            ></h3>
+
+            <div class="px-3">
+              <p class="mt-3" data-i18n="followUpListExplanation"></p>
+              <div class="form-check mt-2 mb-3">
+                <label for="autoAddToFollowUpList" class="d-block">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="true"
+                    id="autoAddToFollowUpList"
+                    name="receiveEmailNotifications"
+                  />
+                  <strong data-i18n="autoAddToFollowUpList"></strong>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUTOMATICALLY ADD TO FOLLOW UP LIST -->
+        <div class="row mb-5">
+          <div class="col-12 col-md-8 offset-md-2 text-center">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              data-i18n-global="update"
+            ></button>
+          </div>
+        </div>
+
+        <div class="snackbar">
+          <div class="snackbar-body"></div>
+        </div>
+      </form>
+    </main>
+
+    <!-- Modal to prepare the user for a permission request for Web Push -->
+    <div
+      class="modal fade"
+      id="webPushModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="webPushPermissionHeadline"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4
+              class="modal-title"
+              id="webPushPermissionHeadline"
+              data-i18n="webPushPermissionHeadline"
+            ></h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-3">
+            <div data-i18n="webPushPermissionParagraph1"></div>
+
+            <p class="text-center text-danger mt-4 balancedTextWrap">
+              <strong
+                style="font-weight: 500"
+                data-i18n="webPushPermissionParagraph2"
+              ></strong>
+            </p>
+
+            <p class="text-center mt-4">
+              <strong
+                class="large"
+                data-i18n="webPushPermissionParagraph3"
+              ></strong>
+            </p>
+
+            <div class="text-center mt-4 mb-3 pb-1">
+              <button
+                class="btn btn-primary"
+                id="buttonWebPushRequestPermission"
+                data-i18n="promptMe"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for when user denies permission request for Web Push -->
+    <div
+      class="modal fade"
+      id="webPushDeniedModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4
+              class="modal-title"
+              id="webPushBlockedHeadline"
+              data-i18n="webPushBlockedHeadline"
+            ></h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-4">
+            <p data-i18n="webPushBlockedParagraph1"></p>
+
+            <h4 data-i18n="webPushUnblockHeadline"></h4>
+            <p class="mb-3" data-i18n="webPushBlockedParagraph2"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Web Push is not supported in user's browser -->
+    <div
+      class="modal fade"
+      id="webPushNotSupportedModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="webPushNotSupportedHeadline"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4
+              id="webPushNotSupportedHeadline"
+              class="modal-title"
+              data-i18n="webPushNotSupportedHeadline"
+            ></h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-4">
+            <p data-i18n="webPushNotSupportedParagraph1"></p>
+            <p data-i18n="webPushNotSupportedParagraph2"></p>
+            <p
+              class="mb-2 d-none"
+              data-i18n="webPushNotSupportedParagraph3"
+            ></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modaltitle"></h5>
+            <button
+              type="button"
+              class="close"
+              aria-label=""
+              onclick="location.href = '../'"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-3"></div>
+          <div class="modal-footer modal-footer-stacked">
+            <button
+              class="btn btn-outline-info font-weight-bold"
+              data-dismiss="modal"
+              type="button"
+              data-i18n="btnRetry"
+            ></button>
+            <button
+              class="btn btn-outline-info font-weight-bold"
+              id="btnFinish"
+              type="button"
+              data-i18n="btnFinish"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br /><br /><br /><br />
+
+    <!-- Nav buttons (only visible in standalone mode) -->
+    <nav id="navButtons" class="container-fluid fixed-bottom p-0">
+      <table width="100%" cellpadding="10">
+        <tr>
+          <td>
+            <div class="d-inline-block text-center">
+              <a href="/" id="navHomeButton">
+                <img
+                  src="/_assets/svg/icons/nav-home-light.svg"
+                  width="22"
+                  height="22"
+                />
+                <div data-i18n-global="navbarHome"></div>
+              </a>
+            </div>
+          </td>
+
+          <td>
+            <div class="d-inline-block text-center">
+              <a href="/invites/" id="navMyInvitesButton">
+                <img
+                  src="/_assets/svg/icons/nav-my-invites-light.svg"
+                  width="22"
+                  height="22"
+                />
+                <div data-i18n-global="navbarMyInvites"></div>
+              </a>
+            </div>
+          </td>
+
+          <td>
+            <div class="d-inline-block text-center">
+              <a href="/followup/" id="navFollowupButton">
+                <img
+                  src="/_assets/svg/icons/nav-followup-list-light.svg"
+                  width="22"
+                  height="22"
+                />
+                <div data-i18n-global="navbarFollowUp"></div>
+              </a>
+            </div>
+          </td>
+
+          <td>
+            <div class="d-inline-block text-center">
+              <a href="/send/" id="navSendAnInviteButton">
+                <img
+                  src="/_assets/svg/icons/nav-send-an-invite-light.svg"
+                  width="22"
+                  height="22"
+                />
+                <div data-i18n-global="navbarSendAnInvite"></div>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </nav>
+
+    <script src="/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script
+      src="/js/localforage.min.js"
+      integrity="sha512-+BMamP0e7wn39JGL8nKAZ3yAQT2dL5oaXWr4ZYlTGkKOaoXM/Yj7c4oy50Ngz5yoUutAG17flueD4F6QpTlPng=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
+    <script src="../js/sync.js"></script>
+    <script src="../js/global.js"></script>
+    <script src="../js/getPushSubscription.js"></script>
+    <script src="../js/getMobileOperatingSystem.js"></script>
+    <script src="logic.js"></script>
+  </body>
+</html>

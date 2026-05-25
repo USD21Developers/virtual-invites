@@ -1,0 +1,47 @@
+.action {
+  border-bottom: 1px solid #828282;
+  padding-bottom: 1em;
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+.action_editLink {
+  border-right: 1px solid #e0e0e0;
+  color: #828282;
+  margin-right: 14px;
+  min-width: 50px;
+  padding-right: 14px;
+}
+
+.action_deleteLink {
+  color: #ff2d55;
+  min-width: 50px;
+}
+
+.card-header img {
+  border-radius: 50%;
+}
+
+.list-group-item-action:hover,
+.list-group-item-action:active,
+.list-group-item-action:visited,
+.list-group-item-action:link {
+  background-color: white;
+}
+
+.list-group-item-action:active {
+  border: 1px solid #424242;
+}
+
+#followedEvents .alert-link {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+#noEventsFromUsersIFollow a {
+  white-space: nowrap;
+}
+
+.profilePhoto {
+  border-radius: 50%;
+}

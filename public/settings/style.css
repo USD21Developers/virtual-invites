@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,600;1,600&display=swap");
+
+label {
+  color: var(--dark);
+  font-size: 0.9rem;
+}
+
+#publicProfileLinkText {
+  color: var(--primary-dark);
+  font-family: consolas, monospace;
+}
+
+[data-i18n="notificationClarification"] a {
+  color: var(--primary);
+}
+
+#placeholderTable th {
+  font-size: 0.9rem !important;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+#placeholderTable tr > th,
+#placeholderTable tr > td {
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+}
+
+.customTextPlaceholder {
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.text-blue {
+  color: #0057c7;
+}
+
+#notificationClarification a {
+  white-space: nowrap;
+}
+
+#webPushDeniedModal [data-i18n="webPushBlockedParagraph1"] strong {
+  color: var(--danger);
+}
+
+#testWebPush {
+  border-radius: 6px;
+  font-size: smaller;
+  text-transform: none;
+}
+
+#webPushNotSupportedModal a[href="/install/"] {
+  color: var(--primary);
+}
+
+[data-i18n="default"] {
+  color: var(--success-dark);
+  font-weight: normal;
+}
+
+label[for="customEventContactLastName"] strong {
+  color: var(--dark-light);
+  font-weight: normal !important;
+  margin-left: 0.3rem;
+}
+
+.iti {
+  display: block;
+}
+
+label[for="customEventContactPhone"] {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.iti.is-invalid + .invalid-feedback {
+  display: block;
+}

@@ -1,0 +1,28 @@
+#churchName {
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+th {
+  vertical-align: bottom !important;
+}
+
+td {
+  vertical-align: middle !important;
+}
+
+.profileImage img {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+}
+
+@media (min-width: 577px) {
+  tbody tr td:first-child {
+    width: auto;
+  }
+
+  tbody a {
+    white-space: nowrap;
+  }
+}

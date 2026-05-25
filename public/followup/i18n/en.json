@@ -1,0 +1,111 @@
+{
+  "metadata": {
+    "description": "Follow Up",
+    "path": "/followup/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "pagetitle",
+      "original": "Follow Up",
+      "translated": "Follow Up"
+    },
+    {
+      "key": "breadcrumbFollowUp",
+      "original": "Follow Up",
+      "translated": "Follow Up"
+    },
+    {
+      "key": "followUpList",
+      "original": "Follow Up List",
+      "translated": "Follow Up List"
+    },
+    {
+      "key": "emptyFollowUpList",
+      "original": "There are no recipients in your follow up list.",
+      "translated": "There are no recipients in your follow up list."
+    },
+    {
+      "key": "invitedOn",
+      "original": "Was invited on {INVITED-ON-DATE}",
+      "translated": "Was invited on {INVITED-ON-DATE}"
+    },
+    {
+      "key": "lastInteraction",
+      "original": "Last Interaction",
+      "translated": "Last Interaction"
+    },
+    {
+      "key": "clickedRsvp",
+      "original": "Clicked RSVP: {DATETIME}",
+      "translated": "Clicked RSVP: {DATETIME}"
+    },
+    {
+      "key": "rescindedRsvp",
+      "original": "Rescinded RSVP: {DATETIME}",
+      "translated": "Rescinded RSVP: {DATETIME}"
+    },
+    {
+      "key": "clickedAddToCalendar",
+      "original": "Clicked Add to My Calendar: {DATETIME}",
+      "translated": "Clicked Add to My Calendar: {DATETIME}"
+    },
+    {
+      "key": "viewedInvite",
+      "original": "Viewed invite: {DATETIME}",
+      "translated": "Viewed invite: {DATETIME}"
+    },
+    {
+      "key": "wasInvited",
+      "original": "Was invited: {DATETIME}",
+      "translated": "Was invited: {DATETIME}"
+    },
+    {
+      "key": "toAddNames",
+      "original": "To add names to your list, see My Invites.",
+      "translated": "To add names to your list, see My Invites.",
+      "changes": [
+        {
+          "original": "My Invites",
+          "translated": "My Invites",
+          "bold": false,
+          "italic": false,
+          "link": "../invites/"
+        }
+      ]
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

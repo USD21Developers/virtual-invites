@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "description": "Delete Event",
+    "path": "/events/delete/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Delete Event",
+      "translated": "Delete Event"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbEvents",
+      "original": "Events",
+      "translated": "Events"
+    },
+    {
+      "key": "breadcrumbDelete",
+      "original": "Delete",
+      "translated": "Delete"
+    },
+    {
+      "key": "headlineDeleteEvent",
+      "original": "Delete Event",
+      "translated": "Delete Event"
+    },
+    {
+      "key": "areYouSure",
+      "original": "Are you sure?",
+      "translated": "Are you sure?"
+    },
+    {
+      "key": "btnDelete",
+      "original": "Delete",
+      "translated": "Delete"
+    },
+    {
+      "key": "btnCancel",
+      "original": "Cancel",
+      "translated": "Cancel"
+    },
+    {
+      "key": "from",
+      "original": "From:",
+      "translated": "From:"
+    },
+    {
+      "key": "to",
+      "original": "To:",
+      "translated": "To:"
+    },
+    {
+      "key": "frequencyOneTime",
+      "original": "Once",
+      "translated": "Once"
+    },
+    {
+      "key": "frequencyEverySunday",
+      "original": "Every Sunday",
+      "translated": "Sundays"
+    },
+    {
+      "key": "frequencyEveryMonday",
+      "original": "Every Monday",
+      "translated": "Mondays"
+    },
+    {
+      "key": "frequencyEveryTuesday",
+      "original": "Every Tuesday",
+      "translated": "Tuesdays"
+    },
+    {
+      "key": "frequencyEveryWednesday",
+      "original": "Every Wednesday",
+      "translated": "Wednesdays"
+    },
+    {
+      "key": "frequencyEveryThursday",
+      "original": "Every Thursday",
+      "translated": "Thursdays"
+    },
+    {
+      "key": "frequencyEveryFriday",
+      "original": "Every Friday",
+      "translated": "Fridays"
+    },
+    {
+      "key": "frequencyEverySaturday",
+      "original": "Every Saturday",
+      "translated": "Saturdays"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

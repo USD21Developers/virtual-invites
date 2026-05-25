@@ -1,0 +1,160 @@
+{
+  "metadata": {
+    "description": "Share your Faith, Even When Time is Limited",
+    "path": "/about/time-limited/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "When Time is Limited",
+      "translated": "When Time is Limited"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbAbout",
+      "original": "About",
+      "translated": "About"
+    },
+    {
+      "key": "breadcrumbTimeLimited",
+      "original": "Time Limited",
+      "translated": "Time Limited"
+    },
+    {
+      "key": "p1",
+      "original": "Have you ever been in a situation where you neglected to share your faith because there didn't seem to be enough time? Even if you have just a minute, with the Invites App, one minute is all you need! Send all the event details instantly, freeing you to use that brief moment to build rapport.",
+      "translated": "Have you ever been in a situation where you neglected to share your faith because there didn't seem to be enough time? Even if you have just a minute, with the Invites App, one minute is all you need! Send all the event details instantly, freeing you to use that brief moment to build rapport.",
+      "changes": [
+        {
+          "original": "one minute is all you need!",
+          "translated": "one minute is all you need!",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "headlineOrLearnMore",
+      "original": "Or learn more:",
+      "translated": "Or learn more:"
+    },
+    {
+      "key": "keyFeatures",
+      "original": "Other Key Features",
+      "translated": "Other Key Features"
+    },
+    {
+      "key": "whenTimeIsLimitedHeadline",
+      "original": "Share your Faith, Even When Time is Limited:",
+      "translated": "Share your Faith, Even When Time is Limited: "
+    },
+    {
+      "key": "whenTimeIsLimitedDetails",
+      "original": "Share all of the event's details to the recipient's device instantly, freeing you to use a brief moment to build rapport instead of fixating on details. The whole interaction can take place within one minute.",
+      "translated": "Share all of the event's details to the recipient's device instantly, freeing you to use a brief moment to build rapport instead of fixating on details. The whole interaction can take place within one minute."
+    },
+    {
+      "key": "remindersHeadline",
+      "original": "Calendar Reminders:",
+      "translated": "Calendar Reminders:"
+    },
+    {
+      "key": "remindersDetails",
+      "original": "Leverage the power of calendar reminders to help recipients remember to attend, even when their device does not have a signal.",
+      "translated": "Leverage the power of calendar reminders to help recipients remember to attend, even when their device does not have a signal."
+    },
+    {
+      "key": "followUpHeadline",
+      "original": "Follow Up:",
+      "translated": "Follow Up:"
+    },
+    {
+      "key": "followUpDetails",
+      "original": "Never again forget or overlook anyone you've invited. Make all of your follow-up calls and texts. Take notes. Create follow-up reminders to yourself, all from one convenient place.",
+      "translated": "Never again forget or overlook anyone you've invited. Make all of your follow-up calls and texts. Take notes. Create follow-up reminders to yourself, all from one convenient place."
+    },
+    {
+      "key": "mapsHeadline",
+      "original": "Maps:",
+      "translated": "Maps:"
+    },
+    {
+      "key": "mapsDetails",
+      "original": "Use digital maps to plan your local outreach, maximizing your likelihood of meeting open people.",
+      "translated": "Use digital maps to plan your local outreach, maximizing your likelihood of meeting open people."
+    },
+    {
+      "key": "leadersHeadline",
+      "original": "Leaders:",
+      "translated": "Leaders:"
+    },
+    {
+      "key": "leadersDetails",
+      "original": "If you lead a group within the church (whether a Bible Talk or even a world sector) you can easily equip your entire membership with access to the Invites App.",
+      "translated": "If you lead a group within the church (whether a Bible Talk or even a world sector) you can easily equip your entire membership with access to the Invites App."
+    },
+    {
+      "key": "otherBenefits",
+      "original": "Many other benefits!",
+      "translated": "Many other benefits!"
+    },
+    {
+      "key": "convincedHeadline",
+      "original": "Convinced?  Register for access:",
+      "translated": "Convinced?  Register for access:",
+      "changes": [
+        {
+          "original": "Convinced?",
+          "translated": "Convinced?",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "registerButton",
+      "original": "Register",
+      "translated": "Register"
+    },
+    {
+      "key": "learnMoreLink",
+      "original": "Video & details",
+      "translated": "Video & details"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "metadata": {
+    "description": "Authorize a Registrant",
+    "path": "/authorie/user/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbAuthorize",
+      "original": "Authorize",
+      "translated": "Authorize"
+    },
+    {
+      "key": "pagetitle",
+      "original": "Authorize {NAME}",
+      "translated": "Authorize {NAME}"
+    },
+    {
+      "key": "profilePhotoAltText",
+      "original": "Photo of {NAME}",
+      "translated": "Photo of {NAME}"
+    },
+    {
+      "key": "registrationDate",
+      "original": "Registered {DATE}",
+      "translated": "Registered {DATE}"
+    },
+    {
+      "key": "p1Male",
+      "original": "{FIRST-NAME} needs authorization to use the Invites App. Please verify his membership status in the church, and complete the form below.",
+      "translated": "{FIRST-NAME} needs authorization to use the Invites App. Please verify his membership status in the church, and complete the form below."
+    },
+    {
+      "key": "p1Female",
+      "original": "{FIRST-NAME} needs authorization to use the Invites App. Please verify her membership status in the church, and complete the form below.",
+      "translated": "{FIRST-NAME} needs authorization to use the Invites App. Please verify her membership status in the church, and complete the form below."
+    },
+    {
+      "key": "highestLeadershipRole",
+      "original": "{FIRST-NAME}'s highest leadership role:",
+      "translated": "{FIRST-NAME}'s highest leadership role:"
+    },
+    {
+      "key": "houseChurchLeaderOrHigher",
+      "original": "House church leader or higher",
+      "translated": "House church leader or higher"
+    },
+    {
+      "key": "bibleTalkLeader",
+      "original": "Bible Talk leader",
+      "translated": "Bible Talk leader"
+    },
+    {
+      "key": "noneOfAbove",
+      "original": "Neither of the above",
+      "translated": "Neither of the above"
+    },
+    {
+      "key": "oath",
+      "original": "I hereby vouch that {NAME} is a member in good standing with the {CHURCH-NAME}.",
+      "translated": "I hereby vouch that {NAME} is a member in good standing with the {CHURCH-NAME}.",
+      "changes": [
+        {
+          "original": "{NAME}",
+          "translated": "{NAME}",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "btnAuthorize",
+      "original": "Authorize",
+      "translated": "Authorize"
+    },
+    {
+      "key": "approverMustBeRegistered",
+      "original": "Error: you must be a registered user",
+      "translated": "Error: you must be a registered user"
+    },
+    {
+      "key": "registrantMustBeRegistered",
+      "original": "Error: you must be a registered user",
+      "translated": "Error: you must be a registered user"
+    },
+    {
+      "key": "errorLeadershipRoleRequired",
+      "original": "Highest leadership role is required",
+      "translated": "Highest leadership role is required"
+    },
+    {
+      "key": "errorOathIsRequired",
+      "original": "You must vouch for the new user.",
+      "translated": "You must vouch for the new user."
+    },
+    {
+      "key": "churchMustMatch",
+      "original": "Churches must match",
+      "translated": "Churches must match"
+    },
+    {
+      "key": "errorChurchMustMatch",
+      "original": "{NAME} must be in the same church as me ({CHURCH-NAME}).",
+      "translated": "{NAME} must be in the same church as me ({CHURCH-NAME})."
+    },
+    {
+      "key": "btnCloseModal",
+      "original": "Close",
+      "translated": "Close"
+    },
+    {
+      "key": "confirmationHeadline",
+      "original": "Authorization Granted",
+      "translated": "Authorization Granted"
+    },
+    {
+      "key": "alreadyAuthorized",
+      "original": "{NAME} has already been authorized, and can log in without restriction.",
+      "translated": "{NAME} has already been authorized, and can log in without restriction."
+    },
+    {
+      "key": "confirmationFemale",
+      "original": "{NAME} has now been authorized. Please notify her that she can now log in without any further restriction.",
+      "translated": "{NAME} has now been authorized. Please notify her that she can now log in without any further restriction."
+    },
+    {
+      "key": "confirmationMale",
+      "original": "{NAME} has now been authorized. Please notify him that he can now log in without any further restriction.",
+      "translated": "{NAME} has now been authorized. Please notify him that he can now log in without any further restriction."
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": {
+    "key": "",
+    "original": "",
+    "translated": "",
+    "changes": [
+      {
+        "original": "",
+        "translated": "",
+        "bold": false,
+        "italic": false,
+        "link": ""
+      }
+    ]
+  }
+}

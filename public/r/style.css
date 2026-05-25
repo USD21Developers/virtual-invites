@@ -1,0 +1,124 @@
+#dateInvited,
+#interactionViews div {
+  font-variant-numeric: tabular-nums;
+}
+
+#followup li,
+#manage li {
+  padding: 0;
+}
+
+#followup li > a,
+#manage li > a {
+  display: block;
+  color: rgba(0, 0, 0, 0.87);
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  padding: 1rem;
+  text-decoration: none !important;
+}
+
+#followUpParagraph {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+}
+
+#modal .modal-title {
+  font-weight: inherit;
+}
+
+.note_date {
+  font-size: 13px;
+  font-family: "Inter", sans-serif;
+}
+
+.underline {
+  text-decoration: underline !important;
+}
+
+#timezoneNotice {
+  font-size: 0.8rem;
+}
+
+html {
+  overflow-x: hidden !important;
+  width: auto !important;
+}
+
+.table td {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#modal,
+#addNoteModal {
+  animation: fadeIn 0.25s;
+}
+
+.noteContent {
+  font-size: 1rem;
+}
+
+.noteFooter {
+  border-top: 1px solid #999;
+  margin-top: 30px !important;
+  padding-top: 5px;
+}
+
+.noteFooter .btn {
+  font-size: 12px !important;
+  font-family: "Inter", sans-serif;
+}
+
+#deleteNoteModal [data-i18n="deleteThisNote"] {
+  font-size: larger;
+}
+
+#settingsForm label {
+  color: var(--dark);
+  font-size: 0.9rem;
+}
+
+.mainContent {
+  overscroll-behavior-x: none !important;
+}
+
+.whatsAppGlyph {
+  height: auto;
+  width: 22px;
+}
+
+.contactGlyph {
+  height: auto;
+  width: 22px;
+}
+
+.invalid-feedback.show {
+  display: block;
+}
+
+.highlightAndFade {
+  position: relative;
+  border: 1px solid transparent;
+  animation: borderFade 1.5s forwards;
+}
+
+@keyframes borderFade {
+  0% {
+    background-color: yellow;
+    border-color: #cfcf00;
+  }
+  100% {
+    background-color: none;
+    border-color: transparent;
+  }
+}

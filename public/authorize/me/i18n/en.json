@@ -1,0 +1,229 @@
+{
+  "metadata": {
+    "description": "Authorize Me",
+    "path": "/authorize/me/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Authorization Needed",
+      "translated": "Authorization Needed"
+    },
+    {
+      "key": "paragraph1",
+      "original": "Hello, {FIRST-NAME}! Although your login is accurate, you'll still need to get authorized before you can start using the Invites App.",
+      "translated": "Hello, {FIRST-NAME}! Although your login is accurate, you'll still need to get authorized before you can start using the Invites App."
+    },
+    {
+      "key": "paragraph2",
+      "original": "This is necessary to ensure that all users are recognized members in good standing in their local church congregation.",
+      "translated": "This is necessary to ensure that all users are recognized members in good standing in their local church congregation."
+    },
+    {
+      "key": "instructionsHeadline",
+      "original": "Instructions:",
+      "translated": "Instructions:"
+    },
+    {
+      "key": "instructions1Headline",
+      "original": "Find someone who can authorize you.",
+      "translated": "Find someone who can authorize you."
+    },
+    {
+      "key": "instructions1",
+      "original": "Within your congregation there are registered users who can authorize you. You'll need to find one of them (in person).",
+      "translated": "Within your congregation there are registered users who can authorize you. You'll need to find one of them (in person)."
+    },
+    {
+      "key": "listOfAuthorizingUsers",
+      "original": "Here is a list of authorizing users.",
+      "translated": "Here is a list of authorizing users.",
+      "changes": [
+        {
+          "original": "authorizing users",
+          "translated": "authorizing users",
+          "bold": true,
+          "italic": false,
+          "link": "#authorizers",
+          "underline": true
+        }
+      ]
+    },
+    {
+      "key": "instructions2Headline",
+      "original": "Show them the QR Code.",
+      "translated": "Show them the QR Code."
+    },
+    {
+      "key": "instructions2",
+      "original": "When you have found someone who can authorize you, click on the button below. A QR Code will appear. Ask them to authorize you by scanning it.",
+      "translated": "When you have found someone who can authorize you, click on the button below. A QR Code will appear. Ask them to authorize you by scanning it."
+    },
+    {
+      "key": "instructions3",
+      "original": "Once you are approved, log in again.",
+      "translated": "Once you are approved, log in again.",
+      "changes": [
+        {
+          "original": "log in again",
+          "translated": "log in again",
+          "bold": true,
+          "italic": false,
+          "link": "/logout/"
+        }
+      ]
+    },
+    {
+      "key": "ready",
+      "original": "Ready?",
+      "translated": "Ready?"
+    },
+    {
+      "key": "showQRCode",
+      "original": "Show QR Code",
+      "translated": "Show QR Code"
+    },
+    {
+      "key": "modalHeadline",
+      "original": "Please authorize me",
+      "translated": "Please authorize me"
+    },
+    {
+      "key": "modalInstructions",
+      "original": "Please authorize {FIRST-NAME} {LAST-NAME} to use the Invites App, by scanning the QR Code below and completing the form.",
+      "translated": "Please authorize {FIRST-NAME} {LAST-NAME} to use the Invites App, by scanning the QR Code below and completing the form.",
+      "changes": [
+        {
+          "original": "Invites App",
+          "translated": "Invites App",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "authorizingUsers",
+      "original": "Authorizing Users",
+      "translated": "Authorizing Users"
+    },
+    {
+      "key": "explanationAuthorizingUser",
+      "original": "Please find the following person in the fellowship. Explain that you would like to be authorized to use the Invites App.",
+      "translated": "Please find the following person in the fellowship. Explain that you would like to be authorized to use the Invites App."
+    },
+    {
+      "key": "explanationAuthorizingUsers",
+      "original": "Please find one of the following people in the fellowship. Explain that you would like to be authorized to use the Invites App.",
+      "translated": "Please find one of the following people in the fellowship. Explain that you would like to be authorized to use the Invites App."
+    },
+    {
+      "key": "noAuthorizingUsersFound",
+      "original": "No authorizing users were found in your congregation.",
+      "translated": "No authorizing users were found in your congregation."
+    },
+    {
+      "key": "btnCloseModal",
+      "original": "Close",
+      "translated": "Close"
+    },
+    {
+      "key": "registeredOn",
+      "original": "Registered on {REGISTRATION-DATE}",
+      "translated": "Registered on {REGISTRATION-DATE}"
+    },
+    {
+      "key": "didSomeoneScan",
+      "original": "Has someone scanned this QR Code?",
+      "translated": "Has someone scanned this QR Code?"
+    },
+    {
+      "key": "authorizationInProgress",
+      "original": "Authorization in progress...",
+      "translated": "Authorization in progress..."
+    },
+    {
+      "key": "stillWaiting",
+      "original": "Still waiting?",
+      "translated": "Still waiting?"
+    },
+    {
+      "key": "suggestCheckConnection",
+      "original": "Check your internet connection, and ask the person who scanned the QR code to do the same.",
+      "translated": "Check your internet connection, and ask the person who scanned the QR code to do the same."
+    },
+    {
+      "key": "suggestAskSomeoneElse",
+      "original": "Alternatively, you may ask someone else to authorize you.",
+      "translated": "Alternatively, you may ask someone else to authorize you.",
+      "changes": [
+        {
+          "original": "ask someone else",
+          "translated": "ask someone else",
+          "bold": false,
+          "italic": false,
+          "link": "#",
+          "underline": true
+        }
+      ]
+    },
+    {
+      "key": "checkAgain",
+      "original": "Check again",
+      "translated": "Check again"
+    },
+    {
+      "key": "authorizationGranted",
+      "original": "Authorization Granted",
+      "translated": "Authorization Granted"
+    },
+    {
+      "key": "youAreNowAuthorized",
+      "original": "You are now authorized.",
+      "translated": "You are now authorized."
+    },
+    {
+      "key": "authorizationGrantedText",
+      "original": "Congratulations! You are now fully authorized to use the Invites App. Please log in once again.",
+      "translated": "Congratulations! You are now fully authorized to use the Invites App. Please log in once again.",
+      "changes": [
+        {
+          "original": "Congratulations!",
+          "translated": "Congratulations!",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+$primary: (
+  color: #15336f,
+  dark: darken(#15336f, 10%),
+  light: lighten(#15336f, 10%),
+);
+
+$secondary: (
+  color: #5d7daf,
+  dark: darken(#5d7daf, 10%),
+  light: lighten(#5d7daf, 10%),
+);
+
+$info: (
+  color: #2e6cde,
+  dark: darken(#2e6cde, 10%),
+  light: lighten(#2e6cde, 10%),
+);
+
+$warning: (
+  color: #e2b93b,
+  dark: darken(#e2b93b, 10%),
+  light: lighten(#e2b93b, 10%),
+);
+
+$font-size-root: 18px;
+
+$btn-font-weight: 600;
+
+$link-color: map-get($primary, color);
+
+@import "../node_modules/daemonite-material/assets/scss/material.scss";
+
+a {
+  text-decoration: underline;
+}
+
+.navbar-brand::before {
+  background-color: unset;
+}
+
+.list-group a,
+.nav-item,
+.navbar-brand,
+a.btn {
+  text-decoration: none;
+}

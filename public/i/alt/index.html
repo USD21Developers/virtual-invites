@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta
+      content="initial-scale=1, shrink-to-fit=no, width=device-width, maximum-scale=1.0, user-scalable=no"
+      name="viewport"
+    />
+    <meta
+      property="og:image"
+      content="https://invites.mobi/i/img/envelope-opengraph.jpg"
+    />
+    <meta
+      property="twitter-image"
+      content="https://invites.mobi/i/img/envelope-opengraph.jpg"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/i/site.webmanifest" />
+    <title data-i18n="pagetitle"></title>
+    <link rel="stylesheet" type="text/css" href="/css/daemonite-material.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body class="purple-gradient px-3">
+    <div class="container bg-white mt-3 mb-3 py-4" style="max-width: 740px">
+      <div class="row" id="pageSpinner">
+        <div class="col col-sm-10 offset-sm-1 mt-3 mb-4 text-center">
+          <img
+            src="/_assets/img/spinner.svg"
+            width="200"
+            height="200"
+            style="max-width: 100%"
+          />
+        </div>
+      </div>
+
+      <main class="row mainContent d-none">
+        <div class="col">
+          <h1 data-i18n="pagetitle" class="text-center pb-0 mt-2 mb-0"></h1>
+          <h3
+            data-i18n="explainParagraph"
+            class="text-center text-dark mt-3 mb-2"
+            style="text-wrap: balance"
+          ></h3>
+
+          <form id="formEventSearch">
+            <!-- My Location -->
+            <div class="text-center">
+              <div class="mt-4 d-inline-block">
+                <div class="form-group text-center" id="myLocationContainer">
+                  <label for="originLocation" class="text-dark">
+                    <h3
+                      data-i18n="mapLabelOrigin"
+                      class="balancedTextWrap"
+                    ></h3>
+                  </label>
+                  <textarea
+                    rows="2"
+                    cols="40"
+                    type="text"
+                    class="form-control"
+                    id="originLocation"
+                    aria-describedby="originLocationHelp"
+                    data-i18n-placeholder="placeholderLocation"
+                    data-countryFromIP=""
+                  ></textarea>
+                  <div class="form-group text-left mt-1">
+                    <label
+                      for="country"
+                      class="sr-only"
+                      data-i18n="country"
+                    ></label>
+                    <select
+                      class="form-control text-center"
+                      id="country"
+                      autocomplete="country"
+                    ></select>
+                  </div>
+                  <div class="d-inline-block mt-3">
+                    <div class="text-left">
+                      <div id="allowedValues">
+                        <div
+                          class="text-center border-bottom border-dark"
+                          data-i18n="locationAllowedValues"
+                        ></div>
+                        <ul class="pl-3">
+                          <li data-i18n="locationPostalCode"></li>
+                          <li data-i18n="locationCrossStreets"></li>
+                          <li data-i18n="locationAddress"></li>
+                          <li data-i18n="locationCoordinates"></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="text-center mt-3 mb-4"
+                  id="detectMyLocationContainer"
+                >
+                  <div class="mb-1 text-dark">
+                    <small data-i18n="detectLocationOptional"></small>
+                  </div>
+                  <button
+                    id="detectMyLocation"
+                    type="button"
+                    class="btn btn-sm btn-outline-info border border-info text-capitalize shadow-sm"
+                    data-i18n="detectMyLocation"
+                  ></button>
+                  <div class="mt-1" id="promptAdvisoryContainer">
+                    <small
+                      data-i18n="promptAdvisory"
+                      id="promptAdvisory"
+                    ></small>
+                  </div>
+                </div>
+
+                <div id="mapContainer" class="text-center mb-4 d-none">
+                  <img
+                    src=""
+                    style="width: 100%; max-width: 400px; height: auto"
+                    alt=""
+                    id="mapImage"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Search options -->
+            <div class="my-4 text-center" id="searchOptionsContainer">
+              <div class="d-inline-block">
+                <h5 data-i18n="searchOptions"></h5>
+                <table compact>
+                  <tbody>
+                    <!-- Language -->
+                    <tr>
+                      <td valign="top" class="p-3 text-left">
+                        <label
+                          for="lang"
+                          data-i18n="labelLanguage"
+                          class="text-dark optionsLabel"
+                        ></label>
+                      </td>
+                      <td valign="top" class="p-3">
+                        <select
+                          class="form-control form-control-sm pt-0 mb-1"
+                          id="lang"
+                        >
+                          <option value="" data-i18n="selectLanguage"></option>
+                        </select>
+                      </td>
+                    </tr>
+
+                    <!-- Radius -->
+                    <tr>
+                      <td valign="top" class="p-3 text-left">
+                        <label
+                          for="radius"
+                          data-i18n="labelRadius"
+                          class="text-dark optionsLabel"
+                        ></label>
+                      </td>
+                      <td valign="top" class="p-3">
+                        <input
+                          class="form-control form-control-sm pt-0"
+                          type="number"
+                          pattern="[0-9]*"
+                          maxlength="2"
+                          id="radius"
+                          value="100"
+                        />
+                        <select
+                          class="form-control form-control-sm mt-1 mb-2"
+                          id="distanceUnit"
+                        >
+                          <option
+                            value="kilometers"
+                            data-i18n="optionKilos"
+                          ></option>
+                          <option
+                            value="miles"
+                            data-i18n="optionMiles"
+                          ></option>
+                        </select>
+                      </td>
+                    </tr>
+
+                    <!-- Dates -->
+                    <tr>
+                      <td valign="top" class="p-3 text-left">
+                        <span
+                          data-i18n="dates"
+                          class="text-dark optionsLabel small"
+                          style="font-size: 15px"
+                        ></span>
+                      </td>
+                      <td valign="top" class="p-3 text-left">
+                        <div class="form-group mb-2">
+                          <div class="mb-4">
+                            <label
+                              for="dateFrom"
+                              data-i18n="dateFrom"
+                              class="datetime-label"
+                            ></label>
+                            <input
+                              type="date"
+                              class="form-control datetime-field"
+                              id="dateFrom"
+                            />
+                          </div>
+
+                          <div>
+                            <label
+                              for="dateTo"
+                              data-i18n="dateTo"
+                              class="datetime-label"
+                            ></label>
+                            <input
+                              type="date"
+                              class="form-control datetime-field"
+                              id="dateTo"
+                            />
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Submit button -->
+            <div class="text-center mt-5 mb-4">
+              <button
+                type="submit"
+                data-i18n="btnSubmit"
+                class="btn text-capitalize"
+                id="altEventsSubmitButton"
+              ></button>
+            </div>
+          </form>
+        </div>
+      </main>
+
+      <div class="row d-none" id="searchResultsSpinner">
+        <div class="col text-center">
+          <hr class="mt-4 pt-1 mb-4" />
+          <h2
+            class="text-center pt-2 mb-3"
+            data-i18n="headlineSearchResults"
+          ></h2>
+          <img
+            src="/_assets/img/spinner.svg"
+            width="100"
+            height="100"
+            style="max-width: 100%"
+          />
+        </div>
+      </div>
+
+      <div class="row d-none" id="searchResults">
+        <div class="col">
+          <hr class="mt-4 pt-1 mb-4" />
+          <h2
+            class="text-center pt-2 mb-3"
+            data-i18n="headlineSearchResults"
+          ></h2>
+
+          <div id="noResultsFound" class="d-none">
+            <p
+              class="text-center mb-3 nonefound"
+              data-i18n="noResultsFound"
+            ></p>
+
+            <p
+              class="text-center"
+              data-i18n="noResultsParagraph"
+              style="text-wrap: balance"
+            ></p>
+          </div>
+
+          <div id="resultsFound" class="d-none mt-4">
+            <h3 id="headlineInPerson" class="border-bottom"></h3>
+            <p
+              id="inPersonNoneFound"
+              class="d-none nonefound"
+              data-i18n="inPersonNoneFound"
+            ></p>
+            <ol id="inPersonList" class="pl-3"></ol>
+
+            <h3 id="headlineVirtual" class="border-bottom mt-4 pt-3"></h3>
+            <p data-i18n="explanationVirtual"></p>
+            <p
+              id="virtualNoneFound"
+              class="d-none nonefound"
+              data-i18n="virtualNoneFound"
+            ></p>
+            <ol id="virtualList" class="pl-3"></ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modaltitle"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-1"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              data-i18n="btnCloseModal"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="snackbar">
+      <div class="snackbar-body"></div>
+    </div>
+
+    <!-- Nav buttons (only visible in standalone mode) -->
+    <nav id="navButtons" class="container-fluid fixed-bottom p-0 d-none">
+      <table width="100%" cellpadding="10">
+        <tr>
+          <td>
+            <div class="d-inline-block text-center">
+              <a href="javascript:history.go(-1)" id="navBackButton">
+                <img
+                  src="/_assets/svg/icons/nav-arrow-back-light.svg"
+                  width="22"
+                  height="22"
+                  style="padding-left: 6px"
+                />
+                <div data-i18n-global="navbarBack"></div>
+              </a>
+            </div>
+          </td>
+
+          <td>
+            <div class="d-inline-block text-center">
+              <a href="/" id="navMyInvitesButton">
+                <img
+                  src="/_assets/svg/icons/nav-my-invites-light.svg"
+                  width="22"
+                  height="22"
+                />
+                <div data-i18n-global="navbarMyInvites"></div>
+              </a>
+            </div>
+          </td>
+
+          <td>
+            <div class="d-inline-block text-center">
+              <a href="/followup/" id="navFollowupButton">
+                <img
+                  src="/_assets/svg/icons/nav-followup-list-light.svg"
+                  width="22"
+                  height="22"
+                />
+                <div data-i18n-global="navbarFollowUp"></div>
+              </a>
+            </div>
+          </td>
+
+          <td>
+            <div class="d-inline-block text-center">
+              <a href="/send/" id="navSendAnInviteButton">
+                <img
+                  src="/_assets/svg/icons/nav-send-an-invite-light.svg"
+                  width="22"
+                  height="22"
+                />
+                <div data-i18n-global="navbarSendAnInvite"></div>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </nav>
+
+    <script src="/js/moment.min.js"></script>
+    <script src="/js/moment-timezone-with-data-10-year-range.min.js"></script>
+    <script src="/js/getMobileOperatingSystem.js"></script>
+    <script src="/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="/js/global.js"></script>
+    <script src="logic.js"></script>
+  </body>
+</html>

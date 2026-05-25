@@ -1,0 +1,31 @@
+.iti {
+  width: 100%;
+}
+
+.iti__flag {
+  background-image: url("../js/intl-tel-input-17.0.0/img/flags.png");
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {
+    background-image: url("../js/intl-tel-input-17.0.0/img/flags@2x.png");
+  }
+}
+
+#qr {
+  cursor: pointer;
+}
+
+a[href="#howtoscan"] {
+  color: var(--primary);
+}
+
+span.material-icons.material-symbols-outlined.text-info {
+  color: var(--indigo) !important;
+  font-size: 18px;
+  margin-right: 0.2rem;
+}
+
+.btn[data-i18n="btnRetry"] {
+  font-weight: 500;
+}

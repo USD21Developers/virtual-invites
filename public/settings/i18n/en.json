@@ -1,0 +1,494 @@
+{
+  "metadata": {
+    "description": "Settings",
+    "path": "/settings/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Settings",
+      "translated": "Settings"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbSettings",
+      "original": "Settings",
+      "translated": "Settings"
+    },
+    {
+      "key": "customInviteTextHeadline",
+      "original": "Custom Invite Text",
+      "translated": "Custom Invite Text"
+    },
+    {
+      "key": "openingPage",
+      "original": "Opening Page",
+      "translated": "Opening Page"
+    },
+    {
+      "key": "openingPageExplanation",
+      "original": "You can set which page will be be shown when you open this app from your home screen.",
+      "translated": "You can set which page will be be shown when you open this app from your home screen."
+    },
+    {
+      "key": "openingPageHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "openingPageSendAnInvite",
+      "original": "Send an Invite",
+      "translated": "Send an Invite"
+    },
+    {
+      "key": "openingPageMyInvites",
+      "original": "My Invites",
+      "translated": "My Invites"
+    },
+    {
+      "key": "openingPageFollowUpList",
+      "original": "Follow Up List",
+      "translated": "Follow Up List"
+    },
+    {
+      "key": "customInviteText",
+      "original": "Custom Text:",
+      "translated": "Custom Text:"
+    },
+    {
+      "key": "advanced",
+      "original": "Advanced:",
+      "translated": "Advanced:"
+    },
+    {
+      "key": "personalizeYourCustomText",
+      "original": "persononalize your Custom Text",
+      "translated": "persononalize your Custom Text"
+    },
+    {
+      "key": "customInviteTextExplanation",
+      "original": "When you send an invite, by default your message will only contain the name of the event and a link for the recipient to click on. But you can add additional text below the link, for a more personal touch.",
+      "translated": "When you send an invite, by default your message will only contain the name of the event and a link for the recipient to click on. But you can add additional text below the link, for a more personal touch."
+    },
+    {
+      "key": "customInviteTextExampleHeading",
+      "original": "For example:",
+      "translated": "For example:"
+    },
+    {
+      "key": "customInviteTextExample",
+      "original": "Hi, it's {SENDER-FIRST-NAME}. It was nice talking with you. I hope you can join us.",
+      "translated": "Hi, it's {SENDER-FIRST-NAME}. It was nice talking with you. I hope you can join us."
+    },
+    {
+      "key": "optional",
+      "original": "Optional:",
+      "translated": "Optional:"
+    },
+    {
+      "key": "templatePlaceholderExplanation1",
+      "original": "Within your Custom Text above, you can include dynamic values called placeholders (which are listed in the table below). Just like a template, these placeholders will be automatically converted for you in the moment that you send someone an invite. They can enable you to greet the invite recipient by their actual name, or refer to the event's title.",
+      "translated": "Within your Custom Text above, you can include dynamic values called placeholders (which are listed in the table below). Just like a template, these placeholders will be automatically converted for you in the moment that you send someone an invite. They can enable you to greet the invite recipient by their actual name, or refer to the event's title."
+    },
+    {
+      "key": "templatePlaceholderExplanation2",
+      "original": "For example, if the recipient's name was {RANDOM-RECIPIENT-NAME}, and the event was a Bible Talk, before you ever meet {GENDER-PRONOUN} you could type the following Custom Text into the form field above:",
+      "translated": "For example, if the recipient's name was {RANDOM-RECIPIENT-NAME}, and the event was a Bible Talk, before you ever meet {GENDER-PRONOUN} you could type the following Custom Text into the form field above:",
+      "changes": [
+        {
+          "original": "{RANDOM-RECIPIENT-NAME}",
+          "translated": "{RANDOM-RECIPIENT-NAME}",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        },
+        {
+          "original": "Bible Talk",
+          "translated": "Bible Talk",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "templatePlaceholderBefore",
+      "original": "Hi, [RECIPIENT]. It's {SENDER-FIRST-NAME}. Looking forward to seeing you at [EVENT]. It was nice talking with you. I hope you can join us.",
+      "translated": "Hi, [RECIPIENT]. It's {SENDER-FIRST-NAME}. Looking forward to seeing you at [EVENT]. It was nice talking with you. I hope you can join us.",
+      "changes": [
+        {
+          "original": "[RECIPIENT]",
+          "translated": "[RECIPIENT]",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        },
+        {
+          "original": "[EVENT]",
+          "translated": "[EVENT]",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "templatePlaceholderWillBeConvertedTo",
+      "original": "Later, in the moment when you send the actual invite, it would be converted to this:",
+      "translated": "Later, in the moment that you send the actual invite, it would be converted to this:"
+    },
+    {
+      "key": "templatePlaceholderAfter",
+      "original": "Hi, {RANDOM-RECIPIENT-NAME}. It's {SENDER-FIRST-NAME}. Looking forward to seeing you at Bible Talk. It was nice talking with you. I hope you can join us.",
+      "translated": "Hi, {RANDOM-RECIPIENT-NAME}. It's {SENDER-FIRST-NAME}. Looking forward to seeing you at Bible Talk. It was nice talking with you. I hope you can join us."
+    },
+    {
+      "key": "placeholderColumnHeading1",
+      "original": "Placeholder:",
+      "translated": "Placeholder:"
+    },
+    {
+      "key": "placeholderColumnHeading2",
+      "original": "Gets converted to:",
+      "translated": "Gets converted to:"
+    },
+    {
+      "key": "recipientPlaceholderConverted",
+      "original": "(the recipient's name)",
+      "translated": "(the recipient's name)"
+    },
+    {
+      "key": "eventTitlePlaceholderConverted",
+      "original": "(the title of the event)",
+      "translated": "(the title of the event)"
+    },
+    {
+      "key": "notificationsHeadline",
+      "original": "Notifications",
+      "translated": "Notifications"
+    },
+    {
+      "key": "notificationsExplanation",
+      "original": "You can be immediately notified if someone you invited views or interacts with their invite. This allows you to follow up with them in a timely manner.",
+      "translated": "You can be immediately notified if someone you invited views or interacts with their invite. This allows you to follow up with them in a timely manner."
+    },
+    {
+      "key": "receiveEmailNotifications",
+      "original": "Receive e-mail notifications",
+      "translated": "Receive e-mail notifications"
+    },
+    {
+      "key": "enablePushNotifications",
+      "original": "Enable push notifications",
+      "translated": "Enable push notifications"
+    },
+    {
+      "key": "onThisDevice",
+      "original": "on this device",
+      "translated": "on this device"
+    },
+    {
+      "key": "receivePushNotifications",
+      "original": "Receive push notifications",
+      "translated": "Receive push notifications"
+    },
+    {
+      "key": "notificationClarification",
+      "original": "Note: You can also disable notifications about a particular invite. To do so, just visit My Invites, click on a name, then scroll to the pertinent section to unsubscribe.",
+      "translated": "Note: You can also disable notifications about a particular invite. To do so, just visit My Invites, click on a name, then scroll to the pertinent section to unsubscribe.",
+      "changes": [
+        {
+          "original": "My Invites",
+          "translated": "My Invites",
+          "bold": false,
+          "italic": false,
+          "underline": true,
+          "link": "../invites/"
+        }
+      ]
+    },
+    {
+      "key": "followUpListHeadline",
+      "original": "Follow Up List",
+      "translated": "Follow Up List"
+    },
+    {
+      "key": "followUpListExplanation",
+      "original": "When you send a new invite, you can automatically add the recipient to your Follow Up List. This setting only applies to future invites, and not retroactively.",
+      "translated": "When you send a new invite, you can automatically add the recipient to your Follow Up List. This setting only applies to future invites, and not retroactively."
+    },
+    {
+      "key": "autoAddToFollowUpList",
+      "original": "Automatically add invite recipients to my Follow Up List",
+      "translated": "Automatically add invite recipients to my Follow Up List"
+    },
+    {
+      "key": "settingsUpdated",
+      "original": "Settings updated.",
+      "translated": "Settings updated."
+    },
+    {
+      "key": "settingsWereUpdated",
+      "original": "Settings were updated.",
+      "translated": "Settings were updated."
+    },
+    {
+      "key": "reload",
+      "original": "Reload?",
+      "translated": "Reload?"
+    },
+    {
+      "key": "webPushPermissionHeadline",
+      "original": "Permission Request",
+      "translated": "Permission Request"
+    },
+    {
+      "key": "webPushPermissionParagraph1",
+      "original": "In order to receive push notifications, your device needs to obtain your permission first. This is necessary for your security.",
+      "translated": "In order to receive push notifications, your device needs to obtain your permission first. This is necessary for your security."
+    },
+    {
+      "key": "webPushPermissionParagraph2",
+      "original": "Your device will now prompt you for permission.",
+      "translated": "Your device will now prompt you for permission."
+    },
+    {
+      "key": "webPushPermissionParagraph3",
+      "original": "Ready?",
+      "translated": "Ready?"
+    },
+    {
+      "key": "promptMe",
+      "original": "Prompt Me",
+      "translated": "Prompt Me"
+    },
+    {
+      "key": "webPushBlockedHeadline",
+      "original": "Push Notifications are Blocked",
+      "translated": "Push Notifications are Blocked"
+    },
+    {
+      "key": "webPushBlockedParagraph1",
+      "original": "Earlier, when a prompt on your screen requested your permission to enable push notifications for this app, you denied the request. As a result, your device will now block all push notifications from this app.",
+      "translated": "Earlier, when a prompt on your screen requested your permission to enable push notifications for this app, you denied the request. As a result, your device will now block all push notifications from this app.",
+      "changes": [
+        {
+          "original": "block",
+          "translated": "block",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "webPushUnblockHeadline",
+      "original": "How to Unblock",
+      "translated": "How to Unblock"
+    },
+    {
+      "key": "webPushBlockedParagraph2",
+      "original": "In case you change your mind, the only way to unblock push notifications on this device is by opening your device's Settings. Find the section that pertains to Notifications and open it. Now find the setting for the Invites app, and reenable notifications.",
+      "translated": "In case you change your mind, the only way to unblock push notifications on this device is by opening your device's Settings. Find the section that pertains to Notifications and open it. Now find the setting for the Invites app, and reenable notifications.",
+      "changes": [
+        {
+          "original": "Invites",
+          "translated": "Invites",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "webPushNotSupportedHeadline",
+      "original": "Requires Installation",
+      "translated": "Requires Installation"
+    },
+    {
+      "key": "webPushNotSupportedParagraph1",
+      "original": "Push notifications on this device can only be received if you have installed this Web site to your home screen.",
+      "translated": "Push notifications on this device can only be received if you have installed this Web site to your home screen."
+    },
+    {
+      "key": "webPushNotSupportedParagraph2",
+      "original": "For more info, see How to Install.",
+      "translated": "For more info, see How to Install.",
+      "changes": [
+        {
+          "original": "How to Install",
+          "translated": "How to Install",
+          "bold": true,
+          "italic": false,
+          "underline": true,
+          "link": "/install/"
+        }
+      ]
+    },
+    {
+      "key": "webPushNotSupportedParagraph3",
+      "original": "You might try visiting invites.mobi with the Web browser on your mobile phone instead.",
+      "translated": "You might try visiting invites.mobi with the Web browser on your mobile phone instead.",
+      "changes": [
+        {
+          "original": "invites.mobi",
+          "translated": "invites.mobi",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "webPushNowAuthorized",
+      "original": "Push notifications are now enabled on this device.",
+      "translated": "Push notifications are now enabled on this device."
+    },
+    {
+      "key": "webPushSomethingWentWrong",
+      "original": "There was a problem enabling push notifications. Please try again.",
+      "translated": "There was a problem enabling push notifications. Please try again."
+    },
+    {
+      "key": "showASamplePushNotification",
+      "original": "Show a push notification",
+      "translated": "Show a push notification"
+    },
+    {
+      "key": "pushTitle",
+      "original": "Hello {FIRST-NAME}!",
+      "translated": "Hello {FIRST-NAME}!"
+    },
+    {
+      "key": "pushBody",
+      "original": "This is a push notification.",
+      "translated": "This is a push notification."
+    },
+    {
+      "key": "followedUsersHeadline",
+      "original": "Events by Followed Users",
+      "translated": "Events by Followed Users"
+    },
+    {
+      "key": "followedUsersExplanation",
+      "original": "For events that you get by following other users, you can change the contact information that your invite recipients see at the bottom of their invite.",
+      "translated": "For events that you get by following other users, you can change the contact information that your invite recipients see at the bottom of their invite.",
+      "changes": [
+        {
+          "original": "following",
+          "translated": "following",
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "link": "/follow/"
+        }
+      ]
+    },
+    {
+      "key": "keepEventContactInfo",
+      "original": "Use the event contact info provided by users I follow",
+      "translated": "Use the event contact info provided by users I follow"
+    },
+    {
+      "key": "default",
+      "original": "(default)",
+      "translated": "(default)"
+    },
+    {
+      "key": "overrideEventContactInfo",
+      "original": "Change the contact info",
+      "translated": "Change the contact info"
+    },
+    {
+      "key": "firstname",
+      "original": "First name:",
+      "translated": "First name:"
+    },
+    {
+      "key": "firstNameRequired",
+      "original": "First name is required.",
+      "translated": "First name is required."
+    },
+    {
+      "key": "lastname",
+      "original": "Last name (optional):",
+      "translated": "Last name (optional):",
+      "changes": [
+        {
+          "original": "(optional)",
+          "translated": "(optional)",
+          "bold": true,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "mobilePhoneNumber",
+      "original": "Mobile phone number:",
+      "translated": "Mobile phone number:"
+    },
+    {
+      "key": "validPhoneIsRequired",
+      "original": "A valid phone number is required.",
+      "translated": "A valid phone number is required."
+    },
+    {
+      "key": "emailAddress",
+      "original": "E-mail address:",
+      "translated": "E-mail address:"
+    },
+    {
+      "key": "validEmailIsRequired",
+      "original": "A valid e-mail address is required.",
+      "translated": "A valid e-mail address is required."
+    },
+    {
+      "key": "oneContactMethodIsRequired",
+      "original": "Either a phone number, or e-mail address, is required.",
+      "translated": "Either a phone number, or e-mail address, is required."
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

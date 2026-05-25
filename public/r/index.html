@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="initial-scale=1, shrink-to-fit=no, width=device-width"
+      name="viewport"
+    />
+    <title></title>
+    <script
+      id="enforceaccess"
+      src="../js/enforceaccess.js"
+      data-return-here
+    ></script>
+    <link rel="stylesheet" href="../css/daemonite-material.css" />
+    <link href="../css/global.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <link
+      href="../js/intl-tel-input-17.0.0/css/intlTelInput.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest/" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#3d316b" />
+    <meta name="apple-mobile-web-app-title" content="Invites" />
+    <meta name="application-name" content="Invites" />
+    <meta name="msapplication-TileColor" content="#6551b4" />
+    <meta name="theme-color" content="#102951" />
+    <script src="/js/web-components/pwa-install-banner.js"></script>
+  </head>
+  <body>
+    <pwa-install-banner></pwa-install-banner>
+    <nav class="navbar bg-white sticky-top" aria-hidden="true">
+      <a class="navbar-brand" href="/">
+        <img src="/_assets/img/logo.svg" width="133" height="50" alt="logo" />
+      </a>
+      <div class="align-items-end">
+        <a href="/profile/" class="d-none">
+          <img class="profileImageNav" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="navdrawer"
+          data-target="#navdrawerDefault"
+          aria-controls="navdrawerDefault"
+          aria-expanded="false"
+          aria-label=""
+          data-i18n-global-aria-label="toggleNavigation"
+        >
+          <span>
+            <img src="/_assets/svg/icons/menu.svg" />
+          </span>
+        </button>
+      </div>
+    </nav>
+
+    <div
+      aria-hidden="true"
+      class="navdrawer navdrawer-right navbar-collapse collapse"
+      id="navdrawerDefault"
+      tabindex="-1"
+    >
+      <div class="navdrawer-content">
+        <div class="navdrawer-header">
+          <div class="row">
+            <div class="col-9 d-flex justify-content-start">
+              <a
+                class="navbar-brand px-0"
+                href="../"
+                data-i18n-global="menuHeadline"
+              ></a>
+            </div>
+            <div class="col-3 d-flex justify-content-end align-items-center">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="navdrawer"
+                data-target="#navdrawerDefault"
+                aria-controls="navdrawerDefault"
+                aria-expanded="false"
+                aria-label=""
+                data-i18n-global-aria-label="toggleNavigation"
+              >
+                <span>
+                  <img src="/_assets/svg/icons/close.svg" />
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <nav class="navdrawer-nav">
+          <a class="nav-item nav-link" href="../">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/home.svg" />
+            </span>
+            <span data-i18n-global="menuHome"></span>
+          </a>
+          <a class="nav-item nav-link" href="../invites/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/people.svg" />
+            </span>
+            <span data-i18n-global="menuMyInvites"></span>
+          </a>
+          <a class="nav-item nav-link" href="../followup/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/list_alt.svg" />
+            </span>
+            <span data-i18n-global="menuFollowUp"></span>
+          </a>
+          <a class="nav-item nav-link" href="../send/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/send.svg" />
+            </span>
+            <span data-i18n-global="menuSendInvite"></span>
+          </a>
+          <div class="navdrawer-divider"></div>
+          <a class="nav-item nav-link" href="../events/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/event.svg" />
+            </span>
+            <span data-i18n-global="menuEventsImSharing"></span>
+          </a>
+          <a class="nav-item nav-link" href="../maps/evangelism/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/place.svg" />
+            </span>
+            <span data-i18n-global="menuMaps"></span>
+          </a>
+          <a class="nav-item nav-link" href="../settings/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/settings.svg" />
+            </span>
+            <span data-i18n-global="menuSettings"></span>
+          </a>
+          <a class="nav-item nav-link" href="../profile/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/account_circle.svg" />
+            </span>
+            <span data-i18n-global="menuMyProfile"></span>
+          </a>
+
+          <div class="navdrawer-divider"></div>
+
+          <div class="adminsOnly d-none">
+            <a class="nav-item nav-link" href="/admin/">
+              <span class="mr-3">
+                <img src="/_assets/svg/icons/admin.svg" />
+              </span>
+              <span data-i18n-global="menuAdmin"></span>
+            </a>
+          </div>
+
+          <a class="nav-item nav-link" href="../support/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/contact_support.svg" />
+            </span>
+            <span data-i18n-global="menuSupport"></span>
+          </a>
+          <a class="nav-item nav-link" href="../logout/">
+            <span class="mr-3">
+              <img src="/_assets/svg/icons/logout.svg" />
+            </span>
+            <span data-i18n-global="menuLogOut"></span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <nav
+      aria-label="breadcrumb"
+      aria-hidden="true"
+      id="breadcrumbs"
+      class="d-none"
+    >
+      <ol class="breadcrumb bg-white my-0">
+        <li class="breadcrumb-item">
+          <a href="../" data-i18n-global="menuHome"></a>
+        </li>
+        <li class="breadcrumb-item firstOnMobile">
+          <a href="../invites/" data-i18n-global="menuMyInvites"></a>
+        </li>
+        <li class="breadcrumb-item active">
+          <span data-i18n="pagetitle"></span>
+        </li>
+      </ol>
+    </nav>
+
+    <div class="container" id="pageSpinner" aria-hidden="true">
+      <div class="row">
+        <div class="col mt-3 mb-4 text-center">
+          <img
+            src="/_assets/img/spinner.svg"
+            width="200"
+            height="200"
+            style="max-width: 100%"
+          />
+        </div>
+      </div>
+    </div>
+
+    <main class="container px-3 d-none mainContent">
+      <div id="alert" class="d-none row mb-4">
+        <div class="col col-md-8 offset-md-2">
+          <div class="alert alert-danger shadow" role="alert"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-md-8 offset-md-2 balancedTextWrap">
+          <h2
+            class="text-center text-uppercase my-4"
+            data-i18n="pagetitle"
+          ></h2>
+        </div>
+      </div>
+
+      <div class="row mb-4" id="metadataContainer">
+        <div class="col col-md-8 offset-md-2">
+          <table class="table table-striped">
+            <tr id="inviteDeletedContainer" class="d-none">
+              <td class="bg-danger text-white">
+                <strong data-i18n="inviteDeleted"></strong>
+              </td>
+              <td class="bg-danger text-right">
+                <strong>
+                  <a
+                    href="#"
+                    class="text-white underline"
+                    data-i18n="undelete"
+                    id="undeleteInvite"
+                  >
+                  </a
+                ></strong>
+              </td>
+            </tr>
+            <tr>
+              <td><strong data-i18n="label_event"></strong></td>
+              <td class="text-right">
+                <div id="eventName"></div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong data-i18n="label_dateInvited"></strong></td>
+              <td class="text-nowrap text-right">
+                <div id="dateInvited"></div>
+              </td>
+            </tr>
+            <tr id="invitedFromLocationContainer" class="invitedFromLocation">
+              <td><strong data-i18n="label_invitedFromLocation"></strong></td>
+              <td class="text-right align-middle">
+                <a href="#" id="invitedFromLocation" class="mr-1 underline">
+                  <img
+                    src="../_assets/svg/icons/place.svg"
+                    width="20"
+                    height="20"
+                    style="margin-right: 7px"
+                  /><span data-i18n="map"></span>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td><strong data-i18n="label_views"></strong></td>
+              <td class="text-nowrap text-right">
+                <div id="interactionViews"></div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col text-center balancedTextWrap">
+          <h3 id="headlineFollowUp"></h3>
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <div class="col col-md-8 offset-md-2">
+          <div id="followupQRCodeWithLocation" class="d-none">
+            <p id="qrCodeWithLocation"></p>
+            <ul>
+              <li>
+                <a
+                  href="#"
+                  id="qrCodeMapLink"
+                  class="underline"
+                  data-i18n="mapAndDrivingDirections"
+                ></a>
+              </li>
+            </ul>
+          </div>
+
+          <div id="followupQRCodeWithoutLocation" class="d-none">
+            <p id="qrCodeWithoutLocation"></p>
+          </div>
+
+          <div id="followup" class="d-none">
+            <ul class="list-group">
+              <li
+                class="list-group-item list-group-item-action d-none"
+                id="whatsAppLinkContainer"
+              >
+                <a href="#" id="whatsAppLink" class="underline">
+                  <div class="media">
+                    <div
+                      class="media-body"
+                      data-i18n="contactViaWhatsApp"
+                    ></div>
+                    <img
+                      class="ml-3 whatsAppGlyph"
+                      src="../_assets/svg/icons/whatsapp.svg"
+                      alt=""
+                    />
+                  </div>
+                </a>
+              </li>
+              <li
+                class="list-group-item list-group-item-action d-none"
+                id="phoneLinkContainer"
+              >
+                <a href="#" id="phoneLink">
+                  <div class="media">
+                    <div class="media-body" data-i18n="phone-call"></div>
+                    <img
+                      class="ml-3 contactGlyph"
+                      src="../_assets/svg/icons/phone-outline.svg"
+                      alt=""
+                    />
+                  </div>
+                </a>
+              </li>
+              <li
+                class="list-group-item list-group-item-action d-none"
+                id="smsLinkContainer"
+              >
+                <a href="#" id="smsLink">
+                  <div class="media">
+                    <div class="media-body" data-i18n="send-sms"></div>
+                    <img
+                      class="ml-3 contactGlyph"
+                      src="../_assets/svg/icons/message_outline.svg"
+                      alt=""
+                    />
+                  </div>
+                </a>
+              </li>
+              <li
+                class="list-group-item list-group-item-action d-none"
+                id="emailLinkContainer"
+              >
+                <a href="#" id="emailLink">
+                  <div class="media">
+                    <div class="media-body" data-i18n="send-email"></div>
+                    <img
+                      class="ml-3 contactGlyph"
+                      src="../_assets/svg/icons/email_outline.svg"
+                      alt=""
+                    />
+                  </div>
+                </a>
+              </li>
+              <li
+                class="list-group-item list-group-item-action"
+                id="addCalendarReminderLinkContainer"
+              >
+                <a
+                  href="#"
+                  data-i18n="add-calendar-reminder"
+                  id="addCalendarReminderLink"
+                ></a>
+              </li>
+              <li
+                class="list-group-item list-group-item-action"
+                id="resendLinkContainer"
+              >
+                <a href="#" data-i18n="resend" id="resendLink"></a>
+              </li>
+              <li class="list-group-item list-group-item-action">
+                <a
+                  href="/send/"
+                  data-i18n="inviteToDifferentEvent"
+                  id="inviteToDifferentEventLink"
+                ></a>
+              </li>
+              <li
+                class="list-group-item list-group-item-action d-none"
+                id="addToPhonebookLinkContainer"
+              >
+                <a href="#" id="addToPhonebookLink"></a>
+              </li>
+              <li
+                class="list-group-item list-group-item-action"
+                id="addToFollowUpListContainer"
+              >
+                <a href="#" id="addToFollowUpList"></a>
+              </li>
+              <li
+                id="removeFromFollowUpListContainer"
+                class="list-group-item list-group-item-action d-none"
+              >
+                <a href="#" id="removeFromFollowUpList"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div class="mt-5 mb-3">
+        <div class="row mt-4 mb-3">
+          <div class="col col-md-8 offset-md-2 col-xl-10 offset-xl-1">
+            <h3
+              id="headlineNotes"
+              data-i18n="headlineNotes"
+              class="text-center mb-3"
+            ></h3>
+          </div>
+        </div>
+
+        <!-- Notice if no notes -->
+        <div class="row m-3" id="no-notes-container">
+          <div class="col col-md-8 offset-md-2 col-xl-10 offset-xl-1">
+            <p class="text-center text-muted" id="no-notes"></p>
+          </div>
+        </div>
+
+        <!-- Notes loading spinner -->
+        <div class="row m-3 d-none" id="notes-spinner">
+          <div
+            class="col col-md-8 offset-md-2 col-xl-10 offset-xl-1 text-center"
+          >
+            <img
+              src="/_assets/img/spinner.svg"
+              width="100"
+              height="100"
+              style="max-width: 100%"
+            />
+          </div>
+        </div>
+
+        <!-- List of notes -->
+        <div id="notes" class="mb-3"></div>
+
+        <!-- Add a note -->
+        <div class="row mt-3 mb-5 pb-2">
+          <div
+            class="text-center col col-md-8 offset-md-2 col-xl-10 offset-xl-1"
+          >
+            <button
+              class="btn btn-primary"
+              data-i18n="addNote"
+              data-toggle="modal"
+              data-target="#addNoteModal"
+              data-backdrop="static"
+            ></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manage -->
+      <div class="row mt-4 pt-3 mb-3">
+        <div class="col text-center">
+          <h3 data-i18n="headlineManage"></h3>
+        </div>
+      </div>
+      <div class="row mb-4 pb-4">
+        <div class="col col-md-6 offset-md-3">
+          <div id="manage">
+            <ul class="list-group">
+              <li class="list-group-item list-group-item-action">
+                <a id="editLink" href="#">
+                  <div class="media">
+                    <div class="media-body" data-i18n="editInvite"></div>
+                    <img
+                      class="ml-3 contactGlyph"
+                      src="/_assets/svg/icons/edit-grey.svg"
+                      alt=""
+                    />
+                  </div>
+                </a>
+              </li>
+              <li class="list-group-item list-group-item-action">
+                <a id="deleteLink" href="#">
+                  <div class="media">
+                    <div class="media-body" data-i18n="deleteInvite"></div>
+                    <img
+                      class="ml-3 contactGlyph"
+                      src="/_assets/svg/icons/delete-red.svg"
+                      alt=""
+                    />
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notifications -->
+      <div class="row my-4 mb-3">
+        <div class="col col-md-8 offset-md-2">
+          <div class="px-3 pb-4">
+            <form id="settingsForm">
+              <h3
+                data-i18n="headlineNotifications"
+                class="mt-3 mb-3 text-center"
+              ></h3>
+
+              <p id="notificationsExplanation" class="my-3"></p>
+
+              <div class="text-center">
+                <div class="d-inline-block">
+                  <!-- Unsubscribe from e-mail notifications -->
+                  <div class="form-check mt-2 mb-3 text-left">
+                    <label
+                      for="unsubscribeFromEmailNotifications"
+                      class="d-block"
+                    >
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value="true"
+                        id="unsubscribeFromEmailNotifications"
+                        name="unsubscribeFromEmailNotifications"
+                      />
+                      <span
+                        data-i18n="unsubscribeFromEmailNotifications"
+                      ></span>
+                    </label>
+                  </div>
+
+                  <!-- Unsubscribe from push notifications -->
+                  <div class="form-check text-left">
+                    <label
+                      for="unsubscribeFromPushNotifications"
+                      class="d-block"
+                    >
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value="true"
+                        id="unsubscribeFromPushNotifications"
+                        name="unsubscribeFromPushNotifications"
+                      />
+                      <span data-i18n="unsubscribeFromPushNotifications"></span>
+                    </label>
+                  </div>
+
+                  <div class="text-center mt-4 pt-1">
+                    <button
+                      type="submit"
+                      class="btn btn-small btn-primary"
+                      data-i18n="notificationsSubmitButton"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Time zone notice -->
+      <div class="row pt-1 mt-5">
+        <div class="col col-md-8 offset-md-2 col-xl-10 offset-xl-1 text-center">
+          <hr class="my-2" size="1" noshade="" />
+          <p class="balancedTextWrap">
+            <small id="timezoneNotice"></small>
+          </p>
+        </div>
+      </div>
+
+      <div class="snackbar">
+        <div class="snackbar-body"></div>
+      </div>
+    </main>
+
+    <!-- Follow up reminder modal -->
+    <div id="modal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" data-i18n="followUpReminder"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div
+              id="followUpAlert"
+              class="alert alert-danger fade show mb-4 d-none"
+              role="alert"
+            >
+              <button
+                type="button"
+                class="close"
+                data-i18n-global-aria-label="close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <div id="modalAlertContent">
+                <strong data-i18n="invalidDate"></strong>
+                <p class="mt-2 mb-0" data-i18n="notPast"></p>
+              </div>
+            </div>
+            <p id="followUpParagraph"></p>
+            <form id="followUpForm">
+              <div class="form-group mt-4">
+                <label
+                  class="col-form-label"
+                  for="followUpDate"
+                  data-i18n="date"
+                ></label>
+                <input
+                  type="date"
+                  class="form-control-file datetime-field"
+                  id="followUpDate"
+                />
+                <div
+                  class="invalid-feedback"
+                  data-i18n="followUpDateRequired"
+                ></div>
+              </div>
+
+              <div class="form-group mt-5">
+                <label
+                  class="col-form-label"
+                  for="followUpTime"
+                  data-i18n="time"
+                ></label>
+                <input
+                  type="time"
+                  class="form-control-file datetime-field"
+                  id="followUpTime"
+                />
+                <div
+                  class="invalid-feedback"
+                  data-i18n="followUpTimeRequired"
+                ></div>
+              </div>
+
+              <div class="text-center mt-5 mb-4">
+                <div
+                  style="max-width: 320px; scroll-margin: 40px"
+                  class="d-inline-block"
+                  id="addToCalendar"
+                >
+                  <button
+                    id="addToCalendarButton"
+                    class="p-3 btn btn-info font-weight-bold"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#atcbOptions"
+                    aria-expanded="false"
+                    aria-controls="atcbOptions"
+                  >
+                    <img
+                      src="/_assets/svg/icons/calendar.svg"
+                      width="18"
+                      height="20"
+                      alt="Invitation icon"
+                    />
+                    <span
+                      class="ml-2 defaultContent"
+                      data-i18n="add-to-my-calendar"
+                      style="text-transform: initial; white-space: initial"
+                    ></span>
+                  </button>
+                  <div class="collapse" id="atcbOptions">
+                    <div
+                      class="list-group border border-info text-center list-atcb"
+                    >
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action"
+                        data-destination="apple"
+                      >
+                        <span class="atcb_icon atcb_icon-apple">
+                          <img
+                            src="/_assets/svg/icons/addToCalendar-Apple.svg"
+                            width="24"
+                            height="24"
+                            alt=""
+                          />
+                        </span>
+                        <span
+                          class="ml-1 defaultContent"
+                          data-i18n-global="addToCalendarApple"
+                        ></span>
+                      </a>
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action"
+                        data-destination="google"
+                      >
+                        <span class="atcb_icon atcb_icon-google">
+                          <img
+                            src="/_assets/svg/icons/addToCalendar-Google.svg"
+                            width="24"
+                            height="24"
+                            alt=""
+                          />
+                        </span>
+                        <span
+                          class="ml-1 defaultContent"
+                          data-i18n-global="addToCalendarGoogle"
+                        ></span>
+                      </a>
+                      <a
+                        href="#"
+                        class="list-group-item list-group-item-action"
+                        data-destination="ical"
+                      >
+                        <span class="atcb_icon atcb_icon-ical">
+                          <img
+                            src="/_assets/svg/icons/addToCalendar-iCalFile.svg"
+                            width="24"
+                            height="24"
+                            alt=""
+                          />
+                        </span>
+                        <span
+                          class="ml-1 defaultContent"
+                          data-i18n-global="addToCalendarIcalFile"
+                        ></span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Note Modal -->
+    <div id="addNoteModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" data-i18n="addNote"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="addNoteForm">
+              <div class="form-group mt-2 mb-4">
+                <label
+                  for="noteSummary"
+                  class="col-form-label"
+                  data-i18n="summaryLabel"
+                ></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="noteSummary"
+                  maxlength="255"
+                />
+                <div class="invalid-feedback" data-i18n="summaryRequired"></div>
+              </div>
+
+              <div class="form-group mb-0">
+                <label
+                  for="noteText"
+                  class="col-form-label"
+                  data-i18n="noteLabel"
+                ></label>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  id="noteText"
+                  rows="6"
+                ></textarea>
+                <div class="invalid-feedback" data-i18n="noteRequired"></div>
+              </div>
+            </form>
+          </div>
+
+          <div class="px-3 pt-0 pb-3">
+            <a
+              href="#"
+              class="btn btn-link text-dark float-left pl-0"
+              data-dismiss="modal"
+              data-i18n-global="cancel"
+            ></a>
+
+            <button
+              type="button"
+              class="ml-5 mr-2 btn btn-primary float-right"
+              data-i18n="saveNote"
+              id="saveNoteButton"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Note Modal -->
+    <div id="editNoteModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" data-i18n="editNote"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="editNoteForm">
+              <input type="hidden" name="noteid" id="editNoteId" />
+              <div class="form-group mt-2 mb-4">
+                <label
+                  for="editNoteSummary"
+                  class="col-form-label"
+                  data-i18n="summaryLabel"
+                ></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editNoteSummary"
+                  maxlength="255"
+                />
+                <div class="invalid-feedback" data-i18n="summaryRequired"></div>
+              </div>
+
+              <div class="form-group mb-0">
+                <label
+                  for="editNoteText"
+                  class="col-form-label"
+                  data-i18n="noteLabel"
+                ></label>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  id="editNoteText"
+                  rows="6"
+                ></textarea>
+                <div class="invalid-feedback" data-i18n="noteRequired"></div>
+              </div>
+            </form>
+          </div>
+
+          <div class="px-3 pt-0 pb-3">
+            <a
+              href="#"
+              class="btn btn-link text-dark float-left pl-0"
+              data-dismiss="modal"
+              data-i18n-global="cancel"
+            ></a>
+
+            <button
+              type="submit"
+              class="ml-5 btn btn-primary float-right mr-2"
+              data-i18n-global="update"
+              id="editNoteButton"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Note Modal -->
+    <div id="deleteNoteModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" data-i18n="deleteNote"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="deleteNoteForm">
+              <input type="hidden" name="noteid" id="deleteNoteId" />
+              <div class="text-center text-danger mb-4">
+                <strong data-i18n="deleteThisNote"></strong>
+              </div>
+
+              <div
+                class="border border-dark p-3 bg-light text-dark text-center mb-2"
+                id="deleteNoteSummary"
+              ></div>
+            </form>
+          </div>
+
+          <div class="px-3 pt-0 pb-3">
+            <a
+              href="#"
+              class="btn btn-link text-dark float-left pl-0"
+              data-dismiss="modal"
+              data-i18n-global="cancel"
+            ></a>
+
+            <button
+              type="submit"
+              class="ml-5 btn btn-danger float-right mr-2"
+              data-i18n-global="delete"
+              data-note-id=""
+              id="deleteNoteButton"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notifications Modal -->
+    <div id="notificationsModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" data-i18n="areYouSure"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"></div>
+
+          <div class="px-3 pt-0 pb-3">
+            <a
+              href="#"
+              class="btn btn-link text-dark float-left pl-0"
+              data-dismiss="modal"
+              data-i18n-global="cancel"
+            ></a>
+
+            <form id="notificationsConfirmForm">
+              <button
+                type="submit"
+                class="ml-5 btn btn-primary float-right mr-2"
+                data-i18n-global="confirm"
+                id="notificationsConfirmButton"
+              ></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for deleting invite -->
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteConfirm"></h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label=""
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body pb-1">
+            <div class="text-danger">
+              <strong id="deleteAreYouSure"></strong>
+            </div>
+            <blockquote
+              class="mt-3 mb-2 p-3 border bg-light text-dark"
+            ></blockquote>
+          </div>
+          <div class="modal-footer mb-1">
+            <form id="formDeleteInvites" method="post">
+              <input type="hidden" name="deletionId" id="deletionId" />
+              <button
+                type="button"
+                class="btn text-muted ml-3"
+                data-dismiss="modal"
+                data-i18n-global="cancel"
+              ></button>
+              <button
+                id="confirmDeleteButton"
+                type="submit"
+                class="btn btn-danger ml-5 mr-2 font-weight-bold"
+                data-i18n-global="delete"
+              ></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for editing invite -->
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modaltitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <form id="formEditInvite" method="post" novalidate>
+            <input type="hidden" name="inviteId" id="inviteId" />
+            <div class="modal-header">
+              <h5 class="modal-title" data-i18n="editInvite"></h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label=""
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body pb-1">
+              <div class="form-group">
+                <label for="editName" data-i18n="editName"></label>
+                <input type="text" class="form-control" id="editName" />
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <div class="form-group mt-4 pt-2">
+                <label for="editEmail" data-i18n="editEmail"></label>
+                <input type="email" class="form-control" id="editEmail" />
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <div class="form-group mt-4 pt-2 mb-1">
+                <div>
+                  <label for="editPhone" data-i18n="editPhone"></label>
+                </div>
+                <input
+                  type="tel"
+                  class="form-control hideKeyboardWhileFocused"
+                  id="editPhone"
+                />
+              </div>
+              <div class="invalid-feedback" id="editPhoneInvalidFeedback"></div>
+
+              <div class="form-group my-2 pt-1">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="isWhatsApp"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="isWhatsApp"
+                    data-i18n="isWhatsApp"
+                  ></label>
+                </div>
+              </div>
+
+              <div class="form-group mt-4 pt-2 d-none" id="removeMapContainer">
+                <label class="mb-2" data-i18n="removeMapLabel"></label>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="removeMapCheckbox"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="removeMapCheckbox"
+                    data-i18n="removeMapCheckboxLabel"
+                  ></label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer mt-3 mb-1">
+              <button
+                type="button"
+                class="btn text-muted ml-3"
+                data-dismiss="modal"
+                data-i18n-global="cancel"
+              ></button>
+              <button
+                id="submitEditButton"
+                type="submit"
+                class="btn btn-primary ml-5 mr-2 font-weight-bold"
+                data-i18n-global="update"
+              ></button>
+            </div>
+          </form>
+
+          <div
+            class="snackbar snackbar-multi-line bg-danger"
+            id="editModalSnackbar"
+          >
+            <div class="snackbar-body"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav buttons (only visible in standalone mode) -->
+    <nav id="navButtons" class="container-fluid fixed-bottom p-0">
+      <table width="100%" cellpadding="10">
+        <tr>
+          <td>
+            <div class="d-inline-block text-center">
+              <a href="/" id="navHomeButton">
+                <img
+                  src="/_assets/svg/icons/nav-home-light.svg"
+                  width="22"
+                  height="22"
+                />
+                <div data-i18n-global="navbarHome"></div>
+              </a>
+            </div>
+          </td>
+
+          <td>
+            <div class="d-inline-block text-center">
+              <a href="/invites/" id="navMyInvitesButton">
+                <img
+                  src="/_assets/svg/icons/nav-my-invites-light.svg"
+                  width="22"
+                  height="22"
+                />
+                <div data-i18n-global="navbarMyInvites"></div>
+              </a>
+            </div>
+          </td>
+
+          <td>
+            <div class="d-inline-block text-center">
+              <a href="/followup/" id="navFollowupButton">
+                <img
+                  src="/_assets/svg/icons/nav-followup-list-light.svg"
+                  width="22"
+                  height="22"
+                />
+                <div data-i18n-global="navbarFollowUp"></div>
+              </a>
+            </div>
+          </td>
+
+          <td>
+            <div class="d-inline-block text-center">
+              <a href="/send/" id="navSendAnInviteButton">
+                <img
+                  src="/_assets/svg/icons/nav-send-an-invite-light.svg"
+                  width="22"
+                  height="22"
+                />
+                <div data-i18n-global="navbarSendAnInvite"></div>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </nav>
+
+    <script src="/js/datebook.min.js"></script>
+    <script src="/js/moment.min.js" referrerpolicy="no-referrer"></script>
+    <script
+      src="/js/moment-timezone-with-data-10-year-range.min.js"
+      integrity="sha512-d11VXfxQMn+sZuIgzHITdIuInr4cVRGV/uLiSI643WH/J+p4gPFYSHXRMR2v+w4Rn2TSyzJjsZjc0M7+Qd+UXw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script
+      src="/js/localforage.min.js"
+      integrity="sha512-+BMamP0e7wn39JGL8nKAZ3yAQT2dL5oaXWr4ZYlTGkKOaoXM/Yj7c4oy50Ngz5yoUutAG17flueD4F6QpTlPng=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="../css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="../js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
+    <script src="../js/getMobileOperatingSystem.js"></script>
+    <script src="../js/sync.js"></script>
+    <script src="../js/global.js"></script>
+    <script src="logic.js"></script>
+  </body>
+</html>

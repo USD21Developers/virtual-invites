@@ -1,0 +1,57 @@
+#profilePhoto {
+  background: rgb(45, 74, 126);
+  background: radial-gradient(
+    circle,
+    rgba(76, 123, 212, 1) 0%,
+    rgba(52, 85, 147, 1) 90%
+  );
+  border: 2px solid #5e7daf;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#profilePhoto img {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
+
+label {
+  color: var(--dark);
+  font-weight: 600;
+}
+
+label[for="userstatusRegistered"],
+label[for="userstatusFrozen"] {
+  font-weight: 400;
+}
+
+input[type="radio"]:checked + label {
+  font-weight: bold;
+}
+
+input[type="checkbox"] + label {
+  font-weight: normal;
+}
+
+#userstatusRegistered:checked + label {
+  color: var(--success);
+}
+
+#userstatusFrozen:checked + label {
+  color: var(--danger);
+}
+
+#help_userType_sysadmin strong {
+  color: var(--dark-light);
+}
+
+#errorUserTypeIsRequired:not(.d-none),
+#errorUserStatusIsRequired:not(.d-none) {
+  display: block;
+}
+
+.user-full-name {
+  color: var(--info-dark);
+  font-weight: 800;
+}

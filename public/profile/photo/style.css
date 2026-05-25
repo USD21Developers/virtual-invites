@@ -1,0 +1,41 @@
+label {
+  font-size: 16px;
+}
+
+#photoUpload,
+#photoCapture {
+  display: none;
+}
+
+#profilePhoto {
+  background-color: #ccc;
+  background-size: contain;
+  background: rgb(76, 123, 212);
+  background: radial-gradient(
+    circle,
+    rgba(76, 123, 212, 1) 0%,
+    rgba(52, 85, 147, 1) 90%
+  );
+  background-repeat: no-repeat;
+  background-position: top center;
+  border: 2px solid var(--secondary);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#profilePhoto img {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
+
+/* label[for="photoUpload"],
+label[for="photoCapture"] {
+  background-color: #006699;
+  border: 3px outset #1177aa;
+  color: white;
+  display: inline-block;
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  padding: 8px 15px;
+} */

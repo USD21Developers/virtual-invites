@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invite</title>
+    <style type="text/css">
+      video {
+        height: 854px;
+        max-height: 90vh;
+        width: auto;
+        max-width: 100% !important;
+      }
+    </style>
+  </head>
+  <body>
+    <video id="videoPlayer" controls playsinline muted></video>
+
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", () => {
+        const video = document.getElementById("videoPlayer");
+        const sources = [
+          { src: "invite_1080p.mp4", type: "video/mp4", width: 1080 },
+          { src: "invite_720p.mp4", type: "video/mp4", width: 720 },
+          { src: "invite_480p.mp4", type: "video/mp4", width: 480 },
+          { src: "invite_1080p.webm", type: "video/webm", width: 1080 },
+          { src: "invite_720p.webm", type: "video/webm", width: 720 },
+          { src: "invite_480p.webm", type: "video/webm", width: 480 },
+        ];
+
+        const maxWidth = window.innerWidth;
+        const prefersWebM = video.canPlayType("video/webm") !== "";
+
+        const bestSource = sources
+          .filter(
+            (src) =>
+              src.width <= maxWidth &&
+              (!prefersWebM || src.type === "video/webm")
+          )
+          .sort((a, b) => b.width - a.width)[0];
+
+        if (bestSource) {
+          video.src = bestSource.src;
+          video.type = bestSource.type;
+        }
+      });
+    </script>
+  </body>
+</html>

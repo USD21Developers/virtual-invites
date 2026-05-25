@@ -1,0 +1,19 @@
+.mainContent li {
+  margin-bottom: 2.5rem;
+}
+
+#qrCodeInstructions {
+  font-size: 1rem;
+}
+
+a[href="/logout/"] {
+  text-decoration: underline;
+}
+
+[data-i18n="authorizationInProgress"] {
+  font-weight: 600;
+}
+
+a[href="#authorizers"] {
+  color: var(--danger);
+}

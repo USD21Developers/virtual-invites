@@ -1,0 +1,245 @@
+{
+  "metadata": {
+    "description": "Events",
+    "path": "/events/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Events",
+      "translated": "Events"
+    },
+    {
+      "key": "paragraph1",
+      "original": "Every invite shares a specific event. You can manage your events from here.",
+      "translated": "Every invite shares a specific event. You can manage your events from here."
+    },
+    {
+      "key": "addevent",
+      "original": "Add an Event",
+      "translated": "Add an Event"
+    },
+    {
+      "key": "followuser",
+      "original": "Follow a User",
+      "translated": "Follow a User"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbEvents",
+      "original": "Events",
+      "translated": "Events"
+    },
+    {
+      "key": "eventsSynced",
+      "original": "Events synced.",
+      "translated": "Events synced."
+    },
+    {
+      "key": "eventsWereUpdatedReload",
+      "original": "Events have been updated. Reload?",
+      "translated": "Events have been updated. Reload?",
+      "changes": [
+        {
+          "original": "Reload",
+          "translated": "Reload",
+          "bold": false,
+          "italic": false,
+          "link": "javascript:window.location.reload()"
+        }
+      ]
+    },
+    {
+      "key": "from",
+      "original": "From:",
+      "translated": "From:"
+    },
+    {
+      "key": "to",
+      "original": "To:",
+      "translated": "To:"
+    },
+    {
+      "key": "btnEdit",
+      "original": "Edit",
+      "translated": "Edit"
+    },
+    {
+      "key": "btnDelete",
+      "original": "Delete",
+      "translated": "Delete"
+    },
+    {
+      "key": "frequencyEverySunday",
+      "original": "Every Sunday",
+      "translated": "Sundays"
+    },
+    {
+      "key": "frequencyEveryMonday",
+      "original": "Every Monday",
+      "translated": "Mondays"
+    },
+    {
+      "key": "frequencyEveryTuesday",
+      "original": "Every Tuesday",
+      "translated": "Tuesdays"
+    },
+    {
+      "key": "frequencyEveryWednesday",
+      "original": "Every Wednesday",
+      "translated": "Wednesdays"
+    },
+    {
+      "key": "frequencyEveryThursday",
+      "original": "Every Thursday",
+      "translated": "Thursdays"
+    },
+    {
+      "key": "frequencyEveryFriday",
+      "original": "Every Friday",
+      "translated": "Fridays"
+    },
+    {
+      "key": "frequencyEverySaturday",
+      "original": "Every Saturday",
+      "translated": "Saturdays"
+    },
+    {
+      "key": "notFollowingAnyone",
+      "original": "(Not following anyone)",
+      "translated": "(Not following anyone)"
+    },
+    {
+      "key": "noEventsFromUsersIFollow",
+      "original": "There are no events at this time from users I follow.",
+      "translated": "There are no events at this time from users I follow.",
+      "changes": [
+        {
+          "original": "users I follow",
+          "translated": "users I follow",
+          "bold": false,
+          "italic": false,
+          "link": "../following/"
+        }
+      ]
+    },
+    {
+      "key": "noEventsFromMe",
+      "original": "I have added no events.",
+      "translated": "I have added no events."
+    },
+    {
+      "key": "eventsFromMe",
+      "original": "My Events:",
+      "translated": "My Events:"
+    },
+    {
+      "key": "eventsFromUsersIFollow",
+      "original": "Events from Users I Follow:",
+      "translated": "Events from Users I Follow:"
+    },
+    {
+      "key": "followAUser",
+      "original": "Follow a User",
+      "translated": "Follow a User"
+    },
+    {
+      "key": "unfollowConfirm",
+      "original": "Confirm:",
+      "translated": "Confirm:"
+    },
+    {
+      "key": "unfollowHeader",
+      "original": "Unfollow {firstname} {lastname}?",
+      "translated": "Unfollow {firstname} {lastname}?"
+    },
+    {
+      "key": "unfollowMale",
+      "original": "You will no longer see his events unless you follow him again.",
+      "translated": "You will no longer see his events unless you follow him again."
+    },
+    {
+      "key": "unfollowFemale",
+      "original": "You will no longer see her events unless you follow her again.",
+      "translated": "You will no longer see her events unless you follow her again."
+    },
+    {
+      "key": "unfollow",
+      "original": "Unfollow",
+      "translated": "Unfollow"
+    },
+    {
+      "key": "cancel",
+      "original": "Cancel",
+      "translated": "Cancel"
+    },
+    {
+      "key": "edit",
+      "original": "Edit",
+      "translated": "Edit"
+    },
+    {
+      "key": "delete",
+      "original": "Delete",
+      "translated": "Delete"
+    },
+    {
+      "key": "datetime",
+      "original": "Date and Time:",
+      "translated": "Date and Time:"
+    },
+    {
+      "key": "description",
+      "original": "Description:",
+      "translated": "Description:"
+    },
+    {
+      "key": "place",
+      "original": "Place:",
+      "translated": "Place:"
+    },
+    {
+      "key": "inquireForLocation",
+      "original": "Please inquire for location details.",
+      "translated": "Please inquire for location details."
+    },
+    {
+      "key": "mapAndDirections",
+      "original": "Map and Directions",
+      "translated": "Map and Directions"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

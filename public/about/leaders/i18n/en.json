@@ -1,0 +1,237 @@
+{
+  "metadata": {
+    "description": "Leaders",
+    "path": "/about/leaders/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Leaders",
+      "translated": "Leaders"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbAbout",
+      "original": "About",
+      "translated": "About"
+    },
+    {
+      "key": "breadcrumbLeaders",
+      "original": "Leaders",
+      "translated": "Leaders"
+    },
+    {
+      "key": "p1",
+      "original": "Do you lead a group within the church? Whether it's a Bible Talk, a local congregation or even a world sector, the Invites App can help you quickly equip all of your people with access to the app.",
+      "translated": "Do you lead a group within the church? Whether it's a Bible Talk, a local congregation or even a world sector, the Invites App can help you quickly equip all of your people with access to the app."
+    },
+    {
+      "key": "p2Headline",
+      "original": "All Users are Verified Disciples",
+      "translated": "All Users are Verified Disciples"
+    },
+    {
+      "key": "p2",
+      "original": "Every user of this app must be verified as a genuine disciple of Jesus and a member in good standing with their local church congregation. This is achieved through a vouching concept: if a leader within that congregation recognizes a member by authorizing them, then that member will have access.",
+      "translated": "Every user of this app must be verified as a genuine disciple of Jesus and a member in good standing with their local church congregation. This is achieved through a vouching concept: if a leader within that congregation recognizes a member by authorizing them, then that member will have access."
+    },
+    {
+      "key": "p3Headline",
+      "original": "Delegating Authorization",
+      "translated": "Delegating Authorization"
+    },
+    {
+      "key": "p3",
+      "original": "Bible Talk leaders always authorize their members directly. But leaders of larger groups only need to authorize their top leaders. Those leaders can continue the same pattern by authorizing the leaders who directly report to them, and so on. In this way, an entire organization of disciples (no matter how large) can easily equip all of its members with access to the Invites App.",
+      "translated": "Bible Talk leaders always authorize their members directly. But leaders of larger groups only need to authorize their top leaders. Those leaders can continue the same pattern by authorizing the leaders who directly report to them, and so on. In this way, an entire organization of disciples (no matter how large) can easily equip all of its members with access to the Invites App.",
+      "changes": [
+        {
+          "original": "top leaders",
+          "translated": "top leaders",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "p4Headline",
+      "original": "How to Pre-Authorize Disciples",
+      "translated": "How to Pre-Authorize Disciples"
+    },
+    {
+      "key": "p4",
+      "original": "Pre-authorizing a disciple is easy. Just log in to the Invites App and click on Pre-authorize a new user.",
+      "translated": "Pre-authorizing a disciple is easy. Just log in to the Invites App and click on Pre-authorize a new user.",
+      "changes": [
+        {
+          "original": "Pre-authorize a new user.",
+          "translated": "Pre-authorize a new user.",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "p5Headline",
+      "original": "User-Initiated Authorization",
+      "translated": "User-Initiated Authorization"
+    },
+    {
+      "key": "p5",
+      "original": "There is also an alternative authorization process, where a disciple can visit the Web site of the Invites App (invites.mobi) and register.",
+      "translated": "There is also an alternative authorization process, where a disciple can visit the Web site of the Invites App (invites.mobi) and register.",
+      "changes": [
+        {
+          "original": "invites.mobi",
+          "translated": "invites.mobi",
+          "bold": true,
+          "italic": false,
+          "link": "https://invites.mobi/"
+        }
+      ]
+    },
+    {
+      "key": "p6",
+      "original": "Upon logging in for the first time, the new registrant will see a QR code and a list of leaders with their profile photos. They will be asked to find one of those leaders (in person) in order to get authorized. If one of those leaders scans the registrant's QR code, a form will appear on the leader's device in which they can grant authorization.",
+      "translated": "Upon logging in for the first time, the new registrant will see a QR code and a list of leaders with their profile photos. They will be asked to find one of those leaders (in person) in order to get authorized. If one of those leaders scans the registrant's QR code, a form will appear on the leader's device in which they can grant authorization."
+    },
+    {
+      "key": "p7",
+      "original": "Although user-initiated authorization is acceptable, it is less convenient than pre-authorization. Therefore the preferred method of onboarding is pre-authorization, instead of telling disciples to visit the Web site.",
+      "translated": "Although user-initiated authorization is acceptable, it is less convenient than pre-authorization. Therefore the preferred method of onboarding is pre-authorization, instead of telling disciples to visit the Web site.",
+      "changes": [
+        {
+          "original": "less convenient",
+          "translated": "less convenient",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "headlineOrLearnMore",
+      "original": "Or learn more:",
+      "translated": "Or learn more:"
+    },
+    {
+      "key": "keyFeatures",
+      "original": "Other Key Features",
+      "translated": "Other Key Features"
+    },
+    {
+      "key": "whenTimeIsLimitedHeadline",
+      "original": "Share your Faith, Even When Time is Limited:",
+      "translated": "Share your Faith, Even When Time is Limited: "
+    },
+    {
+      "key": "whenTimeIsLimitedDetails",
+      "original": "Share all of the event's details to the recipient's device instantly, freeing you to use a brief moment to build rapport instead of fixating on details. The whole interaction can take place within one minute.",
+      "translated": "Share all of the event's details to the recipient's device instantly, freeing you to use a brief moment to build rapport instead of fixating on details. The whole interaction can take place within one minute."
+    },
+    {
+      "key": "remindersHeadline",
+      "original": "Calendar Reminders:",
+      "translated": "Calendar Reminders:"
+    },
+    {
+      "key": "remindersDetails",
+      "original": "Leverage the power of calendar reminders to help recipients remember to attend, even when their device does not have a signal.",
+      "translated": "Leverage the power of calendar reminders to help recipients remember to attend, even when their device does not have a signal."
+    },
+    {
+      "key": "followUpHeadline",
+      "original": "Follow Up:",
+      "translated": "Follow Up:"
+    },
+    {
+      "key": "followUpDetails",
+      "original": "Never again forget or overlook anyone you've invited. Make all of your follow-up calls and texts. Take notes. Create follow-up reminders to yourself, all from one convenient place.",
+      "translated": "Never again forget or overlook anyone you've invited. Make all of your follow-up calls and texts. Take notes. Create follow-up reminders to yourself, all from one convenient place."
+    },
+    {
+      "key": "mapsHeadline",
+      "original": "Maps:",
+      "translated": "Maps:"
+    },
+    {
+      "key": "mapsDetails",
+      "original": "Use digital maps to plan your local outreach, maximizing your likelihood of meeting open people.",
+      "translated": "Use digital maps to plan your local outreach, maximizing your likelihood of meeting open people."
+    },
+    {
+      "key": "leadersHeadline",
+      "original": "Leaders:",
+      "translated": "Leaders:"
+    },
+    {
+      "key": "leadersDetails",
+      "original": "If you lead a group within the church (whether a Bible Talk or even a world sector) you can easily equip your entire membership with access to the Invites App.",
+      "translated": "If you lead a group within the church (whether a Bible Talk or even a world sector) you can easily equip your entire membership with access to the Invites App."
+    },
+    {
+      "key": "otherBenefits",
+      "original": "Many other benefits!",
+      "translated": "Many other benefits!"
+    },
+    {
+      "key": "convincedHeadline",
+      "original": "Convinced?  Register for access:",
+      "translated": "Convinced?  Register for access:",
+      "changes": [
+        {
+          "original": "Convinced?",
+          "translated": "Convinced?",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "registerButton",
+      "original": "Register",
+      "translated": "Register"
+    },
+    {
+      "key": "learnMoreLink",
+      "original": "Video & details",
+      "translated": "Video & details"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

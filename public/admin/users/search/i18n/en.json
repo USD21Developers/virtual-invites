@@ -1,0 +1,112 @@
+{
+  "metadata": {
+    "description": "User Search",
+    "path": "/admin/search/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "User Search",
+      "translated": "User Search"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbAdmin",
+      "original": "Admin",
+      "translated": "Admin"
+    },
+    {
+      "key": "breadcrumbUsers",
+      "original": "Users",
+      "translated": "Users"
+    },
+    {
+      "key": "breadcrumbSearch",
+      "original": "Search",
+      "translated": "Search"
+    },
+    {
+      "key": "searchResults",
+      "original": "Results",
+      "translated": "Results"
+    },
+    {
+      "key": "noResultsFound",
+      "original": "No users found.",
+      "translated": "No users found."
+    },
+    {
+      "key": "tryAgain",
+      "original": "Try again?",
+      "translated": "Try again?"
+    },
+    {
+      "key": "oneUserFound",
+      "original": "One user found",
+      "translated": "One user found"
+    },
+    {
+      "key": "multipleUsersFound",
+      "original": "{QUANTITY} users found",
+      "translated": "{QUANTITY} users found"
+    },
+    {
+      "key": "registered",
+      "original": "Registered: {DATE}",
+      "translated": "Registered: {DATE}"
+    },
+    {
+      "key": "status",
+      "original": "Status: {STATUS}",
+      "translated": "Status: {STATUS}"
+    },
+    {
+      "key": "statusActive",
+      "original": "active",
+      "translated": "active"
+    },
+    {
+      "key": "statusFrozen",
+      "original": "account frozen",
+      "translated": "account frozen"
+    },
+    {
+      "key": "searchAgain",
+      "original": "Search again?",
+      "translated": "Search again?"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

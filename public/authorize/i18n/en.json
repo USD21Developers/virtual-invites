@@ -1,0 +1,393 @@
+{
+  "metadata": {
+    "description": "Pre-authorize",
+    "path": "/authorize/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Pre-authorize",
+      "translated": "Pre-authorize"
+    },
+    {
+      "key": "paragraph1",
+      "original": "To pre-authorize a disciple to become a new user, please complete the form below. This will send them a brief message about the app, and that message will contain a clickable authorization link. Once they click on the link, they will be pre-approved to register and will have full access to the app.",
+      "translated": "To pre-authorize a disciple to become a new user, please complete the form below. This will send them a brief message about the app, and that message will contain a clickable authorization link. Once they click on the link, they will be pre-approved to register and will have full access to the app.",
+      "changes": [
+        {
+          "original": "authorization link",
+          "translated": "authorization link",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "whyAuthorizeHeading",
+      "original": "Why is authorization necessary?",
+      "translated": "Why is authorization necessary?"
+    },
+    {
+      "key": "whyAuthorizeP1",
+      "original": "Every user of the Invites App must be verified as a member in good standing with the International Christian Churches, and must be committed to an accurate understanding of scripture.",
+      "translated": "Every user of the Invites App must be verified as a member in good standing with the International Christian Churches, and must be committed to an accurate understanding of scripture.",
+      "changes": [
+        {
+          "original": "International Christian Churches",
+          "translated": "International Christian Churches",
+          "bold": false,
+          "italic": false,
+          "link": "https://usd21.org/",
+          "underline": true
+        }
+      ]
+    },
+    {
+      "key": "whyAuthorizeP2",
+      "original": "This is important because all church events are added into the app by the users themselves. If authorization were not practiced, hypothetically a non-disciple could register, and could use the app to add events that promote outside churches and/or unsound doctrines.",
+      "translated": "This is important because all church events are added into the app by the users themselves. If authorization were not practiced, hypothetically a non-disciple could register, and could use the app to add events that promote outside churches and/or unsound doctrines."
+    },
+    {
+      "key": "inputNewUser",
+      "original": "New User:",
+      "translated": "New User:"
+    },
+    {
+      "key": "firstName",
+      "original": "First name:",
+      "translated": "First name:"
+    },
+    {
+      "key": "lastName",
+      "original": "Last name:",
+      "translated": "Last name:"
+    },
+    {
+      "key": "church",
+      "original": "Church:",
+      "translated": "Church:"
+    },
+    {
+      "key": "labelMethodOfSending",
+      "original": "Method of sending authorization link:",
+      "translated": "Method of sending authorization link:"
+    },
+    {
+      "key": "labelTextMessage",
+      "original": "Text message",
+      "translated": "Text message"
+    },
+    {
+      "key": "labelWhatsApp",
+      "original": "WhatsApp",
+      "translated": "WhatsApp"
+    },
+    {
+      "key": "labelEmail",
+      "original": "E-mail",
+      "translated": "E-mail"
+    },
+    {
+      "key": "labelQRCode",
+      "original": "QR Code",
+      "translated": "QR Code"
+    },
+    {
+      "key": "contactPhone",
+      "original": "User's mobile phone number:",
+      "translated": "User's mobile phone number:"
+    },
+    {
+      "key": "contactPhoneWhatsApp",
+      "original": "User's WhatsApp phone number:",
+      "translated": "User's WhatsApp phone number:"
+    },
+    {
+      "key": "contactEmail",
+      "original": "User's e-mail address:",
+      "translated": "User's e-mail address:"
+    },
+    {
+      "key": "labelHighestLeadershipRole",
+      "original": "User's highest leadership role:",
+      "translated": "User's highest leadership role:"
+    },
+    {
+      "key": "houseChurchLeaderOrHigher",
+      "original": "House church leader or higher",
+      "translated": "House church leader or higher"
+    },
+    {
+      "key": "bibleTalkLeader",
+      "original": "Bible Talk leader",
+      "translated": "Bible Talk leader"
+    },
+    {
+      "key": "noneOfAbove",
+      "original": "Neither of the above",
+      "translated": "Neither of the above"
+    },
+    {
+      "key": "oathCustomizedNames",
+      "original": "I hereby vouch that {FIRST-NAME} {LAST-NAME} is a member in good standing with the {CHURCH-NAME}.",
+      "translated": "I hereby vouch that {FIRST-NAME} {LAST-NAME} is a member in good standing with the {CHURCH-NAME}."
+    },
+    {
+      "key": "oathCustomizedChurch",
+      "original": "I hereby vouch that the above person is a member in good standing with the {CHURCH-NAME}.",
+      "translated": "I hereby vouch that the above person is a member in good standing with the {CHURCH-NAME}."
+    },
+    {
+      "key": "isExpectingTextMessage",
+      "original": "{FIRST-NAME} is expecting to receive a text message about the Invites App.",
+      "translated": "{FIRST-NAME} is expecting to receive a text message about the Invites App."
+    },
+    {
+      "key": "isExpectingWhatsApp",
+      "original": "{FIRST-NAME} is expecting to receive a WhatsApp message about the Invites App.",
+      "translated": "{FIRST-NAME} is expecting to receive a WhatsApp message about the Invites App."
+    },
+    {
+      "key": "isExpectingEmail",
+      "original": "{FIRST-NAME} is expecting to receive an e-mail about the Invites App.",
+      "translated": "{FIRST-NAME} is expecting to receive an e-mail about the Invites App."
+    },
+    {
+      "key": "btnSend",
+      "original": "Send Authorization",
+      "translated": "Send Authorization"
+    },
+    {
+      "key": "btnShowQRCode",
+      "original": "Show QR Code",
+      "translated": "Show QR Code"
+    },
+    {
+      "key": "errorFirstName",
+      "original": "First name is required",
+      "translated": "First name is required"
+    },
+    {
+      "key": "errorLastName",
+      "original": "Last name is required",
+      "translated": "Last name is required"
+    },
+    {
+      "key": "errorChurchMustMatch",
+      "original": "New user must be in the same church as me ({CHURCH-NAME}).",
+      "translated": "New user must be in the same church as me ({CHURCH-NAME}).",
+      "changes": [
+        {
+          "original": "({CHURCH-NAME})",
+          "translated": "({CHURCH-NAME})",
+          "bold": false,
+          "italic": true,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "errorLeadershipRoleRequired",
+      "original": "Highest leadership role is required",
+      "translated": "Highest leadership role is required"
+    },
+    {
+      "key": "errorMobilePhoneRequired",
+      "original": "User's mobile phone number is required",
+      "translated": "User's mobile phone number is required"
+    },
+    {
+      "key": "errorMobilePhoneInvalid",
+      "original": "A valid phone number is required.",
+      "translated": "A valid phone number is required."
+    },
+    {
+      "key": "errorEmailRequired",
+      "original": "User's e-mail address is required",
+      "translated": "User's e-mail address is required"
+    },
+    {
+      "key": "errorEmailInvalid",
+      "original": "A valid e-mail address is required.",
+      "translated": "A valid e-mail address is required."
+    },
+    {
+      "key": "errorOathIsRequired",
+      "original": "You must vouch for the new user.",
+      "translated": "You must vouch for the new user."
+    },
+    {
+      "key": "errorIsExpectingIsRequired",
+      "original": "The new user must be expecting to receive this message.",
+      "translated": "The new user must be expecting to receive this message."
+    },
+    {
+      "key": "notificationEmailSubject",
+      "original": "The Invites App:  You are invited to register!",
+      "translated": "The Invites App:  You are invited to register!"
+    },
+    {
+      "key": "notificationQRCodeHeader",
+      "original": "{NEW-USER-FIRST-NAME} is Invited!",
+      "translated": "{NEW-USER-FIRST-NAME} is Invited!"
+    },
+    {
+      "key": "notificationSentence1",
+      "original": "Hi {NEW-USER-FIRST-NAME}!",
+      "translated": "Hi {NEW-USER-FIRST-NAME}!"
+    },
+    {
+      "key": "notificationSentence2",
+      "original": "{FIRST-NAME} {LAST-NAME} has invited you to use the Invites App. This app is a powerful tool for evangelism and follow up, created specifically for disciples in the Soldout Discipling Movement.",
+      "translated": "{FIRST-NAME} {LAST-NAME} has invited you to use the Invites App. This app is a powerful tool for evangelism and follow up, created specifically for disciples in the Soldout Discipling Movement."
+    },
+    {
+      "key": "notificationSentence2TextMessage",
+      "original": "It's {FIRST-NAME} {LAST-NAME}. I'm inviting you to use the Invites App. This app is a powerful tool for evangelism and follow up, created specifically for disciples in the Soldout Discipling Movement.",
+      "translated": "It's {FIRST-NAME} {LAST-NAME}. I'm inviting you to use the Invites App. This app is a powerful tool for evangelism and follow up, created specifically for disciples in the Soldout Discipling Movement."
+    },
+    {
+      "key": "notificationSentence2HTML",
+      "original": "{FIRST-NAME} {LAST-NAME} has invited you to use the Invites App. This app is a powerful tool for evangelism and follow up, created specifically for disciples in the Soldout Discipling Movement.",
+      "translated": "{FIRST-NAME} {LAST-NAME} has invited you to use the Invites App. This app is a powerful tool for evangelism and follow up, created specifically for disciples in the Soldout Discipling Movement.",
+      "changes": [
+        {
+          "original": "Invites App",
+          "translated": "Invites App",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "notificationSentence3",
+      "original": "The Invites App lets you share your faith quickly and conveniently, by sending a digital invitation. It helps the people you share with to remember and find the events that you invite them to.",
+      "translated": "The Invites App lets you share your faith quickly and conveniently, by sending a digital invitation. It helps the people you share with to remember and find the events that you invite them to."
+    },
+    {
+      "key": "notificationSentence4",
+      "original": "It's also completely FREE.",
+      "translated": "It's also completely FREE."
+    },
+    {
+      "key": "notificationMoreInfo",
+      "original": "Full details (click below):",
+      "translated": "Full details (click below):"
+    },
+    {
+      "key": "notificationMoreInfoQRCode",
+      "original": "Full details",
+      "translated": "Full details"
+    },
+    {
+      "key": "notificationRegisterBefore",
+      "original": "If you decide to register, please do so by {DEADLINE-DATE}.",
+      "translated": "If you decide to register, please do so by {DEADLINE-DATE}."
+    },
+    {
+      "key": "hereIsAuthCode",
+      "original": "Here's your authorization code:",
+      "translated": "Here's your authorization code:"
+    },
+    {
+      "key": "notificationSincerely",
+      "original": "Sincerely,",
+      "translated": "Sincerely,"
+    },
+    {
+      "key": "notificationInternetMinistry",
+      "original": "The Internet Ministry",
+      "translated": "The Internet Ministry"
+    },
+    {
+      "key": "unexpectedError",
+      "original": "An unexpected error occurred.",
+      "translated": "An unexpected error occurred."
+    },
+    {
+      "key": "notEnoughMoneyToSendTextMessage",
+      "original": "Unable to send text message. Please try a different sending method.",
+      "translated": "Unable to send text message. Please try a different sending method."
+    },
+    {
+      "key": "authorizationSentHeadline",
+      "original": "Authorization Sent!",
+      "translated": "Authorization Sent!"
+    },
+    {
+      "key": "authorizationSent",
+      "original": "Please ask {FIRST-NAME} to click on the link within the message. The link will expire after one month.",
+      "translated": "Please ask {FIRST-NAME} to click on the link within the message. The link will expire after one month."
+    },
+    {
+      "key": "authorizationSentQRCode",
+      "original": "Please ask {FIRST-NAME} to click on the Full Details button within the message.",
+      "translated": "Please ask {FIRST-NAME} to click on the Full Details button within the message.",
+      "changes": [
+        {
+          "original": "Full Details",
+          "translated": "Full Details",
+          "bold": true,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    },
+    {
+      "key": "completed",
+      "original": "Scan Completed",
+      "translated": "Scan Completed"
+    },
+    {
+      "key": "result",
+      "original": "Result",
+      "translated": "Result"
+    },
+    {
+      "key": "didRecipientScan",
+      "original": "Has {FIRST-NAME} scanned this QR code?",
+      "translated": "Has {FIRST-NAME} scanned this QR code?"
+    },
+    {
+      "key": "btnCloseModal",
+      "original": "Close",
+      "translated": "Close"
+    },
+    {
+      "key": "didNewUserRead",
+      "original": "Has {FIRST-NAME} scanned this QR code?",
+      "translated": "Has {FIRST-NAME} scanned this QR code?"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "metadata": {
+    "description": "Followers of a User",
+    "path": "/followers/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "pagetitle",
+      "original": "Followers of {name}",
+      "translated": "Followers of {name}"
+    },
+    {
+      "key": "breadcrumbFollowers",
+      "original": "Followers",
+      "translated": "Followers"
+    },
+    {
+      "key": "photoAltText",
+      "original": "Photo of {name}",
+      "translated": "Photo of {name}"
+    },
+    {
+      "key": "numFollowedBy",
+      "original": "{quantity} Followers",
+      "translated": "{quantity} Followers"
+    },
+    {
+      "key": "numFollowing",
+      "original": "{quantity} Following",
+      "translated": "{quantity} Following"
+    },
+    {
+      "key": "followedBy1",
+      "original": "{quantity} Follower",
+      "translated": "{quantity} Follower"
+    },
+    {
+      "key": "following1",
+      "original": "{quantity} Following",
+      "translated": "{quantity} Following"
+    },
+
+    {
+      "key": "btnFollow",
+      "original": "Follow",
+      "translated": "Follow"
+    },
+    {
+      "key": "btnFollowing",
+      "original": "Following",
+      "translated": "Following"
+    },
+    {
+      "key": "headlineFollowers",
+      "original": "{quantity} Followers:",
+      "translated": "{quantity} Followers:"
+    },
+    {
+      "key": "headlineFollowers1",
+      "original": "{quantity} Follower:",
+      "translated": "{quantity} Follower:"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

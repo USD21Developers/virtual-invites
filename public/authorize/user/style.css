@@ -1,0 +1,21 @@
+#profilephoto {
+  border: 2px solid white;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
+
+label {
+  color: var(--dark-dark);
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.notbold {
+  font-weight: normal;
+}
+
+.highlightedChurch {
+  color: var(--info);
+  font-weight: 900 !important;
+}

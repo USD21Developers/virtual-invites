@@ -1,0 +1,82 @@
+{
+  "metadata": {
+    "description": "Admin Control Panel",
+    "path": "/admin/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Administration",
+      "translated": "Administration"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbAdmin",
+      "original": "Admin",
+      "translated": "Admin"
+    },
+    {
+      "key": "users",
+      "original": "Users",
+      "translated": "Users"
+    },
+    {
+      "key": "photoreview",
+      "original": "Profile photos to review",
+      "translated": "Profile photos to review"
+    },
+    {
+      "key": "activity",
+      "original": "Activity",
+      "translated": "Activity"
+    },
+    {
+      "key": "users",
+      "original": "Users",
+      "translated": "Users"
+    },
+    {
+      "key": "deletedChurches",
+      "original": "Deleted churches detected",
+      "translated": "Deleted churches detected"
+    },
+    {
+      "key": "deletedChurch",
+      "original": "Deleted church detected",
+      "translated": "Deleted church detected"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

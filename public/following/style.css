@@ -1,0 +1,52 @@
+#profilephoto {
+  border: 2px solid white;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
+
+.following {
+  margin: auto !important;
+  text-align: left;
+}
+
+.following td {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.following:first-child td {
+  padding-top: unset;
+}
+
+.following:last-child td {
+  border-bottom: 0;
+}
+
+.following:nth-child(1) td {
+  border-bottom: 1px solid #ccc;
+}
+
+.following_photo img {
+  background-repeat: no-repeat;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  height: 110px;
+  width: 110px;
+}
+
+.following_text a {
+  text-decoration: underline;
+}
+
+.followquantity {
+  color: black;
+  font-weight: bold;
+  margin-inline-end: 2px;
+}
+
+.followCount {
+  color: black;
+  text-decoration: none;
+}

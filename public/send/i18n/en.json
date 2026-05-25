@@ -1,0 +1,398 @@
+{
+  "metadata": {
+    "description": "Send an Invite",
+    "path": "/send/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Send an Invite",
+      "translated": "Send an Invite"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbSendInvite",
+      "original": "Send",
+      "translated": "Send"
+    },
+    {
+      "key": "headlineto",
+      "original": "Recipient:",
+      "translated": "Recipient:"
+    },
+    {
+      "key": "recipientsName",
+      "original": "Name",
+      "translated": "Name"
+    },
+    {
+      "key": "headlinefor",
+      "original": "Event:",
+      "translated": "Event:"
+    },
+    {
+      "key": "headlinevia",
+      "original": "Sending Method:",
+      "translated": "Sending Method:"
+    },
+    {
+      "key": "viasms",
+      "original": "Text Message",
+      "translated": "Text Message"
+    },
+    {
+      "key": "viaemail",
+      "original": "E-mail",
+      "translated": "E-mail"
+    },
+    {
+      "key": "viaqrcode",
+      "original": "QR Code",
+      "translated": "QR Code"
+    },
+    {
+      "key": "viawhatsapp",
+      "original": "WhatsApp",
+      "translated": "WhatsApp"
+    },
+    {
+      "key": "viaotherapps",
+      "original": "Other apps",
+      "translated": "Other apps"
+    },
+    {
+      "key": "instructionsLabel",
+      "original": "Instructions:",
+      "translated": "Instructions:"
+    },
+    {
+      "key": "instructionsShort",
+      "original": "Ask the recipient to scan this barcode. This will open the invite in their Web browser.",
+      "translated": "Ask the recipient to scan this barcode. This will open the invite in their Web browser.",
+      "changes": [
+        {
+          "original": "scan",
+          "translated": "scan",
+          "bold": true,
+          "italic": false,
+          "underline": true,
+          "link": "#howtoscan"
+        }
+      ]
+    },
+    {
+      "key": "instructionsLong",
+      "original": "Have the recipient open the camera app on their cell phone, then point it at this barcode (without taking a picture). A prompt should appear on their screen. By clicking a link in that prompt, the invite will open in their Web browser. (If this doesn't work, have them scan the barcode with a QR Code app).",
+      "translated": "Have the recipient open the camera app on their cell phone, then point it at this barcode (without taking a picture). A prompt should appear on their screen. By clicking a link in that prompt, the invite will open in their Web browser. (If this doesn't work, have them scan the barcode with a QR Code app)."
+    },
+    {
+      "key": "mobilephonenumber",
+      "original": "Phone number",
+      "translated": "Phone number"
+    },
+    {
+      "key": "whatsAppNumber",
+      "original": "WhatsApp number",
+      "translated": "WhatsApp number"
+    },
+    {
+      "key": "emailaddress",
+      "original": "E-mail address",
+      "translated": "E-mail address"
+    },
+    {
+      "key": "taginvitetext",
+      "original": "Tag invite with my current location",
+      "translated": "Tag invite with my current location"
+    },
+    {
+      "key": "buttonsendinvite",
+      "original": "SEND INVITE",
+      "translated": "SEND INVITE"
+    },
+    {
+      "key": "buttonsaveinvite",
+      "original": "SHOW QR CODE",
+      "translated": "SHOW QR CODE"
+    },
+    {
+      "key": "buttoncopyinvite",
+      "original": "COPY INVITE",
+      "translated": "COPY INVITE"
+    },
+    {
+      "key": "buttoncopyinvite",
+      "original": "COPY INVITE",
+      "translated": "COPY INVITE"
+    },
+    {
+      "key": "formIncomplete",
+      "original": "Form Incomplete",
+      "translated": "Form Incomplete"
+    },
+    {
+      "key": "fieldRequired",
+      "original": "This field is required.",
+      "translated": "This field is required."
+    },
+    {
+      "key": "recipientNameRequired",
+      "original": "Please input the recipient's name.",
+      "translated": "Please input the recipient's name."
+    },
+    {
+      "key": "openingsms",
+      "original": "Opening SMS...",
+      "translated": "Opening SMS..."
+    },
+    {
+      "key": "openingWhatsApp",
+      "original": "Opening WhatsApp...",
+      "translated": "Opening WhatsApp..."
+    },
+    {
+      "key": "openingemail",
+      "original": "Opening e-mail...",
+      "translated": "Opening e-mail..."
+    },
+    {
+      "key": "geocoordinatesPermissionDenied",
+      "original": "Geocoordinates: permission denied",
+      "translated": "Geocoordinates: permission denied"
+    },
+    {
+      "key": "geocoordinatesPermissionUnavailable",
+      "original": "Geocoordinates: position unavailable",
+      "translated": "Geocoordinates: position unavailable"
+    },
+    {
+      "key": "geocoordinatesPermissionTimedOut",
+      "original": "Geocoordinates: timed out",
+      "translated": "Geocoordinates: timed out"
+    },
+    {
+      "key": "geocoordinatesErrorCode",
+      "original": "Geocoordinates: error code",
+      "translated": "Geocoordinates: error code"
+    },
+    {
+      "key": "invitationto",
+      "original": "Invitation to",
+      "translated": "Invitation to"
+    },
+    {
+      "key": "inviteRecorded",
+      "original": "Invite Recorded",
+      "translated": "Invite Recorded"
+    },
+    {
+      "key": "inviteCopied",
+      "original": "Invite Copied!",
+      "translated": "Invite Copied!"
+    },
+    {
+      "key": "btnCustomize",
+      "original": "Customize invite for this recipient",
+      "translated": "Customize invite for this recipient"
+    },
+    {
+      "key": "btnRetry",
+      "original": "Retry",
+      "translated": "Retry"
+    },
+    {
+      "key": "btnFinish",
+      "original": "Finish",
+      "translated": "Finish"
+    },
+    {
+      "key": "afterSentParagraph1",
+      "original": "This invite has been saved to your account, enabling you to follow up.",
+      "translated": "This invite has been saved to your account, enabling you to follow up."
+    },
+    {
+      "key": "afterSentParagraph1QRCode",
+      "original": "This invite has been saved to your account.",
+      "translated": "This invite has been saved to your account."
+    },
+    {
+      "key": "afterSentParagraph1OtherApps",
+      "original": "This invite has been saved to your account.",
+      "translated": "This invite has been saved to your account."
+    },
+    {
+      "key": "problemsSending",
+      "original": "In case you had any problems sending,",
+      "translated": "In case you had any problems sending,"
+    },
+    {
+      "key": "problemsSendingSuggestion",
+      "original": "click Retry, and maybe consider using another sending method.",
+      "translated": "click Retry, and maybe consider using another sending method."
+    },
+    {
+      "key": "problemsScanning",
+      "original": "In case there were any problems with scanning,",
+      "translated": "In case there were any problems with scanning,"
+    },
+    {
+      "key": "problemsScanningSuggestion",
+      "original": "click Retry, and maybe consider using another sending method.",
+      "translated": "click Retry, and maybe consider using another sending method."
+    },
+    {
+      "key": "cancel",
+      "original": "Cancel",
+      "translated": "Cancel"
+    },
+    {
+      "key": "eventIsRequired",
+      "original": "Please select an event.",
+      "translated": "Please select an event."
+    },
+    {
+      "key": "phoneNumberIsRequired",
+      "original": "Please input the recipient's mobile phone number.",
+      "translated": "Please input the recipient's mobile phone number."
+    },
+    {
+      "key": "whatsAppPhoneNumberIsRequired",
+      "original": "Please input the recipient's WhatsApp number.",
+      "translated": "Please input the recipient's WhatsApp number."
+    },
+    {
+      "key": "whatsAppPhoneNumberMustBeValid",
+      "original": "Please check the recipient's WhatsApp number for accuracy.",
+      "translated": "Please check the recipient's WhatsApp number for accuracy."
+    },
+    {
+      "key": "phoneNumberMustBeValid",
+      "original": "Please check the recipient's mobile phone number for accuracy.",
+      "translated": "Please check the recipient's mobile phone number for accuracy."
+    },
+    {
+      "key": "validPhoneNumberIsRequired",
+      "original": "Phone number must be valid.",
+      "translated": "Phone number must be valid."
+    },
+    {
+      "key": "validWhatsAppNumberIsRequired",
+      "original": "WhatsApp number must be valid.",
+      "translated": "WhatsApp number must be valid."
+    },
+    {
+      "key": "emailIsRequired",
+      "original": "Please input the recipient's e-mail address.",
+      "translated": "Please input the recipient's e-mail address."
+    },
+    {
+      "key": "emailMustBeValid",
+      "original": "Please check the recipient's e-mail address for accuracy.",
+      "translated": "Please check the recipient's e-mail address for accuracy."
+    },
+    {
+      "key": "validEmailIsRequired",
+      "original": "E-mail must be valid.",
+      "translated": "E-mail must be valid."
+    },
+    {
+      "key": "clickBelow",
+      "original": "(click below):",
+      "translated": "(click below):"
+    },
+    {
+      "key": "eventDetails",
+      "original": "Details",
+      "translated": "Details"
+    },
+    {
+      "key": "dropdownDefault",
+      "original": "(Select)",
+      "translated": "(Select)"
+    },
+    {
+      "key": "myEvents",
+      "original": "My Events",
+      "translated": "My Events"
+    },
+    {
+      "key": "linkCopied",
+      "original": "Invite link copied!",
+      "translated": "Invite link copied!"
+    },
+    {
+      "key": "warningSpellNameAccurately",
+      "original": "Name will be displayed on recipient's invite",
+      "translated": "Name will be displayed on recipient's invite"
+    },
+    {
+      "key": "btnAddNote",
+      "original": "Add a note",
+      "translated": "Add a note"
+    },
+    {
+      "key": "notified",
+      "original": "You will be notified when the recipient has clicked on and viewed the invite.",
+      "translated": "You will be notified when the recipient has clicked on and viewed the invite."
+    },
+    {
+      "key": "notNotified",
+      "original": "You have disabled all notifications, so you won't be notified when this recipient has viewed the invite. But you can reenable notifications at any time, in your Settings.",
+      "translated": "You have disabled all notifications, so you won't be notified when this recipient has viewed the invite. But you can reenable notifications at any time, in your Settings.",
+      "changes": [
+        {
+          "original": "Settings",
+          "translated": "Settings",
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "link": "../settings/"
+        }
+      ]
+    },
+    {
+      "key": "labelQRCode",
+      "original": "QR Code",
+      "translated": "QR Code"
+    },
+    {
+      "key": "didRecipientScan",
+      "original": "Has {NAME} scanned the QR code?",
+      "translated": "Has {NAME} scanned the QR code?"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "underline": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

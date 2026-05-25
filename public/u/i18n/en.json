@@ -1,0 +1,158 @@
+{
+  "metadata": {
+    "description": "Follow a User",
+    "path": "/follow/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "pagetitle",
+      "original": "Profile: {name}",
+      "translated": "Profile: {name}"
+    },
+    {
+      "key": "breadcrumbUserProfile",
+      "original": "Profile",
+      "translated": "Profile"
+    },
+    {
+      "key": "photoAltText",
+      "original": "Photo of {name}",
+      "translated": "Photo of {name}"
+    },
+    {
+      "key": "numFollowedBy",
+      "original": "{quantity} Followers",
+      "translated": "{quantity} Followers"
+    },
+    {
+      "key": "numFollowing",
+      "original": "{quantity} Following",
+      "translated": "{quantity} Following"
+    },
+    {
+      "key": "followedBy1",
+      "original": "{quantity} Follower",
+      "translated": "{quantity} Follower"
+    },
+    {
+      "key": "following1",
+      "original": "{quantity} Following",
+      "translated": "{quantity} Following"
+    },
+    {
+      "key": "btnFollow",
+      "original": "Follow",
+      "translated": "Follow"
+    },
+    {
+      "key": "btnFollowing",
+      "original": "Following",
+      "translated": "Following"
+    },
+    {
+      "key": "registered",
+      "original": "Registered:",
+      "translated": "Registered:"
+    },
+    {
+      "key": "gender",
+      "original": "Gender:",
+      "translated": "Gender:"
+    },
+    {
+      "key": "events",
+      "original": "Events:",
+      "translated": "Events:"
+    },
+    {
+      "key": "invitesSent",
+      "original": "Invites Sent:",
+      "translated": "Invites Sent:"
+    },
+    {
+      "key": "eventsHeadline",
+      "original": "{quantity} Events:",
+      "translated": "{quantity} Events:"
+    },
+    {
+      "key": "eventsHeadline1",
+      "original": "{quantity} Event:",
+      "translated": "{quantity} Event:"
+    },
+    {
+      "key": "cancel",
+      "original": "Cancel",
+      "translated": "Cancel"
+    },
+    {
+      "key": "edit",
+      "original": "Edit",
+      "translated": "Edit"
+    },
+    {
+      "key": "delete",
+      "original": "Delete",
+      "translated": "Delete"
+    },
+    {
+      "key": "datetime",
+      "original": "Date and Time:",
+      "translated": "Date and Time:"
+    },
+    {
+      "key": "description",
+      "original": "Description:",
+      "translated": "Description:"
+    },
+    {
+      "key": "place",
+      "original": "Place:",
+      "translated": "Place:"
+    },
+    {
+      "key": "inquireForLocation",
+      "original": "Please inquire for location details.",
+      "translated": "Please inquire for location details."
+    },
+    {
+      "key": "mapAndDirections",
+      "original": "Map and Directions",
+      "translated": "Map and Directions"
+    },
+    {
+      "key": "eventsSharing",
+      "original": "Events Sharing:",
+      "translated": "Events Sharing:"
+    }
+  ],
+
+  "example-no-changes": {
+    "key": "",
+    "original": "",
+    "translated": ""
+  },
+
+  "example-has-changes": {
+    "key": "",
+    "original": "",
+    "translated": "",
+    "changes": [
+      {
+        "original": "",
+        "translated": "",
+        "bold": false,
+        "italic": false,
+        "link": ""
+      }
+    ]
+  }
+}

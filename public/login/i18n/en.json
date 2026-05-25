@@ -1,0 +1,131 @@
+{
+  "metadata": {
+    "description": "Log In",
+    "path": "/login/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Log In",
+      "translated": "Log In"
+    },
+    {
+      "key": "username",
+      "original": "Username",
+      "translated": "Username"
+    },
+    {
+      "key": "password",
+      "original": "Password",
+      "translated": "Password"
+    },
+    {
+      "key": "buttonlogin",
+      "original": "LOG IN",
+      "translated": "LOG IN"
+    },
+    {
+      "key": "forgotpasswordlink",
+      "original": "Forgot Password",
+      "translated": "Forgot Password"
+    },
+    {
+      "key": "noaccount",
+      "original": "No Account?",
+      "translated": "No Account?"
+    },
+    {
+      "key": "registerlink",
+      "original": "Register",
+      "translated": "Register"
+    },
+    {
+      "key": "installToHomeScreen",
+      "original": "Install to Home Screen",
+      "translated": "Install to Home Screen"
+    },
+    {
+      "key": "glitchMessage",
+      "original": "The system is unable to verify your login at this time.  Please try again later.",
+      "translated": "The system is unable to verify your login at this time.  Please try again later."
+    },
+    {
+      "key": "timedout",
+      "original": "Your login timed out. Please ensure that you have a stable internet connection, then try again.",
+      "translated": "Your login timed out. Please ensure that you have a stable internet connection, then try again."
+    },
+    {
+      "key": "timedoutHeadline",
+      "original": "Login Timed Out",
+      "translated": "Login Timed Out"
+    },
+    {
+      "key": "invalid login",
+      "original": "Your username and/or password do not match our records. Please try again.",
+      "translated": "Your username and/or password do not match our records. Please try again."
+    },
+    {
+      "key": "invalid login headline",
+      "original": "Login Not Recognized",
+      "translated": "Login Not Recognized"
+    },
+    {
+      "key": "headlineAccountUnconfirmed",
+      "original": "Account still unconfirmed",
+      "translated": "Account still unconfirmed"
+    },
+    {
+      "key": "aboutThisAppHeadline",
+      "original": "About This App",
+      "translated": "About This App"
+    },
+    {
+      "key": "aboutThisAppP1",
+      "original": "The Invites App is a tool for evangelism created for disciples of Jesus who are members of the International Christian Churches. To learn more, click on the button below:",
+      "translated": "The Invites App is a tool for evangelism created for disciples of Jesus who are members of the International Christian Churches. To learn more, click on the button below:",
+      "changes": [
+        {
+          "original": "International Christian Churches",
+          "translated": "International Christian Churches",
+          "bold": false,
+          "italic": false,
+          "link": "https://usd21.org/"
+        }
+      ]
+    },
+    {
+      "key": "aboutButton",
+      "original": "About the Invites App",
+      "translated": "About the Invites App"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

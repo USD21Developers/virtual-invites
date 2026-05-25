@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "description": "Users that a User is Following",
+    "path": "/follow/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "pagetitle",
+      "original": "Users Followed by {name}",
+      "translated": "Users Followed by {name}"
+    },
+    {
+      "key": "breadcrumbFollowing",
+      "original": "Following",
+      "translated": "Following"
+    },
+    {
+      "key": "photoAltText",
+      "original": "Photo of {name}",
+      "translated": "Photo of {name}"
+    },
+    {
+      "key": "numFollowedBy",
+      "original": "{quantity} Followers",
+      "translated": "{quantity} Followers"
+    },
+    {
+      "key": "numFollowing",
+      "original": "{quantity} Following",
+      "translated": "{quantity} Following"
+    },
+    {
+      "key": "followedBy1",
+      "original": "{quantity} Follower",
+      "translated": "{quantity} Follower"
+    },
+    {
+      "key": "following1",
+      "original": "{quantity} Following",
+      "translated": "{quantity} Following"
+    },
+
+    {
+      "key": "btnFollow",
+      "original": "Follow",
+      "translated": "Follow"
+    },
+    {
+      "key": "btnFollowing",
+      "original": "Following",
+      "translated": "Following"
+    },
+    {
+      "key": "headlineFollowing",
+      "original": "Following {quantity}:",
+      "translated": "Following {quantity}:"
+    },
+    {
+      "key": "headlineFollowing1",
+      "original": "Following {quantity}:",
+      "translated": "Following {quantity}:"
+    },
+    {
+      "key": "followAnotherUser",
+      "original": "Follow another user",
+      "translated": "Follow another user"
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

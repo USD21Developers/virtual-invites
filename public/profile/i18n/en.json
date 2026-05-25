@@ -1,0 +1,142 @@
+{
+  "metadata": {
+    "description": "My Profile",
+    "path": "/profile/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "My Profile",
+      "translated": "My Profile"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbProfile",
+      "original": "Profile",
+      "translated": "Profile"
+    },
+    {
+      "key": "profilePhoto",
+      "original": "Photo of {FIRST-NAME} {LAST-NAME}",
+      "translated": "Photo of {FIRST-NAME} {LAST-NAME}"
+    },
+    {
+      "key": "username",
+      "original": "Username:",
+      "translated": "Username:"
+    },
+    {
+      "key": "newpassword",
+      "original": "New password:",
+      "translated": "New password:"
+    },
+    {
+      "key": "email",
+      "original": "E-mail:",
+      "translated": "E-mail:"
+    },
+    {
+      "key": "firstname",
+      "original": "First name:",
+      "translated": "First name:"
+    },
+    {
+      "key": "lastname",
+      "original": "Last name:",
+      "translated": "Last name:"
+    },
+    {
+      "key": "nameDisplayedOnInvite",
+      "original": "My name as displayed on recipient's invite:",
+      "translated": "My name as displayed on recipient's invite:"
+    },
+    {
+      "key": "nameDisplayedOnInviteRequired",
+      "original": "This field is required.",
+      "translated": "This field is required."
+    },
+    {
+      "key": "church",
+      "original": "Church:",
+      "translated": "Church:"
+    },
+    {
+      "key": "updatephoto",
+      "original": "Update photo",
+      "translated": "Update photo"
+    },
+    {
+      "key": "profileUpdated",
+      "original": "Profile updated.",
+      "translated": "Profile updated."
+    },
+    {
+      "key": "emailSenderText",
+      "original": "Invites",
+      "translated": "Invites"
+    },
+    {
+      "key": "emailSubject",
+      "original": "Confirm your e-mail address",
+      "translated": "Confirm your e-mail address"
+    },
+    {
+      "key": "emailParagraph1",
+      "original": "This message is for ${fullname}. In order to finish updating your e-mail address, please click on the link below:",
+      "translated": "This message is for ${fullname}. In order to finish updating your e-mail address, please click on the link below:"
+    },
+    {
+      "key": "emailLinkText",
+      "original": "Confirm my e-mail address",
+      "translated": "Confirm my e-mail address"
+    },
+    {
+      "key": "emailSignature",
+      "original": "The Cyberministry",
+      "translated": "The Cyberministry"
+    },
+    {
+      "key": "mustConfirmEmailHeadline",
+      "original": "E-mail address must be confirmed",
+      "translated": "E-mail address must be confirmed"
+    },
+    {
+      "key": "mustConfirmEmailText",
+      "original": "Please check your e-mail. We have sent you a message containing a link. In order to finish updating the e-mail address on your account, you must click on that link.",
+      "translated": "Please check your e-mail. We have sent you a message containing a link. In order to finish updating the e-mail address on your account, you must click on that link."
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

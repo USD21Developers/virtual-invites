@@ -1,0 +1,122 @@
+{
+  "metadata": {
+    "description": "New Church",
+    "path": "/new-church/",
+    "lang": {
+      "original": "en",
+      "translated": "en"
+    }
+  },
+  "phrases": [
+    {
+      "key": "pagetitle",
+      "original": "Select Church",
+      "translated": "Select Church"
+    },
+    {
+      "key": "breadcrumbHome",
+      "original": "Home",
+      "translated": "Home"
+    },
+    {
+      "key": "breadcrumbNewChurch",
+      "original": "Church",
+      "translated": "Church"
+    },
+    {
+      "key": "paragraph1",
+      "original": "The church that you originally selected when you registered is no longer in the system. Please select your current church below.",
+      "translated": "The church that you originally selected when you registered is no longer in the system. Please select your current church below."
+    },
+    {
+      "key": "label-country",
+      "original": "Country",
+      "translated": "Country"
+    },
+    {
+      "key": "label-my-icc-church",
+      "original": "My ICC church",
+      "translated": "My ICC church"
+    },
+    {
+      "key": "label-unlisted-church",
+      "original": "City of my ICC church",
+      "translated": "City of my ICC church"
+    },
+    {
+      "key": "notListedOption",
+      "original": "My church is not listed",
+      "translated": "My church is not listed"
+    },
+    {
+      "key": "noneOfTheAboveOptgroup",
+      "original": "None of the above:",
+      "translated": "None of the above:"
+    },
+    {
+      "key": "churchrequired",
+      "original": "Church is required",
+      "translated": "Church is required"
+    },
+    {
+      "key": "unlistedchurchrequired",
+      "original": "City of your ICC church is required",
+      "translated": "City of your ICC church is required"
+    },
+    {
+      "key": "selectcountry",
+      "original": "(Select country):",
+      "translated": "(Select country):"
+    },
+    {
+      "key": "countryIsRequired",
+      "original": "Country is required",
+      "translated": "Country is required"
+    },
+    {
+      "key": "onlyCountriesWithChurch",
+      "original": "(Where we have a church)",
+      "translated": "(Where we have a church)"
+    },
+    {
+      "key": "selectchurch",
+      "original": "(Select church):",
+      "translated": "(Select church):"
+    },
+    {
+      "key": "churchUpdated",
+      "original": "Church Updated",
+      "translated": "Church Updated"
+    },
+    {
+      "key": "updateSuccessful",
+      "original": "Your update was successful.  Please log in once again.",
+      "translated": "Your update was successful.  Please log in once again."
+    }
+  ],
+
+  "example-no-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": ""
+    }
+  ],
+
+  "example-has-changes": [
+    {
+      "key": "",
+      "original": "",
+      "translated": "",
+      "changes": [
+        {
+          "original": "",
+          "translated": "",
+          "bold": false,
+          "italic": false,
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

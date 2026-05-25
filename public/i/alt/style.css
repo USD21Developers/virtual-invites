@@ -1,0 +1,255 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital@0;1&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&display=swap");
+
+html {
+  font-size: 20px;
+}
+
+body {
+  background-color: #2a2d54;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.container {
+  min-height: 92vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #504390;
+  font-family: Castoro, serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+a {
+  color: #333333;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.purple-gradient {
+  background-image: linear-gradient(to right, #2a2d54 0%, #504390 100%);
+}
+
+form table {
+  border: 1px solid #999;
+}
+
+#country,
+label[for="country"] {
+  font-size: 0.75rem;
+}
+
+form table td {
+  border: 1px solid #ccc;
+}
+
+form table tr td:nth-child(1) {
+  border-right: 0;
+}
+
+form table tr td:nth-child(2) {
+  border-left: 0;
+}
+
+.optionsLabel {
+  font-weight: 600;
+}
+
+#detectMyLocation {
+  border: 1px solid #504390 !important;
+  border-radius: 8px;
+  color: #504390 !important;
+  font-weight: 400;
+}
+
+.text-dark {
+  color: var(--dark-dark) !important;
+}
+
+#altEventsSubmitButton {
+  background: linear-gradient(93.58deg, #504390 0%, #3f3973 100%);
+  border-radius: 10px;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 1;
+}
+
+#promptAdvisory {
+  color: var(--danger-dark);
+}
+
+#originLocation {
+  font-size: 0.75rem;
+}
+
+input:checked {
+  accent-color: #504390;
+}
+
+#mapContainer {
+  scroll-padding: 10px 0 0 0;
+}
+
+[data-i18n="includeVirtualEventsParenthesis"] {
+  font-size: 85%;
+}
+
+#detectMyLocation.btn:active,
+#detectMyLocation.btn:hover {
+  background-image: unset !important;
+}
+
+input[type="date"] {
+  font-size: 0.875rem;
+}
+
+#searchOptionsContainer tr td:nth-child(1) {
+  padding-right: 11px !important;
+}
+
+#searchOptionsContainer tr td:nth-child(2) {
+  padding-left: 11px !important;
+}
+
+#allowedValues {
+  color: var(--dark-light);
+  font-size: 0.8rem;
+  text-wrap: balance;
+}
+
+#resultsFound h3 {
+  font-size: 1.1rem;
+}
+
+#resultsFound ul,
+#resultsFound ol {
+  margin-top: 1rem;
+}
+
+#resultsFound li {
+  margin-bottom: 1.2rem;
+}
+
+#resultsFound li a {
+  color: #504390;
+  text-decoration: underline;
+}
+
+.distance {
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.distanceNumber {
+  margin-left: 0.5rem;
+}
+
+#searchResults {
+  padding-bottom: 1rem;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #504390;
+}
+
+.nonefound {
+  color: var(--danger-dark);
+}
+
+.numeral {
+  font-variant-numeric: slashed-zero;
+}
+
+.multiDayLabel {
+  font-style: italic;
+  font-weight: bold;
+  margin-right: 0.75rem;
+}
+
+#navButtons {
+  background-color: #fafafa;
+  border-top: 1px solid #cacaca;
+  max-width: 800px;
+}
+
+#navButtons table {
+  margin: auto;
+  /* margin-bottom: 15px; */
+}
+
+#navButtons td {
+  padding-bottom: 1rem;
+  padding-top: 3px;
+  text-align: center;
+  vertical-align: bottom;
+  width: 25%;
+}
+
+#navButtons td div {
+  color: #777777;
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+  min-height: 0.7rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+#navButtons img {
+  border: 0;
+  height: 22px;
+  max-height: 22px;
+  max-width: 22px;
+  width: 22px;
+}
+
+#navButtons a {
+  color: #777777;
+  font-weight: 400;
+  padding: 0;
+  text-decoration: none;
+}
+
+#navButtons a[disabled],
+#navButtons a[disabled] img {
+  opacity: 0.3; /* 30% opacity */
+}
+
+@media all and (display-mode: standalone) {
+  #pageContentContainer.isLoggedInUser {
+    margin-bottom: 72px;
+  }
+
+  #navButtons.showToLoggedInUser {
+    animation: fadeIn 0.5s;
+    display: block !important;
+    padding-bottom: 50px;
+    transition: height 0.5s ease;
+  }
+
+  #navButtons.showToLoggedInUser table {
+    margin-bottom: 15px;
+  }
+}

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      property="og:image"
+      content="https://invites.mobi/i/img/envelope-opengraph.jpg"
+    />
+    <meta
+      property="twitter-image"
+      content="https://invites.mobi/i/img/envelope-opengraph.jpg"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/i/site.webmanifest" />
+    <title data-i18n="pagetitle"></title>
+    <link rel="stylesheet" type="text/css" href="/css/daemonite-material.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/templates/default/index.css"
+    />
+    <style type="text/css">
+      #inviteroot {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        margin: 25px auto 50px auto;
+        max-width: calc(100% - 40px);
+        min-height: 130px;
+        position: relative;
+        width: 530px;
+      }
+    </style>
+    <script src="/js/getMobileOperatingSystem.js"></script>
+  </head>
+  <body class="purple-gradient">
+    <div id="inviteroot">
+      <video id="video" autoplay playsinline muted></video>
+      <script>
+        (() => {
+          const isReportedBug =
+            window.location.hash === "#/19/1/9Veh8" &&
+            window.location.hostname === "staging.invites.mobi"
+              ? true
+              : false;
+
+          const os = getMobileOperatingSystem();
+          const video = document.querySelector("#video");
+
+          const webm = document.createElement("source");
+          webm.setAttribute("src", "/i/video/envelope.webm");
+          webm.setAttribute("type", "video/webm");
+
+          const mp4 = document.createElement("source");
+          mp4.setAttribute("src", "/i/video/envelope.mp4");
+          mp4.setAttribute("type", "video/mp4");
+
+          if (os !== "iOS" || isReportedBug) {
+            video.appendChild(webm);
+            video.appendChild(mp4);
+          } else {
+            video.appendChild(mp4);
+            video.appendChild(webm);
+          }
+        })();
+      </script>
+
+      <div id="topOfEnvelope"></div>
+      <div id="paper" class="d-none">
+        <main>
+          <div class="text-center" id="pageSpinner">
+            <img
+              src="/_assets/img/spinner.svg"
+              width="100"
+              height="100"
+              style="max-width: 100%"
+            />
+          </div>
+          <div id="pageContentContainer" class="d-none">
+            <div id="pageContent"></div>
+            <div>
+              <br />
+              <br />
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="modal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modaltitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modaltitle"></h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label=""
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body pb-1"></div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-dismiss="modal"
+                data-i18n="btnCloseModal"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="snackbar">
+      <div class="snackbar-body"></div>
+    </div>
+
+    <!-- Nav buttons (only visible in standalone mode) -->
+    <nav id="navButtons" class="container-fluid fixed-bottom p-0 d-none">
+      <table width="100%" cellpadding="10">
+        <tr>
+          <td>
+            <div class="d-inline-block text-center">
+              <a href="javascript:history.go(-1)" id="navBackButton">
+                <img
+                  src="/_assets/svg/icons/nav-arrow-back-light.svg"
+                  width="22"
+                  height="22"
+                  style="padding-left: 6px"
+                />
+                <div data-i18n-global="navbarBack"></div>
+              </a>
+            </div>
+          </td>
+
+          <td>
+            <div class="d-inline-block text-center">
+              <a href="/" id="navMyInvitesButton">
+                <img
+                  src="/_assets/svg/icons/nav-my-invites-light.svg"
+                  width="22"
+                  height="22"
+                />
+                <div data-i18n-global="navbarMyInvites"></div>
+              </a>
+            </div>
+          </td>
+
+          <td>
+            <div class="d-inline-block text-center">
+              <a href="/followup/" id="navFollowupButton">
+                <img
+                  src="/_assets/svg/icons/nav-followup-list-light.svg"
+                  width="22"
+                  height="22"
+                />
+                <div data-i18n-global="navbarFollowUp"></div>
+              </a>
+            </div>
+          </td>
+
+          <td>
+            <div class="d-inline-block text-center">
+              <a href="/send/" id="navSendAnInviteButton">
+                <img
+                  src="/_assets/svg/icons/nav-send-an-invite-light.svg"
+                  width="22"
+                  height="22"
+                />
+                <div data-i18n-global="navbarSendAnInvite"></div>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </nav>
+
+    <script src="/js/datebook.min.js"></script>
+    <script src="/js/moment.min.js" referrerpolicy="no-referrer"></script>
+    <script
+      src="/js/moment-timezone-with-data-10-year-range.min.js"
+      integrity="sha512-d11VXfxQMn+sZuIgzHITdIuInr4cVRGV/uLiSI643WH/J+p4gPFYSHXRMR2v+w4Rn2TSyzJjsZjc0M7+Qd+UXw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/libphonenumber-js/1.9.12/libphonenumber-js.min.js"></script>
+    <script src="/js/code.jquery.com_jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/css/material-4.1.1-dist/js/material.min.js"></script>
+    <script src="/js/intl-tel-input-17.0.0/js/intlTelInput.js"></script>
+    <script src="/js/global.js"></script>
+    <script src="/js/getRelativeDate.js"></script>
+    <script src="/js/to-title-case.js"></script>
+    <script src="/js/linkifyjs/linkify.min.js"></script>
+    <script src="/js/linkifyjs/linkify-html.min.js"></script>
+    <script src="/i/logic.js"></script>
+  </body>
+</html>
