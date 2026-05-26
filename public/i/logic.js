@@ -564,57 +564,42 @@ function getInvite() {
 }
 
 function getRelativeTime(dateUtc) {
-  // Detect locale and timezone, with a fallback for locale
-  const options = Intl.DateTimeFormat().resolvedOptions();
-  const locale = options.locale || "en-US";
-  const timeZone = options.timeZone || "UTC";
+  const { locale = "en-US", timeZone = "UTC" } =
+    Intl.DateTimeFormat().resolvedOptions();
+  const rtf = new Intl.RelativeTimeFormat(locale, { numeric: "auto" });
 
-  // Convert UTC date to the user's local time zone
-  const dateLocal = new Date(dateUtc).toLocaleString(locale, { timeZone });
-  const dateLocalObj = new Date(dateLocal);
-  const now = new Date();
+  const toLocal = (d) =>
+    new Date(new Date(d).toLocaleString(locale, { timeZone }));
+  const target = toLocal(dateUtc);
+  const now = toLocal(new Date());
 
-  // Get date components in the local time zone
-  const localDate = new Date(now.toLocaleString(locale, { timeZone }));
-  const midnightToday = new Date(localDate);
+  const midnightToday = new Date(now);
   midnightToday.setHours(0, 0, 0, 0);
-
   const midnightYesterday = new Date(midnightToday);
   midnightYesterday.setDate(midnightToday.getDate() - 1);
 
-  const diffInMilliseconds = dateLocalObj - localDate;
-  const diffInDays = Math.round(diffInMilliseconds / (1000 * 60 * 60 * 24));
+  if (target >= midnightToday) return rtf.format(0, "day");
+  if (target >= midnightYesterday) return rtf.format(-1, "day");
 
-  let value, unit;
+  const diffInDays = Math.round((target - now) / 86400000);
+  const sign = Math.sign(diffInDays);
+  const absDays = Math.abs(diffInDays);
 
-  if (dateLocalObj >= midnightToday) {
-    return new Intl.RelativeTimeFormat(locale, { numeric: "auto" }).format(
-      0,
-      "day",
-    ); // "today"
-  } else if (dateLocalObj >= midnightYesterday) {
-    return new Intl.RelativeTimeFormat(locale, { numeric: "auto" }).format(
-      -1,
-      "day",
-    ); // "yesterday"
-  } else if (diffInDays >= 720) {
-    value = Math.round(diffInDays / 365);
-    unit = "year";
-  } else if (diffInDays >= 60) {
-    value = Math.round(diffInDays / 30);
-    unit = "month";
-  } else if (diffInDays >= 7) {
-    value = Math.round(diffInDays / 7);
-    unit = "week";
-  } else {
-    value = diffInDays;
-    unit = "day";
+  // Use the largest unit whose count is at least 1, so "70 days" becomes
+  // "2 months" rather than lingering on days or weeks.
+  const units = [
+    ["year", 365],
+    ["month", 30],
+    ["week", 7],
+    ["day", 1],
+  ];
+
+  for (const [unit, days] of units) {
+    if (absDays >= days) {
+      return rtf.format(sign * Math.round(absDays / days), unit);
+    }
   }
-
-  return new Intl.RelativeTimeFormat(locale, { numeric: "auto" }).format(
-    value,
-    unit,
-  );
+  return rtf.format(0, "day");
 }
 
 function personalizeGreeting() {
