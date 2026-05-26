@@ -244,6 +244,7 @@ async function renderRecipient(invite) {
 
   const events = await localforage.getItem("eventsFromMyInvites");
   const event = events.find((item) => item.eventid === eventid);
+  const userid = getUserId();
 
   if (!event) {
     return (window.location.href = "../invites/");
@@ -297,7 +298,7 @@ async function renderRecipient(invite) {
 
   if (eventNameEl && eventName) {
     const txtEventIsDeleted = getPhrase("eventIsDeleted");
-    const url = `../i/${eventid}/${getUserId()}/${invite.recipient.id}`;
+    const url = `../i/${eventid}/${getUserId()}/${invite.recipient.id}?userid=${userid}`;
 
     if (eventObj.isDeleted === 1) {
       eventNameEl.innerHTML = `

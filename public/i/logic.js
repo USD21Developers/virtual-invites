@@ -1373,13 +1373,10 @@ function implementDiscreetLocation(event) {
 }
 
 function toggleBottomNav() {
-  let refreshToken = null;
-  try {
-    refreshToken = localStorage.getItem("refreshToken");
-  } catch (e) {}
+  const userid = new URLSearchParams(window.location.search).get("userid");
   const navButtonsEl = document.querySelector("#navButtons");
 
-  if (refreshToken) {
+  if (userid) {
     navButtonsEl.classList.add("showToLoggedInUser");
   }
 }
@@ -1472,12 +1469,9 @@ function onVideoEnded(e) {
   topOfEnvelope.scrollIntoView({ behavior: "smooth" });
 
   // IF LOGGED IN USER
-  let refreshToken = null;
-  try {
-    refreshToken = localStorage.getItem("refreshToken");
-  } catch (e) {}
-  const pageContentContainerEl = paper.querySelector("#pageContentContainer");
-  if (refreshToken) {
+  const userid = new URLSearchParams(window.location.search).get("userid");
+
+  if (userid) {
     pageContentContainerEl.classList.add("isLoggedInUser");
     toggleBottomNav();
   }
