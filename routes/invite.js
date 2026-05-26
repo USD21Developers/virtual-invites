@@ -327,7 +327,9 @@ module.exports = (req, res) => {
           : null;
 
       // Record that invite was viewed
-      let timezone = recipient.sharedfromtimezone;
+      let timezone = recipient.sharedfromtimezone
+        ? recipient.sharedfromtimezone
+        : "America/Phoenix";
 
       if (recipient) {
         // Detect the client's timezone via IP geolocation off the response
