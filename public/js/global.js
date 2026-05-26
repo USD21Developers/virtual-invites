@@ -1889,15 +1889,10 @@ function initGlobal() {
 
 initGlobal();
 
-const pagesWithoutServiceWorker = [
-  "/i/",
-  "/i/alt/",
-  "/unsubscribe/",
-  "/unsubscribe/done/",
-];
+const pagesWithoutServiceWorker = ["/i/", "/unsubscribe/"];
 
-const serveThisPageFromServiceWorker = !pagesWithoutServiceWorker.includes(
-  window.location.pathname,
+const serveThisPageFromServiceWorker = !pagesWithoutServiceWorker.some(
+  (prefix) => window.location.pathname.startsWith(prefix),
 );
 
 if (serveThisPageFromServiceWorker) {

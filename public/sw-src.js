@@ -5,6 +5,12 @@ workbox.setConfig({
   modulePathPrefix: "./third_party/workbox/workbox-v7.0.0/",
 });
 
+// Always fetch invite routes from the network — never cache them
+workbox.routing.registerRoute(
+  ({ url }) => url.pathname.startsWith("/i/"),
+  new workbox.strategies.NetworkOnly(),
+);
+
 // Use workbox methods
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST, {
   directoryIndex: "index.html",
