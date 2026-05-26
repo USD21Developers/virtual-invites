@@ -354,17 +354,14 @@ a:hover {
   opacity: 0.3; /* 30% opacity */
 }
 
-@media all and (display-mode: standalone) {
-  #navButtons.showToLoggedInUser {
-    animation: fadeIn 0.5s;
-    display: block !important;
-    padding-bottom: 50px;
-    transition: height 0.5s ease;
-  }
+#navButtons {
+  animation: fadeIn 0.5s;
+  padding-bottom: 50px;
+  transition: height 0.5s ease;
+}
 
-  #navButtons.showToLoggedInUser table {
-    margin-bottom: 15px;
-  }
+#navButtons table {
+  margin-bottom: 15px;
 }
 
 #eventDescription a {

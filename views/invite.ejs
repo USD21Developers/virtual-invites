@@ -82,7 +82,7 @@
               style="max-width: 100%"
             />
           </div>
-          <div id="pageContentContainer" class="d-none">
+          <div id="pageContentContainer" class="mb-5 d-none">
             <div id="pageContent"></div>
             <div>
               <br />
@@ -132,12 +132,13 @@
     </div>
 
     <!-- Nav buttons (only visible in standalone mode) -->
+    <% if (typeof isLoggedInUser !== 'undefined' && isLoggedInUser === true) { %>
     <nav id="navButtons" class="container-fluid fixed-bottom p-0 d-none">
       <table width="100%" cellpadding="10">
         <tr>
           <td>
             <div class="d-inline-block text-center">
-              <a href="javascript:history.go(-1)" id="navBackButton">
+              <a href="/r/#/<%- invite.recipient.invitationid %>" id="navBackButton">
                 <img
                   src="/_assets/svg/icons/nav-arrow-back-light.svg"
                   width="22"
@@ -190,6 +191,7 @@
         </tr>
       </table>
     </nav>
+    <% } %>
 
     <script type="application/json" id="inviteData">
       <%- JSON.stringify(invite) %>

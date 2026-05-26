@@ -50,6 +50,12 @@ module.exports = (req, res) => {
   eventid = Number(eventid);
   userid = Number(userid);
 
+  const loggedInUserId = parseInt(req.query.userid, 10);
+  const isLoggedInUser =
+    Number.isInteger(loggedInUserId) &&
+    loggedInUserId > 0 &&
+    loggedInUserId === userid;
+
   if (!Number.isFinite(eventid)) {
     return res.status(400).send({
       msg: "eventid must be numeric",
@@ -313,21 +319,6 @@ module.exports = (req, res) => {
         delete user.settings;
       }
 
-      // Enable overriding event contact info
-      if (user.settings) {
-        const settings = JSON.parse(user.settings);
-
-        if (settings.hasOwnProperty("eventsByFollowedUsers")) {
-          if (settings.eventsByFollowedUsers.hasOwnProperty("contactInfo")) {
-            if (settings.eventsByFollowedUsers.contactInfo.override) {
-              user.contactInfo = settings.eventsByFollowedUsers.contactInfo;
-            }
-          }
-        }
-
-        delete user.settings;
-      }
-
       const recipient =
         eventid && userid && recipientid
           ? await getRecipient(db, eventid, userid, recipientid).catch(
@@ -356,6 +347,7 @@ module.exports = (req, res) => {
           user: user,
           recipient: recipient,
         },
+        isLoggedInUser: isLoggedInUser,
       });
     } catch (err) {
       console.error("Unhandled error in invite handler:", err);

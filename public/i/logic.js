@@ -1372,15 +1372,6 @@ function implementDiscreetLocation(event) {
   }
 }
 
-function toggleBottomNav() {
-  const userid = new URLSearchParams(window.location.search).get("userid");
-  const navButtonsEl = document.querySelector("#navButtons");
-
-  if (userid) {
-    navButtonsEl.classList.add("showToLoggedInUser");
-  }
-}
-
 function warnIfEventIsDeleted() {
   const { event } = inviteObject;
   const isDeleted =
@@ -1461,20 +1452,14 @@ function onCalendarExpand() {
 
 function onVideoEnded(e) {
   const paper = document.querySelector("#paper");
+  const navButtons = document.querySelector("#navButtons");
 
   video.removeEventListener("ended", onVideoEnded, true);
   video.removeAttribute("autoplay");
   fixVideoBug();
   paper.classList.remove("d-none");
+  if (navButtons) navButtons.classList.remove("d-none");
   topOfEnvelope.scrollIntoView({ behavior: "smooth" });
-
-  // IF LOGGED IN USER
-  const userid = new URLSearchParams(window.location.search).get("userid");
-
-  if (userid) {
-    pageContentContainerEl.classList.add("isLoggedInUser");
-    toggleBottomNav();
-  }
 
   warnIfEventIsPast();
   warnIfEventIsDeleted();
