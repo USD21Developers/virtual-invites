@@ -544,125 +544,23 @@ function getCalendarIcal(config) {
   URL.revokeObjectURL(iCalLink.href);
 }
 
-async function getInvite() {
-  const hash = window.location.hash;
-  const inviteParts = hash.split("/");
+function getInvite() {
+  const inviteDataEl = document.querySelector("#inviteData");
+  const data = JSON.parse(inviteDataEl.innerHTML.trim());
 
-  if (!inviteParts?.length) {
-    throw new Error("Required URL parameters are missing");
-  }
+  const eventid = Number(data.event.eventid) || null;
 
-  const eventid =
-    Number(
-      document.querySelector("meta[property=eventid]").getAttribute("content"),
-    ) || null;
-  const userid =
-    Number(
-      document.querySelector("meta[property=userid]").getAttribute("content"),
-    ) || null;
-  const recipientid =
-    document
-      .querySelector("meta[property=recipientid]")
-      .getAttribute("content") || null;
+  const userid = Number(data.user.userid) || null;
+
+  const recipientid = data.recipient.invitationid || null;
 
   if (!eventid) throw new Error("Missing event ID");
 
-  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+  inviteObject.event = data.event;
+  inviteObject.user = data.user;
+  inviteObject.recipient = data.recipient;
 
-  const emailHtml = await fetch("./sender-notification-email.html?v=1")
-    .then((res) => res.text())
-    .then((html) => btoa(html));
-
-  const emailPhrases = {
-    "email-subject-viewed-invite": getPhrase("email-subject-viewed-invite"),
-    "email-recipient-viewed-your-invite": getPhrase(
-      "email-recipient-viewed-your-invite",
-    ),
-    "email-event-label": getPhrase("email-event-label"),
-    "email-date-sent-label": getPhrase("email-date-sent-label"),
-    "email-date-viewed-label": getPhrase("email-date-viewed-label"),
-    "email-timezone": getPhrase("email-timezone"),
-    "email-follow-up-link-text": getPhrase("email-follow-up-link-text"),
-    "email-about-app-headline": getPhrase("email-about-app-headline"),
-    "email-unsubscribe": getPhrase("email-unsubscribe"),
-    "email-message-id-text": getPhrase("email-message-id-text"),
-    "email-timezone-notice": getPhrase("email-timezone-notice"),
-    "email-event-is-deleted": getPhrase("eventIsDeleted"),
-  };
-
-  const pushPhrases = {
-    "push-invite-viewed": getPhrase("pushInviteViewed"),
-    "push-rsvp-occurred": getPhrase("pushRSVPOccurred"),
-    "push-add-to-calendar-occurred": getPhrase("pushAddToCalendarOccurred"),
-    "push-follow-up": getPhrase("pushFollowUp"),
-  };
-
-  // Safe storage reads — won't throw on Safari Private
-  let loadedAlready = false;
-  try {
-    loadedAlready = !!sessionStorage.getItem("loaded");
-  } catch (e) {}
-
-  let refreshToken = null;
-  try {
-    refreshToken = localStorage.getItem("refreshToken");
-  } catch (e) {}
-
-  let isUser = false;
-  if (refreshToken?.includes(".")) {
-    try {
-      const tokenArray = refreshToken.split(".");
-      if (tokenArray.length === 3) {
-        const parsedUser = JSON.parse(atob(tokenArray[1]));
-        if (parsedUser?.userid === userid) isUser = true;
-      }
-    } catch (e) {}
-  }
-
-  let endpoint = `${getApiHost()}/invite`;
-  /* 
-    if (window.location.hostname !== "localhost") {
-      endpoint = "invite-proxy.php";
-    }
-  */
-
-  showSpinner();
-
-  const res = await fetch(endpoint, {
-    mode: "cors",
-    method: "POST",
-    body: JSON.stringify({
-      eventid,
-      userid,
-      recipientid,
-      timezone,
-      emailHtml,
-      emailPhrases,
-      pushPhrases,
-      loadedAlready,
-      isUser,
-    }),
-    headers: new Headers({ "Content-Type": "application/json" }),
-  });
-
-  if (!res.ok) {
-    const errBody = await res.json().catch(() => null);
-    console.error("Proxy error detail:", errBody);
-    hideSpinner();
-    throw new Error(`Proxy returned ${res.status}`);
-  }
-
-  const data = await res.json();
-
-  if (data.msg === "invite retrieved") {
-    try {
-      sessionStorage.setItem("loaded", true);
-    } catch (e) {}
-    renderInvite(data.invite);
-  } else {
-    hideSpinner(); // was incorrectly showSpinner() before
-    throw new Error(`Unexpected response: ${data.msg}`);
-  }
+  renderInvite(inviteObject);
 }
 
 function getRelativeTime(dateUtc) {
@@ -1668,12 +1566,7 @@ function showVideo() {
 async function init() {
   await populateTemplate();
   await populateContent();
-  try {
-    await getInvite();
-  } catch (err) {
-    console.error(err);
-    return; // stop here — nothing else can render without the invite
-  }
+  getInvite();
   attachListeners();
   personalizeGreeting();
   populateHeadlineAboutEvent();

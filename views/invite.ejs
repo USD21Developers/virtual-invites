@@ -13,9 +13,6 @@
       property="twitter-image"
       content="https://invites.mobi/i/img/envelope-opengraph.jpg"
     />
-    <meta property="eventid" content="<%- eventid %>" />
-    <meta property="userid" content="<%- userid %>" />
-    <meta property="recipientid" content="<%- recipientid %>" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -193,6 +190,10 @@
         </tr>
       </table>
     </nav>
+
+    <script type="application/json" id="inviteData">
+      <%- JSON.stringify(invite) %>
+    </script>
 
     <script src="/js/datebook.min.js"></script>
     <script src="/js/moment.min.js" referrerpolicy="no-referrer"></script>
