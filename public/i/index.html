@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -37,6 +37,16 @@
         width: 530px;
       }
     </style>
+    <script>
+      (() => {
+        // Redirect if a hash is in the URL
+        let url = window.location.href;
+        if (url.indexOf("/#/") >= 0) {
+          url = url.replaceAll("/#/", "/");
+          window.location.href = url;
+        }
+      })();
+    </script>
     <script src="/js/getMobileOperatingSystem.js"></script>
   </head>
   <body class="purple-gradient">

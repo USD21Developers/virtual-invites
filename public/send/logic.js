@@ -19,7 +19,7 @@ function addToFollowUps() {
       (await localforage.getItem("unsyncedFollowups")) || [];
     if (unsyncedFollowups) {
       unsyncedFollowups = unsyncedFollowups.filter(
-        (item) => item.invitationid !== invitationid
+        (item) => item.invitationid !== invitationid,
       );
     }
     unsyncedFollowups.push(followUpObj);
@@ -32,7 +32,7 @@ function addToFollowUps() {
 async function checkForEvents() {
   let events = await localforage.getItem("events");
   let eventsByFollowedUsers = await localforage.getItem(
-    "eventsByFollowedUsers"
+    "eventsByFollowedUsers",
   );
   let hasEvents = false;
 
@@ -50,7 +50,7 @@ async function checkForEvents() {
         .then(async () => {
           events = await localforage.getItem("events");
           eventsByFollowedUsers = await localforage.getItem(
-            "eventsByFollowedUsers"
+            "eventsByFollowedUsers",
           );
 
           if (Array.isArray(events) && events.length) {
@@ -99,7 +99,7 @@ function clearForm() {
 
     if (lastEventSelected) {
       const rememberedEvent = document.querySelector(
-        `#events_dropdown option[value='${lastEventSelected}']`
+        `#events_dropdown option[value='${lastEventSelected}']`,
       );
       if (rememberedEvent) {
         rememberedEvent.setAttribute("selected", "selected");
@@ -125,7 +125,7 @@ function downloadCanvasAsImage() {
   let dataURL = canvas.toDataURL("image/png");
   let url = dataURL.replace(
     /^data:image\/png/,
-    "data:application/octet-stream"
+    "data:application/octet-stream",
   );
   downloadLink.setAttribute("href", url);
   downloadLink.click();
@@ -135,21 +135,21 @@ async function eventDetails() {
   const eventEl = document.querySelector("#events_dropdown");
   const qrcode = document.querySelector("#containerSendToQRCode");
   const qrcodeInstructions = document.querySelector(
-    "#containerQRCodeInstructions"
+    "#containerQRCodeInstructions",
   );
   const meetingdetails = document.querySelector("#meetingdetails");
   const meetingDetailsContainer = document.querySelector(
-    "#meetingDetailsContainer"
+    "#meetingDetailsContainer",
   );
   const meetingdetails_timedate = document.querySelector(
-    "#meetingdetails_timedate"
+    "#meetingdetails_timedate",
   );
   const meetingdetails_location = document.querySelector(
-    "#meetingdetails_location"
+    "#meetingdetails_location",
   );
   const events = await localforage.getItem("events");
   const eventsByFollowedUsers = await localforage.getItem(
-    "eventsByFollowedUsers"
+    "eventsByFollowedUsers",
   );
 
   localStorage.setItem("lastEventSelected", "");
@@ -230,7 +230,7 @@ async function getCoordinatesOnLoad() {
           navigator.geolocation.getCurrentPosition(
             onGeoLocationSuccess,
             onGeoLocationError,
-            geoLocationOptions
+            geoLocationOptions,
           );
         }
       });
@@ -279,10 +279,7 @@ function getFinalURL() {
   const recipientId = recipientIdGlobal.length
     ? recipientIdGlobal
     : getRecipientId();
-  const finalUrl =
-    window.location.hostname === "localhost"
-      ? `${window.location.origin}/i/#/${eventId}/${userId}/${recipientId}`
-      : `${window.location.origin}/i/${eventId}/${userId}/${recipientId}`;
+  const finalUrl = `${window.location.origin}/i/${eventId}/${userId}/${recipientId}`;
   return finalUrl;
 }
 
@@ -431,7 +428,7 @@ async function loadEvents() {
 
   const events = await localforage.getItem("events");
   const eventsByFollowedUsers = await localforage.getItem(
-    "eventsByFollowedUsers"
+    "eventsByFollowedUsers",
   );
   let followedUsers = await localforage.getItem("followedUsers");
 
@@ -439,7 +436,7 @@ async function loadEvents() {
     if (eventsByFollowedUsers.length) {
       followedUsers = followedUsers.filter((followedUser) => {
         const matchingEvent = eventsByFollowedUsers.find(
-          (item) => item.createdBy === followedUser.userid
+          (item) => item.createdBy === followedUser.userid,
         );
         return matchingEvent ? true : false;
       });
@@ -475,7 +472,7 @@ async function loadEvents() {
       followedUsers.forEach((followedUser) => {
         const { userid, firstname, lastname } = followedUser;
         const eventsByFollowedUser = eventsByFollowedUsers.filter(
-          (e) => e.createdBy === userid
+          (e) => e.createdBy === userid,
         );
         let followedUserHTML = "";
         followedUserHTML = `<optgroup label="${firstname} ${lastname}" data-userid="${userid}">`;
@@ -492,7 +489,7 @@ async function loadEvents() {
     } else if (hasOwnEvents && hasEventsByFollowedUsers) {
       let myEventsHTML = "";
       const { firstname, lastname } = JSON.parse(
-        atob(localStorage.getItem("refreshToken").split(".")[1])
+        atob(localStorage.getItem("refreshToken").split(".")[1]),
       );
       myEventsHTML = `<optgroup label="${firstname} ${lastname}">`;
       events.forEach((e) => {
@@ -504,7 +501,7 @@ async function loadEvents() {
       followedUsers.forEach((followedUser) => {
         const { userid, firstname, lastname } = followedUser;
         const eventsByFollowedUser = eventsByFollowedUsers.filter(
-          (e) => e.createdBy === userid
+          (e) => e.createdBy === userid,
         );
         let followedUserHTML = "";
         followedUserHTML = `<optgroup label="${firstname} ${lastname}" data-userid="${userid}">`;
@@ -544,7 +541,7 @@ async function showQrCode() {
     const recipientName = document.querySelector("#recipientname").value.trim();
     const messageText = getPhrase("didRecipientScan").replaceAll(
       "{NAME}",
-      recipientName
+      recipientName,
     );
 
     resultTextEl.innerHTML = messageText;
@@ -692,10 +689,10 @@ function onGeoLocationSuccess(pos) {
 function onHowToScanClick(e) {
   e.preventDefault();
   const instructionsShort = document.querySelector(
-    "[data-i18n='instructionsShort']"
+    "[data-i18n='instructionsShort']",
   );
   const instructionsLong = document.querySelector(
-    "[data-i18n='instructionsLong']"
+    "[data-i18n='instructionsLong']",
   );
   instructionsShort.classList.add("d-none");
   instructionsLong.classList.remove("d-none");
@@ -863,7 +860,7 @@ async function onSubmitButtonClick(e) {
 
       btnSendInvite.setAttribute(
         "href",
-        `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`
+        `mailto:${sendTo}?subject=${emailSubjectLine}&body=${sendBody}`,
       );
 
       window.location.href = e.target.href;
@@ -917,7 +914,7 @@ function onTagWithLocation(e) {
     navigator.geolocation.getCurrentPosition(
       onGeoLocationSuccess,
       onGeoLocationError,
-      geoLocationOptions
+      geoLocationOptions,
     );
   }
 }
@@ -928,7 +925,7 @@ function populateSaveButtonData() {
   btnSendInvite.setAttribute("data-qrcodetext", getPhrase("buttonsaveinvite"));
   btnSendInvite.setAttribute(
     "data-otherappstext",
-    getPhrase("buttonsendinvite")
+    getPhrase("buttonsendinvite"),
   );
 }
 
@@ -1014,7 +1011,7 @@ function selectSendVia(method) {
   const containerSms = document.querySelector("#containerSendToSms");
   const containerEmail = document.querySelector("#containerSendToEmail");
   const containerTagWithLocation = document.querySelector(
-    "#containerTagWithLocation"
+    "#containerTagWithLocation",
   );
   const btnSendInvite = document.querySelector("#btnSendInvite");
   const smsField = document.querySelector("#sendto_sms");
@@ -1077,7 +1074,7 @@ function selectSendVia(method) {
 function saveAndSync(sendvia) {
   return new Promise(async (resolve, reject) => {
     const eventid = Number(
-      document.querySelector("#events_dropdown").selectedOptions[0].value
+      document.querySelector("#events_dropdown").selectedOptions[0].value,
     );
     const recipientName = document.querySelector("#recipientname").value || "";
     const recipientSms = ["sms", "whatsapp"].includes(sendvia)
@@ -1191,7 +1188,7 @@ function showError(
   msg,
   selector,
   inlineMsg,
-  modalSelector = "#modalFormErrors"
+  modalSelector = "#modalFormErrors",
 ) {
   const formIncomplete = getPhrase("formIncomplete");
 
@@ -1231,7 +1228,7 @@ function showTagInviteWithLocation() {
   const isMobile = isMobileDevice();
   if (isMobile) {
     const containerTagWithLocation = document.querySelector(
-      "#containerTagWithLocation"
+      "#containerTagWithLocation",
     );
     containerTagWithLocation.classList.remove("d-none");
   }

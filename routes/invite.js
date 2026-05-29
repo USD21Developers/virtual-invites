@@ -1,34 +1,7 @@
 const moment = require("moment");
-const fs = require("fs");
-const path = require("path");
 const getTimezoneFromIp = require("../lib/getTimezoneFromIp");
-
-function removeLocationInfoFromDiscreetEvents(arrayOfEvents) {
-  if (!Array.isArray(arrayOfEvents)) return [];
-
-  const events = arrayOfEvents.map((event) => {
-    const { locationvisibility } = event;
-    const isDiscreetLocation = locationvisibility === "discreet" ? true : false;
-
-    if (!isDiscreetLocation) {
-      return event;
-    }
-
-    const modifiedEvent = {
-      ...event,
-      locationaddressline1: null,
-      locationaddressline2: null,
-      locationaddressline3: null,
-      locationcoordinates: null,
-      locationname: null,
-      otherlocationdetails: null,
-    };
-
-    return modifiedEvent;
-  });
-
-  return events;
-}
+const removeLocationInfoFromDiscreetEvents = require("../lib/removeLocationInfoFromDiscreetEvents");
+const recordThatInviteWasViewed = require("../lib/recordThatInviteWasViewed");
 
 module.exports = (req, res) => {
   // Set database
@@ -70,52 +43,6 @@ module.exports = (req, res) => {
   }
 
   const timezone = "America/Phoenix";
-
-  const getUnsubscribeToken = async (recipientid, userid) => {
-    return new Promise((resolve, reject) => {
-      const sql = `
-        SELECT
-          invitationid,
-          userid
-        FROM
-          invitations
-        WHERE
-          recipientid = ?
-        AND
-          userid = ?
-        LIMIT 1
-        ;
-      `;
-      db.query(sql, [recipientid, userid], (error, result) => {
-        if (error) {
-          console.log(error);
-          return reject(error);
-        }
-
-        if (!result.length) {
-          return reject(
-            new Error("an invitation with this userid was not found"),
-          );
-        }
-
-        const invitationid = result[0].invitationid;
-        const userid = result[0].userid;
-        const secret = process.env.INVITES_HMAC_SECRET;
-        const jsonwebtoken = require("jsonwebtoken");
-        const jwt = jsonwebtoken.sign(
-          {
-            invitationid: invitationid,
-            userid: userid,
-          },
-          secret,
-          { expiresIn: "100y" },
-        );
-        const unsubscribeToken = Buffer.from(jwt).toString("base64");
-
-        return resolve(unsubscribeToken);
-      });
-    });
-  };
 
   const getEvent = (db, eventid) => {
     return new Promise((resolve, reject) => {
@@ -241,47 +168,6 @@ module.exports = (req, res) => {
     });
   };
 
-  const recordThatInviteWasViewed = function (invitationid, userid, timezone) {
-    return new Promise((resolve, reject) => {
-      const interactionType = "viewed invite";
-
-      if (!invitationid)
-        return reject(new Error("invitationid is a required argument"));
-      if (!userid) return reject(new Error("userid is a required argument"));
-      if (!timezone)
-        return reject(new Error("timezone is a required argument"));
-
-      const sql = `
-        INSERT INTO interactions(
-          invitationid,
-          userid,
-          recipienttimezone,
-          interactiontype,
-          createdAt
-        ) VALUES (
-          ?,
-          ?,
-          ?,
-          ?,
-          UTC_TIMESTAMP()
-        )
-      `;
-
-      db.query(
-        sql,
-        [invitationid, userid, timezone, interactionType],
-        (error, result) => {
-          if (error) {
-            console.log(error);
-            return reject(new Error("unable to record that invite was viewed"));
-          }
-
-          return resolve(result);
-        },
-      );
-    });
-  };
-
   // Main method
   (async (db, res) => {
     try {
@@ -339,7 +225,12 @@ module.exports = (req, res) => {
             const detected = await getTimezoneFromIp(req.clientIp);
             if (detected) timezone = detected;
           } catch (e) {}
-          recordThatInviteWasViewed(recipient.invitationid, userid, timezone);
+          recordThatInviteWasViewed(
+            db,
+            recipient.invitationid,
+            userid,
+            timezone,
+          );
         })();
       }
 
