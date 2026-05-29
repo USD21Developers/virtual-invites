@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon -r dotenv/config server.js",
+    "debug": "nodemon --inspect -r dotenv/config server.js",
+    "debug:brk": "nodemon --inspect-brk -r dotenv/config server.js",
     "build": "cd public && npx workbox-cli injectManifest workbox-config.js",
     "ssh:prod": "ssh root@api.usd21.org -p 1773 -i ~/.ssh/usd21/id_rsa",
     "deploy:prod": "ssh root@api.usd21.org -p 1773 -i ~/.ssh/usd21/id_rsa \"cd /var/www/invites.mobi; ./pull.sh\"",

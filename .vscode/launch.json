@@ -1,0 +1,42 @@
+{
+  // Debug configs for the virtual-invites Node process.
+  // See: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // Plain launch: starts server.js under the debugger, no auto-restart.
+      // Best when you want a stable session and full breakpoint control.
+      "type": "node",
+      "request": "launch",
+      "name": "Launch virtual-invites",
+      "program": "${workspaceFolder}/server.js",
+      "cwd": "${workspaceFolder}",
+      "skipFiles": ["<node_internals>/**"],
+      "console": "integratedTerminal"
+    },
+    {
+      // Launch via nodemon: auto-restarts (and re-attaches the debugger)
+      // when you save a file. Mirrors `npm start` but with the inspector on.
+      "type": "node",
+      "request": "launch",
+      "name": "Launch virtual-invites (nodemon)",
+      "runtimeExecutable": "nodemon",
+      "program": "${workspaceFolder}/server.js",
+      "cwd": "${workspaceFolder}",
+      "restart": true,
+      "skipFiles": ["<node_internals>/**"],
+      "console": "integratedTerminal"
+    },
+    {
+      // Attach to an already-running process started with --inspect,
+      // e.g. `npm run debug` in a terminal.
+      "type": "node",
+      "request": "attach",
+      "name": "Attach to virtual-invites",
+      "port": 9229,
+      "restart": true,
+      "cwd": "${workspaceFolder}",
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}
