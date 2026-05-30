@@ -2,6 +2,8 @@ const moment = require("moment");
 const getTimezoneFromIp = require("../lib/getTimezoneFromIp");
 const removeLocationInfoFromDiscreetEvents = require("../lib/removeLocationInfoFromDiscreetEvents");
 const recordThatInviteWasViewed = require("../lib/recordThatInviteWasViewed");
+const notifySenderByEmail = require("../lib/notifySenderByEmail");
+const notifySenderByPush = require("../lib/notifySenderByPush");
 
 module.exports = (req, res) => {
   // Set database
@@ -232,6 +234,28 @@ module.exports = (req, res) => {
             timezone,
           );
         })();
+      }
+
+      // Notify the sender (via e-mail and/or web push) that their invite was
+      // viewed. Fire-and-forget so we never block the page render; skip when the
+      // sender is viewing their own invite. Each notifier independently enforces
+      // its own rate limit, unsubscribe flag, and notification settings.
+      if (event && user && recipient && !isLoggedInUser) {
+        notifySenderByEmail(db, {
+          event,
+          user,
+          recipient,
+          recipientid,
+          userid,
+          isUser: isLoggedInUser,
+        }).catch((err) => console.error("notifySenderByEmail failed:", err));
+
+        notifySenderByPush(db, {
+          event,
+          user,
+          recipient,
+          isUser: isLoggedInUser,
+        }).catch((err) => console.error("notifySenderByPush failed:", err));
       }
 
       res.render("invite", {
