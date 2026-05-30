@@ -1,21 +1,20 @@
 module.exports = async (req, res) => {
-  exports.GET = (req, res) => {
-    let localizedContent = {
-      name: {
-        en: "Invites",
-      },
-      short_name: {
-        en: "Invites",
-      },
-      description: {
-        en: "The Invites app is a tool for members in good standing with the International Christian Churches (a.k.a. SoldOut Discipling Movement), online at usd21.org.  It enables users to send digital invites to people that they invite to church functions, such as Sunday services or small discussion groups known as Bible Talks.",
-      },
-      screenshots: {
-        en: [],
-      },
-    };
+  let localizedContent = {
+    name: {
+      en: "Invites",
+    },
+    short_name: {
+      en: "Invites",
+    },
+    description: {
+      en: "The Invites app is a tool for members in good standing with the International Christian Churches (a.k.a. SoldOut Discipling Movement), online at usd21.org.  It enables users to send digital invites to people that they invite to church functions, such as Sunday services or small discussion groups known as Bible Talks.",
+    },
+    screenshots: {
+      en: [],
+    },
+  };
 
-    let manifest = {
+  let manifest = {
       name: localizedContent.name.en,
       short_name: localizedContent.short_name.en,
       description: localizedContent.description.en,
@@ -54,7 +53,7 @@ module.exports = async (req, res) => {
       categories: ["productivity", "religion"],
     };
 
-    if (req.cookies.preAuthArray) {
+    if (req.cookies && req.cookies.preAuthArray) {
       const strPreAuthArray = req.cookies.preAuthArray;
       const preAuthArray = strPreAuthArray.split(",").map(Number);
       const churchid = preAuthArray[0];
@@ -92,8 +91,7 @@ module.exports = async (req, res) => {
       }
     });
 
-    res.setHeader("Content-Type", "application/json");
+    res.setHeader("Content-Type", "application/manifest+json");
 
     res.status(200).send(manifest);
-  };
 };
