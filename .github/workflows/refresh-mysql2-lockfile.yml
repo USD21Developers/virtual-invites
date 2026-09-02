@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - security/mysql2-ghsa-3f6p-5ww8-9rcr
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
