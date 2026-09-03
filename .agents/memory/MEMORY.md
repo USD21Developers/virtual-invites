@@ -1,0 +1,1 @@
+- [Portable npm lockfiles](portable-npm-lockfiles.md) — Replit package installs can seed internal proxy URLs; portability requires a fresh public-registry lock generation.
